@@ -9,6 +9,8 @@ use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,10 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
-Route::get('/peserta', [HomeControllerPeserta::class, 'index']);
-
 
 //Peserta
 Route::middleware(['guest:peserta'])->group(function () {
@@ -34,15 +33,40 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
-    Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 });
-Route::middleware(['auth:peserta'])->group(function () {
+Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
+    Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
+    Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
+    Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
     Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
 });
-Route::middleware(['auth:peserta', 'verified'])->group(function(){
+Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
 });
 //end peserta
+
+//User
+Route::prefix('/admin')->group(function () {
+    Route::middleware(['guest:web'])->group(function () {
+        Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
+        Route::post('/masuk', [AuthUserController::class, 'loginUser']);
+        Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
+        Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
+    });
+    Route::middleware(['auth:web'])->group(function () {
+        Route::post('/keluar', [AuthUserController::class, 'logoutUser']);
+        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView']);
+        Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
+        Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
+    });
+    Route::middleware(['auth:web', 'verified:web'])->group(function() {
+        Route::get('/dashboard', [UserDashboardController::class, 'index']);
+    });
+});
+// end User
+
+
+
 
 //berita
 Route::get('/berita',[BeritaController::class,'index']);

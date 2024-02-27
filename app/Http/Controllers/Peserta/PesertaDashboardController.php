@@ -13,6 +13,7 @@ class PesertaDashboardController extends Controller
     //     $this->middleware(['auth', 'verified']);
     // }
     public function index() {
+        // dd(Auth::guard('peserta')->user()->nama);
         return view('peserta.home.index');
     }
 }
