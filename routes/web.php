@@ -22,31 +22,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'index']);
+Route::get('/informasi', [InformationController::class, 'index']);
+Route::get('/peserta', [HomeControllerPeserta::class, 'index']);
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
-    // Route::get('/login', [LoginController::class, 'index']);
-    Route::get('/informasi', [InformationController::class, 'index']);
-    Route::get('/peserta', [HomeControllerPeserta::class, 'index']);
 
-    // Auth
-    //peserta
-    Route::get('/masuk', [AuthPesertaController::class, 'loginPesertaView']);
+//Peserta
+Route::middleware(['guest:peserta'])->group(function () {
+    Route::get('/masuk', [AuthPesertaController::class, 'loginPesertaView'])->name('masuk');
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
     Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
-    //end Auth
 });
-
-Route::middleware(['auth'])->group(function () {
-    //Auth
-    Route::post('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
-    //end Auth
-
+Route::middleware(['auth:peserta'])->group(function () {
+    Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
 });
+Route::middleware(['auth:peserta', 'verified'])->group(function(){
+    Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+});
+//end peserta
 
-Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
 //berita
 Route::get('/berita',[BeritaController::class,'index']);
 Route::post('/berita',[BeritaController::class,'store']);
