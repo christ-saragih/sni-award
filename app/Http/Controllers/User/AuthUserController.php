@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class AuthUserController extends Controller
 {
     public function loginUserView() {
-        dd(Auth::check());
+        // dd(Auth::check());
         return view('admin.auth.login');
     }
 
@@ -91,11 +91,11 @@ class AuthUserController extends Controller
     public function verifikasiUser($verify_key) {
         $checkKey = User::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
-            $user = User::where('verify_key', $verify_key)
+            User::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
             return redirect('/admin/masuk')->with('success', 'Berhasil melakukan verifikasi');
         }else {
-            return redirect('admin/masuk')
+            return redirect('/admin/masuk')
                 ->withErrors('verify key salah, silahkan coba kembali')
                 ->withInput();
         }
@@ -103,7 +103,7 @@ class AuthUserController extends Controller
 
     public function verifikasiUlangUser($kode_verifikasi) {
         $details = [
-            'nama' => Auth::user()->nama,
+            'name' => Auth::user()->name,
             'datetime' => date('Y-m-d H:i:s'),
             'website' => 'SNI Award',
             'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$kode_verifikasi,

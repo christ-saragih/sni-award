@@ -1,17 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HomeControllerPeserta;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,19 +43,19 @@ Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
 
 //User
 Route::prefix('/admin')->group(function () {
-    Route::middleware(['guest:web'])->group(function () {
+    Route::middleware(['guest'])->group(function () {
         Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
     });
-    Route::middleware(['auth:web'])->group(function () {
-        Route::post('/keluar', [AuthUserController::class, 'logoutUser']);
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
         Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView']);
         Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
     });
-    Route::middleware(['auth:web', 'verified:web'])->group(function() {
+    Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
     });
 });
