@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
 use App\Mail\AuthPesertaMail;
+use App\Models\KategoriOrganisasi;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -46,7 +48,11 @@ class AuthPesertaController extends Controller
     }
 
     public function registrasiPesertaView() {
-        return view('peserta.auth.register');
+        $kategori_organisasi = DB::table('kategori_organisasi')
+            ->join('tipe_kategori', 'kategori_organisasi.tipe_kategori_id', '=', 'tipe_kategori.id')
+            ->select('kategori_organisasi.*', 'tipe_kategori.nama as nama_tipe_kategori')
+            ->get();
+        return view('peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
     }
 
     public function registrasiPeserta(Request $request) {
