@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssesmentAdminController;
+use App\Http\Controllers\BeritaAcaraAdminController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
+use App\Http\Controllers\WilayahAdminController;
 use App\Models\KategoriBerita;
 use App\Models\TagBerita;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +47,10 @@ Route::prefix('admin')->group(function() {
 
 // <<<<<<< HEAD
 // Admin
+Route::get('/berita_acara', [BeritaAcaraAdminController::class, 'index']);
+
+// Data Master
+Route::get('/wilayah', [WilayahAdminController::class, 'index']);
 Route::get('/admin/assesment', [AssesmentAdminController::class, 'index']);
 
 

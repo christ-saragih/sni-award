@@ -36,7 +36,7 @@
                     </ul>
                     <div class="progress">
                       <div
-                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        class="progress-bar penilaian progress-bar-striped progress-bar-animated"
                         role="progressbar"
                         aria-valuemin="0"
                         aria-valuemax="100"
@@ -392,15 +392,15 @@
     <div class="content-ubah-password py-5">
         <div class="container mt-4 d-flex flex-column gap-4">
           <div class="kategori-pertanyaan d-flex justify-content-evenly" style="height: 75px;">
-            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemiminan</div>
+            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemimpinan</div>
             <div class="mh-100 d-flex align-items-center justify-content-center">Strategi</div>
           </div>
           <div class="kategori-pertanyaan d-flex justify-content-evenly" style="height: 75px;">
-            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemiminan</div>
+            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemimpinan</div>
             <div class="mh-100 d-flex align-items-center justify-content-center">Strategi</div>
           </div>
           <div class="kategori-pertanyaan d-flex justify-content-evenly mb-5" style="height: 75px;">
-            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemiminan</div>
+            <div class="mh-100 d-flex align-items-center justify-content-center">Kepemimpinan</div>
             <div class="mh-100 d-flex align-items-center justify-content-center">Strategi</div>
           </div>
 
@@ -409,7 +409,7 @@
                   <div class="d-flex align-items-center">
                     <div class="progress flex-grow-1" style="height: 9px;">
                       <div
-                        class="progress-bar"
+                        class="progress-bar pertanyaan"
                         role="progressbar"
                         aria-valuemin="0"
                         aria-valuemax="100"
@@ -427,7 +427,7 @@
                   </div>
 
                   <!-- fieldset pertanyaan -->
-                  <fieldset id="fieldsetPertanyaan">
+                  <fieldset class="fieldset" id="fieldsetPertanyaan">
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                       <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                         <h3 class="m-0">Pertanyaan 1</h3>
@@ -498,11 +498,11 @@
                     />
                   </fieldset>
 
-                  <fieldset>
+                  <fieldset class="fieldset" id="fieldsetPertanyaan">
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                       <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                         <h3 class="m-0">Pertanyaan 1</h3>
-                        <p class="m-0">Visi, Tata Nilai, dan Misi</p>
+                        <p class="m-0">Pengembangan Strategi</p>
                       </div>
                       <div class="pertanyaan d-flex flex-column text-center">
                         <p class="m-0">Apakah organisasi mempertimbangkan standar (SNI) dan penilaian kesesuaian dalam penetapan visi, misi dan tata nilai?</p>
@@ -523,7 +523,7 @@
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-5">
                       <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                         <h3 class="m-0">Pertanyaan 2</h3>
-                        <p class="m-0">Visi, Tata Nilai, dan Misi</p>
+                        <p class="m-0">Pengembangan Strategi</p>
                       </div>
                       <div class="pertanyaan d-flex flex-column text-center">
                         <p class="m-0">Apakah organisasi mempertimbangkan standar (SNI) dan penilaian kesesuaian dalam penetapan visi, misi dan tata nilai?</p>
@@ -544,7 +544,7 @@
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-5">
                       <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                         <h3 class="m-0">Pertanyaan 3</h3>
-                        <p class="m-0">Visi, Tata Nilai, dan Misi</p>
+                        <p class="m-0">Pengembangan Strategi</p>
                       </div>
                       <div class="pertanyaan d-flex flex-column text-center">
                         <p class="m-0">Apakah organisasi mempertimbangkan standar (SNI) dan penilaian kesesuaian dalam penetapan visi, misi dan tata nilai?</p>
@@ -569,7 +569,7 @@
                     />
                   </fieldset>
                   
-                  <fieldset>
+                  <fieldset class="fieldset" id="fieldsetPertanyaan">
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                       <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                         <h3 class="m-0">Pertanyaan 1</h3>

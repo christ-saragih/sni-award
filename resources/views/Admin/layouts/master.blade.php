@@ -95,10 +95,20 @@
               <span class="nav-link-text" id="navLinkText">Halaman Depan</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navLink" href="/admin/berita_acara">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+              <i class="fa fa-sticky-note"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Berita & Acara</span>
+            </a>
+          </li>
           <li class="nav-item" id="navItemBerita">
             <a class="nav-link" id="navLink" href="#">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                <i class="fa fa-sticky-note"></i>
+                <i class="fa fa-database"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">Data Master</span> 
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeft"></i>
@@ -113,11 +123,43 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/assesment">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Assesment</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Dokumen</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Wilayah</span> 
                 </a>
               </li>
             </ul>
@@ -141,41 +183,6 @@
               </div>
               <span class="nav-link-text" id="navLinkText">Evaluator</span>
             </a>
-          </li>
-          <li class="nav-item" id="navItemBerita">
-            <a class="nav-link" id="navLink" href="#">
-              <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                <i class="fa fa-sticky-note"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Berita & Acara</span> 
-                <i class="fa fa-caret-left ms-auto" id="faCaretLeft"></i>
-            </a>
-            <ul class="dropdown-menu" id="dropdownMenu">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
-                  </div>
-                  <span class="nav-link-text dropdown">Kategori</span> 
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
-                  </div>
-                  <span class="nav-link-text dropdown">Tag Berita</span> 
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
-                  </div>
-                  <span class="nav-link-text dropdown">Dan lain-lain</span> 
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="navLink" href="#">
@@ -205,16 +212,6 @@
                 <i class="fa fa-calendar"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-database"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span>
             </a>
           </li>
         </ul>
