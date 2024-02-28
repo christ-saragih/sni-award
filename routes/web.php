@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
+use App\Http\Controllers\StatusKepemilikanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Models\KategoriBerita;
@@ -50,6 +51,7 @@ Route::prefix('admin')->group(function() {
 Route::get('/berita_acara', [BeritaAcaraAdminController::class, 'index']);
 
 // Data Master
+Route::get('/status_kepemilikan', [StatusKepemilikanAdminController::class, 'index']);
 Route::get('/wilayah', [WilayahAdminController::class, 'index']);
 Route::get('/admin/assesment', [AssesmentAdminController::class, 'index']);
 
