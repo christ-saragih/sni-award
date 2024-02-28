@@ -93,7 +93,7 @@ class AuthUserController extends Controller
         if ($checkKey) {
             User::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect('/admin/masuk')->with('success', 'Berhasil melakukan verifikasi');
+            return redirect()->route('masukAdmin')->with('success', 'Berhasil melakukan verifikasi');
         }else {
             return redirect('/admin/masuk')
                 ->withErrors('verify key salah, silahkan coba kembali')

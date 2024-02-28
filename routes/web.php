@@ -43,15 +43,15 @@ Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
 
 //User
 Route::prefix('/admin')->group(function () {
-    Route::middleware(['guest'])->group(function () {
+    Route::middleware(['guest:web'])->group(function () {
         Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
     });
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth:web'])->group(function () {
         Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
-        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView']);
+        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('verification.notice');
         Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
     });
@@ -61,17 +61,3 @@ Route::prefix('/admin')->group(function () {
 });
 // end User
 
-
-
-
-//berita
-Route::get('/berita',[BeritaController::class,'index']);
-Route::post('/berita',[BeritaController::class,'store']);
-Route::get('/berita/tambah',[BeritaController::class,'create']);
-Route::get('/berita/{id}/edit',[BeritaController::class,'edit']);
-Route::put('/berita/{id}/edit',[BeritaController::class,'update']);
-Route::delete('/berita/{id}/edit',[BeritaController::class,'destroy']);
-//kategori berita
-Route::get('/kategori_berita',[KategoriBeritaController::class,'index']);
-Route::post('/kategori_berita',[KategoriBeritaController::class,'store']);
-Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create']);
