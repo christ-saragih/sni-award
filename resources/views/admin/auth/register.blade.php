@@ -45,7 +45,8 @@
         <div class="content-kanan">
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
-          <form method="POST" action="/registrasi" style="
+
+          <form method="POST" action="/admin/registrasi" style="
             padding: 20px;
           ">
             @csrf
@@ -53,7 +54,7 @@
                 <label for="name" class="col-md-4 col-form-label">{{ __('Name') }}</label>
 
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('nama')
                         <span class="invalid-feedback" role="alert">
