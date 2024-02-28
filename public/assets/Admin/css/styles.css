@@ -1,0 +1,203 @@
+body {
+    margin: 0;
+}
+
+.navbar-vertical.navbar-expand-xs {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 15.625rem !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    box-shadow: none;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-collapse {
+    display: block;
+    /* overflow: auto; */
+    /* height: calc(100vh - 360px); */
+}
+
+.navbar-vertical.navbar-expand-xs > [class*="container"] {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*  */
+
+#sidenavMain {
+    /* kenapa animasinya hanya berjalan sekali */
+    transition: all 0.3s ease;
+}
+
+main {
+    transition: all 0.5s ease;
+    transition-delay: 0.3s;
+}
+
+.sidenav .navbar-brand {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    padding-inline: 2rem;
+}
+
+.sidenav .navbar-brand,
+.sidenav .navbar-heading {
+    display: block;
+}
+
+.navbar .navbar-brand {
+    color: #344767;
+}
+
+.navbar-vertical .navbar-nav > .nav-item .nav-link.active {
+    color: #fff;
+    background-color: #552525;
+}
+
+.navbar-vertical .navbar-nav .nav-link.active {
+    font-weight: 600;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    box-shadow: inset -5px 0px 0px 0px #e59b30;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav .nav-link {
+    padding-top: 0.675rem;
+    padding-bottom: 0.675rem;
+    margin-left: 1rem;
+}
+
+.navbar-vertical .navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.navbar-vertical .navbar-nav .nav-link,
+.dropdown-item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: 500;
+    color: #9fafbf;
+}
+
+.navbar .nav-link {
+    color: #344767;
+    padding: 0.5rem 1rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-block: 0.2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.sidebar .navbar-nav .nav-item .nav-link {
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.sidebar .navbar-nav .nav-item .nav-link:hover {
+    background-color: #552525;
+    color: white !important;
+    box-shadow: inset -5px 0px 0px 0px #e59b30;
+    font-weight: 600;
+}
+
+.nav-link-text,
+nav h6,
+nav span {
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-link-text,
+.dropdown-menu {
+    font-size: 18px;
+}
+
+.nav-link-text.dropdown {
+    font-weight: 400;
+}
+
+.icon-sm {
+    width: 32px;
+    height: 32px;
+}
+
+.fa.fa-bars {
+    font-size: 28px;
+    font-weight: 100 !important;
+}
+
+nav .fa {
+    font-weight: 600;
+    color: #33363f;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* dropdown menu */
+.dropdown-menu {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none;
+    width: auto;
+    font-family: "Poppins", sans-serif;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.dropdownMenu-hidden {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+/* main content */
+
+/* main content end */
+
+@media (min-width: 1200px) {
+    .sidenav:hover {
+        max-width: 15.625rem;
+    }
+
+    .sidenav .sidenav-toggler {
+        padding: 1.5rem;
+    }
+
+    .sidenav.fixed-start ~ .main-content {
+        margin-left: 17.125rem;
+    }
+
+    .sidenav.fixed-end ~ .main-content {
+        margin-right: 17.125rem;
+    }
+}

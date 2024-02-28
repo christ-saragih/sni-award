@@ -1,5 +1,12 @@
+:root {
+    --primary-color: #552525;
+    --secondary-color: #e59b30;
+    --line-color: #e1a600;
+}
+
 body {
     margin: 0;
+    font-family: "Arimo", sans-serif;
 }
 
 .navbar-vertical.navbar-expand-xs {
@@ -10,14 +17,15 @@ body {
     width: 100%;
     max-width: 15.625rem !important;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0;
     box-shadow: none;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
     display: block;
-    overflow: auto;
-    height: calc(100vh - 360px);
+    /* overflow: auto; */
+    /* height: calc(100vh - 360px); */
 }
 
 .navbar-vertical.navbar-expand-xs > [class*="container"] {
@@ -28,17 +36,22 @@ body {
     padding-right: 0;
 }
 
+/*  */
+
+#sidenavMain {
+    /* kenapa animasinya hanya berjalan sekali */
+    transition: all 0.3s ease;
+}
+
+main {
+    transition: all 0.5s ease;
+    transition-delay: 0.3s;
+}
+
 .sidenav .navbar-brand {
-    padding: 2rem 2rem;
-}
-
-.sidenav .navbar-brand,
-.sidenav .navbar-heading {
-    display: block;
-}
-
-.navbar .navbar-brand {
-    color: #344767;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    padding-inline: 2rem;
 }
 
 .navbar-vertical .navbar-nav > .nav-item .nav-link.active {
@@ -48,10 +61,9 @@ body {
 
 .navbar-vertical .navbar-nav .nav-link.active {
     font-weight: 600;
-    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    border-right: 5px solid #e59b30;
+    box-shadow: inset -5px 0px 0px 0px #e59b30;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link {
@@ -66,11 +78,12 @@ body {
     white-space: nowrap;
 }
 
-.navbar-vertical .navbar-nav .nav-link {
+.navbar-vertical .navbar-nav .nav-link,
+.dropdown-item {
     padding-left: 1rem;
     padding-right: 1rem;
     font-weight: 500;
-    color: #000000;
+    color: #9fafbf;
 }
 
 .navbar .nav-link {
@@ -83,17 +96,35 @@ body {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    font-size: var(--bs-nav-link-font-size);
-    font-weight: var(--bs-nav-link-font-weight);
-    color: var(--bs-nav-link-color);
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out;
+    margin-block: 0.2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.sidebar .navbar-nav .nav-item .nav-link {
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.sidebar .navbar-nav .nav-item .nav-link:hover {
+    background-color: #552525;
+    color: white !important;
+    box-shadow: inset -5px 0px 0px 0px #e59b30;
+    font-weight: 600;
 }
 
 .nav-link-text,
 nav h6,
 nav span {
     font-family: "Poppins", sans-serif;
+}
+
+.nav-link-text,
+.dropdown-menu {
+    font-size: 18px;
+}
+
+.nav-link-text.dropdown {
+    font-weight: 400;
 }
 
 .icon-sm {
@@ -110,6 +141,407 @@ nav .fa {
     font-weight: 600;
     color: #33363f;
 }
+
+/* File input */
+#inputGroupFile1,
+#inputGroupFile2,
+#inputGroupFile3 {
+    width: 90px;
+    color: transparent;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* dropdown menu */
+.dropdown-menu {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none;
+    width: auto;
+    font-family: "Poppins", sans-serif;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.dropdownMenu-hidden {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+/* Profil */
+#tabs-profil {
+    position: relative; /* Mengatur posisi relatif */
+    z-index: 1; /* Set z-index lebih rendah */
+}
+hr {
+    border: none;
+    height: 20px;
+    background-color: var(--secondary-color);
+    opacity: 100;
+    border-radius: 50px;
+    margin-block: -10px !important;
+    position: relative; /* Mengatur posisi relatif */
+    z-index: 2;
+}
+
+#tabs-profil .nav-item .nav-link {
+    background-color: #ddc6c6;
+    color: #2b2b28;
+    font-weight: 600;
+    padding-block: 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+    width: 160px;
+}
+
+#tabs-profil .nav-item .nav-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+#tabs-profil .nav-item .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+}
+
+.tab-pane .content-profil,
+.tab-pane .content-kontak,
+.tab-pane .content-ubah-password,
+.content-kontak-form {
+    border-radius: 20px;
+    background-color: white;
+    position: relative !important;
+    z-index: 0 !important;
+}
+
+.tab-pane .content-site-evaluation {
+    border-radius: 20px;
+    background-color: white;
+    position: relative !important;
+    z-index: 0 !important;
+}
+
+.tab-pane .content-profil,
+.tab-pane .content-kontak,
+.tab-pane .content-ubah-password,
+.tab-pane .content-site-evaluation,
+.content-kontak-form {
+    padding-inline: 70px;
+}
+/* Profil end */
+
+/* Profil peserta */
+.content-profil img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid #c17d2d;
+}
+
+.content-profil button,
+.content-kontak-form button,
+.content-ubah-password button,
+.action-button {
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px;
+    border: 3.5px solid #c17d2d;
+    width: 15%;
+}
+
+.content-profil button:hover,
+.content-kontak-form button:hover,
+.content-ubah-password button:hover,
+.action-button:hover {
+    font-weight: 700;
+    color: #c17d2d;
+    border-radius: 15px;
+    border: 3.5px solid #c17d2d;
+    transition: all 0.3s ease;
+}
+
+.content-profil button.nonactive,
+.content-kontak-form button.nonactive,
+.content-ubah-password button.nonactive,
+.action-button-previous {
+    font-weight: 600;
+    background-color: white;
+    color: #c17d2d;
+    border-radius: 15px;
+    border: 3.5px solid #c17d2d;
+    width: 15%;
+}
+
+.content-profil button.nonactive:hover,
+.content-kontak-form button.nonactive:hover,
+.content-ubah-password button.nonactive:hover,
+.action-button-previous:hover {
+    font-weight: 700;
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.content-profil span {
+    color: #9fafbf;
+}
+
+.content-site-evaluation span {
+    color: #9fafbf;
+    font-size: 112.5%;
+    font-weight: bold;
+}
+
+/* Form */
+input,
+textarea {
+    font-family: "Arimo", sans-serif !important;
+}
+
+.form-control {
+    border: 1px solid #9fafbf;
+    border-radius: 15px;
+    font-family: "Arimo", sans-serif;
+}
+
+.form-control.unik {
+    border: 1px solid #9fafbf;
+    border-left: none;
+    border-radius: 15px;
+    font-family: "Arimo", sans-serif;
+}
+
+.custom-file-button {
+    border-radius: 15px;
+}
+
+.custom-file-button input[type="file"] {
+    margin-left: -2px !important;
+}
+
+.custom-file-button input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+.custom-file-button input[type="file"]::file-selector-button {
+    display: none;
+}
+
+.custom-file-button input[type="file"]:focus {
+    box-shadow: none;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border: 1px solid #c17d2d !important;
+    box-shadow: 0px 0px 1px 2px #e59b30 !important;
+}
+
+.custom-file-button label:hover {
+    cursor: pointer;
+}
+
+.custom-file-button label {
+    font-size: 112.5%;
+    color: #595959;
+    background-color: #d7dae3;
+    border-left: 1px solid #9fafbf;
+    border-right: none;
+    border-top: 1px solid #9fafbf;
+    border-bottom: 1px solid #9fafbf;
+    border-radius: 15px;
+}
+
+.custom-file-button label.label-unik {
+    font-size: 100%;
+    color: #9fafbf;
+    background-color: transparent;
+    padding-inline: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.input-group-append {
+    cursor: pointer;
+}
+
+/* Penilaian Start */
+#msform {
+    position: relative;
+}
+
+.content-profil .fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.content-profil .fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.fieldset h5,
+.fieldset h6 {
+    font-weight: bold;
+}
+
+.fieldset a:hover {
+    border: 1px solid var(--secondary-color) !important;
+    background-color: var(--primary-color);
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative;
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #673ab7;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.purple-text {
+    color: #673ab7;
+    font-weight: normal;
+}
+
+.steps {
+    font-size: 25px;
+    color: gray;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-align: right;
+}
+
+.fieldlabels {
+    color: gray;
+    text-align: left;
+}
+
+#progressbar {
+    text-align: center;
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: #ddc6c6;
+}
+
+#progressbar .active {
+    color: var(--primary-color);
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 35%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+}
+
+#progressbar #account:before {
+    content: "1";
+    font-family: "Arimo", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 137.5%;
+}
+
+#progressbar #personal:before {
+    content: "2";
+    font-family: "Arimo", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 137.5%;
+}
+
+#progressbar #payment:before {
+    content: "3";
+    font-family: "Arimo", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 137.5%;
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: #ddc6c6;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+}
+
+#progressbar li:after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #ddc6c6;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: var(--primary-color);
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress-bar {
+    background-color: var(--secondary-color);
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Penilaian End */
 
 @media (min-width: 1200px) {
     .sidenav:hover {

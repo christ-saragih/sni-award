@@ -101,7 +101,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/berita">
+            <a class="nav-link" href="/admin/berita">
                 <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -111,7 +111,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/kategori_berita">
+            <a class="nav-link" href="/admin/kategori_berita">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >

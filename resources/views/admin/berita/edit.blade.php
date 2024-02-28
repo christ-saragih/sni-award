@@ -16,28 +16,50 @@
                 @endforeach
               </ul>
             </div>
-          @endif
-            <form action="/berita/{{$berita->id}}/edit" method="POST">
-                @method('put')
+            @endif
+            <form action="{{ route('berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Judul Berita</label>
-                  <input name="judul_berita" type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan Judul" value="{{$berita->judul_berita}}">
+                    <label for="kategori_berita_id">Kategori Berita</label>
+                    <select class="form-control" id="kategori_berita_id" name="kategori_berita_id">
+                        @foreach ($kategori as $kategori)
+                        <option value="{{ $kategori->id }}" {{ $berita->kategori_berita_id == $kategori->id ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Deskripsi</label>
-                    <input name="deskripsi" type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan Deskripsi" value={{$berita->deskripsi}}>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal</label>
-                    <input name="tanggal" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan Tanggal">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">File</label>
-                    <input name="file" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tambahkan File">
-                  </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+                    <label for="slug">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" value="{{ $berita->slug }}">
+                </div>
+                <div class="form-group">
+                    <label for="judul_berita">Judul Berita</label>
+                    <input type="text" class="form-control" id="judul_berita" name="judul_berita" value="{{ $berita->judul_berita }}">
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi Berita</label>
+                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3">{{ $berita->deskripsi }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tanggal">Tanggal</label>
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $berita->tanggal }}">
+                </div>
+                <div class="form-group">
+                    <label for="file_gambar">File Gambar</label>
+                    <input type="file" class="form-control" id="file_gambar" name="file_gambar">
+                    <img src="{{ asset('gambar/user/' . $berita->file_gambar) }}" alt="Gambar Berita" width="200">
+                </div>
+                <div class="form-group">
+                    <label>Tag Berita</label><br>
+                    @foreach ($tag_berita as $tag)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tag{{ $tag->id }}" name="tag_berita[]" value="{{ $tag->id }}" {{ in_array($tag->id, $berita->tag_berita->pluck('id')->toArray()) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->nama }}</label>
+                    </div>
+                    @endforeach
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
       </div>
     </div>

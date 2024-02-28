@@ -15,6 +15,7 @@ return new class extends Migration
             $table->tinyIncrements('id');
             $table->tinyInteger('assessment_kategori_id')->unsigned();
             $table->foreign('assessment_kategori_id')->references('id')->on('assessment_kategori');
+            $table->string('nama');
             $table->timestamps();
         });
     }

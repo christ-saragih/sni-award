@@ -13,6 +13,11 @@
       crossorigin="anonymous"
     />
 
+    <!-- Bootstrap Datepicker CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+
+
+
     <!-- Arimo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,6 +46,9 @@
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
+    
+    <link rel="stylesheet" href="{{ asset('assets') }}/peserta/css/rome.css" />
+
     <!-- CSS Peserta -->
     <link rel="stylesheet" href="{{ asset('assets') }}/peserta/css/styles.css" />
 </head>
@@ -49,7 +57,7 @@
 
 <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
-      id="sidenav-main"
+      id="sidenavMain"
       style="
         background-color: #fafafa;
         border-top-right-radius: 50px;
@@ -57,73 +65,58 @@
         box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
       "
     >
-      <div class="sidenav-header">
-        <i
-          class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-          aria-hidden="true"
-          id="iconSidenav"
-        ></i>
+      <div class="sidenav-header d-flex align-item-center justify-content-center">
         <a
           class="navbar-brand m-0"
-          href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html "
-          target="_blank"
+          id="navbarBrand"
+          href="/peserta"
         >
           <img
-            src="{{ asset('assets') }}/images/icon/logo-sniaward-kecil.svg"
-            class="navbar-brand-img h-100"
+            src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
+            class="navbar-brand-img" style="width: 100%; max-width: 100px; height: auto;"
+            id="navbarBrandImg"
             alt="SNIAward 2024"
           />
-          <span class="ms-1" style="color: #2B2B28; font-weight: bold;">SNI AWARD</span>
         </a>
       </div>
-      <hr class="horizontal dark mt-0" />
-      <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <!-- <hr class="horizontal dark mt-0" /> -->
+      <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/dashboard.html">
+            <a class="nav-link {{ request()->is('peserta') ? 'active' : '' }}" id="navLink" href="/peserta">
               <div
                 class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
                 <i class="fa fa-home"></i>
               </div>
-              <span class="nav-link-text">Beranda</span>
+              <span class="nav-link-text" id="navLinkText">Beranda</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->is('peserta/riwayat') ? 'active' : '' }}" id="navLink" href="/peserta/riwayat">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-file-text-o"></i>
+                <i class="fa fa-file-text"></i>
               </div>
-              <span class="nav-link-text">Pendaftaran</span>
+              <span class="nav-link-text" id="navLinkText">Riwayat</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->is('peserta/pendaftaran') ? 'active' : '' }}" id="navLink" href="/peserta/pendaftaran">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-file-text-o"></i>
+                <i class="fa fa-calendar"></i>
               </div>
-              <span class="nav-link-text">Pendaftaran</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-file-text-o"></i>
-              </div>
-              <span class="nav-link-text">Pendaftaran</span>
+              <span class="nav-link-text" id="navLinkText">Pendaftaran</span>
             </a>
           </li>
         </ul>
       </div>
     </aside>
     <main
-      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps-3"
+      class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps-3" id="mainContent"
     >
       <!-- Navbar -->
       <nav
@@ -138,7 +131,7 @@
       >
         <div class="container-fluid py-1 px-3">
           <nav aria-label="breadcrumb" class="d-flex ps-2 align-items-center gap-3">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars" id="barsMenu" style="cursor: pointer;"></i>
             <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">Beranda</h6>
             <li class="nav-item px-2 d-flex align-items-center">
               <a
@@ -158,7 +151,8 @@
             class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
             id="navbar"
           >
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+          <!-- searching -->
+            <!-- <div class="ms-md-auto pe-md-3 d-flex align-items-center">
               <div class="input-group">
                 <span class="input-group-text text-body"
                   ><i class="fa fa-search" aria-hidden="true"></i
@@ -169,8 +163,8 @@
                   placeholder="Type here..."
                 />
               </div>
-            </div>
-            <ul class="navbar-nav justify-content-end">
+            </div> -->
+            <ul class="navbar-nav d-flex ms-auto justify-content-end">
               <li class="nav-item dropdown px-2 d-flex align-items-center">
                 <a
                   href="javascript:;"
@@ -299,7 +293,14 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item dropdown d-flex px-2 align-items-center">
+              <li class="nav-item dropdown d-flex px-2 gap-1 align-items-center">
+                <a
+                  href="/peserta/profil"
+                  class="nav-link text-body p-0"
+                >
+                  <i class="fa fa-user-o me-sm-1"></i>
+                  <span class="d-sm-inline d-none me-sm-1 p-0"><b>Peserta</b></span>
+                </a>
                 <a
                   href="javascript:;"
                   class="nav-link text-body p-0"
@@ -307,8 +308,6 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i class="fa fa-user-o me-sm-1"></i>
-                  <span class="d-sm-inline d-none me-sm-1"><b>Peserta</b></span>
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul
@@ -320,24 +319,14 @@
                       class="dropdown-item border-radius-md"
                       href="javascript:;"
                     >
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <img
-                            src="../assets/img/team-2.jpg"
-                            class="avatar avatar-sm me-3"
-                          />
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">New message</span>
-                            from Laur
-                          </h6>
-                          <p class="text-xs text-secondary mb-0">
-                            <i class="fa fa-clock me-1"></i>
-                            13 minutes ago
-                          </p>
-                        </div>
+                      <div class="d-flex justify-content-center">
+                        <i class="fa fa-user"></i>
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span>
+                          from Laursdsafa
+                        </h6>
                       </div>
+                      
                     </a>
                   </li>
                   <li class="mb-2">
@@ -345,23 +334,12 @@
                       class="dropdown-item border-radius-md"
                       href="javascript:;"
                     >
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <img
-                            src="../assets/img/small-logos/logo-spotify.svg"
-                            class="avatar avatar-sm bg-gradient-dark me-3"
-                          />
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">New album</span> by
-                            Travis Scott
-                          </h6>
-                          <p class="text-xs text-secondary mb-0">
-                            <i class="fa fa-clock me-1"></i>
-                            1 day
-                          </p>
-                        </div>
+                      <div class="d-flex justify-content-center">
+                        <i class="fa fa-user"></i>
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span>
+                          from Laursdsafa
+                        </h6>
                       </div>
                     </a>
                   </li>
@@ -435,7 +413,7 @@
       </nav>
       <!-- End Navbar -->
 
-      <div class="container-fluid py-4">
+      <div class="py-4 me-4">
         <!-- Content -->
         @yield('content')
         <!-- End Content -->
@@ -504,6 +482,26 @@
       </div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+    
+    <!-- Bootstrap Datepicker Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{{ asset('assets') }}/peserta/js/rome.js"></script>
+
+    <!-- My JavaScript -->
+    <script src="{{ asset('assets') }}/peserta/js/script.js"></script>
 </body>
 
 </html>
