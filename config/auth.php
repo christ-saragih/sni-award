@@ -105,6 +105,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'peserta' => [
+            'provider' => 'peserta',
+            'table' => 'password_reset_token',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*
