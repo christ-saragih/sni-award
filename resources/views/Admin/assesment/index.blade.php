@@ -135,6 +135,14 @@
   </thead>
   <tbody>
     <tr>
+    @section('form_section')
+          <form action="" class="pb-0 mb-0">
+          <div class="d-flex flex-column gap-2">
+              <h6 class="ms-1 mb-0">Kategori</h6>
+              <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Jenis Kategori" style="font-size: 100%;"/>
+          </div>
+        </form>
+        @show
       <th scope="row">1</th>
       <td>Kepemimpinan</td>
       <td>

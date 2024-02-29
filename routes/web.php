@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeControllerPeserta;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\KategoriAdminController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\LembagaSertifikasiAdminController;
 use App\Http\Controllers\LoginController;
@@ -54,6 +55,7 @@ Route::get('/berita_acara', [BeritaAcaraAdminController::class, 'index']);
 // Data Master
 Route::get('/status_kepemilikan', [StatusKepemilikanAdminController::class, 'index']);
 Route::get('/lembaga_sertifikasi', [LembagaSertifikasiAdminController::class, 'index']);
+Route::get('kategori', [KategoriAdminController::class, 'index']);
 Route::get('/wilayah', [WilayahAdminController::class, 'index']);
 Route::get('/admin/assesment', [AssesmentAdminController::class, 'index']);
 
