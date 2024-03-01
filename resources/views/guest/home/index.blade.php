@@ -1,4 +1,4 @@
-@extends('user.layouts.master')
+@extends('guest.layouts.master')
 
 @section('content')
 <main>
@@ -362,58 +362,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-6">
-          <form>
-            <div class="row mb-3 justify-content-center">
-              <div class="input-container col-12">
-                <label for="exampleInputEmail1" class="form-label"></label>
-                <input
-                  type="email"
-                  class="form-control border-dark rounded-3"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Nama Lengkap"
-                />
-              </div>
-
-              <div class="input-container col-6">
-                <label for="exampleInputEmail1" class="form-label"></label>
-                <input
-                  type="email"
-                  class="form-control border-dark rounded-3"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="No.telp"
-                />
-              </div>
-              <div class="input-container col-6">
-                <label for="exampleInputEmail1" class="form-label"></label>
-                <input
-                  type="email"
-                  class="form-control border-dark rounded-3"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="E-mail"
-                />
-              </div>
-              <div class="input-container col-12">
-                <label
-                  for="exampleFormControlTextarea1"
-                  class="form-label"
-                ></label>
-                <textarea
-                  class="form-control border-dark rounded-3"
-                  id="exampleFormControlTextarea1"
-                  rows="5"
-                  placeholder="Berikan Komentarmu!"
-                ></textarea>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary float-end">
-              Kirim Komentar
-            </button>
-          </form>
-        </div> -->
         <div class="col-6 text-center">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid"

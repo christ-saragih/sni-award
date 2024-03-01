@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Registrasi</title>
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -50,11 +50,11 @@
             padding: 20px;
           ">
             @csrf
-            <div class="mb-3">
-                <label for="name" class="col-md-4 col-form-label">{{ __('Name') }}</label>
+            <div class="w-100">
+                <label for="name" class="col-form-label">{{ __('Name') }}</label>
 
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <div class="">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus style="border-radius: 100px;">
 
                     @error('nama')
                         <span class="invalid-feedback" role="alert">
@@ -63,11 +63,11 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="col-md-4 col-form-label">{{ __('Email Address') }}</label>
+            <div class="w-100">
+                <label for="email" class="col-form-label">{{ __('Email Address') }}</label>
 
-                <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                <div class="">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" style="border-radius: 100px;">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -80,12 +80,14 @@
                 display:flex;
                 align-items:center;
                 justify-content:center;
+                gap: 20px;
+                padding-bottom: 20px;
             ">
-                <div class="mb-3">
-                    <label for="password" class="col-md-4 col-form-label">{{ __('Password') }}</label>
+                <div class="w-100">
+                    <label for="password" class="col-form-label">{{ __('Password') }}</label>
     
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <div class="">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" style="border-radius: 100px;">
     
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -94,24 +96,24 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="password-confirm" class="col-md-4 col-form-label">{{ __('Confirm Password') }}</label>
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                <div class="w-100">
+                    <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
+                    <div class="">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" style="border-radius: 100px;">
                     </div>
                 </div>
             </div>
-            <div class="mb-0">
-                <div class="col-md-6 offset-md-4" style="
-                display: flex;
-                align-item: center;
-                justify-content: center;
-                outline: none;
-                background-color: ;
-            ">
+            <div class="">
+                <div class="" style="
+                    display: flex;
+                    align-item: center;
+                    justify-content: center;
+                ">
                     <button type="submit" style="
+                        width: 50%;
                         border-radius: 100px;
-                        padding: 5px 75%;    
+                        padding: 5px 10%;    
+                        border: none;
                     ">
                         {{ __('Daftar') }}
                     </button>
