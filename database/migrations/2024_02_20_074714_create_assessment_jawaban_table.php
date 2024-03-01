@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('assessment_jawaban', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
-            $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->string('jawaban');
             $table->enum('status_jawaban',['FALSE','TRUE']);
             $table->integer('poin');
             $table->timestamps();
+
+            $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan')->onDelete('cascade');
         });
     }
 
