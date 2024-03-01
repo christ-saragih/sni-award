@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class KategoriBerita extends Model
 {
-    // protected $fillable = ['judul_berita', 'deskripsi','tanggal','file'];
+    use HasFactory;
+
+    protected $fillable = ['nama'];
     protected $guarded = [];
     protected $table = 'kategori_berita';
 

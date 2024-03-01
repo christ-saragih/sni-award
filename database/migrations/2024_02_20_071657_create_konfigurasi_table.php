@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('konfigurasi', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('key');
-            $table->enum('value',['true','false']);
+            $table->string('value');
             $table->timestamps();
         });
     }

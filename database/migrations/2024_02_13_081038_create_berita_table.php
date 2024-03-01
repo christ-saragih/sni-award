@@ -15,11 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             $table->tinyInteger('kategori_berita_id')->unsigned();
-            $table->string('slug',100)->nullable();
-            $table->string('judul_berita',100)->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('file')->nullable();
+            $table->string('slug',100);
+            $table->string('judul_berita',255);
+            $table->text('deskripsi');
+            $table->date('tanggal');
+            $table->string('file_gambar');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

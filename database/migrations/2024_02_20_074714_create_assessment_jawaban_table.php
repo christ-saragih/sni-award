@@ -16,7 +16,7 @@ return new class extends Migration
             $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
             $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->string('jawaban');
-            $table->boolean('status_jawaban');
+            $table->enum('status_jawaban',['FALSE','TRUE']);
             $table->integer('poin');
             $table->timestamps();
         });
@@ -25,8 +25,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::dropIfExists('assessment_jawaban');
-    }
+    // public function down(): void
+    // {
+    //     Schema::dropIfExists('assessment_jawaban');
+    // }
 };

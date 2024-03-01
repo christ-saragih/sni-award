@@ -5,34 +5,44 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6>Berita</h6>
-          <a href="/berita/tambah" class="btn btn-primary float-end mb-4">Tambah</a>
+          {{-- <h6>Berita</h6> --}}
+          <a href="{{ route('berita.create') }}" class="btn btn-primary float-end mb-4">Tambah</a>
         </div>
         <div class="card-body px-5 pt-2 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0 text-center">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Judul Berita</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
-                  <th class="text-secondary opacity-7">Aksi</th>
+                    <th>Id</th>
+                    <th>Kategori</th>
+                    <th>Slug</th>
+                    <th>Judul Berita</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal</th>
+                    <th>file</th>
+                    <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($berita as $berita)
                 <tr>
-                  <td>{{$berita->judul_berita}}</td>
-                  <td>{{$berita->tanggal}}</td>
-                  <td>{{$berita->kategori_berita->nama}}</td>
-                  <td>
-                    <a href="/berita/{{$berita->id}}/edit" class="btn btn-warning">Edit</a>
-                    <form class="hapus" action="/berita/{{$berita->id}}/edit" method="POST">
-                      @method("DELETE")
-                      @csrf
-                      <input type="submit" class="btn btn-danger" value="Delete">
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$berita->kategori_berita->nama}}</td>
+                    <td>{{$berita->slug}}</td>
+                    <td>{{$berita->judul_berita}}</td>
+                    <td>{{$berita->deskripsi}}</td>
+                    <td>{{$berita->tanggal}}</td>
+                    <td>{{$berita->file_gambar}}</td>
+                    <td>
+                        <form action="{{ route('berita.destroy', $berita->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('berita.edit', $berita->id) }}">Edit</a>
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                  </td>
+                    </td>
                 </tr>
                 @endforeach
                 <tr>

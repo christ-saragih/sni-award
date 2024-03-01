@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kota', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+            $table->smallIncrements('id');
             $table->tinyInteger('propinsi_id')->unsigned();
             $table->string('nama');
             $table->timestamps();

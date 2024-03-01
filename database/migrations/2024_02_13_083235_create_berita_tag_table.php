@@ -15,11 +15,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->smallInteger('tag_id')->unsigned();
             $table->bigInteger('berita_id')->unsigned();
-            // $table->foreignId('tag_id')->constrained('tag');
-            // $table->foreignId('berita_id')->constrained('berita');
+            $table->timestamps();
 
-            $table->foreign('tag_id')->references('id')->on('tag');
-            $table->foreign('berita_id')->references('id')->on('berita');
+            $table->foreign('tag_id')->references('id')->on('tag_berita');
+            $table->foreign('berita_id')->references('id')->on('berita')->onDelete('cascade');
         });
     }
 

@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kecamatan', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->tinyInteger('kota_id')->unsigned();
+            $table->mediumIncrements('id');
+            $table->smallInteger('kota_id')->unsigned();
+            $table->string('nama');
             $table->timestamps();
 
             $table->foreign('kota_id')->references('id')->on('kota');
