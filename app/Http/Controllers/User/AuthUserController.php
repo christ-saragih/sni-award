@@ -72,6 +72,8 @@ class AuthUserController extends Controller
             'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
         ];
         Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));
+        
+        // dd(Auth::check());
         if (Auth::check()) {
             return redirect('/admin/dashboard');
         }else {
@@ -89,11 +91,12 @@ class AuthUserController extends Controller
     }
 
     public function verifikasiUser($verify_key) {
+        // dd('zcvzcv');
         $checkKey = User::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
             User::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect()->route('masukAdmin')->with('success', 'Berhasil melakukan verifikasi');
+            return redirect('/admin/masuk')->with('success', 'Berhasil melakukan verifikasi');
         }else {
             return redirect('/admin/masuk')
                 ->withErrors('verify key salah, silahkan coba kembali')

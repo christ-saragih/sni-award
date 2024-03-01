@@ -16,6 +16,7 @@ use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -48,11 +49,11 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
 });
 Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
-    Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
-    Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
-    Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
-    Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
+Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
+Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
+Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
 });
+Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
 });
@@ -60,7 +61,7 @@ Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
 
 //User
 Route::prefix('/admin')->group(function () {
-    Route::middleware(['guest:web'])->group(function () {
+    Route::middleware(['guest'])->group(function () {
         Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
@@ -69,11 +70,15 @@ Route::prefix('/admin')->group(function () {
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
         Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('verification.notice');
-        Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
     });
+    Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        
+        //CRUD Frontpage
+        Route::get('/edit_front_page', [FrontPageController::class, 'index']);
+        //end  CRUD Frontpage
       
         // Tag Berita
         Route::get('/tag_berita', [TagBeritaController::class, 'index'])->name('tag_berita.index');
