@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="form-text text-center">
-                    Belum memiliki akun? <a href="/registrasi">Daftar </a>
+                    Belum memiliki akun? <a href="/admin/registrasi">Daftar </a>
                 </div>
             </div>
         </form>

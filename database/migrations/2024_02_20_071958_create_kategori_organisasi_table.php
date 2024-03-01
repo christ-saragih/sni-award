@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kategori_organisasi', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->tinyInteger('tipe_kategori_id')->unsigned();
+            $table->string('nama');
             $table->timestamps();
 
             $table->foreign('tipe_kategori_id')->references('id')->on('tipe_kategori');
