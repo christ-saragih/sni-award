@@ -196,99 +196,99 @@
     
   <!-- Tim Section -->
 <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-<div class="content-profil py-5 mb-5">
+    <div class="content-profil py-5 mb-5">
       <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Tim Desk Evaluation</h3>
-        <div class="container mt-4">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-xl-12">
-              <div class="card" style="border-radius: 15px;">
-                <div class="fieldset">
-                  <div class="card-body">
-                    <div class="card-body pt-0 mt-0">
-                      <div class="row align-items-center pt-4 mb-5">
-                        <div class="col-md-12 ps-5 d-flex flex-column gap-3">
-                          <h5 class="mb-0">Evaluator</h5>
-                          <hr class="" style="height: 1px;" >
-                        </div>
-                        
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Nama</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Bennefit</p>
-                        </div>
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Jabatan</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Chief Information Officer</p>
-                        </div>
-                      </div>     
-                    </div>
+      <div class="container mt-4">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-xl-12">
+            <div class="card" style="border-radius: 15px;">
+              <div class="fieldset">
+                <div class="card-body">
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Evaluator</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
 
-                    <div class="card-body pt-0 mt-0">
-                      <div class="row align-items-center pt-4 mb-5">
-                        <div class="col-md-12 ps-5 d-flex flex-column gap-3">
-                          <h5 class="mb-0">Lead Evaluator</h5>
-                          <hr class="" style="height: 1px;" >
-                        </div>
-                        
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Nama</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Bennefit</p>
-                        </div>
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Jabatan</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Chief Information Officer</p>
-                        </div>
-                      </div>     
-                    </div>
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Lead Evaluator</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
 
-                    <div class="card-body pt-0 mt-0">
-                      <div class="row align-items-center pt-4 mb-5">
-                        <div class="col-md-12 ps-5 d-flex flex-column gap-3">
-                          <h5 class="mb-0">Sekretariat</h5>
-                          <hr class="" style="height: 1px;" >
-                        </div>
-                        
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Nama</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Bennefit</p>
-                        </div>
-                      </div>     
-                      <div class="row align-items-center pb-3">
-                        <div class="col-md-4 ps-5">
-                          <h6 class="mb-0">Jabatan</h6>
-                        </div>
-                        <div class="col-md-8 pe-5">
-                          <p class="form-control form-control-lg m-0">Chief Information Officer</p>
-                        </div>
-                      </div>     
-                    </div>
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Sekretariat</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
 
-                  </div> 
-                </div>
-                 
+                </div> 
               </div>
+                
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <hr class="p-0">
@@ -388,6 +388,7 @@
     </div>
 </div>
 
+<!-- Assesment Section -->
   <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
     <div class="content-ubah-password py-5">
         <div class="container mt-4 d-flex flex-column gap-4">
@@ -417,13 +418,17 @@
                       ></div>
                     </div>
 
-                    <select class="form-select form-control-lg ms-auto" style="width: 20%;" aria-label="Default select example">
-                        <option selected value="1">Kepemimpinan</option>
+                    <div class="kategori_pertanyaan ms-auto text-center">
+                      Kepemimpinan
+                    </div>
+
+                    <!-- <select class="form-select form-control-lg ms-auto" style="width: 20%;" aria-label="Default select example">
+                        <option selected value="1">vdsfasd</option>
                         <option value="2">Strategi</option>
                         <option value="3">Strategi</option>
                         <option value="4">Pelanggan</option>
                         <option value="5">dan lain-lain..</option>
-                      </select>
+                      </select> -->
                   </div>
 
                   <!-- fieldset pertanyaan -->
@@ -645,8 +650,139 @@
         </div>
     </div>
 
-      
+  </div>
+
+<!-- Dokumen Section -->
+  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
+    <div class="content-profil py-5 mb-5">
+      <h3 class="mb-0 pb-0">Unggah Dokumen</h3>
+      <div class="container mt-4">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Nama Lampiran</th>
+            <th class="text-center" scope="col">Aksi</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">Scan legalitas hukum organisasi (SIUP/Akte Perusahaan)</td>
+              <td class="text-center"><button class="btn btn-lihat">Ubah</button></td>
+            </tr>
+            <tr>
+              <td scope="row">Lembar Pernyataan Tidak Terlibat Hukum Selama 3 Tahun Terakhir</td>
+              <td class="text-center"><button class="btn btn-lihat">Ubah</button></td>
+            </tr>
+            <tr>
+              <td scope="row">Sertifikat SNI yang dimiliki</td>
+              <td class="text-center"><button class="btn btn-upload">Upload!</button></td>
+            </tr>
+            <tr>
+              <td scope="row">Lembar Pernyataan Tidak Terlibat Hukum Selama 3 Tahun Terakhir</td>
+              <td class="text-center"><button class="btn btn-lihat">Ubah</button></td>
+            </tr>
+            <tr>
+              <td scope="row">Sertifikat SNI yang dimiliki</td>
+              <td class="text-center"><button class="btn btn-upload">Upload!</button></td>
+            </tr>
+
+            
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="container mt-4">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-xl-12">
+            <div class="card" style="border-radius: 15px;">
+              <div class="fieldset">
+                <div class="card-body">
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Evaluator</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
+
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Lead Evaluator</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
+
+                  <div class="card-body pt-0 mt-0">
+                    <div class="row align-items-center pt-4 mb-5">
+                      <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                        <h5 class="mb-0">Sekretariat</h5>
+                        <hr class="" style="height: 1px;" >
+                      </div>
+                      
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Nama</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Bennefit</p>
+                      </div>
+                    </div>     
+                    <div class="row align-items-center pb-3">
+                      <div class="col-md-4 ps-5">
+                        <h6 class="mb-0">Jabatan</h6>
+                      </div>
+                      <div class="col-md-8 pe-5">
+                        <p class="form-control form-control-lg m-0">Chief Information Officer</p>
+                      </div>
+                    </div>     
+                  </div>
+
+                </div> 
+              </div>
+                
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
+  </div>
   </div>
 </div>
 @endsection('content')

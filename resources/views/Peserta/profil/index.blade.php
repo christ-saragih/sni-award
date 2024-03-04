@@ -195,7 +195,7 @@
   <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
     <div class="content-kontak py-4 mb-4">
       <div class="d-flex align-items-center justify-content-between text-center mt-2">
-        <h3 class="m-0" style="font-size: 150%; font-weight: bold;">Tambahkan Kontak Penghubung</h3>
+        <h3 class="m-0">Tambahkan Kontak Penghubung</h3>
        <i class="fa fa-plus-square fa-3x" style="color: #552525;"></i>
       </div>
     </div>
@@ -246,7 +246,7 @@
 
   <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
     <div class="content-ubah-password py-5">
-      <h3 style="font-size: 150%; font-weight: bold;">Ubah Kata Sandi Anda</h3>
+      <h3>Ubah Kata Sandi Anda</h3>
       <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col-xl-12">

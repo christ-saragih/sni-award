@@ -576,11 +576,11 @@ textarea:focus {
     z-index: 2;
 }
 
-.pertanyaan-container div.kategori h3 {
+h3 {
     font-family: "Josefin Sans", sans-serif;
     color: #552525;
     font-weight: bold;
-    font-size: 175%;
+    font-size: 150%;
 }
 
 .pertanyaan-container div.pertanyaan {
@@ -599,14 +599,15 @@ textarea:focus {
 }
 
 /* Jawaban */
-select {
+div.kategori_pertanyaan {
     background-color: #e59b30 !important;
     color: white !important;
     font-family: "Josefin Sans", sans-serif !important;
     font-size: 137.5% !important;
     font-weight: bold !important;
     border-radius: 10px !important;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="white" d="M436.5 294.5l-192 192c-9.4 9.4-24.6 9.4-33.9 0l-192-192C4.7 286.7 0 276.2 0 265.9s4.7-20.8 12.5-28.6l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0L224 388.1l155.9-155.9c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c7.9 7.9 12.5 18.4 12.5 28.6s-4.6 20.8-12.5 28.5z"/></svg>') !important;
+    width: 20%;
+    padding-block: 5px;
 }
 
 .form-select {
@@ -619,6 +620,40 @@ select {
     border: 1px solid #9fafbf;
     border-radius: 10px;
     font-size: 137.5%;
+}
+
+/* Table */
+table button {
+    width: auto !important;
+    border: none !important;
+    font-size: 100% !important;
+    width: 85px !important;
+}
+
+table button:hover {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+table button.btn-upload {
+    background-color: #d12b2b !important;
+}
+
+.table tbody tr th,
+.table tbody tr td {
+    vertical-align: middle;
+}
+
+table button.btn-lihat {
+    background-color: #e59b30 !important;
+}
+
+thead tr {
+    border-bottom: 1px solid #e59b30;
+}
+
+td {
+    border: none;
 }
 
 @media (min-width: 1200px) {
