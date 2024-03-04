@@ -24,6 +24,11 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kategori_berita_id')->references('id')->on('kategori_berita');
+
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

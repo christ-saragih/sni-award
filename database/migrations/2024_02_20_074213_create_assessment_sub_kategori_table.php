@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreign('assessment_kategori_id')->references('id')->on('assessment_kategori');
             $table->string('nama');
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

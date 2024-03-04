@@ -12,11 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kota', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->tinyInteger('propinsi_id')->unsigned();
-            $table->string('nama');
+            $table->integerIncrements('id');
+            $table->string('kota', 40);
+            $table->unsignedTinyInteger('propinsi_id')->index();
             $table->timestamps();
-            $table->foreign('propinsi_id')->references('id')->on('propinsi');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
+        });
+
+        Schema::table('kota', function (Blueprint $table) {
+            $table->foreign('propinsi_id')->references('id')->on('propinsi')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 

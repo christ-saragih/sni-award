@@ -41,6 +41,9 @@
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- CSS Admin -->
     <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
 </head>
@@ -61,7 +64,7 @@
         <a
           class="navbar-brand m-0"
           id="navbarBrand"
-          href="#"
+          href="/admin"
         
         >
           <img
@@ -76,7 +79,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" id="navLink" href="../pages/dashboard.html">
+            <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" id="navLink" href="/admin">
               <div
                 class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -86,7 +89,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/halaman_depan') ? 'active' : '' }}" id="navLink" href="/admin/halaman_depan">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -96,7 +99,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="/admin/berita_acara">
+            <a class="nav-link {{ request()->is('admin/berita_acara') ? 'active' : '' }}" id="navLink" href="/admin/berita_acara">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -105,8 +108,18 @@
               <span class="nav-link-text" id="navLinkText">Berita & Acara</span>
             </a>
           </li>
-          <li class="nav-item" id="navItemBerita">
-            <a class="nav-link" id="navLink" href="#">
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/data_master') ? 'active' : '' }}" id="navLink" href="/admin/data_master">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+              <i class="fa fa-database"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Data Master</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="navLinkDataMaster" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
@@ -115,7 +128,7 @@
             </a>
             <ul class="dropdown-menu" id="dropdownMenu">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" id="navLinkKonfigurasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -123,7 +136,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin/assesment">
+                <a class="nav-link" id="navLinkAssesment">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -131,7 +144,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" id="navLinkDokumen">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -139,7 +152,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" id="navLinkStatusKepemilikan">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -147,7 +160,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" id="navLinkLembagaSertifikasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -155,7 +168,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" id="navLinkWilayah">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -165,7 +178,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/peserta') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -175,7 +188,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -185,7 +198,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLink" href="/admin/dokumentasi">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -195,7 +208,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLink" href="/admin/dokumen">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -205,7 +218,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -222,7 +235,7 @@
     >
       <!-- Navbar -->
       <nav
-        class="navbar navbar-main navbar-expand-lg px-0 mt-3 me-4"
+        class="navbar navbar-main navbar-expand px-0 mt-3 me-3"
         id="navbarBlur"
         navbar-scroll="true"
         style="
@@ -235,7 +248,7 @@
           <nav aria-label="breadcrumb" class="d-flex ps-2 align-items-center gap-3">
             <i class="fa fa-bars" id="barsMenu" style="cursor: pointer;"></i>
             <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">Beranda</h6>
-            <li class="nav-item px-2 d-flex align-items-center">
+            <!-- <li class="nav-item px-2 d-flex align-items-center">
               <a
                 href="javascript:;"
                 class="nav-link text-body p-0"
@@ -247,10 +260,10 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </a>
-            </li>
+            </li> -->
           </nav>
           <div
-            class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+            class="collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4"
             id="navbar"
           >
             <ul class="navbar-nav d-flex ms-auto justify-content-end">
@@ -436,7 +449,7 @@
       </nav>
       <!-- End Navbar -->
 
-      <div class="container-fluid py-4">
+      <div class="py-4 me-4">
         <!-- Content -->
         @yield('content')
         <!-- End Content -->
@@ -478,6 +491,8 @@
       integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
       crossorigin="anonymous"
     ></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
 
 </body>

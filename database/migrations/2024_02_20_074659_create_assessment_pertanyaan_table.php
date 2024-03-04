@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreign('assessment_sub_kategori_id')->references('id')->on('assessment_sub_kategori');
             $table->string('pertanyaan');
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

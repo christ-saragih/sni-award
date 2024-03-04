@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('tipe_kategori_id')->references('id')->on('tipe_kategori');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

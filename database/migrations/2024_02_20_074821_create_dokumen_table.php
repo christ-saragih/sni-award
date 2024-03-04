@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('status', ['proses','ditolak','setuju']);
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

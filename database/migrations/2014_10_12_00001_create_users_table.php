@@ -22,6 +22,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('role')->references('id')->on('role');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

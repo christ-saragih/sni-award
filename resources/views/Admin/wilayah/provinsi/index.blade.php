@@ -2,12 +2,11 @@
 
 @section('content')
 
-
 <!-- Pop up provinsi -->
 <!-- popup tambah -->
 <div class="modal fade" id="tambahProvinsi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" method="POST" action="{{ route('provinsi.store') }}">
+    <form class="modal-content" method="POST" action="/admin/wilayah">
       @csrf
       <div class="modal-header" style="border: none;">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Provinsi</h1>
@@ -18,7 +17,7 @@
               <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
               <input name="name" type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Provinsi" style="font-size: 100%;"/>
           </div>
-          <!-- <div class="d-flex flex-column gap-2 pb-5">
+          <div class="d-flex flex-column gap-2 pb-5">
               <h6 class="ms-1 mb-0">Kategori Daerah</h6>
               <select class="form-select form-control-lg ps-4" id="basic-usage" style="z-index: 9999;">
                 <option hidden>Pilih Provinsi</option>
@@ -28,8 +27,8 @@
                 <option>Algoritm</option>
                 <option>Holistic</option>
               </select>
-              <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Daerah Kabupaten/Kota" style="font-size: 100%;"/>
-          </div> -->
+              <!-- <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Daerah Kabupaten/Kota" style="font-size: 100%;"/> -->
+          </div>
           
         </div>
       </div>
@@ -73,7 +72,7 @@
       @method('DELETE')
       @csrf
       <div class="modal-header" style="border: none;">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Hapus Provinsi</h1>
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Provinsi</h1>
       </div>
       <div class="modal-body" style="border: none;">
         <p>Apakah Anda yakin menghapus item ini?</p>
@@ -86,107 +85,49 @@
   </div>
 </div>
 
-<!-- Pop up tambah kabupaten/kota -->
-<div class="modal fade" id="tambahKabupaten" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+
+<!-- Pop up kabupaten/kota -->
+<div class="modal fade" id="tambahSubKategori" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <form id="form_tambah_kabupaten" class="modal-content" method="POST" action="{{ route('kabupaten.store') }}">
-      @csrf
+    <div class="modal-content">
       <div class="modal-header" style="border: none;">
         <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Kabupaten/Kota</h1>
       </div>
       <div class="modal-body" style="border: none;">
-        <div action="" class="pb-0 mb-0">
+        <form action="" class="d-flex flex-column gap-2 pb-0 mb-0">
           <div class="d-flex flex-column gap-2 mb-3">
-            <h6 class="ms-1 mb-0">Nama Provinsi</h6>
-            <select name="propinsi_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
-              <option hidden class="selected">Pilih Provinsi</option>
-              @foreach($provinsi as $data)
-              <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
-              @endforeach
-
+            <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
+            <select class="form-select form-control-lg ps-4" aria-label="Default select example" aria-label="Default select example">
+              <option hidden>Pilih Provinsi</option>
+              <option value="1">Kepemimpinan</option>
+              <option value="2">Strategi</option>
+              <option value="3">Pelanggan</option>
+              <option value="4">dan lain-lain..</option>
             </select>
           </div>
           <div class="d-flex flex-column gap-2 mb-3">
-              <h6 class="ms-1 mb-0">Nama Daerah</h6>
-              <input name="nama" type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Provinsi" style="font-size: 100%;"/>
-          </div>
-          <div class="d-flex flex-column gap-2 pb-5">
-              <h6 class="ms-1 mb-0">Kategori Daerah</h6>
-              <select class="form-select form-control-lg ps-4" id="basic-usage" style="z-index: 9999;">
-                <option hidden>Pilih Provinsi</option>
-                <option>Reactive</option>
-                <option>Solution</option>
-                <option>Conglomeration</option>
-                <option>Algoritm</option>
-                <option>Holistic</option>
-              </select>
-              <!-- <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Daerah Kabupaten/Kota" style="font-size: 100%;"/> -->
-          </div>
-          
-        </div>
-      </div>
-      <div class="modal-footer gap-2" style="border: none;">
-        <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
-        <button type="submit" class="btn" data-bs-toggle="modal" >Simpan</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- Pop up ubah kab/kota -->
-<div class="modal fade" id="ubahKabupaten" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" id="form_ubah_kabupaten" method="POST">
-      @method('PUT')
-      @csrf
-      <div class="modal-header" style="border: none;">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Kabupaten/Kota</h1>
-      </div>
-      <div class="modal-body" style="border: none;">
-        <div action="" class="pb-0 mb-0">
-        <div class="d-flex flex-column gap-2 mb-3">
-            <h6 class="ms-1 mb-0">Nama Provinsi</h6>
-            <select name="propinsi_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
-                      <option hidden class="selected">Pilih Provinsi</option>
-              @foreach($provinsi as $data)
-              <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
-              @endforeach
+            <h6 class="ms-1 mb-0">Kategori Daerah</h6>
+            <select name="selectKategoriDaerah[]" class="form-select form-control-lg ps-4" multiple=multiple aria-label="Default select example">
+              <option hidden>Pilih Kabupaten/Kota</option>
+              <option value="1">Kepemimpinan</option>
+              <option value="2">Strategi</option>
+              <option value="3">Pelanggan</option>
+              <option value="4">dan lain-lain..</option>
             </select>
           </div>
           <div class="d-flex flex-column gap-2">
-              <h6 class="ms-1 mb-0">Kabupaten/Kota</h6>
-              <input name="nama" type="text" id="nama_kabupaten" class="form-control form-control-lg ps-4" style="font-size: 100%;"/>
+            <h6 class="ms-1 mb-0">Nama Daerah</h6>
+            <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Daerah" style="font-size: 100%;"/>
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer gap-2" style="border: none;">
-        <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
-        <button type="submit" class="btn" data-bs-toggle="modal">Ubah</button>
+        <button class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+        <button class="btn" data-bs-toggle="modal" >Simpan</button>
       </div>
-    </form>
+    </div>
   </div>
 </div>
-
-<!-- Pop up hapus kab/kota -->
-<div class="modal fade" id="hapusKabupaten" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" id="form_hapus_kabupaten" method="POST">
-      @method('DELETE')
-      @csrf
-      <div class="modal-header" style="border: none;">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Hapus Kabupaten/Kota</h1>
-      </div>
-      <div class="modal-body" style="border: none;">
-        <p>Apakah Anda yakin menghapus item ini?</p>
-      </div>
-      <div class="modal-footer gap-2" style="border: none;">
-        <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
-        <button type="submit" class="btn" data-bs-toggle="modal">Ya</button>
-      </div>
-    </form>
-  </div>
-</div>
-
 
 <!-- Pop up kecamatan -->
 <div class="modal fade" id="tambahPertanyaan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -276,8 +217,7 @@
         <table class="table">
   <thead>
     <tr>
-      <th class="ps-3" scope="col">No</th>
-      <th scope="col"></th>
+      <th scope="col">No</th>
       <th scope="col">Nama Provinsi</th>
       <th scope="col" class="text-center">Aksi</th>
     </tr>
@@ -285,13 +225,12 @@
   <tbody>
     @foreach($provinsi as $data)
     <tr>
-      <th class="ps-3" scope="row">{{$loop->iteration}}</th>
-      <td></td>
-      <td>{{ $data->propinsi }}</td>
+      <th scope="row">{{$loop->iteration}}</th>
+      <td>{{ $data->name }}</td>
       <td>
         <div class="d-flex justify-content-center gap-2">
-          <button onclick="openModalUbahProvinsi('{{ $data->id }}', '{{ $data->propinsi }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
-          <button onclick="openModalHapusProvinsi('{{ $data->id }}', '{{ $data->propinsi }}')" class="btn btn-hapus">Hapus</button>
+          <button onclick="openModalUbahProvinsi('{{ $data->id }}', '{{ $data->name }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
+          <button onclick="openModalHapusProvinsi('{{ $data->id }}', '{{ $data->name }}')" class="btn btn-hapus">Hapus</button>
         </div>
       </td>
     </tr>
@@ -313,39 +252,57 @@
   <div class="content-profil py-5">
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Kabupaten/Kota</h3>
-      <a href="#tambahKabupaten" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kabupaten/Kota</a>
+      <a href="#tambahSubKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kabupaten/Kota</a>
     </div>
       <div class="container mt-4">
         <table class="table">
           <thead>
           <tr>
-            <th class="ps-3" scope="col">No</th>
-            <th scope="col"></th>
+            <th scope="col">No</th>
             <th scope="col">Nama Provinsi</th>
+            <th scope="col">Kategori Daerah</th>
             <th scope="col">Nama Daerah</th>
             <th scope="col" class="text-center">Aksi</th>
           </tr>
           </thead>
           <tbody>
-            @foreach($kota as $data)
             <tr>
-              <th class="ps-3" scope="row">{{ $loop->iteration }}</th>
-              <td></td>
-              <td>{{ $data->propinsi->propinsi }}</td>
-              <td>{{ $data->kota }}</td>
+              <th scope="row">1</th>
+              <td>Jawa Barat</td>
+              <td>Kabupaten</td>
+              <td>Bandung Well</td>
               <td>
                 <div class="d-flex justify-content-center gap-2">
-                  <button onclick="openModalUbahKabupaten('{{ $data->id }}', '{{ $data->kota }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
-                  <button onclick="openModalHapusKabupaten('{{ $data->id }}', '{{ $data->kota }}')" class="btn btn-hapus">Hapus</button>
+                  <button class="btn btn-ubah">Ubah</button>
+                  <button class="btn btn-hapus">Hapus</button>
                 </div>
               </td>
             </tr>
-            @endforeach
-
-            <div id="hidden-data" style="display: none">
-              <input type="hidden" id="id_kabupaten">
-              <input type="hidden" id="nama_kabupaten">
-            </div>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jawa Timur</td>
+              <td>Kabupaten</td>
+              <td>Surabaya</td>
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-ubah">Ubah</button>
+                  <button class="btn btn-hapus">Hapus</button>
+                </div>
+              </td>
+              
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Jawa Tengah</td>
+              <td>Kota</td>
+              <td>Semarang</td>
+              <td>
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-ubah">Ubah</button>
+                  <button class="btn btn-hapus">Hapus</button>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

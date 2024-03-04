@@ -23,6 +23,10 @@ return new class extends Migration
             $table->foreign('dokumen_id')->references('id')->on('dokumen');
             //$table->foreign('review_by')->references('id')->on('users');
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

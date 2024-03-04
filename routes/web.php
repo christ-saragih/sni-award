@@ -11,9 +11,11 @@ use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriAdminController;
 use App\Http\Controllers\KategoriBeritaController;
+use App\Http\Controllers\KotaAdminController;
 use App\Http\Controllers\LembagaSertifikasiAdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
+use App\Http\Controllers\ProvinsiAdminController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\StatusKepemilikanAdminController;
 use App\Http\Controllers\TagBeritaController;
@@ -56,7 +58,6 @@ Route::get('/berita_acara', [BeritaAcaraAdminController::class, 'index']);
 Route::get('/status_kepemilikan', [StatusKepemilikanAdminController::class, 'index']);
 Route::get('/lembaga_sertifikasi', [LembagaSertifikasiAdminController::class, 'index']);
 Route::get('kategori', [KategoriAdminController::class, 'index']);
-Route::get('/wilayah', [WilayahAdminController::class, 'index']);
 Route::get('/admin/assesment', [AssesmentAdminController::class, 'index']);
 
 
@@ -92,6 +93,26 @@ Route::get('/admin/assesment', [AssesmentAdminController::class, 'index']);
     Route::get('/dokumen/{dokumen}/edit', [DokumenController::class, 'edit'])->name('dokumen.edit');
     Route::put('/dokumen/{dokumen}', [DokumenController::class, 'update'])->name('dokumen.update');
     Route::delete('/dokumen/{dokumen}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
+
+    // wilayah
+    // provinsi
+    Route::get('/wilayah', [WilayahAdminController::class, 'index']);
+    Route::post('/wilayah/provinsi', [ProvinsiAdminController::class, 'store'])->name('provinsi.store');
+    Route::put('/wilayah/provinsi/{id}', [ProvinsiAdminController::class, 'update']);
+    Route::delete('/wilayah/provinsi/{id}', [ProvinsiAdminController::class, 'destroy']);
+
+    // kota -> kerjain ntar
+    // Route::get('/wilayah/kota/tambah', [KotaAdminController::class, 'create']);
+    Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
+    Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
+    Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
+
+    // Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
+    // Route::put('/assessment_kategori/{id}',[App\Http\Controllers\AssessmentKategoriController::class,'update']);
+    // Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
+    // Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
+    // Route::resource('/provinsi', ProvinsiAdminController::class);
+    // Route::resource('/kota', KotaAdminController::class);
 });
 
 // >>>>>>> aff9a7dc4ee15cfe0da066180cb07c20d0e5d80c

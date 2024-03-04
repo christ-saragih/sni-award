@@ -266,8 +266,8 @@ a.btn:hover {
     transition: all 0.3s ease;
 }
 
-.content-profil button.nonactive,
-.modal-footer button.nonactive {
+.content-profil div.nonactive,
+.modal-footer div.nonactive {
     font-weight: 700;
     background-color: white;
     color: #c17d2d;
@@ -279,8 +279,8 @@ a.btn:hover {
     width: 20% !important;
 }
 
-.content-profil button.nonactive:hover,
-.modal-footer button.nonactive:hover {
+.content-profil div.nonactive:hover,
+.modal-footer div.nonactive:hover {
     font-weight: 700;
     background-color: var(--primary-color);
     color: white;
@@ -608,11 +608,24 @@ tbody tr:nth-child(odd) {
     animation: fadeOut 0.3s ease forwards;
 }
 
-/* main content */
+.sidenav.fixed-start {
+    display: none;
+}
 
-/* main content end */
+.sidenav.fixed-start ~ .main-content {
+    margin-left: 0rem;
+}
 
-@media (min-width: 1200px) {
+.sidenav.fixed-start {
+    bottom: 0;
+    float: none;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+}
+
+@media (min-width: 992px) {
     .sidenav:hover {
         max-width: 15.625rem;
     }
@@ -625,10 +638,28 @@ tbody tr:nth-child(odd) {
         margin-left: 17.125rem;
     }
 
-    .sidenav.fixed-end ~ .main-content {
-        margin-right: 17.125rem;
+    .sidenav.fixed-start {
+        display: block;
     }
 }
+
+/* main content */
+
+/* main content end */
+
+/* @media (max-width: 1200px) {
+    .sidenav:hover {
+        max-width: 15.625rem;
+    }
+
+    .sidenav .sidenav-toggler {
+        padding: 1.5rem;
+    }
+
+    .sidenav.fixed-start ~ .main-content {
+        margin-left: 17.125rem;
+    }
+} */
 
 /* Assignment */
 .modal-header h1 {
