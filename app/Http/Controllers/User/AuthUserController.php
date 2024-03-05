@@ -15,7 +15,7 @@ class AuthUserController extends Controller
 {
     public function loginUserView() {
         // dd(Auth::check());
-        return view('admin.auth.login');
+        return view('Admin.auth.login');
     }
 
     public function loginUser(Request $request) {
@@ -43,7 +43,7 @@ class AuthUserController extends Controller
     }
 
     public function registrasiUserView() {
-        return view('admin.auth.register');
+        return view('Admin.auth.register');
     }
 
     public function registrasiUser(Request $request) {
@@ -86,7 +86,7 @@ class AuthUserController extends Controller
         if (Auth::user()->email_verified_at != null) {
             return redirect('/admin/dashboard')->with('Akun telah terverifikasi');
         }else {
-            return  view('admin.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
+            return  view('Admin.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
         }
     }
 

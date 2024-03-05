@@ -18,14 +18,14 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::all();
-        return view('admin.berita.index',compact(['berita']));
+        return view('Admin.berita.index',compact(['berita']));
     }
     public function create()
     {
         $kategori = KategoriBerita::all();
         $tag_berita = TagBerita::all();
         // dd($kategori);
-        return view('admin.berita.create', compact(['kategori', 'tag_berita']));
+        return view('Admin.berita.create', compact(['kategori', 'tag_berita']));
     }
 
     public function store(Request $request)
@@ -84,7 +84,7 @@ class BeritaController extends Controller
         $kategori = KategoriBerita::all();
         $tag_berita = TagBerita::all();
 
-        return view('admin.berita.edit', compact('berita', 'kategori', 'tag_berita'));
+        return view('Admin.berita.edit', compact('berita', 'kategori', 'tag_berita'));
     }
 
     public function update(Request $request, Berita $berita){
