@@ -43,7 +43,7 @@
           <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" />
         </div>
 
-        <div class="content-kanan py-5">
+        <div class="content-kanan py-5" style="background-color: #2E3A66;">
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
 

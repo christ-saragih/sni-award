@@ -16,7 +16,7 @@ class UserDashboardController extends Controller
         if (Auth::check() == false) {
             return redirect('/admin/masuk');
         } elseif (Auth::user()->email_verified_at != null) {
-            return view('admin.home.index');
+            return view('Admin.home.index');
         } else {
             return redirect('/admin/verifikasi');
         }

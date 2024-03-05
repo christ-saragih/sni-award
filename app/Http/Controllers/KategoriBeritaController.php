@@ -18,7 +18,7 @@ class KategoriBeritaController extends Controller
     public function index()
     {
         $kategori_berita = KategoriBerita::all();
-        return view('admin.kategori_berita.index',compact(['kategori_berita']));
+        return view('Admin.kategori_berita.index',compact(['kategori_berita']));
     }
 
     /**
@@ -26,7 +26,7 @@ class KategoriBeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.kategori_berita.create');
+        return view('Admin.kategori_berita.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class KategoriBeritaController extends Controller
      */
     public function edit(KategoriBerita $kategori_berita)
     {
-        return view('admin.kategori_berita.edit', compact('kategori_berita'));
+        return view('Admin.kategori_berita.edit', compact('kategori_berita'));
     }
 
     /**
