@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kecamatan', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->unsignedInteger('kota_id');
-            $table->string('nama');
+            $table->string('kecamatan', 40);
             $table->timestamps();
 
             $table->foreign('kota_id')->references('id')->on('kota');

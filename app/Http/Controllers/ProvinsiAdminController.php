@@ -28,7 +28,7 @@ class ProvinsiAdminController extends Controller
     {
 
         Provinsi::create([
-            'name' => $request->name,
+            'propinsi' => $request->propinsi,
         ]);
 
         return redirect('/admin/wilayah');
@@ -46,7 +46,7 @@ class ProvinsiAdminController extends Controller
     {
         $provinsi = Provinsi::find($id);
         $provinsi->update([
-            'propinsi' => $request->name,
+            'propinsi' => $request->propinsi,
         ]);
 
         return redirect('/admin/wilayah')->with('success', 'Provinsi berhasil diubah');

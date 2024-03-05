@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <title>Admin || SNI Award 2023</title>
 
     <!-- Bootstrap -->
@@ -494,6 +495,34 @@
     <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
+    <script>
+        // dynamic dropdown kota
+        // $(function() {
+        //   $.ajaxSetup({
+        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        //   })
+        // })
+
+        // $(function () {
+        //     $("#propinsi").on("change", function () {
+        //         let propinsi_id = $("#propinsi").val();
+
+        //         $.ajax({
+        //             type: "POST",
+        //             url: "",
+        //             data: { propinsi_id: propinsi_id },
+        //             cache: false,
+
+        //             success: function (msg) {
+        //                 $("#kota").html(msg);
+        //             },
+        //             error: function (data) {
+        //                 console.log("error:", data);
+        //             },
+        //         });
+        //     });
+        // });
+    </script>
 
 </body>
 

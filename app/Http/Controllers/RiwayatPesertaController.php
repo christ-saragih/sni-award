@@ -9,4 +9,8 @@ class RiwayatPesertaController extends Controller
     public function index() {
         return view('peserta.riwayat.index');
     }
+
+    public function show($id) {
+        return view('peserta.riwayat.show');
+    }
 }

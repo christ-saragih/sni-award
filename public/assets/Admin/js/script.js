@@ -1,12 +1,13 @@
-$("#basic-usage").select2({
-    theme: "bootstrap-5",
-    width: $(this).data("width")
-        ? $(this).data("width")
-        : $(this).hasClass("w-100")
-        ? "100%"
-        : "style",
-    placeholder: $(this).data("placeholder"),
-});
+// select 2
+// $("#basic-usage").select2({
+//     theme: "bootstrap-5",
+//     width: $(this).data("width")
+//         ? $(this).data("width")
+//         : $(this).hasClass("w-100")
+//         ? "100%"
+//         : "style",
+//     placeholder: $(this).data("placeholder"),
+// });
 
 // Navbar Dropdown Button
 const navLinkDataMaster = document.getElementById("navLinkDataMaster");
@@ -223,6 +224,33 @@ function openModalHapusKabupaten(id, name) {
     modal.show();
 }
 
+// modal pop up ubah kecamatan
+function openModalUbahKecamatan(id, name) {
+    document.getElementById("id_kecamatan").value = id;
+    document.getElementById("nama_kecamatan").value = name;
+
+    document
+        .getElementById("form_ubah_kecamatan")
+        .setAttribute("action", `/admin/wilayah/kecamatan/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahKecamatan"));
+    modal.show();
+}
+
+// modal pop up hapus kabupaten
+function openModalHapusKecamatan(id, name) {
+    document.getElementById("id_kecamatan").value = id;
+    document.getElementById("nama_kecamatan").value = name;
+
+    document
+        .getElementById("form_hapus_kecamatan")
+        .setAttribute("action", `/admin/wilayah/kecamatan/${id}`);
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusKecamatan")
+    );
+    modal.show();
+}
+
 function openModalHapus(id, name) {
     document.getElementById("id_kategori").value = id;
     document.getElementById("nama_kategori").value = name;
@@ -236,22 +264,3 @@ function openModalHapus(id, name) {
     const modal = new bootstrap.Modal(document.getElementById("hapusKategori"));
     modal.show();
 }
-
-// ajax
-// $(document).ready(function () {
-//     $("#form_tambah_kabupaten").submit(function (e) {
-//         e.preventDefault();
-//         var form = $(this);
-//         var url = form.attr("action");
-//         var method = form.attr("method");
-//         var data = form.serialize();
-//         $.ajax({
-//             type: method,
-//             url: url,
-//             data: data,
-//             success: function (response) {
-//                 alert("Data berhasil disimpan");
-//             },
-//         });
-//     });
-// });

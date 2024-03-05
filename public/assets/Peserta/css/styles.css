@@ -173,7 +173,7 @@ nav .fa {
 }
 
 /* dropdown menu */
-.dropdown-menu {
+/* .dropdown-menu {
     margin: 0 !important;
     padding: 0 !important;
     border: none;
@@ -184,7 +184,7 @@ nav .fa {
 
 .dropdownMenu-hidden {
     animation: fadeOut 0.3s ease forwards;
-}
+} */
 
 /* Profil dan Riwayat*/
 #tabs-profil {
@@ -654,6 +654,15 @@ thead tr {
 
 td {
     border: none;
+}
+
+button.button-detail {
+    background-color: white;
+    color: var(--secondary-color);
+}
+
+button.button-detail:hover {
+    color: var(--secondary-color) !important;
 }
 
 @media (min-width: 1200px) {

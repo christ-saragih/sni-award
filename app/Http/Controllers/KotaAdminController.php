@@ -2,30 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
 use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class KotaAdminController extends Controller
 {
-    // public function index() 
-    // {
-    //     $provinsi = Provinsi::all();
-    //     $kota = Kota::all();
-
-    //     // return view('admin.wilayah.kota.index');
-    //     return response()->view('admin.wilayah.index', compact('provinsi', 'kota'));
-    // }
-
-    // public function create()
-    // {
-    //     return view('admin.wilayah.index');   
-    // }
 
     public function store(Request $request)
     {
         Kota::create([
-            'kota' => $request->nama,
+            'kota' => $request->kota,
             'propinsi_id' => $request->propinsi_id,
         ]);
 
@@ -36,7 +24,7 @@ class KotaAdminController extends Controller
     {
         $kota = Kota::find($id);
         $kota->update([
-            'kota' => $request->nama,
+            'kota' => $request->kota,
             'propinsi_id' => $request->propinsi_id,
         ]);
 
@@ -45,9 +33,14 @@ class KotaAdminController extends Controller
 
     public function destroy($id)
     {
-        $kota = Kota::find($id);
-        $kota->delete();
-        return redirect('/admin/wilayah')->with('success', 'Kabupaten berhasil dihapus');
+        $cek_kota = Kecamatan::where('kota_id', $id)->count();
+        if($cek_kota == 0) {
+            $kota = Kota::find($id);
+            $kota->delete();
+            return redirect('/admin/wilayah')->with('success', 'Kabupaten berhasil dihapus');
+        } else {
+            return redirect('/admin/wilayah')->with('failed', 'Data kabupaten tidak boleh dihapus');
+        }
     }
 
 }
