@@ -129,9 +129,10 @@
               </div>
               <div class="col-12 mt-4">
                 <p>
-                  Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih,
+                  {{-- Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih,
                   <br />
-                  Jakarta Pusat 10340
+                  Jakarta Pusat 10340 --}}
+                  {{ $frontpage_data->alamat }}
                 </p>
               </div>
             </div>
@@ -152,31 +153,26 @@
             <div class="social-media row">
               <h4 class="mb-3">Social Media</h4>
               <div class="col mb-1">
-                <a href=""
-                  ><p><img src="{{ asset('assets') }}/images/icon/link.svg" alt="" /> www.bsn.go.id</p></a
+                <a href="{{ $frontpage_data->website }}"  target="_blank"
+                  ><p><img src="{{ asset('assets') }}/images/icon/link.svg" alt="" />&ensp;{{ $frontpage_data->website }}</p></a
                 >
               </div>
               <div class="sosmed-container row">
-                <div
+                <a href="{{ $frontpage_data->twitter }}" target="_blank"
                   class="sosmed col-3 d-flex justify-content-center align-items-center"
                 >
                   <i data-feather="twitter"></i>
-                </div>
-                <div
+                </a>
+                <a href="{{ $frontpage_data->instagram }}" target="_blank"
                   class="sosmed col-3 d-flex justify-content-center align-items-center"
                 >
                   <i data-feather="instagram"></i>
-                </div>
-                <div
-                  class="sosmed col-3 d-flex justify-content-center align-items-center"
-                >
-                  <i data-feather="facebook"></i>
-                </div>
-                <div
+                </a>
+                <a href="{{ $frontpage_data->youtube }}" target="_blank"
                   class="sosmed col-3 d-flex justify-content-center align-items-center"
                 >
                   <i data-feather="youtube"></i>
-                </div>
+                </a>
               </div>
             </div>
           </div>

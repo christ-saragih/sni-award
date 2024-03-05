@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class HomePesertaController extends Controller
 {
     public function index() {
-        return view('peserta.home.index');
+        return view('Peserta.home.index');
     }
 }

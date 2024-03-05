@@ -32,12 +32,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
-Route::get('/admin', [HomeAdminController::class, 'index']);
-Route::get('/peserta',[HomePesertaController::class, 'index']);
-Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+// Route::get('/admin', [HomeAdminController::class, 'index']);
+// Route::get('/peserta',[HomePesertaController::class, 'index']);
+// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -56,6 +56,8 @@ Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+    Route::get('/profil',[ProfilPesertaController::class, 'index']);
+    Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
 });
 //end peserta
 
@@ -77,7 +79,13 @@ Route::prefix('/admin')->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
         
         //CRUD Frontpage
-        Route::get('/edit_front_page', [FrontPageController::class, 'index']);
+        Route::get('/frontpage', [FrontPageController::class, 'index']);
+        Route::get('/frontpage/edit', [FrontPageController::class, 'updateFrontpageView']);
+        Route::put('/frontpage/edit', [FrontPageController::class, 'updateFrontpage']);
+        Route::put('/frontpage/faq_populer/hapus/{id}', [FrontPageController::class, 'removePopularFaq']);
+        Route::put('/frontpage/faq_populer/tambah/{id}', [FrontPageController::class, 'addPopularFaq']);
+        Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
+        Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
       
         // Tag Berita
