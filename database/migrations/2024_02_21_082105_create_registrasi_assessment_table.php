@@ -22,6 +22,10 @@ return new class extends Migration
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->foreign('assessment_jawaban_id')->references('id')->on('assessment_jawaban');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

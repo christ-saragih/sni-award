@@ -8,17 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class KategoriBerita extends Model
+class Provinsi extends Model
 {
     use HasFactory;
-    use SoftDeletes, CreatedUpdatedBy;
+    use SoftDeletes;
+    // use CreatedUpdatedBy;
 
-    protected $fillable = ['nama'];
-    protected $guarded = [];
-    protected $table = 'kategori_berita';
+    protected $table = 'propinsi';
 
-    public function berita() : HasMany
+    protected $guarded = ['id'];
+
+    public function kota(): HasMany
     {
-        return $this->hasMany(Berita::class, 'kategori_berita_id', 'id');
+        return $this->hasMany(Kota::class);
     }
+
+    
 }

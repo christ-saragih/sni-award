@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeControllerPeserta;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
+use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
@@ -119,6 +120,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/dokumen/{dokumen}/edit', [DokumenController::class, 'edit'])->name('dokumen.edit');
         Route::put('/dokumen/{dokumen}', [DokumenController::class, 'update'])->name('dokumen.update');
         Route::delete('/dokumen/{dokumen}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
+
+        //Konfigurasi
+        Route::get('/konfigurasi',[KonfigurasiController::class, 'index'])->name('konfigurasi.index');
+        Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create'); 
+        Route::post('/konfigurasi', [KonfigurasiController::class, 'store'])->name('konfigurasi.store');
+        Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit'); 
+        Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
+        Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
     });
 });
 // end User

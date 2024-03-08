@@ -38,6 +38,10 @@ return new class extends Migration
             $table->foreign('status_kepemilikan_id')->references('id')->on('status_kepemilikan');
             $table->foreign('lembaga_sertifikasi_id')->references('id')->on('lembaga_sertifikasi');
             $table->foreign('sektor_kategori_organisasi_id')->references('id')->on('kategori_organisasi');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

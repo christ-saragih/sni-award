@@ -15,15 +15,16 @@ return new class extends Migration
             $table->integerIncrements('id');
             $table->string('nama');
             $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('verify_key');
-            $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif');
+            $table->enum('status', ['aktif', 'tidak aktif']);
             $table->tinyInteger('kategori_organisasi_id')->unsigned();
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('kategori_organisasi_id')->references('id')->on('kategori_organisasi');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

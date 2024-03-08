@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('kecamatan', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->smallInteger('kota_id')->unsigned();
-            $table->string('nama');
+            $table->unsignedInteger('kota_id');
+            $table->string('kecamatan', 40);
             $table->timestamps();
 
             $table->foreign('kota_id')->references('id')->on('kota');
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

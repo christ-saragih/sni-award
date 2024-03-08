@@ -16,9 +16,13 @@ return new class extends Migration
             $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
             $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->string('jawaban');
-            $table->enum('status_jawaban',['FALSE','TRUE']);
-            $table->integer('poin');
+            $table->enum('status_jawaban',['FALSE','TRUE'])->nullable(true);
+            $table->integer('poin')->nullable(true);
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

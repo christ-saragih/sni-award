@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('ulr_anti_penyuapan');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

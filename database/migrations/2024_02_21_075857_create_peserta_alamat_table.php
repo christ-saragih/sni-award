@@ -21,6 +21,10 @@ return new class extends Migration
             $table->integer('kode_pos');
             $table->enum('tipe', ['Pubrik', 'organisasi']);
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 

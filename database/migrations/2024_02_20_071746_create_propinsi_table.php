@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('propinsi', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('name');
+            $table->string('propinsi', 30);
+            $table->string('map_id', 5)->nullable()->default(NULL);
             $table->timestamps();
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 
