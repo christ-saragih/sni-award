@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             AssessmentSubKategoriSeeder::class,
             AssessmentPertanyaanSeeder::class,
             AssessmentJawabanSeeder::class,
-            // KategoriBeritaSeeder::class,
             TipeKategoriSeeder::class,
             KategoriOrganisasiSeeder::class,
             KonfigurasiSeeder::class,
@@ -27,7 +26,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StatusKepemilikanSeeder::class,
             UserSeeder::class,
-            ProvinsiSeeder::class,
+            PropinsiSeeder::class,
             KotaSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

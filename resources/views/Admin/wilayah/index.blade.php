@@ -110,7 +110,7 @@
               <h6 class="ms-1 mb-0">Nama Daerah</h6>
               <input name="kota" type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Kabupaten/Kota" style="font-size: 100%;"/>
           </div>
-          <div class="d-flex flex-column gap-2 pb-5">
+          {{-- <div class="d-flex flex-column gap-2 pb-5">
               <h6 class="ms-1 mb-0">Kategori Daerah</h6>
               <select class="form-select form-control-lg ps-4" id="basic-usage" style="z-index: 9999;">
                 <option hidden>Pilih Provinsi</option>
@@ -121,7 +121,7 @@
                 <option>Holistic</option>
               </select>
               <!-- <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Daerah Kabupaten/Kota" style="font-size: 100%;"/> -->
-          </div>
+          </div> --}}
           
         </div>
       </div>
@@ -216,7 +216,7 @@
               @endforeach
             </select>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Kecamatan</h6>
             <input name="kecamatan" type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Kecamatan" style="font-size: 100%;"/>
           </div>
@@ -259,7 +259,7 @@
               @endforeach
             </select>
           </div>
-          <div class="d-flex flex-column gap-2">
+          <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Kecamatan</h6>
             <input name="kecamatan" id="nama_kecamatan" type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Kecamatan" style="font-size: 100%;"/>
           </div>
@@ -415,7 +415,7 @@
         <table class="table">
           <thead>
           <tr>
-            <th scope="col">No</th>
+            <th class="ps-3" scope="col">No</th>
             <th scope="col">Nama Provinsi</th>
             <th scope="col">Nama Daerah</th>
             <th scope="col">Kecamatan</th>
@@ -426,7 +426,7 @@
 
             @foreach($kecamatan as $data)
             <tr>
-              <th scope="row">{{ $loop->iteration }}</th>
+              <th class="ps-3" scope="row">{{ $loop->iteration }}</th>
               <td>{{ $data->kota->propinsi->propinsi }}</td>
               <td>{{ $data->kota->kota }}</td>
               <td>{{ $data->kecamatan }}</td>

@@ -126,6 +126,7 @@ barsMenu.addEventListener("click", function (event) {
             navLinks.forEach(function (element) {
                 element.style.marginLeft = "0";
             });
+            navLinkDataMaster.style.marginLeft = "0";
             navLinkText.forEach(function (element) {
                 element.style.display = "none";
             });
@@ -133,13 +134,12 @@ barsMenu.addEventListener("click", function (event) {
             caretLeft.style.display = "none";
             sidebar.style.marginTop = "4rem";
         } else {
-            // Style yang diberikan ketika sidenav tidak visible
             sidenavMain.style.width = "100%";
             mainContent.style.marginLeft = "17.125rem";
             navLinks.forEach(function (element) {
-                element.style.marginLeft = "1rem";
+                element.style.marginLeft = "0.1rem";
             });
-            // Iterasi melalui setiap elemen dalam NodeList
+            navLinkDataMaster.style.marginLeft = "0.1rem";
             navLinkText.forEach(function (element) {
                 element.style.display = "block";
             });
@@ -154,14 +154,13 @@ barsMenu.addEventListener("click", function (event) {
 
 barsMenu.addEventListener("click", function (event) {
     if (window.innerWidth <= 992) {
-        // Style yang diberikan ketika sidenav visible
         sidenavMain.style.display = "block";
         sidenavMain.style.width = "100%";
         mainContent.style.marginLeft = "17.125rem";
         navLinks.forEach(function (element) {
-            element.style.marginLeft = "1rem";
+            element.style.marginLeft = "0.1rem";
         });
-        // Iterasi melalui setiap elemen dalam NodeList
+        navLinkDataMaster.style.marginLeft = "0.1rem";
         navLinkText.forEach(function (element) {
             element.style.display = "block";
         });

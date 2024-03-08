@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Kecamatan;
 use App\Models\Kota;
-use App\Models\Provinsi;
+use App\Models\Propinsi;
 use Illuminate\Http\Request;
 
 class WilayahAdminController extends Controller
 {
     public function index() {
-        $provinsi = Provinsi::get();
+        $provinsi = Propinsi::get();
         $kota = Kota::get();
         $kecamatan = Kecamatan::get();
         return view('admin.wilayah.index', [

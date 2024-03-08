@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Provinsi extends Model
+class Propinsi extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -22,6 +22,4 @@ class Provinsi extends Model
     {
         return $this->hasMany(Kota::class);
     }
-
-    
 }

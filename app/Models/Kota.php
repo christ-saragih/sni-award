@@ -21,7 +21,7 @@ class Kota extends Model
 
     public function propinsi(): BelongsTo
     {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Propinsi::class);
     }
 
     public function kecamatan(): HasMany

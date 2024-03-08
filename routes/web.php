@@ -18,6 +18,7 @@ use App\Http\Controllers\KotaDropdownAdminController;
 use App\Http\Controllers\LembagaSertifikasiAdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
+use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\ProvinsiAdminController;
 use App\Http\Controllers\RiwayatPesertaAksiController;
 use App\Http\Controllers\RiwayatPesertaController;
@@ -104,9 +105,9 @@ Route::prefix('admin')->group(function() {
     // wilayah
     // provinsi
     Route::get('/wilayah', [WilayahAdminController::class, 'index']);
-    Route::post('/wilayah/provinsi', [ProvinsiAdminController::class, 'store'])->name('provinsi.store');
-    Route::put('/wilayah/provinsi/{id}', [ProvinsiAdminController::class, 'update']);
-    Route::delete('/wilayah/provinsi/{id}', [ProvinsiAdminController::class, 'destroy']);
+    Route::post('/wilayah/provinsi', [PropinsiAdminController::class, 'store'])->name('provinsi.store');
+    Route::put('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'update']);
+    Route::delete('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'destroy']);
 
     // kota
     Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
