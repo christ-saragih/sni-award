@@ -69,7 +69,7 @@ class AuthUserController extends Controller
             'name' => $dataRegistrasi['name'],
             'datetime' => date('Y-m-d H:i:s'),
             'website' => 'SNI Award',
-            'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
+            'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$dataRegistrasi['verify_key'],
         ];
         Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));
         
