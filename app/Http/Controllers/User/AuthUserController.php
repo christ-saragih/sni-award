@@ -30,8 +30,8 @@ class AuthUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        if (Auth::attempt($infoLogin)) {
-            if (Auth::user()->email_verified_at != null) {
+        if (Auth::guard('web')->attempt($infoLogin)) {
+            if (Auth::guard('web')->user()->email_verified_at != null) {
                 return redirect('/admin/dashboard')->with('success', 'Berhasil masuk');
             }
             else {
@@ -74,7 +74,7 @@ class AuthUserController extends Controller
         Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));
         
         // dd(Auth::check());
-        if (Auth::check()) {
+        if (Auth::guard('web')->check()) {
             return redirect('/admin/dashboard');
         }else {
             return redirect('/admin/masuk')->with('success', 'Berhasil melakukan registrasi');
@@ -82,8 +82,8 @@ class AuthUserController extends Controller
     }
 
     public function verifikasiUserView() {
-        $kodeVerifikasi = Auth::user()->verify_key;
-        if (Auth::user()->email_verified_at != null) {
+        $kodeVerifikasi = Auth::guard('web')->user()->verify_key;
+        if (Auth::guard('web')->user()->email_verified_at != null) {
             return redirect('/admin/dashboard')->with('Akun telah terverifikasi');
         }else {
             return  view('Admin.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
@@ -106,17 +106,17 @@ class AuthUserController extends Controller
 
     public function verifikasiUlangUser($kode_verifikasi) {
         $details = [
-            'name' => Auth::user()->name,
+            'name' => Auth::guard('web')->user()->name,
             'datetime' => date('Y-m-d H:i:s'),
             'website' => 'SNI Award',
             'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$kode_verifikasi,
         ];
-        Mail::to(Auth::user()->email)->send(new AuthUserMail($details));
+        Mail::to(Auth::guard('web')->user()->email)->send(new AuthUserMail($details));
         return redirect('/admin/verifikasi')->with('Email verifikasi ulang telah dikirim');
     }
 
     public function logoutUser() {
-        Auth::logout();
+        Auth::guard('web')->logout();
         return redirect('/admin/masuk');
     }
 }
