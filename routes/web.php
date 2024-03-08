@@ -128,6 +128,30 @@ Route::prefix('/admin')->group(function () {
         Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit'); 
         Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
         Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
+
+        // assessment kategori
+        Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
+        Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
+        Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
+        Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
+        Route::put('/assessment_kategori/{id}',[App\Http\Controllers\AssessmentKategoriController::class,'update']);
+        Route::delete('/assessment_kategori/{id}',[App\Http\Controllers\AssessmentKategoriController::class,'destroy']);
+
+        // assessment sub kategori
+        Route::get('/assessment_sub_kategori', [App\Http\Controllers\AssessmentSubKategoriController::class,'index']);
+        Route::get('/assessment_sub_kategori/tambah', [App\Http\Controllers\AssessmentSubKategoriController::class,'create']);
+        Route::post('/assessment_sub_kategori',[App\Http\Controllers\AssessmentSubKategoriController::class,'store']);
+        Route::get('/assessment_sub_kategori/{id}/ubah',[App\Http\Controllers\AssessmentSubKategoriController::class,'edit']);
+        Route::put('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'update']);
+        Route::delete('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'destroy']);
+
+        // status kepemilikan
+        Route::get('/status_kepemilikan', [App\Http\Controllers\StatusKepemilikanController::class,'index']);
+        Route::get('/status_kepemilikan/tambah', [App\Http\Controllers\StatusKepemilikanController::class,'create']);
+        Route::post('/status_kepemilikan',[App\Http\Controllers\StatusKepemilikanController::class,'store']);
+        Route::get('/status_kepemilikan/{id}/ubah',[App\Http\Controllers\StatusKepemilikanController::class,'edit']);
+        Route::put('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'update']);
+        Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
     });
 });
 // end User

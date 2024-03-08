@@ -65,7 +65,7 @@ navLinkKonfigurasi.addEventListener("click", function (event) {
 const navLinkAssesment = document.getElementById("navLinkAssesment");
 navLinkAssesment.style.cursor = "pointer";
 navLinkAssesment.addEventListener("click", function (event) {
-    window.location.href = "/admin/assesment";
+    window.location.href = "/admin/assessment";
     event.preventDefault();
 });
 
@@ -251,16 +251,79 @@ function openModalHapusKecamatan(id, name) {
     modal.show();
 }
 
+// modal pop up ubah
+function openModalUbah(id, name) {
+    document.getElementById('id_kategori').value = id;
+    document.getElementById('nama_kategori').value = name;
+
+    document.getElementById('form_ubah_kategori').setAttribute('action', `/admin/assessment_kategori/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById('ubahKategori'));
+    // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+    modal.show();
+}
+
+// modal pop up hapus
 function openModalHapus(id, name) {
-    document.getElementById("id_kategori").value = id;
-    document.getElementById("nama_kategori").value = name;
+    document.getElementById('id_kategori').value = id;
+    document.getElementById('nama_kategori').value = name;
 
     // const formModalContent = document.getElementById('formModalContent');
     // formModalContent.action = '/assessment/' + id;
-    document
-        .getElementById("form_hapus_kategori")
-        .setAttribute("action", `/assessment_kategori/${id}`);
+    document.getElementById('form_hapus_kategori').setAttribute('action', `/admin/assessment_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusKategori"));
+    const modal = new bootstrap.Modal(document.getElementById('hapusKategori'));
+    modal.show();
+}
+
+// modal pop up ubah status kepemilikan
+function openModalUbahSK(id, name) {
+    document.getElementById('id_status_kepemilikan').value = id;
+    document.getElementById('nama_status_kepemilikan').value = name;
+
+    document.getElementById('form_ubah_status_kepemilikan').setAttribute('action', `/admin/status_kepemilikan/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+    modal.show();
+}
+
+// modal pop up hapus status kepemilikan
+function openModalHapusSK(id, name) {
+    document.getElementById('id_status_kepemilikan').value = id;
+    document.getElementById('nama_status_kepemilikan').value = name;
+
+    // const formModalContent = document.getElementById('formModalContent');
+    // formModalContent.action = '/assessment/' + id;
+    document.getElementById('form_hapus_status_kepemilikan').setAttribute('action', `/admin/status_kepemilikan/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById('hapusStatusKepemilikan'));
+    modal.show();
+}
+
+// modal pop up Ubah Assessment Sub Kategori
+function openModalUbahASK(id, name) {
+    document.getElementById('id_kategori').value = id;
+    document.getElementById('id_sub_kategori').value = id;
+    document.getElementById('nama_kategori').value = name;
+    document.getElementById('nama_sub_kategori').value = name;
+
+    document.getElementById('form_ubah_sub_kategori').setAttribute('action', `/admin/assessment_sub_kategori/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById('ubahSubKategori'));
+    // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+    modal.show();
+}
+
+// modal pop up Hapus Assessment Sub Kategori
+function openModalHapusASK(id, name) {
+    document.getElementById('id_kategori').value = id;
+    document.getElementById('id_sub_kategori').value = id;
+    document.getElementById('nama_kategori').value = name;
+    document.getElementById('nama_sub_kategori').value = name;
+
+    document.getElementById('form_hapus_sub_kategori').setAttribute('action', `/admin/assessment_sub_kategori/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById('hapusSubKategori'));
+    // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
     modal.show();
 }
