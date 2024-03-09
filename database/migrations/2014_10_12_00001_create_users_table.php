@@ -17,15 +17,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('role')->unsigned();
-            $table->enum('status',['aktif','tidak_aktif']);
+            $table->enum('status',['aktif','tidak_aktif'])->default('aktif');
             $table->string('password');
+            $table->string('verify_key');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('role')->references('id')->on('role');
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
+
+            $table->foreign('role')->references('id')->on('role');
         });
     }
 

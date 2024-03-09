@@ -65,7 +65,7 @@
         <a
           class="navbar-brand m-0"
           id="navbarBrand"
-          href="/admin"
+          href="/"
         
         >
           <img
@@ -80,7 +80,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" id="navLink" href="/admin">
+            <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}" id="navLink" href="/admin/dashboard">
               <div
                 class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -90,7 +90,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/halaman_depan') ? 'active' : '' }}" id="navLink" href="/admin/halaman_depan">
+            <a class="nav-link {{ request()->is('admin/frontpage') ? 'active' : '' }}" id="navLink" href="/admin/frontpage">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -249,19 +249,6 @@
           <nav aria-label="breadcrumb" class="d-flex ps-2 align-items-center gap-3">
             <i class="fa fa-bars" id="barsMenu" style="cursor: pointer;"></i>
             <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">Beranda</h6>
-            <!-- <li class="nav-item px-2 d-flex align-items-center">
-              <a
-                href="javascript:;"
-                class="nav-link text-body p-0"
-                id="iconNavbarSidenav"
-              >
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                </div>
-              </a>
-            </li> -->
           </nav>
           <div
             class="collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4"
@@ -405,7 +392,7 @@
                   aria-expanded="false"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
-                  <span class="d-sm-inline d-none me-sm-1"><b>Admin</b></span>
+                  <span class="d-sm-inline d-none me-sm-1"><b>{{ auth()->user()->name }}</b></span>
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul
@@ -430,7 +417,7 @@
                       <li class="w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="javascript:;"
+                          href="/admin/keluar"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-sign-out" style="width: 12%;"></i>
@@ -507,34 +494,6 @@
     <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
-    <script>
-        // dynamic dropdown kota
-        // $(function() {
-        //   $.ajaxSetup({
-        //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        //   })
-        // })
-
-        // $(function () {
-        //     $("#propinsi").on("change", function () {
-        //         let propinsi_id = $("#propinsi").val();
-
-        //         $.ajax({
-        //             type: "POST",
-        //             url: "",
-        //             data: { propinsi_id: propinsi_id },
-        //             cache: false,
-
-        //             success: function (msg) {
-        //                 $("#kota").html(msg);
-        //             },
-        //             error: function (data) {
-        //                 console.log("error:", data);
-        //             },
-        //         });
-        //     });
-        // });
-    </script>
 
 </body>
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email');
             $table->string('password');
+            $table->string('verify_key');
             $table->enum('status', ['aktif', 'tidak aktif']);
             $table->tinyInteger('kategori_organisasi_id')->unsigned();
             $table->timestamps();
