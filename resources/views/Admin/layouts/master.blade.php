@@ -50,6 +50,8 @@
 </head>
 
 <body style="background-color: #ECE4E4;">
+  {{-- jquery CDN --}}
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
@@ -90,7 +92,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/frontpage') ? 'active' : '' }}" id="navLink" href="/admin/frontpage">
+            <a class="nav-link {{ request()->is('admin/frontpage*') ? 'active' : '' }}" id="navLink" href="/admin/frontpage">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
