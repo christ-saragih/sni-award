@@ -38,7 +38,8 @@ class AuthUserController extends Controller
                 return redirect('/admin/verifikasi');
             }
         }else {
-            return redirect('/admin/masuk')->withErrors('Email atau Password salah');
+            // return redirect('/admin/masuk')->withErrors('Email atau Password salah')->withInput();
+            return redirect('/admin/masuk')->with('error', 'Email atau Password salah. Silahkan coba lagi')->withInput();
         }
     }
 

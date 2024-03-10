@@ -30,6 +30,7 @@ class FrontPageController extends Controller
         $faq = Faq::where('is_popular',  true)->get();
         $unpopular_faq = Faq::where('is_popular', false)->get();
         $dokumentasi = Dokumentasi::get();
+        // dd($unpopular_faq);
         return view('Admin.front_page.edit.frontpage', [
             'frontpage' => $frontpage[0],
             'popular_faq' => $faq,
@@ -101,7 +102,7 @@ class FrontPageController extends Controller
     }
 
     public function addPopularFaq($id) {
-        if (count(Faq::get()) < 3) {
+        if (count(Faq::where('is_popular', false)->get()) >= 3) {
             $faq = Faq::find($id);
             $data = [
                 'is_popular' => true,
