@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\BeritaTag;
-use App\Models\KategoriBerita;
 use App\Models\TagBerita;
 use Illuminate\Http\Request;
 
@@ -18,28 +17,28 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::all();
+        $tag_berita = TagBerita::all();
         // dd($berita);
-        return view('admin.berita.index',compact(['berita']));
+        return view('admin.berita.index',compact(['berita','tag_berita']));
     }
     public function create()
     {
-        $kategori = KategoriBerita::all();
         $tag_berita = TagBerita::all();
         // dd($kategori);
-        return view('admin.berita.create', compact(['kategori', 'tag_berita']));
+        return view('admin.berita.berita.create', compact(['tag_berita']));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kategori_berita_id' => 'required',
+            // 'kategori_berita_id' => 'required',
             'judul_berita' =>'required|max:100',
             'deskripsi' => 'required|min:5',
             'tanggal' => 'required|date',
             'file_gambar' => 'required|image',
             'tag_berita' => 'required|array',
         ], [
-            'kategori_berita_id.required' => 'Kategori Berita Wajib Diisi!',
+            // 'kategori_berita_id.required' => 'Kategori Berita Wajib Diisi!',
             'judul_berita.required' => 'Judul Berita Wajib Diisi!',
             'judul_berita.max' => 'Judul Berita Maksimal 100 Karakter!',
             'deskripsi.required' => 'Deskripsi Berita Wajib Diisi!',
@@ -60,8 +59,8 @@ class BeritaController extends Controller
 
         $berita = Berita::create([
             'user_id' => 2,//sementara, kalau udah ada auth ambil dari id user di session
-            'kategori_berita_id' => $request->kategori_berita_id,
-            'slug' => $request->slug,
+            // 'kategori_berita_id' => $request->kategori_berita_id,
+            // 'slug' => $request->slug,
             'judul_berita'=> $request->judul_berita,
             'deskripsi'=> $request->deskripsi,
             'tanggal'=> $request->tanggal,
@@ -82,22 +81,21 @@ class BeritaController extends Controller
     public function edit(Berita $berita){
         $berita->load('tag_berita');
 
-        $kategori = KategoriBerita::all();
         $tag_berita = TagBerita::all();
 
-        return view('admin.berita.edit', compact('berita', 'kategori', 'tag_berita'));
+        return view('admin.berita.berita.edit', compact('berita', 'tag_berita'));
     }
 
     public function update(Request $request, Berita $berita){
         $request->validate([
-            'kategori_berita_id' => 'required',
+            // 'kategori_berita_id' => 'required',
             'judul_berita' => 'required|max:100',
             'deskripsi' => 'required|min:5',
             'tanggal' => 'required|date',
             'file_gambar' => 'image',
             'tag_berita' => 'required|array',
         ], [
-            'kategori_berita_id.required' => 'Kategori Berita Wajib Diisi!',
+            // 'kategori_berita_id.required' => 'Kategori Berita Wajib Diisi!',
             'judul_berita.required' => 'Judul Berita Wajib Diisi!',
             'judul_berita.max' => 'Judul Berita Maksimal 100 Karakter!',
             'deskripsi.required' => 'Deskripsi Berita Wajib Diisi!',
@@ -123,8 +121,8 @@ class BeritaController extends Controller
         }
 
         $berita->update([
-            'kategori_berita_id' => $request->kategori_berita_id,
-            'slug' => $request->slug,
+            // 'kategori_berita_id' => $request->kategori_berita_id,
+            // 'slug' => $request->slug,
             'judul_berita' => $request->judul_berita,
             'deskripsi' => $request->deskripsi,
             'tanggal' => $request->tanggal,

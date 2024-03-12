@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('berita', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
-            $table->tinyInteger('kategori_berita_id')->unsigned();
-            $table->string('slug',100);
+            // $table->tinyInteger('kategori_berita_id')->unsigned();
+            // $table->string('slug',100);
             $table->string('judul_berita',255);
             $table->text('deskripsi');
             $table->date('tanggal');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('kategori_berita_id')->references('id')->on('kategori_berita');
+            // $table->foreign('kategori_berita_id')->references('id')->on('kategori_berita');
         });
     }
 

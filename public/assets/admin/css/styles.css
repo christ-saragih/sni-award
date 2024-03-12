@@ -266,8 +266,8 @@ a.btn:hover {
     transition: all 0.3s ease;
 }
 
-.content-profil button.nonactive,
-.modal-footer button.nonactive {
+.content-profil div.nonactive,
+.modal-footer div.nonactive {
     font-weight: 700;
     background-color: white;
     color: #c17d2d;
@@ -279,8 +279,8 @@ a.btn:hover {
     width: 20% !important;
 }
 
-.content-profil button.nonactive:hover,
-.modal-footer button.nonactive:hover {
+.content-profil div.nonactive:hover,
+.modal-footer div.nonactive:hover {
     font-weight: 700;
     background-color: var(--primary-color);
     color: white;
