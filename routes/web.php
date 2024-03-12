@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AcaraController;
+use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -10,7 +13,7 @@ use App\Http\Controllers\HomeControllerPeserta;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
@@ -31,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
@@ -104,6 +108,14 @@ Route::prefix('/admin')->group(function () {
         Route::put('/berita/{berita}', [BeritaController::class, 'update'])->name('berita.update');
         Route::delete('/berita/{berita}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 
+        //Acara
+        Route::get('/acara', [AcaraController::class, 'index'])->name('acara.index');
+        Route::get('/acara/tambah', [AcaraController::class, 'create'])->name('acara.create');
+        Route::post('/acara', [AcaraController::class, 'store'])->name('acara.store');
+        Route::get('/acara/{acara}/edit', [AcaraController::class, 'edit'])->name('acara.edit');
+        Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
+        Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
+
         //kategori berita
         Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
         Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
@@ -112,13 +124,32 @@ Route::prefix('/admin')->group(function () {
         Route::put('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'update'])->name('kategori_berita.update');
         Route::delete('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'destroy'])->name('kategori_berita.destroy');
 
-        //berita
+        //Dokumen
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
         Route::get('/dokumen/tambah', [DokumenController::class, 'create'])->name('dokumen.create');
         Route::post('/dokumen', [DokumenController::class, 'store'])->name('dokumen.store');
         Route::get('/dokumen/{dokumen}/edit', [DokumenController::class, 'edit'])->name('dokumen.edit');
         Route::put('/dokumen/{dokumen}', [DokumenController::class, 'update'])->name('dokumen.update');
         Route::delete('/dokumen/{dokumen}', [DokumenController::class, 'destroy'])->name('dokumen.destroy');
+
+        // Asessment
+        Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
+        //Assessment Pertanyaan
+        Route::get('/assessment_pertanyaan', [AssessmentPertanyaanController::class, 'index'])->name('assessment_pertanyaan.index');
+        Route::get('/assessment_pertanyaan/tambah', [AssessmentPertanyaanController::class, 'create'])->name('assessment_pertanyaan.create');
+        Route::post('/assessment_pertanyaan', [AssessmentPertanyaanController::class, 'store'])->name('assessment_pertanyaan.store');
+        Route::get('/assessment_pertanyaan/{assessment_pertanyaan}/edit', [AssessmentPertanyaanController::class, 'edit'])->name('assessment_pertanyaan.edit');
+        Route::put('/assessment_pertanyaan/{assessment_pertanyaan}', [AssessmentPertanyaanController::class, 'update'])->name('assessment_pertanyaan.update');
+        Route::delete('/assessment_pertanyaan/{assessment_pertanyaan}', [AssessmentPertanyaanController::class, 'destroy'])->name('assessment_pertanyaan.destroy');
+
+        //Kategori Organisasi
+        Route::get('/kategori_organisasi', [KategoriOrganisasiController::class, 'index'])->name('kategori_organisasi.index');
+        Route::get('/kategori_organisasi/tambah', [KategoriOrganisasiController::class, 'create'])->name('kategori_organisasi.create');
+        Route::post('/kategori_organisasi', [KategoriOrganisasiController::class, 'store'])->name('kategori_organisasi.store');
+        Route::get('/kategori_organisasi/{kategori_organisasi}/edit', [KategoriOrganisasiController::class, 'edit'])->name('kategori_organisasi.edit');
+        Route::put('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'update'])->name('kategori_organisasi.update');
+        Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
     });
 });
 // end User
+Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');

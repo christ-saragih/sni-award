@@ -41,7 +41,7 @@ class TagBeritaController extends Controller
             'nama' => $request->nama,
         ]);
 
-        return redirect()->route('tag_berita.index')->with('success', 'Tag Berita Berhasil Ditambahkan');
+        return redirect()->route('berita.index')->with('success', 'Tag Berita Berhasil Ditambahkan');
     }
 
     /**
@@ -71,7 +71,7 @@ class TagBeritaController extends Controller
 
         $tag_berita->update($request->all());
 
-        return redirect()->route('tag_berita.index')->with('success', 'Tag Berita Berhasil Diubah');
+        return redirect()->route('berita.index')->with('success', 'Tag Berita Berhasil Diubah');
     }
 
     /**
@@ -81,6 +81,6 @@ class TagBeritaController extends Controller
     {
         $tag_berita->delete();
 
-        return redirect()->route('tag_berita.index')->with('success', 'Tag Berita Berhasil Dihapus!');
+        return redirect()->route('berita.index')->with('success', 'Tag Berita Berhasil Dihapus!');
     }
 }

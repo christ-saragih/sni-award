@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <title>Admin || SNI Award 2023</title>
 
     <!-- Bootstrap -->
@@ -41,6 +42,9 @@
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- CSS Admin -->
     <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
 
@@ -76,7 +80,6 @@
           class="navbar-brand m-0"
           id="navbarBrand"
           href="/"
-        
         >
           <img
             src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
@@ -120,7 +123,7 @@
             </a>
           </li>
           <li class="nav-item" id="navItemBerita">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/data_master') ? 'active' : '' }}" id="navLink" href="/admin/data_master">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
@@ -179,7 +182,66 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link" id="navLinkDataMaster" href="/admin">
+              <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                <i class="fa fa-database"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Data Master</span>
+                <i class="fa fa-caret-left ms-auto" id="faCaretLeft"></i>
+            </a>
+            <ul class="dropdown-menu" id="dropdownMenu">
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkKonfigurasi">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Konfigurasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkAssesment">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Assesment</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkDokumen">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Dokumen</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkStatusKepemilikan">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkLembagaSertifikasi">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="navLinkWilayah">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Wilayah</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/peserta') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -189,7 +251,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -199,7 +262,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLink" href="/admin/dokumentasi">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -209,7 +273,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLink" href="/admin/dokumen">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -219,7 +284,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLink" href="#">
+            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -236,7 +302,7 @@
     >
       <!-- Navbar -->
       <nav
-        class="navbar navbar-main navbar-expand-lg px-0 mt-3 me-4"
+        class="navbar navbar-main navbar-expand px-0 mt-3 me-3"
         id="navbarBlur"
         navbar-scroll="true"
         style="
@@ -249,7 +315,7 @@
           <nav aria-label="breadcrumb" class="d-flex ps-2 align-items-center gap-3">
             <i class="fa fa-bars" id="barsMenu" style="cursor: pointer;"></i>
             <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">Beranda</h6>
-            <li class="nav-item px-2 d-flex align-items-center">
+            <!-- <li class="nav-item px-2 d-flex align-items-center">
               <a
                 href="javascript:;"
                 class="nav-link text-body p-0"
@@ -261,10 +327,10 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </a>
-            </li>
+            </li> -->
           </nav>
           <div
-            class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+            class="collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4"
             id="navbar"
           >
             <ul class="navbar-nav d-flex ms-auto justify-content-end">
@@ -405,7 +471,9 @@
                   aria-expanded="false"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
+
                   <span class="d-sm-inline d-none me-sm-1"><b>{{ auth()->user()->name }}</b></span>
+
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul
@@ -417,6 +485,7 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
+
                           href="/admin/profil"
                         >
                             <div class="d-flex gap-4 align-items-center">
@@ -430,6 +499,7 @@
                       <li class="w-50">
                         <a
                           class="dropdown-item border-radius-md"
+
                           href="/admin/keluar"
                         >
                             <div class="d-flex gap-4 align-items-center">
@@ -449,8 +519,20 @@
         </div>
       </nav>
       <!-- End Navbar -->
-
       <div class="container-fluid py-4">
+        @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error )
+                  <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+        @if(session()->has('success'))
+      <div class="alert alert-success">{{session('success')}}</div>
+      @endif
+      <div class="py-4 me-4">
         <!-- Content -->
         @yield('content')
         <!-- End Content -->
@@ -492,6 +574,8 @@
       integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
       crossorigin="anonymous"
     ></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
 
 </body>

@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class KategoriOrganisasi extends Model
+class AssessmentJawaban extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-    protected $table = 'kategori_organisasi';
+    protected $table = 'assessment_jawaban';
 
-    public function tipe_kategori() : BelongsTo
+    public function assessment_pertanyaan() : BelongsTo
     {
-        return $this->belongsTo(TipeKategori::class, 'tipe_kategori_id', 'id');
+        return $this->belongsTo(AssessmentPertanyaan::class, 'assessment_pertanyaan_id', 'id');
     }
+
 }
