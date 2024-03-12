@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeAdminController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\BeritaController;
@@ -12,16 +11,11 @@ use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KategoriOrganisasiController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
-use App\Models\KategoriBerita;
-use App\Models\TagBerita;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
-use App\Models\AssessmentPertanyaan;
-use App\Models\KategoriOrganisasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +64,14 @@ Route::middleware(['guest'])->group(function () {
         Route::get('/berita/{berita}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
         Route::put('/berita/{berita}', [BeritaController::class, 'update'])->name('berita.update');
         Route::delete('/berita/{berita}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
+        //Acara
+        Route::get('/acara', [AcaraController::class, 'index'])->name('acara.index');
+        Route::get('/acara/tambah', [AcaraController::class, 'create'])->name('acara.create');
+        Route::post('/acara', [AcaraController::class, 'store'])->name('acara.store');
+        Route::get('/acara/{acara}/edit', [AcaraController::class, 'edit'])->name('acara.edit');
+        Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
+        Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
         //kategori berita
         Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
