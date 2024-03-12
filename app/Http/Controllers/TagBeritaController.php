@@ -13,7 +13,7 @@ class TagBeritaController extends Controller
     public function index()
     {
         $tag_berita = TagBerita::all();
-        return view('admin.tag_berita.index', compact(['tag_berita']));
+        return view('Admin.tag_berita.index', compact(['tag_berita']));
     }
 
     /**
@@ -21,7 +21,7 @@ class TagBeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.tag_berita.create');
+        return view('Admin.tag_berita.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class TagBeritaController extends Controller
      */
     public function edit(TagBerita $tag_berita)
     {
-        return view('admin.tag_berita.edit', compact(['tag_berita']));
+        return view('Admin.tag_berita.edit', compact(['tag_berita']));
     }
 
     /**

@@ -22,24 +22,8 @@ class AuthUserMail extends Mailable
         $this->details = $details;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Auth User Mail',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
+    public function build() {
+        return $this->subject('Verifikasi Akun')->view('admin.mail.emailVerifikasiUser');
     }
 
     /**

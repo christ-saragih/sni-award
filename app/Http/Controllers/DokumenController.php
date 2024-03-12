@@ -13,7 +13,7 @@ class DokumenController extends Controller
     public function index()
     {
         $dokumen = Dokumen::all();
-        return view('admin.dokumen.index', compact(['dokumen']));
+        return view('Admin.dokumen.index', compact(['dokumen']));
     }
 
     /**
@@ -21,7 +21,7 @@ class DokumenController extends Controller
      */
     public function create()
     {
-        return view('admin.dokumen.create');
+        return view('Admin.dokumen.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class DokumenController extends Controller
      */
     public function edit(Dokumen $dokumen)
     {
-        return view('admin.dokumen.edit', compact('dokumen'));
+        return view('Admin.dokumen.edit', compact('dokumen'));
     }
 
     /**

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
 use App\Mail\AuthPesertaMail;
+use App\Models\KategoriOrganisasi;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -14,7 +16,7 @@ use Illuminate\Support\Str;
 class AuthPesertaController extends Controller
 {
     public function loginPesertaView() {
-        return view('peserta.auth.login');
+        return view('Peserta.auth.login');
     }
 
     public function loginPeserta(Request $request) {
@@ -31,11 +33,14 @@ class AuthPesertaController extends Controller
         ];
         if (Auth::guard('peserta')->attempt($infoLogin)) {
             if (Auth::guard('peserta')->user()->email_verified_at != null) {
-                // dd('berhasil melakukan login');
                 return redirect('/dashboard')->with('success', 'Berhasil masuk');
-            }else {
-                Auth::guard('peserta')->logout();
-                return redirect('/masuk')->withErrors('Anda belum melakukan verifikasi. silahkan lakukan verifikasi terlebih dahulu');
+            }
+            else {
+                // Auth::guard('peserta')->logout();
+                // return redirect('/masuk')->withErrors('Anda belum melakukan verifikasi. silahkan lakukan verifikasi terlebih dahulu');
+                
+                return redirect('/verifikasi');
+                // return redirect('/verifikasi'.'/'.Auth::guard('peserta')->user()->verify_key);
             }
         }else {
             return redirect('/masuk')->withErrors('Email atau Password salah');
@@ -43,7 +48,11 @@ class AuthPesertaController extends Controller
     }
 
     public function registrasiPesertaView() {
-        return view('peserta.auth.register');
+        $kategori_organisasi = DB::table('kategori_organisasi')
+            ->join('tipe_kategori', 'kategori_organisasi.tipe_kategori_id', '=', 'tipe_kategori.id')
+            ->select('kategori_organisasi.*', 'tipe_kategori.nama as nama_tipe_kategori')
+            ->get();
+        return view('Peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
     }
 
     public function registrasiPeserta(Request $request) {
@@ -72,10 +81,23 @@ class AuthPesertaController extends Controller
             'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
         ];
         Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
-        return redirect('/masuk')->with('success', 'Berhasil melakukan registrasi');
+        if (Auth::guard('peserta')->check()) {
+            return redirect('/dashboard');
+        }else {
+            return redirect('/masuk')->with('success', 'Berhasil melakukan registrasi');
+        }
     }
 
-    public function VerifikasiPeserta($verify_key) {
+    public function verifikasiPesertaView() {
+        $kode_verifikasi = Auth::guard('peserta')->user()->verify_key;
+        if (Auth::guard('peserta')->user()->email_verified_at != null) {
+            return redirect('/dashboard')->with('Akun telah terverifikasi');
+        }else {
+            return view('Peserta.auth.verify', ['kode_verifikasi' => $kode_verifikasi]);
+        }
+    }
+
+    public function verifikasiPeserta($verify_key) {
         $checkKey = Peserta::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
             $user = Peserta::where('verify_key', $verify_key)
@@ -86,6 +108,17 @@ class AuthPesertaController extends Controller
                 ->withErrors('verify key salah, silahkan coba kembali')
                 ->withInput();
         }
+    }
+
+    public function verifikasiUlangPeserta($kode_verifikasi) {
+        $details = [
+            'nama' => Auth::guard('peserta')->user()->nama,
+            'datetime' => date('Y-m-d H:i:s'),
+            'website' => 'SNI Award',
+            'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$kode_verifikasi,
+        ];
+        Mail::to(Auth::guard('peserta')->user()->email)->send(new AuthPesertaMail($details));
+        return redirect('/verifikasi')->with('Email verifikasi ulang telah dikirim');
     }
 
     public function logoutPeserta() {

@@ -18,12 +18,20 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
+        // foreach ($guards as $guard) {
+            // if (Auth::guard($guard)->check()) {
+            //     return redirect(RouteServiceProvider::DASHBOARD);
+            // }
+            if (Auth::guard('peserta')->check()) {
                 return redirect(RouteServiceProvider::DASHBOARD);
             }
-        }
+            elseif (Auth::guard('web')->check()) {
+                return redirect('/admin/dashboard');
+            }
+            // elseif (Auth::guard('web')->check() == false) {
+            //     return redirect()->route('masukAdmin');
+            // }
+        // }
 
         return $next($request);
     }

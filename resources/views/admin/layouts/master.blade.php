@@ -47,11 +47,25 @@
 
     <!-- CSS Admin -->
     <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
-</head>
 
-<body style="background-color: #ECE4E4;">
+    {{-- select2 --}}
+    <link rel="stylesheet" href="{{ asset('assets') }}/select2/dist/css/select2.min.css">
+    {{-- chosen --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/chosen/chosen.min.css') }}"/>
+  </head>
+  
+  <body style="background-color: #ECE4E4;">
+    {{-- select2 --}}
+    <script src="{{ asset('assets') }}/select2/dist/js/select2.min.js"></script>
+    {{-- chosen --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js"></script> --}}
+    <script src="{{ asset('assets/chosen/coffee/chosen.jquery.coffee') }}"></script>
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-<aside
+
+  <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
       id="sidenavMain"
       style="
@@ -65,8 +79,7 @@
         <a
           class="navbar-brand m-0"
           id="navbarBrand"
-          href="/admin"
-
+          href="/"
         >
           <img
             src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
@@ -80,7 +93,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" id="navLink" href="/admin">
+            <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}" id="navLink" href="/admin/dashboard">
               <div
                 class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -90,7 +103,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/halaman_depan') ? 'active' : '' }}" id="navLink" href="/admin/halaman_depan">
+            <a class="nav-link {{ request()->is('admin/frontpage*') ? 'active' : '' }}" id="navLink" href="/admin/frontpage">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -109,15 +122,64 @@
               <span class="nav-link-text" id="navLinkText">Berita & Acara</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="navItemBerita">
             <a class="nav-link {{ request()->is('admin/data_master') ? 'active' : '' }}" id="navLink" href="/admin/data_master">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-              <i class="fa fa-database"></i>
+              <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                <i class="fa fa-database"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span>
+              <span class="nav-link-text" id="navLinkText">Data Master</span> 
+                <i class="fa fa-caret-left ms-auto" id="faCaretLeft"></i>
             </a>
+            <ul class="dropdown-menu" id="dropdownMenu">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Konfigurasi</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/assesment">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Assesment</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Dokumen</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Wilayah</span> 
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="navLinkDataMaster" href="/admin">
@@ -190,6 +252,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -200,6 +263,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLink" href="/admin/dokumentasi">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -210,6 +274,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLink" href="/admin/dokumen">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -220,6 +285,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
+
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -405,7 +471,9 @@
                   aria-expanded="false"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
-                  <span class="d-sm-inline d-none me-sm-1"><b>Admin</b></span>
+
+                  <span class="d-sm-inline d-none me-sm-1"><b>{{ auth()->user()->name }}</b></span>
+
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul
@@ -417,7 +485,8 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="javascript:;"
+
+                          href="/admin/profil"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-user" style="width: 12%;"></i>
@@ -430,7 +499,8 @@
                       <li class="w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="javascript:;"
+
+                          href="/admin/keluar"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-sign-out" style="width: 12%;"></i>

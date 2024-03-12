@@ -3,6 +3,9 @@
 use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
+use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\Admin\DashboardController;
+
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
@@ -16,7 +19,9 @@ use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\Admin\FrontPageController;
+use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,13 +35,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
-    // Route::get('/login', [LoginController::class, 'index']);
-    Route::get('/informasi', [InformationController::class, 'index']);
-    Route::get('/peserta',[HomePesertaController::class, 'index']);
-    Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-    Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'index']);
+Route::get('/informasi', [InformationController::class, 'index']);
+// Route::get('/admin', [HomeAdminController::class, 'index']);
+// Route::get('/peserta',[HomePesertaController::class, 'index']);
+// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+
+Route::middleware(['guest:peserta'])->group(function () {
 
     // Auth
     //peserta
@@ -44,11 +51,47 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
-    Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
-    //end Auth
+});
+Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
+Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
+Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
+Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
+});
+Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
+Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
+    Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+    Route::get('/profil',[ProfilPesertaController::class, 'index']);
+    Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+});
+//end peserta
 
-
-    Route::prefix('admin')->group(function() {
+//User
+Route::prefix('/admin')->group(function () {
+    Route::middleware(['guest'])->group(function () {
+        Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
+        Route::post('/masuk', [AuthUserController::class, 'loginUser']);
+        Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
+        Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
+    });
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
+        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('verification.notice');
+        Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
+    });
+    Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
+    Route::middleware(['auth', 'verified'])->group(function() {
+        Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        
+        //CRUD Frontpage
+        Route::get('/frontpage', [FrontPageController::class, 'index']);
+        Route::get('/frontpage/edit', [FrontPageController::class, 'updateFrontpageView']);
+        Route::put('/frontpage/edit', [FrontPageController::class, 'updateFrontpage']);
+        Route::put('/frontpage/faq_populer/hapus/{id}', [FrontPageController::class, 'removePopularFaq']);
+        Route::put('/frontpage/faq_populer/tambah/{id}', [FrontPageController::class, 'addPopularFaq']);
+        Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
+        Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
+        //end  CRUD Frontpage
+      
         // Tag Berita
         Route::get('/tag_berita', [TagBeritaController::class, 'index'])->name('tag_berita.index');
         Route::get('/tag_berita/tambah', [TagBeritaController::class, 'create'])->name('tag_berita.create');
@@ -108,13 +151,5 @@ Route::middleware(['guest'])->group(function () {
         Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
     });
 });
-
-Route::middleware(['auth'])->group(function () {
-    //Auth
-    Route::post('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
-    //end Auth
-
-});
-
-Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+// end User
 Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');

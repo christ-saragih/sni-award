@@ -45,13 +45,15 @@
         <div class="content-kanan">
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
-          <form method="POST" action="/registrasi">
+          <form method="POST" action="/registrasi" style="
+            padding: 20px;
+          ">
             @csrf
-            <div class="mb-3">
-                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+            <div class="">
+                <label for="name" class="col-form-label">{{ __('Name') }}</label>
 
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="name" autofocus>
+                <div class="">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="name" autofocus style="border-radius: 100px;">
 
                     @error('nama')
                         <span class="invalid-feedback" role="alert">
@@ -60,11 +62,11 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+            <div class="">
+                <label for="email" class="col-form-label">{{ __('Email Address') }}</label>
 
-                <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                <div class="">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" style="border-radius: 100px;">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -73,29 +75,63 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+            <div class="">
+                <label for="kategori" class="col-form-label">{{ __('Kategori') }}</label>
 
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                <div class="">
+                    <select name="" id="kategori" class="form-select" style="border-radius: 100px;">
+                        <option value="" disabled>--Pilih Kategori--</option>
+                        @foreach ($kategori_organisasi as $ko)
+                            <option value="" disabled>{{ $ko->nama }}</option>                        
+                        @endforeach
+                    </select>
 
-                    @error('password')
+                    @error('kategori_organisasi_id')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-                <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            <div style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                gap: 20px;
+                padding-bottom: 20px;
+            ">
+                <div class="w-100">
+                    <label for="password" class="col-form-label">{{ __('Password') }}</label>
+    
+                    <div class="">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" style="border-radius: 100px;">
+    
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="w-100">
+                    <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
+                    <div class="">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" style="border-radius: 100px;">
+                    </div>
                 </div>
             </div>
-            <div class="mb-0">
-                <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-primary">
-                        {{ __('Register') }}
+            <div>
+                <div style="
+                display: flex;
+                align-item: center;
+                justify-content: center;
+            ">
+                    <button type="submit" style="
+                        width: 50%;
+                        border-radius: 100px;
+                        padding: 5px 10%;    
+                    ">
+                        {{ __('Daftar') }}
                     </button>
                 </div>
             </div>
