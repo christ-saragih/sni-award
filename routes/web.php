@@ -1,17 +1,11 @@
 <?php
 
-use App\Http\Controllers\HomeAdminController;
-use App\Http\Controllers\Admin\DashboardController;
-
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HomeControllerPeserta;
-use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\TagBeritaController;
@@ -78,7 +72,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
-        
+
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
         Route::get('/frontpage/edit', [FrontPageController::class, 'updateFrontpageView']);
@@ -88,7 +82,7 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
-      
+
         // Tag Berita
         Route::get('/tag_berita', [TagBeritaController::class, 'index'])->name('tag_berita.index');
         Route::get('/tag_berita/tambah', [TagBeritaController::class, 'create'])->name('tag_berita.create');
@@ -113,7 +107,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'update'])->name('kategori_berita.update');
         Route::delete('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'destroy'])->name('kategori_berita.destroy');
 
-        //berita
+        //dokumen
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
         Route::get('/dokumen/tambah', [DokumenController::class, 'create'])->name('dokumen.create');
         Route::post('/dokumen', [DokumenController::class, 'store'])->name('dokumen.store');
@@ -123,9 +117,9 @@ Route::prefix('/admin')->group(function () {
 
         //Konfigurasi
         Route::get('/konfigurasi',[KonfigurasiController::class, 'index'])->name('konfigurasi.index');
-        Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create'); 
+        Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create');
         Route::post('/konfigurasi', [KonfigurasiController::class, 'store'])->name('konfigurasi.store');
-        Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit'); 
+        Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
         Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
         Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
