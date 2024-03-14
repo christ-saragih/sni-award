@@ -8,6 +8,8 @@ use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
+use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
@@ -43,12 +45,15 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
 });
+
 Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
-Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
-Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
-Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
+    Route::get('/verifikasi', [AuthPesertaController::class, 'verifikasiPesertaView']);
+    Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthPesertaController::class, 'verifikasiUlangPeserta']);
+    Route::get('/keluar', [AuthPesertaController::class, 'logoutPeserta']);
 });
+
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
+
 Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[ProfilPesertaController::class, 'index']);
@@ -64,12 +69,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
     });
+
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
         Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('verification.notice');
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
     });
+
     Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
+
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
 
@@ -123,8 +131,10 @@ Route::prefix('/admin')->group(function () {
         Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
         Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
+        // assessment
+        Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
         // assessment kategori
-        Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
+        // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
         Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
         Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
@@ -139,6 +149,14 @@ Route::prefix('/admin')->group(function () {
         Route::put('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'update']);
         Route::delete('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'destroy']);
 
+        //Assessment Pertanyaan
+        Route::get('/assessment_pertanyaan', [AssessmentPertanyaanController::class, 'index'])->name('assessment_pertanyaan.index');
+        Route::get('/assessment_pertanyaan/tambah', [AssessmentPertanyaanController::class, 'create'])->name('assessment_pertanyaan.create');
+        Route::post('/assessment_pertanyaan', [AssessmentPertanyaanController::class, 'store'])->name('assessment_pertanyaan.store');
+        Route::get('/assessment_pertanyaan/{assessment_pertanyaan}/edit', [AssessmentPertanyaanController::class, 'edit'])->name('assessment_pertanyaan.edit');
+        Route::put('/assessment_pertanyaan/{assessment_pertanyaan}', [AssessmentPertanyaanController::class, 'update'])->name('assessment_pertanyaan.update');
+        Route::delete('/assessment_pertanyaan/{assessment_pertanyaan}', [AssessmentPertanyaanController::class, 'destroy'])->name('assessment_pertanyaan.destroy');
+
         // status kepemilikan
         Route::get('/status_kepemilikan', [App\Http\Controllers\StatusKepemilikanController::class,'index']);
         Route::get('/status_kepemilikan/tambah', [App\Http\Controllers\StatusKepemilikanController::class,'create']);
@@ -149,3 +167,4 @@ Route::prefix('/admin')->group(function () {
     });
 });
 // end User
+Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
