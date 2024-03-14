@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
@@ -106,6 +107,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/berita/{berita}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
         Route::put('/berita/{berita}', [BeritaController::class, 'update'])->name('berita.update');
         Route::delete('/berita/{berita}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
+        //Acara
+        Route::get('/acara', [AcaraController::class, 'index'])->name('acara.index');
+        Route::get('/acara/tambah', [AcaraController::class, 'create'])->name('acara.create');
+        Route::post('/acara', [AcaraController::class, 'store'])->name('acara.store');
+        Route::get('/acara/{acara}/edit', [AcaraController::class, 'edit'])->name('acara.edit');
+        Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
+        Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
         //kategori berita
         Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
