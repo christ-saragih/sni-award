@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Frontpage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // View::composer('layouts.app', function ($view) {
+        //     $frontpage_data = Frontpage::get()[0];
+        //     $view->with('frontpage_data', $frontpage_data);
+        // });
     }
 }
