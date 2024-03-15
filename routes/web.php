@@ -121,7 +121,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
         Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
-        // //kategori berita
+        //kategori berita
         // Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
         // Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
         // Route::post('/kategori_berita',[KategoriBeritaController::class,'store'])->name('kategori_berita.store');

@@ -545,8 +545,10 @@ table button.btn-hapus {
     vertical-align: middle;
 }
 
-table button.btn-ubah {
+table button.btn-ubah,
+table a.btn-ubah {
     background-color: #e59b30 !important;
+    border: none;
 }
 
 th,

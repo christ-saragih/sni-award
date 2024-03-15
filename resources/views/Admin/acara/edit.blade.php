@@ -63,16 +63,12 @@
                             <label class="fw-bold">Isi Acara</label>
                         </div>
                         <div class="col-9">
-                            <textarea name="deskripsi" id="deskripsi" cols="85" rows="10">{{ $acara->deskripsi }}</textarea>
+                            <textarea name="deskripsi" id="deskripsi" cols="75" rows="10">{{ $acara->deskripsi }}</textarea>
                         </div>
                     </div>
                     <div class="row g-3 justify-content-end mt-2">
-                        <div class="col-auto">
-                            <button class="btn btn-secondary">Close</button>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
+                        <a href="/admin/acara" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a>
+                        <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Ubah</button>
                     </div>
                 </form>
             </div>

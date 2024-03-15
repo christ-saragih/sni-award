@@ -83,12 +83,13 @@ class AssessmentPertanyaanController extends Controller
     {
         // Ambil data pertanyaan yang akan diedit beserta jawabannya
         $pertanyaan = AssessmentPertanyaan::with('assessment_jawaban')->find($assessment_pertanyaan->id);
+        $assessment_kategori = AssessmentKategori::all();
         $assessment_sub_kategori = AssessmentSubKategori::all();
         $jumlah_jawaban = AssessmentJawaban::where('assessment_pertanyaan_id', $assessment_pertanyaan->id)->count();
         // dd($assessment_jawaban)
         $jawaban = AssessmentJawaban::where('assessment_pertanyaan_id', $assessment_pertanyaan->id)->get();
 
-        return view('admin.assessment.assessment_pertanyaan.edit', compact('pertanyaan', 'assessment_sub_kategori', 'jumlah_jawaban', 'jawaban'));
+        return view('admin.assessment.assessment_pertanyaan.edit', compact('pertanyaan', 'assessment_kategori', 'assessment_sub_kategori', 'jumlah_jawaban', 'jawaban'));
     }
 
     /**
@@ -105,6 +106,7 @@ class AssessmentPertanyaanController extends Controller
 
         // Update data pertanyaan
         $assessment_pertanyaan->update([
+            'assessment_sub_kategori_id' => $request->assessment_sub_kategori_id,
             'pertanyaan' => $request->pertanyaan,
         ]);
 

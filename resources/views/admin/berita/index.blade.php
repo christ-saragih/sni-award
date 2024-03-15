@@ -112,85 +112,86 @@
                 <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Tag Berita</h3>
                 <a href="#tambahTagBerita" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
             </div>
-        <div class="container mt-4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Jenis Tag Berita</th>
-                        <th scope="col" class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tag_berita as $tb)
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$tb->nama}}</td>
-                        <td>
-                            {{-- <form action="{{ route('tag_berita.destroy', $tb->id) }}" method="POST">
-                            <a class="btn btn-ubah" href="{{ route('tag_berita.edit', $tb->id) }}">Edit</a>
+            <div class="container mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Jenis Tag Berita</th>
+                            <th scope="col" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tag_berita as $tb)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$tb->nama}}</td>
+                            <td>
+                                {{-- <form action="{{ route('tag_berita.destroy', $tb->id) }}" method="POST">
+                                <a class="btn btn-ubah" href="{{ route('tag_berita.edit', $tb->id) }}">Edit</a>
 
-                            @csrf
-                            @method('DELETE')
+                                @csrf
+                                @method('DELETE')
 
-                            <button type="submit" class="btn btn-hapus">Delete</button>
-                            </form> --}}
-                            <div class="d-flex justify-content-center gap-2">
-                                <button onclick="openModalUbahTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
-                                <button onclick="openModalHapusTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-hapus">Hapus</button>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                    <div id="hidden-data" style="display: none">
-                        <input type="hidden" id="id_tag_berita">
-                        <input type="hidden" id="nama_tag_berita">
-                    </div>
-                </tbody>
-            </table>
+                                <button type="submit" class="btn btn-hapus">Delete</button>
+                                </form> --}}
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button onclick="openModalUbahTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
+                                    <button onclick="openModalHapusTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-hapus">Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        <div id="hidden-data" style="display: none">
+                            <input type="hidden" id="id_tag_berita">
+                            <input type="hidden" id="nama_tag_berita">
+                        </div>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-  <!-- Konten Berita Section -->
-<div class="tab-pane" id="berita-tabpanel" role="tabpanel" aria-labelledby="berita-tab">
-  <div class="content-profil py-5">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
-      <a href="{{ route('berita.create') }}" class="btn">+ Tambah</a>
-    </div>
-      <div class="container mt-4">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Judul</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col" class="text-center">Aksi</th>
-          </tr>
-          </thead>
-          <tbody>
-            @foreach ($berita as $ber)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$ber->judul_berita}}</td>
-                    <td>{{$ber->tanggal}}</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a class="btn btn-ubah" href="{{ route('berita.edit', $ber->id) }}">Ubah</a>
-                            <button onclick="openModalHapusBerita('{{ $ber->id }}', ' {{ $ber->nama }} ')" class="btn btn-hapus">Hapus</button>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            <div id="hidden-data" style="display: none">
-                <input type="hidden" id="id_berita">
-                <input type="hidden" id="nama_berita">
+    <!-- Konten Berita Section -->
+    <div class="tab-pane" id="berita-tabpanel" role="tabpanel" aria-labelledby="berita-tab">
+        <div class="content-profil py-5">
+            <div class="d-flex justify-content-between align-items-center">
+            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
+            <a href="{{ route('berita.create') }}" class="btn">+ Tambah</a>
             </div>
-          </tbody>
-        </table>
-      </div>
-  </div>
+            <div class="container mt-4">
+                <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col" class="text-center">Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach ($berita as $ber)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$ber->judul_berita}}</td>
+                            <td>{{$ber->tanggal}}</td>
+                            <td>
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a class="btn btn-ubah" href="{{ route('berita.edit', $ber->id) }}">Ubah</a>
+                                    <button onclick="openModalHapusBerita('{{ $ber->id }}', ' {{ $ber->nama }} ')" class="btn btn-hapus">Hapus</button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    <div id="hidden-data" style="display: none">
+                        <input type="hidden" id="id_berita">
+                        <input type="hidden" id="nama_berita">
+                    </div>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection()
