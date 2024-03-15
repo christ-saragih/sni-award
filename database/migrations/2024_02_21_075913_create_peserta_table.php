@@ -15,6 +15,7 @@ return new class extends Migration
             $table->integerIncrements('id');
             $table->string('nama');
             $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('verify_key');
             $table->enum('status', ['aktif', 'tidak aktif']);
