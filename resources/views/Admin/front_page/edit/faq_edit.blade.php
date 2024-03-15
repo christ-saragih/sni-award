@@ -6,15 +6,6 @@
 <a href="/admin/frontpage?tab=faq" role="button" class="btn">Kembali</a>
 <br><br>
 
-{{-- <form action="" method="POST">
-    @method('PUT')
-    @csrf
-    <div class="frontpage-input-text">
-        <label for="judul_faq">Judul FAQ</label>
-        <input type="text" name="judul_faq">
-    </div>
-</form> --}}
-
 <div class="frontpage-input-text">
     <label for="popular_faq">FAQ</label>
     <div class="d-flex flex-column align-items-center justify-content-center" style="gap: 5px;">
@@ -79,41 +70,3 @@
         })
     })
 </script>
-{{-- <select name="judul_faq" id="">
-    <option value="" disabled selected>--pilih--</option>
-    @foreach ($faq as $faq)
-        <form action="/admin/frontpage/tambah_faq_populer/{{ $faq->id }}" method="POST">
-            @method('PUT')
-            @csrf
-        </form>
-        <option option value="">
-                <button type="submit" style="border:none;padding:0;background-color:white;color:black;">
-                    {{ $faq->pertanyaan }}
-                </button>
-        </option>
-    @endforeach
-</select> --}}
-
-
-{{-- <div class="d-flex align-items-center justify-content-end gap-2">
-    <a href="/admin/frontpage?tab=faq" role="button" class="btn" style="
-        width: 100px;
-        padding: 5px 10px;
-        background-color: #fff;
-        color: #C17D2D;
-    ">Batal</a>
-    <button style="
-        width: 100px;
-        padding: 5px 10px;
-    " disabled>Simpan</button>
-</div>
-<select name="" id="selectOption">
-    <option value="">zcvzcbzb</option>
-    <option value="">ncvbnx</option>
-    <option value="">pomckvm</option>
-</select>
-<script>
-    $(document).ready(() => {
-        $('#selectOption').chosen()
-    })
-</script> --}}
