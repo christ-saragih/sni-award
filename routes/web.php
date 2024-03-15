@@ -35,8 +35,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'index']);
-Route::get('/informasi', [InformationController::class, 'index']);
-// Route::get('/admin', [HomeAdminController::class, 'index']);
+
+Route::get('/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index']);
+Route::get('/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
+// Route::get('/admin', [HomeAdminController::class, 'index']); 
 // Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);

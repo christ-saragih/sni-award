@@ -112,7 +112,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLinkInformasi" href="/admin">
+            <a class="nav-link {{ request()->is('admin/berita') || request()->is('admin/acara') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
