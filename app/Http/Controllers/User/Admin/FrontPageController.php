@@ -101,7 +101,7 @@ class FrontPageController extends Controller
     }
 
     public function addPopularFaq($id) {
-        if (count(Faq::where('is_popular', false)->get()) >= 3) {
+        if (count(Faq::where('is_popular', false)->get()) < 3) {
             $faq = Faq::find($id);
             $data = [
                 'is_popular' => true,

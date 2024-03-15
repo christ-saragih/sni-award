@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreign('kategori_organisasi_id')->references('id')->on('kategori_organisasi');
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
+$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
