@@ -537,6 +537,35 @@ h2.accordion-header {
     color: white;
 }
 
+
+#kumpulan-acara #slider .slider {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#kumpulan-acara #slider .slider .owl-item.active.center .slider-card {
+    transform: scale(1.15);
+    opacity: 1;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25) !important; 
+}
+#kumpulan-acara #slider .slider-card {
+    box-shadow: 0px 2px 24px 0px rgba(42,42,42,0.54) !important; 
+    background: #fff;
+    padding: 0px;
+    margin: 50px 30px 90px 30px;
+    border-radius: 5px; 
+    transform: scale(0.9);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+#kumpulan-acara #slider .slider-card img {
+    box-shadow: none;
+    border-radius: 5px;
+    margin-block: 40px;
+}
+
 /* Footer */
 footer p {
     color: #2b2b28;

@@ -40,6 +40,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index']);
 Route::get('/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
 Route::get('/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index']);
+Route::get('/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
 
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);
