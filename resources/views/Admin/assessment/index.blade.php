@@ -52,7 +52,7 @@
                     <option hidden>Pilih Kategori</option>
                     @foreach ($assessment_kategori as $data)
                         <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                @endforeach
+                    @endforeach
                 </select>
             </div>
             <div class="d-flex flex-column gap-2">

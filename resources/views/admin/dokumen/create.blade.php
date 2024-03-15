@@ -20,8 +20,17 @@
                 <form action="{{ route('dokumen.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                    <label>Nama</label>
-                    <input name="nama" type="string" class="form-control" value="{{ old('nama') }}">
+                        <label>Nama</label>
+                        <input name="nama" type="string" class="form-control" value="{{ old('nama') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="">Pilih Status</option>
+                            <option value="proses">Proses</option>
+                            <option value="ditolak">Ditolak</option>
+                            <option value="setuju">Setuju</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

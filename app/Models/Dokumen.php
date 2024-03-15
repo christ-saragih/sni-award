@@ -13,6 +13,5 @@ class Dokumen extends Model
     use SoftDeletes, CreatedUpdatedBy;
 
     protected $table = 'dokumen';
-    // protected $fillable = ['nama', 'status'];
     protected $guarded = [];
 }

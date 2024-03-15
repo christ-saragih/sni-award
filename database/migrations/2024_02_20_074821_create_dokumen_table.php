@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dokumen', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('nama');
-            $table->enum('status', ['proses','ditolak','setuju']);
+            $table->enum('status', ['aktif','tidak aktif']);
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
