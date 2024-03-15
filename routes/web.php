@@ -4,6 +4,7 @@ use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
@@ -38,10 +39,12 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index']);
 Route::get('/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
+Route::get('/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index']);
+
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
-// Route::get('/peserta',[HomePesertaController::class, 'index']);
-// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/peserta',[HomePesertaController::class, 'index']);
+Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 

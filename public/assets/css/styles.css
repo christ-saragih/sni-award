@@ -316,6 +316,34 @@ p.description {
     font-weight: 600;
 }
 
+/* acara container */
+.informasi-acara-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 345px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.informasi-acara-container img {
+    width: 85%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.informasi-acara-container .content {
+    text-align: end;
+    margin-inline: 18px;
+}
+
+.informasi-acara-container .content h4 {
+    color: #121221;
+    font-size: 87.5%;
+    font-weight: bold;
+   text-transform: uppercase;
+    margin-block: 30px;
+}
+
 /* faq */
 .faq-container {
     display: flex;
