@@ -253,77 +253,156 @@ function openModalHapusKecamatan(id, name) {
 
 // modal pop up ubah
 function openModalUbah(id, name) {
-    document.getElementById('id_kategori').value = id;
-    document.getElementById('nama_kategori').value = name;
+    document.getElementById("id_kategori").value = id;
+    document.getElementById("nama_kategori").value = name;
 
-    document.getElementById('form_ubah_kategori').setAttribute('action', `/admin/assessment_kategori/${id}`);
+    document
+        .getElementById("form_ubah_kategori")
+        .setAttribute("action", `/admin/assessment_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('ubahKategori'));
+    const modal = new bootstrap.Modal(document.getElementById("ubahKategori"));
     // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
     modal.show();
 }
 
 // modal pop up hapus
 function openModalHapus(id, name) {
-    document.getElementById('id_kategori').value = id;
-    document.getElementById('nama_kategori').value = name;
+    document.getElementById("id_kategori").value = id;
+    document.getElementById("nama_kategori").value = name;
 
     // const formModalContent = document.getElementById('formModalContent');
     // formModalContent.action = '/assessment/' + id;
-    document.getElementById('form_hapus_kategori').setAttribute('action', `/admin/assessment_kategori/${id}`);
+    document
+        .getElementById("form_hapus_kategori")
+        .setAttribute("action", `/admin/assessment_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('hapusKategori'));
+    const modal = new bootstrap.Modal(document.getElementById("hapusKategori"));
     modal.show();
 }
 
 // modal pop up ubah status kepemilikan
 function openModalUbahSK(id, name) {
-    document.getElementById('id_status_kepemilikan').value = id;
-    document.getElementById('nama_status_kepemilikan').value = name;
+    document.getElementById("id_status_kepemilikan").value = id;
+    document.getElementById("nama_status_kepemilikan").value = name;
 
-    document.getElementById('form_ubah_status_kepemilikan').setAttribute('action', `/admin/status_kepemilikan/${id}`);
+    document
+        .getElementById("form_ubah_status_kepemilikan")
+        .setAttribute("action", `/admin/status_kepemilikan/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+    const modal = new bootstrap.Modal(
+        document.getElementById("ubahStatusKepemilikan")
+    );
     modal.show();
 }
 
 // modal pop up hapus status kepemilikan
 function openModalHapusSK(id, name) {
-    document.getElementById('id_status_kepemilikan').value = id;
-    document.getElementById('nama_status_kepemilikan').value = name;
+    document.getElementById("id_status_kepemilikan").value = id;
+    document.getElementById("nama_status_kepemilikan").value = name;
 
     // const formModalContent = document.getElementById('formModalContent');
     // formModalContent.action = '/assessment/' + id;
-    document.getElementById('form_hapus_status_kepemilikan').setAttribute('action', `/admin/status_kepemilikan/${id}`);
+    document
+        .getElementById("form_hapus_status_kepemilikan")
+        .setAttribute("action", `/admin/status_kepemilikan/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('hapusStatusKepemilikan'));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusStatusKepemilikan")
+    );
     modal.show();
 }
 
 // modal pop up Ubah Assessment Sub Kategori
 function openModalUbahASK(id, name) {
-    document.getElementById('id_kategori').value = id;
-    document.getElementById('id_sub_kategori').value = id;
-    document.getElementById('nama_kategori').value = name;
-    document.getElementById('nama_sub_kategori').value = name;
+    document.getElementById("id_kategori").value = id;
+    document.getElementById("id_sub_kategori").value = id;
+    document.getElementById("nama_kategori").value = name;
+    document.getElementById("nama_sub_kategori").value = name;
 
-    document.getElementById('form_ubah_sub_kategori').setAttribute('action', `/admin/assessment_sub_kategori/${id}`);
+    document
+        .getElementById("form_ubah_sub_kategori")
+        .setAttribute("action", `/admin/assessment_sub_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('ubahSubKategori'));
+    const modal = new bootstrap.Modal(
+        document.getElementById("ubahSubKategori")
+    );
     // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
     modal.show();
 }
 
 // modal pop up Hapus Assessment Sub Kategori
 function openModalHapusASK(id, name) {
-    document.getElementById('id_kategori').value = id;
-    document.getElementById('id_sub_kategori').value = id;
-    document.getElementById('nama_kategori').value = name;
-    document.getElementById('nama_sub_kategori').value = name;
+    document.getElementById("id_kategori").value = id;
+    document.getElementById("id_sub_kategori").value = id;
+    document.getElementById("nama_kategori").value = name;
+    document.getElementById("nama_sub_kategori").value = name;
 
-    document.getElementById('form_hapus_sub_kategori').setAttribute('action', `/admin/assessment_sub_kategori/${id}`);
+    document
+        .getElementById("form_hapus_sub_kategori")
+        .setAttribute("action", `/admin/assessment_sub_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById('hapusSubKategori'));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusSubKategori")
+    );
     // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+    modal.show();
+}
+
+// Tag Berita
+// modal pop up Ubah
+function openModalUbahTB(id, name) {
+    document.getElementById("id_tag_berita").value = id;
+    document.getElementById("nama_tag_berita").value = name;
+
+    document
+        .getElementById("form_ubah_tag_berita")
+        .setAttribute("action", `/admin/tag_berita/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahTagBerita"));
+    modal.show();
+}
+// modal pop up Hapus
+function openModalHapusTB(id, name) {
+    document.getElementById("id_tag_berita").value = id;
+    document.getElementById("nama_tag_berita").value = name;
+
+    document
+        .getElementById("form_hapus_tag_berita")
+        .setAttribute("action", `/admin/tag_berita/${id}`);
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusTagBerita")
+    );
+
+    modal.show();
+}
+
+// Berita
+// modal pop up Hapus
+function openModalHapusBerita(id, name) {
+    document.getElementById("id_berita").value = id;
+    document.getElementById("nama_berita").value = name;
+
+    document
+        .getElementById("form_hapus_berita")
+        .setAttribute("action", `/admin/berita/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusBerita"));
+
+    modal.show();
+}
+
+// Acara
+// modal pop up Hapus
+function openModalHapusAcara(id, name) {
+    document.getElementById("id_acara").value = id;
+    document.getElementById("nama_acara").value = name;
+
+    document
+        .getElementById("form_hapus_acara")
+        .setAttribute("action", `/admin/acara/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusAcara"));
+
     modal.show();
 }
