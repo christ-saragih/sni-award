@@ -455,6 +455,7 @@ function openModalHapusBerita(id, name) {
     modal.show();
 }
 
+
 // Acara
 // modal pop up Hapus
 function openModalHapusAcara(id, name) {
@@ -466,6 +467,57 @@ function openModalHapusAcara(id, name) {
         .setAttribute("action", `/admin/acara/${id}`);
 
     const modal = new bootstrap.Modal(document.getElementById("hapusAcara"));
+
+    modal.show();
+}
+
+// Assessment Pertanyaan
+// modal pop up Hapus
+function openModalHapusPertanyaan(id, name) {
+    // console.log(id, name);
+    document.getElementById("id_pertanyaan").value = id;
+    document.getElementById("nama_pertanyaan").value = name;
+
+    document
+        .getElementById("form_hapus_assessment_pertanyaan")
+        .setAttribute("action", `/admin/assessment_pertanyaan/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusAssessmentPertanyaan"));
+
+    modal.show();
+}
+
+// Dokumen
+// modal pop up Ubah
+function openModalUbahDokumen(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data dokumen berdasarkan ID
+    $.ajax({
+        url: `/admin/dokumen/${id}/edit`,
+        type: 'GET',
+        success: function(response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_dokumen input[name="nama"]').val(response.nama);
+            $('#form_ubah_dokumen select[name="status"]').val(response.status);
+
+            // Tampilkan modal edit
+            $('#ubahDokumen').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $('#form_ubah_dokumen').attr('action', `/admin/dokumen/${id}`);
+}
+
+// modal pop up Hapus
+function openModalHapusDokumen(id) {
+    document
+        .getElementById("form_hapus_dokumen")
+        .setAttribute("action", `/admin/dokumen/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusDokumen"));
 
     modal.show();
 }

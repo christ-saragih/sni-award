@@ -45,10 +45,9 @@
                     <div id="jawaban-container">
                         <!-- Container untuk field input jawaban -->
                     </div>
-                    <div class="row g-3 justify-content-end">
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                    <div class="row g-3 justify-content-end mt-2">
+                        <a href="/admin/assessment" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a>
+                        <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
                     </div>
                 </form>
             </div>

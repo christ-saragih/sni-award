@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('gambar_konten');
             $table->timestamps();
 
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
+
             $table->foreign('acara_id')->references('id')->on('acara')->onDelete('cascade');
         });
     }

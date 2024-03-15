@@ -27,6 +27,7 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
+                                <option value="">Pilih Status</option>
                                 <option value="proses">Proses</option>
                                 <option value="ditolak">Ditolak</option>
                                 <option value="setuju">Setuju</option>

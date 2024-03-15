@@ -1,52 +1,167 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <a href="{{ route('dokumen.create') }}" class="btn btn-primary float-end mb-4">Tambah</a>
-        </div>
-        <div class="card-body px-5 pt-2 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0 text-center">
-              <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nama</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($dokumen as $dokumen)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$dokumen->nama}}</td>
-                    <td>{{$dokumen->status}}</td>
-                    <td>
-                        <form action="{{ route('dokumen.destroy', $dokumen->id) }}" method="POST">
-                        <a class="btn btn-primary" href="{{ route('dokumen.edit', $dokumen->id) }}">Edit</a>
 
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<!-- Pop Up Tambah Dokumen -->
+<div class="modal fade" id="tambahDokumen" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" method="POST" action="/admin/dokumen">
+        @csrf
+        <div class="modal-header" style="border: none;">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Dokumen</h1>
         </div>
-      </div>
+        <div class="modal-body" style="border: none;">
+            <div class="d-flex flex-column gap-2 pb-0 mb-0">
+                <div class="d-flex flex-column gap-2">
+                    <h6 class="ms-1 mb-0">Nama</h6>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Dokumen"/>
+                </div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                    <h6 class="ms-1 mb-0">Status</h6>
+                    <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="status">
+                        <option hidden>Pilih Status</option>
+                        <option value="aktif">Aktif</option>
+                        <option value="tidak aktif">Tidak Aktif</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer gap-2" style="border: none;">
+            <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+            <button type="submit" class="btn" data-bs-toggle="modal" >Simpan</button>
+        </div>
+        </form>
     </div>
-  </div>
-@endsection
+</div>
+
+<!-- Pop Up Ubah Dokumen -->
+<div class="modal fade" id="ubahDokumen" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="form_ubah_dokumen" method="POST">
+            @method('PUT')
+            @csrf
+            <div class="modal-header" style="border: none;">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Dokumen</h1>
+            </div>
+            <div class="modal-body" style="border: none;">
+                <div class="d-flex flex-column gap-2 pb-0 mb-0">
+                    <div class="d-flex flex-column gap-2">
+                        <h6 class="ms-1 mb-0">Nama</h6>
+                        <input type="text" id="nama_dokumen" name="nama" class="form-control" placeholder="Nama Dokumen">
+                    </div>
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <h6 class="ms-1 mb-0">Status</h6>
+                        <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="status">
+                            <option hidden>Pilih Status</option>
+                            <option value="aktif">Aktif</option>
+                            <option value="tidak aktif">Tidak Aktif</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer gap-2" style="border: none;">
+                <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+                <button type="submit" class="btn" data-bs-toggle="modal">Ubah</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Pop Up Hapus Dokumen -->
+<div class="modal fade" id="hapusDokumen" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="form_hapus_dokumen" method="POST" >
+            @method('DELETE')
+            @csrf
+            <div class="modal-header" style="border: none;">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Peringatan!</h1>
+            </div>
+            <div class="modal-body" style="border: none;">
+                <p>Apakah Anda yakin menghapus item ini?</p>
+            </div>
+            <div class="modal-footer gap-2" style="border: none;">
+                <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
+                <button type="submit" class="btn" data-bs-toggle="modal">Ya</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="dokumen-tab" data-bs-toggle="tab" href="#dokumen-tabpanel" role="tab" aria-controls="dokumen-tabpanel" aria-selected="true">Dokumen</a>
+    </li>
+</ul>
+
+<hr class="p-0">
+
+<!-- Konten Dokumen Section -->
+<div class="tab-pane" id="dokumen-tabpanel" role="tabpanel" aria-labelledby="dokumen-tab">
+    <div class="content-profil py-5">
+        <div class="d-flex justify-content-between align-items-center">
+        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Dokumen</h3>
+        <a href="#tambahDokumen" class="btn" data-bs-toggle="modal" role="button">+ Tambah Dokumen</a>
+        </div>
+        <div class="container mt-4">
+            <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($dokumen as $dok)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$dok->nama}}</td>
+                        <td>{{$dok->status}}</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2">
+                                <button onclick="openModalUbahDokumen('{{ $dok->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
+                                <button onclick="openModalHapusDokumen('{{ $dok->id }}')" class="btn btn-hapus">Hapus</button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk membuka modal Ubah Dokumen dan mengisi nilai input
+    // function openModalUbahDokumen(dokumenId) {
+    //     // Kirim permintaan AJAX untuk mendapatkan data dokumen berdasarkan ID
+    //     $.ajax({
+    //         url: '/admin/dokumen/' + dokumenId + '/edit',
+    //         type: 'GET',
+    //         success: function(response) {
+    //             // Isi nilai input pada modal edit dengan nilai dari respons JSON
+    //             $('#form_ubah_dokumen input[name="nama"]').val(response.nama);
+    //             $('#form_ubah_dokumen select[name="status"]').val(response.status);
+
+    //             // Tampilkan modal edit
+    //             $('#ubahDokumen').modal('show');
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.error('Error:', error);
+    //         }
+    //     });
+    // }
+
+    // // Mengatur tindakan saat dokumen siap untuk diolah oleh jQuery
+    // $(document).ready(function() {
+    //     // Tambahkan kode JavaScript untuk menangani klik tombol edit
+    //     $('.edit-dokumen').on('click', function() {
+    //         var dokumenId = $(this).data('dokumen-id');
+    //         openModalUbahDokumen(dokumenId);
+    //     });
+    // });
+</script>
+
+
+@endsection()

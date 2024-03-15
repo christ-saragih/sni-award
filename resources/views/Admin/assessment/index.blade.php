@@ -52,7 +52,7 @@
                     <option hidden>Pilih Kategori</option>
                     @foreach ($assessment_kategori as $data)
                         <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                @endforeach
+                    @endforeach
                 </select>
             </div>
             <div class="d-flex flex-column gap-2">
@@ -214,6 +214,27 @@
     </div>
 </div>
 
+{{--delete Assessment Pertanyaan--}}
+
+<div class="modal fade" id="hapusAssessmentPertanyaan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" id="form_hapus_assessment_pertanyaan" method="POST" >
+        @method('DELETE')
+        @csrf
+        <div class="modal-header" style="border: none;">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Peringatan!</h1>
+        </div>
+        <div class="modal-body" style="border: none;">
+            <p>Apakah Anda yakin menghapus item ini?</p>
+        </div>
+        <div class="modal-footer gap-2" style="border: none;">
+            <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
+            <button type="submit" class="btn" data-bs-toggle="modal">Ya</button>
+        </div>
+        </form>
+    </div>
+</div>
+
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
@@ -228,6 +249,7 @@
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
+    {{-- Kategori --}}
     <div class="tab-pane active" id="assessment_kategori_form" role="tabpanel" aria-labelledby="assessment_kategori">
         <div class="content-profil py-5">
             <div class="d-flex justify-content-between align-items-center">
