@@ -1,3 +1,16 @@
+// select 2
+// $("#basic-usage").select2({
+//     theme: "bootstrap-5",
+//     width: $(this).data("width")
+//         ? $(this).data("width")
+//         : $(this).hasClass("w-100")
+//         ? "100%"
+//         : "style",
+//     placeholder: $(this).data("placeholder"),
+// });
+
+
+// Navbar Dropdown Button Informasi
 const navLinkInformasi = document.getElementById("navLinkInformasi");
 const caretLeftInformasi = document.getElementById("faCaretLeftInformasi");
 
@@ -101,6 +114,7 @@ navLinkAcara.addEventListener("click", function (event) {
     event.preventDefault();
 });
 
+
 // Href untuk data master
 // konfigurasi
 const navLinkKonfigurasi = document.getElementById("navLinkKonfigurasi");
@@ -179,7 +193,7 @@ barsMenu.addEventListener("click", function (event) {
                 element.style.display = "none";
             });
             navbarBrand.style.display = "none";
-            caretLeft.style.display = "none";
+            caretLeftDataMaster.style.display = "none";
             sidebar.style.marginTop = "4rem";
         } else {
             // Style yang diberikan ketika sidenav tidak visible
@@ -193,7 +207,7 @@ barsMenu.addEventListener("click", function (event) {
                 element.style.display = "block";
             });
             navbarBrand.style.display = "block";
-            caretLeft.style.display = "block";
+            caretLeftDataMaster.style.display = "block";
             sidebar.style.marginTop = "0";
         }
         sidenavVisible = !sidenavVisible; // Toggle status tampilan sidenav
@@ -215,7 +229,7 @@ barsMenu.addEventListener("click", function (event) {
             element.style.display = "block";
         });
         navbarBrand.style.display = "block";
-        caretLeft.style.display = "block";
+        caretLeftDataMaster.style.display = "block";
         sidebar.style.marginTop = "0";
     }
     event.preventDefault();

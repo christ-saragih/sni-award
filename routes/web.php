@@ -4,9 +4,14 @@ use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\WilayahAdminController;
+use App\Http\Controllers\PropinsiAdminController;
+use App\Http\Controllers\KecamatanAdminController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
@@ -33,9 +38,9 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
-// Route::get('/peserta',[HomePesertaController::class, 'index']);
-// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/peserta',[HomePesertaController::class, 'index']);
+Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -142,8 +147,8 @@ Route::prefix('/admin')->group(function () {
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
-        // assessment kategori
         // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
+        // assessment kategori
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
         Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
         Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
@@ -173,6 +178,25 @@ Route::prefix('/admin')->group(function () {
         Route::get('/status_kepemilikan/{id}/ubah',[App\Http\Controllers\StatusKepemilikanController::class,'edit']);
         Route::put('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'update']);
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
+        
+        // wilayah
+        // provinsi
+        Route::get('/wilayah', [WilayahAdminController::class, 'index']);
+        Route::post('/wilayah/provinsi', [PropinsiAdminController::class, 'store'])->name('provinsi.store');
+        Route::put('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'update']);
+        Route::delete('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'destroy']);
+
+        // kota
+        Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
+        Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
+        Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
+        // Route::post('/wilayah/get_kabupaten', [KotaAdminController::class, 'get_kabupaten'])->name('get_kabupaten');
+
+        // kecamatan
+        // Route::post('/wilayah/getkabupaten', [WilayahAdminController::class, 'get_kabupaten'])->name('get_kabupaten.dropdown');
+        Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
+        Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
+        Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
     });
 });
 // end User

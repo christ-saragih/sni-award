@@ -132,7 +132,9 @@
                   {{-- Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih,
                   <br />
                   Jakarta Pusat 10340 --}}
-                  {{ $frontpage_data->alamat }}
+                  {{-- @if ($frontpage_data != null)
+                    {{ $frontpage_data->alamat }}  
+                  @endif --}}
                 </p>
               </div>
             </div>
