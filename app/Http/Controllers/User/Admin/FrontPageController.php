@@ -23,6 +23,7 @@ class FrontPageController extends Controller
             'faq' => $unpopular_faq,
             'dokumentasi' => $dokumentasi,
         ]);
+        
     }
 
     public function updateFrontpageView() {
