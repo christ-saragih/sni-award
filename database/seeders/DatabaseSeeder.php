@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             KotaSeeder::class,
         ]);
-        \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
