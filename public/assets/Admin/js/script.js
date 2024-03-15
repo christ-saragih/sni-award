@@ -1,54 +1,103 @@
-// select 2
-// $("#basic-usage").select2({
-//     theme: "bootstrap-5",
-//     width: $(this).data("width")
-//         ? $(this).data("width")
-//         : $(this).hasClass("w-100")
-//         ? "100%"
-//         : "style",
-//     placeholder: $(this).data("placeholder"),
-// });
+const navLinkInformasi = document.getElementById("navLinkInformasi");
+const caretLeftInformasi = document.getElementById("faCaretLeftInformasi");
 
-// Navbar Dropdown Button
+let rotatedInformasi = false;
+navLinkInformasi.addEventListener("click", function (event) {
+    if (!rotatedInformasi) {
+        navLinkInformasi.classList.add("active");
+        caretLeftInformasi.style.transition = "transform 0.3s ease-in-out";
+        caretLeftInformasi.style.transitionDelay = "0.3s";
+        caretLeftInformasi.style.transform = "rotate(-90deg)";
+        rotatedInformasi = true;
+    } else {
+        navLinkInformasi.classList.remove("active");
+        caretLeftInformasi.style.transform = "rotate(0deg)";
+        rotatedInformasi = false;
+    }
+
+    event.preventDefault();
+});
+
+const dropdownMenuInformasi = document.getElementById("dropdownMenuInformasi");
+
+let isDropdownVisibleInformasi = false;
+
+function toggleDropdownMenuInformasi() {
+    if (isDropdownVisibleInformasi) {
+        dropdownMenuInformasi.classList.add("dropdownMenuInformasi-hidden");
+        setTimeout(() => {
+            dropdownMenuInformasi.style.display = "none";
+            dropdownMenuInformasi.classList.remove("dropdownMenuInformasi-hidden");
+        }, 300);
+    } else {
+        dropdownMenuInformasi.style.display = "block";
+    }
+    isDropdownVisibleInformasi = !isDropdownVisibleInformasi;
+}
+
+navLinkInformasi.addEventListener("click", function (event) {
+    toggleDropdownMenuInformasi();
+    event.preventDefault();
+});
+
+
+// Navbar Dropdown Button Data Master
 const navLinkDataMaster = document.getElementById("navLinkDataMaster");
-const caretLeft = document.getElementById("faCaretLeft");
+const caretLeftDataMaster = document.getElementById("faCaretLeftDataMaster");
 
 let rotated = false;
 navLinkDataMaster.addEventListener("click", function (event) {
     if (!rotated) {
         navLinkDataMaster.classList.add("active");
-        caretLeft.style.transition = "transform 0.3s ease-in-out";
-        caretLeft.style.transitionDelay = "0.3s";
-        caretLeft.style.transform = "rotate(-90deg)";
+        caretLeftDataMaster.style.transition = "transform 0.3s ease-in-out";
+        caretLeftDataMaster.style.transitionDelay = "0.3s";
+        caretLeftDataMaster.style.transform = "rotate(-90deg)";
         rotated = true;
     } else {
         navLinkDataMaster.classList.remove("active");
-        caretLeft.style.transform = "rotate(0deg)";
+        caretLeftDataMaster.style.transform = "rotate(0deg)";
         rotated = false;
     }
 
     event.preventDefault();
 });
 
-const dropdownMenu = document.getElementById("dropdownMenu");
+const dropdownMenuDataMaster = document.getElementById("dropdownMenuDataMaster");
 
 let isDropdownVisible = false;
 
-function toggleDropdownMenu() {
+function toggleDropdownMenuDataMaster() {
     if (isDropdownVisible) {
-        dropdownMenu.classList.add("dropdownMenu-hidden");
+        dropdownMenuDataMaster.classList.add("dropdownMenuDataMaster-hidden");
         setTimeout(() => {
-            dropdownMenu.style.display = "none";
-            dropdownMenu.classList.remove("dropdownMenu-hidden");
+            dropdownMenuDataMaster.style.display = "none";
+            dropdownMenuDataMaster.classList.remove("dropdownMenuDataMaster-hidden");
         }, 300);
     } else {
-        dropdownMenu.style.display = "block";
+        dropdownMenuDataMaster.style.display = "block";
     }
     isDropdownVisible = !isDropdownVisible;
 }
 
 navLinkDataMaster.addEventListener("click", function (event) {
-    toggleDropdownMenu();
+    toggleDropdownMenuDataMaster();
+    event.preventDefault();
+});
+
+// Href untuk informasi
+// berita
+const navLinkBerita = document.getElementById("navLinkBerita");
+navLinkBerita.style.cursor = "pointer";
+navLinkBerita.addEventListener("click", function (event) {
+    window.location.href = "/admin/berita";
+    event.preventDefault();
+});
+
+// acara
+const navLinkAcara = document.getElementById("navLinkAcara");
+navLinkAcara.style.cursor = "pointer";
+navLinkAcara.addEventListener("click", function (event) {
+    window.location.href = "/admin/acara";
     event.preventDefault();
 });
 
@@ -392,6 +441,7 @@ function openModalHapusBerita(id, name) {
     modal.show();
 }
 
+
 // Acara
 // modal pop up Hapus
 function openModalHapusAcara(id, name) {
@@ -403,6 +453,22 @@ function openModalHapusAcara(id, name) {
         .setAttribute("action", `/admin/acara/${id}`);
 
     const modal = new bootstrap.Modal(document.getElementById("hapusAcara"));
+
+    modal.show();
+}
+
+// Assessment Pertanyaan
+// modal pop up Hapus
+function openModalHapusPertanyaan(id, name) {
+    console.log(id, name);
+    document.getElementById("id_pertanyaan").value = id;
+    document.getElementById("nama_pertanyaan").value = name;
+
+    document
+        .getElementById("form_hapus_assessment_pertanyaan")
+        .setAttribute("action", `/admin/assessment_pertanyaan/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusAssessmentPertanyaan"));
 
     modal.show();
 }
