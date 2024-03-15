@@ -7,6 +7,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\WilayahAdminController;
+use App\Http\Controllers\PropinsiAdminController;
+use App\Http\Controllers\KecamatanAdminController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
@@ -116,13 +120,13 @@ Route::prefix('/admin')->group(function () {
         Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
         Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
-        //kategori berita
-        Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
-        Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
-        Route::post('/kategori_berita',[KategoriBeritaController::class,'store'])->name('kategori_berita.store');
-        Route::get('/kategori_berita/{kategori_berita}/edit',[KategoriBeritaController::class,'edit'])->name('kategori_berita.edit');
-        Route::put('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'update'])->name('kategori_berita.update');
-        Route::delete('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'destroy'])->name('kategori_berita.destroy');
+        // //kategori berita
+        // Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
+        // Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
+        // Route::post('/kategori_berita',[KategoriBeritaController::class,'store'])->name('kategori_berita.store');
+        // Route::get('/kategori_berita/{kategori_berita}/edit',[KategoriBeritaController::class,'edit'])->name('kategori_berita.edit');
+        // Route::put('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'update'])->name('kategori_berita.update');
+        // Route::delete('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'destroy'])->name('kategori_berita.destroy');
 
         //dokumen
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
@@ -173,6 +177,25 @@ Route::prefix('/admin')->group(function () {
         Route::get('/status_kepemilikan/{id}/ubah',[App\Http\Controllers\StatusKepemilikanController::class,'edit']);
         Route::put('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'update']);
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
+        
+        // wilayah
+        // provinsi
+        Route::get('/wilayah', [WilayahAdminController::class, 'index']);
+        Route::post('/wilayah/provinsi', [PropinsiAdminController::class, 'store'])->name('provinsi.store');
+        Route::put('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'update']);
+        Route::delete('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'destroy']);
+
+        // kota
+        Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
+        Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
+        Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
+        // Route::post('/wilayah/get_kabupaten', [KotaAdminController::class, 'get_kabupaten'])->name('get_kabupaten');
+
+        // kecamatan
+        // Route::post('/wilayah/getkabupaten', [WilayahAdminController::class, 'get_kabupaten'])->name('get_kabupaten.dropdown');
+        Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
+        Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
+        Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
     });
 });
 // end User

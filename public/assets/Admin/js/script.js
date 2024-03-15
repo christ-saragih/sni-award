@@ -9,48 +9,111 @@
 //     placeholder: $(this).data("placeholder"),
 // });
 
-// Navbar Dropdown Button
+
+// Navbar Dropdown Button Informasi
+const navLinkInformasi = document.getElementById("navLinkInformasi");
+const caretLeftInformasi = document.getElementById("faCaretLeftInformasi");
+
+let rotatedInformasi = false;
+navLinkInformasi.addEventListener("click", function (event) {
+    if (!rotatedInformasi) {
+        navLinkInformasi.classList.add("active");
+        caretLeftInformasi.style.transition = "transform 0.3s ease-in-out";
+        caretLeftInformasi.style.transitionDelay = "0.3s";
+        caretLeftInformasi.style.transform = "rotate(-90deg)";
+        rotatedInformasi = true;
+    } else {
+        navLinkInformasi.classList.remove("active");
+        caretLeftInformasi.style.transform = "rotate(0deg)";
+        rotatedInformasi = false;
+    }
+
+    event.preventDefault();
+});
+
+const dropdownMenuInformasi = document.getElementById("dropdownMenuInformasi");
+
+let isDropdownVisibleInformasi = false;
+
+function toggleDropdownMenuInformasi() {
+    if (isDropdownVisibleInformasi) {
+        dropdownMenuInformasi.classList.add("dropdownMenuInformasi-hidden");
+        setTimeout(() => {
+            dropdownMenuInformasi.style.display = "none";
+            dropdownMenuInformasi.classList.remove("dropdownMenuInformasi-hidden");
+        }, 300);
+    } else {
+        dropdownMenuInformasi.style.display = "block";
+    }
+    isDropdownVisibleInformasi = !isDropdownVisibleInformasi;
+}
+
+navLinkInformasi.addEventListener("click", function (event) {
+    toggleDropdownMenuInformasi();
+    event.preventDefault();
+});
+
+
+// Navbar Dropdown Button Data Master
 const navLinkDataMaster = document.getElementById("navLinkDataMaster");
-const caretLeft = document.getElementById("faCaretLeft");
+const caretLeftDataMaster = document.getElementById("faCaretLeftDataMaster");
 
 let rotated = false;
 navLinkDataMaster.addEventListener("click", function (event) {
     if (!rotated) {
         navLinkDataMaster.classList.add("active");
-        caretLeft.style.transition = "transform 0.3s ease-in-out";
-        caretLeft.style.transitionDelay = "0.3s";
-        caretLeft.style.transform = "rotate(-90deg)";
+        caretLeftDataMaster.style.transition = "transform 0.3s ease-in-out";
+        caretLeftDataMaster.style.transitionDelay = "0.3s";
+        caretLeftDataMaster.style.transform = "rotate(-90deg)";
         rotated = true;
     } else {
         navLinkDataMaster.classList.remove("active");
-        caretLeft.style.transform = "rotate(0deg)";
+        caretLeftDataMaster.style.transform = "rotate(0deg)";
         rotated = false;
     }
 
     event.preventDefault();
 });
 
-const dropdownMenu = document.getElementById("dropdownMenu");
+const dropdownMenuDataMaster = document.getElementById("dropdownMenuDataMaster");
 
 let isDropdownVisible = false;
 
-function toggleDropdownMenu() {
+function toggleDropdownMenuDataMaster() {
     if (isDropdownVisible) {
-        dropdownMenu.classList.add("dropdownMenu-hidden");
+        dropdownMenuDataMaster.classList.add("dropdownMenuDataMaster-hidden");
         setTimeout(() => {
-            dropdownMenu.style.display = "none";
-            dropdownMenu.classList.remove("dropdownMenu-hidden");
+            dropdownMenuDataMaster.style.display = "none";
+            dropdownMenuDataMaster.classList.remove("dropdownMenuDataMaster-hidden");
         }, 300);
     } else {
-        dropdownMenu.style.display = "block";
+        dropdownMenuDataMaster.style.display = "block";
     }
     isDropdownVisible = !isDropdownVisible;
 }
 
 navLinkDataMaster.addEventListener("click", function (event) {
-    toggleDropdownMenu();
+    toggleDropdownMenuDataMaster();
     event.preventDefault();
 });
+
+// Href untuk informasi
+// berita
+const navLinkBerita = document.getElementById("navLinkBerita");
+navLinkBerita.style.cursor = "pointer";
+navLinkBerita.addEventListener("click", function (event) {
+    window.location.href = "/admin/berita";
+    event.preventDefault();
+});
+
+// acara
+const navLinkAcara = document.getElementById("navLinkAcara");
+navLinkAcara.style.cursor = "pointer";
+navLinkAcara.addEventListener("click", function (event) {
+    window.location.href = "/admin/acara";
+    event.preventDefault();
+});
+
 
 // Href untuk data master
 // konfigurasi
@@ -130,7 +193,7 @@ barsMenu.addEventListener("click", function (event) {
                 element.style.display = "none";
             });
             navbarBrand.style.display = "none";
-            caretLeft.style.display = "none";
+            caretLeftDataMaster.style.display = "none";
             sidebar.style.marginTop = "4rem";
         } else {
             // Style yang diberikan ketika sidenav tidak visible
@@ -144,7 +207,7 @@ barsMenu.addEventListener("click", function (event) {
                 element.style.display = "block";
             });
             navbarBrand.style.display = "block";
-            caretLeft.style.display = "block";
+            caretLeftDataMaster.style.display = "block";
             sidebar.style.marginTop = "0";
         }
         sidenavVisible = !sidenavVisible; // Toggle status tampilan sidenav
@@ -166,7 +229,7 @@ barsMenu.addEventListener("click", function (event) {
             element.style.display = "block";
         });
         navbarBrand.style.display = "block";
-        caretLeft.style.display = "block";
+        caretLeftDataMaster.style.display = "block";
         sidebar.style.marginTop = "0";
     }
     event.preventDefault();

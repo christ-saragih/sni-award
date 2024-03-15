@@ -106,20 +106,37 @@
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-              <i class="fa fa-sticky-note"></i>
+              <i class="fa fa-commenting"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Berita & Acara</span>
+              <span class="nav-link-text" id="navLinkText">FAQ</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/data_master') ? 'active' : '' }}" id="navLink" href="/admin/data_master">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-              <i class="fa fa-database"></i>
+            <a class="nav-link" id="navLinkInformasi" href="/admin">
+              <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                <i class="fa fa-sticky-note"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span>
+              <span class="nav-link-text" id="navLinkText">Informasi</span> 
+                <i class="fa fa-caret-left ms-auto" id="faCaretLeftInformasi"></i>
             </a>
+            <ul class="dropdown-menu" id="dropdownMenuInformasi">
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Berita</span> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/acara') ? 'active' : '' }}" id="navLinkAcara">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-circle-thin"></i>
+                  </div>
+                  <span class="nav-link-text dropdown">Acara</span> 
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="navLinkDataMaster" href="/admin">
@@ -127,11 +144,11 @@
                 <i class="fa fa-database"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">Data Master</span> 
-                <i class="fa fa-caret-left ms-auto" id="faCaretLeft"></i>
+                <i class="fa fa-caret-left ms-auto" id="faCaretLeftDataMaster"></i>
             </a>
-            <ul class="dropdown-menu" id="dropdownMenu">
+            <ul class="dropdown-menu" id="dropdownMenuDataMaster">
               <li class="nav-item">
-                <a class="nav-link" id="navLinkKonfigurasi">
+                <a class="nav-link {{ request()->is('admin/konfigurasi') ? 'active' : '' }}" id="navLinkKonfigurasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -139,7 +156,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navLinkAssesment">
+                <a class="nav-link {{ request()->is('admin/assessment') ? 'active' : '' }}" id="navLinkAssesment">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -147,7 +164,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navLinkDokumen">
+                <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLinkDokumen">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -155,7 +172,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navLinkStatusKepemilikan">
+                <a class="nav-link {{ request()->is('admin/status_kepemilikan') ? 'active' : '' }}" id="navLinkStatusKepemilikan">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -163,7 +180,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navLinkLembagaSertifikasi">
+                <a class="nav-link {{ request()->is('admin/lembaga_sertifikasi') ? 'active' : '' }}" id="navLinkLembagaSertifikasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
@@ -171,7 +188,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="navLinkWilayah">
+                <a class="nav-link {{ request()->is('admin/wilayah') ? 'active' : '' }}" id="navLinkWilayah">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>

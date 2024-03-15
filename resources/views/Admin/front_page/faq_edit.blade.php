@@ -18,15 +18,17 @@
 
 <div class="frontpage-input-text">
     <label for="popular_faq">FAQ</label>
-    <div class="d-flex flex-column align-items-center justify-content-center" style="gap: 5px;">
-        @foreach ($popular_faq as $pq)
-            <div style="
-                width: 100%;
-                border: 1px solid gray;
-                border-radius: 10px;
-                padding: 5px 10px;
-            ">{{ $pq->pertanyaan }}</div>
-        @endforeach
-    </div>
+    @if (count($popular_faq) != 0)
+        <div class="d-flex flex-column align-items-center justify-content-center" style="gap: 5px;">
+            @foreach ($popular_faq as $pq)
+                <div style="
+                    width: 100%;
+                    border: 1px solid gray;
+                    border-radius: 10px;
+                    padding: 5px 10px;
+                ">{{ $pq->pertanyaan }}</div>
+            @endforeach
+        </div>
+    @endif
 </div>
 
