@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'role' => 1,
             'status' => 'aktif',
             'email_verified_at' => now(),
+            'verify_key' => fake()->password(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
