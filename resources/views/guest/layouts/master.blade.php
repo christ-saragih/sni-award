@@ -76,10 +76,18 @@
                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/"
                   >Beranda</a
                 >
-                <a class="nav-link {{ request()->is('informasi') ? 'active' : '' }}" href="/informasi">Informasi</a>
+                <a class="nav-link {{ request()->is('informasi') ? 'active' : '' }}">Informasi</a>
+                <div class="nav-link {{ request()->is('informasi*') ? 'active' : '' }} dropdown">
+                  <button class="btn {{ request()->is('informasi*') ? 'active' : '' }} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Informasi
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ route("informasi.berita.index") }}">Berita</a></li>
+                    <li><a class="dropdown-item" href="{{ route("informasi.acara.index") }}">Acara</a></li>
+                  </ul>
+                </div>
                 <a class="nav-link {{ request()->is('unduh') ? 'active' : '' }}" href="/unduh">Unduh</a>
                 <a class="nav-link {{ request()->is('linimasa') ? 'active' : '' }}" href="/linimasa">Linimasa</a>
-                <a class="nav-link {{ request()->is('acara') ? 'active' : '' }}" href="/acara">Acara</a>
                 <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="/faq">FAQ</a>
                 <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a>
                 @if (auth()->check())

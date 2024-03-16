@@ -37,10 +37,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'index']);
 
-Route::get('/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index']);
-Route::get('/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
-Route::get('/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index']);
-Route::get('/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
+Route::get('/informasi/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index'])->name("informasi.berita.index");
+Route::get('/informasi/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
+Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
+Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
 
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);

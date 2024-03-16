@@ -76,7 +76,8 @@ h1 {
     background-color: white;
 }
 
-.navbar-nav a {
+.navbar-nav a,
+.navbar-nav div {
     color: black;
     font-size: 16px;
     margin-inline: 10px;
@@ -92,6 +93,35 @@ h1 {
     /* padding-inline: 10px; */
     color: white !important;
     font-weight: 500;
+}
+
+.dropdown-toggle {
+    border: none;
+    padding: 0;
+}
+
+.navbar-nav div.active {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.navbar-nav .dropdown button.active {
+    color: white;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    border: 2px solid #3b1919;
+    min-width: 7.2rem !important;
+}
+
+.dropdown-item {
+    margin-inline: 0px !important;
+}
+
+.dropdown-item:hover {
+    background-color: #eee9e9;
+    color: black;
 }
 
 .logo-container .logo-bsn {
