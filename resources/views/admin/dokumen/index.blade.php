@@ -47,7 +47,7 @@
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
                         <h6 class="ms-1 mb-0">Nama</h6>
-                        <input type="text" id="nama_dokumen" name="nama" class="form-control" placeholder="Nama Dokumen">
+                        <input type="text" name="nama" class="form-control" placeholder="Nama Dokumen">
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Status</h6>

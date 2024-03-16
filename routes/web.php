@@ -16,9 +16,11 @@ use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
+use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -178,7 +180,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/status_kepemilikan/{id}/ubah',[App\Http\Controllers\StatusKepemilikanController::class,'edit']);
         Route::put('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'update']);
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
-        
+
         // wilayah
         // provinsi
         Route::get('/wilayah', [WilayahAdminController::class, 'index']);
@@ -197,6 +199,22 @@ Route::prefix('/admin')->group(function () {
         Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
         Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
         Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
+
+        //Tipe Kategori
+        Route::get('/tipe_kategori', [TipeKategoriController::class, 'index'])->name('tipe_kategori.index');
+        Route::get('/tipe_kategori/tambah', [TipeKategoriController::class, 'create'])->name('tipe_kategori.create');
+        Route::post('/tipe_kategori', [TipeKategoriController::class, 'store'])->name('tipe_kategori.store');
+        Route::get('/tipe_kategori/{tipe_kategori}/edit', [TipeKategoriController::class, 'edit'])->name('tipe_kategori.edit');
+        Route::put('/tipe_kategori/{tipe_kategori}', [TipeKategoriController::class, 'update'])->name('tipe_kategori.update');
+        Route::delete('/tipe_kategori/{tipe_kategori}', [TipeKategoriController::class, 'destroy'])->name('tipe_kategori.destroy');
+
+        //Kategori Organisasi
+        Route::get('/kategori_organisasi', [KategoriOrganisasiController::class, 'index'])->name('kategori_organisasi.index');
+        Route::get('/kategori_organisasi/tambah', [KategoriOrganisasiController::class, 'create'])->name('kategori_organisasi.create');
+        Route::post('/kategori_organisasi', [KategoriOrganisasiController::class, 'store'])->name('kategori_organisasi.store');
+        Route::get('/kategori_organisasi/{kategori_organisasi}/edit', [KategoriOrganisasiController::class, 'edit'])->name('kategori_organisasi.edit');
+        Route::put('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'update'])->name('kategori_organisasi.update');
+        Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
     });
 });
 // end User
