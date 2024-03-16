@@ -42,6 +42,8 @@ Route::get('/informasi/berita/detail', [App\Http\Controllers\Guest\BeritaControl
 Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
 Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
 
+Route::get('/unduh', [App\Http\Controllers\Guest\UnduhController::class, 'index']);
+
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
@@ -195,10 +197,8 @@ Route::prefix('/admin')->group(function () {
         Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
         Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
         Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
-        // Route::post('/wilayah/get_kabupaten', [KotaAdminController::class, 'get_kabupaten'])->name('get_kabupaten');
 
         // kecamatan
-        // Route::post('/wilayah/getkabupaten', [WilayahAdminController::class, 'get_kabupaten'])->name('get_kabupaten.dropdown');
         Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
         Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
         Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);

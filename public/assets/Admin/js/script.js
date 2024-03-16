@@ -9,6 +9,44 @@
 //     placeholder: $(this).data("placeholder"),
 // });
 
+// dynamic dropdown kota
+$(function() {
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+  });
+});
+
+$(function () {
+    $("#propinsi").on("change", function () {
+        let propinsi_id = $("#propinsi").val();
+        console.log(propinsi_id);
+
+        $.ajax({
+            type: "GET",
+            url: `/api/admin/wilayah/provinsi/${propinsi_id}/kota-kab`,
+            cache: false,
+
+            success: function(msg) {
+                $("#kota").html(
+                    kotaKabresponseToHtml(msg));
+            },
+            error: function (data) {
+                console.log("error:", data);
+            },
+        });
+    });
+});
+
+const kotaKabresponseToHtml = (data) => {
+    let html = ""
+    for (let kota of data.data) {
+        html += `<option value='${kota.id}'>${kota.kota}</option>`
+        console.log(kota)
+    }
+
+    return html
+}
+
 
 // Navbar Dropdown Button Informasi
 const navLinkInformasi = document.getElementById("navLinkInformasi");

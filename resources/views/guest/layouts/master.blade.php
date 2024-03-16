@@ -81,8 +81,8 @@
                     Informasi
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{{ route("informasi.berita.index") }}">Berita</a></li>
-                    <li><a class="dropdown-item" href="{{ route("informasi.acara.index") }}">Acara</a></li>
+                    <li><a class="dropdown-item" href="{{ route('informasi.berita.index') }}">Berita</a></li>
+                    <li><a class="dropdown-item" href="{{ route('informasi.acara.index') }}">Acara</a></li>
                   </ul>
                 </div>
                 <a class="nav-link {{ request()->is('unduh') ? 'active' : '' }}" href="/unduh">Unduh</a>
