@@ -521,3 +521,72 @@ function openModalHapusDokumen(id) {
 
     modal.show();
 }
+
+// Kategori Organisasi
+// modal pop up Ubah
+function openModalUbahKategoriOrganisasi(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
+    $.ajax({
+        url: `/admin/kategori_organisasi/${id}/edit`,
+        type: 'GET',
+        success: function(response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_kategori_organisasi input[name="nama"]').val(response.nama);
+            $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').val(response.tipe_kategori_id);
+
+            // Tampilkan modal edit
+            $('#ubahKategoriOrganisasi').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $('#form_ubah_kategori_organisasi').attr('action', `/admin/kategori_organisasi/${id}`);
+}
+
+// modal pop up Hapus
+function openModalHapusKategoriOrganisasi(id) {
+    document
+        .getElementById("form_hapus_kategori_organisasi")
+        .setAttribute("action", `/admin/kategori_organisasi/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusKategoriOrganisasi"));
+
+    modal.show();
+}
+
+// Tipe Kategori
+// modal pop up Ubah
+function openModalUbahTipeKategori(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data tipe_kategori berdasarkan ID
+    $.ajax({
+        url: `/admin/tipe_kategori/${id}/edit`,
+        type: 'GET',
+        success: function(response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_tipe_kategori input[name="nama"]').val(response.nama);
+
+            // Tampilkan modal edit
+            $('#ubahTipeKategori').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $('#form_ubah_tipe_kategori').attr('action', `/admin/tipe_kategori/${id}`);
+}
+
+// modal pop up Hapus
+function openModalHapusTipeKategori(id) {
+    document
+        .getElementById("form_hapus_tipe_kategori")
+        .setAttribute("action", `/admin/tipe_kategori/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusTipeKategori"));
+
+    modal.show();
+}
