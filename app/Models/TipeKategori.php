@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TipeKategori extends Model
 {
     use HasFactory;
-    protected $table = 'tipe_kategori';
-    protected $guarded = [''];
 
-    public function Kategori_Organisasi (): HasMany
+    protected $guarded = [];
+    protected $table = 'tipe_kategori';
+
+    public function kategori_organisasi() : HasMany
     {
-        return $this->hasMany(TipeKategori::class, 'tipe_kategori', 'id');
+        return $this->hasMany(KategoriOrganisasi::class, 'tipe_kategori', 'id');
     }
 }

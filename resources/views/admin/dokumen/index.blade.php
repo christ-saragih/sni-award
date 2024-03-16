@@ -47,7 +47,7 @@
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
                         <h6 class="ms-1 mb-0">Nama</h6>
-                        <input type="text" id="nama_dokumen" name="nama" class="form-control" placeholder="Nama Dokumen">
+                        <input type="text" name="nama" class="form-control" placeholder="Nama Dokumen">
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Status</h6>
@@ -131,37 +131,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    // Fungsi untuk membuka modal Ubah Dokumen dan mengisi nilai input
-    // function openModalUbahDokumen(dokumenId) {
-    //     // Kirim permintaan AJAX untuk mendapatkan data dokumen berdasarkan ID
-    //     $.ajax({
-    //         url: '/admin/dokumen/' + dokumenId + '/edit',
-    //         type: 'GET',
-    //         success: function(response) {
-    //             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-    //             $('#form_ubah_dokumen input[name="nama"]').val(response.nama);
-    //             $('#form_ubah_dokumen select[name="status"]').val(response.status);
-
-    //             // Tampilkan modal edit
-    //             $('#ubahDokumen').modal('show');
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error('Error:', error);
-    //         }
-    //     });
-    // }
-
-    // // Mengatur tindakan saat dokumen siap untuk diolah oleh jQuery
-    // $(document).ready(function() {
-    //     // Tambahkan kode JavaScript untuk menangani klik tombol edit
-    //     $('.edit-dokumen').on('click', function() {
-    //         var dokumenId = $(this).data('dokumen-id');
-    //         openModalUbahDokumen(dokumenId);
-    //     });
-    // });
-</script>
 
 
 @endsection()
