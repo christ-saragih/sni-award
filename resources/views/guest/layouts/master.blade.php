@@ -76,7 +76,6 @@
                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/"
                   >Beranda</a
                 >
-                <a class="nav-link {{ request()->is('informasi') ? 'active' : '' }}">Informasi</a>
                 <div class="nav-link {{ request()->is('informasi*') ? 'active' : '' }} dropdown">
                   <button class="btn {{ request()->is('informasi*') ? 'active' : '' }} dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Informasi
