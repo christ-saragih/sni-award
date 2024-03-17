@@ -208,6 +208,16 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/internal') ? 'active' : '' }}" id="navLink" href="/admin/internal">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-tasks"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Internal</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
