@@ -12,6 +12,9 @@ class TipeKategoriController extends Controller
      */
     public function index()
     {
+        $tipe_kategori = TipeKategori::where('nama', 'LIKE', '%'.request('q').'%')->paginate(10);
+
+        return response()->json($tipe_kategori);
         // $tipe_kategori = TipeKategori::all();
         // return view('admin.tipekategori.index', [
         //     'nama' => 'Data Tipe Kategori',
