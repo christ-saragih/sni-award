@@ -6,6 +6,7 @@ use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\InternalAdminController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
@@ -206,6 +207,10 @@ Route::prefix('/admin')->group(function () {
 
         // Peserta
         Route::get('/peserta', [PesertaAdminController::class, 'index']);
+
+
+        // Internal
+        Route::get('/internal', [InternalAdminController::class, 'index']);
     });
 });
 // end User
