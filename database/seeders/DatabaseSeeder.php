@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             KotaSeeder::class,
             FrontPageSeeder::class,
+            PesertaSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([

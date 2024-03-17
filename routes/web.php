@@ -18,6 +18,7 @@ use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -95,6 +96,10 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
+
+        //CRUD Peserta & Internal
+        Route::get('/peserta', [DataPesertaController::class, 'index']);
+        //end Peserta & Internal
 
         // Tag Berita
         Route::get('/tag_berita', [TagBeritaController::class, 'index'])->name('tag_berita.index');
