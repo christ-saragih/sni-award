@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AssessmentSubKategoriSeeder::class,
             AssessmentPertanyaanSeeder::class,
             AssessmentJawabanSeeder::class,
+            FrontPageSeeder::class,
             // KategoriBeritaSeeder::class,
             TipeKategoriSeeder::class,
             KategoriOrganisasiSeeder::class,

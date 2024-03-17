@@ -4,6 +4,7 @@ use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
@@ -15,9 +16,11 @@ use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
+use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -37,9 +40,9 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
-// Route::get('/peserta',[HomePesertaController::class, 'index']);
-// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/peserta',[HomePesertaController::class, 'index']);
+Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -120,7 +123,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
         Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
-        // //kategori berita
+        //kategori berita
         // Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
         // Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
         // Route::post('/kategori_berita',[KategoriBeritaController::class,'store'])->name('kategori_berita.store');
@@ -144,10 +147,18 @@ Route::prefix('/admin')->group(function () {
         Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
         Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
+        //TipeKategori
+        Route::get('/tipe_kategori',[TipeKategoriController::class, 'index'])->name('tipe_kategori.index');
+        Route::get('/tipe_kategori/tambah', [TipeKategoriController::class, 'create'])->name('tipe_kategori.create'); 
+        Route::post('/tipe_kategori', [TipeKategoriController::class, 'store'])->name('tipe_kategori.store');
+        Route::get('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'edit'])->name('tipe_kategori.edit'); 
+        Route::put('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'update'])->name('tipe_kategori.update');
+        Route::delete('/tipe_kategori/delete/{id}', [TipeKategoriController::class, 'destroy'])->name('tipe_kategori.destroy');
+
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
-        // assessment kategori
         // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
+        // assessment kategori
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
         Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
         Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
@@ -177,7 +188,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/status_kepemilikan/{id}/ubah',[App\Http\Controllers\StatusKepemilikanController::class,'edit']);
         Route::put('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'update']);
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
-        
+
         // wilayah
         // provinsi
         Route::get('/wilayah', [WilayahAdminController::class, 'index']);
@@ -196,6 +207,22 @@ Route::prefix('/admin')->group(function () {
         Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
         Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
         Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
+
+        //Tipe Kategori
+        Route::get('/tipe_kategori', [TipeKategoriController::class, 'index'])->name('tipe_kategori.index');
+        Route::get('/tipe_kategori/tambah', [TipeKategoriController::class, 'create'])->name('tipe_kategori.create');
+        Route::post('/tipe_kategori', [TipeKategoriController::class, 'store'])->name('tipe_kategori.store');
+        Route::get('/tipe_kategori/{tipe_kategori}/edit', [TipeKategoriController::class, 'edit'])->name('tipe_kategori.edit');
+        Route::put('/tipe_kategori/{tipe_kategori}', [TipeKategoriController::class, 'update'])->name('tipe_kategori.update');
+        Route::delete('/tipe_kategori/{tipe_kategori}', [TipeKategoriController::class, 'destroy'])->name('tipe_kategori.destroy');
+
+        //Kategori Organisasi
+        Route::get('/kategori_organisasi', [KategoriOrganisasiController::class, 'index'])->name('kategori_organisasi.index');
+        Route::get('/kategori_organisasi/tambah', [KategoriOrganisasiController::class, 'create'])->name('kategori_organisasi.create');
+        Route::post('/kategori_organisasi', [KategoriOrganisasiController::class, 'store'])->name('kategori_organisasi.store');
+        Route::get('/kategori_organisasi/{kategori_organisasi}/edit', [KategoriOrganisasiController::class, 'edit'])->name('kategori_organisasi.edit');
+        Route::put('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'update'])->name('kategori_organisasi.update');
+        Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
     });
 });
 // end User

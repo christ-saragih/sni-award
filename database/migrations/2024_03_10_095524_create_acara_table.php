@@ -19,6 +19,11 @@ return new class extends Migration
             $table->date('tanggal');
             $table->text('deskripsi');
             $table->timestamps();
+
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 
