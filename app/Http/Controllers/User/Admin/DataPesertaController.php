@@ -10,6 +10,6 @@ class DataPesertaController extends Controller
 {
     public function index() {
         $peserta =  Peserta::get();
-        return view('Admin.peserta.index', ['peserta' => $peserta]);
+        return view('admin.peserta.index', ['peserta' => $peserta]);
     }
 }

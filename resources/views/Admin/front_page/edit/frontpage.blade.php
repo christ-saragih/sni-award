@@ -157,7 +157,7 @@
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
       <div class="content-profil py-5">
             <div class="container">
-                @include('Admin.front_page.edit.frontpage_edit')
+                @include('admin.front_page.edit.frontpage_edit')
             </div>
       </div>
     </div>
@@ -165,7 +165,7 @@
     <div class="tab-pane {{ (request()->query('tab') == 'faq')?'active':'' }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-0">
       <div class="content-profil py-5">
           <div class="container">
-            @include('Admin.front_page.edit.faq_edit')
+            @include('admin.front_page.edit.faq_edit')
           </div>
       </div>
     </div>
@@ -173,7 +173,7 @@
     <div class="tab-pane {{ (request()->query('tab') == 'dokumentasi')?'active':'' }}" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-0">
       <div class="content-profil py-5">
           <div class="container">
-            @include('Admin.front_page.edit.dokumentasi_edit')
+            @include('admin.front_page.edit.dokumentasi_edit')
           </div>
       </div>
     </div>

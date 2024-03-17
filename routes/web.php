@@ -68,6 +68,7 @@ Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/profil',[ProfilPesertaController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
 });
+
 //end peserta
 
 //User
