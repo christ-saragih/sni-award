@@ -1,7 +1,4 @@
-{{-- @extends('admin.assessment.index') --}}
-
-{{-- @section('content') --}}
-<table class="table align-items-center mb-0 text-center">
+<table class="table">
     <thead>
     <tr>
         <th>Id</th>
@@ -12,24 +9,23 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($assessment_pertanyaan as $assessment_pertanyaan)
+    @foreach ($assessment_pertanyaan as $ap)
     <tr>
         <td>{{$loop->iteration}}</td>
-        <td>{{$assessment_pertanyaan->assessment_sub_kategori->assessment_kategori->nama}}</td>
-        <td>{{$assessment_pertanyaan->assessment_sub_kategori->nama}}</td>
-        <td>{{$assessment_pertanyaan->pertanyaan}}</td>
+        <td>{{$ap->assessment_sub_kategori->assessment_kategori->nama}}</td>
+        <td>{{$ap->assessment_sub_kategori->nama}}</td>
+        <td>{{$ap->pertanyaan}}</td>
         <td>
-            <form action="{{ route('assessment_pertanyaan.destroy', $assessment_pertanyaan->id) }}" method="POST">
-            <a class="btn btn-primary" href="{{ route('assessment_pertanyaan.edit', $assessment_pertanyaan->id) }}">Edit</a>
-
-            @csrf
-            @method('DELETE')
-
-            <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <div class="d-flex justify-content-center gap-2">
+                <a class="btn btn-ubah" href="{{ route('assessment_pertanyaan.edit', $ap->id) }}">Ubah</a>
+                <button onclick="openModalHapusPertanyaan('{{ $ap->id }}', ' {{ $ap->pertanyaan }} ')" class="btn btn-hapus">Hapus</button>
+            </div>
         </td>
     </tr>
     @endforeach
+    <div id="hidden-data" style="display: none">
+        <input type="hidden" id="id_pertanyaan">
+        <input type="hidden" id="nama_pertanyaan">
+    </div>
     </tbody>
 </table>
-{{-- @endsection --}}

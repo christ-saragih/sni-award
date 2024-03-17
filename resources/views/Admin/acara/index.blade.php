@@ -31,45 +31,45 @@
 
 <hr class="p-0">
 
-  <!-- Konten Acara Section -->
+<!-- Konten Acara Section -->
 <div class="tab-pane" id="acara-tabpanel" role="tabpanel" aria-labelledby="acara-tab">
-  <div class="content-profil py-5">
-    <div class="d-flex justify-content-between align-items-center">
-      <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Acara</h3>
-      <a href="{{ route('acara.create') }}" class="btn">+ Tambah</a>
+    <div class="content-profil py-5">
+        <div class="d-flex justify-content-between align-items-center">
+        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Acara</h3>
+        <a href="{{ route('acara.create') }}" class="btn">+ Tambah</a>
+        </div>
+        <div class="container mt-4">
+            <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Data Acara</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($acara as $cr)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$cr->judul_acara}}</td>
+                        <td>{{$cr->tanggal}}</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="btn btn-ubah" href="{{ route('acara.edit', $cr->id) }}">Ubah</a>
+                                <button onclick="openModalHapusAcara('{{ $cr->id }}', ' {{ $cr->nama }} ')" class="btn btn-hapus">Hapus</button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                <div id="hidden-data" style="display: none">
+                    <input type="hidden" id="id_acara">
+                    <input type="hidden" id="nama_acara">
+                </div>
+            </tbody>
+            </table>
+        </div>
     </div>
-      <div class="container mt-4">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Data Acara</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col" class="text-center">Aksi</th>
-          </tr>
-          </thead>
-          <tbody>
-            @foreach ($acara as $cr)
-                <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$cr->judul_acara}}</td>
-                    <td>{{$cr->tanggal}}</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2">
-                            <a class="btn btn-ubah" href="{{ route('acara.edit', $cr->id) }}">Ubah</a>
-                            <button onclick="openModalHapusAcara('{{ $cr->id }}', ' {{ $cr->nama }} ')" class="btn btn-hapus">Hapus</button>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            <div id="hidden-data" style="display: none">
-                <input type="hidden" id="id_acara">
-                <input type="hidden" id="nama_acara">
-            </div>
-          </tbody>
-        </table>
-      </div>
-  </div>
 </div>
 
 @endsection()

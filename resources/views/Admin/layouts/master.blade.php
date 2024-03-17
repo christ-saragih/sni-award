@@ -8,26 +8,26 @@
 
     <!-- Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous"
     />
 
     <!-- Arimo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
     />
 
     <!-- Josefin Sans Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet"
     />
 
     <!-- Poppins Font -->
@@ -37,8 +37,8 @@
 
     <!-- icon -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -50,8 +50,8 @@
 </head>
 
 <body style="background-color: #ECE4E4;">
-  {{-- jquery CDN --}}
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    {{-- jquery CDN --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
@@ -68,7 +68,7 @@
           class="navbar-brand m-0"
           id="navbarBrand"
           href="/"
-        
+
         >
           <img
             src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
@@ -116,7 +116,7 @@
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Informasi</span> 
+              <span class="nav-link-text" id="navLinkText">Informasi</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftInformasi"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuInformasi">
@@ -125,7 +125,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Berita</span> 
+                  <span class="nav-link-text dropdown">Berita</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -133,7 +133,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Acara</span> 
+                  <span class="nav-link-text dropdown">Acara</span>
                 </a>
               </li>
             </ul>
@@ -143,7 +143,7 @@
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span> 
+              <span class="nav-link-text" id="navLinkText">Data Master</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftDataMaster"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuDataMaster">
@@ -152,7 +152,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Konfigurasi</span> 
+                  <span class="nav-link-text dropdown">Konfigurasi</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -160,7 +160,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Assesment</span> 
+                  <span class="nav-link-text dropdown">Assesment</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -168,7 +168,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Dokumen</span> 
+                  <span class="nav-link-text dropdown">Dokumen</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -176,7 +176,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Status Kepemilikan</span> 
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -184,7 +184,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -192,7 +192,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Wilayah</span> 
+                  <span class="nav-link-text dropdown">Wilayah</span>
                 </a>
               </li>
             </ul>
