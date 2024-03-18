@@ -310,6 +310,12 @@ hr {
     color: #9fafbf;
 }
 
+.content-profil h6,
+.content-kontak-form h6,
+.content-ubah-password h6 {
+    font-weight: bold;
+}
+
 .content-site-evaluation span {
     color: #9fafbf;
     font-size: 112.5%;
