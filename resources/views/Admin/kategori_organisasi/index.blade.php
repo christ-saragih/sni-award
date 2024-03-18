@@ -166,7 +166,7 @@
         <a class="nav-link active" id="tipe-kategori-tab" data-bs-toggle="tab" href="#tipe-kategori-tabpanel" role="tab" aria-controls="tipe-kategori-tabpanel" aria-selected="true">Tipe Kategori</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="kategori-organisasi-tab" data-bs-toggle="tab" href="#kategori-organisasi-tabpanel" role="tab" aria-controls="kategori-organisasi-tabpanel" aria-selected="false" tabindex="-1">Kategori Organisasi</a>
+        <a class="nav-link" id="kategori-organisasi-tab" data-bs-toggle="tab" href="#kategori-organisasi-tabpanel" role="tab" aria-controls="kategori-organisasi-tabpanel" aria-selected="false" tabindex="-1" style="white-space: nowrap; width: fit-content;">Kategori Organisasi</a>
     </li>
 </ul>
 
