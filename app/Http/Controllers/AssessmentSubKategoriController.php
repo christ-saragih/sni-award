@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class AssessmentSubKategoriController extends Controller
 {
+    // public function getAssessmentSubKategori(Request $request) {
+    //     $assessment_kategori_id = $request->assessment_kategori_id;
+    //     $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $assessment_kategori_id)->where('name', 'LIKE', '%'.request('q').'%')->paginate(10);
+
+    //     return response()->json($assessment_sub_kategori);
+    // }
+    public function getAssessmentSubKategori($id) {
+        $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->where('nama', 'LIKE', '%'.request('q').'%')->paginate(10);
+
+        return response()->json($assessment_sub_kategori);
+    }
+
     //
     public function index()
     {
@@ -36,12 +48,13 @@ class AssessmentSubKategoriController extends Controller
         return redirect()->route('assessment.index')->with('success','Sub Kategori berhasil ditambahkan');
     }
 
-    public function edit($id)
+    public function edit(AssessmentSubKategori $assessment_sub_kategori)
     {
-        $AssessmentSubKategori = AssessmentSubKategori::find($id);
-        return view('admin.assessment.assessment_sub_kategori.edit',[
-            'assessment_sub_kategori' => $AssessmentSubKategori
-        ]);
+        return response()->json($assessment_sub_kategori);
+        // $AssessmentSubKategori = AssessmentSubKategori::find($id);
+        // return view('admin.assessment.assessment_sub_kategori.edit',[
+        //     'assessment_sub_kategori' => $AssessmentSubKategori
+        // ]);
     }
 
     public function update(Request $request, $id){

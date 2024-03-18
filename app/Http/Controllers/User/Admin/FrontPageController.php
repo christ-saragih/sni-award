@@ -74,6 +74,7 @@ class FrontPageController extends Controller
 
             $imageName = time().'.'.$request->gambar_banner->extension();    
             $request->gambar_banner->move(public_path('assets/images/jumbotron'), $imageName); //move file ke assets
+            // $request->gambar_banner->store
             $gambar_banner = '/images/jumbotron/'.$imageName;
         }
         $dataFrontpage = [

@@ -63,7 +63,7 @@ class AuthUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'verify_key' => Str::random(100),
-            'role' => 1,//data dummy
+            'role' => 2,//default evaluator
         ];
         User::create($dataRegistrasi);
         $details = [

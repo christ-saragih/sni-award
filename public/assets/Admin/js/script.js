@@ -376,30 +376,55 @@ function openModalHapusSK(id, name) {
 }
 
 // modal pop up Ubah Assessment Sub Kategori
-function openModalUbahASK(id, name) {
-    document.getElementById("id_kategori").value = id;
-    document.getElementById("id_sub_kategori").value = id;
-    document.getElementById("nama_kategori").value = name;
-    document.getElementById("nama_sub_kategori").value = name;
+// function openModalUbahASK(id, name) {
+//     document.getElementById("id_kategori").value = id;
+//     document.getElementById("id_sub_kategori").value = id;
+//     document.getElementById("nama_kategori").value = name;
+//     document.getElementById("nama_sub_kategori").value = name;
 
-    document
-        .getElementById("form_ubah_sub_kategori")
-        .setAttribute("action", `/admin/assessment_sub_kategori/${id}`);
+//     document
+//         .getElementById("form_ubah_sub_kategori")
+//         .setAttribute("action", `/admin/assessment_sub_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(
-        document.getElementById("ubahSubKategori")
-    );
-    // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
-    modal.show();
+//     const modal = new bootstrap.Modal(
+//         document.getElementById("ubahSubKategori")
+//     );
+//     // const modal = new bootstrap.Modal(document.getElementById('ubahStatusKepemilikan'));
+//     modal.show();
+// }
+
+function openModalUbahASK(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
+    $.ajax({
+        url: `/admin/assessment_sub_kategori/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_sub_kategori select[name="assessment_kategori_id"]').val(response.assessment_kategori_id);
+            $('#form_ubah_sub_kategori input[name="nama"]').val(response.nama);
+
+            // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+            $('#form_ubah_sub_kategori').attr('action', `/admin/assessment_sub_kategori/${id}`);
+
+            // Tampilkan modal edit
+            $('#ubahAssessmentSubKategori').modal('show');
+
+            // Inisialisasi Select2 setelah memuat modal
+            $('#form_ubah_sub_kategori select[name="assessment_kategori_id"]').select2({
+                theme: 'bootstrap-5',
+                width: '100%',
+                dropdownParent: $('#ubahAssessmentSubKategori')
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 // modal pop up Hapus Assessment Sub Kategori
-function openModalHapusASK(id, name) {
-    document.getElementById("id_kategori").value = id;
-    document.getElementById("id_sub_kategori").value = id;
-    document.getElementById("nama_kategori").value = name;
-    document.getElementById("nama_sub_kategori").value = name;
-
+function openModalHapusASK(id) {
     document
         .getElementById("form_hapus_sub_kategori")
         .setAttribute("action", `/admin/assessment_sub_kategori/${id}`);
@@ -531,6 +556,7 @@ function openModalUbahKategoriOrganisasi(id) {
         url: `/admin/kategori_organisasi/${id}/edit`,
         type: 'GET',
         success: function(response) {
+            console.log(response);
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
             $('#form_ubah_kategori_organisasi input[name="nama"]').val(response.nama);
             $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').val(response.tipe_kategori_id);

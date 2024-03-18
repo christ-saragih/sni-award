@@ -15,7 +15,9 @@ use App\Http\Controllers\KecamatanAdminController;
 use App\Http\Controllers\ProfilPesertaController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\AssessmentKategoriController;
 use App\Http\Controllers\AssessmentPertanyaanController;
+use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\PendaftaranPesertaController;
 use App\Http\Controllers\TagBeritaController;
@@ -23,6 +25,7 @@ use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
+use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -103,6 +106,10 @@ Route::prefix('/admin')->group(function () {
 
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
+        Route::get('/internal', [DataInternalController::class, 'index']);
+        Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
+        Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
+        Route::put('/internal/edit/{id}', [DataInternalController::class, 'edit']);
         //end Peserta & Internal
 
         // Tag Berita
@@ -166,6 +173,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
         // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
         // assessment kategori
+        Route::get('/get_assessment_kategori', [App\Http\Controllers\AssessmentKategoriController::class,'getAssessmentKategori'])->name('getAssessmentKategori');
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
         Route::post('/assessment_kategori',[App\Http\Controllers\AssessmentKategoriController::class,'store']);
         Route::get('/assessment_kategori/{id}/ubah',[App\Http\Controllers\AssessmentKategoriController::class,'edit']);
@@ -173,10 +181,11 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/assessment_kategori/{id}',[App\Http\Controllers\AssessmentKategoriController::class,'destroy']);
 
         // assessment sub kategori
+        Route::get('/get_assessment_sub_kategori/{id}', [AssessmentSubKategoriController::class,'getAssessmentSubKategori']);
         Route::get('/assessment_sub_kategori', [App\Http\Controllers\AssessmentSubKategoriController::class,'index']);
         Route::get('/assessment_sub_kategori/tambah', [App\Http\Controllers\AssessmentSubKategoriController::class,'create']);
         Route::post('/assessment_sub_kategori',[App\Http\Controllers\AssessmentSubKategoriController::class,'store']);
-        Route::get('/assessment_sub_kategori/{id}/ubah',[App\Http\Controllers\AssessmentSubKategoriController::class,'edit']);
+        Route::get('/assessment_sub_kategori/{assessment_sub_kategori}/ubah',[App\Http\Controllers\AssessmentSubKategoriController::class,'edit']);
         Route::put('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'update']);
         Route::delete('/assessment_sub_kategori/{id}',[App\Http\Controllers\AssessmentSubKategoriController::class,'destroy']);
 

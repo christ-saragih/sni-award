@@ -46,19 +46,21 @@
         </div>
         <div class="modal-body" style="border: none;">
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
-            <div class="d-flex flex-column gap-2 mb-3">
-                <h6 class="ms-1 mb-0">Kategori</h6>
-                <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="assessment_kategori_id">
-                    <option hidden>Pilih Kategori</option>
-                    @foreach ($assessment_kategori as $data)
-                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="d-flex flex-column gap-2">
-                <h6 class="ms-1 mb-0">Sub Kategori</h6>
-                <input type="text" name="nama" class="form-control form-control-lg ps-4" placeholder="Tuliskan Sub Kategori" style="font-size: 100%;"/>
-            </div>
+                <div class="d-flex flex-column gap-2 mb-3">
+                    <h6 class="ms-1 mb-0">Assessment Kategori</h6>
+                    <select class="form-select" aria-label="Default select example" id="assessmentKategori" name="assessment_kategori_id">
+                    </select>
+                    {{-- <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="assessment_kategori_id">
+                        <option hidden>Pilih Kategori</option>
+                        @foreach ($assessment_kategori as $data)
+                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                        @endforeach
+                    </select> --}}
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <h6 class="ms-1 mb-0">Sub Kategori</h6>
+                    <input type="text" name="nama" class="form-control form-control-lg ps-4" placeholder="Tuliskan Sub Kategori" style="font-size: 100%;"/>
+                </div>
             </div>
         </div>
         <div class="modal-footer gap-2" style="border: none;">
@@ -163,7 +165,7 @@
 {{-- end delete --}}
 
 {{-- Pop up ubah sub kategori --}}
-<div class="modal fade" id="ubahSubKategori" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="ubahAssessmentSubKategori" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content" id="form_ubah_sub_kategori" method="POST">
         @method('PUT')
@@ -172,17 +174,19 @@
             <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Sub Kategori</h1>
         </div>
         <div class="modal-body" style="border: none;">
-            <div action="" class="pb-0 mb-0">
-            <div class="d-flex flex-column gap-2">
-                <h6 class="ms-1 mb-0">Sub Kategori</h6>
-                <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="assessment_kategori_id">
-                    <option hidden>Pilih Kategori</option>
-                    @foreach ($assessment_kategori as $data)
-                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                    @endforeach
-                </select>
-                <input type="text" id="nama_sub_kategori" name="nama" class="form-control form-control-lg ps-4" style="font-size: 100%;"/>
-            </div>
+            <div class="d-flex flex-column gap-2 pb-0 mb-0">
+                <div class="d-flex flex-column gap-2 mb-3">
+                    <h6 class="ms-1 mb-0">Assessment Kategori</h6>
+                    <select class="form-select form-control-lg ps-4" name="assessment_kategori_id" aria-label="Default select example">
+                        @foreach ($assessment_kategori as $ak)
+                        <option value="{{ $ak->id }}">{{ $ak->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <h6 class="ms-1 mb-0">Sub Kategori</h6>
+                    <input type="text" id="nama_sub_kategori" name="nama" class="form-control form-control-lg ps-4" style="font-size: 100%;"/>
+                </div>
             </div>
         </div>
         <div class="modal-footer gap-2" style="border: none;">
@@ -416,18 +420,13 @@
                                 Ubah
                             </button>
                             </a> --}}
-                            <button onclick="openModalUbahASK('{{ $ask->id }}', ' {{ $ask->nama }} ')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
+                            <button onclick="openModalUbahASK('{{ $ask->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
                             {{-- <a href="#hapusKategori" class="btn btn-hapus" data-bs-toggle="modal" role="button">Hapus</a> --}}
-                            <button onclick="openModalHapusASK('{{ $ask->id }}', ' {{ $ask->nama }} ')" class="btn btn-hapus">Hapus</button>
+                            <button onclick="openModalHapusASK('{{ $ask->id }}')" class="btn btn-hapus">Hapus</button>
                         </div>
                         </td>
                     </tr>
                     @endforeach
-
-                    <div id="hidden-data" style="display: none">
-                    <input type="hidden" id="id_sub_kategori">
-                    <input type="hidden" id="nama_sub_kategori">
-                    </div>
                 </tbody>
                 </table>
             </div>
@@ -447,4 +446,31 @@
         </div>
     </div>
 </div>
-@endsection('content')
+
+<script>
+    $(document).ready(function() {
+        $('#assessmentKategori').select2({
+            theme: 'bootstrap-5',
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            dropdownParent: $('#tambahSubKategori'),
+            // minimumResultsForSearch: Infinity,
+            placeholder:'Pilih Assessment Kategori',
+            ajax: {
+                url: "{{route('getAssessmentKategori')}}",
+                processResults: function({data}) {
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                id: item.id,
+                                text: item.nama
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+@endsection()
+

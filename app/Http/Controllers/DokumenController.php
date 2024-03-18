@@ -14,7 +14,7 @@ class DokumenController extends Controller
     {
         $dokumen = Dokumen::get();
         // dd($dokumen[0]->nama);
-        return view('Admin.dokumen.index',['dokumen' => $dokumen]);
+        return view('admin.dokumen.index',['dokumen' => $dokumen]);
     }
 
     /**
@@ -22,7 +22,7 @@ class DokumenController extends Controller
      */
     public function create()
     {
-        return view('Admin.dokumen.create');
+        return view('admin.dokumen.create');
     }
 
     /**
