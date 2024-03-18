@@ -24,6 +24,7 @@ use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
+use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -105,6 +106,10 @@ Route::prefix('/admin')->group(function () {
 
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
+        Route::get('/internal', [DataInternalController::class, 'index']);
+        Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
+        Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
+        Route::put('/internal/edit/{id}', [DataInternalController::class, 'edit']);
         //end Peserta & Internal
 
         // Tag Berita
