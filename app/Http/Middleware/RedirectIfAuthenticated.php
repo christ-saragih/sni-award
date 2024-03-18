@@ -23,7 +23,8 @@ class RedirectIfAuthenticated
             //     return redirect(RouteServiceProvider::DASHBOARD);
             // }
             if (Auth::guard('peserta')->check()) {
-                return redirect(RouteServiceProvider::DASHBOARD);
+                // return redirect(RouteServiceProvider::DASHBOARD);
+                return redirect('/peserta');
             }
             elseif (Auth::guard('web')->check()) {
                 return redirect('/admin/dashboard');

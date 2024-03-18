@@ -17,14 +17,12 @@ use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\KategoriOrganisasiController;
+use App\Http\Controllers\PendaftaranPesertaController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
-<<<<<<< HEAD
 use App\Http\Controllers\User\Admin\DataPesertaController;
-=======
 use App\Http\Controllers\TipeKategoriController;
->>>>>>> c9d0381f9cfe201e2c21de6009e28c9df51fb69c
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -41,12 +39,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
-// Route::get('/admin', [HomeAdminController::class, 'index']);
-Route::get('/peserta',[HomePesertaController::class, 'index']);
-Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
-Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -66,10 +59,14 @@ Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middlewa
 
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 
-Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
-    Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
+    // Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+    Route::get('/',[HomePesertaController::class, 'index']);
     Route::get('/profil',[ProfilPesertaController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+    // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\::class, 'index']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentPesertaController::class, 'index']);
+
 });
 //end peserta
 
