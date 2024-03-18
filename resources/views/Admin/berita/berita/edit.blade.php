@@ -77,7 +77,9 @@
         $('#tagBerita').select2({
             theme: 'bootstrap-5',
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-            placeholder:'Pilih Tipe Kategori',
+            placeholder:'Pilih Tag Berita',
+            closeOnSelect: false,
+            allowClear: true,
             ajax: {
                 url: "{{route('getTagBerita')}}",
                 processResults: function({data}) {
