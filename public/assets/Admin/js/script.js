@@ -521,6 +521,7 @@ function openModalHapusDokumen(id) {
 
     modal.show();
 }
+// End Dokumen
 
 // Kategori Organisasi
 // modal pop up Ubah
@@ -534,16 +535,23 @@ function openModalUbahKategoriOrganisasi(id) {
             $('#form_ubah_kategori_organisasi input[name="nama"]').val(response.nama);
             $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').val(response.tipe_kategori_id);
 
+            // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+            $('#form_ubah_kategori_organisasi').attr('action', `/admin/kategori_organisasi/${id}`);
+
             // Tampilkan modal edit
             $('#ubahKategoriOrganisasi').modal('show');
+
+            // Inisialisasi Select2 setelah memuat modal
+            $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').select2({
+                theme: 'bootstrap-5',
+                width: '100%',
+                dropdownParent: $('#ubahKategoriOrganisasi')
+            });
         },
         error: function(xhr, status, error) {
             console.error('Error:', error);
         }
     });
-
-    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $('#form_ubah_kategori_organisasi').attr('action', `/admin/kategori_organisasi/${id}`);
 }
 
 // modal pop up Hapus
@@ -556,6 +564,7 @@ function openModalHapusKategoriOrganisasi(id) {
 
     modal.show();
 }
+// End Ketegori Organisasi
 
 // Tipe Kategori
 // modal pop up Ubah
@@ -590,3 +599,4 @@ function openModalHapusTipeKategori(id) {
 
     modal.show();
 }
+// End Tipe Kategori
