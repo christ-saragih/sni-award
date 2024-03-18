@@ -12,24 +12,21 @@
                 <form action="{{ route('assessment_pertanyaan.store') }}" method="POST">
                     @csrf
                     <div class="form-group mb-4">
-                        <label for="kategori">Kategori</label>
+                        <label>Kategori</label>
                         <select id="assessment_kategori" class="form-control mt-2">
-                            <option value="">Pilih Kategori</option>
+                            {{-- <option value="">Pilih Kategori</option>
                             @foreach($assessment_kategori as $kategori)
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="assessment_sub_kategori">Sub Kategori</label>
-                        <select id="assessment_sub_kategori" class="form-control mt-2" name="assessment_sub_kategori_id">
-                            <option value="">Pilih Sub Kategori</option>
-                        </select>
+                        <label>Sub Kategori</label>
+                        <select id="assessment_sub_kategori" class="form-control mt-2" name="assessment_sub_kategori_id"></select>
                     </div>
                     <div class="form-group mb-4">
                         <label for="pertanyaan">Pertanyaan</label>
                         <textarea name="pertanyaan" id="pertanyaan" cols="30" rows="5" class="form-control mt-2" placeholder="Tulis Pertanyaan"></textarea>
-                        {{-- <input type="text" class="form-control mt-2" id="pertanyaan" name="pertanyaan"> --}}
                     </div>
                     <div class="form-group mb-4">
                         <label for="jumlah_jawaban">Jumlah Jawaban</label>
@@ -73,32 +70,80 @@
             container.appendChild(group);
         }
     });
+
+
     $(document).ready(function() {
-        $('#assessment_kategori').on('change', function() {
-            var assessment_kategori_id = $(this).val();
-            var sub_kategori_select = $('#assessment_sub_kategori');
+        $('#assessment_kategori').select2({
+            theme: 'bootstrap-5',
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder:'Pilih Assessment Kategori',
+            ajax: {
+                url: "{{route('getAssessmentKategori')}}",
+                processResults: function({data}) {
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                id: item.id,
+                                text: item.nama
+                            }
+                        })
+                    }
+                }
+            }
+        });
 
-            // Kosongkan opsi sub kategori
-            sub_kategori_select.empty().append('<option value="">Pilih Sub Kategori</option>');
+        $('#assessment_kategori').change(function() {
+            var id = $('#assessment_kategori').val();
+            // console.log(id);
 
-            // Kirim permintaan Ajax
-            $.ajax({
-                url: '/get-sub-kategori-by-kategori',
-                type: 'GET',
-                data: {
-                    assessment_kategori_id
-                },
-                success: function(response) {
-                    $.each(response, function(index, assessment_sub_kategori) {
-                        sub_kategori_select.append('<option value="' + assessment_sub_kategori.id + '">' + assessment_sub_kategori.nama + '</option>');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
+            $('#assessment_sub_kategori').select2({
+                theme: 'bootstrap-5',
+                width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+                placeholder:'Pilih Assessment Sub Kategori',
+                ajax: {
+                    url: "{{url('admin/get_assessment_sub_kategori')}}/"+ id,
+                    processResults: function({data}) {
+                        console.log({data});
+                        return {
+                            results: $.map(data, function(item){
+                                return {
+                                    id: item.id,
+                                    text: item.nama
+                                }
+                            })
+                        }
+                    }
                 }
             });
         });
     });
+
+    // $(document).ready(function() {
+    //     $('#assessment_kategori').on('change', function() {
+    //         var assessment_kategori_id = $(this).val();
+    //         var sub_kategori_select = $('#assessment_sub_kategori');
+
+    //         // Kosongkan opsi sub kategori
+    //         sub_kategori_select.empty().append('<option value="">Pilih Sub Kategori</option>');
+
+    //         // Kirim permintaan Ajax
+    //         $.ajax({
+    //             url: '/get-sub-kategori-by-kategori',
+    //             type: 'GET',
+    //             data: {
+    //                 assessment_kategori_id
+    //             },
+    //             success: function(response) {
+    //                 $.each(response, function(index, assessment_sub_kategori) {
+    //                     sub_kategori_select.append('<option value="' + assessment_sub_kategori.id + '">' + assessment_sub_kategori.nama + '</option>');
+    //                 });
+    //             },
+    //             error: function(xhr, status, error) {
+    //                 console.error('Error:', error);
+    //             }
+    //         });
+    //     });
+    // });
 </script>
 @endsection
 

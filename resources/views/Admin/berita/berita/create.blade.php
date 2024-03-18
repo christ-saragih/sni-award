@@ -48,7 +48,7 @@
                             <label class="fw-bold">Tag Berita</label>
                         </div>
                         <div class="col-9">
-                            <select name="tag_berita[]" id="tagBerita" multiple="multiple"></select>
+                            <select class="form-select" name="tag_berita[]" id="tagBerita" multiple></select>
                         </div>
                     </div>
                     <div class="row g-3 justify-content-end mt-2">
@@ -66,7 +66,9 @@
         $('#tagBerita').select2({
             theme: 'bootstrap-5',
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
-            placeholder:'Pilih Tipe Kategori',
+            placeholder:'Pilih Tag Berita',
+            closeOnSelect: false,
+            allowClear: true,
             ajax: {
                 url: "{{route('getTagBerita')}}",
                 processResults: function({data}) {

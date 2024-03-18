@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class AssessmentKategoriController extends Controller
 {
+    public function getAssessmentKategori() {
+        $assessment_kategori = AssessmentKategori::where('nama','LIKE', '%'.request('q').'%')->paginate(10);
+        return response()->json($assessment_kategori);
+    }
     //
     public function index()
     {
@@ -39,12 +43,13 @@ class AssessmentKategoriController extends Controller
         return redirect('/admin/assessment')->with('success','Kategori berhasil ditambahkan');
     }
 
-    public function edit($id)
+    public function edit(AssessmentKategori $assessment_kategori)
     {
-        $AssessmentKategori = AssessmentKategori::find($id);
-        return view('admin.assessment.assessment_kategori.edit',[
-            'assessment_kategori' => $AssessmentKategori
-        ]);
+        return response()->json($assessment_kategori);
+        // $AssessmentKategori = AssessmentKategori::find($id);
+        // return view('admin.assessment.assessment_kategori.edit',[
+        //     'assessment_kategori' => $AssessmentKategori
+        // ]);
     }
 
     public function update(Request $request, $id){
