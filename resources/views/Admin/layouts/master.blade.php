@@ -102,13 +102,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/berita_acara') ? 'active' : '' }}" id="navLink" href="/admin/berita_acara">
+            <a class="nav-link {{ request()->is('admin/faq') ? 'active' : '' }}" id="navLink" href="/admin/faq">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
               <i class="fa fa-commenting"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">FAQ</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-calendar"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
             </a>
           </li>
           <li class="nav-item">
@@ -218,43 +228,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-tasks"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Evaluator</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLink" href="/admin/dokumentasi">
+            <a class="nav-link {{ request()->is('admin/event_sni_award') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
                 <i class="fa fa-tags"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Dokumentasi</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLink" href="/admin/dokumen">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-file-text"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Dokumen</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-calendar"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
+              <span class="nav-link-text" id="navLinkText">Event SNI Award</span>
             </a>
           </li>
         </ul>

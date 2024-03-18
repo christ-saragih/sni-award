@@ -87,7 +87,7 @@
                     <li><a class="dropdown-item" href="{{ route('informasi.acara.index') }}">Acara</a></li>
                   </ul>
                 </div>
-                <a class="nav-link {{ request()->is('unduh') ? 'active' : '' }}" href="/unduh">Unduh</a>
+                <a class="nav-link {{ request()->is('dokumen') ? 'active' : '' }}" href="/dokumen">Dokumen</a>
                 <a class="nav-link {{ request()->is('linimasa') ? 'active' : '' }}" href="/linimasa">Linimasa</a>
                 <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="/faq">FAQ</a>
                 <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a>

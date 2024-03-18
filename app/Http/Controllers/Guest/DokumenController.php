@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UnduhController extends Controller
+class DokumenController extends Controller
 {
     public function index() {
-        return view('guest.unduh.index');
+        return view('guest.dokumen.index');
     }
 }

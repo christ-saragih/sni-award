@@ -10,6 +10,7 @@ use App\Http\Controllers\InternalAdminController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\PesertaAdminController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
@@ -44,7 +45,7 @@ Route::get('/informasi/berita/detail', [App\Http\Controllers\Guest\BeritaControl
 Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
 Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
 
-Route::get('/unduh', [App\Http\Controllers\Guest\UnduhController::class, 'index']);
+Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
 
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);
@@ -107,6 +108,9 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
+
+        // Penjadwalan
+        Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
 
         // Tag Berita
         Route::get('/tag_berita', [TagBeritaController::class, 'index'])->name('tag_berita.index');
