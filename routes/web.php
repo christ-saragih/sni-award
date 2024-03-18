@@ -12,7 +12,7 @@ use App\Http\Controllers\KotaAdminController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
-use App\Http\Controllers\ProfilPesertaController;
+use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentPertanyaanController;
@@ -20,6 +20,7 @@ use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
@@ -41,7 +42,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
 Route::get('/peserta',[HomePesertaController::class, 'index']);
-Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+Route::get('/peserta/profil',[PesertaProfilController::class, 'index']);
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
@@ -64,8 +65,14 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 
 Route::middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
-    Route::get('/profil',[ProfilPesertaController::class, 'index']);
+    Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+
+    //Peserta
+        //Peserta Kontak
+        Route::get('/peserta_kontak',[PesertaKontakController::class, 'index'])->name('peserta.kontak.index');
+        Route::get('/peserta_kontak/tambah', [PesertaKontakController::class, 'create'])->name('peserta.kontak.create'); 
+        Route::post('/peserta_kontak', [PesertaKontakController::class, 'store'])->name('peserta.kontak.store');
 });
 //end peserta
 
@@ -223,6 +230,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/kategori_organisasi/{kategori_organisasi}/edit', [KategoriOrganisasiController::class, 'edit'])->name('kategori_organisasi.edit');
         Route::put('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'update'])->name('kategori_organisasi.update');
         Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
+
+        
     });
 });
 // end User
