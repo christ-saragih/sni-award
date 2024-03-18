@@ -20,15 +20,9 @@ use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
-<<<<<<< HEAD
 use App\Http\Controllers\PesertaKontakController;
-=======
-<<<<<<< HEAD
 use App\Http\Controllers\User\Admin\DataPesertaController;
-=======
->>>>>>> 4056ac68c7b320d0580161b64d33b230d980e61c
 use App\Http\Controllers\TipeKategoriController;
->>>>>>> c9d0381f9cfe201e2c21de6009e28c9df51fb69c
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
