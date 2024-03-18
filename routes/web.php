@@ -68,6 +68,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentPesertaController::class, 'index']);
 
 });
+
 //end peserta
 
 //User
@@ -113,6 +114,7 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/tag_berita/{tag_berita}', [TagBeritaController::class, 'destroy'])->name('tag_berita.destroy');
 
         //berita
+        Route::get('/get_tag_berita', [BeritaController::class, 'getTagBerita'])->name('getTagBerita');
         Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
         Route::get('/berita/tambah', [BeritaController::class, 'create'])->name('berita.create');
         Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
