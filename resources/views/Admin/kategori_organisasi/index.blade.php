@@ -19,10 +19,6 @@
                 <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Tipe Kategori</h6>
                     <select class="form-select" aria-label="Default select example" id="tipeKategori" name="tipe_kategori_id">
-                        {{-- <option hidden>Pilih tipe Kategori</option>
-                        @foreach ($tipe_kategori as $tk)
-                            <option value="{{ $tk->id }}">{{ $tk->nama }}</option>
-                        @endforeach --}}
                     </select>
                 </div>
             </div>
@@ -76,14 +72,10 @@
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Tipe Kategori</h6>
-                        <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="tipe_kategori_id">
-                            <option hidden>Pilih Kategori</option>
+                        <select class="form-select form-control-lg ps-4" name="tipe_kategori_id" aria-label="Default select example">
                             @foreach ($tipe_kategori as $tk)
                             <option value="{{ $tk->id }}">{{ $tk->nama }}</option>
                             @endforeach
-                            {{-- @foreach ($tipe_kategori as $tk)
-                                <option value="{{ $tk->id }}" {{ $kategori_organisasi->tipe_kategori_id == $tk->id ? 'selected' : '' }}>{{ $tk->nama }}</option>
-                            @endforeach --}}
                         </select>
                     </div>
                 </div>
@@ -248,7 +240,6 @@
 
 <script>
     $(document).ready(function() {
-        // Inisialisasi Select2 pada elemen select dengan id 'tipe_kategori'
         $('#tipeKategori').select2({
             theme: 'bootstrap-5',
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
