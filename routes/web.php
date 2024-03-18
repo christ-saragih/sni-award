@@ -49,7 +49,9 @@ Route::get('/unduh', [App\Http\Controllers\Guest\UnduhController::class, 'index'
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 
 Route::middleware(['guest:peserta'])->group(function () {
 

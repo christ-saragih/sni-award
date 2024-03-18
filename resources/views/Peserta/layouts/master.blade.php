@@ -93,16 +93,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/riwayat') ? 'active' : '' }}" id="navLink" href="/peserta/riwayat">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-file-text"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Riwayat</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link {{ request()->is('peserta/pendaftaran') ? 'active' : '' }}" id="navLink" href="/peserta/pendaftaran">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
@@ -112,6 +102,16 @@
               <span class="nav-link-text" id="navLinkText">Pendaftaran</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('peserta/riwayat*') ? 'active' : '' }}" id="navLink" href="/peserta/riwayat">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-file-text"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Riwayat</span>
+            </a>
+          </li> 
         </ul>
       </div>
     </aside>

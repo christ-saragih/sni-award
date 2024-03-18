@@ -17,7 +17,7 @@
   <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
     <div class="content-profil py-5">
       <div class="d-flex flex-column text-center justify-content-center gap-3">
-        <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="mx-auto" alt="">
+        <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
         <button class="btn mx-auto mb-1">Edit Profil</button>
         <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
       </div>
