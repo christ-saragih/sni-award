@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('registrasi_evaluator', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->mediumInteger('registrasi_id')->unsigned();
-            $table->tinyInteger('stage')->unsigned();
+            $table->integer('registrasi_id')->unsigned();
+            $table->tinyInteger('stage_id')->unsigned();
             $table->integer('evaluator_id')->unsigned();
             $table->integer('lead_evaluator_id')->unsigned();
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
-            $table->foreign('stage')->references('id')->on('stage');
+            $table->foreign('stage_id')->references('id')->on('stage');
             $table->foreign('evaluator_id')->references('id')->on('users');
             $table->foreign('lead_evaluator_id')->references('id')->on('users');
             $table->timestamps();
