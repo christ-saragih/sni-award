@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('evaluator_id')->unsigned();
             $table->integer('lead_evaluator_id')->unsigned();
             $table->timestamps();
+          
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->enum('role_by', ['User', 'Peserta'])->nullable(true);

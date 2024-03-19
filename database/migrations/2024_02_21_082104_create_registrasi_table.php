@@ -20,13 +20,13 @@ return new class extends Migration
             $table->tinyInteger('stage_id')->unsigned();
             $table->tinyInteger('kategori_organisasi_id')->unsigned();
             $table->timestamps();
-
+          
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
-
+          
             $table->foreign('status_id')->references('id')->on('status');
             $table->foreign('stage_id')->references('id')->on('stage');
             $table->foreign('peserta_id')->references('id')->on('peserta');
