@@ -19,6 +19,7 @@ use App\Http\Controllers\AssessmentKategoriController;
 use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
+use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
@@ -41,10 +42,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/informasi/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index'])->name("informasi.berita.index");
+Route::get('/informasi/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
+Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
+Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
+
+Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
+
+Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
+Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
-// Route::get('/peserta',[HomePesertaController::class, 'index']);
+Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
@@ -103,6 +114,9 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
+        
+        //Penjadwalan
+        Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
 
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
