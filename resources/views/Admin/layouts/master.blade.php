@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <title>Admin || SNI Award 2023</title>
 
     <!-- Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous"
     />
 
     <!-- Arimo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
     />
 
     <!-- Josefin Sans Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet"
     />
 
     <!-- Poppins Font -->
@@ -37,21 +37,25 @@
 
     <!-- icon -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
     <!-- Select2 -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" /> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- Or for RTL support -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" /> --}}
 
     <!-- CSS Admin -->
     <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
 </head>
 
 <body style="background-color: #ECE4E4;">
-  {{-- jquery CDN --}}
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    {{-- jquery CDN --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
@@ -68,7 +72,7 @@
           class="navbar-brand m-0"
           id="navbarBrand"
           href="/"
-        
+
         >
           <img
             src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
@@ -102,7 +106,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/faq') ? 'active' : '' }}" id="navLink" href="/admin/faq">
+            <a class="nav-link {{ request()->is('admin/berita_acara') ? 'active' : '' }}" id="navLink" href="/admin/berita_acara">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -112,21 +116,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-calendar"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/berita') || request()->is('admin/acara') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
+            <a class="nav-link" id="navLinkInformasi" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Informasi</span> 
+              <span class="nav-link-text" id="navLinkText">Informasi</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftInformasi"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuInformasi">
@@ -135,7 +129,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Berita</span> 
+                  <span class="nav-link-text dropdown">Berita</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -143,7 +137,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Acara</span> 
+                  <span class="nav-link-text dropdown">Acara</span>
                 </a>
               </li>
             </ul>
@@ -153,7 +147,7 @@
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span> 
+              <span class="nav-link-text" id="navLinkText">Data Master</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftDataMaster"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuDataMaster">
@@ -162,7 +156,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Konfigurasi</span> 
+                  <span class="nav-link-text dropdown">Konfigurasi</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -170,7 +164,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Assesment</span> 
+                  <span class="nav-link-text dropdown">Assesment</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -178,7 +172,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Dokumen</span> 
+                  <span class="nav-link-text dropdown">Dokumen</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -186,7 +180,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Status Kepemilikan</span> 
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -194,7 +188,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -202,7 +196,7 @@
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                     <i class="fa fa-circle-thin"></i>
                   </div>
-                  <span class="nav-link-text dropdown">Wilayah</span> 
+                  <span class="nav-link-text dropdown">Wilayah</span>
                 </a>
               </li>
             </ul>
@@ -218,7 +212,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/internal') ? 'active' : '' }}" id="navLink" href="/admin/internal">
+            <a class="nav-link {{ request()->is('admin/internal*') ? 'active' : '' }}" id="navLink" href="/admin/internal">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -228,13 +222,43 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/event_sni_award') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
+            <a class="nav-link {{ request()->is('admin/evaluator') ? 'active' : '' }}" id="navLink" href="/admin/evaluator">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-tasks"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Evaluator</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLink" href="/admin/dokumentasi">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
                 <i class="fa fa-tags"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Event SNI Award</span>
+              <span class="nav-link-text" id="navLinkText">Dokumentasi</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLink" href="/admin/dokumen">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-file-text"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Dokumen</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-calendar"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
             </a>
           </li>
         </ul>
@@ -501,7 +525,10 @@
       crossorigin="anonymous"
     ></script>
     <!-- Select2 -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
 
 </body>
