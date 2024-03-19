@@ -173,7 +173,7 @@ nav .fa {
 }
 
 /* dropdown menu */
-.dropdown-menu {
+/* .dropdown-menu {
     margin: 0 !important;
     padding: 0 !important;
     border: none;
@@ -184,22 +184,12 @@ nav .fa {
 
 .dropdownMenu-hidden {
     animation: fadeOut 0.3s ease forwards;
-}
+} */
 
-/* Profil */
+/* Profil dan Riwayat*/
 #tabs-profil {
     position: relative; /* Mengatur posisi relatif */
     z-index: 1; /* Set z-index lebih rendah */
-}
-hr {
-    border: none;
-    height: 20px;
-    background-color: var(--secondary-color);
-    opacity: 100;
-    border-radius: 50px;
-    margin-block: -10px !important;
-    position: relative; /* Mengatur posisi relatif */
-    z-index: 2;
 }
 
 #tabs-profil .nav-item .nav-link {
@@ -252,10 +242,19 @@ hr {
 .content-kontak-form {
     padding-inline: 70px;
 }
-/* Profil end */
 
-/* Profil peserta */
-.content-profil img {
+hr {
+    border: none;
+    height: 20px;
+    background-color: var(--secondary-color);
+    opacity: 100;
+    border-radius: 50px;
+    margin-block: -10px !important;
+    position: relative; /* Mengatur posisi relatif */
+    z-index: 2;
+}
+
+.content-profil img.profil {
     width: 160px;
     height: 160px;
     border-radius: 50%;
@@ -309,6 +308,12 @@ hr {
 
 .content-profil span {
     color: #9fafbf;
+}
+
+.content-profil h6,
+.content-kontak-form h6,
+.content-ubah-password h6 {
+    font-weight: bold;
 }
 
 .content-site-evaluation span {
@@ -407,7 +412,22 @@ textarea:focus {
     position: relative;
 }
 
+.content-ubah-password .fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+}
+
 .content-profil .fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.content-ubah-password .fieldset:not(:first-of-type) {
     display: none;
 }
 
@@ -540,8 +560,147 @@ textarea:focus {
     width: 100%;
     object-fit: cover;
 }
-
 /* Penilaian End */
+
+/* Kategori Pertanyaan Start */
+.kategori-pertanyaan div {
+    width: 360px;
+    background-color: #ddc6c6;
+    border-radius: 10px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: bold;
+    font-size: 175%;
+    color: #552525;
+}
+/* Kategori Pertanyaan End */
+
+/* Pertanyaan */
+.pertanyaan-container div.kategori {
+    width: 360px;
+    background-color: #ddc6c6;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+h3 {
+    font-family: "Josefin Sans", sans-serif;
+    color: #552525;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.pertanyaan-container div.pertanyaan {
+    padding-inline: 100px;
+    padding-block: 40px;
+    margin-top: -35px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.pertanyaan-container div.pertanyaan p {
+    padding-top: 10px;
+    font-size: 137.5%;
+}
+
+/* Jawaban */
+.form-select.kategori_pertanyaan {
+    background-color: #e59b30 !important;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+    border: none;
+    color: white !important;
+    font-family: "Josefin Sans", sans-serif !important;
+    font-size: 127.5% !important;
+    font-weight: 500 !important;
+    border-radius: 10px !important;
+    width: 22%;
+    padding-block: 5px !important;
+}  
+
+.form-select {
+    background-color: white;
+}
+
+.jawaban div div {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+}
+
+.jawaban .active {
+    background-color: #E9ECFA;
+}
+
+/* Table */
+table {
+    font-size: 112.5%;
+}
+
+table button {
+    width: auto !important;
+    border: none !important;
+    font-size: 100% !important;
+    width: 85px !important;
+}
+
+table button:hover {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+table button.btn-upload {
+    background-color: #d12b2b !important;
+}
+
+.table tbody tr th,
+.table tbody tr td {
+    vertical-align: middle;
+}
+
+table button.btn-lihat {
+    background-color: #e59b30 !important;
+}
+
+thead tr {
+    border-bottom: 1px solid #e59b30;
+}
+
+td {
+    border: none;
+}
+
+button.button-detail {
+    background-color: white;
+    color: var(--secondary-color);
+}
+
+button.button-detail:hover {
+    color: var(--secondary-color) !important;
+}
+
+.dropdown-menu.show {
+    border: 1px solid #e59b30;
+    border-radius: 20px;
+}
+
+/* .dropdown-menu.show li {
+    background-color: blue;
+} */
+
+.dropdown-menu.show li a {
+    color: #2B2B28;
+    border-radius: 9px !important;
+    
+    /* border-radius: 20px !important; */
+}
+
+.dropdown-menu.show li a:hover {
+    color: black;
+    background-color: #fdf8f0;
+    /* background-color: red !important; */
+    /* border-radius: 20px !important; */
+}
 
 @media (min-width: 1200px) {
     .sidenav:hover {
