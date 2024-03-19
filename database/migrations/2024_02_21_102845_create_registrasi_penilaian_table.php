@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('registrasi_penilaian', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('registrasi_id')->unsigned();
+            $table->integer('registrasi_id')->unsigned();
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->integer('evaluator_id')->unsigned();
             $table->foreign('evaluator_id')->references('id')->on('users');
             $table->enum('jabatan',['evaluator','lead_evaluator']);
-            $table->tinyInteger('stage')->unsigned();
-            $table->foreign('stage')->references('id')->on('stage');
+            $table->tinyInteger('stage_id')->unsigned();
+            $table->foreign('stage_id')->references('id')->on('stage');
             $table->string('url_dokumen_penilaian');
             $table->integer('skor');
             $table->text('catatan');

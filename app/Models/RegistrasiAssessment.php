@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RegistrasiAssessmentPeserta extends Model
+class RegistrasiAssessment extends Model
 {
     use HasFactory;
 
-    protected $table = 'registrasi_assessment_peserta'; 
+    protected $table = 'registrasi_assessment'; 
 
-    public function pendaftaran_peserta(): BelongsTo
+    public function registrasi(): BelongsTo
     {
-        return $this->belongsTo(PendaftaranPeserta::class);
+        return $this->belongsTo(Registrasi::class);
     }
     
     public function assessment_pertanyaan(): BelongsTo

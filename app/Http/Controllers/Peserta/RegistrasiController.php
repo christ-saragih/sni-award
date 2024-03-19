@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
-use App\Models\PendaftaranPeserta;
+use App\Models\Registrasi;
 use Illuminate\Http\Request;
 
-class PendaftaranPesertaController extends Controller
+class RegistrasiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pendaftaran_peserta = PendaftaranPeserta::get();
+        $registrasi = Registrasi::get();
     }
 
     /**

@@ -7,25 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PendaftaranPeserta extends Model
+class Registrasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'pendaftaran_peserta';
+    protected $table = 'registrasi';
 
     public function peserta(): BelongsTo
     {
         return $this->belongsTo(Peserta::class);
     }
 
-    public function registrasi_assessment_peserta(): HasMany
+    public function registrasi_assessment(): HasMany
     {
-        return $this->hasMany(RegistrasiAssessmentPeserta::class);
+        return $this->hasMany(RegistrasiAssessment::class);
     }
 
-    public function registrasi_dokumen_peserta(): HasMany
+    public function registrasi_dokumen(): HasMany
     {
-        return $this->hasMany(RegistrasiDokumenPeserta::class);
+        return $this->hasMany(RegistrasiDokumen::class);
     }
 
     public function status(): BelongsTo

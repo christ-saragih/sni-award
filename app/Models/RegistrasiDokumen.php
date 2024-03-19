@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RegistrasiDokumenPeserta extends Model
+class RegistrasiDokumen extends Model
 {
     use HasFactory;
 
-    protected $table = 'registrasi_dokumen_peserta';
+    protected $table = 'registrasi_dokumen';
 
     public function dokumen(): BelongsTo
     {
         return $this->belongsTo(Dokumen::class);
     }
 
-    public function pendaftaran_peserta(): BelongsTo
+    public function Registrasi(): BelongsTo
     {
-        return $this->belongsTo(PendaftaranPeserta::class);
+        return $this->belongsTo(Registrasi::class);
     }
 }

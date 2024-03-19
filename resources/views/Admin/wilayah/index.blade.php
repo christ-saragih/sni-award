@@ -200,20 +200,28 @@
         <div class="d-flex flex-column gap-2 pb-0 mb-0">
           <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
+            
+            <!-- <datalist name="propinsi_id" id="propinsi">
+              @foreach($provinsi as $data)
+                <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
+              @endforeach  
+            </datalist>
+            <input list="propinsi" name="propinsi" id="propinsi-input" placeholder="Pilih Provinsi" class="form-select form-control-lg ps-4" aria-label="Default select example"> -->
+           
             <select name="propinsi_id" id="propinsi" class="form-select form-control-lg ps-4" aria-label="Default select example">
               <option hidden class="selected">Pilih Provinsi</option>
               @foreach($provinsi as $data)
-              <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
+                <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
               @endforeach
             </select>
           </div>
           <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Nama Daerah</h6>
-            <select name="kota_id" id="kota" class="form-select form-control-lg ps-4" aria-label="Default select example">
+            <!-- <datalist id="kota">
+            </datalist>
+            <input list="kota" name="kota" id="kota-input" class="form-select form-control-lg ps-4" aria-label="Default select example"> -->
+            <select name="kota_id" id="kota"  class="form-select form-control-lg ps-4" aria-label="Default select example">
               <option hidden class="selected">Pilih Daerah Kabupaten/Kota</option>
-              @foreach ($kota as $data)
-               <option value="{{ $data->id }}">{{ $data->kota }}</option>
-              @endforeach
             </select>
           </div>
           <div class="d-flex flex-column gap-2 mb-3">
@@ -243,7 +251,7 @@
         <div class="d-flex flex-column gap-2 pb-0 mb-0">
           <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
-            <select name="propinsi_id" id="propinsi" class="form-select form-control-lg ps-4" aria-label="Default select example">
+            <select name="propinsi_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
               <option hidden class="selected">Pilih Provinsi</option>
               @foreach($provinsi as $data)
               <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
@@ -252,7 +260,7 @@
           </div>
           <div class="d-flex flex-column gap-2 mb-3">
             <h6 class="ms-1 mb-0">Nama Daerah</h6>
-            <select name="kota_id" id="kota" class="form-select form-control-lg ps-4" aria-label="Default select example">
+            <select name="kota_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
               <option hidden class="selected">Pilih Daerah Kabupaten/Kota</option>
               @foreach ($kota as $data)
                <option value="{{ $data->id }}">{{ $data->kota }}</option>

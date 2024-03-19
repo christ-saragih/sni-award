@@ -76,7 +76,8 @@ h1 {
     background-color: white;
 }
 
-.navbar-nav a {
+.navbar-nav a,
+.navbar-nav div {
     color: black;
     font-size: 16px;
     margin-inline: 10px;
@@ -92,6 +93,35 @@ h1 {
     /* padding-inline: 10px; */
     color: white !important;
     font-weight: 500;
+}
+
+.dropdown-toggle {
+    border: none;
+    padding: 0;
+}
+
+.navbar-nav div.active {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.navbar-nav .dropdown button.active {
+    color: white;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    border: 2px solid #3b1919;
+    min-width: 7.2rem !important;
+}
+
+.dropdown-item {
+    margin-inline: 0px !important;
+}
+
+.dropdown-item:hover {
+    background-color: #eee9e9;
+    color: black;
 }
 
 .logo-container .logo-bsn {
@@ -316,6 +346,34 @@ p.description {
     font-weight: 600;
 }
 
+/* acara container */
+.informasi-acara-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 345px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.informasi-acara-container img {
+    width: 85%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.informasi-acara-container .content {
+    text-align: end;
+    margin-inline: 18px;
+}
+
+.informasi-acara-container .content h4 {
+    color: #121221;
+    font-size: 87.5%;
+    font-weight: bold;
+   text-transform: uppercase;
+    margin-block: 30px;
+}
+
 /* faq */
 .faq-container {
     display: flex;
@@ -401,6 +459,13 @@ h2.accordion-header {
     background-repeat: no-repeat; /* Mencegah gambar diulang */
 }
 
+.shape-faq {
+    background-image: url(../images/shape/shape-faq-kanan.png),
+    url(../images//shape/shape-faq-kiri.png);
+    background-position: top right,  bottom left;; 
+    background-repeat: no-repeat; /* Mencegah gambar diulang */
+}
+
 .contact-container .row {
     margin-top: 50px;
 }
@@ -473,7 +538,7 @@ h2.accordion-header {
     box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 1);
     border-radius: 5px;
 }
-.owl-nav .owl-prev {
+#dokumentasi .owl-nav .owl-prev {
     position: absolute;
     top: calc(50% - 25px);
     left: 0;
@@ -481,7 +546,7 @@ h2.accordion-header {
     font-size: 30px !important;
     z-index: 1;
 }
-.owl-nav .owl-next {
+#dokumentasi .owl-nav .owl-next {
     position: absolute;
     top: calc(50% - 25px);
     right: 0;
@@ -489,10 +554,10 @@ h2.accordion-header {
     font-size: 30px !important;
     z-index: 1;
 }
-.owl-dots {
+#dokumentasi .owl-dots {
     text-align: center;
 }
-.owl-dots .owl-dot {
+#dokumentasi .owl-dots .owl-dot {
     height: 10px;
     width: 10px;
     border-radius: 10px;
@@ -501,13 +566,150 @@ h2.accordion-header {
     margin-right: 3px;
     outline: none;
 }
-.owl-dots .owl-dot.active {
+#dokumentasi .owl-dots .owl-dot.active {
     background: var(--secondary-color) !important;
 }
 
-.owl-nav i {
+#dokumentasi .owl-nav i {
     color: white;
 }
+
+
+#kumpulan-acara #slider .slider {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#kumpulan-acara #slider .slider .owl-item.active.center .slider-card {
+    transform: scale(1.15);
+    opacity: 1;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25) !important; 
+}
+#kumpulan-acara #slider .slider-card {
+    box-shadow: 0px 2px 24px 0px rgba(42,42,42,0.54) !important; 
+    background: #fff;
+    padding: 0px;
+    margin: 50px 30px 90px 30px;
+    border-radius: 5px; 
+    transform: scale(0.9);
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+#kumpulan-acara #slider .slider-card img {
+    box-shadow: none;
+    border-radius: 5px;
+    margin-block: 40px;
+}
+
+/* Unduh start */
+#unduh {
+    background-color: #ECE4E4;
+    margin-top: 140px;
+    padding-block: 30px;
+    margin-left: 260px;
+    border-radius: 100px 0 0 0;
+}
+
+#unduh .title {
+    margin-top: 15px;
+    margin-bottom: 55px;
+    margin-left: -260px;
+}
+
+#unduh .title h1 {
+    font-size: 300%;
+    color: #2B2B28;
+}
+
+#unduh .row {
+    margin-right: 85px;
+    margin-left: -175px;
+}
+
+#unduh .item {
+    padding-inline: 3rem !important;  
+}
+
+#unduh .item .card-body {
+    position: relative;
+    border: 5px solid #AD7979;
+    background-color: #FAFAFA;
+    border-radius: 10px;  
+    padding-block: 5rem !important;
+    height: 170px;
+    display: flex; 
+    align-items: center;
+}
+
+#unduh .item .card-body img {
+    position: absolute; 
+    border-radius: 10px;
+    left: -30px;
+    width: 68px;
+    padding-block: 10px;
+    padding-inline: 10px;
+    background-color: white;
+}
+
+#unduh .item .card-body h4 {
+    font-size: 20px;
+    color: #2B2B28;
+    text-align: center;
+    padding-inline: 2rem;
+    margin: 0 auto;
+}
+
+#unduh .owl-nav .owl-prev {
+    position: absolute;
+    top: calc(50% - 45px);
+    left: 0;
+    opacity: 1;
+    font-size: 30px !important;
+    z-index: 1;
+}
+#unduh .owl-nav .owl-next {
+    position: absolute;
+    top: calc(50% - 45px);
+    right: 0;
+    opacity: 1;
+    font-size: 30px !important;
+    z-index: 1;
+}
+
+#unduh .owl-dots .owl-dot {
+    margin-top: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    outline: none;
+}
+
+#unduh .owl-dots .owl-dot span {
+    background-color: #c5a1a1;
+}
+
+#unduh .owl-dots .owl-dot:hover span {
+    background-color: #AD7979;
+}
+
+#unduh .owl-dots .owl-dot.active span{
+    background-color: var(--primary-color);
+} 
+
+#unduh .owl-nav button:hover {
+    background-color: white;
+}
+
+#unduh .owl-nav i {
+    color: #c5a1a1;
+}
+
+#unduh .owl-nav i:hover {
+    color: #AD7979;
+    transition: all 0.3s ease;
+}
+/* Unduh end */
 
 /* Footer */
 footer p {
