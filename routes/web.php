@@ -19,6 +19,7 @@ use App\Http\Controllers\AssessmentKategoriController;
 use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
+use App\Http\Controllers\LembagaSertifikasiController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
@@ -253,6 +254,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/kategori_organisasi/{kategori_organisasi}/edit', [KategoriOrganisasiController::class, 'edit'])->name('kategori_organisasi.edit');
         Route::put('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'update'])->name('kategori_organisasi.update');
         Route::delete('/kategori_organisasi/{kategori_organisasi}', [KategoriOrganisasiController::class, 'destroy'])->name('kategori_organisasi.destroy');
+
+        //LembagaSertifikasi
+        Route::get('/lembaga_sertifikasi',[LembagaSertifikasiController::class, 'index'])->name('lembaga_sertifikasi.index');
+        Route::get('/lembaga_sertifikasi/tambah', [LembagaSertifikasiController::class, 'create'])->name('lembaga_sertifikasi.create'); 
+        Route::post('/lembaga_sertifikasi', [LembagaSertifikasiController::class, 'store'])->name('lembaga_sertifikasi.store');
+        Route::get('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit'); 
+        Route::put('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
+        Route::delete('/lembaga_sertifikasi/delete/{id}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
     });
 });
 // end User
