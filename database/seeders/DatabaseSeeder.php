@@ -36,10 +36,10 @@ class DatabaseSeeder extends Seeder
             DokumenSeeder::class,
             StatusSeeder::class,
             StageSeeder::class,
+            PesertaSeeder::class,
             RegistrasiSeeder::class,
             RegistrasiDokumenSeeder::class,
             RegistrasiAssessmentSeeder::class,
-            PesertaSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([
