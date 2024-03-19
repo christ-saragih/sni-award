@@ -33,7 +33,7 @@ class AuthPesertaController extends Controller
         ];
         if (Auth::guard('peserta')->attempt($infoLogin)) {
             if (Auth::guard('peserta')->user()->email_verified_at != null) {
-                return redirect('/dashboard')->with('success', 'Berhasil masuk');
+                return redirect('/peserta/dashboard')->with('success', 'Berhasil masuk');
             }
             else {
                 // Auth::guard('peserta')->logout();
