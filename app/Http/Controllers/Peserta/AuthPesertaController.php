@@ -33,7 +33,7 @@ class AuthPesertaController extends Controller
         ];
         if (Auth::guard('peserta')->attempt($infoLogin)) {
             if (Auth::guard('peserta')->user()->email_verified_at != null) {
-                return redirect('/dashboard')->with('success', 'Berhasil masuk');
+                return redirect('/peserta/dashboard')->with('success', 'Berhasil masuk');
             }
             else {
                 // Auth::guard('peserta')->logout();
@@ -59,19 +59,21 @@ class AuthPesertaController extends Controller
         $request->validate([
             'email' => 'required|unique:peserta|email',
             'password' => 'required|min:8|confirmed',
+            'kategori_organisasi_id' => 'required',
         ], [
             'email.required' => 'Email Wajib Diisi',
             'email.unique' => 'Email telah terdaftar sebagai peserta',
             'password.required' => 'Password Wajib Diisi',
             'password.min' => 'Panjang Password minimal 8 karakter',
             'password.confirmed' => 'Harap konfirmasi password anda',
+            'kategori_organisasi_id.required' => 'Kategori Organisasi wajib dipilih',
         ]);
         $dataRegistrasi = [
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'verify_key' => Str::random(100),
-            'kategori_organisasi_id' => 1,//data dummy
+            'kategori_organisasi_id' => $request->kategori_organisasi_id,//data dummy
         ];
         Peserta::create($dataRegistrasi);
         $details = [

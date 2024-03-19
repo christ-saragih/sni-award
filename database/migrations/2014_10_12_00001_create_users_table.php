@@ -20,11 +20,13 @@ return new class extends Migration
             $table->enum('status',['aktif','tidak_aktif'])->default('aktif');
             $table->string('password');
             $table->string('verify_key');
+            $table->integer('verified_by')->nullable();
+            $table->timestamp('verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
-$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
 

@@ -20,11 +20,15 @@ trait CreatedUpdatedBy
                 $model->role_by = null;
             }
             
-            if (!$model->isDirty('created_by')) {
+            if (!$model->isDirty('created_by') && auth()->check()) {
                 $model->created_by = auth()->user()->id;
+            } elseif (!$model->isDirty('created_by')) {
+                $model->created_by = null;
             }
-            if (!$model->isDirty('updated_by')) {
+            if (!$model->isDirty('updated_by') && auth()->check()) {
                 $model->updated_by = auth()->user()->id;
+            } elseif (!$model->isDirty('updated_by')) {
+                $model->updated_by = null;
             }
         });
 

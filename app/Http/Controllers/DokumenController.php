@@ -12,8 +12,9 @@ class DokumenController extends Controller
      */
     public function index()
     {
-        $dokumen = Dokumen::all();
-        return view('Admin.dokumen.index', compact(['dokumen']));
+        $dokumen = Dokumen::get();
+        // dd($dokumen[0]->nama);
+        return view('admin.dokumen.index',['dokumen' => $dokumen]);
     }
 
     /**
@@ -21,7 +22,7 @@ class DokumenController extends Controller
      */
     public function create()
     {
-        return view('Admin.dokumen.create');
+        return view('admin.dokumen.create');
     }
 
     /**
@@ -31,13 +32,14 @@ class DokumenController extends Controller
     {
         $request->validate([
             'nama' => 'required',
+            'status' => 'required',
         ], [
             'nama.required' => 'Nama Dokumen Wajib Diisi!'
         ]);
 
         Dokumen::create([
             'nama' => $request->nama,
-            'status' => 'proses',
+            'status' => $request->status,
         ]);
 
         return redirect()->route('dokumen.index')->with('success', 'Dokumen Berhasil Dibuat');
@@ -56,7 +58,7 @@ class DokumenController extends Controller
      */
     public function edit(Dokumen $dokumen)
     {
-        return view('Admin.dokumen.edit', compact('dokumen'));
+        return response()->json($dokumen);
     }
 
     /**
@@ -65,10 +67,14 @@ class DokumenController extends Controller
     public function update(Request $request, Dokumen $dokumen)
     {
         $request->validate([
-            'nama' => 'required'
+            'nama' => 'required',
+            'status' => 'required'
         ]);
 
-        $dokumen->update($request->all());
+        $dokumen->update([
+            'nama' => $request->nama,
+            'status' => $request->status,
+        ]);
 
         return redirect()->route('dokumen.index')->with('success', 'Dokumen Berhasi Diubah');
     }
