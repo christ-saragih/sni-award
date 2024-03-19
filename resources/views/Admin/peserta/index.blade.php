@@ -1,67 +1,35 @@
 @extends('admin.layouts.master')
-
 @section('content')
+    <main>
+        <style>
 
-
-<div class="tab-pane" role="tabpanel">
-  <div class="content-profil pt-4 pb-5">
-      <div class="container mt-4">
-        <table class="table">
-          <thead>
-          <tr>
-            <th class="ps-3" scope="col">No</th>
-            <th scope="col">Nama Peserta</th>
-            <th scope="col">Email</th>
-            <th scope="col">No. Telepon</th>
-            <th scope="col" class="text-center">Aksi</th>
-          </tr>
-          </thead>
-          <tbody>
-
-            
-            <tr>
-              <th class="ps-3" scope="row">1</th>
-              <td>Pertamina</td></td>
-              <td>pertamina@gmail.com</td>
-              <td>08123456789</td>
-              <td>
-                <div class="d-flex justify-content-center gap-2">
-                  <button class="btn btn-ubah" data-bs-toggle="modal" role="button">Detail</button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <th class="ps-3" scope="row">2</th>
-              <td>PT Wilmar Nabati Indonesia</td></td>
-              <td>wilmar.nabati.indonesia@gmail.com</td>
-              <td>08123456789</td>
-              <td>
-                <div class="d-flex justify-content-center gap-2">
-                  <button class="btn btn-ubah" data-bs-toggle="modal" role="button">Detail</button>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <th class="ps-3" scope="row">3</th>
-              <td>PT Adhya Tirta Batam</td></td>
-              <td>adhya.tirta.batam@gmail.com</td>
-              <td>08123456789</td>
-              <td>
-                <div class="d-flex justify-content-center gap-2">
-                  <button class="btn btn-ubah" data-bs-toggle="modal" role="button">Detail</button>
-                </div>
-              </td>
-            </tr>
-
-        
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-</div>
-
-
+        </style>
+        <section class="bg-light container-fluid rounded rounded-lg px-4 py-4">
+            <table class="table align-items-center mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>No Telfon</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($peserta as $peserta)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $peserta->nama }}</td>
+                            <td>{{ $peserta->email }}</td>
+                            <td>-</td>
+                            {{-- <td>{{ !$peserta->peserta_profil->no_hp ? '-' : ($peserta->peserta_profil->no_hp) }}</td> --}}
+                            <td>
+                                <button class="btn" role="button" style="background-color: #E59B30; font-weight: 600;">Detail</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
+    </main>
 @endsection

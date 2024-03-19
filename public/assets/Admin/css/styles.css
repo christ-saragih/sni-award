@@ -240,8 +240,6 @@ hr {
     border: 1px solid #c17d2d;
 }
 
-
-
 .content-profil button,
 .modal-footer button,
 a.btn {
@@ -268,23 +266,6 @@ a.btn:hover {
     transition: all 0.3s ease;
 }
 
-.content-profil button.nonactive {
-    font-weight: 600;
-    background-color: white;
-    color: #c17d2d;
-    border-radius: 15px;
-    border: 3.5px solid #c17d2d;
-    width: 15%;
-}
-
-.content-profil button.nonactive:hover {
-    font-weight: 700;
-    background-color: var(--primary-color);
-    color: white;
-    transition: all 0.3s ease;
-}
-
-
 .content-profil div.nonactive,
 .modal-footer div.nonactive {
     font-weight: 700;
@@ -310,10 +291,6 @@ a.btn:hover {
     color: #9fafbf;
 }
 
-h6 {
-    font-weight: bold;
-}
-
 .content-site-evaluation span {
     color: #9fafbf;
     font-size: 112.5%;
@@ -330,21 +307,6 @@ textarea {
 textarea {
     border: 1px solid #9fafbf;
     border-radius: 15px !important;
-    font-family: "Arimo", sans-serif;
-}
-
-#inputGroupFile1,
-#inputGroupFile2,
-#inputGroupFile3 {
-    width: 90px;
-    color: transparent;
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-}
-
-.form-control {
-    border: 1px solid #9fafbf;
-    border-radius: 15px;
     font-family: "Arimo", sans-serif;
 }
 
@@ -373,7 +335,7 @@ textarea {
 
 .custom-file-button input[type="file"]:focus {
     box-shadow: none;
-}   
+}
 
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -584,14 +546,8 @@ table button.btn-hapus {
 }
 
 table button.btn-ubah,
-    button.btn-tambah {
+table a.btn-ubah {
     background-color: #e59b30 !important;
-    border: none;
-}
-
-button.btn-tambah:hover {
-    background-color: #e59b30 !important;
-    color: white;
     border: none;
 }
 
