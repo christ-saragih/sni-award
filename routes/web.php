@@ -127,6 +127,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
         Route::put('/faq/{id}',[FaqAdminController::class,'update']);
         Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
+
+        // FAQ
+        Route::get('/get_faq/{id}', [FaqAdminController::class,'getFaq']);
+        Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
+        Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store'); 
+        Route::get('/faq/tambah', [FaqAdminController::class,'create']);
+        Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
+        Route::put('/faq/{id}',[FaqAdminController::class,'update']);
+        Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
         
         //Penjadwalan
         Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
