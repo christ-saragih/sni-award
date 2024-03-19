@@ -15,7 +15,7 @@ class RegistrasiSeeder extends Seeder
     {
         DB::table('registrasi')->insert([
             'tahun' => fake()->year(),
-            'peserta_id' => null,
+            'peserta_id' => 1,
             'status_id' => 1,
             'stage_id' => 1,
             'kategori_organisasi_id' => 1,

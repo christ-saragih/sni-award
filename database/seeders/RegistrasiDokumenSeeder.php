@@ -15,8 +15,8 @@ class RegistrasiDokumenSeeder extends Seeder
     {
         DB::table('registrasi_dokumen')->insert([
             'registrasi_id' => 1,
-            'dokumen_id' => null,
-            'url_dokumen' => null,
+            'dokumen_id' => 1,
+            'url_dokumen' => 'qwertyuiop',
             'status' => 'proses',
             'feedback' => 'asdfg',
 
