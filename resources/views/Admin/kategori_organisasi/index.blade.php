@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Pop Up Tambah Kategori Organisasi -->
-<div class="modal fade" id="tambahKategoriOrganisasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="tambahKategoriOrganisasi" role="dialog" aria-hidden="true" aria-labelledby="exampleModalToggleLabel">
     <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content" method="POST" action="/admin/kategori_organisasi">
         @csrf
@@ -18,11 +18,7 @@
                 </div>
                 <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Tipe Kategori</h6>
-                    <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="tipe_kategori_id">
-                        <option hidden>Pilih tipe Kategori</option>
-                        @foreach ($tipe_kategori as $tk)
-                            <option value="{{ $tk->id }}">{{ $tk->nama }}</option>
-                        @endforeach
+                    <select class="form-select" aria-label="Default select example" id="tipeKategori" name="tipe_kategori_id">
                     </select>
                 </div>
             </div>
@@ -75,15 +71,11 @@
                         <input type="text" name="nama" class="form-control" placeholder="Nama Kategori Organisasi">
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
-                        <h6 class="ms-1 mb-0">Status</h6>
-                        <select class="form-select form-control-lg ps-4" aria-label="Default select example" name="tipe_kategori_id">
-                            <option hidden>Pilih Kategori</option>
+                        <h6 class="ms-1 mb-0">Tipe Kategori</h6>
+                        <select class="form-select form-control-lg ps-4" name="tipe_kategori_id" aria-label="Default select example">
                             @foreach ($tipe_kategori as $tk)
                             <option value="{{ $tk->id }}">{{ $tk->nama }}</option>
                             @endforeach
-                            {{-- @foreach ($tipe_kategori as $tk)
-                                <option value="{{ $tk->id }}" {{ $kategori_organisasi->tipe_kategori_id == $tk->id ? 'selected' : '' }}>{{ $tk->nama }}</option>
-                            @endforeach --}}
                         </select>
                     </div>
                 </div>
@@ -166,11 +158,11 @@
         <a class="nav-link active" id="tipe-kategori-tab" data-bs-toggle="tab" href="#tipe-kategori-tabpanel" role="tab" aria-controls="tipe-kategori-tabpanel" aria-selected="true">Tipe Kategori</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="kategori-organisasi-tab" data-bs-toggle="tab" href="#kategori-organisasi-tabpanel" role="tab" aria-controls="kategori-organisasi-tabpanel" aria-selected="false" tabindex="-1">Kategori Organisasi</a>
+        <a class="nav-link" id="kategori-organisasi-tab" data-bs-toggle="tab" href="#kategori-organisasi-tabpanel" role="tab" aria-controls="kategori-organisasi-tabpanel" aria-selected="false" tabindex="-1" style="white-space: nowrap; width: fit-content;">Kategori Organisasi</a>
     </li>
 </ul>
 
-<hr class="p-0">
+<hr class="p-0" style="color: #e59b30; height: 20px;">
 
 <!-- Konten Tipe Kategori Section -->
 <div class="tab-content" id="tab-content">
@@ -245,5 +237,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#tipeKategori').select2({
+            theme: 'bootstrap-5',
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            dropdownParent: $('#tambahKategoriOrganisasi'),
+            // minimumResultsForSearch: Infinity,
+            placeholder:'Pilih Tipe Kategori',
+            ajax: {
+                url: "{{route('tipe_kategori.index')}}",
+                processResults: function({data}) {
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                id: item.id,
+                                text: item.nama
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+</script>
 
 @endsection()

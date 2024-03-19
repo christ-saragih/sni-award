@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StatusKepemilikanSeeder::class,
             UserSeeder::class,
+            UserProfilSeeder::class,
             ProvinsiSeeder::class,
             KotaSeeder::class,
-            FrontPageSeeder::class,
             PesertaSeeder::class,
         ]);
 
