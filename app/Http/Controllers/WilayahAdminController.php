@@ -20,11 +20,15 @@ class WilayahAdminController extends Controller
         ]);
     }
 
-    public function get_kabupaten(Request $request)
+    public function get_kabupaten(int $id_provinsi)
     {
-        $propinsi_id = $request->propinsi_id;
-        $kota = Kota::where('propinsi_id', $propinsi_id)->get();
-   
+
+        $kota = Kota::where('propinsi_id', $id_provinsi)->get();
+
+        return [
+            "data" => $kota
+        ];
+
         foreach($kota as $data) {
             echo "<option value='$data->id'>$data->kota</option>";
         }
