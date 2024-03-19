@@ -12,20 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_profil', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->autoIncrement();
             $table->integer('user_id')->unsigned();
             $table->string('no_hp');
             $table->string('npwp');
             $table->string('no_rekening');
             $table->string('url_cv');
-            $table->string('ulr_anti_penyuapan');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('url_anti_penyuapan');
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
-$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

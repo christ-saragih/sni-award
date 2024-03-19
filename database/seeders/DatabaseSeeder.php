@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             StatusKepemilikanSeeder::class,
             UserSeeder::class,
+            UserProfilSeeder::class,
             ProvinsiSeeder::class,
             KotaSeeder::class,
             FrontPageSeeder::class,
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             RegistrasiSeeder::class,
             RegistrasiDokumenSeeder::class,
             RegistrasiAssessmentSeeder::class,
+            PesertaSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([

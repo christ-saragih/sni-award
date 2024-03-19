@@ -6,21 +6,25 @@
     <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Profil</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Kontak</a>
+    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Ubah Password</a>
+    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Kontak</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Ubah Kata Sandi</a>
   </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
   <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-    <div class="content-profil py-5">
+    <div class="content-profil pt-5">
       <div class="d-flex flex-column text-center justify-content-center gap-3">
-        <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="mx-auto" alt="">
+        <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
         <button class="btn mx-auto mb-1">Edit Profil</button>
         <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
       </div>
+
       <div class="container mt-4">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col-xl-12">
@@ -36,50 +40,8 @@
                 </div>
 
                 <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Legalitas Hukum Organisasi</h6>
-                  </div>
-
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile1">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">SPPT SNI</h6>
-                  </div>
-                  
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile2">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile2">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Surat Keterangan Kemenkeuham </h6>
-                  </div>
-
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile3">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jabatan Tertinggi</h6>
+                      <h6 class="mb-0">Jabatan Tertinggi <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -88,7 +50,7 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Website</h6>
+                      <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -97,7 +59,7 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Tanggal beroperasi</h6>
+                      <h6 class="mb-0">Tanggal Beroperasi <span style="color: #FF0101;">*</span></h6>
                   </div>
 
                   <div class="col-md-4 pe-5">
@@ -125,7 +87,7 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Lembaga sertifikasi</h6>
+                      <h6 class="mb-0">Lembaga Sertifikasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -133,7 +95,7 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Negara tujuan ekspor</h6>
+                      <h6 class="mb-0">Negara Tujuan Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -141,7 +103,7 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Sektor kategori organisasi</h6>
+                      <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -157,7 +119,7 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Sektor kategori organisasi</h6>
+                      <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -192,20 +154,109 @@
     </div>
   </div>
 
+  <!-- Dokumen start -->
   <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-    <div class="content-kontak py-4 mb-4">
-      <div class="d-flex align-items-center justify-content-between text-center mt-2">
-        <h3 class="m-0" style="font-size: 150%; font-weight: bold;">Tambahkan Kontak Penghubung</h3>
-       <i class="fa fa-plus-square fa-3x" style="color: #552525;"></i>
+    <div class="content-profil pt-5 mb-5">
+      <div class="d-flex align-items-center gap-2">
+        <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen</h3>
+        <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
+      </div>
+    <div class="container mt-4">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-xl-12">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body">
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                    <h6 class="mb-0">Legalitas Hukum Organisasi <span style="color: #FF0101;">*</span></h6>
+                  </div>
+                  <div class="container col-md-8 pe-5">
+                    <div class="input-group custom-file-button">
+                      <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
+                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
+                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                    <h6 class="mb-0">SPPT SNI <span style="color: #FF0101;">*</span></h6>
+                  </div>
+                  
+                  <div class="container col-md-8 pe-5">
+                    <div class="input-group custom-file-button">
+                      <label class="input-group-text px-4" for="inputGroupFile2">Unggah</label>
+                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
+                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile2">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                    <h6 class="mb-0">Surat Keterangan Kemenkeuham <span style="color: #FF0101;">*</span></h6>
+                  </div>
+
+                  <div class="container col-md-8 pe-5">
+                    <div class="input-group custom-file-button">
+                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
+                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
+                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile3">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                    <h6 class="mb-0">Kewenangan dan Kebijakan</h6>
+                  </div>
+
+                  <div class="container col-md-8 pe-5">
+                    <div class="input-group custom-file-button">
+                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
+                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
+                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile3">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="px-5 py-4 d-flex justify-content-end gap-3">
+                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
+                  <button type="submit" class="btn" style="width: 13%;">Simpan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  <!-- Dokumen end -->
 
+   <!-- Kontak start -->
+  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
+    <div class="content-kontak py-5 mb-5">
+      <div class="d-flex align-items-center gap-2">
+        <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Tambahkan Kontak Penghubung</h3>
+        <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
+        <i class="fa fa-plus-square fa-2x" style="color: #552525;"></i>
+      </div>
+    </div>
     <div class="content-kontak-form mb-5">
       <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col-xl-12">
-            <div class="card my-5" style="border-radius: 15px;">
+            <div class="card" style="border-radius: 15px;">
               <div class="card-body">
+                <div class="row pt-4 pb-4">
+                      <div class="ps-5 d-flex flex-column gap-3">
+                        <h6 class="mb-0">Kontak Penghubung 1</h6>
+                        <hr class="p-0 flex-fill" style="height: 1px; background-color: #9FAFBF;">
+                      </div>
+                      
+                  </div>
                 <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Nama Penghubung</h6>
@@ -240,17 +291,20 @@
         </div>
       </div>
     </div>
-
-      
   </div>
+  <!-- Kontak end -->
 
-  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
-    <div class="content-ubah-password py-5">
-      <h3 style="font-size: 150%; font-weight: bold;">Ubah Kata Sandi Anda</h3>
+<!-- Ubah password start -->
+  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
+    <div class="content-ubah-password pt-5 mb-5">
+        <div class="d-flex align-items-center gap-2">
+          <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Ubah Kata Sandi</h3>
+          <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
+        </div>
       <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col-xl-12">
-            <div class="card my-5" style="border-radius: 15px;">
+            <div class="card" style="border-radius: 15px;">
               <div class="card-body">
                 <div class="row align-items-center pt-4 pb-3">
                     <div class="col-md-4 ps-5">
@@ -287,5 +341,6 @@
       </div>
     </div>
   </div>
+  <!-- Ubah password end -->
 </div>
 @endsection('content')

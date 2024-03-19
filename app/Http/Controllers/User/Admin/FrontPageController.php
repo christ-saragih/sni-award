@@ -17,7 +17,7 @@ class FrontPageController extends Controller
         $faq = Faq::where('is_popular',  true)->get();
         $unpopular_faq = Faq::where('is_popular', false)->get();
         $dokumentasi = Dokumentasi::get();
-        return view('Admin.front_page.frontpage', [
+        return view('admin.front_page.frontpage', [
             'frontpage' => $frontpage[0],
             'popular_faq' => $faq,
             'faq' => $unpopular_faq,
@@ -31,7 +31,7 @@ class FrontPageController extends Controller
         $faq = Faq::where('is_popular',  true)->get();
         $unpopular_faq = Faq::where('is_popular', false)->get();
         $dokumentasi = Dokumentasi::get();
-        return view('Admin.front_page.edit.frontpage', [
+        return view('admin.front_page.edit.frontpage', [
             'frontpage' => $frontpage[0],
             'popular_faq' => $faq,
             'faq' => $unpopular_faq,
@@ -74,6 +74,7 @@ class FrontPageController extends Controller
 
             $imageName = time().'.'.$request->gambar_banner->extension();    
             $request->gambar_banner->move(public_path('assets/images/jumbotron'), $imageName); //move file ke assets
+            // $request->gambar_banner->store
             $gambar_banner = '/images/jumbotron/'.$imageName;
         }
         $dataFrontpage = [
