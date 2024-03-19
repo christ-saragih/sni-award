@@ -47,6 +47,8 @@ Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraControlle
 
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
 
+Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
+
 // Route::get('/admin', [HomeAdminController::class, 'index']); 
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
