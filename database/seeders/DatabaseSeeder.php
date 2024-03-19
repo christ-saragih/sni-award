@@ -31,6 +31,12 @@ class DatabaseSeeder extends Seeder
             UserProfilSeeder::class,
             ProvinsiSeeder::class,
             KotaSeeder::class,
+            FrontPageSeeder::class,
+            StatusSeeder::class,
+            StageSeeder::class,
+            RegistrasiSeeder::class,
+            RegistrasiDokumenSeeder::class,
+            RegistrasiAssessmentSeeder::class,
             PesertaSeeder::class,
         ]);
 
