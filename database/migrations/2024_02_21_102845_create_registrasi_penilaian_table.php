@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registrasi_penilaian', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('registrasi_id')->unsigned();
+            $table->integer('registrasi_id')->unsigned();
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->integer('evaluator_id')->unsigned();
             $table->foreign('evaluator_id')->references('id')->on('users');
