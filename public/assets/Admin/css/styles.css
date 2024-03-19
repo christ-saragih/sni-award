@@ -584,6 +584,7 @@ table button.btn-hapus {
 }
 
 table button.btn-ubah,
+
     button.btn-tambah {
     background-color: #e59b30 !important;
     border: none;
@@ -592,6 +593,9 @@ table button.btn-ubah,
 button.btn-tambah:hover {
     background-color: #e59b30 !important;
     color: white;
+
+table a.btn-ubah {
+    background-color: #e59b30 !important;
     border: none;
 }
 

@@ -34,8 +34,17 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/styles.css" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
   </head>
   <body>
+    {{-- jquery CDN --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <section id="register">
 
         <div class="content-kiri">
@@ -43,7 +52,7 @@
         </div>
 
         <div class="content-kanan">
-          <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
+          <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" style="user-select: none; pointer-events: none;"/>
           <h1>SNI AWARD</h1>
           <form method="POST" action="/registrasi" style="
             padding: 20px;
@@ -79,10 +88,10 @@
                 <label for="kategori" class="col-form-label">{{ __('Kategori') }}</label>
 
                 <div class="">
-                    <select name="" id="kategori" class="form-select" style="border-radius: 100px;">
-                        <option value="" disabled>--Pilih Kategori--</option>
+                    <select name="kategori_organisasi_id" id="kategori" class="form-select" style="border-radius: 100px; color:black;">
+                        <option value="" selected disabled>--Pilih Kategori--</option>
                         @foreach ($kategori_organisasi as $ko)
-                            <option value="" disabled>{{ $ko->nama }}</option>                        
+                            <option value="{{ $ko->id }}">{{ $ko->nama }}</option>                        
                         @endforeach
                     </select>
 
@@ -140,5 +149,14 @@
         </div>
 
     </section>
+
+    <script>
+        $(document).ready(()=>{
+            $('#kategori').select2({
+                tags: true,
+            });
+
+        });
+    </script>
   </body>
 </html>

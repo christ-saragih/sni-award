@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipekategori;
+use App\Models\TipeKategori;
 use Illuminate\Http\Request;
 
 class TipeKategoriController extends Controller
@@ -12,11 +12,9 @@ class TipeKategoriController extends Controller
      */
     public function index()
     {
-        $tipe_kategori = tipekategori::all();
-        return view('admin.tipekategori.index', [
-            'nama' => 'Data Tipe Kategori',
-            'tipe_kategori' => $tipe_kategori,
-        ]);
+        $tipe_kategori = TipeKategori::where('nama', 'LIKE', '%'.request('q').'%')->paginate(10);
+
+        return response()->json($tipe_kategori);
     }
 
     /**
@@ -24,7 +22,7 @@ class TipeKategoriController extends Controller
      */
     public function create()
     {
-       $tipe_kategori = tipekategori::get();
+        $tipe_kategori = TipeKategori::get();
         return view ('admin.tipekategori.create', ['tipe_kategori'=> $tipe_kategori]);
     }
 
@@ -40,19 +38,19 @@ class TipeKategoriController extends Controller
             'nama.unique' => "Nama sudah ada"
         ]);
          // end validate
-         $data = [
+        $data = [
             'nama' => $request->nama,
-         ];
+        ];
 
         //jika validasi berhasil maka data akan disimpan ke database
-        tipekategori::create($data);
-        return redirect()->route('tipe_kategori.index')->with(['success'=>'tipe kategori berhasil dirubah']); 
+        TipeKategori::create($data);
+        return redirect()->back()->with(['success'=>'tipe kategori berhasil dirubah']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(tipekategori $tipe_kategori)
+    public function show(TipeKategori $tipe_kategori)
     {
         //
     }
@@ -60,10 +58,9 @@ class TipeKategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(TipeKategori $tipe_kategori)
     {
-        $tipe_kategori = tipekategori::find($id);
-        return view('admin.tipekategori.edit',['tipe_kategori' => $tipe_kategori]);
+        return response()->json($tipe_kategori);
     }
 
     /**
@@ -75,10 +72,10 @@ class TipeKategoriController extends Controller
             'nama'=>['required']
         ]) ;
 
-        $tipe_kategori=tipekategori::find($id);
+        $tipe_kategori=TipeKategori::find($id);
         $tipe_kategori->update($request->all());
 
-        return redirect()->route('tipe_kategori.index') -> with('success','Data Berhasil Diubah!');
+        return redirect()->back()->with('success','Data Berhasil Diubah!');
     }
 
     /**
@@ -86,8 +83,8 @@ class TipeKategoriController extends Controller
      */
     public function destroy($id)
     {
-        $tipe_kategori = tipekategori::find($id);
+        $tipe_kategori = TipeKategori::find($id);
         $tipe_kategori->delete();
-        return redirect()->route('tipe_kategori.index')->with('success','Data Telah dihapus!');
+        return redirect()->back()->with('success','Data Telah dihapus!');
     }
 }

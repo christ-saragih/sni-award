@@ -9,15 +9,6 @@
             <br><hr style="color: orange; height: 0.5px;"><br>
             </div>
             <div class="px-3 pt-0 pb-2">
-            {{-- @if($errors->any())
-                <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                </div>
-            @endif --}}
                 <form action="{{ route('berita.index') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3 align-items-center">
@@ -57,42 +48,12 @@
                             <label class="fw-bold">Tag Berita</label>
                         </div>
                         <div class="col-9">
-                            @foreach ($tag_berita as $tag)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="tag{{ $tag->id }}" name="tag_berita[]" value="{{ $tag->id }}">
-                                <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->nama }}</label>
-                            </div>
-                            @endforeach
+                            <select class="form-select" name="tag_berita[]" id="tagBerita" multiple></select>
                         </div>
                     </div>
-                    {{-- <div class="form-group">
-                        <label>Judul Berita</label>
-                        <input name="judul_berita" type="string" class="form-control" placeholder="Tambahkan Judul" value="{{ old('judul_berita') }}">
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label>Kategori</label>
-                        <select name="kategori_berita_id" class="form-control">
-                            @foreach ($kategori as $kategori)
-                                <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
-                    {{-- <div class="form-group">
-                        <label>Tag Berita</label><br>
-                        @foreach ($tag_berita as $tag)
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="tag{{ $tag->id }}" name="tag_berita[]" value="{{ $tag->id }}">
-                            <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->nama }}</label>
-                        </div>
-                        @endforeach
-                    </div> --}}
                     <div class="row g-3 justify-content-end mt-2">
-                        <div class="col-auto">
-                            <button class="btn btn-secondary">Close</button>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                        <a href="/admin/berita" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a>
+                        <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -100,4 +61,29 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('#tagBerita').select2({
+            theme: 'bootstrap-5',
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder:'Pilih Tag Berita',
+            closeOnSelect: false,
+            allowClear: true,
+            ajax: {
+                url: "{{route('getTagBerita')}}",
+                processResults: function({data}) {
+                    console.log(data);
+                    return {
+                        results: $.map(data, function(item){
+                            return {
+                                id: item.id,
+                                text: item.nama
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+</script>
 @endsection

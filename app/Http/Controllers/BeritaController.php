@@ -13,6 +13,12 @@ class BeritaController extends Controller
     // {
     //     $this->middleware(['auth', 'verified']);
     // }
+    public function getTagBerita(){
+        $tag_berita = [];
+        $tag_berita = TagBerita::where('nama', 'LIKE', '%'.request('q').'%')->paginate(10);
+
+        return response()->json($tag_berita);
+    }
 
     public function index()
     {
@@ -21,6 +27,7 @@ class BeritaController extends Controller
         // dd($berita);
         return view('admin.berita.index',compact(['berita','tag_berita']));
     }
+
     public function create()
     {
         $tag_berita = TagBerita::all();
@@ -55,12 +62,12 @@ class BeritaController extends Controller
         // dd($gambar_file->getClientOriginalExtension());
         $gambar_ekstensi = $gambar_file->extension();
         $nama_file = date('ymdhis') . '.' . $gambar_ekstensi;
-        $gambar_file->move(public_path('gambar/user'), $nama_file);
+        $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
 
         $berita = Berita::create([
             'user_id' => 2,//sementara, kalau udah ada auth ambil dari id user di session
-            // 'kategori_berita_id' => $request->kategori_berita_id,
-            // 'slug' => $request->slug,
+            'kategori_berita_id' => 1,
+            'slug' => 'test',
             'judul_berita'=> $request->judul_berita,
             'deskripsi'=> $request->deskripsi,
             'tanggal'=> $request->tanggal,
@@ -113,10 +120,10 @@ class BeritaController extends Controller
             $gambar_file = $request->file('file_gambar');
             $gambar_ekstensi = $gambar_file->extension();
             $nama_file = date('ymdhis') . '.' . $gambar_ekstensi;
-            $gambar_file->move(public_path('gambar/user'), $nama_file);
+            $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
 
             if ($berita->file_gambar) {
-                unlink(public_path('gambar/user/' . $berita->file_gambar));
+                unlink(public_path('gambar/gambar_berita/' . $berita->file_gambar));
             }
         }
 
