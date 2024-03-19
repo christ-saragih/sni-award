@@ -43,6 +43,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
+// Route::get('/admin', [HomeAdminController::class, 'index']);
+// Route::get('/peserta',[HomePesertaController::class, 'index']);
+// Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
+// Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -63,8 +67,7 @@ Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middlewa
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
-    // Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
-    Route::get('/',[HomePesertaController::class, 'index']);
+    Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[ProfilPesertaController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\::class, 'index']);
