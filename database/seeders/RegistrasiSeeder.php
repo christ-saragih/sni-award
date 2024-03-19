@@ -14,12 +14,12 @@ class RegistrasiSeeder extends Seeder
     public function run(): void
     {
         DB::table('registrasi')->insert([
-            'tahun' => '2024',
+            'tahun' => fake()->year(),
             'peserta_id' => 1,
-            'status' => 'open',
-            'stage' => 'pendaftaran',
-            'kategori_organisasi_id' => null,
-            'sekretariat_id' => null
+            'status_id' => 1,
+            'stage_id' => 1,
+            'kategori_organisasi_id' => 1,
+            'sekretariat_id' => 1
         ]);
     }
 }

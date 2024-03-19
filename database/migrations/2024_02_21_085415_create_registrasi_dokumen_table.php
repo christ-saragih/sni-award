@@ -16,18 +16,21 @@ return new class extends Migration
             $table->integer('registrasi_id')->unsigned();
             $table->tinyInteger('dokumen_id')->unsigned();
             $table->string('url_dokumen');
+            $table->enum('status',['proses','ditolak','disetujui']);
             $table->text('feedback');
             $table->timestamp('review_at');
-            $table->integer('review_by');
-            $table->enum('status',['proses','ditolak','disetujui']);
+            // $table->integer('review_by');
+            //$table->foreign('review_by')->references('id')->on('users');
+            $table->timestamps();
 
-            $table->foreign('registrasi_id')->references('id')->on('registrasi');
-            $table->foreign('dokumen_id')->references('id')->on('dokumen');
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
+
+            $table->foreign('registrasi_id')->references('id')->on('registrasi');
+            $table->foreign('dokumen_id')->references('id')->on('dokumen');
 
         });
     }

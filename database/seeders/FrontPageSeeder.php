@@ -15,7 +15,7 @@ class FrontPageSeeder extends Seeder
     {
         $frontpage = [
             [
-                'id' => 1,
+                // 'id' => 1,
                 'judul' => 'Selamat Datang Di Website SNI Award 2024',
                 'keterangan_judul' => 'SNI Award dicanangkan sebagai The National Quality Award of Indonesia sejak tahun 2005',
                 'gambar_banner' => '/images/icon/Frame 2.png',

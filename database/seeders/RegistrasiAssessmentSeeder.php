@@ -15,8 +15,8 @@ class RegistrasiAssessmentSeeder extends Seeder
     {
         DB::table('registrasi_assessment')->insert([
             'registrasi_id' => 1,
-            'assessment_pertanyaan_id' => 'open',
-            'assassessment_jawaban_id' => null,
+            'assessment_pertanyaan_id' => 1,
+            'assessment_jawaban_id' => 1,
             'score' => null
         ]);
     }
