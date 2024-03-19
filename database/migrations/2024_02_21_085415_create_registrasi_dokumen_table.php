@@ -13,21 +13,22 @@ return new class extends Migration
     {
         Schema::create('registrasi_dokumen', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->mediumInteger('registrasi_id')->unsigned();
+            $table->integer('registrasi_id')->unsigned();
             $table->tinyInteger('dokumen_id')->unsigned();
-            $table->string('url_document');
+            $table->string('url_dokumen');
             $table->text('feedback');
             $table->timestamp('review_at');
             $table->integer('review_by');
+            $table->enum('status',['proses','ditolak','disetujui']);
+
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->foreign('dokumen_id')->references('id')->on('dokumen');
-            //$table->foreign('review_by')->references('id')->on('users');
-            $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
-$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
+
         });
     }
 
@@ -36,6 +37,6 @@ $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
      */
     public function down(): void
     {
-        Schema::dropIfExists('registrasi_dokumen');
+        Schema::dropIfExists('registrasi_dokumen_peserta');
     }
 };
