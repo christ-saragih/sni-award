@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\FaqAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
@@ -82,6 +83,9 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+    // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\::class, 'index']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
+
 });
 
 //end peserta
@@ -115,6 +119,23 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
+
+        Route::get('/get_faq/{id}', [FaqAdminController::class,'getFaq']);
+        Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
+        Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store'); 
+        Route::get('/faq/tambah', [FaqAdminController::class,'create']);
+        Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
+        Route::put('/faq/{id}',[FaqAdminController::class,'update']);
+        Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
+
+        // FAQ
+        Route::get('/get_faq/{id}', [FaqAdminController::class,'getFaq']);
+        Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
+        Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store'); 
+        Route::get('/faq/tambah', [FaqAdminController::class,'create']);
+        Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
+        Route::put('/faq/{id}',[FaqAdminController::class,'update']);
+        Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
         
         //Penjadwalan
         Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');

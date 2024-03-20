@@ -20,9 +20,9 @@ return new class extends Migration
             $table->text('feedback');
             $table->timestamp('review_at');
             // $table->integer('review_by');
-
             //$table->foreign('review_by')->references('id')->on('users');
             $table->timestamps();
+
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
             $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
@@ -31,6 +31,7 @@ return new class extends Migration
 
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->foreign('dokumen_id')->references('id')->on('dokumen');
+
         });
     }
 
@@ -39,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('registrasi_dokumen');
+        Schema::dropIfExists('registrasi_dokumen_peserta');
     }
 };
