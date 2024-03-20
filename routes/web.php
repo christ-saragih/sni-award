@@ -45,9 +45,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/informasi/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index'])->name("informasi.berita.index");
-Route::get('/informasi/berita/{berita}/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail'])->name('berita.detail');
+Route::get('/informasi/berita/{berita}/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail'])->name('informasi.berita.detail');
 Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
-Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
+Route::get('/informasi/acara/{acara}/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail'])->name("informasi.acara.detail");
 
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
 

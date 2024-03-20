@@ -33,7 +33,7 @@
                 <p class="description">
                     {{ $berita_terbaru_deskripsi }}
                     {{-- {{ Illuminate\Support\Str::limit($berita_terbaru->deskripsi, 100) }} --}}
-                    <a href="{{ route('berita.detail', $berita_terbaru->id) }}">baca selengkapnya.</a>
+                    <a href="{{ route('informasi.berita.detail', $berita_terbaru->id) }}">baca selengkapnya.</a>
                 </p>
                     {{-- BSN akan mengadakan Seminar Nasional dalam rangka Peringatan
                     Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar
@@ -75,7 +75,7 @@
                     <p>
                     {{ $ber->deskripsi }}
                     </p>
-                    <a href="{{ route('berita.detail', $ber->id) }}" class="btn">Baca Selengkapnya</a>
+                    <a href="{{ route('informasi.berita.detail', $ber->id) }}" class="btn">Baca Selengkapnya</a>
                     {{-- <button class="btn">Baca Selengkapnya</button> --}}
                 </div>
             </div>
