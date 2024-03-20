@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TagBerita extends Model
@@ -19,6 +20,10 @@ class TagBerita extends Model
     public function berita()
     {
         return $this->belongsToMany(Berita::class, 'berita_tag', 'tag_id', 'berita_id');
+    }
+
+    public function berita_tag() : HasMany {
+        return $this->hasMany(BeritaTag::class, 'tag_id', 'id');
     }
 
 }
