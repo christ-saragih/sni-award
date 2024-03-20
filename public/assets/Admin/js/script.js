@@ -664,3 +664,61 @@ function openModalHapusTipeKategori(id) {
     modal.show();
 }
 // End Tipe Kategori
+
+// modal faq start
+// pop up ubah
+function openModalUbahFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_ubah_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahFaq"));
+    modal.show();
+}
+
+// pop up hapus
+function openModalHapusFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_hapus_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+    const modal = new bootstrap.Modal(document.getElementById("hapusFaq"));
+    modal.show();   
+}
+// modal faq end
+
+// modal faq start
+// pop up ubah
+function openModalUbahFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_ubah_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahFaq"));
+    modal.show();
+}
+
+// pop up hapus
+function openModalHapusFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_hapus_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+    const modal = new bootstrap.Modal(document.getElementById("hapusFaq"));
+    modal.show();   
+}
+// modal faq end
