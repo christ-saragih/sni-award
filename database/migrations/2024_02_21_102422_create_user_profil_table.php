@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('user_profil', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->integer('user_id')->unsigned();
-            $table->string('no_hp');
-            $table->string('npwp');
-            $table->string('no_rekening');
-            $table->string('url_cv');
-            $table->string('url_anti_penyuapan');
+            $table->string('no_hp')->nullable(true);
+            $table->string('npwp')->nullable(true);
+            $table->string('no_rekening')->nullable(true);
+            $table->string('url_cv')->nullable(true);
+            $table->string('url_anti_penyuapan')->nullable(true);
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);

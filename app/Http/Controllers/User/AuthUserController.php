@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Mail\AuthUserMail;
 use App\Models\User;
+use App\Models\UserProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -65,16 +66,18 @@ class AuthUserController extends Controller
             'verify_key' => Str::random(100),
             'role' => 2,//default evaluator
         ];
-        User::create($dataRegistrasi);
-        $details = [
-            'name' => $dataRegistrasi['name'],
-            'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'SNI Award',
-            'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$dataRegistrasi['verify_key'],
-        ];
-        Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));
-        
-        // dd(Auth::check());
+        $user = User::create($dataRegistrasi);
+        if ($user) {
+            UserProfil::create(['user_id' => $user->id]);
+            $details = [
+                'name' => $dataRegistrasi['name'],
+                'datetime' => date('Y-m-d H:i:s'),
+                'website' => 'SNI Award',
+                'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$dataRegistrasi['verify_key'],
+            ];
+            Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));    
+        }
+
         if (Auth::guard('web')->check()) {
             return redirect('/admin/dashboard');
         }else {
