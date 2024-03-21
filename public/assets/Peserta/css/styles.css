@@ -614,12 +614,41 @@ h3 {
     font-size: 127.5% !important;
     font-weight: 500 !important;
     border-radius: 10px !important;
-    width: 22%;
+    width: 20%;
     padding-block: 5px !important;
-}  
+} 
+
+.kategori_pertanyaan_single {
+    background-color: #e59b30 !important;
+    border: none;
+    color: white !important;
+    font-family: "Josefin Sans", sans-serif !important;
+    font-size: 127.5% !important;
+    font-weight: 500 !important;
+    border-radius: 10px !important;
+    width: 20%;
+    padding-block: 5px !important;
+}
 
 .form-select {
     background-color: white;
+}
+
+.jawaban label {
+    flex: 0 1 calc(48%);;
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease;
+}
+
+.jawaban-banyak label {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease;
 }
 
 .jawaban div div {
@@ -628,6 +657,19 @@ h3 {
     font-size: 125%;
 }
 
+.jawaban div label {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
 .jawaban .active {
     background-color: #E9ECFA;
 }
@@ -702,35 +744,54 @@ button.button-detail:hover {
     /* border-radius: 20px !important; */
 }
 
-.wrimagecard{	
-	margin-top: 0;
-    margin-bottom: 1.5rem;
-    text-align: left;
+/* Pendaftaran start */
+#pendaftaran .card-container .card {
     position: relative;
-    background: #fff;
-    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    flex: 0 1 calc(30%); /* Mengatur 3 kolom dengan jarak antar elemen */
+    justify-content: center;
+    height: 100px;
+    padding: 40px;
+    text-align: center;
+    font-size: 125%;
+    font-weight: bold;
+    color: #2B2B28;
+    border: 3px solid #CCCCCC;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
-.wrimagecard .fa{
-	position: relative;
-    font-size: 70px;
+
+#pendaftaran .card-container .card.active {
+    border: 3px solid #E1A600;
 }
-a.wrimagecard:hover, .wrimagecard-topimage:hover {
-    box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+
+#pendaftaran .card-container .card.active .ceklis-container {
+    border: 1px solid #E1A600;
 }
-.wrimagecard-topimage a {
-    width: 100%;
-    height: 100%;
+
+#pendaftaran .card-container .card.active .ceklis-container i {
     display: block;
-    padding: 20px;
 }
-.wrimagecard-topimage a {
-    border-bottom: none;
-    text-decoration: none;
-    color: #525c65;
-    transition: color 0.3s ease;
+
+#pendaftaran .card-container .card .ceklis-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    top: 5px;
+    right: 10px;
 }
+
+#pendaftaran .card-container .card .ceklis-container i {
+    font-size: 120%;
+    color: #78a55a;
+    display: none;
+}
+/* Pendaftaran end */
+
 @media (min-width: 1200px) {
     .sidenav:hover {
         max-width: 15.625rem;
