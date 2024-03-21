@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class FaqAdminController extends Controller
 {
-    public function getFaq($id) {
-        $faq = Faq::where('faq', $id)->where('pertanyaan', 'LIKE', '%'.request('q').'%')->paginate(10);
-
-        return response()->json($faq);
-    }
 
     public function index() {
        $faq = Faq::get();
@@ -27,11 +22,6 @@ class FaqAdminController extends Controller
         ]);
 
         return redirect()->route('faq.index')->with('success', 'FAQ berhasil ditambahkan');
-    }
-
-    public function edit(Faq $faq)
-    {
-        return response()->json($faq);
     }
 
     public function update(Request $request, $id){
