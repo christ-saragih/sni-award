@@ -18,12 +18,35 @@
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-xl-12">
               <div class="card" style="border-radius: 15px;">
-                <div class="card-body">
-                </div>  
-              </div>
+                <div class="card-body" id="assessment_kategori_form" role="tabpanel" aria-labelledby="assessment_kategori">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-4">
+                    <div class="wrimagecard wrimagecard-topimage">
+                            <a href="#">
+                            <div class="wrimagecard" style="background-color:white ">
+                              <center><h1>Kepemimpinan</h1></center>
+                            </div>
+                          </a>
+                        </div>
+                        </div>
+                      <div class="col-md-3 col-sm-4">
+                        <div class="wrimagecard wrimagecard-topimage">
+                            <a href="#">
+                            <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1)">
+                              <center><i class = "fa fa-cubes" style="color:#16A085"></i></center>
+                            </div>
+                            <div class="wrimagecard-topimage_title">
+                              <h4>Controls
+                              <div class="pull-right badge" id="WrControls"></div></h4>
+                            </div>
+                          </a>
+                        </div>
+                </div>
+              </div>  
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     
