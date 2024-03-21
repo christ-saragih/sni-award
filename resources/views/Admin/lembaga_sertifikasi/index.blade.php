@@ -2,23 +2,19 @@
 
 @section('content')
 
-<!-- Pop Up Tambah Konfigurasi -->
-<div class="modal fade" id="tambahKonfigurasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<!-- Pop Up Tambah Lembaga Sertifikasi -->
+<div class="modal fade" id="tambahLembagaSertifikasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" method="POST" action="/admin/konfigurasi">
+        <form class="modal-content" method="POST" action="/admin/lembaga_sertifikasi">
         @csrf
         <div class="modal-header" style="border: none;">
-            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Konfigurasi</h1>
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Lembaga Sertifikasi</h1>
         </div>
         <div class="modal-body" style="border: none;">
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
                 <div class="d-flex flex-column gap-2">
-                    <h6 class="ms-1 mb-0">Key</h6>
-                    <input type="text" name="key" class="form-control" placeholder="Key"/>
-                </div>
-                <div class="d-flex flex-column gap-2 mb-3">
-                    <h6 class="ms-1 mb-0">Value</h6>
-                    <input type="text" name="value" class="form-control" placeholder="Value"/>
+                    <h6 class="ms-1 mb-0">Nama</h6>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama"/>
                 </div>
             </div>
         </div>
@@ -30,24 +26,20 @@
     </div>
 </div>
 
-<!-- Pop Up Ubah Konfigurasi -->
-<div class="modal fade" id="ubahKonfigurasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<!-- Pop Up Ubah Lembaga Sertifikasi -->
+<div class="modal fade" id="ubahLembagaSertifikasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" id="form_ubah_konfigurasi" method="POST">
+        <form class="modal-content" id="form_ubah_lembaga_sertifikasi" method="POST">
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Konfigurasi</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah LembagaSertifikasi</h1>
             </div>
             <div class="modal-body" style="border: none;">
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
-                        <h6 class="ms-1 mb-0">Key</h6>
-                        <input type="text" name="key" class="form-control" placeholder="Key">
-                    </div>
-                    <div class="d-flex flex-column gap-2 mb-3">
-                        <h6 class="ms-1 mb-0">Value</h6>
-                        <input type="text" name="value" class="form-control" placeholder="Value"/>
+                        <h6 class="ms-1 mb-0">Nama</h6>
+                        <input type="text" name="nama" class="form-control" placeholder="Nama">
                     </div>
                 </div>
             </div>
@@ -59,10 +51,10 @@
     </div>
 </div>
 
-<!-- Pop Up Hapus Konfigurasi -->
-<div class="modal fade" id="hapusKonfigurasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<!-- Pop Up Hapus Lembaga Sertifikasi -->
+<div class="modal fade" id="hapusLembagaSertifikasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" id="form_hapus_konfigurasi" method="POST" >
+        <form class="modal-content" id="form_hapus_lembaga_sertifikasi" method="POST" >
             @method('DELETE')
             @csrf
             <div class="modal-header" style="border: none;">
@@ -81,39 +73,37 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="konfigurasi-tab" data-bs-toggle="tab" href="#konfigurasi-tabpanel" role="tab" aria-controls="konfigurasi-tabpanel" aria-selected="true">Konfigurasi</a>
+        <a class="nav-link active" id="lembaga-sertifikasi-tab" data-bs-toggle="tab" href="#lembaga-sertifikasi-tabpanel" role="tab" aria-controls="lembaga-sertifikasi-tabpanel" aria-selected="true" style="white-space: nowrap; width: fit-content;">Lembaga Sertifikasi</a>
     </li>
 </ul>
 
 <hr class="p-0">
 
-<!-- Konten Konfigurasi Section -->
-<div class="tab-pane" id="konfigurasi-tabpanel" role="tabpanel" aria-labelledby="konfigurasi-tab">
+<!-- Konten Lembaga Sertifikasi Section -->
+<div class="tab-pane" id="lembaga-sertifikasi-tabpanel" role="tabpanel" aria-labelledby="lembaga-sertifikasi-tab">
     <div class="content-profil py-5">
         <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Konfigurasi</h3>
-        <a href="#tambahKonfigurasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Konfigurasi</a>
+        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Lembaga Sertifikasi</h3>
+        <a href="#tambahLembagaSertifikasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Lembaga Sertifikasi</a>
         </div>
         <div class="container mt-4">
             <table class="table">
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Key</th>
-                <th scope="col">Value</th>
+                <th scope="col">Nama</th>
                 <th scope="col" class="text-center">Aksi</th>
             </tr>
             </thead>
             <tbody>
-                @foreach ($konfigurasi as $kon)
+                @foreach ($lembaga_sertifikasi as $ls)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$kon->key}}</td>
-                        <td>{{$kon->value}}</td>
+                        <td>{{$ls->nama}}</td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">
-                                <button onclick="openModalUbahKonfigurasi('{{ $kon->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
-                                <button onclick="openModalHapusKonfigurasi('{{ $kon->id }}')" class="btn btn-hapus">Hapus</button>
+                                <button onclick="openModalUbahLembagaSertifikasi('{{ $ls->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
+                                <button onclick="openModalHapusLembagaSertifikasi('{{ $ls->id }}')" class="btn btn-hapus">Hapus</button>
                             </div>
                         </td>
                     </tr>

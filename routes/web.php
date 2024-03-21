@@ -193,17 +193,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/konfigurasi',[KonfigurasiController::class, 'index'])->name('konfigurasi.index');
         Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create');
         Route::post('/konfigurasi', [KonfigurasiController::class, 'store'])->name('konfigurasi.store');
-        Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
-        Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
-        Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
-
-        //TipeKategori
-        Route::get('/tipe_kategori',[TipeKategoriController::class, 'index'])->name('tipe_kategori.index');
-        Route::get('/tipe_kategori/tambah', [TipeKategoriController::class, 'create'])->name('tipe_kategori.create');
-        Route::post('/tipe_kategori', [TipeKategoriController::class, 'store'])->name('tipe_kategori.store');
-        Route::get('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'edit'])->name('tipe_kategori.edit');
-        Route::put('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'update'])->name('tipe_kategori.update');
-        Route::delete('/tipe_kategori/delete/{id}', [TipeKategoriController::class, 'destroy'])->name('tipe_kategori.destroy');
+        Route::get('/konfigurasi/{konfigurasi}/ubah', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
+        Route::put('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
+        Route::delete('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
@@ -280,9 +272,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/lembaga_sertifikasi',[LembagaSertifikasiController::class, 'index'])->name('lembaga_sertifikasi.index');
         Route::get('/lembaga_sertifikasi/tambah', [LembagaSertifikasiController::class, 'create'])->name('lembaga_sertifikasi.create');
         Route::post('/lembaga_sertifikasi', [LembagaSertifikasiController::class, 'store'])->name('lembaga_sertifikasi.store');
-        Route::get('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit');
-        Route::put('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
-        Route::delete('/lembaga_sertifikasi/delete/{id}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
+        Route::get('/lembaga_sertifikasi/{lembaga_sertifikasi}/ubah', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit');
+        Route::put('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
+        Route::delete('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
     });
 });
 // end User
