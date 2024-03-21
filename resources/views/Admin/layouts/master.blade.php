@@ -419,7 +419,7 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="javascript:;"
+                          href="/admin/profil"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-user" style="width: 12%;"></i>
@@ -437,7 +437,7 @@
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-sign-out" style="width: 12%;"></i>
                               <h6 class="text-sm font-weight-normal mb-1">
-                                Logout
+                                Keluar
                               </h6>
                             </div>
                         </a>
