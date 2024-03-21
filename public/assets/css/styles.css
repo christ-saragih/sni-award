@@ -499,6 +499,75 @@ h2.accordion-header {
     font-size: 20px;
 }
 
+/* Kontak start */
+.shape-kontak {
+    background-image: url(../images/shape/shape-kontak-kanan.png),
+    url(../images//shape/shape-kontak-kiri.png);
+    background-position: top right,  bottom left;;
+    background-repeat: no-repeat; /* Mencegah gambar diulang */
+}
+
+.kontak-container {
+    padding-inline: 70px;
+}
+
+.kontak-container p {
+    font-size: 125%;
+}
+
+.kontak-container h4 {
+    margin: 0;
+    font-size: 200%;
+}
+
+.kontak-container span {
+    font-size: 175%;
+    color: #585555;
+}
+
+.kontak-container .icon-container {
+    border: 1px solid #091003;
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.kontak-container .icon-container .icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 0.8rem;
+}
+
+.kontak-container .icon-container .icon i {
+    font-size: 30px;
+    color: white;
+}
+
+.kontak-container .icon-container .icon i::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.kontak-container .medsos-container {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.kontak-container .medsos-container svg {
+    width: 30px;
+    height: 30px;
+}
+
+.kontak-container p.link {
+    color: var(--primary-color);
+    margin: 0;
+}
+/* Kontak end */
+
 /* Dokumentasi */
 .carousel-container p {
     font-family: "Josefin Sans", sans-serif;

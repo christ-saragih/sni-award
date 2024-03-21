@@ -52,6 +52,9 @@ Route::get('/informasi/acara/{acara}/detail', [App\Http\Controllers\Guest\AcaraC
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
 
 Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
+
+Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
@@ -120,20 +123,9 @@ Route::prefix('/admin')->group(function () {
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
 
-        Route::get('/get_faq/{id}', [FaqAdminController::class,'getFaq']);
-        Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
-        Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store');
-        Route::get('/faq/tambah', [FaqAdminController::class,'create']);
-        Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
-        Route::put('/faq/{id}',[FaqAdminController::class,'update']);
-        Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
-
         // FAQ
-        Route::get('/get_faq/{id}', [FaqAdminController::class,'getFaq']);
         Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
         Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store');
-        Route::get('/faq/tambah', [FaqAdminController::class,'create']);
-        Route::get('/faq/{faq}/ubah',[FaqAdminController::class,'edit']);
         Route::put('/faq/{id}',[FaqAdminController::class,'update']);
         Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
 
