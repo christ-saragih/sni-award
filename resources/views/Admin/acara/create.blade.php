@@ -17,6 +17,9 @@
                         </div>
                         <div class="col-9">
                             <input type="text" id="judul_acara" name="judul_acara" class="form-control" placeholder="Tambahkan Judul" value="{{ old('judul_acara') }}">
+                            {{-- @error('judul_acara')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror --}}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -83,7 +86,6 @@
             e.preventDefault();
             if($(".additional-image-upload").length < max_fields){
                 $(wrapper).append('<div class="row g-3 align-items-center mt-2 additional-image-upload"><div class="col-3"></div><div class="col-9"><input type="file" name="gambar_konten[]" class="form-control"></div></div>'); // Tambah input field
-                // $(wrapper).append('<div class="row g-3 align-items-center mt-2 additional-image-upload"><div class="col-3"><label class="fw-bold">Gambar Konten</label></div><div class="col-9"><input type="file" name="gambar_konten[]" class="form-control"></div></div>'); // Tambah input field
                 $(".remove-last-image").show(); // Menampilkan tombol remove
             }
         });

@@ -12,10 +12,10 @@ class LembagaSertifikasiController extends Controller
      */
     public function index()
     {
-        $LembagaSertifikasi = LembagaSertifikasi::all();
-        return view('admin.lembagasertifikasi.index', [
+        $lembaga_sertifikasi = LembagaSertifikasi::all();
+        return view('admin.lembaga_sertifikasi.index', [
             'nama' => 'Data Tipe Kategori',
-            'lembaga_sertifikasi' => $LembagaSertifikasi,
+            'lembaga_sertifikasi' => $lembaga_sertifikasi,
         ]);
     }
 
@@ -24,8 +24,8 @@ class LembagaSertifikasiController extends Controller
      */
     public function create()
     {
-       $LembagaSertifikasi = LembagaSertifikasi::get();
-        return view ('admin.lembagasertifikasi.create', ['lembaga_sertifikasi'=> $LembagaSertifikasi]);
+        $lembaga_sertifikasi = LembagaSertifikasi::get();
+        return view ('admin.lembaga_sertifikasi.create', ['lembaga_sertifikasi'=> $lembaga_sertifikasi]);
     }
 
     /**
@@ -46,13 +46,13 @@ class LembagaSertifikasiController extends Controller
 
         //jika validasi berhasil maka data akan disimpan ke database
         LembagaSertifikasi::create($data);
-        return redirect()->route('lembaga_sertifikasi.index')->with(['success'=>'tipe kategori berhasil dirubah']); 
+        return redirect()->back()->with(['success'=>'tipe kategori berhasil dirubah']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(LembagaSertifikasi $LembagaSertifikasi)
+    public function show(LembagaSertifikasi $lembaga_sertifikasi)
     {
         //
     }
@@ -60,16 +60,15 @@ class LembagaSertifikasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(LembagaSertifikasi $lembaga_sertifikasi)
     {
-        $LembagaSertifikasi = LembagaSertifikasi::find($id);
-        return view('admin.lembagasertifikasi.edit',['LembagaSertifikasi' => $LembagaSertifikasi]);
+        return response()->json($lembaga_sertifikasi);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, LembagaSertifikasi $lembaga_sertifikasi)
     {
         $request->validate([
             'nama' =>  'required|unique:lembaga_sertifikasi',
@@ -78,23 +77,19 @@ class LembagaSertifikasiController extends Controller
             'nama.unique' => "Nama sudah ada"
         ]);
          // end validate
-         $data = [
-            'nama' => $request->nama,
-         ];
 
-        $LembagaSertifikasi=LembagaSertifikasi::find($id);
-        $LembagaSertifikasi->update($request->all());
+        $lembaga_sertifikasi->update($request->all());
 
-        return redirect()->route('lembaga_sertifikasi.index') -> with('success','Data Berhasil Diubah!');
+        return redirect()->back() -> with('success','Data Berhasil Diubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(LembagaSertifikasi $lembaga_sertifikasi)
     {
-        $LembagaSertifikasi = LembagaSertifikasi::find($id);
-        $LembagaSertifikasi->delete();
-        return redirect()->route('lembaga_sertifikasi.index')->with('success','Data Telah dihapus!');
+        $lembaga_sertifikasi->delete();
+
+        return redirect()->back()->with('success','Data Telah dihapus!');
     }
 }
