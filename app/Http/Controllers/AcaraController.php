@@ -31,7 +31,7 @@ class AcaraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_acara' =>'required|max:100',
+            'judul_acara' => 'required|max:100',
             'gambar_thumbnail' => 'required|image',
             'gambar_konten.*' => 'required|image',
             'tanggal' => 'required|date',
@@ -39,44 +39,46 @@ class AcaraController extends Controller
         ], [
             'judul_acara.required' => 'Judul Acara Wajib Diisi!',
             'judul_acara.max' => 'Judul Acara Maksimal 100 Karakter!',
-            'gambar_thumbnail.required' => 'FIle Wajib Diisi!',
+            'gambar_thumbnail.required' => 'File Wajib Diisi!',
             'gambar_thumbnail.image' => 'File thumbnail yang di Upload Harus Berupa Gambar',
-            'gambar_konten.*.required' => 'FIle Wajib Diisi!',
+            'gambar_konten.*.required' => 'File Wajib Diisi!',
             'gambar_konten.*.image' => 'File konten yang di Upload Harus Berupa Gambar',
             'tanggal.required'=> 'Tanggal Acara Wajib Diisi!',
             'tanggal.date' => 'Tanggal Acara Harus Berformat Tanggal!',
             'deskripsi.required' => 'Deskripsi Acara Wajib Diisi!',
-            'deskripsi.min' => 'Deskripsi Acara Minimal 100 Karakter!',
+            'deskripsi.min' => 'Deskripsi Acara Minimal 5 Karakter!',
         ]);
 
+        // Upload gambar thumbnail dengan nama yang unik
         $gambar_thumbnail = $request->file('gambar_thumbnail');
-        // dd($gambar_thumbnail->getClientOriginalExtension());
-        $gambar_thumbnail_ekstensi = $gambar_thumbnail->extension();
-        $nama_gambar_thumbnail = date('ymdhis') . '.' . $gambar_thumbnail_ekstensi;
+        $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
         $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
 
+        // Upload gambar konten dengan nama yang unik
         $nama_gambar_konten = [];
         foreach ($request->file('gambar_konten') as $file) {
-            $gambar_konten_ekstensi = $file->extension();
-            $nama_gambar_konten[] = date('ymdhis') . '.' . $gambar_konten_ekstensi;
-            $file->move(public_path('gambar/konten_acara'), end($nama_gambar_konten));
+            $nama_gambar = 'konten_' . now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+            $file->move(public_path('gambar/konten_acara'), $nama_gambar);
+            $nama_gambar_konten[] = $nama_gambar;
         }
 
+        // Simpan data acara
         $acara = Acara::create([
-            'judul_acara'=> $request->judul_acara,
+            'judul_acara' => $request->judul_acara,
             'gambar_thumbnail' => $nama_gambar_thumbnail,
-            'tanggal'=> $request->tanggal,
-            'deskripsi'=> $request->deskripsi,
+            'tanggal' => $request->tanggal,
+            'deskripsi' => $request->deskripsi,
         ]);
 
-        foreach ($nama_gambar_konten as $ngk) {
+        // Simpan data dokumentasi acara
+        foreach ($nama_gambar_konten as $gambar_konten) {
             DokumentasiAcara::create([
                 'acara_id' => $acara->id,
-                'gambar_konten' => $ngk,
+                'gambar_konten' => $gambar_konten,
             ]);
         }
 
-        return redirect()->route('acara.index')->with('success','Acara berhasil ditambahkan');
+        return redirect()->route('acara.index')->with('success', 'Acara berhasil ditambahkan');
     }
 
     /**
@@ -95,6 +97,7 @@ class AcaraController extends Controller
         // $acara->load('dokumentasi_acara');
 
         $dokumentasi_acara = DokumentasiAcara::where('acara_id', $acara->id)->get();
+        // dd($dokumentasi_acara);
 
         return view('admin.acara.edit', compact(['acara', 'dokumentasi_acara']));
     }
@@ -105,7 +108,7 @@ class AcaraController extends Controller
     public function update(Request $request, Acara $acara)
     {
         $request->validate([
-            'judul_acara' =>'required|max:100',
+            'judul_acara' => 'required|max:100',
             'gambar_thumbnail' => 'nullable|image',
             'gambar_konten.*' => 'nullable|image',
             'tanggal' => 'required|date',
@@ -118,41 +121,47 @@ class AcaraController extends Controller
             'tanggal.required'=> 'Tanggal Acara Wajib Diisi!',
             'tanggal.date' => 'Tanggal Acara Harus Berformat Tanggal!',
             'deskripsi.required' => 'Deskripsi Acara Wajib Diisi!',
-            'deskripsi.min' => 'Deskripsi Acara Minimal 100 Karakter!',
+            'deskripsi.min' => 'Deskripsi Acara Minimal 5 Karakter!',
         ]);
 
-        $acara->judul_acara = $request->judul_acara;
-        $acara->tanggal = $request->tanggal;
-        $acara->deskripsi = $request->deskripsi;
+        // Update data acara
+        $acara->update([
+            'judul_acara' => $request->judul_acara,
+            'tanggal' => $request->tanggal,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
+        // Upload gambar thumbnail baru jika ada
         if ($request->hasFile('gambar_thumbnail')) {
             $gambar_thumbnail = $request->file('gambar_thumbnail');
-            $gambar_thumbnail_ekstensi = $gambar_thumbnail->extension();
-            $nama_gambar_thumbnail = date('ymdhis') . '.' . $gambar_thumbnail_ekstensi;
+            $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
             $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
-            $acara->gambar_thumbnail = $nama_gambar_thumbnail;
+            $acara->update(['gambar_thumbnail' => $nama_gambar_thumbnail]);
         }
 
+        // Upload gambar konten baru jika ada
         if ($request->hasFile('gambar_konten')) {
-            // Hapus gambar konten yang sebelumnya
-            DokumentasiAcara::where('acara_id', $acara->id)->delete();
-
             $nama_gambar_konten = [];
             foreach ($request->file('gambar_konten') as $file) {
-                $gambar_konten_ekstensi = $file->extension();
-                $nama_gambar_konten[] = date('ymdhis') . '.' . $gambar_konten_ekstensi;
-                $file->move(public_path('gambar/konten_acara'), end($nama_gambar_konten));
+                $nama_gambar = 'konten_' . now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+                $file->move(public_path('gambar/konten_acara'), $nama_gambar);
+                $nama_gambar_konten[] = $nama_gambar;
+            }
+            // Hapus dokumen acara jika gambar konten dihapus di frontend
+            // $dokumen_acara_ids = $request->input('dokumen_acara_ids', []); // Ambil id gambar konten dari form
+            DokumentasiAcara::where('acara_id', $acara->id)->delete();
+            // DokumentasiAcara::whereIn('id', $dokumen_acara_ids)->delete(); // Hapus dokumen acara yang dihapus di frontend
+            foreach ($nama_gambar_konten as $gambar_konten) {
                 DokumentasiAcara::create([
                     'acara_id' => $acara->id,
-                    'gambar_konten' => end($nama_gambar_konten),
+                    'gambar_konten' => $gambar_konten,
                 ]);
             }
         }
 
-        $acara->save();
-
         return redirect()->route('acara.index')->with('success', 'Acara berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.

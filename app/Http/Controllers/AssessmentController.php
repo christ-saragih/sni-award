@@ -16,6 +16,7 @@ class AssessmentController extends Controller
     {
         $assessment_kategori = AssessmentKategori::all();
         $assessment_sub_kategori = AssessmentSubKategori::all();
+        // dd($assessment_sub_kategori[0]->assessment_kategori->nama);
         $assessment_pertanyaan = AssessmentPertanyaan::all();
         return view('admin.assessment.index', compact(['assessment_kategori', 'assessment_sub_kategori', 'assessment_pertanyaan']));
     }
