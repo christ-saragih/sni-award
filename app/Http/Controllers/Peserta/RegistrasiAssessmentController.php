@@ -32,5 +32,9 @@ class RegistrasiAssessmentController extends Controller
         ]);
     }
 
-    
+    public function storeJawaban(Request $request){
+        
+    }
+
+
 }
