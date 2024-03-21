@@ -33,7 +33,7 @@ class KonfigurasiController extends Controller
             'key' => 'required|unique:konfigurasi',
             'value' => 'required',
         ],[
-            
+
             'key.required' => "Key tidak boleh kosong",
             'key.unique' => "Key sudah ada",
             'value.required' => "Value tidak boleh kosong"
@@ -45,7 +45,7 @@ class KonfigurasiController extends Controller
         ];
         // Konfigurasi
         Konfigurasi::create($data);
-        return redirect()->route('konfigurasi.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -59,36 +59,37 @@ class KonfigurasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Konfigurasi $konfigurasi)
     {
-        $konfigurasi = Konfigurasi::find($id);
-
-        // return  view('admin.konfigurasi.edit', compact('konfigurasi'));
-        return view('admin.konfigurasi.edit', ['konfigurasi' => $konfigurasi]);
+        return response()->json($konfigurasi);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Konfigurasi $konfigurasi)
     {
         $request->validate([
-            'value' => 'required'
+            'key' => 'required|unique:konfigurasi',
+            'value' => 'required',
         ],[
-            'value.required'=>'Inputan value harus diisi.'
+
+            'key.required' => "Key tidak boleh kosong",
+            'key.unique' => "Key sudah ada",
+            'value.required' => "Value tidak boleh kosong"
         ]);
-        $konfigurasi=Konfigurasi::find($id);
         $konfigurasi->update($request->all());
-        return redirect()->route('konfigurasi.index')->with(['success'=>'konfigurasi berhasil dirubah']);
+
+        return redirect()->back()->with(['success'=>'konfigurasi berhasil dirubah']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Konfigurasi $konfigurasi)
     {
-        $konfigurasi = Konfigurasi::find($id);
         $konfigurasi->delete();
-        return redirect()->route('konfigurasi.index');
+
+        return redirect()->back();
     }
 }
