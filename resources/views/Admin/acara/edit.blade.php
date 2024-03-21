@@ -36,7 +36,11 @@
                                 <label class="fw-bold">Gambar Konten</label>
                             </div>
                             <div class="col-9">
+                                <!-- Input hidden untuk menyimpan nama gambar sebelumnya -->
+                                {{-- <input type="hidden" name="gambar_konten[]" value="{{ $dokumentasi->id }}"> --}}
+                                <!-- Input file untuk mengunggah gambar baru -->
                                 <input type="file" name="gambar_konten[]" class="form-control mb-3">
+                                <!-- Tampilkan gambar sebelumnya -->
                                 <img src="{{ asset('gambar/konten_acara/' . $dokumentasi->gambar_konten) }}" alt="Gambar Konten" style="max-width: 200px;">
                             </div>
                         </div>
@@ -44,7 +48,7 @@
                     </div>
                     <div class="row g-3 justify-content-end mt-2">
                         <div class="col-auto">
-                            <button class="btn btn-danger remove-last-image" style="display: none;">- Remove</button>
+                            <button class="btn btn-danger remove-last-image">- Remove</button>
                         </div>
                         <div class="col-auto">
                             <button class="btn btn-warning add-more-images">+ Tambah</button>

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('status', ['aktif', 'tidak aktif']);
             $table->tinyInteger('kategori_organisasi_id')->unsigned();
             $table->rememberToken();
+            $table->integer('verified_by')->nullable();
+            $table->timestamp('verified_at')->nullable();
             $table->timestamps();
 
             $table->foreign('kategori_organisasi_id')->references('id')->on('kategori_organisasi');

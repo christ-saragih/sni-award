@@ -664,3 +664,132 @@ function openModalHapusTipeKategori(id) {
     modal.show();
 }
 // End Tipe Kategori
+
+// modal faq start
+// pop up ubah
+function openModalUbahFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_ubah_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahFaq"));
+    modal.show();
+}
+
+// pop up hapus
+function openModalHapusFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_hapus_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+    const modal = new bootstrap.Modal(document.getElementById("hapusFaq"));
+    modal.show();
+}
+// modal faq end
+
+// modal faq start
+// pop up ubah
+function openModalUbahFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_ubah_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("ubahFaq"));
+    modal.show();
+}
+
+// pop up hapus
+function openModalHapusFaq(id, name, description) {
+    document.getElementById("id_faq").value = id;
+    document.getElementById("nama_faq").value = name;
+    document.getElementById("deskripsi_faq").value = description;
+
+    document
+        .getElementById("form_hapus_faq")
+        .setAttribute("action", `/admin/faq/${id}`);
+    const modal = new bootstrap.Modal(document.getElementById("hapusFaq"));
+    modal.show();
+}
+// modal faq end
+
+// Konfigurasi
+// modal pop up Ubah
+function openModalUbahKonfigurasi(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data konfigurasi berdasarkan ID
+    $.ajax({
+        url: `/admin/konfigurasi/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_konfigurasi input[name="key"]').val(response.key);
+            $('#form_ubah_konfigurasi input[name="value"]').val(response.value);
+
+            // Tampilkan modal edit
+            $('#ubahKonfigurasi').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $('#form_ubah_konfigurasi').attr('action', `/admin/konfigurasi/${id}`);
+}
+
+// modal pop up Hapus
+function openModalHapusKonfigurasi(id) {
+    document
+        .getElementById("form_hapus_konfigurasi")
+        .setAttribute("action", `/admin/konfigurasi/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusKonfigurasi"));
+
+    modal.show();
+}
+// End Konfigurasi
+
+// Lembaga Sertifikasi
+// modal pop up Ubah
+function openModalUbahLembagaSertifikasi(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data lembaga_sertifikasi berdasarkan ID
+    $.ajax({
+        url: `/admin/lembaga_sertifikasi/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_lembaga_sertifikasi input[name="nama"]').val(response.nama);
+
+            // Tampilkan modal edit
+            $('#ubahLembagaSertifikasi').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $('#form_ubah_lembaga_sertifikasi').attr('action', `/admin/lembaga_sertifikasi/${id}`);
+}
+
+// modal pop up Hapus
+function openModalHapusLembagaSertifikasi(id) {
+    document
+        .getElementById("form_hapus_lembaga_sertifikasi")
+        .setAttribute("action", `/admin/lembaga_sertifikasi/${id}`);
+
+    const modal = new bootstrap.Modal(document.getElementById("hapusLembagaSertifikasi"));
+
+    modal.show();
+}
+// End Lembaga Sertifikasi

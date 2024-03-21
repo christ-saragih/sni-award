@@ -19,7 +19,11 @@ class Peserta extends Authenticatable
         'email',
         'password',
         'kategori_organisasi_id',
-        'verify_key'
+        'verify_key',
+        'email_verified_at',
+        'verified_by',
+        'verified_at',
+        'role_by',
     ];
     protected $hidden = [
         'password',
