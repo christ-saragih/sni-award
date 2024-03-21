@@ -33,8 +33,24 @@ class RegistrasiAssessmentController extends Controller
     }
 
     public function storeJawaban(Request $request){
-        
+        $request->validate([
+            'assessment_jawaban_id' => 'required|exists:assessment_jawaban,id'
+        ]);
+
+        // Mendapatkan ID jawaban dari request
+        $assessment_jawaban = $request->input('assessment_jawaban_id');
+
+        // Mencari jawaban berdasarkan ID
+        $assessment_jawaban = AssessmentJawaban::find($assessment_jawaban);
+
+        // Jika jawaban tidak ditemukan
+        if (!$assessment_jawaban) {
+            return response()->json(['error' => 'Jawaban belum diisi'], 404);
+        }
+
+        // Lakukan operasi penyimpanan jawaban, misalnya menyimpan ke dalam database
+
+        // Mengembalikan respons berhasil
+        return response()->json(['message' => 'Jawaban berhasil disimpan'], 200);
     }
-
-
 }
