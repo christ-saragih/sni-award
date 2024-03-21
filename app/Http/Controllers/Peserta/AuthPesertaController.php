@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\AuthPesertaMail;
 use App\Models\KategoriOrganisasi;
 use App\Models\Peserta;
+use App\Models\PesertaProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -75,14 +76,18 @@ class AuthPesertaController extends Controller
             'verify_key' => Str::random(100),
             'kategori_organisasi_id' => $request->kategori_organisasi_id,//data dummy
         ];
-        Peserta::create($dataRegistrasi);
-        $details = [
-            'nama' => $dataRegistrasi['nama'],
-            'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'SNI Award',
-            'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
-        ];
-        Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
+        $peserta = Peserta::create($dataRegistrasi);
+        if ($peserta) {
+            PesertaProfil::create(['peserta_id' => $peserta->id]);
+            $details = [
+                'nama' => $dataRegistrasi['nama'],
+                'datetime' => date('Y-m-d H:i:s'),
+                'website' => 'SNI Award',
+                'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
+            ];
+            Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
+        }
+
         if (Auth::guard('peserta')->check()) {
             return redirect('/dashboard');
         }else {

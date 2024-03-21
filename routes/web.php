@@ -31,6 +31,7 @@ use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\UserProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -113,6 +114,9 @@ Route::prefix('/admin')->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        Route::get('/profil', [UserProfilController::class, 'index']);
+        Route::get('/profil/edit', [UserProfilController::class, 'editView']);
+        Route::put('/profil/edit', [UserProfilController::class, 'edit']);
 
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
