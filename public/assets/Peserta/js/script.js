@@ -241,3 +241,16 @@ fileInput.addEventListener("change", () => {
         fileInputLabel.innerHTML = realPathArray[realPathArray.length - 1];
     }
 });
+
+function ubahWarna(label) {
+    const radioButtons = document.getElementsByName("jawaban");
+    for (let i = 0; i < radioButtons.length; i++) {
+      let currentLabel = radioButtons[i].parentElement;
+      if (currentLabel === label) {
+        label.style.backgroundColor = "#E9ECFA";
+      } else {
+        currentLabel.style.backgroundColor = "";
+      }
+    }
+  }
+  

@@ -6,6 +6,7 @@ use App\Models\Berita;
 use App\Models\BeritaTag;
 use App\Models\TagBerita;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BeritaController extends Controller
 {
@@ -65,8 +66,7 @@ class BeritaController extends Controller
         $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
 
         $berita = Berita::create([
-            'user_id' => 2,//sementara, kalau udah ada auth ambil dari id user di session
-            'kategori_berita_id' => 1,
+            'user_id' => auth()->user()->id,
             'slug' => 'test',
             'judul_berita'=> $request->judul_berita,
             'deskripsi'=> $request->deskripsi,

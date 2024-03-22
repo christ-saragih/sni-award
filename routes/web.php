@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcaraController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\FaqAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\UserProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,13 +46,16 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/informasi/berita', [App\Http\Controllers\Guest\BeritaController::class, 'index'])->name("informasi.berita.index");
-Route::get('/informasi/berita/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail']);
+Route::get('/informasi/berita/{berita}/detail', [App\Http\Controllers\Guest\BeritaController::class, 'detail'])->name('informasi.berita.detail');
 Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::class, 'index'])->name("informasi.acara.index");
-Route::get('/informasi/acara/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail']);
+Route::get('/informasi/acara/{acara}/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail'])->name("informasi.acara.detail");
 
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
 
 Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
+
+Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
@@ -82,6 +87,10 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'index']);
+    Route::get('/pendaftaran/detail', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'detail']);
+    // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
+
 });
 
 //end peserta
@@ -105,6 +114,9 @@ Route::prefix('/admin')->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        Route::get('/profil', [UserProfilController::class, 'index']);
+        Route::get('/profil/edit', [UserProfilController::class, 'editView']);
+        Route::put('/profil/edit', [UserProfilController::class, 'edit']);
 
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
@@ -115,7 +127,13 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/frontpage/dokumentasi/hapus/{id}', [FrontPageController::class, 'hapusDokumentasi']);
         Route::post('/frontpage/dokumentasi/tambah', [FrontPageController::class, 'tambahDokumentasi']);
         //end  CRUD Frontpage
-        
+
+        // FAQ
+        Route::get('/faq', [FaqAdminController::class, 'index'])->name('faq.index');
+        Route::post('/faq', [FaqAdminController::class, 'store'])->name('faq.store');
+        Route::put('/faq/{id}',[FaqAdminController::class,'update']);
+        Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
+
         //Penjadwalan
         Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
 
@@ -172,17 +190,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/konfigurasi',[KonfigurasiController::class, 'index'])->name('konfigurasi.index');
         Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create');
         Route::post('/konfigurasi', [KonfigurasiController::class, 'store'])->name('konfigurasi.store');
-        Route::get('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
-        Route::put('/konfigurasi/edit/{id}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
-        Route::delete('/konfigurasi/delete/{id}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
-
-        //TipeKategori
-        Route::get('/tipe_kategori',[TipeKategoriController::class, 'index'])->name('tipe_kategori.index');
-        Route::get('/tipe_kategori/tambah', [TipeKategoriController::class, 'create'])->name('tipe_kategori.create'); 
-        Route::post('/tipe_kategori', [TipeKategoriController::class, 'store'])->name('tipe_kategori.store');
-        Route::get('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'edit'])->name('tipe_kategori.edit'); 
-        Route::put('/tipe_kategori/edit/{id}', [TipeKategoriController::class, 'update'])->name('tipe_kategori.update');
-        Route::delete('/tipe_kategori/delete/{id}', [TipeKategoriController::class, 'destroy'])->name('tipe_kategori.destroy');
+        Route::get('/konfigurasi/{konfigurasi}/ubah', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
+        Route::put('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
+        Route::delete('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
@@ -257,11 +267,11 @@ Route::prefix('/admin')->group(function () {
 
         //LembagaSertifikasi
         Route::get('/lembaga_sertifikasi',[LembagaSertifikasiController::class, 'index'])->name('lembaga_sertifikasi.index');
-        Route::get('/lembaga_sertifikasi/tambah', [LembagaSertifikasiController::class, 'create'])->name('lembaga_sertifikasi.create'); 
+        Route::get('/lembaga_sertifikasi/tambah', [LembagaSertifikasiController::class, 'create'])->name('lembaga_sertifikasi.create');
         Route::post('/lembaga_sertifikasi', [LembagaSertifikasiController::class, 'store'])->name('lembaga_sertifikasi.store');
-        Route::get('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit'); 
-        Route::put('/lembaga_sertifikasi/edit/{id}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
-        Route::delete('/lembaga_sertifikasi/delete/{id}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
+        Route::get('/lembaga_sertifikasi/{lembaga_sertifikasi}/ubah', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit');
+        Route::put('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
+        Route::delete('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
     });
 });
 // end User

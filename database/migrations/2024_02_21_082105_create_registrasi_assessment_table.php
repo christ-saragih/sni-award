@@ -13,20 +13,21 @@ return new class extends Migration
     {
         Schema::create('registrasi_assessment', function (Blueprint $table) {
             $table->mediumIncrements('id');
-            $table->integer('score');
-            $table->mediumInteger('registrasi_id')->unsigned();
+            $table->integer('registrasi_id')->unsigned();
             $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
             $table->mediumInteger('assessment_jawaban_id')->unsigned();
+            $table->integer('score')->nullable();
             $table->timestamps();
-
+          
+            $table->unsignedBigInteger('created_by')->nullable(true) ;
+            $table->unsignedBigInteger('updated_by')->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable(true);
+          
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->foreign('assessment_jawaban_id')->references('id')->on('assessment_jawaban');
-            $table->unsignedBigInteger('created_by')->nullable(true) ;
-            $table->unsignedBigInteger('updated_by')->nullable(true);
-$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
-            $table->softDeletes();
-            $table->unsignedBigInteger('deleted_by')->nullable(true);
         });
     }
 
