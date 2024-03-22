@@ -86,6 +86,7 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
+    Route::put('/profil',[PesertaProfilController::class, 'update'])-> name('peserta.profile.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'index']);
     Route::get('/pendaftaran/detail', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'detail']);

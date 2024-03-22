@@ -17,7 +17,11 @@
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
-  <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+  {{-- Profil --}}
+  
+  <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+    @method('PUT')
+    @csrf
     <div class="content-profil pt-5">
       <div class="d-flex flex-column text-center justify-content-center gap-3">
         <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
@@ -74,7 +78,12 @@
                       <h6 class="mb-0">Status Kepemilikan</h6>
                     </div>
                     <div class="col-md-4 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
+                        @foreach ($status_kepemilikan as $sk)
+                        <option value="{{$sk->id}}">{{$sk->nama}}</option>    
+                        @endforeach
+                      </select>
+                      {{-- <input type="text" class="form-control form-control-lg" /> --}}
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -90,7 +99,11 @@
                       <h6 class="mb-0">Lembaga Sertifikasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <select id="input_lembaga_sertifikasi" class="form-select form-select-lg" data-label="Select One">
+                        @foreach ($lembaga_sertifikasi as $ls)
+                        <option value="{{$ls->id}}">{{$ls->nama}}</option>    
+                        @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -98,7 +111,7 @@
                       <h6 class="mb-0">Negara Tujuan Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                     <input type="text" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -106,20 +119,16 @@
                       <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <select id="input_kategori_organisasi" class="form-select form-select-lg" data-label="Select One">
+                        @foreach ($kategori_organisasi as $ko)
+                        <option value="{{$ko->id}}">{{$ko->nama}}</option>    
+                        @endforeach
+                      </select>              
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Kekayaan Bersih</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" class="form-control form-control-lg" />
@@ -141,6 +150,14 @@
                       <input type="text" class="form-control form-control-lg" />
                     </div>
                 </div>
+                <div class="row align-items-center pb-3">
+                    <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Kewenangan Kebijakan</h6>
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <input type="text" class="form-control form-control-lg" />
+                    </div>
+                </div>
 
                 <div class="px-5 py-4 d-flex justify-content-end gap-3">
                   <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
@@ -152,8 +169,7 @@
         </div>
       </div>
     </div>
-  </div>
-
+  </form>
   <!-- Dokumen start -->
   <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
     <div class="content-profil pt-5 mb-5">
@@ -342,5 +358,15 @@
     </div>
   </div>
   <!-- Ubah password end -->
+
 </div>
+<script>
+  $(document).ready(()=>{
+      $('#input_lembaga_sertifikasi').select2({
+          tags: true,
+      });
+
+  });
+</script>
+
 @endsection('content')

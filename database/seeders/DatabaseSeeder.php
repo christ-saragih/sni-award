@@ -40,6 +40,8 @@ class DatabaseSeeder extends Seeder
             RegistrasiSeeder::class,
             RegistrasiDokumenSeeder::class,
             RegistrasiAssessmentSeeder::class,
+            PesertaProfilSeeder::class,
+            PesertaKontakSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([
