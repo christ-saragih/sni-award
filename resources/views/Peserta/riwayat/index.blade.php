@@ -24,15 +24,11 @@
           <td>Organisasi</td>
           <td class="text-center">
             <div class="btn-group dropend">
-              <button class="button-detail" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Penilaian</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Tim</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Assesment</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Dokumen</a></li>
-              </ul>
+              <a href="{{ route('riwayat.detail') }}">
+                <button class="btn button-detail" type="button">
+                  Detail
+                </button>
+              </a>
             </div>
           </td>
         </tr>
@@ -44,15 +40,11 @@
           <td>Organisasi</td>
           <td class="text-center">
             <div class="btn-group dropend">
-              <button class="button-detail" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Penilaian</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Tim</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Assesment</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Dokumen</a></li>
-              </ul>
+              <a href="{{ route('riwayat.detail') }}">
+                <button class="btn button-detail" type="button">
+                  Detail
+                </button>
+              </a>
             </div>
           </td>
         </tr>
@@ -64,15 +56,11 @@
           <td>Organisasi</td>
           <td class="text-center">
             <div class="btn-group dropend">
-              <button class="button-detail" type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Penilaian</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Tim</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Assesment</a></li>
-                <li><a class="dropdown-item" href="{{ route('riwayat.detail') }}">Dokumen</a></li>
-              </ul>
+              <a href="{{ route('riwayat.detail') }}">
+                <button class="btn button-detail" type="button">
+                  Detail
+                </button>
+              </a>
             </div>
           </td>
         </tr>
