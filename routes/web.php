@@ -56,6 +56,8 @@ Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
 
 Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'index']);
 
+Route::get('/linimasa', [App\Http\Controllers\Guest\LinimasaController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
