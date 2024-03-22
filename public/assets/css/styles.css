@@ -473,6 +473,13 @@ h2.accordion-header {
     background-repeat: no-repeat; /* Mencegah gambar diulang */
 }
 
+.shape-linimasa {
+    background-image: url(../images/shape/shape-linimasa-kiri.png),
+    url(../images//shape/shape-faq-kanan.png);
+    background-position: top left,  bottom right;;
+    background-repeat: no-repeat; /* Mencegah gambar diulang */
+}
+
 .contact-container .row {
     margin-top: 50px;
 }
