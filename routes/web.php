@@ -198,7 +198,6 @@ Route::prefix('/admin')->group(function () {
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
-        // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
         // assessment kategori
         Route::get('/get_assessment_kategori', [App\Http\Controllers\AssessmentKategoriController::class,'getAssessmentKategori'])->name('getAssessmentKategori');
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
@@ -233,22 +232,24 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
 
         // wilayah
-        // provinsi
         Route::get('/wilayah', [WilayahAdminController::class, 'index']);
+        // provinsi
+        Route::get('/propinsi', [PropinsiAdminController::class, 'index'])->name('propinsi.index');
         Route::post('/wilayah/provinsi', [PropinsiAdminController::class, 'store'])->name('provinsi.store');
         Route::put('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'update']);
         Route::delete('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'destroy']);
 
         // kota
+        Route::get('/wilayah/get_kota/{id}', [KotaAdminController::class,'getKota']);
         Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
         Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
+        Route::get('/wilayah/kabupaten/{kota}/ubah', [KotaAdminController::class, 'edit']);
         Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
-        // Route::post('/wilayah/get_kabupaten', [KotaAdminController::class, 'get_kabupaten'])->name('get_kabupaten');
 
         // kecamatan
-        // Route::post('/wilayah/getkabupaten', [WilayahAdminController::class, 'get_kabupaten'])->name('get_kabupaten.dropdown');
         Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
         Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
+        Route::get('/wilayah/kecamatan/{kecamatan}/ubah', [KecamatanAdminController::class, 'edit']);
         Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
 
         //Tipe Kategori

@@ -299,16 +299,34 @@ function openModalHapusProvinsi(id, name) {
 }
 
 // modal pop up ubah kabupaten
-function openModalUbahKabupaten(id, name) {
-    document.getElementById("id_kabupaten").value = id;
-    document.getElementById("nama_kabupaten").value = name;
+function openModalUbahKabupaten(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
+    $.ajax({
+        url: `/admin/wilayah/kabupaten/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_kabupaten select[name="propinsi_id"]').val(response.propinsi_id);
+            $('#form_ubah_kabupaten input[name="kota"]').val(response.kota);
 
-    document
-        .getElementById("form_ubah_kabupaten")
-        .setAttribute("action", `/admin/wilayah/kabupaten/${id}`);
+            // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+            $('#form_ubah_kabupaten').attr('action', `/admin/wilayah/kabupaten/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("ubahKabupaten"));
-    modal.show();
+            // Tampilkan modal edit
+            $('#ubahKabupatenKota').modal('show');
+
+            // Inisialisasi Select2 setelah memuat modal
+            $('#form_ubah_kabupaten select[name="propinsi_id"]').select2({
+                theme: 'bootstrap-5',
+                width: '100%',
+                dropdownParent: $('#ubahKabupatenKota')
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 // modal pop up hapus kabupaten
@@ -326,23 +344,42 @@ function openModalHapusKabupaten(id, name) {
 }
 
 // modal pop up ubah kecamatan
-function openModalUbahKecamatan(id, name) {
-    document.getElementById("id_kecamatan").value = id;
-    document.getElementById("nama_kecamatan").value = name;
+function openModalUbahKecamatan(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
+    $.ajax({
+        url: `/admin/wilayah/kecamatan/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            // Akses propinsi melalui kota
+            var propinsi_id = response.kota.propinsi_id;
 
-    document
-        .getElementById("form_ubah_kecamatan")
-        .setAttribute("action", `/admin/wilayah/kecamatan/${id}`);
+            // Isi formulir modal dengan data yang diterima dari server
+            $('#form_ubah_kecamatan select[name="propinsi_id"]').val(propinsi_id);
+            $('#form_ubah_kecamatan select[name="kota_id"]').val(response.kota_id);
+            $('#form_ubah_kecamatan input[name="kecamatan"]').val(response.kecamatan);
 
-    const modal = new bootstrap.Modal(document.getElementById("ubahKecamatan"));
-    modal.show();
+            // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+            $('#form_ubah_kecamatan').attr('action', `/admin/wilayah/kecamatan/${id}`);
+
+            // Tampilkan modal edit
+            $('#ubahKecamatan').modal('show');
+
+            // Inisialisasi Select2 setelah memuat modal
+            $('#form_ubah_kecamatan select[name="propinsi_id"]').select2({
+                theme: 'bootstrap-5',
+                width: '100%',
+                dropdownParent: $('#ubahKecamatan')
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
 }
 
 // modal pop up hapus kabupaten
-function openModalHapusKecamatan(id, name) {
-    document.getElementById("id_kecamatan").value = id;
-    document.getElementById("nama_kecamatan").value = name;
-
+function openModalHapusKecamatan(id) {
     document
         .getElementById("form_hapus_kecamatan")
         .setAttribute("action", `/admin/wilayah/kecamatan/${id}`);

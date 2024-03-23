@@ -17,7 +17,8 @@ class AcaraController extends Controller
         return view('guest.acara.index', compact(['acara']));
     }
 
-    public function detail(Acara $acara) {
+    public function detail($slug) {
+        $acara = Acara::where('slug', $slug)->firstOrFail();
         $dokumentasi_acara = DokumentasiAcara::where('acara_id', $acara->id)->get();
         // dd($dokumentasi_acara[0]->gambar_konten);
         return view('guest.acara.detail', compact(['acara', 'dokumentasi_acara']));
