@@ -24,7 +24,7 @@ class AssessmentPertanyaan extends Model
 
     public function assessment_jawaban() : HasMany
     {
-        return $this->hasMany(AssessmentJawaban::class, 'assessment_pertanyaan_id', 'id');
+        return $this->hasMany(AssessmentJawaban::class);
     }
 
     public static function boot()

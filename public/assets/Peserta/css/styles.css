@@ -747,7 +747,7 @@ button.button-detail:hover {
 /* Pendaftaran start */
 #pendaftaran .card-container .card {
     position: relative;
-    flex: 0 1 calc(30%); /* Mengatur 3 kolom dengan jarak antar elemen */
+    flex: 0 1 calc(28%); /* Mengatur 3 kolom dengan jarak antar elemen */
     justify-content: center;
     height: 100px;
     padding: 40px;
