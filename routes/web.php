@@ -31,6 +31,7 @@ use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\UserProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,8 +56,10 @@ Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
 
 Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'index']);
 
+Route::get('/linimasa', [App\Http\Controllers\Guest\LinimasaController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
-Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
+Route::get('/peserta/riwayat/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
@@ -86,8 +89,9 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
-    // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\::class, 'index']);
-    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'index']);
+    Route::get('/pendaftaran/detail', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'detail']);
+    // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
 
 });
 
@@ -112,6 +116,9 @@ Route::prefix('/admin')->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        Route::get('/profil', [UserProfilController::class, 'index']);
+        Route::get('/profil/edit', [UserProfilController::class, 'editView']);
+        Route::put('/profil/edit', [UserProfilController::class, 'edit']);
 
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
