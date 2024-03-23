@@ -89,8 +89,8 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
-    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'index']);
-    Route::get('/pendaftaran/detail', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'detail']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
+    Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
 
 });

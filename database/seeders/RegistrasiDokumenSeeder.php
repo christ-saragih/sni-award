@@ -19,7 +19,7 @@ class RegistrasiDokumenSeeder extends Seeder
             'url_dokumen' => 'qwertyuiop',
             'status' => 'proses',
             'feedback' => 'asdfg',
-
+            // 'review_at' => now(),
         ]);
     }
 }
