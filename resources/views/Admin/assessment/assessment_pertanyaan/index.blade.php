@@ -23,9 +23,8 @@
         </td>
     </tr>
     @endforeach
-    <div id="hidden-data" style="display: none">
-        <input type="hidden" id="id_pertanyaan">
-        <input type="hidden" id="nama_pertanyaan">
-    </div>
     </tbody>
 </table>
+{{-- <div class="pagination justify-content-center">
+    {{ $assessment_kategori->links() }}
+</div> --}}

@@ -394,7 +394,7 @@ textarea {
 
 .custom-file-button input[type="file"]:focus {
     box-shadow: none;
-}   
+}
 
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -713,5 +713,23 @@ tbody tr:nth-child(odd) {
 .modal-body textarea::placeholder {
     color: black;
 }
+
+/* Pagination */
+.pagination .page-item .page-link {
+    color: #552525;
+    background-color: #fff;
+    border-color: #552525;
+}
+
+.pagination .page-item .page-link:hover {
+    color: #fff;
+    background-color: #552525;
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #552525;
+}
+/* End Pagination */
 
 /* Assignment End */
