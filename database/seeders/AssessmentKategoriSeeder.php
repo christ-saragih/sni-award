@@ -17,7 +17,7 @@ class AssessmentKategoriSeeder extends Seeder
     {
         $assessment_kategori = array(
             array('id' => '1', 'nama' => 'Kepemimpinan'),
-            array('id' => '2', 'nama' => 'Strategi)'),
+            array('id' => '2', 'nama' => 'Strategi'),
             array('id' => '3', 'nama' => 'Pelanggan'),
             array('id' => '4', 'nama' => 'Manajemen SDM'),
             array('id' => '5', 'nama' => 'Fokus Operasi'),

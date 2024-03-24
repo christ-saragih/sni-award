@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url_dokumen');
             $table->enum('status',['proses','ditolak','disetujui']);
             $table->text('feedback');
-            $table->timestamp('review_at');
+            $table->timestamp('review_at')->nullable();
             // $table->integer('review_by');
             //$table->foreign('review_by')->references('id')->on('users');
             $table->timestamps();

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('jabatan_tertinggi')->nullable(true);
             $table->string('no_hp')->nullable(true);
             $table->string('website')->nullable(true);
-            $table->date('tanggal_beroperasi');
+            $table->date('tanggal_beroperasi')->nullable();
             $table->tinyInteger('status_kepemilikan_id')->unsigned();
             $table->enum('jenis_produk', ['barang','jasa','pendidikan'])->nullable(true);
             $table->string('deskripsi_produk')->nullable(true);
