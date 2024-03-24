@@ -13,6 +13,6 @@ class DokumentasiAcaraSeeder extends Seeder
      */
     public function run(): void
     {
-        DokumentasiAcara::factory()->create();
+        DokumentasiAcara::factory(5)->create();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Acara;
 use App\Models\DokumentasiAcara;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AcaraController extends Controller
 {
@@ -13,7 +14,8 @@ class AcaraController extends Controller
      */
     public function index()
     {
-        $acara = Acara::all();
+        // $acara = Acara::simplePaginate(3);
+        $acara = Acara::paginate(3);
         return view('admin.acara.index', compact(['acara']));
     }
 
@@ -65,6 +67,7 @@ class AcaraController extends Controller
         // Simpan data acara
         $acara = Acara::create([
             'judul_acara' => $request->judul_acara,
+            'slug' => Str::slug($request->judul_acara, '-'),
             'gambar_thumbnail' => $nama_gambar_thumbnail,
             'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi,
@@ -127,6 +130,7 @@ class AcaraController extends Controller
         // Update data acara
         $acara->update([
             'judul_acara' => $request->judul_acara,
+            'slug' => Str::slug($request->judul_acara, '-'),
             'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi,
         ]);
