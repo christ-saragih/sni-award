@@ -8,7 +8,19 @@ use Illuminate\Http\Request;
 
 class KecamatanAdminController extends Controller
 {
-    
+    public function edit(Kecamatan $kecamatan)
+    {
+        // Memuat propinsi terkait dengan kecamatan
+        $propinsiId = $kecamatan->kota->propinsi->id;
+
+        // Menambahkan propinsi_id ke dalam data kecamatan sebelum dikirimkan sebagai respons JSON
+        $kecamatan->propinsi_id = $propinsiId;
+
+        // Mengirimkan data kecamatan beserta propinsi_id dalam respons JSON
+        return response()->json($kecamatan);
+    }
+
+
     public function store(Request $request)
     {
         Kecamatan::create([
@@ -17,7 +29,7 @@ class KecamatanAdminController extends Controller
         ]);
 
         return redirect('/admin/wilayah');
-    }    
+    }
 
     public function update(Request $request, $id)
     {

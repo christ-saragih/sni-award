@@ -82,6 +82,31 @@ main {
     background-color: #552525;
 }
 
+.navbar-vertical .navbar-nav > .nav-item .nav-link.dropdown {
+    color: #9FAFBF;
+    background-color: white;
+    box-shadow: none;
+}
+
+.navbar-vertical .navbar-nav > .nav-item .nav-link.dropdown.active {
+    color: var(--primary-color);
+}
+
+.navbar-vertical .navbar-nav > .nav-item .nav-link.dropdown.active:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-vertical .navbar-nav > .nav-item .nav-link.dropdown:hover {
+    color: #9FAFBF !important;
+    background-color: white;
+    box-shadow: none;
+}
+
+.navbar-vertical .navbar-nav > .nav-item .nav-link.dropdown:hover span {
+    font-weight: 600;
+}
+
+
 .navbar-vertical .navbar-nav .nav-link.active {
     font-weight: 600;
     border-top-left-radius: 1rem;
@@ -144,10 +169,6 @@ nav span {
 .nav-link-text,
 .dropdown-menu {
     font-size: 112.5%;
-}
-
-.nav-link-text.dropdown {
-    font-weight: 400;
 }
 
 .icon-sm {
@@ -373,7 +394,7 @@ textarea {
 
 .custom-file-button input[type="file"]:focus {
     box-shadow: none;
-}   
+}
 
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -692,5 +713,23 @@ tbody tr:nth-child(odd) {
 .modal-body textarea::placeholder {
     color: black;
 }
+
+/* Pagination */
+.pagination .page-item .page-link {
+    color: #552525;
+    background-color: #fff;
+    border-color: #552525;
+}
+
+.pagination .page-item .page-link:hover {
+    color: #fff;
+    background-color: #552525;
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #552525;
+}
+/* End Pagination */
 
 /* Assignment End */

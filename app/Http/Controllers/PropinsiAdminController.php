@@ -8,18 +8,39 @@ use Illuminate\Http\Request;
 
 class PropinsiAdminController extends Controller
 {
+
+    public function index()
+    {
+        $propinsi = Propinsi::where('propinsi', 'LIKE', '%'.request('q').'%')->get();
+
+        return response()->json($propinsi);
+    }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'propinsi' => 'required|unique:propinsi',
+        ], [
+            'propinsi.required' => 'Nama Propinsi Wajib Diisi!',
+            'propinsi.unique' => 'Nama Propinsi Telah Tersedia!'
+        ]);
 
         Propinsi::create([
             'propinsi' => $request->propinsi,
         ]);
 
-        return redirect('/admin/wilayah');
+        return redirect()->back();
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'propinsi' => 'required|unique:propinsi',
+        ], [
+            'propinsi.required' => 'Nama Propinsi Wajib Diisi!',
+            'propinsi.unique' => 'Nama Propinsi Telah Tersedia!'
+        ]);
+
         $provinsi = Propinsi::find($id);
         $provinsi->update([
             'propinsi' => $request->propinsi,
@@ -35,7 +56,7 @@ class PropinsiAdminController extends Controller
             $provinsi = Propinsi::find($id);
             $provinsi->delete();
             return redirect('/admin/wilayah')->with('success', 'Provinsi berhasil dihapus');
-            
+
         }else{
             return redirect('/admin/wilayah')->with('failed', 'Data propinsi tidak boleh dihapus');
         }

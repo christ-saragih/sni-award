@@ -33,7 +33,7 @@
                 <p class="description">
                     {{ $berita_terbaru_deskripsi }}
                     {{-- {{ Illuminate\Support\Str::limit($berita_terbaru->deskripsi, 100) }} --}}
-                    <a href="{{ route('informasi.berita.detail', $berita_terbaru->id) }}">baca selengkapnya.</a>
+                    <a href="{{ route('informasi.berita.detail', $berita_terbaru->slug) }}">baca selengkapnya.</a>
                 </p>
                     {{-- BSN akan mengadakan Seminar Nasional dalam rangka Peringatan
                     Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar
@@ -63,140 +63,140 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-center gap-4">
-            @foreach ($berita as $ber)
-            <div class="berita-container col-4 rounded-3 p-0">
-                <img src="{{ asset('gambar/gambar_berita/' . $ber->file_gambar) }}" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    {{ $ber->judul_berita }}
-                    </h4>
-                    <p>
-                    {{ $ber->deskripsi }}
-                    </p>
-                    <a href="{{ route('informasi.berita.detail', $ber->id) }}" class="btn">Baca Selengkapnya</a>
-                    {{-- <button class="btn">Baca Selengkapnya</button> --}}
-                </div>
-            </div>
-            @endforeach
-            {{-- <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div>
-            <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div>
-            <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div>
-            <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div>
-            <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div>
-            <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-                <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
-                <div class="content">
-                    <h4>
-                    SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
-                    SNI Award 2021
-                    </h4>
-                    <p>
-                    Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
-                    2021. SNI Award, yang dicanangkan sebagai The National Quality
-                    Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
-                    merupakan sebuah pemberian penghargaan tertinggi dari
-                    Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
-                    Standar Nasional Indonesia (SNI).
-                    </p>
-                    <button class="btn">Baca Selengkapnya</button>
-                </div>
-            </div> --}}
-        </div>
-    </div>
 </article>
+<div class="container">
+    <div class="row justify-content-center gap-4">
+        @foreach ($berita as $ber)
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="{{ asset('gambar/gambar_berita/' . $ber->file_gambar) }}" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                {{ $ber->judul_berita }}
+                </h4>
+                <p>
+                {{ $ber->deskripsi }}
+                </p>
+                <a href="{{ route('informasi.berita.detail', $ber->slug) }}" class="btn">Baca Selengkapnya</a>
+                {{-- <button class="btn">Baca Selengkapnya</button> --}}
+            </div>
+        </div>
+        @endforeach
+        {{-- <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div>
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div>
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div>
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div>
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div>
+        <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
+            <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="">
+            <div class="content">
+                <h4>
+                SIARAN PERS: Perusahaan/Organisasi Terbaik Penerap SNI, Raih
+                SNI Award 2021
+                </h4>
+                <p>
+                Badan Standardisasi Nasional (BSN) kembali menggelar SNI Award
+                2021. SNI Award, yang dicanangkan sebagai The National Quality
+                Award of Indonesia, telah dimulai sejak tahun 2005. SNI Award
+                merupakan sebuah pemberian penghargaan tertinggi dari
+                Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
+                Standar Nasional Indonesia (SNI).
+                </p>
+                <button class="btn">Baca Selengkapnya</button>
+            </div>
+        </div> --}}
+    </div>
+</div>
 @endsection

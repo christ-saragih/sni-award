@@ -23,7 +23,8 @@ class BeritaController extends Controller
         return view('guest.berita.index', compact(['berita', 'berita_terbaru', 'berita_terbaru_deskripsi', 'tag_berita_terbaru']));
     }
 
-    public function detail(Berita $berita) {
+    public function detail($slug) {
+        $berita = Berita::where('slug', $slug)->firstOrFail();
         $tanggal = Carbon::parse($berita->tanggal)->locale('id')->translatedFormat('l, j F Y');
         $get_all_berita = Berita::all();
         foreach ($get_all_berita as $item) {

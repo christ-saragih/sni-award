@@ -137,17 +137,15 @@
             </a>
             <ul class="dropdown-menu" id="dropdownMenuInformasi">
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
-                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
+                <a class="nav-link dropdown {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">  
                   </div>
                   <span class="nav-link-text dropdown">Berita</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/acara') ? 'active' : '' }}" id="navLinkAcara">
+                <a class="nav-link dropdown {{ request()->is('admin/acara') ? 'active' : '' }}" id="navLinkAcara">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Acara</span> 
                 </a>
@@ -164,49 +162,43 @@
             </a>
             <ul class="dropdown-menu" id="dropdownMenuDataMaster">
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/konfigurasi') ? 'active' : '' }}" id="navLinkKonfigurasi">
+                <a class="nav-link dropdown {{ request()->is('admin/konfigurasi') ? 'active' : '' }}" id="navLinkKonfigurasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Konfigurasi</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/assessment') ? 'active' : '' }}" id="navLinkAssesment">
+                <a class="nav-link dropdown {{ request()->is('admin/assessment') ? 'active' : '' }}" id="navLinkAssesment">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Assesment</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLinkDokumen">
+                <a class="nav-link dropdown {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLinkDokumen">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Dokumen</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/status_kepemilikan') ? 'active' : '' }}" id="navLinkStatusKepemilikan">
+                <a class="nav-link dropdown {{ request()->is('admin/status_kepemilikan') ? 'active' : '' }}" id="navLinkStatusKepemilikan">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Status Kepemilikan</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/lembaga_sertifikasi') ? 'active' : '' }}" id="navLinkLembagaSertifikasi">
+                <a class="nav-link dropdown {{ request()->is('admin/lembaga_sertifikasi') ? 'active' : '' }}" id="navLinkLembagaSertifikasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ request()->is('admin/wilayah') ? 'active' : '' }}" id="navLinkWilayah">
+                <a class="nav-link dropdown {{ request()->is('admin/wilayah') ? 'active' : '' }}" id="navLinkWilayah">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-circle-thin"></i>
                   </div>
                   <span class="nav-link-text dropdown">Wilayah</span> 
                 </a>

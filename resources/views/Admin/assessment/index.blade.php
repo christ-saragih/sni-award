@@ -341,6 +341,9 @@
                     </div>
                 </tbody>
             </table>
+            {{-- <div class="pagination justify-content-center">
+                {{ $assessment_kategori->links() }}
+            </div> --}}
             </div>
         </div>
     </div>
@@ -367,7 +370,7 @@
                     {{-- delete --}}
                     <div class="modal fade" id="hapusSubKategori" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="1" style="">
                     <div class="modal-dialog modal-dialog-centered">
-                        <form class="modal-content" method="POST" action="/assessment_sub_kategori/{{$ak->id}}">
+                        <form class="modal-content" method="POST" action="/assessment_sub_kategori/{{$ask->id}}">
                         @method('DELETE')
                         @csrf
                         <div class="modal-header" style="border: none;">
@@ -429,6 +432,9 @@
                     @endforeach
                 </tbody>
                 </table>
+                {{-- <div class="pagination justify-content-center">
+                    {{ $assessment_sub_kategori->links() }}
+                </div> --}}
             </div>
         </div>
     </div>
