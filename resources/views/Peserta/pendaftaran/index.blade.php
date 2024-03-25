@@ -31,31 +31,30 @@
   <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
     <div class="content-profil py-5 mb-5">
       <div class="container mt-4">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">Nama Lampiran</th>
-            <th class="text-center" scope="col">Aksi</th>
-          </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="row">Upload Kuesioner</td>
-              <td class="text-center"><button class="btn btn-upload">Upload</button></td>
-            </tr>
-            <tr>
-              <td scope="row">Lembar Pernyataan Tidak Terlibat Kasus Hukum</td>
-              <td class="text-center"><button class="btn btn-upload">Upload</button></td>
-            </tr>          
-          </tbody>
-        </table>
-        <div class="mt-5 me-2 px-5 py-4 d-flex justify-content-end gap-3">
-          <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
-          <button type="submit" class="btn" style="width: 13%;">Simpan</button>
-        </div>
+        <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="row g-3 align-items-center mt-2">
+              <div class="col-3">
+                  <label class="fw-bold">Upload Kuesioner</label>
+              </div>
+              <div class="col-9">
+                  <input type="file" name="url_dokumen" class="form-control">
+              </div>
+          </div>
+          {{-- <div class="row g-3 align-items-center mt-2">
+              <div class="col-3">
+                  <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
+              </div>
+              <div class="col-9">
+                  <input type="file" name="url_dokumen" class="form-control">
+              </div>
+          </div> --}}
+          <div class="row g-3 justify-content-end mt-2">
+              {{-- <a href="/admin/berita" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a> --}}
+              <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
+          </div>
+        </form>
       </div>
-
-      
     </div>
 </div>
 @endsection('content')

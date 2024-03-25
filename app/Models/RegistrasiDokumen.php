@@ -11,6 +11,8 @@ class RegistrasiDokumen extends Model
     use HasFactory;
 
     protected $table = 'registrasi_dokumen';
+    // protected $fillable = ['url_dokumen'];
+    protected $guarded = [];
 
     public function dokumen(): BelongsTo
     {
