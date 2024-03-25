@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\LembagaSertifikasi;
 use App\Models\Peserta;
 use App\Models\StatusKepemilikan;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -28,12 +29,17 @@ class PesertaProfilFactory extends Factory
             'no_hp' => fake()->phoneNumber(),
             'website' => fake()->url(),
             'tanggal_beroperasi' => fake()->date(),
-            'status_kepemilikan_id' => StatusKepemilikan::factory(),
-
-            'npwp' => random_int(0000000000000000, 9999999999999999),
-            'no_rekening' => random_int(000000000000000, 999999999999999),
-            'url_cv' => fake()->url(),
-            'url_anti_penyuapan' => fake()->url(),
+            // 'status_kepemilikan_id' => StatusKepemilikan::factory(),
+            'jenis_produk' => fake()->randomElement(['barang','jasa','pendidikan']),
+            'deskripsi_produk' => fake()->paragraph(1),
+            // 'lembaga_sertifikasi_id' => LembagaSertifikasi::factory(),
+            'produk_export' => fake()->boolean(),
+            'negara_tujuan_ekspor' => fake()->country(),
+            // 'sektor_kategori_organisasi_id' => ,
+            'kekayaan_bersih' => fake()->paragraph(1),
+            'hasil_penjualan_tahunan' => fake()->currencyCode(),
+            'jenis_organisasi' => fake()->randomElement(['induk', 'cabang', 'anak', 'tidak']),
+            'kewenangan_kebijakan' => fake()->paragraph(1),
         ];
     }
 }

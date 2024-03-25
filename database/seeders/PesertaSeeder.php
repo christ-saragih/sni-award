@@ -13,6 +13,6 @@ class PesertaSeeder extends Seeder
      */
     public function run(): void
     {
-        Peserta::factory(5)->create();
+        Peserta::factory()->create();
     }
 }
