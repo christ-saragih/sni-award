@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KategoriOrganisasi;
 use App\Models\LembagaSertifikasi;
+use App\Models\Peserta;
 use App\Models\PesertaProfil;
 use App\Models\StatusKepemilikan;
 use App\Models\User;
@@ -14,6 +15,8 @@ class PesertaProfilController extends Controller
 {
     public function index() 
     {
+        $peserta_id = Auth::guard('peserta' )->user()->peserta_id ;
+        $peserta = Peserta::find($peserta_id);
         $kategori_organisasi = KategoriOrganisasi::all();
         $lembaga_sertifikasi = LembagaSertifikasi::all();
         $status_kepemilikan = StatusKepemilikan::all();
