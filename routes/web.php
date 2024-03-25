@@ -75,6 +75,10 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
+    Route::get('/forgot-password', [AuthPesertaController::class, 'forgotPasswordView']);
+    Route::post('/forgot-password', [AuthPesertaController::class, 'forgotPassword']);
+    Route::get('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPasswordView']);
+    Route::put('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPassword']);
 });
 
 Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
@@ -104,6 +108,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
+        Route::get('/forgot-password', [AuthUserController::class, 'forgotPasswordView']);
+        Route::post('/forgot-password', [AuthUserController::class, 'forgotPassword']);
+        Route::get('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPasswordView']);
+        Route::put('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPassword']);
     });
 
     Route::middleware(['auth:web'])->group(function () {

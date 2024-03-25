@@ -42,7 +42,7 @@
         height: 100vh;
     ">
         <div class="p-5 d-flex flex-column align-items-center justify-content-center gap-n5 w-100 h-100">
-            <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" style="width: 20%; border: 1px solid black;"/>
+            <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" style="width: 20%;"/>
             <div style="
                 width: 100%;
                 height: 100%;

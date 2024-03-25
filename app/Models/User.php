@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'role',
         'verify_key',
+        'forgot_password_token',
         'email_verified_at',
         'verified_by',
         'verified_at',

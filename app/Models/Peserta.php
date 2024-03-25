@@ -20,6 +20,7 @@ class Peserta extends Authenticatable
         'password',
         'kategori_organisasi_id',
         'verify_key',
+        'forgot_password_token',
         'email_verified_at',
         'verified_by',
         'verified_at',

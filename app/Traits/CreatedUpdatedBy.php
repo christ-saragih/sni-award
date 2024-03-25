@@ -43,7 +43,11 @@ trait CreatedUpdatedBy
             }
 
             if (!$model->isDirty('updated_by')) {
-                $model->updated_by = auth()->user()->id;
+                if (auth()->check()) {
+                    $model->updated_by = auth()->user()->id;
+                } else {
+                    $model->updated_by = null;
+                }
             }
         });
 
