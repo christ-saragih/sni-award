@@ -242,15 +242,49 @@ fileInput.addEventListener("change", () => {
     }
 });
 
-function ubahWarna(label) {
-    const radioButtons = document.getElementsByName("jawaban");
-    for (let i = 0; i < radioButtons.length; i++) {
-      let currentLabel = radioButtons[i].parentElement;
-      if (currentLabel === label) {
-        label.style.backgroundColor = "#E9ECFA";
-      } else {
-        currentLabel.style.backgroundColor = "";
-      }
+// function ubahWarna(element) {
+//     // Mengembalikan warna semua label ke warna default
+//     var labels = document.querySelectorAll('.jawaban-label');
+//     labels.forEach(function(label) {
+//         label.style.backgroundColor = 'white';
+//     });
+
+//     // Mengubah warna label yang dipilih menjadi warna yang berbeda
+//     element.style.backgroundColor = 'lightblue';
+
+//     // Mematikan radio button yang tidak dipilih
+//     var uncheckedRadioButtons = document.querySelectorAll('input[type="radio"]:not(:checked)');
+//     uncheckedRadioButtons.forEach(function(radioButton) {
+//         radioButton.disabled = true;
+//     });
+// }
+
+function pilihJawaban(element) {
+    // Menandai jawaban yang dipilih
+    var selectedRadio = element.querySelector('input[type="radio"]');
+    var groupName = selectedRadio.getAttribute('name');
+
+    var otherRadios = document.querySelectorAll('input[type="radio"][name="' + groupName + '"]');
+    otherRadios.forEach(function(radio) {
+        if (radio !== selectedRadio) {
+            radio.checked = false;
+            radio.parentElement.classList.remove('selected'); // Menghapus kelas 'selected' dari label yang tidak dipilih
+        }
+    });
+
+    if (selectedRadio.checked) {
+        element.classList.add('selected'); // Menambahkan kelas 'selected' ke label jawaban yang dipilih
+    } else {
+        element.classList.remove('selected'); // Menghapus kelas 'selected' jika jawaban tidak dipilih
     }
-  }
+}
+
+// function pilihSatuJawaban(element) {
+//     var group = element.getAttribute('name');
+//     var radios = document.getElementsByName(group);
+//     for (var i = 0; i < radios.length; i++) {
+//         radios[i].checked = false;
+//     }
+//     element.checked = true;
+// }
   
