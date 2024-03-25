@@ -46,12 +46,16 @@
         <div class="content-kanan py-5" style="background-color: #2E3A66;">
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
-{{-- ==================================================================== --}}
+            {{-- ==================================================================== --}}
           <form method="POST" action="/admin/masuk">
             @csrf
             @if (session('error'))
                 <div class="alert alert-danger w-100" role="alert">
                   {{ session('error') }}
+                </div>
+            @elseif (session('success'))
+                <div class="alert alert-success w-100" role="alert">
+                  {{ session('success') }}
                 </div>
             @endif
             <div class="mb-3">
@@ -103,6 +107,9 @@
                     </button>
                 </div>
 
+                <div class="form-text text-center">
+                    <a href="/admin/forgot-password">Lupa Sandi</a>
+                </div>
                 <div class="form-text text-center">
                     Belum memiliki akun? <a href="/admin/registrasi">Daftar </a>
                 </div>

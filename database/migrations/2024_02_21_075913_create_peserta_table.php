@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('verify_key');
             $table->enum('status', ['aktif', 'tidak aktif']);
             $table->tinyInteger('kategori_organisasi_id')->unsigned();
+            $table->string('forgot_password_token');
             $table->rememberToken();
             $table->integer('verified_by')->nullable();
             $table->timestamp('verified_at')->nullable();
