@@ -77,7 +77,7 @@
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Status Kepemilikan</h6>
                     </div>
-                    <div class="col-md-4 pe-5">
+                    <div class="col-md-8 pe-5">
                       <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($status_kepemilikan as $sk)
                         <option value="{{$sk->id}}">{{$sk->nama}}</option>    

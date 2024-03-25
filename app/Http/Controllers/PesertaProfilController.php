@@ -23,7 +23,7 @@ class PesertaProfilController extends Controller
         $pesertaprofil = PesertaProfil::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
         // dd($pesertaprofil);
         return view('peserta.profil.index',compact(
-            ['kategori_organisasi', 'lembaga_sertifikasi', 'status_kepemilikan','pesertaprofil'])); 
+            ['peserta', 'kategori_organisasi', 'lembaga_sertifikasi', 'status_kepemilikan','pesertaprofil'])); 
     }
 
      /**

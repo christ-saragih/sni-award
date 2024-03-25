@@ -80,7 +80,7 @@ class AuthPesertaController extends Controller
         ];
         $peserta = Peserta::create($dataRegistrasi);
         if ($peserta) {
-            // PesertaProfil::create(['peserta_id' => $peserta->id]);
+            // PesertaProfil::create(['peserta_id' =>` $peserta->id]);
             $details = [
                 'nama' => $dataRegistrasi['nama'],
                 'datetime' => date('Y-m-d H:i:s'),

@@ -1,372 +1,83 @@
-@extends('peserta.layouts.master')
+@extends('admin.layouts.master')
 
 @section('content')
-<ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Profil</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Kontak</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Ubah Kata Sandi</a>
-  </li>
-</ul>
-<hr class="p-0">
-<div class="tab-content" id="tab-content">
-  {{-- Profil --}}
-  
-  <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-    @method('PUT')
-    @csrf
-    <div class="content-profil pt-5">
-      <div class="d-flex flex-column text-center justify-content-center gap-3">
-        <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
-        <button class="btn mx-auto mb-1">Edit Profil</button>
-        <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
-      </div>
-
-      <div class="container mt-4">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-xl-12">
-            <div class="card" style="border-radius: 15px;">
-              <div class="card-body">
-                <div class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Nama Organisasi</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg"/>
-                    </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jabatan Tertinggi <span style="color: #FF0101;">*</span></h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Tanggal Beroperasi <span style="color: #FF0101;">*</span></h6>
-                  </div>
-
-                  <div class="col-md-4 pe-5">
-                    <div class="form-group input-group">
-                      <input type="text" class="form-control form-control-lg" id="inputCalendar" />
-                      <label class="input-group-text" style="background-color: #D7DAE3; border-radius: 0 15px 15px 0; border-right: 1px solid #9fafbf; border-top: 1px solid #9fafbf; border-bottom: 1px solid #9fafbf; color: #595959;"><i class="fa fa-calendar"></i></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Status Kepemilikan</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
-                        @foreach ($status_kepemilikan as $sk)
-                        <option value="{{$sk->id}}">{{$sk->nama}}</option>    
-                        @endforeach
-                      </select>
-                      {{-- <input type="text" class="form-control form-control-lg" /> --}}
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jenis  Produk</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Lembaga Sertifikasi</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <select id="input_lembaga_sertifikasi" class="form-select form-select-lg" data-label="Select One">
-                        @foreach ($lembaga_sertifikasi as $ls)
-                        <option value="{{$ls->id}}">{{$ls->nama}}</option>    
-                        @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Negara Tujuan Ekspor</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                     <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Sektor Kategori Organisasi</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <select id="input_kategori_organisasi" class="form-select form-select-lg" data-label="Select One">
-                        @foreach ($kategori_organisasi as $ko)
-                        <option value="{{$ko->id}}">{{$ko->nama}}</option>    
-                        @endforeach
-                      </select>              
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Kekayaan Bersih</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Hasil Penjualan Tahunan</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jenis Organisasi</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Kewenangan Kebijakan</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-
-                <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
-                  <button type="submit" class="btn" style="width: 13%;">Simpan</button>
-                </div>
-              </div>
+<style>
+  .data{
+        padding: 10px 15px;
+        border: 1px solid lightgray;
+        border-radius: 15px;
+        background-color: #aaaaaa20;
+        font-size: 18px;
+    }
+</style>
+<main class="container">
+    <div class="tab-content" id="tab-content">
+        <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+          <div class="content-profil pt-5">
+            <div class="d-flex flex-column text-center justify-content-center gap-3">
+              <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
+              <a href="/admin/profil/edit" class="btn mx-auto mb-1">Edit Profil</a>
+              <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  <!-- Dokumen start -->
-  <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
-    <div class="content-profil pt-5 mb-5">
-      <div class="d-flex align-items-center gap-2">
-        <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen</h3>
-        <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
-      </div>
-    <div class="container mt-4">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-xl-12">
-            <div class="card" style="border-radius: 15px;">
-              <div class="card-body">
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Legalitas Hukum Organisasi <span style="color: #FF0101;">*</span></h6>
-                  </div>
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile1">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">SPPT SNI <span style="color: #FF0101;">*</span></h6>
-                  </div>
-                  
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile2">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile2">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Surat Keterangan Kemenkeuham <span style="color: #FF0101;">*</span></h6>
-                  </div>
-
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile3">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row align-items-center pb-3">
-                  <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Kewenangan dan Kebijakan</h6>
-                  </div>
-
-                  <div class="container col-md-8 pe-5">
-                    <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
-                      <label class="label-unik px-4" id="file-input-label" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                      <input type="file" class="form-control unik form-control-lg" id="inputGroupFile3">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
-                  <button type="submit" class="btn" style="width: 13%;">Simpan</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Dokumen end -->
-
-   <!-- Kontak start -->
-  <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
-    <div class="content-kontak py-5 mb-5">
-      <div class="d-flex align-items-center gap-2">
-        <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Tambahkan Kontak Penghubung</h3>
-        <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
-        <i class="fa fa-plus-square fa-2x" style="color: #552525;"></i>
-      </div>
-    </div>
-    <div class="content-kontak-form mb-5">
-      <div class="container">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-xl-12">
-            <div class="card" style="border-radius: 15px;">
-              <div class="card-body">
-                <div class="row pt-4 pb-4">
-                      <div class="ps-5 d-flex flex-column gap-3">
-                        <h6 class="mb-0">Kontak Penghubung 1</h6>
-                        <hr class="p-0 flex-fill" style="height: 1px; background-color: #9FAFBF;">
+      
+            <div class="container mt-4">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-xl-12">
+                  <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+                      <div class="row align-items-center pt-4 pb-3">
+                          <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">No. Telfon</h6>
+                          </div>
+                          <div class="col-md-8 pe-5">
+                            <div class="data">{{ $peserta->peserta_profil->no_hp }}</div>
+                          </div>
                       </div>
-                      
+      
+                      <div class="row align-items-center pb-3">
+                          <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">NPWP <span style="color: #FF0101;">*</span></h6>
+                          </div>
+                          <div class="col-md-8 pe-5">
+                            <div class="data">{{ $peserta->peserta_profil->npwp }}</div>
+                          </div>
+                      </div>
+      
+                      <div class="row align-items-center pb-3">
+                          <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">No. Rekening <span style="color: #FF0101;">*</span></h6>
+                          </div>
+                          <div class="col-md-8 pe-5">
+                            <div class="data">{{ $peserta->peserta_profil->no_rekening }}</div>
+                          </div>
+                      </div>
+      
+                      <div class="row align-items-center pb-3">
+                        <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">URL CV <span style="color: #FF0101;">*</span></h6>
+                        </div>
+      
+                        <div class="col-md-8 pe-5">
+                            <div class="data"><a href="{{ $peserta->peserta_profil->url_cv }}" target="_blank">{{ $peserta->peserta_profil->url_cv }}</a></div>
+                        </div>
+                      </div>
+
+                      <div class="row align-items-center pb-3 mb-5">
+                          <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">URL Anti Penyuapan</h6>
+                          </div>
+                          <div class="col-md-8 pe-5">
+                            <div class="data"><a href="{{ $peserta->peserta_profil->url_anti_penyuapan }}" target="_blank">{{ $peserta->peserta_profil->url_anti_penyuapan }}</a></div>
+                          </div>
+                      </div>
+
+                    </div>
                   </div>
-                <div class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Nama Penghubung</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Nomor Telepon</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jabatan</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
-                  <button type="submit" class="btn" style="width: 13%;">Simpan</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- Kontak end -->
-
-<!-- Ubah password start -->
-  <div class="tab-pane" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
-    <div class="content-ubah-password pt-5 mb-5">
-        <div class="d-flex align-items-center gap-2">
-          <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Ubah Kata Sandi</h3>
-          <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
-        </div>
-      <div class="container">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-xl-12">
-            <div class="card" style="border-radius: 15px;">
-              <div class="card-body">
-                <div class="row align-items-center pt-4 pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Kata Sandi Lama</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="password" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Kata Sandi Baru</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="password" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Konfirmasi Kata Sandi</h6>
-                    </div>
-                    <div class="col-md-8 pe-5">
-                      <input type="password" class="form-control form-control-lg" />
-                    </div>
-                </div>
-                <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
-                  <button type="submit" class="btn" style="width: 13%;">Simpan</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Ubah password end -->
-
-</div>
-<script>
-  $(document).ready(()=>{
-      $('#input_lembaga_sertifikasi').select2({
-          tags: true,
-      });
-
-  });
-</script>
-
-@endsection('content')
+</main>
+@endsection
