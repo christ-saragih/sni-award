@@ -2,7 +2,14 @@
 @section('content')
     <main>
         <style>
-
+            td>a {
+                background-color: #E59B30 !important;
+                color: black !important;
+                border: none !important;
+            }
+            td>a:hover{
+                color: white !important;
+            }
         </style>
         <section class="bg-light container-fluid rounded rounded-lg px-4 py-4">
             <table class="table align-items-center mb-0 text-center">
@@ -21,10 +28,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $peserta->nama }}</td>
                             <td>{{ $peserta->email }}</td>
-                            <td>-</td>
-                            {{-- <td>{{ !$peserta->peserta_profil->no_hp ? '-' : ($peserta->peserta_profil->no_hp) }}</td> --}}
+                            {{-- <td>-</td> --}}
+                            <td>{{ !$peserta->peserta_profil->no_hp ? '-' : ($peserta->peserta_profil->no_hp) }}</td>
                             <td>
-                                <button class="btn" role="button" style="background-color: #E59B30; font-weight: 600;">Detail</button>
+                                <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button">Detail</a>
                             </td>
                         </tr>
                     @endforeach
