@@ -1,20 +1,23 @@
 @extends('admin.layouts.master')
 @section('content')
 <style>
-    .value{
+    form input, form select {
+        padding: 2px 5px;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+    }
+    .data{
         padding: 2px 5px;
         border: 1px solid lightgray;
         border-radius: 5px;
-        background-color: #aaa;
+        background-color: #efefef50;
     }
 </style>
 <main>
-    <section class="card px-4 py-4">
-        <div class="d-flex justify-content-between">
-            <a href="/admin/peserta" class="btn">Kembali</a>
-            <a href="/admin/peserta/edit/{{ $peserta->id }}" class="btn">Ubah</a>
-        </div>
-
+    {{-- <form class="card px-4 py-4" method="POST" action="/admin/peserta/edit/{{ $peserta->id }}"> --}}
+    <form class="card px-4 py-4" method="POST" action="">
+        @method('PUT')
+        @csrf
         <div class="d-flex gap-4">
             <span>Nama&emsp;:</span><span>{{ $peserta->nama }}</span>
         </div>
@@ -85,6 +88,11 @@
             <span>Kewenangan Kebijakan&emsp;:</span><span>{{ $peserta->peserta_profil->kewenangan_kebijakan }}</span>
         </div>
         
-    </section>
+        <div class="d-flex justify-content-end gap-2">
+            <a href="/admin/peserta/{{ $peserta->id }}" class="btn btn-danger">Batal</a>
+            <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+
+    </form>
 </main>
 @endsection
