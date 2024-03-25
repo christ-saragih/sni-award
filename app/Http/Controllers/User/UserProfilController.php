@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserProfilController extends Controller
 {
     public function index() {
-        $userId = Auth::guard('web')->user()->id;
+        
         $user = User::find($userId);
         return view('admin.profil.index', ['user' => $user]);
     }
