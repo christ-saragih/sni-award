@@ -7,7 +7,7 @@
           <div class="content-profil pt-5">
             <div class="d-flex flex-column text-center justify-content-center gap-3">
               <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
-              {{-- <button class="btn mx-auto mb-1">Edit Profil</button> --}}
+              <button type="disabled" class="btn edit mx-auto mb-1" style="cursor: none;">Edit Profil</button>
               <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
             </div>
       

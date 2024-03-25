@@ -44,6 +44,8 @@ class DatabaseSeeder extends Seeder
             BeritaSeeder::class,
             AcaraSeeder::class,
             DokumentasiAcaraSeeder::class,
+            PesertaProfilSeeder::class,
+            PesertaKontakSeeder::class,
         ]);
     }
 }
