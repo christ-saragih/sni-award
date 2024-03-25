@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->unsigned();
             // $table->tinyInteger('kategori_berita_id')->unsigned();
-            $table->string('slug',100)->nullable();
+            $table->string('slug');
             $table->string('judul_berita',255);
             $table->text('deskripsi');
             $table->date('tanggal');

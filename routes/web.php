@@ -56,8 +56,10 @@ Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
 
 Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'index']);
 
+Route::get('/linimasa', [App\Http\Controllers\Guest\LinimasaController::class, 'index']);
+
 Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
-Route::get('/peserta/riwayat/penilaian', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
+Route::get('/peserta/riwayat/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
@@ -73,6 +75,10 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
+    Route::get('/forgot-password', [AuthPesertaController::class, 'forgotPasswordView']);
+    Route::post('/forgot-password', [AuthPesertaController::class, 'forgotPassword']);
+    Route::get('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPasswordView']);
+    Route::put('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPassword']);
 });
 
 Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
@@ -88,8 +94,8 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/profil',[PesertaProfilController::class, 'index']);
     Route::put('/profil',[PesertaProfilController::class, 'update'])-> name('peserta.profile.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
-    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'index']);
-    Route::get('/pendaftaran/detail', [App\Http\Controllers\Peserta\PendaftaranPesertaController::class, 'detail']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
+    Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
 
 });
@@ -103,6 +109,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
+        Route::get('/forgot-password', [AuthUserController::class, 'forgotPasswordView']);
+        Route::post('/forgot-password', [AuthUserController::class, 'forgotPassword']);
+        Route::get('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPasswordView']);
+        Route::put('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPassword']);
     });
 
     Route::middleware(['auth:web'])->group(function () {
@@ -197,7 +207,6 @@ Route::prefix('/admin')->group(function () {
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');
-        // Route::get('/assessment', [App\Http\Controllers\AssessmentKategoriController::class,'index'])->name('assessment.index');
         // assessment kategori
         Route::get('/get_assessment_kategori', [App\Http\Controllers\AssessmentKategoriController::class,'getAssessmentKategori'])->name('getAssessmentKategori');
         Route::get('/assessment_kategori/tambah', [App\Http\Controllers\AssessmentKategoriController::class,'create']);
@@ -232,22 +241,24 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/status_kepemilikan/{id}',[App\Http\Controllers\StatusKepemilikanController::class,'destroy']);
 
         // wilayah
-        // provinsi
         Route::get('/wilayah', [WilayahAdminController::class, 'index']);
+        // provinsi
+        Route::get('/propinsi', [PropinsiAdminController::class, 'index'])->name('propinsi.index');
         Route::post('/wilayah/provinsi', [PropinsiAdminController::class, 'store'])->name('provinsi.store');
         Route::put('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'update']);
         Route::delete('/wilayah/provinsi/{id}', [PropinsiAdminController::class, 'destroy']);
 
         // kota
+        Route::get('/wilayah/get_kota/{id}', [KotaAdminController::class,'getKota']);
         Route::post('/wilayah/kabupaten', [KotaAdminController::class, 'store'])->name('kabupaten.store');
         Route::put('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'update']);
+        Route::get('/wilayah/kabupaten/{kota}/ubah', [KotaAdminController::class, 'edit']);
         Route::delete('/wilayah/kabupaten/{id}', [KotaAdminController::class, 'destroy']);
-        // Route::post('/wilayah/get_kabupaten', [KotaAdminController::class, 'get_kabupaten'])->name('get_kabupaten');
 
         // kecamatan
-        // Route::post('/wilayah/getkabupaten', [WilayahAdminController::class, 'get_kabupaten'])->name('get_kabupaten.dropdown');
         Route::post('/wilayah/kecamatan', [KecamatanAdminController::class, 'store'])->name('kecamatan.store');
         Route::put('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'update']);
+        Route::get('/wilayah/kecamatan/{kecamatan}/ubah', [KecamatanAdminController::class, 'edit']);
         Route::delete('/wilayah/kecamatan/{id}', [KecamatanAdminController::class, 'destroy']);
 
         //Tipe Kategori

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('verify_key');
             $table->integer('verified_by')->nullable();
             $table->timestamp('verified_at')->nullable();
+            $table->string('forgot_password_token');
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;

@@ -7,6 +7,7 @@ use App\Models\BeritaTag;
 use App\Models\TagBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
@@ -67,7 +68,7 @@ class BeritaController extends Controller
 
         $berita = Berita::create([
             'user_id' => auth()->user()->id,
-            'slug' => 'test',
+            'slug' => Str::slug($request->judul_berita, '-'),
             'judul_berita'=> $request->judul_berita,
             'deskripsi'=> $request->deskripsi,
             'tanggal'=> $request->tanggal,
@@ -132,6 +133,7 @@ class BeritaController extends Controller
             // 'slug' => $request->slug,
             'judul_berita' => $request->judul_berita,
             'deskripsi' => $request->deskripsi,
+            'slug' => Str::slug($request->judul_berita, '-'),
             'tanggal' => $request->tanggal,
             'file_gambar' => $nama_file,
         ]);

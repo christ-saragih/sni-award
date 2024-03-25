@@ -11,9 +11,10 @@ class RegistrasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $registrasi = Registrasi::get();
+    public function getRegistrasi($registrasi_id){
+        $registrasi = Registrasi::find($registrasi_id);
+        if (!$registrasi_id){
+            return response()->json(['error' => 'Data not found'], 404);
     }
 
     /**
@@ -63,4 +64,5 @@ class RegistrasiController extends Controller
     // {
     //     //
     // }
+    }
 }

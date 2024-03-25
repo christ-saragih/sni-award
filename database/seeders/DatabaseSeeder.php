@@ -37,16 +37,15 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             StageSeeder::class,
             PesertaSeeder::class,
+            PesertaProfilSeeder::class,
             RegistrasiSeeder::class,
             RegistrasiDokumenSeeder::class,
             RegistrasiAssessmentSeeder::class,
+            BeritaSeeder::class,
+            AcaraSeeder::class,
+            DokumentasiAcaraSeeder::class,
             PesertaProfilSeeder::class,
             PesertaKontakSeeder::class,
         ]);
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

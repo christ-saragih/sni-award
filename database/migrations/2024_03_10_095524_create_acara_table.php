@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('judul_acara');
             $table->string('gambar_thumbnail');
-            // $table->string('gambar_konten');
+            $table->string('slug');
             $table->date('tanggal');
             $table->text('deskripsi');
             $table->timestamps();
