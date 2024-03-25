@@ -53,6 +53,12 @@
         <div class="d-flex gap-4">
             <span>Bukti Anti Penyuapan&emsp;:</span><span><a href="{{ $internal->user_profil->url_anti_penyuapan }}" target="_blank">{{ $internal->user_profil->url_anti_penyuapan }}</a></span>
         </div>
+
+        <br><br>
+        <div>
+            <input type="checkbox" name="verified_at" id="verifikasi" value="{{ date('Y-m-d H:i:s') }}">
+            <label for="verifikasi">Verifikasi</label>
+        </div>
         
         <div class="d-flex justify-content-end gap-2">
             <a href="/admin/internal/{{ $internal->id }}" class="btn btn-danger">Batal</a>

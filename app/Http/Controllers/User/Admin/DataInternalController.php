@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataInternalController extends Controller
 {
@@ -30,11 +31,14 @@ class DataInternalController extends Controller
         $internal = User::find($id);
         $role = Role::find($internal->role)->nama;
         $all_role = Role::get();
-        return view('admin.internal.editInternal', [
-            'internal' => $internal,
-            'role' => $role,
-            'all_role' => $all_role,
-        ]);
+        if (!$internal->verified_at) {
+            return view('admin.internal.editInternal', [
+                'internal' => $internal,
+                'role' => $role,
+                'all_role' => $all_role,
+            ]);
+        }
+        return back()->withErrors('User sudah terverifikasi');
     }
 
     public function edit(Request $request, $id){
@@ -45,9 +49,14 @@ class DataInternalController extends Controller
         ]);
         $data = [
             'role' => $request->role,
+            'verified_at' => $request->verified_at,
+            'verified_by' => Auth::user()->id,
         ];
         $user = User::find($id);
-        $user->update($data);
-        return redirect('/admin/internal/'.$id)->with('succcess','Data berhasil diubah');
+        if (!$user->verified_at) {
+            $user->update($data);
+            return redirect('/admin/internal/'.$id)->with('succcess','Data berhasil diubah');
+        }
+        return  back()->withErrors('User sudah terverifikasi');
     }
 }

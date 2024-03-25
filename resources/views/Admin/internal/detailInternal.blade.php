@@ -12,7 +12,11 @@
     <section class="card px-4 py-4">
         <div class="d-flex justify-content-between">
             <a href="/admin/internal/" class="btn">Kembali</a>
-            <a href="/admin/internal/edit/{{ $internal->id }}" class="btn">Ubah</a>
+            @if ($internal->verified_at)
+                <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;"><i class="fa fa-check-circle"></i>&ensp;Terverifikasi</div>
+            @else
+                <a href="/admin/internal/edit/{{ $internal->id }}" class="btn">Ubah dan Verifikasi</a>
+            @endif
         </div>
 
         <div class="d-flex gap-4">
