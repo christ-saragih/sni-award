@@ -8,22 +8,24 @@ use Illuminate\Http\Request;
 
 class RegistrasiDokumenController extends Controller
 {
-    // public function index(){
-    //     $registrasi_dokumen = RegistrasiDokumen::get();
-    //     return view('peserta.pendaftaran.index',[
-    //         'registrasi_dokumen' => $registrasi_dokumen,
-    //     ]);
-    // }
-
+   
     public function store(Request $request){
         $request->validate([
-            'url_document' => 'required',
+            'url_dokumen' => 'required',
         ]);
+
+        $file_dokumen = $request->file('url_dokumen');
+        // dd($file_dokumen->getClientOriginalExtension());
+        $dokumen_ekstensi = $file_dokumen->extension();
+        $nama_file = date('ymdhis') . '.' . $dokumen_ekstensi;
+        $file_dokumen->move(public_path('gambar/gambar_berita'), $nama_file);
 
         RegistrasiDokumen::create([
-            'url_document' => $request->url_document,
+            'registrasi_id' => auth()->user()->id,
+            'url_dokumen' => $nama_file,
+            'feedback' => 'assdasda'
         ]);
 
-        return redirect()->route('peserta.index')->with('success','Registrasi Dokumen berhasil');
+        return redirect()->back()->with('success','Registrasi Dokumen berhasil');
     }
 }

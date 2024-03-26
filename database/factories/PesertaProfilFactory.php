@@ -19,7 +19,11 @@ class PesertaProfilFactory extends Factory
      */
     public function definition(): array
     {
+        $pesertaId = 1;
         return [
+            // 'peserta_id' => function () {
+            //     return factory(Peserta::class)->create()->id;
+            // },
             'peserta_id' => Peserta::factory(),
             'url_legalitas_hukum_organisasi' => fake()->url(),
             'url_sppt_sni' => fake()->url(),

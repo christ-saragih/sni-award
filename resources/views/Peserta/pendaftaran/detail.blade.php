@@ -39,18 +39,18 @@
                           @foreach ($ask->assessment_pertanyaan as $ap)
                             <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                               <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
-                                <h3 class="m-0">Pertanyaan {{ $loop->iteration }}</h3>
+                                <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
                                 <p class="m-0">{{$ask->nama}}</p>
                               </div>
                               <div class="pertanyaan d-flex flex-column text-center">
                                 <p class="m-0">{{$ap->pertanyaan}}</p>
                               </div>
                               <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
-                                  @foreach ($ap->assessment_jawaban as $aj)
-                                    <label onclick="ubahWarna(this)" class="d-flex align-items-center py-1 px-3">
-                                        <input type="radio" name="jawaban" value="{{$aj->id}}"> {{ $aj->jawaban }}
-                                    </label>
-                                  @endforeach
+                                @foreach ($ap->assessment_jawaban as $aj)
+                                  <label class="jawaban-label d-flex align-items-center py-1 px-3" onclick="pilihJawaban(this)">
+                                      <input type="radio" name="jawaban_{{ $ap->id }}" value="{{ $aj->id }}"> {{ $aj->jawaban }}
+                                  </label>
+                                @endforeach
                               </div>
                             </div>
                           @endforeach

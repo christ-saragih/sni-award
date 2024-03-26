@@ -98,6 +98,8 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
+    Route::post('/pendaftaran',[App\Http\Controllers\Peserta\RegistrasiDokumenController::class,'store'])->name('peserta.store');
+    Route::post('/pendaftaran/jawaban',[App\Http\Controllers\Peserta\RegistrasiAssessmentController::class,'store'])->name('simpanJawaban');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
     Route::get('/profil', [AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
     Route::put('/profil', [AuthPesertaController::class, 'ubahkatasandi']);
@@ -155,6 +157,7 @@ Route::prefix('/admin')->group(function () {
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
+        Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
         Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);

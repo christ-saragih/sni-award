@@ -25,12 +25,22 @@
                 <div class="col-xl-12">
                   <div class="card" style="border-radius: 15px;">
                     <div class="card-body">
+
                       <div class="row align-items-center pt-4 pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">No. Telfon</h6>
                           </div>
                           <div class="col-md-8 pe-5">
                             <div class="data">{{ $user->user_profil->no_hp }}</div>
+                          </div>
+                      </div>
+                      
+                      <div class="row align-items-center pb-3">
+                          <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">Peran</h6>
+                          </div>
+                          <div class="col-md-8 pe-5">
+                            <div class="data">{{ $role }}</div>
                           </div>
                       </div>
       

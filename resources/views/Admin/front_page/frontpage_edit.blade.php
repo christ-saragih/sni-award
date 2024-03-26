@@ -19,7 +19,7 @@
         </div>
         <div class="frontpage-input-text" style="display: flex; justify-content: flex-start;">
             <label for="gambar_banner">Gambar Banner</label>
-            <img src="{{ asset('assets') }}{{ $frontpage->gambar_banner }}" alt="">
+            <img src="/storage{{ $frontpage->gambar_banner }}" alt="">
         </div>
         <div class="frontpage-input-text">
             <label for="keterangan_sni">Keterangan SNI</label>

@@ -6,6 +6,16 @@
 <a href="/admin/frontpage?tab=dokumentasi" role="button" class="btn">Kembali</a>
 <br><br>
 
+@if (session('error'))
+<div class="alert alert-danger w-100" role="alert">
+  {{ session('error') }}
+</div>
+@elseif (session('success'))
+<div class="alert alert-success w-100" role="alert">
+  {{ session('success') }}
+</div>
+@endif
+
 <form action="/admin/frontpage/dokumentasi/tambah" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="frontpage-input-text">
@@ -31,7 +41,7 @@
     <?php $jumlah_dokumentasi = count($dokumentasi) ?>
     @foreach ($dokumentasi as $dok)
         <div class="image-container">
-            <img src="{{ asset('assets') }}{{ $dok->url_dokumentasi }}" alt="" style="
+            <img src="/storage{{ $dok->url_dokumentasi }}" alt="" style="
                 width: 500px;
                 height: auto;
                 border: none;

@@ -39,4 +39,7 @@ class Peserta extends Authenticatable
         return $this->hasOne(PesertaProfil::class);
     }
 
+    public function  kategori_organisasi() : HasOne {
+        return $this->hasOne(KategoriOrganisasi::class);
+    }
 }
