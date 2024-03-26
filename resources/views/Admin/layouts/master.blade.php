@@ -242,6 +242,7 @@
       class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps-3" id="mainContent"
     >
       <!-- Navbar -->
+      <img src="" alt="">
       <nav
         class="navbar navbar-main navbar-expand px-0 mt-3 me-3"
         id="navbarBlur"
