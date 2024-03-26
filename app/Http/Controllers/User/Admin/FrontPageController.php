@@ -9,6 +9,7 @@ use App\Models\Faq;
 use App\Models\Frontpage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class FrontPageController extends Controller
 {
@@ -67,13 +68,13 @@ class FrontPageController extends Controller
         $frontpage = Frontpage::find($id);
         $gambar_banner = $frontpage->get()->value('gambar_banner');
         if($request->hasFile('gambar_banner')) {
-            $prevImgPath = public_path('assets'.$frontpage->get()->value('gambar_banner'));
+            $prevImgPath = storage_path('app/public'.$frontpage->get()->value('gambar_banner'));
             if (File::exists($prevImgPath)) {
                 File::delete($prevImgPath); //hapus gambar sebelumnya jika ada
             }
 
             $imageName = time().'.'.$request->gambar_banner->extension();    
-            $request->gambar_banner->move(public_path('assets/images/jumbotron'), $imageName); //move file ke assets
+            $request->gambar_banner->move(storage_path('app/public/images/jumbotron'), $imageName); //move file ke assets
             // $request->gambar_banner->store
             $gambar_banner = '/images/jumbotron/'.$imageName;
         }
@@ -116,7 +117,7 @@ class FrontPageController extends Controller
 
     public function hapusDokumentasi($id) {
         $dokumentasi = Dokumentasi::where('id', $id);
-        $prevDokumentasi = public_path('assets'.$dokumentasi->get()->value('url_dokumentasi'));
+        $prevDokumentasi = storage_path('app/public'.$dokumentasi->get()->value('url_dokumentasi'));
         if (File::exists($prevDokumentasi)) {
             File::delete($prevDokumentasi);
         }
@@ -139,7 +140,7 @@ class FrontPageController extends Controller
             $dok = $request->url_dokumentasi;
             for ($i=0; $i<count($dok); $i++) {
                 $imageName = time().$i.'.'.$dok[$i]->extension();
-                $dok[$i]->move(public_path('assets/images/dokumentasi'), $imageName);
+                $dok[$i]->move(storage_path('app/public/images/dokumentasi'), $imageName);
                 Dokumentasi::create(['url_dokumentasi' => '/images/dokumentasi/'.$imageName]);
             }
             return back();

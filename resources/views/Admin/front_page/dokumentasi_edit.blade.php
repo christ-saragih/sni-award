@@ -16,7 +16,7 @@
     flex-wrap: wrap;
 ">
     @foreach ($dokumentasi as $dok)
-        <img src="{{ asset('assets') }}{{ $dok->url_dokumentasi }}" alt="" style="
+        <img src="/storage{{ $dok->url_dokumentasi }}" alt="" style="
             user-select: none !important;
             pointer-event: none !important;
             width: 500px;
