@@ -92,11 +92,15 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index']);
-    Route::put('/profil',[PesertaProfilController::class, 'update'])-> name('peserta.profile.update');
+    Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
+    Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
+    Route::ppost('/profil',[PesertaProfilController::class, 'dokumenpeserta'])-> name('dokumen.store');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
+    Route::get('/profil', [AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
+    Route::put('/profil', [AuthPesertaController::class, 'ubahkatasandi']);
 
 });
 

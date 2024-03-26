@@ -8,6 +8,7 @@ use App\Mail\ForgotPasswordPesertaMail;
 use App\Models\KategoriOrganisasi;
 use App\Models\Peserta;
 use App\Models\PesertaProfil;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -80,7 +81,7 @@ class AuthPesertaController extends Controller
         ];
         $peserta = Peserta::create($dataRegistrasi);
         if ($peserta) {
-            // PesertaProfil::create(['peserta_id' =>` $peserta->id]);
+            PesertaProfil::create(['peserta_id' => $peserta->id]);
             $details = [
                 'nama' => $dataRegistrasi['nama'],
                 'datetime' => date('Y-m-d H:i:s'),
@@ -197,5 +198,39 @@ class AuthPesertaController extends Controller
         return back()
             ->withInput()
             ->withErrors('Token tidak valid atau sudah expired');
+    }
+    
+    public function ubahkatasandiView(){
+        $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
+        return view('peserta.profil.index', compact([
+            'peserta',
+        ]));
+
+    }
+
+    public function ubahkatasandi(Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'current_password.required' => 'Kata sandi harus diisi',
+            'password.required' => 'Kata sandi harus diisi',
+            'password.string' => 'Kata sandi harus berupa karakter abjad atau angka',
+            'password.min' => 'Minimal 8 karakter',
+            'password.confirmed' => 'Ulangi kata sandi tidak sama dengan kata sandi',
+        ]);
+        
+        $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
+        // dd($peserta);
+        // dd(Hash::check($request->current_password, $peserta->password));
+        if (!Hash::check($request->current_password, $peserta->password)) {
+            return redirect()->back()->with('error', 'Kata sandi lama tidak cocok.');
+        }
+        // $peserta->password = Hash::make($request->password);
+        $peserta->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->back()->with('success', 'Kata sandi berhasil diubah.');
     }
 }
