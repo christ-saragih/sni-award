@@ -49,7 +49,7 @@
                       <h6 class="mb-0">Jabatan Tertinggi <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="jabatan_tertinggi" class="form-control form-control-lg" />
+                      <input type="text" name="jabatan_tertinggi" class="form-control form-control-lg" value="{{$peserta->peserta_profil->jabatan_tertinggi}}"/>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                       <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="website" class="form-control form-control-lg" />
+                      <input type="text" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}"/>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
 
                   <div class="col-md-4 pe-5">
                     <div class="form-group input-group">
-                      <input type="text" name="tanggal_beroperasi" class="form-control form-control-lg" id="inputCalendar" />
+                      <input type="text" name="tanggal_beroperasi" class="form-control form-control-lg" id="inputCalendar" value="{{$peserta->peserta_profil->tanggal_beroperasi}}"/>
                       <label class="input-group-text" style="background-color: #D7DAE3; border-radius: 0 15px 15px 0; border-right: 1px solid #9fafbf; border-top: 1px solid #9fafbf; border-bottom: 1px solid #9fafbf; color: #595959;"><i class="fa fa-calendar"></i></label>
                     </div>
                   </div>
@@ -91,7 +91,11 @@
                       <h6 class="mb-0">Jenis  Produk</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="jenis_produk" class="form-control form-control-lg" />
+                      <select name="jenis_produk" class="form-select form-select-lg" data-label="Select One">
+                        <option value="jasa">Jasa</option>
+                        <option value="barang">Barang</option>
+                        <option value="pendidikan">Pendidikan</option>
+                      </select>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -99,7 +103,7 @@
                       <h6 class="mb-0">Deskripsi Produk</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="deskripsi_produk" class="form-control form-control-lg" />
+                      <input type="text" name="deskripsi_produk" class="form-control form-control-lg" value="{{$peserta->peserta_profil->deskripsi_produk}}"/>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -138,7 +142,7 @@
                       <h6 class="mb-0">Negara Tujuan Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                     <input type="text" name="negara_tujuan_ekspor" class="form-control form-control-lg" />
+                     <input type="text" name="negara_tujuan_ekspor" class="form-control form-control-lg" value="{{$peserta->peserta_profil->negara_tujuan_ekspor}}"/>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -158,7 +162,7 @@
                       <h6 class="mb-0">Kekayaan Bersih</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="kekayaan_bersih" class="form-control form-control-lg" />
+                      <input type="text" name="kekayaan_bersih" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kekayaan_bersih}}"/>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -166,7 +170,7 @@
                       <h6 class="mb-0">Hasil Penjualan Tahunan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="hasil_penjualan_tahunan" class="form-control form-control-lg" />
+                      <input type="text" name="hasil_penjualan_tahunan" class="form-control form-control-lg" value="{{$peserta->peserta_profil->hasil_penjualan_tahunan}}"/>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -174,7 +178,12 @@
                       <h6 class="mb-0">Jenis Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="jenis_organisasi" class="form-control form-control-lg" />
+                      <select name="jenis_organisasi" class="form-select form-select-lg" data-label="Select One">
+                        <option value="induk">Induk</option>
+                        <option value="cabang">Cabang</option>
+                        <option value="anak">Anak</option>
+                        <option value="tidak">Tidak</option>
+                      </select>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -182,7 +191,7 @@
                       <h6 class="mb-0">Kewenangan Kebijakan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="kewenangan_kebijakan" class="form-control form-control-lg" />
+                      <input type="text" name="kewenangan_kebijakan" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kewenangan_kebijakan}}"/>
                     </div>
                 </div>
 
