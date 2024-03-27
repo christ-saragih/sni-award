@@ -85,7 +85,7 @@
                               <h6 class="mb-0">Status Kepemilikan</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->status_kepemilikan_id }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->status_kepemilikan->nama }}</div>
                           </div>
                       </div>
 
@@ -112,7 +112,7 @@
                             <h6 class="mb-0">Lembaga Sertifikasi</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->lembaga_sertifikasi_id }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->lembaga_sertifikasi->nama }}</div>
                           </div>
                       </div>
 
@@ -121,7 +121,11 @@
                             <h6 class="mb-0">Produk Export</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->produk_export }}</div>
+                            @if ($peserta->peserta_profil->produk_export)                            
+                              <div class="data">Ya</div>
+                            @elseif (!$peserta->peserta_profil->produk_export)                  
+                              <div class="data">Tidak</div>
+                            @endif
                           </div>
                       </div>
 
@@ -139,7 +143,7 @@
                             <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->sektor_kategori_organisasi_id }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->kategori_organisasi->nama }}</div>
                           </div>
                       </div>
 
