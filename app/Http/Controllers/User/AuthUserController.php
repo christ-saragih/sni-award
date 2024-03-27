@@ -166,7 +166,7 @@ class AuthUserController extends Controller
                 'token' => $forgot_password_token,
             ]);
         }
-        return abort(403);
+        return abort(400);
     }
 
     public function resetPassword(Request $request, $forgot_password_token) {
