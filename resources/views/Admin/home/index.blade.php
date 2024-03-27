@@ -37,7 +37,6 @@
         <div class="w-25">
             <h1>Kalender</h1>
         </div>
-        
     </div>
 </div>
 @endsection('content')
