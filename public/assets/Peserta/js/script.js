@@ -1,169 +1,65 @@
-// Tampilan wizard penilaian
-$(document).ready(function () {
-    var current_fs, next_fs, previous_fs; //fieldsets
-    var opacity;
-    var current = 1;
-    var steps = $("fieldset#fieldsetPenilaian").length;
-    console.log(steps);
+ // Inisialisasi variabel untuk melacak halaman saat ini
+ var currentPage = 1; // Misalnya, kita mulai dari halaman pertama
 
-    setProgressBar(current);
 
-    $(".next").click(function () {
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
-
-        //Add Class Active
-        $("#progressbar li")
-            .eq($("fieldset#fieldsetPenilaian").index(next_fs))
-            .addClass("active");
-
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.animate(
-            { opacity: 0 },
-            {
-                step: function (now) {
-                    // for making fielset appear animation
-                    opacity = 1 - now;
-
-                    current_fs.css({
-                        display: "none",
-                        position: "relative",
-                    });
-                    next_fs.css({ opacity: opacity });
-                },
-                duration: 500,
-            }
-        );
-        setProgressBar(++current);
-    });
-
-    $(".previous").click(function () {
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        //Remove class active
-        $("#progressbar li")
-            .eq($("fieldset#fieldsetPenilaian").index(current_fs))
-            .removeClass("active");
-
-        //show the previous fieldset
-        previous_fs.show();
-
-        //hide the current fieldset with style
-        current_fs.animate(
-            { opacity: 0 },
-            {
-                step: function (now) {
-                    // for making fielset appear animation
-                    opacity = 1 - now;
-
-                    current_fs.css({
-                        display: "none",
-                        position: "relative",
-                    });
-                    previous_fs.css({ opacity: opacity });
-                },
-                duration: 500,
-            }
-        );
-        setProgressBar(--current);
-    });
-
-    function setProgressBar(curStep) {
-        var percent = parseFloat(100 / steps) * curStep;
-        percent = percent.toFixed();
-        $(".progress-bar.penilaian").css("width", percent + "%");
-    }
-
-    $(".submit").click(function () {
-        return false;
-    });
+// Panggil fungsi untuk menetapkan tampilan tombol navigasi saat pertama kali memuat halaman
+$(document).ready(function() {
+    aturTombolNavigasi();
 });
 
-$(document).ready(function () {
-    var current_fs, next_fs, previous_fs; //fieldsets
-    var opacity;
-    var current = 1;
-    var steps = $("fieldset#fieldsetPertanyaan").length;
-    console.log(steps);
+// Ketika tombol "selanjutnya" diklik
+$(".selanjutnyaAssesment").click(function () {
+    // Temukan fieldset saat ini yang sedang ditampilkan
+    var currentFieldset = $(this).closest('fieldset');
+    // Temukan fieldset selanjutnya setelah fieldset saat ini
+    var nextFieldset = currentFieldset.next('fieldset');
 
-    setProgressBar(current);
+    // Periksa apakah masih ada fieldset selanjutnya
+    if (nextFieldset.length > 0) {
+        // Sembunyikan fieldset saat ini
+        // currentFieldset.hide();
+        // Tampilkan fieldset selanjutnya
+        nextFieldset.show();
+        // Atur tampilan tombol navigasi
+        aturTombolNavigasi();
+    }
+});
 
-    $(".selanjutnyaAssesment").click(function () {
-        current_fs = $(this).parent();
-        next_fs = $(this).parent().next();
+// Ketika tombol "sebelumnya" diklik
+$(".sebelumnyaAssesment").click(function () {
+    // Temukan fieldset saat ini yang sedang ditampilkan
+    var currentFieldset = $(this).closest('fieldset');
+    // Temukan fieldset sebelumnya sebelum fieldset saat ini
+    var previousFieldset = currentFieldset.prev('fieldset');
 
-        //Add Class Active
-        // $("#progressbar li")
-        //     .eq($("fieldset#fieldsetPertanyaan").index(next_fs))
-        //     .addClass("active");
+    // Periksa apakah masih ada fieldset sebelumnya
+    if (previousFieldset.length > 0) {
+        // Sembunyikan fieldset saat ini
+        currentFieldset.hide();
+        // Tampilkan fieldset sebelumnya
+        previousFieldset.show();
+        // Atur tampilan tombol navigasi
+        aturTombolNavigasi();
+    }
+});
 
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.animate(
-            { opacity: 0 },
-            {
-                step: function (now) {
-                    // for making fielset appear animation
-                    opacity = 1 - now;
-
-                    current_fs.css({
-                        display: "none",
-                        position: "relative",
-                    });
-                    next_fs.css({ opacity: opacity });
-                },
-                duration: 500,
-            }
-        );
-        setProgressBar(++current);
-    });
-
-    $(".sebelumnyaAssesment").click(function () {
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
-
-        //Remove class active
-        $("#progressbar li")
-            .eq($("fieldset#fieldsetPertanyaan").index(current_fs))
-            .removeClass("active");
-
-        //show the previous fieldset
-        previous_fs.show();
-
-        //hide the current fieldset with style
-        current_fs.animate(
-            { opacity: 0 },
-            {
-                step: function (now) {
-                    // for making fielset appear animation
-                    opacity = 1 - now;
-
-                    current_fs.css({
-                        display: "none",
-                        position: "relative",
-                    });
-                    previous_fs.css({ opacity: opacity });
-                },
-                duration: 500,
-            }
-        );
-        setProgressBar(--current);
-    });
-
-    function setProgressBar(curStep) {
-        var percent = parseFloat(100 / steps) * curStep;
-        percent = percent.toFixed();
-        $(".progress-bar.pertanyaan").css("width", percent + "%");
+// Fungsi untuk menetapkan tampilan tombol navigasi
+function aturTombolNavigasi() {
+    // Periksa apakah tombol "selanjutnya" harus ditampilkan atau disembunyikan
+    if ($(".fieldset:visible").last().attr("id") === $(".fieldset:visible").attr("id")) {
+        $(".selanjutnyaAssesment").hide(); // Sembunyikan tombol jika sudah di halaman terakhir
+    } else {
+        $(".selanjutnyaAssesment").show(); // Tampilkan tombol jika belum di halaman terakhir
     }
 
-    $(".submit").click(function () {
-        return false;
-    });
-});
+    // Periksa apakah tombol "sebelumnya" harus ditampilkan atau disembunyikan
+    if ($(".fieldset:visible").first().attr("id") === $(".fieldset:visible").attr("id")) {
+        $(".sebelumnyaAssesment").hide(); // Sembunyikan tombol jika sudah di halaman pertama
+    } else {
+        $(".sebelumnyaAssesment").show(); // Tampilkan tombol jika belum di halaman pertama
+    }
+}
+
 
 // Toggle Sidenav
 const barsMenu = document.getElementById("barsMenu");
@@ -242,23 +138,6 @@ fileInput.addEventListener("change", () => {
     }
 });
 
-// function ubahWarna(element) {
-//     // Mengembalikan warna semua label ke warna default
-//     var labels = document.querySelectorAll('.jawaban-label');
-//     labels.forEach(function(label) {
-//         label.style.backgroundColor = 'white';
-//     });
-
-//     // Mengubah warna label yang dipilih menjadi warna yang berbeda
-//     element.style.backgroundColor = 'lightblue';
-
-//     // Mematikan radio button yang tidak dipilih
-//     var uncheckedRadioButtons = document.querySelectorAll('input[type="radio"]:not(:checked)');
-//     uncheckedRadioButtons.forEach(function(radioButton) {
-//         radioButton.disabled = true;
-//     });
-// }
-
 function pilihJawaban(element) {
     // Menandai jawaban yang dipilih
     var selectedRadio = element.querySelector('input[type="radio"]');
@@ -278,13 +157,3 @@ function pilihJawaban(element) {
         element.classList.remove('selected'); // Menghapus kelas 'selected' jika jawaban tidak dipilih
     }
 }
-
-// function pilihSatuJawaban(element) {
-//     var group = element.getAttribute('name');
-//     var radios = document.getElementsByName(group);
-//     for (var i = 0; i < radios.length; i++) {
-//         radios[i].checked = false;
-//     }
-//     element.checked = true;
-// }
-  

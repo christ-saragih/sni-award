@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Peserta;
 
+use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentJawaban;
@@ -32,11 +33,17 @@ class RegistrasiAssessmentController extends Controller
         // $assessment_sub_kategori = AssessmentSubKategori::with('assessment_pertanyaan','assessment_jawaban')->get();
         $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->get();
         // dd($assessment_sub_kategori[0]->assessment_pertanyaan);
+        $registrasi = Registrasi::find($id);
+        $pertanyaan = AssessmentPertanyaan::find($id);
+        $jawaban_yang_dipilih = AssessmentJawaban::find($id);
         if (!$assessment_sub_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
         return view('peserta.pendaftaran.detail',[
             'assessment_sub_kategori' => $assessment_sub_kategori,
+            'registrasi' => $registrasi,
+            'pertanyaan' => $pertanyaan,
+            'jawaban_yang_dipilih' => $jawaban_yang_dipilih
         ]);
     }
 
@@ -58,25 +65,37 @@ class RegistrasiAssessmentController extends Controller
         ]);
     }
 
-    public function storeJawaban(Request $request){
+    public function store(Request $request)
+    {
+        // Validasi request
         $request->validate([
-            'assessment_jawaban_id' => 'required|exists:assessment_jawaban,id'
+            'registrasi_id' => 'required|exists:registrasi,id',
+            'assessment_pertanyaan_id' => 'required|exists:assessment_pertanyaan,id',
+            'assessment_jawaban_id' => 'required|exists:assessment_jawaban,id',
+            // Tambahkan validasi untuk field lain jika diperlukan
         ]);
 
-        // Mendapatkan ID jawaban dari request
-        $assessment_jawaban = $request->input('assessment_jawaban_id');
+        try {
+            // Simpan jawaban ke dalam database
+            RegistrasiAssessment::create([
+                'registrasi_id' => $request->registrasi_id,
+                'assessment_pertanyaan_id' => $request->assessment_pertanyaan_id,
+                'assessment_jawaban_id' => $request->assessment_jawaban_id,
+                // Tambahkan field lain jika diperlukan
+            ]);
 
-        // Mencari jawaban berdasarkan ID
-        $assessment_jawaban = AssessmentJawaban::find($assessment_jawaban);
-
-        // Jika jawaban tidak ditemukan
-        if (!$assessment_jawaban) {
-            return response()->json(['error' => 'Jawaban belum diisi'], 404);
+            // Jika penyimpanan berhasil, kembalikan respons berhasil
+            return response()->json(['message' => 'Jawaban berhasil disimpan'], 200);
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, kembalikan respons error
+            // return response()->json(['error' => 'Gagal menyimpan jawaban'], 500);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        // Lakukan operasi penyimpanan jawaban, misalnya menyimpan ke dalam database
-
-        // Mengembalikan respons berhasil
-        return response()->json(['message' => 'Jawaban berhasil disimpan'], 200);
     }
+
+    // public function showSubmit($registrasi_id)
+    // {
+    //     $registrasi = Registrasi::find($registrasi_id);
+    //     return view('peserta.pendaftaran', compact('registrasi'));
+    // }
 }
