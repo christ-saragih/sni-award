@@ -644,7 +644,7 @@ h3 {
 }
 
 .jawaban-label.selected {
-    background-color: lightblue; /* Change to your desired background color */
+    background-color: grey; /* Change to your desired background color */
 }
 
 .jawaban-banyak label {
