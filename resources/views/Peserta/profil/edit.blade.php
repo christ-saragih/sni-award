@@ -118,8 +118,19 @@
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Produk Export</h6>
                     </div>
-                    <div class="col-md-8 pe-5">
-                     <input type="text" name="produk_export" class="form-control form-control-lg" />
+                    <div class="col-md-8 pe-5">              
+                      <div class="form-check">
+                        <input value="0" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Tidak
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input value="1" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Ya
+                        </label>
+                      </div>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">

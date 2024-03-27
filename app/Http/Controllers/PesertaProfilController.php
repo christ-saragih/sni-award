@@ -16,12 +16,12 @@ class PesertaProfilController extends Controller
     public function index() 
     {
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
-        // dd($peserta->peserta_profil);
+        // dd($peserta->peserta_profil->lembaga_sertifikasi);
         $kategori_organisasi = KategoriOrganisasi::all();
         $lembaga_sertifikasi = LembagaSertifikasi::all();
         $status_kepemilikan = StatusKepemilikan::all();
         $pesertaprofil = PesertaProfil::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
-        // dd($pesertaprofil);
+        // dd($pesertaprofil); 
         return view('peserta.profil.index',compact([
             'peserta', 
             'kategori_organisasi', 

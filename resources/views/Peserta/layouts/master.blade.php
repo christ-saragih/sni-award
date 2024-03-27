@@ -303,7 +303,7 @@
               </li>
               <li class="nav-item dropdown d-flex px-2 gap-1 align-items-center">
                 <a
-                  href="/peserta/profil"
+                  href="{{route('peserta.profil.index')}}"
                   class="nav-link text-body p-0"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
