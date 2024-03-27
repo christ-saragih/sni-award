@@ -19,7 +19,8 @@
 <div class="tab-content" id="tab-content">
   {{-- Profil --}}
   
-  <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+  {{-- <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> --}}
+  <form class="tab-pane active" method="POST" action="/peserta/profil/edit/" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
     @method('PUT')
     @csrf
     <div class="content-profil pt-5">
@@ -39,7 +40,7 @@
                       <h6 class="mb-0">Nama Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg"/>
+                      <input type="text" name="nama" class="form-control form-control-lg" value="{{$peserta->nama}}"/>
                     </div>
                 </div>
 
@@ -48,7 +49,7 @@
                       <h6 class="mb-0">Jabatan Tertinggi <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="jabatan_tertinggi" class="form-control form-control-lg" />
                     </div>
                 </div>
 
@@ -57,7 +58,7 @@
                       <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="website" class="form-control form-control-lg" />
                     </div>
                 </div>
 
@@ -68,7 +69,7 @@
 
                   <div class="col-md-4 pe-5">
                     <div class="form-group input-group">
-                      <input type="text" class="form-control form-control-lg" id="inputCalendar" />
+                      <input type="text" name="tanggal_beroperasi" class="form-control form-control-lg" id="inputCalendar" />
                       <label class="input-group-text" style="background-color: #D7DAE3; border-radius: 0 15px 15px 0; border-right: 1px solid #9fafbf; border-top: 1px solid #9fafbf; border-bottom: 1px solid #9fafbf; color: #595959;"><i class="fa fa-calendar"></i></label>
                     </div>
                   </div>
@@ -77,13 +78,12 @@
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Status Kepemilikan</h6>
                     </div>
-                    <div class="col-md-4 pe-5">
+                    <div class="col-md-8 pe-5">
                       <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($status_kepemilikan as $sk)
                         <option value="{{$sk->id}}">{{$sk->nama}}</option>    
                         @endforeach
                       </select>
-                      {{-- <input type="text" class="form-control form-control-lg" /> --}}
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -91,7 +91,15 @@
                       <h6 class="mb-0">Jenis  Produk</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="jenis_produk" class="form-control form-control-lg" />
+                    </div>
+                </div>
+                <div class="row align-items-center pb-3">
+                    <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Deskripsi Produk</h6>
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <input type="text" name="deskripsi_produk" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -108,10 +116,29 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Produk Export</h6>
+                    </div>
+                    <div class="col-md-8 pe-5">              
+                      <div class="form-check">
+                        <input value="0" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Tidak
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input value="1" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Ya
+                        </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="row align-items-center pb-3">
+                    <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Negara Tujuan Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                     <input type="text" class="form-control form-control-lg" />
+                     <input type="text" name="negara_tujuan_ekspor" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -131,7 +158,7 @@
                       <h6 class="mb-0">Kekayaan Bersih</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="kekayaan_bersih" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -139,7 +166,7 @@
                       <h6 class="mb-0">Hasil Penjualan Tahunan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="hasil_penjualan_tahunan" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -147,7 +174,7 @@
                       <h6 class="mb-0">Jenis Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="jenis_organisasi" class="form-control form-control-lg" />
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -155,12 +182,13 @@
                       <h6 class="mb-0">Kewenangan Kebijakan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" class="form-control form-control-lg" />
+                      <input type="text" name="kewenangan_kebijakan" class="form-control form-control-lg" />
                     </div>
                 </div>
 
                 <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
+                  <a href="/peserta/profil" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a>
+                  {{-- <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button> --}}
                   <button type="submit" class="btn" style="width: 13%;">Simpan</button>
                 </div>
               </div>
