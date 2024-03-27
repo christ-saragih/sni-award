@@ -830,3 +830,4 @@ function openModalHapusLembagaSertifikasi(id) {
     modal.show();
 }
 // End Lembaga Sertifikasi
+
