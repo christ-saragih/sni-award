@@ -101,7 +101,6 @@
                 <p class="mb-3" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
 
                 <a href="#ubahJabatan" class="btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
-                <!-- <a href="/admin/internal/edit/{{ $internal->id }}" class="btn btn-edit px-4">Edit</a> -->
             </div>
             <table class="px-5">
                 <tr>
