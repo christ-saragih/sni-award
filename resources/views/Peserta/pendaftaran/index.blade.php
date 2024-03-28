@@ -42,6 +42,12 @@
               <div class="col-9">
                   <input type="file" name="url_dokumen" class="form-control">
               </div>
+              <div class="col-3">
+                <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
+            </div>
+            <div class="col-9">
+                <input type="file" name="url_dokumen" class="form-control">
+            </div>
           </div>
           {{-- <div class="row g-3 align-items-center mt-2">
               <div class="col-3">
