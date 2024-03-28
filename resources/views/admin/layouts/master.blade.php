@@ -50,7 +50,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" /> --}}
     <!-- CSS Admin -->
     <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
-    
+
 </head>
 
 <body style="background-color: #ECE4E4;">
@@ -74,7 +74,7 @@
           class="navbar-brand m-0"
           id="navbarBrand"
           href="/"
-        
+
         >
           <img
             src="{{ asset('assets') }}/images/icon/logo-sniaward.svg"
@@ -132,22 +132,22 @@
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Informasi</span> 
+              <span class="nav-link-text" id="navLinkText">Informasi</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftInformasi"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuInformasi">
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
-                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">  
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Berita</span> 
+                  <span class="nav-link-text dropdown">Berita</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/acara') ? 'active' : '' }}" id="navLinkAcara">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Acara</span> 
+                  <span class="nav-link-text dropdown">Acara</span>
                 </a>
               </li>
             </ul>
@@ -157,7 +157,7 @@
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Data Master</span> 
+              <span class="nav-link-text" id="navLinkText">Data Master</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftDataMaster"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuDataMaster">
@@ -165,42 +165,42 @@
                 <a class="nav-link dropdown {{ request()->is('admin/konfigurasi') ? 'active' : '' }}" id="navLinkKonfigurasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Konfigurasi</span> 
+                  <span class="nav-link-text dropdown">Konfigurasi</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/assessment') ? 'active' : '' }}" id="navLinkAssesment">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Assesment</span> 
+                  <span class="nav-link-text dropdown">Assesment</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/dokumen') ? 'active' : '' }}" id="navLinkDokumen">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Dokumen</span> 
+                  <span class="nav-link-text dropdown">Dokumen</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/status_kepemilikan') ? 'active' : '' }}" id="navLinkStatusKepemilikan">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Status Kepemilikan</span> 
+                  <span class="nav-link-text dropdown">Status Kepemilikan</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/lembaga_sertifikasi') ? 'active' : '' }}" id="navLinkLembagaSertifikasi">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span> 
+                  <span class="nav-link-text dropdown">Lembaga Sertifikasi</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/wilayah') ? 'active' : '' }}" id="navLinkWilayah">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Wilayah</span> 
+                  <span class="nav-link-text dropdown">Wilayah</span>
                 </a>
               </li>
             </ul>
@@ -226,7 +226,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/event_sni_award') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
+            <a class="nav-link {{ request()->is('admin/pendaftar_sni_award') ? 'active' : '' }}" id="navLink" href="/admin/pendaftar_sni_award">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -504,7 +504,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
-    <script src="{{ asset('assets') }}/admin/js/app.js"></script>
 
 </body>
 
