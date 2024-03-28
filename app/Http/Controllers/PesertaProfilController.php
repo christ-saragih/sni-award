@@ -126,32 +126,37 @@ class PesertaProfilController extends Controller
         // return redirect()->route("peserta.profil.index", $pesertaprofil->id)->with("success","Data Profil berhasil diupdate"); 
     }
     
-    public function dokumenpeserta(Request $request)
+    public function tambahDokumenPeserta(Request $request)
     {
         // Validasi request
         $request->validate([
-            'legalitas_hukum_organisasi' => 'required|file|mimes:pdf|max:10000',
-            'sppt_sni' => 'required|file|mimes:pdf|max:10000',
-            'sk_kemenkeuham' => 'required|file|mimes:pdf|max:10000',
-            'kebijakan' => 'required|file|mimes:pdf|max:10000',
+            'url_legalitas_hukum_organisasi' => 'required|file|mimes:pdf|max:10000',
+            // 'url_sppt_sni' => 'required|mimes:pdf|max:10000',
+            // 'url_sk_kemenkumham' => 'required|mimes:pdf|max:10000',
+            // 'url_kewenangan_kebijakan' => 'required|mimes:pdf|max:10000',
+        ],[
+            'url_legalitas_hukum_organisasi.required'  => "File Legalitas Hukum Organisasi wajib diupload.",
+            'url_legalitas_hukum_organisasi.mimes'  => "Ekstensi yang diperbolehkan hanya .PDF",
+            'url_legalitas_hukum_organisasi.max' => "Ukuran file tidak boleh lebih dari 10MB", 
+            // 'url_sppt_sni.required'   => "File SPPT SNI wajib diupload.",
+            // 'url_sppt_sni.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            // 'url_sppt_sni.max' => "Ukuran file tidak boleh lebih dari  10MB",
+            // 'url_sk_kemenkumham.required' => "SK KemenKumHam wajib diupload.",
+            // 'url_sk_kemenkumham.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            // 'url_sk_kemenkumham.max' => "Ukuran file tidak boleh lebih dari  10MB",
+            // 'url_kewenangan_kebijakan.required' => "File Kewenangan Kebijakan wajib diupload.",
+            // 'url_kewenangan_kebijakan.mimes' => "Format File Kewenangan Kebijakan harus dalam format PDF",
+            // 'url_kewenangan_kebijakan.max'  => "Ukuran file tidak boleh lebih dari  10MB",
         ]);
 
-        // Simpan file-file yang diunggah
-        $legalitasHukumPath = $request->file('legalitas_hukum_organisasi')->store('dokumen_peserta', 'public');
-        $spptSniPath = $request->file('sppt_sni')->store('dokumen_peserta', 'public');
-        $suratKeteranganPath = $request->file('sk_kemenkeuham')->store('dokumen_peserta', 'public');
-        $kebijakanPath = $request->file('kebijakan')->store('dokumen_peserta', 'public');
-
-        // Proses penyimpanan telah berhasil
-        // Anda dapat menambahkan log atau tindakan lain yang diperlukan di sini
-
-        return response()->json([
-            'message' => 'Dokumen berhasil diunggah dan disimpan.',
-            'legalitas_hukum_organisasi_path' => $legalitasHukumPath,
-            'sppt_sni_path' => $spptSniPath,
-            'sk_kemenkeuham_path' => $suratKeteranganPath,
-            'kebijakan_path' => $kebijakanPath,
-        ], 200);
-    }
-    // protected function save ($pesertaprofil, $request)
+      // Simpan file-file yang diunggah
+        if ($request->hasFile('url_legalitas_hukum_organisasi')) {
+            $legalitasName = time().'.'.$request->url_legalitas_hukum_organisasi->extension();  
+            $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/dokumen/legalitas'), $legalitasName);
+            
+            return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
+        } else {
+            return back()->with('error', 'Gagal mengunggah dokumen. Pastikan semua dokumen diunggah.');
+        }
+    }// protected function save ($pesertaprofil, $request)
 }
