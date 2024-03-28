@@ -95,7 +95,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
-    // Route::post('/profil',[PesertaProfilController::class, 'dokumenpeserta'])-> name('dokumen.store');
+    Route::post('/profil',[PesertaProfilController::class, 'tambahDokumenPeserta']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');

@@ -137,6 +137,7 @@ class PesertaProfilController extends Controller
         ],[
             'url_legalitas_hukum_organisasi.required'  => "File Legalitas Hukum Organisasi wajib diupload.",
             'url_legalitas_hukum_organisasi.mimes'  => "Ekstensi yang diperbolehkan hanya .PDF",
+            'url_legalitas_hukum_organisasi.file' => "Input Harus berupa File", 
             'url_legalitas_hukum_organisasi.max' => "Ukuran file tidak boleh lebih dari 10MB", 
             // 'url_sppt_sni.required'   => "File SPPT SNI wajib diupload.",
             // 'url_sppt_sni.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
@@ -148,11 +149,16 @@ class PesertaProfilController extends Controller
             // 'url_kewenangan_kebijakan.mimes' => "Format File Kewenangan Kebijakan harus dalam format PDF",
             // 'url_kewenangan_kebijakan.max'  => "Ukuran file tidak boleh lebih dari  10MB",
         ]);
-
-      // Simpan file-file yang diunggah
+        // dd($request->url_legalitas_hukum_organisasi);
+        $id = Auth::guard('peserta')->user()->id;
+        $peserta_profil = PesertaProfil::where('peserta_id', $id)->first();
+        // Simpan file-file yang diunggah
         if ($request->hasFile('url_legalitas_hukum_organisasi')) {
             $legalitasName = time().'.'.$request->url_legalitas_hukum_organisasi->extension();  
-            $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/dokumen/legalitas'), $legalitasName);
+            $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/'.$id.'/dokumen/legalitas'), $legalitasName);
+            $peserta_profil->update([
+                'url_legalitas_hukum_organisasi' => '/'.$id.'/dokumen/legalitas/'.$legalitasName,
+            ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
         } else {
