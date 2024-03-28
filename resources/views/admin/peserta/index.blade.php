@@ -29,7 +29,13 @@
                             <td>{{ $peserta->nama }}</td>
                             <td>{{ $peserta->email }}</td>
                             {{-- <td>-</td> --}}
-                            <td>{{ !$peserta->peserta_profil->no_hp ? '-' : ($peserta->peserta_profil->no_hp) }}</td>
+                            <td>{{ 
+                                $peserta->peserta_profil ? 
+                                    $peserta->peserta_profil->no_hp ? 
+                                        $peserta->peserta_profil->no_hp 
+                                        : '-'
+                                    : '-' 
+                            }}</td>
                             <td>
                                 <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button">Detail</a>
                             </td>
