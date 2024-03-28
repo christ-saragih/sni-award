@@ -47,86 +47,20 @@
     <main>
         <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="evaluator-tab-0" data-bs-toggle="tab" href="#evaluator-tabpanel-0" role="tab" aria-controls="evaluator-tabpanel-0" aria-selected="true">Evaluator</a>
+                <a class="nav-link {{ request()->query('tab')=='' ? 'active' : '' }}" id="evaluator-tab-0" href="/admin/internal" role="tab">Evaluator</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="lead-evaluator-tab-1" data-bs-toggle="tab" href="#lead-evaluator-tabpanel-1" role="tab" aria-controls="lead-evaluator-tabpanel-1" aria-selected="false" tabindex="-1">Lead Evaluator</a>
+                <a class="nav-link {{ request()->query('tab')=='lead_evaluator' ? 'active' : '' }}" id="lead-evaluator-tab-1" href="/admin/internal?tab=lead_evaluator" role="tab">Lead Evaluator</a>
             </li>
         </ul>
         <hr class="p-0">
         <div class="tab-content" id="tab-content">
-            <section class="tab-pane active bg-light container-fluid py-5" id="evaluator-tabpanel-0" role="tabpanel" aria-labelledby="evaluator-tab-0">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h3 class="mb-0" style="font-size: 150%; font-weight: bold;">Data Evaluator</h3>
-                    <div class="dropdown container-dropdown-internal">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tahun
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">2024</a></li>
-                            <li><a class="dropdown-item" href="#">2023</a></li>
-                            <li><a class="dropdown-item" href="#">2022</a></li>
-                            <li><a class="dropdown-item" href="#">2021</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <table class="table align-items-center mt-4 mb-0">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>No Telfon</th>
-                            <th>NPWP</th>
-                            <th class="text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($internal as $internal)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $internal->name }}</td>
-                                <td>{{ $internal->email }}</td>
-                                <td>{{ $internal->user_profil->no_hp }}</td>
-                                <td>{{ $internal->user_profil->npwp }}</td>
-                                <td class="text-center">
-                                    <a href="/admin/internal/{{ $internal->id }}" class="btn" role="button">Detail</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <section class="tab-pane {{ request()->query('tab')=='' ? 'active' : '' }} bg-light container-fluid py-5" id="evaluator-tabpanel-0" role="tabpanel" aria-labelledby="evaluator-tab-0">
+                @include('admin.internal.wizard.evaluator')
             </section>
 
-            <section class="tab-pane bg-light container-fluid rounded rounded-lg px-4 py-4" id="lead-evaluator-tabpanel-0" role="tabpanel" aria-labelledby="lead-evaluator-tab-0">
-                <table class="table align-items-center mb-0">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>No Telfon</th>
-                            <th>NPWP</th>
-                            <th class="text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{-- @foreach ($internal as $internal) --}}
-                        <tr>
-                                <td>{{-- $loop->iteration --}}</td>
-                                <td>{{-- $internal->name --}}</td>
-                                <td>{{-- $internal->email --}}</td>
-                                <td>{{-- $internal->user_profil->no_hp --}}</td>
-                                <td>{{-- $internal->user_profil->npwp --}}</td>
-                                <td class="text-center">
-                                    {{-- <a href="/admin/internal/{{-- $internal->id --}}" class="btn" role="button">Detail</a> --}}
-                                </td>
-                            </tr>
-                        {{-- @endforeach --}}
-
-                    </tbody>
-                </table>
+            <section class="tab-pane {{ request()->query('tab')=='lead_evaluator' ? 'active' : '' }} bg-light container-fluid py-5" id="lead-evaluator-tabpanel-0" role="tabpanel" aria-labelledby="lead-evaluator-tab-0">
+                @include('admin.internal.wizard.leadEvaluator')
             </section>
         </div>
         
