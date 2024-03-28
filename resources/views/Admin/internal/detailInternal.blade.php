@@ -94,7 +94,7 @@
                 @if ($internal->verified_at)
                     <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;">
                         <i class="fa fa-check-circle"></i>
-                        &ensp;Terverifikasi
+                        &ensp;Terverifikasi 
                     </div>
                 @endif
                 <h3>{{ $internal->jenis_role->nama }}</h3>
