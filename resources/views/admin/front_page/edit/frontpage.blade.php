@@ -112,28 +112,6 @@
         }
     }
   </style>
-<!-- pop up tambah -->
-<div class="modal fade" id="tambahStatusKepemilikan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header" style="border: none;">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Status Kepemilikan</h1>
-        </div>
-        <div class="modal-body" style="border: none;">
-          <form action="" class="pb-0 mb-0">
-            <div class="d-flex flex-column gap-2">
-                <h6 class="ms-1 mb-0">Status Kepemilikan</h6>
-                <input type="text" class="form-control form-control-lg ps-4" placeholder="Tuliskan Status Kepemilikan" style="font-size: 100%;"/>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer gap-2" style="border: none;">
-          <button class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</button>
-          <button class="btn" data-bs-toggle="modal" >Simpan</button>
-        </div>
-      </div>
-    </div>
-</div>
   
   <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     @if (request()->query('tab') == '')
@@ -152,7 +130,6 @@
   </ul>
   <hr class="p-0">
   
-  <!-- Status Kepemilikan Section -->
   <div class="tab-content" id="tab-content">
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
       <div class="content-profil py-5">
@@ -180,5 +157,5 @@
   </div>
   </div>
   
-    </main>
+</main>
 @endsection
