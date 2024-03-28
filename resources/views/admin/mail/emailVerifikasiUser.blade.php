@@ -36,7 +36,7 @@
             <a href="{{ $details['url'] }}" style="text-decoration: none; color: #fff; padding: 9px; background-color: #552525; font: bold; border-radius: 10px">Verifikasi</a>
             <br><br><br>
             <p>
-                Copy right @ 2023 | zlkcmvzlkmcv
+                Copy right @ 2024 | BSN SNI Award
             </p>
         </center>
     </table>

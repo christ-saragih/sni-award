@@ -18,7 +18,7 @@
           </p>
         </div>
         <div class="image-container col-4 ">
-          <img src="{{ asset('assets') }}{{ $frontpage_data->gambar_banner }}" class="w-100" alt="" />
+          <img src="/storage{{ $frontpage_data->gambar_banner }}" class="w-100" alt="" />
         </div>
       </div>
       <br>
@@ -67,7 +67,7 @@
                 <div
                   class="d-flex justify-content-center align-items-center mb-4"
                 >
-                  <img src="{{ asset('assets') }}{{ $dok->url_dokumentasi }}" alt="" />
+                  <img src="/storage{{ $dok->url_dokumentasi }}" alt="" />
                 </div>
               </div>
             @endforeach

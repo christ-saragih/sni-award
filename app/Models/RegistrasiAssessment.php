@@ -12,6 +12,12 @@ class RegistrasiAssessment extends Model
 
     protected $table = 'registrasi_assessment'; 
 
+    protected $fillable = [
+        'registrasi_id',
+        'assessment_pertanyaan_id',
+        'assessment_jawaban_id',
+    ];
+
     public function registrasi(): BelongsTo
     {
         return $this->belongsTo(Registrasi::class);

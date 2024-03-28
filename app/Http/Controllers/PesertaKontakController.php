@@ -12,7 +12,9 @@ class PesertaKontakController extends Controller
      */
     public function index()
     {
-        return view('Peserta.kontak.index');
+        $pesertaKontaks = PesertaKontak::all();
+
+        return view('peserta.kontak.index', compact('pesertaKontak'));
     }
 
     /**
@@ -20,7 +22,7 @@ class PesertaKontakController extends Controller
      */
     public function create()
     {
-        //
+        return view('peserta.kontak.create');
     }
 
     /**
@@ -37,7 +39,11 @@ class PesertaKontakController extends Controller
             'jabatan.required' =>  "Jabatan harus diisi",
         ]);
         
-        PesertaKontak::create($request);
+        PesertaKontak::create([
+            'nama_penghubung' => $request->nama_penghubung,
+            'nomor_telepon' => $request->nomor_telepon,
+            'jabatan' => $request->jabatan,
+        ]);
 
         // return redirect()->back()-with('sukses','Data Berhasil Di Tambahkan');
         return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
@@ -48,7 +54,7 @@ class PesertaKontakController extends Controller
      */
     public function show(PesertaKontak $pesertaKontak)
     {
-        //
+        return view('peserta.kontak.show', compact('pesertaKontak'));
     }
 
     /**
@@ -56,7 +62,7 @@ class PesertaKontakController extends Controller
      */
     public function edit(PesertaKontak $pesertaKontak)
     {
-        //
+        return view('peserta.kontak.edit', compact('pesertaKontak'));
     }
 
     /**
@@ -64,7 +70,9 @@ class PesertaKontakController extends Controller
      */
     public function update(Request $request, PesertaKontak $pesertaKontak)
     {
-        //
+        $pesertaKontak->update($request->all());
+
+    return redirect('/peserta/profil')->with('success', 'Peserta kontak berhasil diperbarui');
     }
 
     /**
@@ -72,6 +80,8 @@ class PesertaKontakController extends Controller
      */
     public function destroy(PesertaKontak $pesertaKontak)
     {
-        //
+        $pesertaKontak->delete();
+
+        return redirect('/peserta/profil')->with('success', 'Peserta kontak berhasil dihapus');
     }
 }

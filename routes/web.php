@@ -76,6 +76,10 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/masuk', [AuthPesertaController::class, 'loginPeserta']);
     Route::get('/registrasi', [AuthPesertaController::class, 'registrasiPesertaView']);
     Route::post('/registrasi', [AuthPesertaController::class, 'registrasiPeserta']);
+    Route::get('/forgot-password', [AuthPesertaController::class, 'forgotPasswordView']);
+    Route::post('/forgot-password', [AuthPesertaController::class, 'forgotPassword']);
+    Route::get('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPasswordView']);
+    Route::put('/reset-password/{forgot_password_token}', [AuthPesertaController::class, 'resetPassword']);
 });
 
 Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middleware}:{guard}'])
@@ -88,11 +92,18 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
-    Route::get('/profil',[PesertaProfilController::class, 'index']);
+    Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
+    Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
+    Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
+    // Route::post('/profil',[PesertaProfilController::class, 'dokumenpeserta'])-> name('dokumen.store');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
+    Route::post('/pendaftaran',[App\Http\Controllers\Peserta\RegistrasiDokumenController::class,'store'])->name('peserta.store');
+    Route::post('/pendaftaran/jawaban',[App\Http\Controllers\Peserta\RegistrasiAssessmentController::class,'store'])->name('simpanJawaban');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
+    // Route::get('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
+    Route::put('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandi']);
 
 });
 
@@ -105,6 +116,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/masuk', [AuthUserController::class, 'loginUser']);
         Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
         Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
+        Route::get('/forgot-password', [AuthUserController::class, 'forgotPasswordView']);
+        Route::post('/forgot-password', [AuthUserController::class, 'forgotPassword']);
+        Route::get('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPasswordView']);
+        Route::put('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPassword']);
     });
 
     Route::middleware(['auth:web'])->group(function () {
@@ -142,6 +157,8 @@ Route::prefix('/admin')->group(function () {
 
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
+        Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
+        Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
         Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);

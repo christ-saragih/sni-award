@@ -643,6 +643,10 @@ h3 {
     transition: background-color 0.3s ease;
 }
 
+.jawaban-label.selected {
+    background-color: grey; /* Change to your desired background color */
+}
+
 .jawaban-banyak label {
     border: 1px solid #9fafbf;
     border-radius: 10px;

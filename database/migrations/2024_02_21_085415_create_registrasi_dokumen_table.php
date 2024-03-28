@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('registrasi_dokumen', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
-            $table->tinyInteger('dokumen_id')->unsigned();
+            $table->tinyInteger('dokumen_id')->unsigned()->nullable();
             $table->string('url_dokumen');
             $table->enum('status',['proses','ditolak','disetujui']);
             $table->text('feedback');
-            $table->timestamp('review_at')->nullable();
+            $table->timestamp('review_at')->nullable(true);
             // $table->integer('review_by');
             //$table->foreign('review_by')->references('id')->on('users');
             $table->timestamps();

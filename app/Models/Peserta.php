@@ -21,6 +21,7 @@ class Peserta extends Authenticatable
         'password',
         'kategori_organisasi_id',
         'verify_key',
+        'forgot_password_token',
         'email_verified_at',
         'verified_by',
         'verified_at',
@@ -39,8 +40,7 @@ class Peserta extends Authenticatable
         return $this->hasOne(PesertaProfil::class);
     }
 
-    public function kategori_organisasi() : BelongsTo
-    {
-        return $this->belongsTo(KategoriOrganisasi::class);
+    public function  kategori_organisasi() : HasOne {
+        return $this->hasOne(KategoriOrganisasi::class);
     }
 }

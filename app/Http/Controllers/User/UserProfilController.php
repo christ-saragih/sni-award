@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserProfil;
 use Illuminate\Http\Request;
@@ -11,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class UserProfilController extends Controller
 {
     public function index() {
-        $userId = Auth::guard('web')->user()->id;
-        $user = User::find($userId);
-        return view('admin.profil.index', ['user' => $user]);
+        
+        $user = User::find(Auth::user()->id);
+        $role = Role::find($user->role)->nama;
+        return view('admin.profil.index', ['user' => $user, 'role' => $role]);
     }
 
     public function editView() {

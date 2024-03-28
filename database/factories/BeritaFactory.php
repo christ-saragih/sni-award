@@ -19,7 +19,9 @@ class BeritaFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => function () {
+                return User::inRandomOrder()->first()->id;
+            },
             'judul_berita'=> $judul_berita = fake()->sentence(5),
             'slug' => Str::slug($judul_berita, '-'),
             'deskripsi' => fake()->sentence(50),
