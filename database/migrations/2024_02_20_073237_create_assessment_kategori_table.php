@@ -15,6 +15,7 @@ return new class extends Migration
             $table->tinyIncrements('id');
             $table->string('nama');
             $table->timestamps();
+            $table->boolean('sudah_diisi')->default(false);
 
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);

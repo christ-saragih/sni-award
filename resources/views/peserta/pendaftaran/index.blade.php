@@ -19,7 +19,9 @@
           <a href="{{route('pendaftaran.detail',$ak->id)}}" class="card" style="text-decoration: none">
             {{$ak->nama}}
             <div class="ceklis-container">
+              @if ($ak->sudah_diisi)
               <i class="fa fa-check-circle" aria-hidden="true"></i>
+              @endif
             </div> 
           </a>
           @endforeach
@@ -40,6 +42,12 @@
               <div class="col-9">
                   <input type="file" name="url_dokumen" class="form-control">
               </div>
+              <div class="col-3">
+                <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
+            </div>
+            <div class="col-9">
+                <input type="file" name="url_dokumen" class="form-control">
+            </div>
           </div>
           {{-- <div class="row g-3 align-items-center mt-2">
               <div class="col-3">
