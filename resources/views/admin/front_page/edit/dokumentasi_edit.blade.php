@@ -1,23 +1,3 @@
-<!-- pop up hapus start -->
-<div class="modal fade" id="hapusDokumentasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" id="form_hapus_dokumentasi" method="POST">
-        @method('DELETE')
-        @csrf
-        <div class="modal-header" style="border: none;">
-            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Hapus Dokumentasi</h1>
-        </div>
-        <div class="modal-body" style="border: none;">
-            <p>Apakah Anda yakin menghapus item ini?</p>
-        </div>
-        <div class="modal-footer gap-2" style="border: none;">
-            <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
-            <button type="submit" class="btn" data-bs-toggle="modal">Ya</button>
-        </div>
-        </form>
-    </div>
-</div>
-<!-- pop up hapus end -->
 
 <div class="d-flex justify-content-between align-items-center">
     <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Dokumentasi</h3>
@@ -26,7 +6,7 @@
 <a href="/admin/frontpage?tab=dokumentasi" role="button" class="btn">Kembali</a>
 <br><br>
 
-{{-- @if (session('error'))
+@if (session('error'))
 <div class="alert alert-danger w-100" role="alert">
   {{ session('error') }}
 </div>
@@ -34,7 +14,7 @@
 <div class="alert alert-success w-100" role="alert">
   {{ session('success') }}
 </div>
-@endif --}}
+@endif
 
 <form action="/admin/frontpage/dokumentasi/tambah" method="POST" enctype="multipart/form-data">
     @csrf
@@ -68,27 +48,29 @@
                 border-radius: 20px;
             ">
             @if ($jumlah_dokumentasi > 3)
-                <button onclick="openModalHapusDokumentasi({{ $dok->id }})" class="">
+            <form action="/admin/frontpage/dokumentasi/hapus/{{ $dok->id }}" method="post">
+                @method('DELETE')
+                @csrf
+                <button class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
                   </svg>
                 </button>
+            </form>
             @endif
         </div>
     @endforeach
 </div><br>
 
-<script>
-    function openModalHapusDokumentasi(id) {
-        // document
-        //     .getElementById("form_hapus_dokumentasi")
-        //     .setAttribute("action", `/admin/frontpage/dokumentasi/hapus/${id}`);
-        // const modal = new bootstrap.Modal(document.getElementById("hapusFaq"));
-        // modal.show();
-        confirm('Apakah Anda yakin menghapus item ini?') == true ?  $.ajax({
-            url : `/admin/frontpage/dokumentasi/hapus/${id}`,
-            type: 'DELETE',
-            success: () => location.href('/admin/frontpage?tab=dokumentasi'),
-        }) : ''
-    }
-</script>
+{{-- <div class="d-flex align-items-center justify-content-end gap-2">
+    <a href="/admin/frontpage?tab=dokumentasi" role="button" class="btn" style="
+        width: 100px;
+        padding: 5px 10px;
+        background-color: #fff;
+        color: #C17D2D;
+    ">Batal</a>
+    <button style="
+        width: 100px;
+        padding: 5px 10px;
+    " disabled>Simpan</button>
+</div> --}}

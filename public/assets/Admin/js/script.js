@@ -830,3 +830,34 @@ function openModalHapusLembagaSertifikasi(id) {
     modal.show();
 }
 // End Lembaga Sertifikasi
+
+// Pendaftar Event SNI Award
+function openModalUbahPendaftarAdmin(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data pendaftar_sni_award berdasarkan ID
+    $.ajax({
+        url: `/admin/pendaftar_sni_award/${id}/ubah`,
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]').val(response.sekretariat_id);
+
+            // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+            $('#form_ubah_pendaftar_sni_award').attr('action', `/admin/pendaftar_sni_award/${id}`);
+
+            // Tampilkan modal edit
+            $('#ubahPendaftarAdmin').modal('show');
+
+            // Inisialisasi Select2 setelah memuat modal
+            $('#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]').select2({
+                theme: 'bootstrap-5',
+                width: '100%',
+                dropdownParent: $('#ubahPendaftarAdmin')
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+
+}

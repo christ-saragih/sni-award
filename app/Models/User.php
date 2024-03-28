@@ -6,7 +6,11 @@ namespace App\Models;
 
 use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+=======
+use Illuminate\Database\Eloquent\Relations\HasMany;
+>>>>>>> df481c698d2a754e421ca19690aa702ffb82ee92
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -59,7 +63,13 @@ class User extends Authenticatable
     public function user_profil() : HasOne {
         return $this->hasOne(UserProfil::class);
     }
+<<<<<<< HEAD
     public function jenis_role() : BelongsTo {
         return $this->belongsTo(Role::class, 'role');
+=======
+
+    public function registrasi() : HasMany {
+        return $this->hasMany(Registrasi::class);
+>>>>>>> df481c698d2a754e421ca19690aa702ffb82ee92
     }
 }
