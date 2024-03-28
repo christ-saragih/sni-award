@@ -19,7 +19,9 @@
           <a href="{{route('pendaftaran.detail',$ak->id)}}" class="card" style="text-decoration: none">
             {{$ak->nama}}
             <div class="ceklis-container">
+              @if ($ak->sudah_diisi)
               <i class="fa fa-check-circle" aria-hidden="true"></i>
+              @endif
             </div> 
           </a>
           @endforeach
