@@ -85,7 +85,7 @@
                               <h6 class="mb-0">Status Kepemilikan</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->status_kepemilikan->nama }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->status_kepemilikan ? $peserta->peserta_profil->status_kepemilikan->nama : '' }}</div>
                           </div>
                       </div>
 
@@ -112,7 +112,7 @@
                             <h6 class="mb-0">Lembaga Sertifikasi</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->lembaga_sertifikasi->nama }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->lembaga_sertifikasi ? $peserta->peserta_profil->lembaga_sertifikasi->nama : '' }}</div>
                           </div>
                       </div>
 
@@ -143,7 +143,7 @@
                             <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <div class="data">{{ $peserta->peserta_profil->kategori_organisasi->nama }}</div>
+                            <div class="data">{{ $peserta->peserta_profil->kategori_organisasi ? $peserta->peserta_profil->kategori_organisasi->nama : '' }}</div>
                           </div>
                       </div>
 

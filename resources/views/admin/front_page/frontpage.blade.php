@@ -106,7 +106,7 @@
       </div>
     </div>
   </div>
-
+  
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" href="/admin/frontpage" role="tab" >Halaman Depan</a>
@@ -137,7 +137,7 @@
             </div>
         </div>
       </div>
-
+      
       <div class="tab-pane {{ (request()->query('tab') == 'dokumentasi')?'active':'' }}" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-0">
         <div class="content-profil py-5">
             <div class="container">
@@ -146,6 +146,6 @@
         </div>
       </div>
     </div>
-
+  
 </main>
 @endsection

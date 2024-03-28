@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('peserta_kontak', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->integer('peserta_id')->unsigned();
-            $table->string('nama');
-            $table->string('no_hp');
-            $table->string('jabatan');
+            $table->string('nama')->nullable(true);
+            $table->string('no_hp')->nullable(true);
+            $table->string('jabatan')->nullable(true);
             $table->timestamps();
 
             $table->foreign('peserta_id')->references('id')->on('peserta');
