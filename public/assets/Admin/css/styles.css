@@ -742,3 +742,96 @@ tbody tr:nth-child(odd) {
 /* End Pagination */
 
 /* Assignment End */
+/* Pertanyaan */
+.pertanyaan-container div.kategori {
+    width: 360px;
+    background-color: #ddc6c6;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+h3 {
+    font-family: "Josefin Sans", sans-serif;
+    color: #552525;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.pertanyaan-container div.pertanyaan {
+    padding-inline: 100px;
+    padding-block: 40px;
+    margin-top: -35px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.pertanyaan-container div.pertanyaan p {
+    padding-top: 10px;
+    font-size: 137.5%;
+}
+
+/* Jawaban */
+.form-select.kategori_pertanyaan {
+    background-color: #e59b30 !important;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>");
+    border: none;
+    color: white !important;
+    font-family: "Josefin Sans", sans-serif !important;
+    font-size: 127.5% !important;
+    font-weight: 500 !important;
+    border-radius: 10px !important;
+    width: 20%;
+    padding-block: 5px !important;
+}
+
+.kategori_pertanyaan_single {
+    background-color: #e59b30 !important;
+    border: none;
+    color: white !important;
+    font-family: "Josefin Sans", sans-serif !important;
+    font-size: 127.5% !important;
+    font-weight: 500 !important;
+    border-radius: 10px !important;
+    width: 20%;
+    padding-block: 5px !important;
+}
+
+.form-select {
+    background-color: white;
+}
+
+.jawaban label {
+    flex: 0 1 calc(48%);;
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease;
+}
+
+.jawaban-banyak label {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease;
+}
+
+.jawaban div div {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+}
+
+.jawaban div label {
+    border: 1px solid #9fafbf;
+    border-radius: 10px;
+    font-size: 125%;
+    cursor: pointer !important;
+}
+
+.jawaban .active {
+    background-color: #E9ECFA;
+}

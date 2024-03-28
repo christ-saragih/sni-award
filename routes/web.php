@@ -20,6 +20,7 @@ use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\LembagaSertifikasiController;
+use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
@@ -292,6 +293,15 @@ Route::prefix('/admin')->group(function () {
         Route::get('/lembaga_sertifikasi/{lembaga_sertifikasi}/ubah', [LembagaSertifikasiController::class, 'edit'])->name('lembaga_sertifikasi.edit');
         Route::put('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'update'])->name('lembaga_sertifikasi.update');
         Route::delete('/lembaga_sertifikasi/{lembaga_sertifikasi}', [LembagaSertifikasiController::class, 'destroy'])->name('lembaga_sertifikasi.destroy');
+
+        // Pendaftar SNI Award
+        Route::get('/pendaftar_sni_award', [PendaftarAdminController::class, 'index'])->name('pendaftar_sni_award.index');
+        Route::get('/pendaftar_sni_award/{tahun}', [PendaftarAdminController::class, 'getTahun'])->name('pendaftar_sni_award.get_tahun');
+        // Route::get('/pendaftar_sni_award/{kategori}', [PendaftarAdminController::class, 'getKategori'])->name('pendaftar_sni_award.get_kategori');
+        Route::get('/pendaftar_sni_award/{id}/detail', [PendaftarAdminController::class, 'show'])->name('pendaftar_sni_award.detail');
+        Route::get('/pendaftar_sni_award/{id}/detail/{kategori}', [PendaftarAdminController::class, 'getKategori'])->name('pendaftar_sni_award.get_kategori');
+        Route::get('/pendaftar_sni_award/{registrasi}/ubah', [PendaftarAdminController::class, 'edit'])->name('pendaftar_sni_award.edit');
+        Route::put('/pendaftar_sni_award/{id}', [PendaftarAdminController::class, 'update'])->name('pendaftar_sni_award.update');
     });
 });
 // end User

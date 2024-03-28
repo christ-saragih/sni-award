@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Traits\CreatedUpdatedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function user_profil() : HasOne {
         return $this->hasOne(UserProfil::class);
+    }
+
+    public function registrasi() : HasMany {
+        return $this->hasMany(Registrasi::class);
     }
 }
