@@ -7,15 +7,6 @@
     <a href="/admin/frontpage/edit?tab=faq" class="btn" role="button" style="width: 100px;">Edit</a>
 </div><br>
 
-{{-- <form action="" method="POST">
-    @method('PUT')
-    @csrf
-    <div class="frontpage-input-text">
-        <label for="judul_faq">Judul FAQ</label>
-        <p>{{ $frontpage->judul_faq }}</p>
-    </div>
-</form> --}}
-
 <div class="frontpage-input-text">
     <label for="popular_faq">FAQ</label>
     @if (count($popular_faq) != 0)
