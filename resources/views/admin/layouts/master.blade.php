@@ -206,7 +206,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/peserta') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
+            <a class="nav-link {{ request()->is('admin/peserta*') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -216,7 +216,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/internal') ? 'active' : '' }}" id="navLink" href="/admin/internal">
+            <a class="nav-link {{ request()->is('admin/internal*') ? 'active' : '' }}" id="navLink" href="/admin/internal">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
