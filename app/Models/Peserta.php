@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Illuminate\Database\Eloquent\Model;
@@ -36,5 +37,10 @@ class Peserta extends Authenticatable
 
     public function peserta_profil() : HasOne {
         return $this->hasOne(PesertaProfil::class);
+    }
+
+    public function kategori_organisasi() : BelongsTo
+    {
+        return $this->belongsTo(KategoriOrganisasi::class);
     }
 }

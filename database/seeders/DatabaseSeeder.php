@@ -40,9 +40,9 @@ class DatabaseSeeder extends Seeder
             RegistrasiSeeder::class,
             RegistrasiDokumenSeeder::class,
             RegistrasiAssessmentSeeder::class,
-            BeritaSeeder::class,
-            AcaraSeeder::class,
-            DokumentasiAcaraSeeder::class,
+            // BeritaSeeder::class,
+            // AcaraSeeder::class,
+            // DokumentasiAcaraSeeder::class,
         ]);
     }
 }
