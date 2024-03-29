@@ -2,12 +2,12 @@
 
 @section('content')
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
-    <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
-    </li>
-    <li class="nav-item" role="presentation">
-        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
-    </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
+  </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">

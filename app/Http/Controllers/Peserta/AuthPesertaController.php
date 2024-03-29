@@ -40,11 +40,7 @@ class AuthPesertaController extends Controller
                 return redirect('/peserta/dashboard')->with('success', 'Berhasil masuk');
             }
             else {
-                // Auth::guard('peserta')->logout();
-                // return redirect('/masuk')->withErrors('Anda belum melakukan verifikasi. silahkan lakukan verifikasi terlebih dahulu');
-                
                 return redirect('/verifikasi');
-                // return redirect('/verifikasi'.'/'.Auth::guard('peserta')->user()->verify_key);
             }
         }else {
             return redirect('/masuk')->withErrors('Email atau Password salah');
@@ -78,7 +74,7 @@ class AuthPesertaController extends Controller
             'password' => Hash::make($request->password),
             'verify_key' => Str::random(100),
             'forgot_password_token' => Str::random(100),
-            'kategori_organisasi_id' => $request->kategori_organisasi_id,//data dummy
+            'kategori_organisasi_id' => $request->kategori_organisasi_id,
         ];
         $peserta = Peserta::create($dataRegistrasi);
         if ($peserta) {

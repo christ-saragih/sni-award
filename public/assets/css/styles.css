@@ -8,7 +8,6 @@ body {
     font-family: "Arimo", sans-serif;
     margin: 0;
     padding: 0;
-    /* overflow-x: hidden; */
 }
 .main-content{
     margin-top: 100px;
@@ -28,10 +27,6 @@ body {
     padding-top: 70px;
 }
 
-/* #dokumentasi {
-    margin-left: 60px;
-} */
-
 h1 {
     font-family: "Josefin Sans", sans-serif;
     font-weight: bold;
@@ -47,16 +42,10 @@ h1 {
     margin-left: 60px;
 }
 
-/* header {
-    position: fixed;
-    margin-top: -100px;
-    z-index: 1000;
-} */
 .header{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid green; */
 }
 
 .navbar {
@@ -66,13 +55,12 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid blue; */
 }
 
 .navbar-container {
     margin-top: -8px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-color: white;
 }
 
@@ -80,17 +68,17 @@ h1 {
 .navbar-nav div {
     color: black;
     font-size: 16px;
-    margin-inline: 10px;
 }
 
 .nav-link {
+    display: flex;
+    align-items: center;
     padding: 8px 15px !important;
 }
 
 .navbar-nav a.active {
     background-color: var(--primary-color);
-    border-radius: 8px;
-    /* padding-inline: 10px; */
+    border-radius: 15px;
     color: white !important;
     font-weight: 500;
 }
@@ -102,7 +90,7 @@ h1 {
 
 .navbar-nav div.active {
     background-color: var(--primary-color);
-    border-radius: 8px;
+    border-radius: 15px;
 }
 
 .navbar-nav .dropdown button.active {
@@ -125,11 +113,11 @@ h1 {
 }
 
 .logo-container .logo-bsn {
-    height: 25px;
+    height: 45px;
 }
 
 .logo-container .logo-sniaward {
-    height: 30px;
+    height: 50px;
 }
 
 .bg-theme {

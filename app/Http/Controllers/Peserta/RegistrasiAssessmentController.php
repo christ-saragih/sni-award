@@ -39,6 +39,9 @@ class RegistrasiAssessmentController extends Controller
         if (!$assessment_sub_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
+
+        
+
         return view('peserta.pendaftaran.detail',[
             'assessment_sub_kategori' => $assessment_sub_kategori,
             'registrasi' => $registrasi,

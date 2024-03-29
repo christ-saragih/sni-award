@@ -429,7 +429,6 @@
             </div>
         </div>
 
-
         <div class="content-site-evaluation mt-4 py-5 gap-2 d-flex justify-content-center flex-column text-center">
             <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Site Evaluation</h3>
             <span>Sedang Tahap penilaian Desk Evaluation. Harap Ditunggu!</span>
