@@ -13,6 +13,6 @@ class UserProfilSeeder extends Seeder
      */
     public function run(): void
     {
-        UserProfil::factory(10)->create();
+        // UserProfil::factory(10)->create();
     }
 }

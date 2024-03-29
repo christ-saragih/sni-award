@@ -13,6 +13,7 @@ use App\Models\PesertaProfil;
 use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
 use App\Models\RegistrasiDokumen;
+use App\Models\RegistrasiPenilaian;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -73,11 +74,13 @@ class PendaftarAdminController extends Controller
     {
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
-        // dd($registrasi_assessment);
+        $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
+        // dd($registrasi_penilaian);
         // $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->get();
         // $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban_id;
 
         $peserta = Peserta::find($registrasi->peserta_id);
+        // dd($peserta->peserta_profil->nama);
 
         $assessment_sub_kategori = AssessmentSubKategori::get();
         // dd($assessment_kategori);]
@@ -91,7 +94,7 @@ class PendaftarAdminController extends Controller
 
         $user = User::all();
 
-        return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'peserta', 'user', 'assessment_sub_kategori', 'data_assessment_kategori']));
+        return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_penilaian', 'peserta', 'user', 'assessment_sub_kategori', 'data_assessment_kategori']));
         // return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_dokumen', 'peserta', 'user']));
     }
 

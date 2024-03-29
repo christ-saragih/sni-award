@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserProfil;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(0)->create();
+        // $user = User::factory()->create();
+
+        // UserProfil::factory()->create([
+        //     'user_id' => $user->id
+        // ]);
     }
 }

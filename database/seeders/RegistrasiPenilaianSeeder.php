@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\RegistrasiDokumen;
+use App\Models\RegistrasiPenilaian;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class RegistrasiDokumenSeeder extends Seeder
+class RegistrasiPenilaianSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // RegistrasiDokumen::factory(0)->create();
+        // RegistrasiPenilaian::factory(0)->create();
     }
 }

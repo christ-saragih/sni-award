@@ -91,10 +91,8 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta') ? 'active' : '' }}" id="navLink" href="/peserta">
-              <div
-                class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
+            <a class="nav-link {{ request()->is('peserta/dashboard') ? 'active' : '' }}" id="navLink" href="/peserta">
+              <div class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-home"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">Beranda</span>
@@ -444,6 +442,7 @@
 
     <!-- My JavaScript -->
     <script src="{{ asset('assets') }}/peserta/js/script.js"></script>
+
     <script src="{{ asset('assets') }}/peserta/js/app.js"></script>
 
     <!-- Atau jika diletakkan sebelum tag penutup </body> -->
