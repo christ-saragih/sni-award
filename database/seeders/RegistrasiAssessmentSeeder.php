@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegistrasiAssessment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +14,6 @@ class RegistrasiAssessmentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('registrasi_assessment')->insert([
-            'registrasi_id' => 1,
-            'assessment_pertanyaan_id' => 1,
-            'assessment_jawaban_id' => 1,
-            'score' => null
-        ]);
+        // RegistrasiAssessment::factory(0)->create();
     }
 }

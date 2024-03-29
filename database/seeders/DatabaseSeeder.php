@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Dokumen;
-use App\Models\KategoriBerita;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -37,14 +35,15 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             StageSeeder::class,
             PesertaSeeder::class,
-            PesertaProfilSeeder::class,
-            RegistrasiSeeder::class,
-            RegistrasiDokumenSeeder::class,
-            RegistrasiAssessmentSeeder::class,
+            // PesertaProfilSeeder::class,
+            // PesertaKontakSeeder::class,
+            // RegistrasiSeeder::class,
+            // RegistrasiDokumenSeeder::class,
+            // RegistrasiAssessmentSeeder::class,
+            // RegistrasiPenilaianSeeder::class,
             // BeritaSeeder::class,
             // AcaraSeeder::class,
             // DokumentasiAcaraSeeder::class,
-            PesertaKontakSeeder::class,
         ]);
     }
 }
