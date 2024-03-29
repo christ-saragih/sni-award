@@ -91,7 +91,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta') ? 'active' : '' }}" id="navLink" href="/peserta">
+            <a class="nav-link {{ request()->is('peserta/dashboard') ? 'active' : '' }}" id="navLink" href="/peserta">
               <div
                 class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
