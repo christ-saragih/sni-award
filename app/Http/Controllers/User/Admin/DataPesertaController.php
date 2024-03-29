@@ -19,8 +19,8 @@ class DataPesertaController extends Controller
         return view('admin.peserta.detailPeserta', [ 'peserta' => $peserta ]);
     }
 
-    public function editView($id) {
-        $peserta = Peserta::find($id);
-        return view('admin.peserta.editPeserta', ['peserta' => $peserta]);
-    }
+    // public function editView($id) {
+    //     $peserta = Peserta::find($id);
+    //     return view('admin.peserta.editPeserta', ['peserta' => $peserta]);
+    // }
 }

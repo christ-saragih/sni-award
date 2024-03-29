@@ -7,84 +7,57 @@
         border-radius: 5px;
         background-color: #aaa;
     }
+    .row-data {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+    }
+    .head-data {
+        width: 40%;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; 
+    }
+    .head-data::after {
+        content: ':';
+    }
+    .body-data {
+        width: 60%;
+        padding: 0 0 0 20px;
+    }
 </style>
 <main>
-    <section class="card px-4 py-4">
-        <div class="d-flex justify-content-between">
-            <a href="/admin/peserta" class="btn">Kembali</a>
-            <a href="/admin/peserta/edit/{{ $peserta->id }}" class="btn">Ubah</a>
-        </div>
+    <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a href="/admin/peserta/{{ $peserta->id }}" class="nav-link {{ request()->query('tab')==''?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Profil</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a href="/admin/peserta/{{ $peserta->id }}?tab=dokumen" class="nav-link {{ request()->query('tab')=='dokumen'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Dokumen</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a href="/admin/peserta/{{ $peserta->id }}?tab=kontak" class="nav-link {{ request()->query('tab')=='kontak'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Kontak</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a href="/admin/peserta/{{ $peserta->id }}?tab=histori" class="nav-link {{ request()->query('tab')=='histori'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Histori</a>
+        </li>
+    </ul>
+    <hr class="p-0">
 
-        <div class="d-flex gap-4">
-            <span>Nama&emsp;:</span><span>{{ $peserta->nama }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Email&emsp;:</span><span>{{ $peserta->email }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>No. Telfon&emsp;:</span><span>{{ $peserta->peserta_profil->no_hp }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            {{-- <span>Kategori Organisasi&emsp;:</span><span>{{ $peserta->peserta_profil->kategori_organisasi->nama }}</span> --}}
-        </div>
-        <div class="d-flex gap-4">
-            <span>Status&emsp;:</span><span>{{ $peserta->status }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>URL Legalitas Hukum Organisasi&emsp;:</span><span><a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}</a></span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>URL SPPT SNI&emsp;:</span><span><a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">{{ $peserta->peserta_profil->url_sppt_sni }}</a></span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>URL SK Kemenkumham&emsp;:</span><span><a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">{{ $peserta->peserta_profil->url_sk_kemenkumham }}</a></span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>URL Kewenangan Kebijakan&emsp;:</span><span><a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}</a></span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Jabatan Tertinggi&emsp;:</span><span>{{ $peserta->peserta_profil->jabatan_tertinggi }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Website&emsp;:</span><span>{{ $peserta->peserta_profil->website }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Tanggal Beroperasi&emsp;:</span><span>{{ $peserta->peserta_profil->tanggal_beroperasi }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            {{-- <span>Status Kepemilikan&emsp;:</span><span>{{ $peserta->peserta_profil->status_kepemilikan->nama }}</span> --}}
-        </div>
-        <div class="d-flex gap-4">
-            <span>Jenis Produk&emsp;:</span><span>{{ $peserta->peserta_profil->jenis_produk }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Deskripsi Produk&emsp;:</span><span>{{ $peserta->peserta_profil->deskripsi_produk }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            {{-- <span>Lembaga Sertifikasi&emsp;:</span><span>{{ $peserta->peserta_profil->lembaga_setifikasi->nama }}</span> --}}
-        </div>
-        <div class="d-flex gap-4">
-            <span>Produk Export&emsp;:</span><span>{{ $peserta->peserta_profil->produk_export }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Negara Tujuan Export&emsp;:</span><span>{{ $peserta->peserta_profil->negara_tujuan_ekspor }}</span>
-        </div>
-        {{-- <div class="d-flex gap-4">
-            <span>Sektor kategori Organisasi&emsp;:</span><span>{{ $peserta->peserta_profil->sektor_kategori_organisasi->nama }}</span>
-        </div> --}}
-        <div class="d-flex gap-4">
-            <span>Kekayaan Bersih&emsp;:</span><span>{{ $peserta->peserta_profil->kekayaan_bersih }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Hasil Penjualan Tahunan&emsp;:</span><span>{{ $peserta->peserta_profil->hasil_penjualan_tahunan }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Jenis Organisasi&emsp;:</span><span>{{ $peserta->peserta_profil->jenis_organisasi }}</span>
-        </div>
-        <div class="d-flex gap-4">
-            <span>Kewenangan Kebijakan&emsp;:</span><span>{{ $peserta->peserta_profil->kewenangan_kebijakan }}</span>
-        </div>
-        
-    </section>
+    <div class="tab-content" id="tab-content">
+        <section class="tab-pane {{ request()->query('tab')==''?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+            @include('admin.peserta.wizard.detail.profil')
+        </section>
+        <section class="tab-pane {{ request()->query('tab')=='dokumen'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+            @include('admin.peserta.wizard.detail.dokumen')
+        </section>
+        <section class="tab-pane {{ request()->query('tab')=='kontak'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+            @include('admin.peserta.wizard.detail.kontak')
+        </section>
+        <section class="tab-pane {{ request()->query('tab')=='histori'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+            @include('admin.peserta.wizard.detail.histori')
+        </section>
+    </div>
+
 </main>
 @endsection

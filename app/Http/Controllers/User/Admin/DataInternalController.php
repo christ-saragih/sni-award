@@ -33,16 +33,16 @@ class DataInternalController extends Controller
         ]);
     }
     
-    public function editView ($id) {
-        $internal = User::find($id);
-        $role = Role::find($internal->role)->nama;
-        $all_role = Role::get();
-        return view('admin.internal.editInternal', [
-            'internal' => $internal,
-            'role' => $role,
-            'all_role' => $all_role,
-        ]);
-    }
+    // public function editView ($id) {
+    //     $internal = User::find($id);
+    //     $role = Role::find($internal->role)->nama;
+    //     $all_role = Role::get();
+    //     return view('admin.internal.editInternal', [
+    //         'internal' => $internal,
+    //         'role' => $role,
+    //         'all_role' => $all_role,
+    //     ]);
+    // }
 
     public function edit(Request $request, $id){
         $request->validate([
