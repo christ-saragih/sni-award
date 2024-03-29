@@ -70,28 +70,27 @@ class RegistrasiAssessmentController extends Controller
         // Validasi request
         $request->validate([
             'registrasi_id' => 'required|exists:registrasi,id',
-            'assessment_pertanyaan_id' => 'required|exists:assessment_pertanyaan,id',
-            'assessment_jawaban_id' => 'required|exists:assessment_jawaban,id',
-            // Tambahkan validasi untuk field lain jika diperlukan
+            'assessment_pertanyaan_id.*' => 'required|exists:assessment_pertanyaan,id',
+            'jawaban.*' => 'required|exists:assessment_jawaban,id',
         ]);
 
-        try {
-            // Simpan jawaban ke dalam database
+        // Simpan data jawaban ke database
+        foreach ($request->assessment_pertanyaan_id as $pertanyaan_id) {
+            $jawaban_id = $request->input('jawaban.' . $pertanyaan_id);
             RegistrasiAssessment::create([
                 'registrasi_id' => $request->registrasi_id,
-                'assessment_pertanyaan_id' => $request->assessment_pertanyaan_id,
-                'assessment_jawaban_id' => $request->assessment_jawaban_id,
-                // Tambahkan field lain jika diperlukan
+                'assessment_pertanyaan_id' => $pertanyaan_id,
+                'assessment_jawaban_id' => $jawaban_id,
             ]);
-
-            // Jika penyimpanan berhasil, kembalikan respons berhasil
-            return response()->json(['message' => 'Jawaban berhasil disimpan'], 200);
-        } catch (\Exception $e) {
-            // Jika terjadi kesalahan, kembalikan respons error
-            // return response()->json(['error' => 'Gagal menyimpan jawaban'], 500);
-            return response()->json(['error' => $e->getMessage()], 500);
         }
+
+        return redirect('/peserta/pendaftaran')->with('success', 'berhasil');
+
+        // Redirect or give a response as needed
     }
+
+
+
 
     // public function showSubmit($registrasi_id)
     // {
