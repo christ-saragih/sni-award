@@ -1,6 +1,7 @@
 @extends('peserta.layouts.master')
 
 @section('content')
+
 <style>
     section {
         background-color: white;

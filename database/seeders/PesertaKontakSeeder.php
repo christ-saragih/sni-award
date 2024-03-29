@@ -14,6 +14,6 @@ class PesertaKontakSeeder extends Seeder
      */
     public function run()
     {
-        PesertaKontak::factory(10)->create();
+        // PesertaKontak::factory(0)->create();
     }
 }

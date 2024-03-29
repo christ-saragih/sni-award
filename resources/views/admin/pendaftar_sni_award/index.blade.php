@@ -66,7 +66,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$cr->peserta->nama}}</td>
-                            <td>{{$cr->user->name}}</td>
+                            <td>{{$cr->user ? $cr->user->name : ''}}</td>
                             <td>{{$cr->status->nama}}</td>
                             <td>{{$cr->stage->nama}}</td>
                             <td>{{$cr->peserta->kategori_organisasi->nama}}</td>

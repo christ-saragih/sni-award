@@ -59,15 +59,6 @@
                   {{ session('success') }}
                 </div>
             @endif
-            @if (session('error'))
-                <div class="alert alert-danger w-100" role="alert">
-                  {{ session('error') }}
-                </div>
-            @elseif (session('success'))
-                <div class="alert alert-success w-100" role="alert">
-                  {{ session('success') }}
-                </div>
-            @endif
             <div class="mb-3">
                 <label for="email" class="form-label">{{ __('Email Address') }}</label>
 
