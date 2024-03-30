@@ -123,6 +123,11 @@
         @yield('content')
         </main>
 
+        <!-- button back to top  -->
+        <a href="#" class="back-to-top">
+            <span><i data-feather="chevrons-up"></i></span>
+        </a>
+
         <!-- footer dihapus dulu (ada dinotepad) -->
 
         <script>
@@ -141,5 +146,19 @@
         ></script>
         <script src="{{ asset('assets') }}/js/owl.carousel.min.js"></script>
         <script src="{{ asset('assets') }}/js/script.js"></script>
+        <script>
+            let goTopBtn = document.querySelector(".back-to-top");
+            window.onscroll = function () {
+                scrollFunction();
+            };
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                goTopBtn.style.display = "flex";
+                goTopBtn.style.opacity = 1;
+                } else {
+                goTopBtn.style.opacity = 0;
+                }
+            }
+        </script>
     </body>
 </html>
