@@ -16,7 +16,7 @@
       display: block;
     }
 </style>
-<main class="container">
+<main class="container p-0">
   <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
       <a class="nav-link {{request()->query('tab')=='' ? 'active' : ''}}" id="simple-tab-0"  href="/peserta/profil" role="tab" >Profil</a>
