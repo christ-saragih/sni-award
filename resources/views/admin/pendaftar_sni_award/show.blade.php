@@ -242,22 +242,77 @@
                             <label class="fw-bold">Aksi</label>
                         </div>
                     </div>
-                    <div class="row g-3 align-items-center mt-2">
-                        <div class="col-8">
-                            <label class="fw-bold">Upload Kuisoner</label>
+                    @foreach ($dokumen as $dok)
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-8">
+                                <label>{{ $dok->nama }}</label>
+                            </div>
+                            <div class="col-4">
+                                @if ($dok->registrasi_dokumen && $dok->registrasi_dokumen->url_dokumen)
+                                    @php
+                                        $statusColor = '';
+                                        switch ($dok->registrasi_dokumen->status) {
+                                            case 'proses':
+                                                $statusColor = 'bg-warning';
+                                                break;
+                                            case 'ditolak':
+                                                $statusColor = 'bg-danger';
+                                                break;
+                                            case 'disetujui':
+                                                $statusColor = 'bg-success';
+                                                break;
+                                            default:
+                                                $statusColor = '';
+                                                break;
+                                        }
+                                    @endphp
+                                    <a href="{{ $dok->registrasi_dokumen->url_dokumen }}" class="btn" download><i class="fa fa-download"></i></a>
+                                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                                @else
+                                    <span class="text-muted">Tidak ada file</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="col-4">
-                            {{-- {{ $peserta->peserta_profil->jabatan_tertinggi }} --}}
+                    @endforeach
+                    {{-- <div id="dokumen_peserta">
+
+                    </div> --}}
+                    @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
+                        <div class="row g-3 align-items-center mt-2 mt-2">
+                            <div class="col-8">
+                                <label>url_legalitas_hukum_organisasi</label>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" download><i class="fa fa-download"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row g-3 align-items-center mt-2">
-                        <div class="col-8">
-                            <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hokum </label>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-8">
+                                <label>url_sppt_sni</label>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" download><i class="fa fa-download"></i></a>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            {{-- {{ $peserta->peserta_profil->jabatan_tertinggi }} --}}
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-8">
+                                <label>url_sk_kemenkumham</label>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" download><i class="fa fa-download"></i></a>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-8">
+                                <label>url_kewenangan_kebijakan</label>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ $dokumen_peserta->url_kewenangan_kebijakan }}" class="btn" download><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    @else
+                        {{-- <span class="text-muted">Tidak ada file</span> --}}
+                    @endif
                 </div>
             </div>
         </div>
@@ -277,18 +332,18 @@
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Kepeminpinan
+                            Kategori
                         </button>
                         <ul class="dropdown-menu">
-                            {{-- @foreach ($data_assessment_kategori as $kategori)
-                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', $kategori->assessment_kategori_id) }}">{{ $kategori }}</a></li>
-                            @endforeach --}}
+                            @foreach ($data_assessment_kategori as $kategori)
+                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}">{{ $kategori }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     {{-- <div class="text-center kategori_pertanyaan_single ms-auto">Kepemimpinan</div> --}}
                 </div>
                 <!-- fieldset pertanyaan -->
-                @foreach ($assessment_sub_kategori as $ask)
+                @foreach ($assessment_kategori->assessment_sub_kategori as $ask)
                 <fieldset class="fieldset" id="fieldsetPertanyaan">
                     @foreach ($ask->assessment_pertanyaan as $ap)
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
