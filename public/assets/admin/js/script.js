@@ -330,9 +330,7 @@ function openModalUbahKabupaten(id) {
 }
 
 // modal pop up hapus kabupaten
-function openModalHapusKabupaten(id, name) {
-    document.getElementById("id_kabupaten").value = id;
-    document.getElementById("nama_kabupaten").value = name;
+function openModalHapusKabupaten(id) {
 
     document
         .getElementById("form_hapus_kabupaten")

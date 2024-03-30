@@ -7,6 +7,7 @@ use App\Models\AssessmentJawaban;
 use App\Models\AssessmentKategori;
 use App\Models\AssessmentPertanyaan;
 use App\Models\AssessmentSubKategori;
+use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
@@ -16,6 +17,8 @@ use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiPenilaian;
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use function Laravel\Prompts\select;
 
 class PendaftarAdminController extends Controller
 {
@@ -27,7 +30,7 @@ class PendaftarAdminController extends Controller
         $registrasi = Registrasi::get();
 
         $data_tahun = Registrasi::select('tahun')->distinct()->pluck('tahun');
-        // dd($registrasi[0]->user);
+        // dd($data_tahun);
 
         return view('admin.pendaftar_sni_award.index', compact(['registrasi', 'data_tahun']));
     }
@@ -41,15 +44,38 @@ class PendaftarAdminController extends Controller
         return view('admin.pendaftar_sni_award.index', compact(['registrasi', 'data_tahun']));
     }
 
-    public function getKategori($kategori)
+    public function getKategori($id, $kategori)
     {
-        $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $kategori)->get();
+        $registrasi = Registrasi::find($id);
+        $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
+        $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->first();
+        $dokumen = Dokumen::get();
+        // dd($dokumen[0]->registrasi_dokumen->status->nama);
+        // $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban_id;
 
-        $data_assessment_kategori = AssessmentSubKategori::select('assessment_kategori_id')->distinct()->pluck('assessment_kategori_id');
-        dd($data_assessment_kategori);
+        $peserta = Peserta::find($registrasi->peserta_id);
+        // dd($peserta);
+        $dokumen_peserta = PesertaProfil::where('peserta_id', $peserta->id)->select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->first();
+        // dd($dokumen_peserta);
 
-        return view('admin.pendaftar_sni_award.show', compact(['assessment_sub_kategori', 'data_assessment_kategori']));
+        $user = User::all();
+        $assessment_kategori = AssessmentKategori::where('nama', $kategori)->first();
+
+        $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
+        // dd($data_assessment_kategori);
+
+        return view('admin.pendaftar_sni_award.show', compact(['assessment_kategori', 'registrasi_assessment', 'registrasi_penilaian', 'data_assessment_kategori', 'registrasi', 'registrasi_dokumen', 'dokumen', 'dokumen_peserta', 'peserta', 'user']));
     }
+
+
+    // public function getDokumenPeserta($id){
+    //     $registrasi = Registrasi::find($id);
+    //     $peserta = Peserta::find($registrasi->peserta_id);
+    //     $peserta_profil = $peserta->peserta_profil;
+    //     // dd($peserta);
+    //     return response()->json($peserta_profil);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -75,27 +101,24 @@ class PendaftarAdminController extends Controller
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
-        // dd($registrasi_penilaian);
-        // $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->get();
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->first();
+        $dokumen = Dokumen::get();
+        // dd($dokumen[0]->registrasi_dokumen->status->nama);
         // $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban_id;
 
         $peserta = Peserta::find($registrasi->peserta_id);
-        // dd($peserta->peserta_profil->nama);
+        // dd($peserta);
+        $dokumen_peserta = PesertaProfil::where('peserta_id', $peserta->id)->select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->first();
+        // dd($dokumen_peserta);
 
-        $assessment_sub_kategori = AssessmentSubKategori::get();
-        // dd($assessment_kategori);]
+        $assessment_kategori = AssessmentKategori::first();
 
-        // $assessment_jawaban = $registrasi->registrasi_assessment[0]->assessment_jawaban_id;
-
-        // dd($assessment_jawaban);
-
-        $data_assessment_kategori = AssessmentSubKategori::select('assessment_kategori_id')->distinct()->get();
+        $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
         // dd($data_assessment_kategori);
 
         $user = User::all();
 
-        return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_penilaian', 'peserta', 'user', 'assessment_sub_kategori', 'data_assessment_kategori']));
-        // return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_dokumen', 'peserta', 'user']));
+        return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_penilaian', 'registrasi_dokumen', 'dokumen', 'dokumen_peserta', 'peserta', 'user', 'assessment_kategori', 'data_assessment_kategori']));
     }
 
     /**

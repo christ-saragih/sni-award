@@ -11,10 +11,6 @@ use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['auth', 'verified']);
-    // }
     public function getTagBerita(){
         $tag_berita = [];
         $tag_berita = TagBerita::where('nama', 'LIKE', '%'.request('q').'%')->paginate(10);
@@ -40,14 +36,12 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'kategori_berita_id' => 'required',
             'judul_berita' =>'required|max:100',
-            'deskripsi' => 'required|min:5',
+            'deskripsi' => 'required|min:100',
             'tanggal' => 'required|date',
             'file_gambar' => 'required|image',
             'tag_berita' => 'required|array',
         ], [
-            // 'kategori_berita_id.required' => 'Kategori Berita Wajib Diisi!',
             'judul_berita.required' => 'Judul Berita Wajib Diisi!',
             'judul_berita.max' => 'Judul Berita Maksimal 100 Karakter!',
             'deskripsi.required' => 'Deskripsi Berita Wajib Diisi!',
@@ -64,7 +58,8 @@ class BeritaController extends Controller
         // dd($gambar_file->getClientOriginalExtension());
         $gambar_ekstensi = $gambar_file->extension();
         $nama_file = date('ymdhis') . '.' . $gambar_ekstensi;
-        $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
+        $gambar_file->move(storage_path('app/public/images/berita/gambar_berita'), $nama_file);
+        // $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
 
         $berita = Berita::create([
             'user_id' => auth()->user()->id,

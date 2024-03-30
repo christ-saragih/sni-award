@@ -25,6 +25,13 @@ class StatusKepemilikanController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required|unique:status_kepemilikan'
+        ], [
+            'nama.required' => 'Nama Status Kepemilikan Wajib Diisi!',
+            'nama.unique' => 'Nama Status Kepemilikan Telah Tersedia!'
+        ]);
+
         StatusKepemilikan::create([
             'nama' => $request->nama,
         ]);
@@ -42,6 +49,14 @@ class StatusKepemilikanController extends Controller
 
     public function update(Request $request, $id){
         $status_kepemilikan = StatusKepemilikan::find($id);
+
+        $request->validate([
+            'nama' => 'required|unique:status_kepemilikan'
+        ], [
+            'nama.required' => 'Nama Status Kepemilikan Wajib Diisi!',
+            'nama.unique' => 'Nama Status Kepemilikan Telah Tersedia!'
+        ]);
+
         $status_kepemilikan->update([
             'nama' => $request->nama,
         ]);
