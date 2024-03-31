@@ -57,7 +57,7 @@
   {{-- jquery CDN --}}
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
     <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
@@ -108,7 +108,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/faq') ? 'active' : '' }}" id="navLink" href="/admin/faq">
+            <a class="nav-link {{ request()->is('admin/faq*') ? 'active' : '' }}" id="navLink" href="/admin/faq">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -118,7 +118,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/penjadwalan') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
+            <a class="nav-link {{ request()->is('admin/penjadwalan*') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -128,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/berita') || request()->is('admin/acara') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
+            <a class="nav-link {{ request()->is('admin/berita*') || request()->is('admin/acara') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
@@ -206,7 +206,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/peserta') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
+            <a class="nav-link {{ request()->is('admin/peserta*') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -216,7 +216,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/internal') ? 'active' : '' }}" id="navLink" href="/admin/internal">
+            <a class="nav-link {{ request()->is('admin/internal*') ? 'active' : '' }}" id="navLink" href="/admin/internal">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -226,7 +226,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/event_sni_award') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
+            <a class="nav-link {{ request()->is('admin/event_sni_award*') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -264,12 +264,12 @@
           >
             <ul class="navbar-nav d-flex ms-auto justify-content-end">
               <li class="nav-item dropdown px-2 d-flex align-items-center">
-                <a
-                  href="javascript:;"
-                  class="nav-link text-body p-0"
-                  id="dropdownMenuButton"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                <a 
+                href="javascript:;"
+                class="nav-link text-body p-0"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
                 >
                    <i class="fa fa-bell-o cursor-pointer"></i>
                 </a>
@@ -392,7 +392,7 @@
                 </ul>
               </li>
               <li class="nav-item dropdown d-flex px-2 align-items-center">
-                <a
+                <a 
                   href="javascript:;"
                   class="nav-link text-body p-0"
                   id="dropdownMenuButton"

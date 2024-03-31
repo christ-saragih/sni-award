@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RegistrasiDokumen;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,13 +14,6 @@ class RegistrasiDokumenSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('registrasi_dokumen')->insert([
-            'registrasi_id' => 1,
-            'dokumen_id' => 1,
-            'url_dokumen' => 'qwertyuiop',
-            'status' => 'proses',
-            'feedback' => 'asdfg',
-            // 'review_at' => now(),
-        ]);
+        // RegistrasiDokumen::factory(0)->create();
     }
 }

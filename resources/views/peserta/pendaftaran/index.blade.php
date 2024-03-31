@@ -2,29 +2,28 @@
 
 @section('content')
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
-  </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
+    </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
-  <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-    <div class="content-profil py-5" id="pendaftaran">
-      <h3 class="mb-5 pb-0" style="font-size: 200%; font-weight: bold; color: #2b2b2b;">Self Assesment</h3>
-        <div class="card-container mt-4 d-flex flex-wrap justify-content-between gap-5">
-          @foreach ($assessment_kategori as $ak)
-          <a href="{{route('pendaftaran.detail',$ak->id)}}" class="card" style="text-decoration: none">
-            {{$ak->nama}}
-            <div class="ceklis-container">
-              @if ($ak->sudah_diisi)
-              <i class="fa fa-check-circle" aria-hidden="true"></i>
-              @endif
-            </div> 
-          </a>
-          @endforeach
+    <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+        <div class="content-profil py-5" id="pendaftaran">
+        <h3 class="mb-5 pb-0" style="font-size: 200%; font-weight: bold; color: #2b2b2b;">Self Assesment</h3>
+            <div class="card-container mt-4 d-flex flex-wrap justify-content-between gap-5">
+            @foreach ($assessment_kategori as $ak)
+            <a href="{{route('pendaftaran.detail',$ak->id)}}" class="card" style="text-decoration: none">
+                {{$ak->nama}}
+                <div class="ceklis-container">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </div>
+            </a>
+            @endforeach
+            </div>
         </div>
     </div>
   </div>

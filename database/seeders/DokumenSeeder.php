@@ -14,10 +14,8 @@ class DokumenSeeder extends Seeder
     public function run(): void
     {
         $dokumen = array(
-            array('nama' => 'Upload Kuesioner', 'status' => 'aktif'),
-            array('nama' => 'Lembar Pernyataan Tidak Terlibat Kasus Hukum', 'status' => 'aktif'),
-            // array('nama' => 'Upload Kuisoner', 'status' => 'aktif'),
-            // array('nama' => 'Lembar Pernyataan Tidak Terlibat Kasus Hokum', 'status' => 'aktif'),
+            array('nama' => 'Upload Kuisoner', 'status' => 'aktif'),
+            array('nama' => 'Lembar Pernyataan Tidak Terlibat Kasus Hokum', 'status' => 'aktif'),
         );
 
         DB::table('dokumen')->insert($dokumen);

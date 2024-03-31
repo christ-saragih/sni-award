@@ -13,33 +13,36 @@ class DataInternalController extends Controller
 {
     public function index() {
         $internal = User::get();
+        $evaluator = User::where('role', 2)->get();
+        $lead = User::where('role', 3)->get();
         return view('admin.internal.index', [
             'internal' =>  $internal,
+            'evaluator' => $evaluator,
+            'lead' => $lead,
         ]);
     }
     
     public function detail($id) {
         $internal = User::find($id);
         $role = Role::find($internal->role)->nama;
+        $all_role = Role::get();
         return view('admin.internal.detailInternal', [
             'internal' => $internal,
             'role' => $role,
+            'all_role' => $all_role,
         ]);
     }
     
-    public function editView ($id) {
-        $internal = User::find($id);
-        $role = Role::find($internal->role)->nama;
-        $all_role = Role::get();
-        if (!$internal->verified_at) {
-            return view('admin.internal.editInternal', [
-                'internal' => $internal,
-                'role' => $role,
-                'all_role' => $all_role,
-            ]);
-        }
-        return back()->withErrors('User sudah terverifikasi');
-    }
+    // public function editView ($id) {
+    //     $internal = User::find($id);
+    //     $role = Role::find($internal->role)->nama;
+    //     $all_role = Role::get();
+    //     return view('admin.internal.editInternal', [
+    //         'internal' => $internal,
+    //         'role' => $role,
+    //         'all_role' => $all_role,
+    //     ]);
+    // }
 
     public function edit(Request $request, $id){
         $request->validate([
@@ -53,10 +56,7 @@ class DataInternalController extends Controller
             'verified_by' => Auth::user()->id,
         ];
         $user = User::find($id);
-        if (!$user->verified_at) {
-            $user->update($data);
-            return redirect('/admin/internal/'.$id)->with('succcess','Data berhasil diubah');
-        }
-        return  back()->withErrors('User sudah terverifikasi');
+        $user->update($data);
+        return redirect('/admin/internal/'.$id)->with('succcess','Data berhasil diubah');
     }
 }

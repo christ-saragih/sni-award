@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('content')
+
 <style>
     .container-card > div {
         width: 33.33%;
@@ -22,7 +23,6 @@
                         <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">27 Tim</span>
                     </div>
                 </div>
-
                 <div class="d-flex position-relative flex-column justify-content-center py-3" style="padding-inline: 2.5rem; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA; height: 144px;">
                     <hr class="position-absolute start-0 h-100" style="background-color: #552525; border: none; width: 12px; border-radius: 20px;">
                     <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Desk Evaluation</h3>
@@ -31,7 +31,6 @@
                         <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">27 Tim</span>
                     </div>
                 </div>
-
                 <div class="d-flex position-relative flex-column justify-content-center py-3" style="padding-inline: 2.5rem; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA; height: 144px;">
                     <hr class="position-absolute start-0 h-100" style="background-color: #552525; border: none; width: 12px; border-radius: 20px;">
                     <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Peserta</h3>
@@ -43,7 +42,6 @@
             </div>
 
             <div class="d-flex gap-4">
-                
                 <div class="card" style="width: 65%; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA;">
                     <div class="card-header" style="background-color: #FAFAFA;">
                         <h5 style="font-size: 125%;">Grafik</h5>
@@ -58,7 +56,6 @@
         
                 <div class="card" style="width: 35%; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA;">
                     <div class="card-header" style="background-color: #FAFAFA;">
-
                         <h5 class="card-title mb-0">Kalender</h5>
                     </div>
                     <div class="card-body d-flex">
@@ -69,7 +66,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
     </div>
 </div>

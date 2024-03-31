@@ -14,22 +14,24 @@ return new class extends Migration
         Schema::create('registrasi_penilaian', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
-            $table->foreign('registrasi_id')->references('id')->on('registrasi');
             $table->integer('evaluator_id')->unsigned();
-            $table->foreign('evaluator_id')->references('id')->on('users');
             $table->enum('jabatan',['evaluator','lead_evaluator']);
             $table->tinyInteger('stage_id')->unsigned();
-            $table->foreign('stage_id')->references('id')->on('stage');
             $table->string('url_dokumen_penilaian');
             $table->integer('skor');
             $table->text('catatan');
-            // final belum
+            $table->boolean('final')->default(0);
+
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
-$table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
+
+            $table->foreign('registrasi_id')->references('id')->on('registrasi');
+            $table->foreign('evaluator_id')->references('id')->on('users');
+            $table->foreign('stage_id')->references('id')->on('stage');
         });
     }
 

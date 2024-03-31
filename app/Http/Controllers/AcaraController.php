@@ -54,13 +54,15 @@ class AcaraController extends Controller
         // Upload gambar thumbnail dengan nama yang unik
         $gambar_thumbnail = $request->file('gambar_thumbnail');
         $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
-        $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
+        $gambar_thumbnail->move(storage_path('app/public/images/acara/thumbnail_acara'), $nama_gambar_thumbnail);
+        // $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
 
         // Upload gambar konten dengan nama yang unik
         $nama_gambar_konten = [];
         foreach ($request->file('gambar_konten') as $file) {
             $nama_gambar = 'konten_' . now()->format('YmdHis') . '_' . $file->getClientOriginalName();
-            $file->move(public_path('gambar/konten_acara'), $nama_gambar);
+            $file->move(storage_path('app/public/images/acara/konten_acara'), $nama_gambar);
+            // $file->move(public_path('gambar/konten_acara'), $nama_gambar);
             $nama_gambar_konten[] = $nama_gambar;
         }
 
