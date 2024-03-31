@@ -33,22 +33,28 @@
   <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
     <div class="content-profil py-5 mb-5">
       <div class="container mt-4">
-        <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="row g-3 align-items-center mt-2">
-              <div class="col-3">
-                  <label class="fw-bold">Upload Kuesioner</label>
-              </div>
-              <div class="col-9">
-                  <input type="file" name="url_dokumen" class="form-control">
-              </div>
-              <div class="col-3">
-                <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
-            </div>
-            <div class="col-9">
-                <input type="file" name="url_dokumen" class="form-control">
-            </div>
+        <div class="row g-3 align-items-center mt-2">
+          <div class="col-3">
+            <label class="fw-bold">Nama Lampiran</label>
           </div>
+          <div class="col-9">
+            <label class="fw-bold">Aksi</label>
+          </div>
+        </div>
+          <br>
+          <hr style="width: 100%; height: 5px; color: grey">
+            <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @foreach ($dokumen as $dok)
+                <div class="row g-3 align-items-center mt-2">
+                  <div class="col-3">
+                    <label class="fw-bold">{{$dok->nama}}</label>
+                  </div>
+                  <div class="col-9">
+                    <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                  </div>
+                </div>
+              @endforeach
           {{-- <div class="row g-3 align-items-center mt-2">
               <div class="col-3">
                   <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
@@ -57,11 +63,33 @@
                   <input type="file" name="url_dokumen" class="form-control">
               </div>
           </div> --}}
-          <div class="row g-3 justify-content-end mt-2">
-              {{-- <a href="/admin/berita" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a> --}}
-              <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
-          </div>
-        </form>
+              <div class="row g-3 justify-content-end mt-2">
+                  {{-- <a href="/admin/berita" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a> --}}
+                  <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
+              </div>
+            </form>
+            <br>
+            <div class="row">
+              <div class="col-2">
+                <label class="fw-bold">Dokumen Profil</label>
+              </div>
+              <div class="col-9">
+                <br>
+                <hr style="width: 110%; height: 5px">
+              </div>
+            </div>
+            <form action="{{route('pendaftaran.dokumen') }}" method="GET">
+              @foreach ($pesertaProfil as $pp)
+                <div class="row g-3 align-items-center mt-2">
+                  <div class="col-3">
+                    <label class="fw-bold">{{$pp->nama}}</label>
+                  </div>
+                  {{-- <div class="col-9">
+                    <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                  </div> --}}
+                </div>
+              @endforeach
+            </form>
       </div>
     </div>
 </div>

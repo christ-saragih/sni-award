@@ -9,6 +9,8 @@ use App\Models\AssessmentJawaban;
 use App\Models\AssessmentKategori;
 use App\Models\AssessmentPertanyaan;
 use App\Models\AssessmentSubKategori;
+use App\Models\Dokumen;
+use App\Models\PesertaProfil;
 use Illuminate\Http\Request;
 
 class RegistrasiAssessmentController extends Controller
@@ -21,11 +23,15 @@ class RegistrasiAssessmentController extends Controller
     // }
     public function showKategori() {
         $assessment_kategori = AssessmentKategori::get();
+        $pesertaProfil = PesertaProfil::select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->get();
+        $dokumen = Dokumen::get();
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
         return view('peserta.pendaftaran.index', [
             'assessment_kategori' => $assessment_kategori,
+            'dokumen' => $dokumen,
+            'pesertaProfil' => $pesertaProfil
         ]);
     }
 
@@ -46,7 +52,7 @@ class RegistrasiAssessmentController extends Controller
             'assessment_sub_kategori' => $assessment_sub_kategori,
             'registrasi' => $registrasi,
             'pertanyaan' => $pertanyaan,
-            'jawaban_yang_dipilih' => $jawaban_yang_dipilih
+            'jawaban_yang_dipilih' => $jawaban_yang_dipilih,
         ]);
     }
 
@@ -54,7 +60,7 @@ class RegistrasiAssessmentController extends Controller
         return view('peserta.pendaftaran.detail');
     }
 
-    public function show($assessment_kategori_id, $assessment_pertanyaan_id, $assessment_jawaban_id) {
+    public function show($assessment_kategori_id, $assessment_pertanyaan_id, $assessment_jawaban_id, $dokumen) {
         $assessment_kategori = AssessmentKategori::find($assessment_kategori_id);
         $assessment_pertanyaan = AssessmentPertanyaan::find($assessment_pertanyaan_id);
         $assessment_jawaban = AssessmentJawaban::find($assessment_jawaban_id);

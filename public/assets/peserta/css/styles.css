@@ -813,3 +813,21 @@ button.button-detail:hover {
         margin-right: 17.125rem;
     }
 }
+
+.btn-browse {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    color: #333;
+    transition: 0.3s;
+}
+
+.btn-browse:hover {
+    background-color: #ddd;
+}
+
+#file-upload {
+    display: none;
+}
