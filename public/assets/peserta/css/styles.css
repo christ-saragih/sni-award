@@ -273,6 +273,14 @@ hr {
     width: 15%;
 }
 
+.content-profil button:disabled {
+    font-weight: 700;
+    color: #c17d2d;
+    border-radius: 15px;
+    border: 3.5px solid #c17d2d;
+    width: 15%;
+}
+
 .content-profil button:hover,
 .content-kontak-form button:hover,
 .content-ubah-password button:hover,
@@ -285,6 +293,7 @@ hr {
 }
 
 .content-profil button.nonactive,
+.content-profil a.nonactive,
 .content-kontak-form button.nonactive,
 .content-ubah-password button.nonactive,
 .action-button-previous {
@@ -297,6 +306,7 @@ hr {
 }
 
 .content-profil button.nonactive:hover,
+.content-profil a.nonactive:hover,
 .content-kontak-form button.nonactive:hover,
 .content-ubah-password button.nonactive:hover,
 .action-button-previous:hover {

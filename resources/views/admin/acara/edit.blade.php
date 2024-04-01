@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-9">
                             <input type="file" id="gambar_thumbnail" name="gambar_thumbnail" class="form-control mb-3">
-                            <img src="{{ asset('gambar/thumbnail_acara/' . $acara->gambar_thumbnail) }}" alt="Gambar Konten" style="max-width: 200px;">
+                            <img src="{{ asset('images/acara/thumbnail_acara/' . $acara->gambar_thumbnail) }}" alt="Gambar Konten" style="max-width: 200px;">
                         </div>
                     </div>
                     <div class="additional-images">
@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-12" style="display: flex">
                                 @foreach($dokumentasi_acara as $dokumentasi)
-                                <img src="{{ asset('gambar/konten_acara/' . $dokumentasi->gambar_konten) }}" alt="Image" style="max-width: 200px; margin-right: 10px; margin-top: 10px">
+                                <img src="{{ asset('images/acara/konten_acara/' . $dokumentasi->gambar_konten) }}" alt="Image" style="max-width: 200px; margin-right: 10px; margin-top: 10px">
                                 @endforeach
                             </div>
                         </div>

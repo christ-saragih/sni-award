@@ -18,7 +18,7 @@
                         <input type="text" name="nama" class="form-control form-control-lg ps-4" placeholder="Tuliskan Tag Berita" style="font-size: 100%;"/>
                     </div>
                     <div class="modal-footer gap-2" style="border: none;">
-                        <button class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</button>
+                        <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
                         <button class="btn" data-bs-toggle="modal" >Simpan</button>
                     </div>
                 </form>
@@ -127,14 +127,6 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$tb->nama}}</td>
                             <td>
-                                {{-- <form action="{{ route('tag_berita.destroy', $tb->id) }}" method="POST">
-                                <a class="btn btn-ubah" href="{{ route('tag_berita.edit', $tb->id) }}">Edit</a>
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-hapus">Delete</button>
-                                </form> --}}
                                 <div class="d-flex justify-content-center gap-2">
                                     <button onclick="openModalUbahTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
                                     <button onclick="openModalHapusTB('{{ $tb->id }}', ' {{ $tb->nama }} ')" class="btn btn-hapus">Hapus</button>

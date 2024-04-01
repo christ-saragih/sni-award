@@ -242,34 +242,32 @@
         <div class="faq-container col-6">
           <div class="accordion w-75" id="accordionExample">
 
-            <?php $i_faq = 0; ?>
-            @foreach ($popular_faq as $faq)
-            <?php $i_faq++; ?>
+            @for ($i = 0; $i < count($popular_faq); $i++)
               <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{ $i_faq }}">
+                <h2 class="accordion-header" id="heading{{ $i }}">
                   <button
-                    class="accordion-button"
+                    class="accordion-button {{ ($i != 0) ? 'collapsed' : '' }}"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $i_faq }}"
+                    data-bs-target="#collapse{{ $i }}"
                     aria-expanded="false"
-                    aria-controls="collapse{{ $i_faq }}"
+                    aria-controls="collapse{{ $i }}"
                   >
-                    {{ $faq->pertanyaan }}
+                    {{ $popular_faq[$i]->pertanyaan }}
                   </button>
                 </h2>
                 <div
-                  id="collapse{{ $i_faq }}"
-                  class="accordion-collapse collapse {{ ($i_faq == 1) ? 'show' : '' }}"
-                  aria-labelledby="heading{{ $i_faq }}"
+                  id="collapse{{ $i }}"
+                  class="accordion-collapse collapse {{ ($i == 0) ? 'show' : '' }}"
+                  aria-labelledby="heading{{ $i }}"
                   data-bs-parent="#accordionExample"
                 >
                   <div class="accordion-body">
-                    {{ $faq->jawaban }}
+                    {{ $popular_faq[$i]->jawaban }}
                   </div>
                 </div>
               </div>
-            @endforeach
+            @endfor
             
           </div>
         </div>

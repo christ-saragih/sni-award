@@ -158,10 +158,10 @@ Route::prefix('/admin')->group(function () {
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
-        Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
+        // Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
-        Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
+        // Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
         Route::put('/internal/edit/{id}', [DataInternalController::class, 'edit']);
         //end Peserta & Internal
 
@@ -297,11 +297,11 @@ Route::prefix('/admin')->group(function () {
         // Pendaftar SNI Award
         Route::get('/pendaftar_sni_award', [PendaftarAdminController::class, 'index'])->name('pendaftar_sni_award.index');
         Route::get('/pendaftar_sni_award/{tahun}', [PendaftarAdminController::class, 'getTahun'])->name('pendaftar_sni_award.get_tahun');
-        // Route::get('/pendaftar_sni_award/{kategori}', [PendaftarAdminController::class, 'getKategori'])->name('pendaftar_sni_award.get_kategori');
         Route::get('/pendaftar_sni_award/{id}/detail', [PendaftarAdminController::class, 'show'])->name('pendaftar_sni_award.detail');
         Route::get('/pendaftar_sni_award/{id}/detail/{kategori}', [PendaftarAdminController::class, 'getKategori'])->name('pendaftar_sni_award.get_kategori');
         Route::get('/pendaftar_sni_award/{registrasi}/ubah', [PendaftarAdminController::class, 'edit'])->name('pendaftar_sni_award.edit');
         Route::put('/pendaftar_sni_award/{id}', [PendaftarAdminController::class, 'update'])->name('pendaftar_sni_award.update');
+        Route::get('/get_data_dokumen/{id}', [PendaftarAdminController::class, 'getDokumenPeserta'])->name('pendaftar_sni_award.get_dokumen_peserta');
     });
 });
 // end User

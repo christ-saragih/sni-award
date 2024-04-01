@@ -26,7 +26,7 @@
     <div class="content-profil pt-5">
       <div class="d-flex flex-column text-center justify-content-center gap-3">
         <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
-        <button class="btn mx-auto mb-1">Edit Profil</button>
+        <button class="btn mx-auto mb-1" disabled>Edit Profil</button>
         <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
       </div>
 
@@ -196,7 +196,7 @@
                 </div>
 
                 <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                  <a href="/peserta/profil" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a>
+                  <a href="/peserta/profil" role="button" class="btn nonactive" style="width: 13%;">Batal</a>
                   {{-- <button type="submit" class="btn nonactive" style="width: 13%;">Batal</button> --}}
                   <button type="submit" class="btn" style="width: 13%;">Simpan</button>
                 </div>

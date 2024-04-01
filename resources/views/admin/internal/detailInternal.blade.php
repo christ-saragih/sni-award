@@ -48,6 +48,7 @@
     <!-- Pop up ubah jabatan start -->
     <div class="modal fade" id="ubahJabatan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
+
             <form class="modal-content" id="form_ubah_jabatan" method="POST" action="/admin/internal/edit/{{ $internal->id }}">
             @method('PUT')
             @csrf
@@ -78,7 +79,6 @@
         </div>
     </div>
     <!-- Pop up ubah jabatan end -->
-
     <section class="card pb-5">
         <div class="d-flex py-5 align-items-center gap-3">
             <a href="/admin/internal" class="btn" style="width: fit-content">&#8617;</a>
@@ -141,7 +141,6 @@
                 </tr>
             </table>
         </div>
-
     </section>
 </main>
 @endsection

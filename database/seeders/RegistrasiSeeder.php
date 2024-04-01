@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Registrasi;
+use App\Models\RegistrasiAssessment;
+use App\Models\RegistrasiDokumen;
+use App\Models\RegistrasiPenilaian;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,13 +17,18 @@ class RegistrasiSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('registrasi')->insert([
-            'tahun' => fake()->year(),
-            'peserta_id' => 1,
-            'status_id' => 1,
-            'stage_id' => 1,
-            'kategori_organisasi_id' => 1,
-            'sekretariat_id' => 1
-        ]);
+        // $registrasi = Registrasi::factory()->create();
+
+        // RegistrasiAssessment::factory()->create([
+        //     'registrasi_id' => $registrasi->id,
+        // ]);
+
+        // RegistrasiDokumen::factory()->create([
+        //     'registrasi_id' => $registrasi->id,
+        // ]);
+
+        // RegistrasiPenilaian::factory()->create([
+        //     'registrasi_id' => $registrasi->id,
+        // ]);
     }
 }
