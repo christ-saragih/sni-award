@@ -157,3 +157,90 @@ function pilihJawaban(element) {
         element.classList.remove('selected'); // Menghapus kelas 'selected' jika jawaban tidak dipilih
     }
 }
+
+// TAMBAH KONTAK PENGHUBUNG START
+const iconTambah = document.getElementById('iconTambah');
+const containerFormTambahKontak = document.querySelector('.content-kontak-form .container');
+let kontakCount = 1;
+
+iconTambah.addEventListener('click', function() {
+    if (kontakCount < 3) {
+        const newForm = createNewForm();
+        containerFormTambahKontak.appendChild(newForm);
+
+        if (kontakCount === 3) {
+            iconTambah.disabled = true;
+            iconTambah.style.cursor = "default";
+        }
+    }
+});
+
+function createNewForm() {
+    const newForm = document.createElement('div');
+    newForm.classList.add('row', 'd-flex', 'justify-content-center', 'align-items-center', 'kontak-penghubung');
+
+    newForm.innerHTML = `
+        <div class="col-xl-12">
+            <div class="card" style="border-radius: 15px;">
+                <div class="card-body">
+                    <div class="row pt-4 pb-4">
+                        <div class="ps-5 d-flex flex-column gap-3">
+                            <h6 class="mb-0">Kontak Penghubung ${kontakCount}</h6>
+                            <hr class="p-0 flex-fill" style="height: 1px; background-color: #9FAFBF;">
+                        </div>
+                    </div>
+                    <div class="row align-items-center pt-4 pb-3">
+                        <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">Nama Penghubung</h6>
+                        </div>
+                        <div class="col-md-8 pe-5">
+                            <input type="text" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                    <div class="row align-items-center pb-3">
+                        <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">Nomor Telepon</h6>
+                        </div>
+                        <div class="col-md-8 pe-5">
+                            <input type="text" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                    <div class="row align-items-center pb-3">
+                        <div class="col-md-4 ps-5">
+                            <h6 class="mb-0">Jabatan</h6>
+                        </div>
+                        <div class="col-md-8 pe-5">
+                            <input type="text" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                    <div class="px-5 py-4 d-flex justify-content-end gap-3">
+                        <button id="buttonBatal" type="submit" class="btn nonactive" style="width: 13%;">Batal</button>
+                        <button type="submit" class="btn" style="width: 13%;">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    kontakCount++;
+    return newForm;
+}
+
+// BATALKAN
+document.addEventListener('click', function(event) {
+    if (event.target.id === 'buttonBatal') {
+        const form = event.target.closest('.card');
+        form.style.display = 'none';
+      
+        kontakCount--;
+
+        if (kontakCount < 3) {
+            iconTambah.style.cursor = "pointer";
+            iconTambah.disabled = false;
+            iconTambah.id = '';
+        }
+    }
+});
+// TAMBAH KONTAK PENGHUBUNG END
+
+

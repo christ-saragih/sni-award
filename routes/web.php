@@ -158,10 +158,10 @@ Route::prefix('/admin')->group(function () {
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
-        Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
+        // Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
-        Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
+        // Route::get('/internal/edit/{id}', [DataInternalController::class, 'editView']);
         Route::put('/internal/edit/{id}', [DataInternalController::class, 'edit']);
         //end Peserta & Internal
 
