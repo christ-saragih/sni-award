@@ -186,11 +186,11 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Lokasi Maps</h6>
+                    <h6 class="mb-0">Lokasi Map</h6>
                   </div>
                   <div class="container col-md-8 pe-5">
                     <div class="input-group custom-file-button">
-                      <input name="lokasi_maps" type="text" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
+                      <input name="lokasi_map" type="text" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
                     </div>
                   </div>
                 </div>
