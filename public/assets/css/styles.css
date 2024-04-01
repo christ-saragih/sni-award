@@ -1138,3 +1138,50 @@ ul a {
 }
 /* Menu Informasi End */
 
+/* Back to Top Start */
+html {
+	scroll-behavior: smooth;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 0.5rem;
+    text-decoration: none;
+    display: none;
+    transition: opacity 0.3s ease-out;
+    animation: fadeInOut 0.3s ease-out;
+}
+
+.back-to-top span svg {
+    transition: transform 0.2s ease-out;
+}
+
+.back-to-top span svg {
+    color: white;
+    width: 36px;
+    height: 36px;
+}
+
+.back-to-top:hover {
+    background-color: #441d1d;
+}
+
+.back-to-top:hover span svg {
+    transform: translateY(-3px);
+}
+/* Button Back to Top End */

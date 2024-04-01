@@ -19,7 +19,7 @@ class RegistrasiDokumen extends Model
         return $this->belongsTo(Dokumen::class);
     }
 
-    public function Registrasi(): BelongsTo
+    public function registrasi(): BelongsTo
     {
         return $this->belongsTo(Registrasi::class);
     }

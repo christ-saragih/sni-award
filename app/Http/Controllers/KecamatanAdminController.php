@@ -23,6 +23,20 @@ class KecamatanAdminController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'kota_id' => 'required',
+            'kecamatan' => 'required',
+        ], [
+            'kota_id.required' => 'Nama Kota Wajib Diisi!',
+            'kecamatan.required' => 'Nama kecamatan Wajib Diisi!',
+        ]);
+
+        $ketersediaanKecamatan = Kecamatan::where('kota_id', $request->kota_id)->where('kecamatan', $request->kecamatan)->exists();
+
+        if ($ketersediaanKecamatan) {
+            return redirect()->back()->withErrors(['kecamatan' => 'Kecamatan dengan Kota yang sama sudah ada'])->withInput();
+        }
+
         Kecamatan::create([
             'kecamatan' => $request->kecamatan,
             'kota_id' => $request->kota_id,
@@ -34,6 +48,21 @@ class KecamatanAdminController extends Controller
     public function update(Request $request, $id)
     {
         $kecamatan = Kecamatan::find($id);
+
+        $request->validate([
+            'kota_id' => 'required',
+            'kecamatan' => 'required',
+        ], [
+            'kota_id.required' => 'Nama Kota Wajib Diisi!',
+            'kecamatan.required' => 'Nama kecamatan Wajib Diisi!',
+        ]);
+
+        $ketersediaanKecamatan = Kecamatan::where('kota_id', $request->kota_id)->where('kecamatan', $request->kecamatan)->exists();
+
+        if ($ketersediaanKecamatan) {
+            return redirect()->back()->withErrors(['kecamatan' => 'Kecamatan dengan Kota yang sama sudah ada'])->withInput();
+        }
+
         $kecamatan->update([
             'kecamatan' => $request->kecamatan,
             'kota_id' => $request->kota_id,

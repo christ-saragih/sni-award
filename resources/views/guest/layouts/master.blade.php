@@ -111,33 +111,6 @@
                         @endif
                         {{-- <a class="nav-link" href="/login"></a> --}}
                     </div>
-                    <a class="nav-link {{ request()->is('dokumen') ? 'active' : '' }}" href="/dokumen">Dokumen</a>
-                    <a class="nav-link {{ request()->is('linimasa') ? 'active' : '' }}" href="/linimasa">Linimasa</a>
-                    <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="/faq">FAQ</a>
-                    <a class="nav-link {{ request()->is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a>
-                    @if (auth()->check())
-                    <a class="nav-link" href="/admin/dashboard">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#552525" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg>
-                        {{ auth()->user()->name }}
-                    </a>
-                    @elseif (auth()->guard('peserta')->check())
-                    <a class="nav-link" href="/peserta/dashboard">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#552525" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg>
-                        {{ auth()->guard('peserta')->user()->nama }}
-                    </a>
-                    @else
-                    <a class="nav-link" href="/masuk">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#552525" class="bi bi-person-fill" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                        </svg>
-                    </a>
-                    @endif
-                    {{-- <a class="nav-link" href="/login"></a> --}}
-                </div>
                 </div>
 
             </div>
@@ -149,6 +122,11 @@
         <main class="main-content">
         @yield('content')
         </main>
+
+        <!-- button back to top  -->
+        <a href="#" class="back-to-top">
+            <span><i data-feather="chevrons-up"></i></span>
+        </a>
 
         <!-- footer dihapus dulu (ada dinotepad) -->
 
@@ -168,5 +146,19 @@
         ></script>
         <script src="{{ asset('assets') }}/js/owl.carousel.min.js"></script>
         <script src="{{ asset('assets') }}/js/script.js"></script>
+        <script>
+            let goTopBtn = document.querySelector(".back-to-top");
+            window.onscroll = function () {
+                scrollFunction();
+            };
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                goTopBtn.style.display = "flex";
+                goTopBtn.style.opacity = 1;
+                } else {
+                goTopBtn.style.opacity = 0;
+                }
+            }
+        </script>
     </body>
 </html>
