@@ -38,7 +38,7 @@
                         : '-' 
                 }}</td>
                 <td>
-                    <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button">Detail</a>
+                    <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button" style="color: white !important;">Detail</a>
                 </td>
             </tr>
         @endforeach
