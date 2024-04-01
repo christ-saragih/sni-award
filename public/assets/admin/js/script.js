@@ -700,6 +700,24 @@ function openModalHapusTipeKategori(id) {
 }
 // End Tipe Kategori
 
+// modal penjadwalan start
+// pop tambah dokumen 
+function openModalTambahDokumenPenjadwalan() {
+    const modal = new bootstrap.Modal(document.getElementById("tambahDokumenPenjadwalan"));
+    modal.show();
+}
+
+function openModalUbahDokumenPenjadwalan() {
+    const modal = new bootstrap.Modal(document.getElementById("ubahDokumenPenjadwalan"));
+    modal.show();
+}
+
+function openModalHapusDokumenPenjadwalan() {
+    const modal = new bootstrap.Modal(document.getElementById("hapusDokumenPenjadwalan"));
+    modal.show();
+}
+// modal penjadwalan end
+
 // modal faq start
 // pop up ubah
 function openModalUbahFaq(id, name, description) {
