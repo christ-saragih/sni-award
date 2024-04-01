@@ -59,7 +59,7 @@
           ">
             @csrf
             <div class="">
-                <label for="name" class="col-form-label">{{ __('Name') }}</label>
+                <label for="name" class="col-form-label">{{ __('Nama Organisasi') }}</label>
 
                 <div class="">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="name" autofocus style="border-radius: 100px;">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="">
-                <label for="email" class="col-form-label">{{ __('Email Address') }}</label>
+                <label for="email" class="col-form-label">{{ __('Email') }}</label>
 
                 <div class="">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" style="border-radius: 100px;">
@@ -110,7 +110,7 @@
                 padding-bottom: 20px;
             ">
                 <div class="w-100">
-                    <label for="password" class="col-form-label">{{ __('Password') }}</label>
+                    <label for="password" class="col-form-label">{{ __('Kata Sandi') }}</label>
     
                     <div class="">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" style="border-radius: 100px;">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="w-100">
-                    <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
+                    <label for="password-confirm" class="col-form-label">{{ __('Konfirmasi Kata Sandi') }}</label>
                     <div class="">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" style="border-radius: 100px;">
                     </div>
