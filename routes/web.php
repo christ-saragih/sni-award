@@ -25,6 +25,7 @@ use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
+use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
 use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
@@ -33,6 +34,7 @@ use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
+use App\Models\RegistrasiAssessment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -99,6 +101,9 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
+    Route::post('/pendaftaran/daftar', [RegistrasiAssessmentController::class, 'openRegistrasi']);
+    Route::get('/pendaftaran/dokumen', [App\Http\Controllers\Peserta\RegistrasiDokumenController::class, 'getDokumenPeserta'])->name('pendaftaran.dokumen');
+    // Route::get('/pendaftaran')
     Route::post('/pendaftaran',[App\Http\Controllers\Peserta\RegistrasiDokumenController::class,'store'])->name('peserta.store');
     Route::post('/pendaftaran/jawaban',[App\Http\Controllers\Peserta\RegistrasiAssessmentController::class,'store'])->name('simpanJawaban');
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);

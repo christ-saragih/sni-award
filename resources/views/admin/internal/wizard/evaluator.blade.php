@@ -19,7 +19,7 @@
             <th>No.</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>No. Telfon</th>
+            <th>No. Telepon</th>
             <th>Status</th>
             <th class="text-center">Aksi</th>
         </tr>

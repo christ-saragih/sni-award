@@ -15,7 +15,7 @@ class DataPesertaController extends Controller
 
     public function detail ($id) {
         $peserta = Peserta::find($id);
-        // dd($peserta->peserta_profil);
+        // dd($peserta->peserta_kontak);
         return view('admin.peserta.detailPeserta', [ 'peserta' => $peserta ]);
     }
 

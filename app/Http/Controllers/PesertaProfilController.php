@@ -131,9 +131,9 @@ class PesertaProfilController extends Controller
         // Validasi request
         $request->validate([
             'url_legalitas_hukum_organisasi' => 'required|file|mimes:pdf|max:10000',
-            // 'url_sppt_sni' => 'required|mimes:pdf|max:10000',
-            // 'url_sk_kemenkumham' => 'required|mimes:pdf|max:10000',
-            // 'url_kewenangan_kebijakan' => 'required|mimes:pdf|max:10000',
+            // 'url_sppt_sni' => 'required|file|mimes:pdf|max:10000',
+            // 'url_sk_kemenkumham' => 'required|file|mimes:pdf|max:10000',
+            // 'url_kewenangan_kebijakan' => 'required|file|mimes:pdf|max:10000',
         ],[
             'url_legalitas_hukum_organisasi.required'  => "File Legalitas Hukum Organisasi wajib diupload.",
             'url_legalitas_hukum_organisasi.mimes'  => "Ekstensi yang diperbolehkan hanya .PDF",
@@ -141,12 +141,15 @@ class PesertaProfilController extends Controller
             'url_legalitas_hukum_organisasi.max' => "Ukuran file tidak boleh lebih dari 10MB", 
             // 'url_sppt_sni.required'   => "File SPPT SNI wajib diupload.",
             // 'url_sppt_sni.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            // 'url_sppt_sni.file' => "Input Harus berupa File", 
             // 'url_sppt_sni.max' => "Ukuran file tidak boleh lebih dari  10MB",
             // 'url_sk_kemenkumham.required' => "SK KemenKumHam wajib diupload.",
             // 'url_sk_kemenkumham.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            // 'url_kemenkumham.file' => "Input Harus berupa File", 
             // 'url_sk_kemenkumham.max' => "Ukuran file tidak boleh lebih dari  10MB",
             // 'url_kewenangan_kebijakan.required' => "File Kewenangan Kebijakan wajib diupload.",
             // 'url_kewenangan_kebijakan.mimes' => "Format File Kewenangan Kebijakan harus dalam format PDF",
+            // 'url_kewenangan_kebijakan.file' => "Input Harus berupa File", 
             // 'url_kewenangan_kebijakan.max'  => "Ukuran file tidak boleh lebih dari  10MB",
         ]);
         // dd($request->url_legalitas_hukum_organisasi);

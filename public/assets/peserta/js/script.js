@@ -158,6 +158,43 @@ function pilihJawaban(element) {
     }
 }
 
+// Fungsi untuk menangani unggah dokumen
+function handleUpload() {
+    // Lakukan logika untuk mengunggah dokumen, dan kemudian panggil fungsi untuk memperbarui tampilan
+    updateDocumentList();
+}
+
+// Fungsi untuk memperbarui tampilan dengan daftar dokumen dari baris lain
+function updateDocumentList() {
+    // Lakukan permintaan AJAX ke endpoint yang sesuai di server (Laravel)
+    $.ajax({
+        url: '{{route("")}}',
+        method: 'GET',
+        success: function(response) {
+            // Update tampilan dengan daftar dokumen dari baris lain
+            // Misalnya, Anda dapat mengganti isi dari sebuah div dengan daftar dokumen yang diterima dari server
+            $('#otherDocuments').html(response);
+        },
+        error: function(xhr, status, error) {
+            // Tangani kesalahan jika ada
+            console.error(error);
+        }
+    });
+}
+
+const fileUpload = document.querySelector('#file-upload');
+const btnBrowse = document.querySelector('.btn-browse');
+
+btnBrowse.addEventListener('click', () => {
+    fileUpload.click();
+});
+
+fileUpload.addEventListener('change', () => {
+    if (fileUpload.files.length > 0) {
+        const fileName = fileUpload.files[0].name;
+        btnBrowse.textContent = fileName;
+    }
+});
 // TAMBAH KONTAK PENGHUBUNG START
 const iconTambah = document.getElementById('iconTambah');
 const containerFormTambahKontak = document.querySelector('.content-kontak-form .container');

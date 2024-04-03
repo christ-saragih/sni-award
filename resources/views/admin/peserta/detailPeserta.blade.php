@@ -39,7 +39,7 @@
             <a href="/admin/peserta/{{ $peserta->id }}?tab=kontak" class="nav-link {{ request()->query('tab')=='kontak'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Kontak</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="/admin/peserta/{{ $peserta->id }}?tab=histori" class="nav-link {{ request()->query('tab')=='histori'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Histori</a>
+            <a href="/admin/peserta/{{ $peserta->id }}?tab=riwayat" class="nav-link {{ request()->query('tab')=='riwayat'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Riwayat</a>
         </li>
     </ul>
     <hr class="p-0">
@@ -54,8 +54,8 @@
         <section class="tab-pane {{ request()->query('tab')=='kontak'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
             @include('admin.peserta.wizard.detail.kontak')
         </section>
-        <section class="tab-pane {{ request()->query('tab')=='histori'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
-            @include('admin.peserta.wizard.detail.histori')
+        <section class="tab-pane {{ request()->query('tab')=='riwayat'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+            @include('admin.peserta.wizard.detail.riwayat')
         </section>
     </div>
 
