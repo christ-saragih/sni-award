@@ -192,6 +192,12 @@ class PesertaProfilController extends Controller
         } 
         
         if ($request->hasFile('url_sk_kemenkumham')) {
+                       
+            if (File::exists(Storage::url($peserta_profil->url_sk_kemenkumham))) {
+
+                File::delete(Storage::url($peserta_profil->url_sk_kemenkumham)); //hapus gambar sebelumnya jika ada
+            }
+
             $KemenkumhamName = time().'.'.$request->url_sk_kemenkumham->extension();  
             $request->url_sk_kemenkumham->move(storage_path('app/public/dokumen/kemenkumham/'.$id), $KemenkumhamName);
             $peserta_profil->update([
@@ -202,6 +208,12 @@ class PesertaProfilController extends Controller
         } 
         
         if ($request->hasFile('url_kewenangan_kebijakan')) {
+
+            if (File::exists(Storage::url($peserta_profil->url_kewenangan_kebijakan))) {
+
+                File::delete(Storage::url($peserta_profil->url_kewenangan_kebijakan)); //hapus gambar sebelumnya jika ada
+            }
+
             $KewenanganKebijakan = time().'.'.$request->url_kewenangan_kebijakan->extension();  
             $request->url_kewenangan_kebijakan->move(storage_path('app/public/dokumen/kewenangan/'.$id), $KewenanganKebijakan);
             $peserta_profil->update([
