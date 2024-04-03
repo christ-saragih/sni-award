@@ -17,9 +17,10 @@
     <thead>
         <tr>
             <th>No.</th>
-            <th>Nama</th>
+            <th>Nama Organisasi</th>
             <th>Email</th>
-            <th>No Telfon</th>
+            <th>No. Telepon</th>
+            <th>Status Verifikasi</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -29,14 +30,26 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $peserta->nama }}</td>
                 <td>{{ $peserta->email }}</td>
-                {{-- <td>-</td> --}}
                 <td>{{ 
                     $peserta->peserta_profil ? 
-                        $peserta->peserta_profil->no_hp ? 
-                            $peserta->peserta_profil->no_hp 
-                            : '-'
-                        : '-' 
+                    $peserta->peserta_profil->no_hp ? 
+                    $peserta->peserta_profil->no_hp 
+                    : '-'
+                    : '-' 
                 }}</td>
+                <td class="d-flex justify-content-center">
+                    <div style="
+                        width: fit-content;
+                        padding: 1px 10px;
+                        font-weight: bold;
+                        color: white;
+                        background-color: {{ $peserta->verified_at ? '#009900' : '#dd0000' }};
+                        border-radius: 5px;
+                    ">
+                        {{ $peserta->verified_at ? 'Terverifikasi' : 'Belum diverifikasi' }}
+                        </div>
+                </td>
+
                 <td>
                     <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button" style="color: white !important;">Detail</a>
                 </td>

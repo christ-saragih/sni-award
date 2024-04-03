@@ -91,16 +91,16 @@
                 <div class="mb-3" style="width: 160px; height: 160px;">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="" style="object-fit: cover; width: 160px; height: 160px;  border-radius: 50%;">
                 </div>
+                <h3>{{ $internal->jenis_role->nama }}</h3>
+                <p class="mb-2" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
+                
+                <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
                     <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;">
                         <i class="fa fa-check-circle"></i>
                         &ensp;Terverifikasi 
                     </div>
                 @endif
-                <h3>{{ $internal->jenis_role->nama }}</h3>
-                <p class="mb-3" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
-
-                <a href="#ubahJabatan" class="btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
             </div>
             <table class="px-5">
                 <tr>
