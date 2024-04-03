@@ -226,7 +226,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/event_sni_award*') ? 'active' : '' }}" id="navLink" href="/admin/event_sni_award">
+            <a class="nav-link {{ request()->is('admin/pendaftar_sni_award*') ? 'active' : '' }}" id="navLink" href="/admin/pendaftar_sni_award">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
