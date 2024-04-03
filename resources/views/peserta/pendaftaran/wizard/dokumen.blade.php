@@ -45,7 +45,6 @@
               <hr style="width: 110%; height: 5px">
             </div>
           </div>
-          
             @if ($peserta->peserta_profil)
               @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                 <div class="row g-3 align-items-center mt-2">

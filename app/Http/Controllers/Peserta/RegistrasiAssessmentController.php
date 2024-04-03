@@ -24,6 +24,7 @@ class RegistrasiAssessmentController extends Controller
     //     ]);
     // }
     public function showKategori() {
+        $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
         $assessment_kategori = AssessmentKategori::get();
         // $pesertaProfil = PesertaProfil::select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->get();
         // $pesertaProfil = PesertaProfil::find(Auth::guard('peserta')->user()->id)->select('url_legalitas_hukum_organisasi, url_sppt_sni, url_sk_kemenkumham, url_kewenangan_kebijakan')->get();
@@ -37,22 +38,22 @@ class RegistrasiAssessmentController extends Controller
             'assessment_kategori' => $assessment_kategori,
             'dokumen' => $dokumen,
             'peserta' => $peserta,
+            'existingRegistration' => $existingRegistration,
             // 'pesertaProfil' => $pesertaProfil
         ]);
     }
 
-    public function showPertanyaan($id){
+    public function showPertanyaan($id,$registrasi_id){
         // $assessment_sub_kategori = AssessmentSubKategori::with('assessment_pertanyaan','assessment_jawaban')->get();
         $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->get();
         // dd($assessment_sub_kategori[0]->assessment_pertanyaan);
-        $registrasi = Registrasi::find($id);
+        $registrasi = Registrasi::find($registrasi_id);
         $pertanyaan = AssessmentPertanyaan::find($id);
         $jawaban_yang_dipilih = AssessmentJawaban::find($id);
         if (!$assessment_sub_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
 
-        
 
         return view('peserta.pendaftaran.detail',[
             'assessment_sub_kategori' => $assessment_sub_kategori,
@@ -101,25 +102,33 @@ class RegistrasiAssessmentController extends Controller
             ]);
         }
 
-        return redirect('/peserta/pendaftaran')->with('success', 'berhasil');
+        return redirect('/peserta/pendaftaran')->with('success', 'Berhasil');
 
         // Redirect or give a response as needed
     }
 
     public function openRegistrasi() {
+        // Periksa apakah peserta sudah memiliki entri registrasi sebelumnya
+        $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
+        
+        if ($existingRegistration) {
+            return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
+        }
+    
         if (Auth::guard('peserta')->check()) {
             Registrasi::create([
                 'tahun' => date('Y'),
                 'peserta_id' => Auth::guard('peserta')->user()->id,
-                'status_id' => 1,//aktif
-                'stage_id' => 1,//dummy
-                'kategori_organisasi_id' => 1,//dummy
+                'status_id' => 1, // aktif
+                'stage_id' => 1, // dummy
+                'kategori_organisasi_id' => 1, // dummy
             ]);
-
+    
             return redirect()->back()->with('success', 'Pendaftaran telah dibuka');
         }
+        
         return redirect()->back()->withErrors('Gagal melakukan pendaftaran');
-    }
+    }    
 
 
 
