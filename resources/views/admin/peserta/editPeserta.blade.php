@@ -25,7 +25,7 @@
             <span>Email&emsp;:</span><span>{{ $peserta->email }}</span>
         </div>
         <div class="d-flex gap-4">
-            <span>No. Telfon&emsp;:</span><span>{{ $peserta->peserta_profil->no_hp }}</span>
+            <span>No. Telepon&emsp;:</span><span>{{ $peserta->peserta_profil->no_hp }}</span>
         </div>
         <div class="d-flex gap-4">
             {{-- <span>Kategori Organisasi&emsp;:</span><span>{{ $peserta->peserta_profil->kategori_organisasi->nama }}</span> --}}

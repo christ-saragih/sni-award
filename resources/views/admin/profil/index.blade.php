@@ -28,7 +28,7 @@
 
                       <div class="row align-items-center pt-4 pb-3">
                           <div class="col-md-4 ps-5">
-                            <h6 class="mb-0">No. Telfon</h6>
+                            <h6 class="mb-0">No. Telepon</h6>
                           </div>
                           <div class="col-md-8 pe-5">
                             <div class="data">{{ $user->user_profil->no_hp }}</div>

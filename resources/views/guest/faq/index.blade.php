@@ -16,61 +16,65 @@
           <div class="accordion w-75" id="accordionExample">
 
             <!-- popular faq -->
-            @for ($i = 0; $i < count($popular_faq); $i++)
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{ $popular_faq[$i]->id }}">
-                  <button
-                    class="accordion-button {{ $i != 0 ? 'collapsed' : '' }}"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $popular_faq[$i]->id }}"
-                    aria-expanded="false"
-                    aria-controls="collapse{{ $popular_faq[$i]->id }}"
+            @if (count($popular_faq) > 0)
+              @for ($i = 0; $i < count($popular_faq); $i++)
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading{{ $popular_faq[$i]->id }}">
+                    <button
+                      class="accordion-button {{ $i != 0 ? 'collapsed' : '' }}"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse{{ $popular_faq[$i]->id }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{ $popular_faq[$i]->id }}"
+                    >
+                      {{ $popular_faq[$i]->pertanyaan }}
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse{{ $popular_faq[$i]->id }}"
+                    class="accordion-collapse collapse {{ $i == 0 ? 'show' : '' }}"
+                    aria-labelledby="heading{{ $popular_faq[$i]->id }}"
+                    data-bs-parent="#accordionExample"
                   >
-                    {{ $popular_faq[$i]->pertanyaan }}
-                  </button>
-                </h2>
-                <div
-                  id="collapse{{ $popular_faq[$i]->id }}"
-                  class="accordion-collapse collapse {{ $i == 0 ? 'show' : '' }}"
-                  aria-labelledby="heading{{ $popular_faq[$i]->id }}"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    {{ $popular_faq[$i]->jawaban }}
+                    <div class="accordion-body">
+                      {{ $popular_faq[$i]->jawaban }}
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endfor
+              @endfor
+            @endif
             <!-- end popular faq -->
             
             <!-- unpopular faq -->
-            @for ($i = 0; $i < count($unpopular_faq); $i++)
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{ $unpopular_faq[$i]->id }}">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapse{{ $unpopular_faq[$i]->id }}"
-                    aria-expanded="false"
-                    aria-controls="collapse{{ $unpopular_faq[$i]->id }}"
+            @if (count($unpopular_faq) > 0)
+              @for ($i = 0; $i < count($unpopular_faq); $i++)
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading{{ $unpopular_faq[$i]->id }}">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapse{{ $unpopular_faq[$i]->id }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{ $unpopular_faq[$i]->id }}"
+                    >
+                      {{ $unpopular_faq[$i]->pertanyaan }}
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse{{ $unpopular_faq[$i]->id }}"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading{{ $unpopular_faq[$i]->id }}"
+                    data-bs-parent="#accordionExample"
                   >
-                    {{ $unpopular_faq[$i]->pertanyaan }}
-                  </button>
-                </h2>
-                <div
-                  id="collapse{{ $unpopular_faq[$i]->id }}"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="heading{{ $unpopular_faq[$i]->id }}"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    {{ $unpopular_faq[$i]->jawaban }}
+                    <div class="accordion-body">
+                      {{ $unpopular_faq[$i]->jawaban }}
+                    </div>
                   </div>
                 </div>
-              </div>
-            @endfor
+              @endfor
+            @endif
             <!-- end unpopular faq -->
 
           </div>
