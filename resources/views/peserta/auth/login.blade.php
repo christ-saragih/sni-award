@@ -60,7 +60,7 @@
                 </div>
             @endif
             <div class="mb-3">
-                <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                <label for="email" class="form-label">{{ __('Email') }}</label>
 
                 {{-- <div class="d-flex flex-column align-items-start"> --}}
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -73,7 +73,7 @@
                 {{-- </div> --}}
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">{{ __('Password') }}</label>
+                <label for="password" class="form-label">{{ __('Kata Sandi') }}</label>
 
                 <div>
                     <input id="exampleInputPassword1" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -85,7 +85,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <div class="mb-3">
                     @if (Route::has('password.request'))
                     <a class="" style="color: #ccc; font-size: 14px;" href="{{ route('password.request') }}">
@@ -94,12 +94,6 @@
                     @endif
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
             </div>
             <div class="mb-0 d-flex flex-column align-items-center justify-content-center">
                 <div class="button mb-3">
@@ -108,7 +102,7 @@
                     </button>
                 </div>
                 <div class="form-text text-center">
-                  <a href="/forgot-password">Lupa Sandi</a>
+                  <a href="/forgot-password">Lupa Kata Sandi</a>
                 </div>
                 <div class="form-text text-center">
                     Belum memiliki akun? <a href="/registrasi">Daftar </a>

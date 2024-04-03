@@ -14,10 +14,10 @@ class AssessmentController extends Controller
      */
     public function index()
     {
-        $assessment_kategori = AssessmentKategori::all();
-        $assessment_sub_kategori = AssessmentSubKategori::all();
+        $assessment_kategori = AssessmentKategori::paginate(5);
+        $assessment_sub_kategori = AssessmentSubKategori::paginate(5);
         // dd($assessment_sub_kategori[0]->assessment_kategori->nama);
-        $assessment_pertanyaan = AssessmentPertanyaan::all();
+        $assessment_pertanyaan = AssessmentPertanyaan::paginate(5);
         return view('admin.assessment.index', compact(['assessment_kategori', 'assessment_sub_kategori', 'assessment_pertanyaan']));
     }
 

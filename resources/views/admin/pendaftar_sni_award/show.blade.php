@@ -33,24 +33,28 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="registrasi-tab" data-bs-toggle="tab" href="#registrasi-tabpanel" role="tab" aria-controls="registrasi-tabpanel" aria-selected="true" style="width: 100%;">Registrasi</a>
-        {{-- <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', $registrasi->id) }}" role="tab" >Registrasi</a> --}}
+        {{-- <a class="nav-link active" id="registrasi-tab" data-bs-toggle="tab" href="#registrasi-tabpanel" role="tab" aria-controls="registrasi-tabpanel" aria-selected="true" style="width: 100%;">Registrasi</a> --}}
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}" id="registrasi-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', $registrasi->id) }}" role="tab" >Registrasi</a>
     </li>
     <li class="nav-item" role="presentation">
-        {{-- <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', $registrasi->id) }}" role="tab" >Profil</a> --}}
-        <a class="nav-link" id="profil-tab" data-bs-toggle="tab" href="#profil-tabpanel" role="tab" aria-controls="profil-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Profil</a>
+        <a class="nav-link {{ (request()->query('tab') == 'profil')?'active':'' }}" id="profil-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'profil']) }}" role="tab" >Profil</a>
+        {{-- <a class="nav-link" id="profil-tab" data-bs-toggle="tab" href="#profil-tabpanel" role="tab" aria-controls="profil-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Profil</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="dokumen-tab" data-bs-toggle="tab" href="#dokumen-tabpanel" role="tab" aria-controls="dokumen-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Dokumen</a>
+        <a class="nav-link {{ (request()->query('tab') == 'dokumen')?'active':'' }}" id="dokumen-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'dokumen']) }}" role="tab" >Dokumen</a>
+        {{-- <a class="nav-link" id="dokumen-tab" data-bs-toggle="tab" href="#dokumen-tabpanel" role="tab" aria-controls="dokumen-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Dokumen</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="assessment-tab" data-bs-toggle="tab" href="#assessment-tabpanel" role="tab" aria-controls="assessment-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Assessment</a>
+        <a class="nav-link {{ (request()->query('tab') == 'assessment')?'active':'' }}" id="assessment-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'assessment']) }}" role="tab" >Assessment</a>
+        {{-- <a class="nav-link" id="assessment-tab" data-bs-toggle="tab" href="#assessment-tabpanel" role="tab" aria-controls="assessment-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Assessment</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="penilaian-tab" data-bs-toggle="tab" href="#penilaian-tabpanel" role="tab" aria-controls="penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Penilaian</a>
+        <a class="nav-link {{ (request()->query('tab') == 'penilaian')?'active':'' }}" id="penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'penilaian']) }}" role="tab" >Penilaian</a>
+        {{-- <a class="nav-link" id="penilaian-tab" data-bs-toggle="tab" href="#penilaian-tabpanel" role="tab" aria-controls="penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Penilaian</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="tim-penilaian-tab" data-bs-toggle="tab" href="#tim-penilaian-tabpanel" role="tab" aria-controls="tim-penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Tim Penilaian</a>
+        <a class="nav-link {{ (request()->query('tab') == 'tim-penilaian')?'active':'' }}" id="tim-penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'tim-penilaian']) }}" role="tab" >Tim Penilaian</a>
+        {{-- <a class="nav-link" id="tim-penilaian-tab" data-bs-toggle="tab" href="#tim-penilaian-tabpanel" role="tab" aria-controls="tim-penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Tim Penilaian</a> --}}
     </li>
 </ul>
 
@@ -58,7 +62,7 @@
 
 <div class="tab-content" id="tab-content">
     <!-- Konten Registrasi Section -->
-    <div class="tab-pane active" id="registrasi-tabpanel" role="tabpanel" aria-labelledby="registrasi-tab">
+    <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="registrasi-tabpanel" role="tabpanel" aria-labelledby="registrasi-tab">
         <div class="content-profil py-5">
             <div class="d-flex align-items-center gap-2">
                 <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Registrasi</h3>
@@ -115,7 +119,7 @@
     </div>
 
     <!-- Konten Profil Section -->
-    <div class="tab-pane" id="profil-tabpanel" role="tabpanel" aria-labelledby="profil-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'profil')?'active':'' }}" id="profil-tabpanel" role="tabpanel" aria-labelledby="profil-tab">
         <div class="content-profil py-5">
             <div class="d-flex align-items-center gap-2">
                 <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="" style="max-width: 100px; height: auto;">
@@ -226,7 +230,7 @@
     </div>
 
     <!-- Konten Dokumen Section -->
-    <div class="tab-pane" id="dokumen-tabpanel" role="tabpanel" aria-labelledby="dokumen-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'dokumen')?'active':'' }}" id="dokumen-tabpanel" role="tabpanel" aria-labelledby="dokumen-tab">
         <div class="content-profil py-5">
             <div class="d-flex align-items-center gap-2">
                 <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen Assessment</h3>
@@ -319,7 +323,7 @@
     </div>
 
     <!-- Konten Assessment Section -->
-    <div class="tab-pane" id="assessment-tabpanel" role="tabpanel" aria-labelledby="assessment-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'assessment')?'active':'' }}" id="assessment-tabpanel" role="tabpanel" aria-labelledby="assessment-tab">
         <div class="content-profil py-5">
             <div class="d-flex align-items-center gap-2">
                 <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Assessment</h3>
@@ -336,7 +340,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             @foreach ($data_assessment_kategori as $kategori)
-                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}">{{ $kategori }}</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}">{{ $kategori }}</a></li> --}}
+                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}?tab={{ request()->query('tab') }}">{{ $kategori }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -371,7 +376,7 @@
     </div>
 
     <!-- Konten Penilaian Section -->
-    <div class="tab-pane" id="penilaian-tabpanel" role="tabpanel" aria-labelledby="penilaian-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'penilaian')?'active':'' }}" id="penilaian-tabpanel" role="tabpanel" aria-labelledby="penilaian-tab">
         <div class="content-profil py-5">
             <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Desk Evaluation</h3>
             <div class="container mt-4">
@@ -441,7 +446,7 @@
     </div>
 
     <!-- Konten Tim Penilaian Section -->
-    <div class="tab-pane" id="tim-penilaian-tabpanel" role="tabpanel" aria-labelledby="tim-penilaian-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'tim-penilaian')?'active':'' }}" id="tim-penilaian-tabpanel" role="tabpanel" aria-labelledby="tim-penilaian-tab">
         <div class="content-profil py-5 mb-5">
             <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Tim Desk Evaluation</h3>
             <div class="container mt-4">

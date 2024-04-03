@@ -25,6 +25,6 @@
     @endforeach
     </tbody>
 </table>
-{{-- <div class="pagination justify-content-center">
-    {{ $assessment_kategori->links() }}
-</div> --}}
+<div class="pagination justify-content-center">
+    {{ $assessment_pertanyaan->withQueryString()->links() }}
+</div>
