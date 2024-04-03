@@ -36,7 +36,7 @@
             </select>
         </div>
         <div class="d-flex gap-4">
-            <span>No. Telfon&emsp;:</span>
+            <span>No. Telepon&emsp;:</span>
             <div class="data">{{ $internal->user_profil->no_hp }}</div>
             {{-- <input type='text' value='{{ $internal->user_profil->no_hp }}' disabled/> --}}
         </div>

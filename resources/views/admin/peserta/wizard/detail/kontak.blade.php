@@ -14,7 +14,7 @@
                 <div class="mt-5 d-flex align-items-center justidy-content-center" style="gap: 50px;">
                     <div style="font-weight: bold;">
                         <div>Nama Penghubung</div>
-                        <div>No. Telfon</div>
+                        <div>No. Telepon</div>
                         <div>Jabatan</div>
                     </div>
                     <div>
