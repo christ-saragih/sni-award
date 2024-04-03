@@ -100,7 +100,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::post('/profil',[PesertaProfilController::class, 'tambahDokumenPeserta']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
-    Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
+    Route::get('/pendaftaran/{id}/detail/{registrasi_id}', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     Route::post('/pendaftaran/daftar', [RegistrasiAssessmentController::class, 'openRegistrasi']);
     Route::get('/pendaftaran/dokumen', [App\Http\Controllers\Peserta\RegistrasiDokumenController::class, 'getDokumenPeserta'])->name('pendaftaran.dokumen');
     // Route::get('/pendaftaran')
