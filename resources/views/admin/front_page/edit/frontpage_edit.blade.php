@@ -12,7 +12,7 @@
 </script> --}}
 
 <div class="d-flex justify-content-between align-items-center">
-    <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Frontpage</h3>
+    <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Halaman Depan</h3>
 </div>
 <br><hr style="color: orange; height: 0.5px;"><br>
 <br>
@@ -80,7 +80,7 @@
         </div>
         <br>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Social Media</h3>
+            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Media Sosial</h3>
         </div>
         <br><hr style="color: orange; height: 0.5px;"><br>
         <br>

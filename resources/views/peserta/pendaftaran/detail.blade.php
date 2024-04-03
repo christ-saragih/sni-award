@@ -42,11 +42,12 @@
                 </div>
 
                 <!-- detail pertanyaan -->
+                @if ($registrasi)
                 <form action="{{ route('simpanJawaban') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
                     @foreach ($assessment_sub_kategori as $ask)
                         @foreach ($ask->assessment_pertanyaan as $ap)
+                        <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
                             <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                                 <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                                     <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
@@ -68,6 +69,8 @@
                     @endforeach
                     <button type="submit" class="btn btn-primary">Submit Jawaban</button>
                 </form>
+                    
+                @endif
                     {{-- <input
                         type="button"
                         name="selanjutnyaAssesment"

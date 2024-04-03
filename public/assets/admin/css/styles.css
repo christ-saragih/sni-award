@@ -9,6 +9,10 @@ body {
     font-family: "Arimo", sans-serif;
 }
 
+input::placeholder {
+    color: #9FAFBF !important;
+}
+
 .navbar-vertical.navbar-expand-xs {
     display: block;
     position: fixed;
