@@ -18,7 +18,15 @@
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
   {{-- Profil --}}
-  
+  @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error )
+                  <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
   {{-- <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> --}}
   <form class="tab-pane active" method="POST" action="/peserta/profil/edit/" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
     @method('PUT')
@@ -55,6 +63,15 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Nomor Telepon <span style="color: #FF0101;">*</span></h6>
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <input type="text" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}"/>
+                    </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                    <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
                     </div>
                     <div class="col-md-8 pe-5">
@@ -79,7 +96,7 @@
                       <h6 class="mb-0">Status Kepemilikan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_status_kepemilikan" name="status_kepemilikan_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($status_kepemilikan as $sk)
                         <option value="{{$sk->id}}">{{$sk->nama}}</option>    
                         @endforeach
@@ -111,7 +128,7 @@
                       <h6 class="mb-0">Lembaga Sertifikasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_lembaga_sertifikasi" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_lembaga_sertifikasi" name="lembaga_sertifikasi_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($lembaga_sertifikasi as $ls)
                         <option value="{{$ls->id}}">{{$ls->nama}}</option>    
                         @endforeach
@@ -150,7 +167,7 @@
                       <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_kategori_organisasi" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_kategori_organisasi" name="sektor_kategori_organisasi_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($kategori_organisasi as $ko)
                         <option value="{{$ko->id}}">{{$ko->nama}}</option>    
                         @endforeach
