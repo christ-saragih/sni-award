@@ -29,7 +29,9 @@
                     <h6 class="mb-0">Legalitas Hukum Organisasi <span style="color: #FF0101;">*</span></h6>
                   </div>
                   <div class="container col-md-8 pe-5">
-                    <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" class="btn btn-primary">Download</a>
+                    @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
+                    <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label1" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
@@ -43,7 +45,9 @@
                     <h6 class="mb-0">SPPT SNI <span style="color: #FF0101;">*</span></h6>
                   </div>                  
                   <div class="container col-md-8 pe-5">
+                    @if  ($peserta->peserta_profil->url_sppt_sni)
                     <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}" class="btn btn-primary">Download</a>
+                    @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile2">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label2" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
@@ -57,7 +61,9 @@
                     <h6 class="mb-0">SK Kemenkumham <span style="color: #FF0101;">*</span></h6>
                   </div>
                   <div class="container col-md-8 pe-5">
+                    @if ($peserta->peserta_profil->url_sk_kemenkumham)
                     <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" class="btn btn-primary">Download</a>
+                    @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label3" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
@@ -71,7 +77,9 @@
                     <h6 class="mb-0">Kewenangan dan Kebijakan<span style="color: #FF0101;">*</span></h6>
                   </div>
                   <div class="container col-md-8 pe-5">
-                    <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" class="btn btn-primary">Download</a>
+                    @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
+                     <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label4" for="inputGroupFile4">Maksimum upload file : 10 MB </label>
