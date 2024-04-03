@@ -363,11 +363,12 @@ textarea {
     font-family: "Arimo", sans-serif;
 }
 
+#inputFileDocument,
 #inputGroupFile1,
 #inputGroupFile2,
 #inputGroupFile3 {
     width: 90px;
-    color: transparent;
+    color: transparent !important;
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
 }

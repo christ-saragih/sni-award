@@ -124,17 +124,50 @@ $(function () {
     rome(inputCalendar, { time: false, inputFormat: "DD-MM-YYYY" });
 });
 
-const fileInput = document.getElementById("inputGroupFile1");
+const fileInput1 = document.getElementById("inputGroupFile1");
+const fileInput2 = document.getElementById("inputGroupFile2");
+const fileInput3 = document.getElementById("inputGroupFile3");
+const fileInput4 = document.getElementById("inputGroupFile4");
 
-const fileInputLabel = document.getElementById("file-input-label");
+const fileInputLabel1 = document.getElementById("file-input-label1");
+const fileInputLabel2 = document.getElementById("file-input-label2");
+const fileInputLabel3 = document.getElementById("file-input-label3");
+const fileInputLabel4 = document.getElementById("file-input-label4");
 
-fileInput.addEventListener("change", () => {
-    if (fileInput.value === "") {
-        fileInputLabel.innerHTML = "Select a file";
+fileInput1.addEventListener("change", () => {
+    if (fileInput1.value === "") {
+        fileInputLabel1.innerHTML = "Select a file";
     } else {
-        const realPathArray = fileInput.value.split("\\");
+        const realPathArray = fileInput1.value.split("\\");
 
-        fileInputLabel.innerHTML = realPathArray[realPathArray.length - 1];
+        fileInputLabel1.innerHTML = realPathArray[realPathArray.length - 1];
+    }
+});
+fileInput2.addEventListener("change", () => {
+    if (fileInput2.value === "") {
+        fileInputLabel2.innerHTML = "Select a file";
+    } else {
+        const realPathArray = fileInput2.value.split("\\");
+
+        fileInputLabel2.innerHTML = realPathArray[realPathArray.length - 1];
+    }
+});
+fileInput3.addEventListener("change", () => {
+    if (fileInput3.value === "") {
+        fileInputLabel3.innerHTML = "Select a file";
+    } else {
+        const realPathArray = fileInput3.value.split("\\");
+
+        fileInputLabel3.innerHTML = realPathArray[realPathArray.length - 1];
+    }
+});
+fileInput4.addEventListener("change", () => {
+    if (fileInput4.value === "") {
+        fileInputLabel4.innerHTML = "Select a file";
+    } else {
+        const realPathArray = fileInput4.value.split("\\");
+
+        fileInputLabel4.innerHTML = realPathArray[realPathArray.length - 1];
     }
 });
 

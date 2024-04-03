@@ -10,6 +10,8 @@ use App\Models\StatusKepemilikan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PesertaProfilController extends Controller
 {
@@ -54,14 +56,16 @@ class PesertaProfilController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'jabatan_tertinggi' => 'required|string',
-            // 'no_hp' => 'required|string',
+            'no_hp' => 'required|string',
             'website' => 'required|string',
             'tanggal_beroperasi' => 'required|string',
-            // 'status_kepemilikan' => 'required',
+            'status_kepemilikan_id' => 'required',
             'jenis_produk' => 'required|',
             'deskripsi_produk' => 'required|string',
+            'lembaga_sertifikasi_id' => 'required',
             'produk_export' => 'required|string',
             'negara_tujuan_ekspor' => 'required|string',
+            'sektor_kategori_organisasi_id' => 'required',
             'kekayaan_bersih' => 'required|string',
             'hasil_penjualan_tahunan' => 'required|string',
             'jenis_organisasi' => 'required|string',
@@ -69,14 +73,16 @@ class PesertaProfilController extends Controller
         ],[
             'nama.required'=>'Nama tidak boleh kosong',
             'jabatan_tertinggi.required' => 'Jabatan Tertinggi Wajib diisi',
-            // 'no_hp.required' => 'Nomor Telepon Wajib diisi',
+            'no_hp.required' => 'Nomor Telepon Wajib diisi',
             'website.required' => 'Website Wajib diisi',
             'tanggal_beroperasi.required' => 'Tanggal Beroperasi Wajib diisi',
-            // 'status_kepemilikan.required' => 'Status Kepemilikan Wajib diisi',
+            'status_kepemilikan_id.required' => 'Status Kepemilikan Wajib dipilih',
             'jenis_produk.required' => 'Jenis Produk Wajib diisi',
             'deskripsi_produk.required' => 'Deskripsi Produk Wajib diisi',
+            'lembaga_sertifikasi_id.required' =>  'Lembaga Sertifikasi Wajib dipilih',
             'produk_export.required' => 'Produk Export Wajib diisi',
             'negara_tujuan_ekspor.required' => 'Negara Tujuan Ekspor Wajib diisi',
+            'sektor_kategori_organisasi_id' =>  'Kategori Organisasi Wajib dipilih',
             'kekayaan_bersih.required' => 'Kekayaan Bersih Wajib diisi',
             'hasil_penjualan_tahunan.required' => 'Hasil Penjualan Tahunan Wajib diisi',
             'jenis_organisasi.required' => 'Jenis Organisasi Wajib diisi',
@@ -99,15 +105,16 @@ class PesertaProfilController extends Controller
         // $pesertaprofil->save();
         $dataprofil = [
             'jabatan_tertinggi' => $request->jabatan_tertinggi,
-            // 'no_hp' => $request->no_hp,
-            'website' => $request->website,
-            // 'tanggal_beroperasi' =>$request->tanggal_beroperasi,
+            'no_hp' => $request->no_hp,
+            'website' => $request->website,            
             'tanggal_beroperasi' => date("Y-m-d", strtotime($request->tanggal_beroperasi)),
-            // 'status_kepemilikan'=> $request->status_kepemilikan_id, 
+            'status_kepemilikan_id'=> $request->status_kepemilikan_id,     
             'jenis_produk' => $request->jenis_produk,
             'deskripsi_produk' => $request->deskripsi_produk,
+            'lembaga_sertifikasi_id' => $request->lembaga_sertifikasi_id, 
             'produk_export' => $request ->produk_export,
             'negara_tujuan_ekspor' => $request ->negara_tujuan_ekspor,
+            'sektor_kategori_organisasi_id' =>  $request->sektor_kategori_organisasi_id,  
             'kekayaan_bersih' => $request ->kekayaan_bersih,
             'hasil_penjualan_tahunan' => $request ->hasil_penjualan_tahunan,
             'jenis_organisasi' => $request ->jenis_organisasi,
@@ -130,42 +137,88 @@ class PesertaProfilController extends Controller
     {
         // Validasi request
         $request->validate([
-            'url_legalitas_hukum_organisasi' => 'required|file|mimes:pdf|max:10000',
-            // 'url_sppt_sni' => 'required|file|mimes:pdf|max:10000',
-            // 'url_sk_kemenkumham' => 'required|file|mimes:pdf|max:10000',
-            // 'url_kewenangan_kebijakan' => 'required|file|mimes:pdf|max:10000',
+            'url_legalitas_hukum_organisasi' => 'file|mimes:pdf|max:10000',
+            'url_sppt_sni' => 'file|mimes:pdf|max:10000',
         ],[
-            'url_legalitas_hukum_organisasi.required'  => "File Legalitas Hukum Organisasi wajib diupload.",
             'url_legalitas_hukum_organisasi.mimes'  => "Ekstensi yang diperbolehkan hanya .PDF",
             'url_legalitas_hukum_organisasi.file' => "Input Harus berupa File", 
             'url_legalitas_hukum_organisasi.max' => "Ukuran file tidak boleh lebih dari 10MB", 
-            // 'url_sppt_sni.required'   => "File SPPT SNI wajib diupload.",
-            // 'url_sppt_sni.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
-            // 'url_sppt_sni.file' => "Input Harus berupa File", 
-            // 'url_sppt_sni.max' => "Ukuran file tidak boleh lebih dari  10MB",
-            // 'url_sk_kemenkumham.required' => "SK KemenKumHam wajib diupload.",
-            // 'url_sk_kemenkumham.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
-            // 'url_kemenkumham.file' => "Input Harus berupa File", 
-            // 'url_sk_kemenkumham.max' => "Ukuran file tidak boleh lebih dari  10MB",
-            // 'url_kewenangan_kebijakan.required' => "File Kewenangan Kebijakan wajib diupload.",
-            // 'url_kewenangan_kebijakan.mimes' => "Format File Kewenangan Kebijakan harus dalam format PDF",
-            // 'url_kewenangan_kebijakan.file' => "Input Harus berupa File", 
-            // 'url_kewenangan_kebijakan.max'  => "Ukuran file tidak boleh lebih dari  10MB",
+            'url_sppt_sni.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            'url_sppt_sni.file' => "Input Harus berupa File", 
+            'url_sppt_sni.max' => "Ukuran file tidak boleh lebih dari  10MB",
+            'url_sk_kemenkumham.mimes' => "Ekstensi yang diperbolehkan hanya .PDF",
+            'url_kemenkumham.file' => "Input Harus berupa File", 
+            'url_sk_kemenkumham.max' => "Ukuran file tidak boleh lebih dari  10MB",
+            'url_kewenangan_kebijakan.mimes' => "Format File Kewenangan Kebijakan harus dalam format PDF",
+            'url_kewenangan_kebijakan.file' => "Input Harus berupa File", 
+            'url_kewenangan_kebijakan.max'  => "Ukuran file tidak boleh lebih dari  10MB",
         ]);
-        // dd($request->url_legalitas_hukum_organisasi);
         $id = Auth::guard('peserta')->user()->id;
         $peserta_profil = PesertaProfil::where('peserta_id', $id)->first();
         // Simpan file-file yang diunggah
         if ($request->hasFile('url_legalitas_hukum_organisasi')) {
+
+            if (File::exists(Storage::url($peserta_profil->url_legalitas_hukum_organisasi))) {
+
+                File::delete(Storage::url($peserta_profil->url_legalitas_hukum_organisasi)); //hapus gambar sebelumnya jika ada
+            }
+
             $legalitasName = time().'.'.$request->url_legalitas_hukum_organisasi->extension();  
-            $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/'.$id.'/dokumen/legalitas'), $legalitasName);
+            $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/dokumen/legalitas/'.$id), $legalitasName);
             $peserta_profil->update([
-                'url_legalitas_hukum_organisasi' => '/'.$id.'/dokumen/legalitas/'.$legalitasName,
+                'url_legalitas_hukum_organisasi' => 'dokumen/legalitas/'.$id.'/'.$legalitasName,
             ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
-        } else {
-            return back()->with('error', 'Gagal mengunggah dokumen. Pastikan semua dokumen diunggah.');
+        } 
+        //     else {
+        //     return back()->with('error', 'Gagal mengunggah dokumen. Pastikan semua dokumen diunggah.');
+        // }
+        
+        if ($request->hasFile('url_sppt_sni')) {
+            
+            if (File::exists(Storage::url($peserta_profil->url_sppt_sni))) {
+
+                File::delete(Storage::url($peserta_profil->url_sppt_sni)); //hapus gambar sebelumnya jika ada
+            }
+
+            $SpptsniName = time().'.'.$request->url_sppt_sni->extension();  
+            $request->url_sppt_sni->move(storage_path('app/public/dokumen/Spptsni/'.$id), $SpptsniName);
+            $peserta_profil->update([
+                'url_sppt_sni' => '/dokumen/Spptsni/'.$id.'/'.$SpptsniName,
+            ]);
+            
+            return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
+        } 
+        
+        if ($request->hasFile('url_sk_kemenkumham')) {
+            $KemenkumhamName = time().'.'.$request->url_sk_kemenkumham->extension();  
+            $request->url_sk_kemenkumham->move(storage_path('app/public/dokumen/kemenkumham/'.$id), $KemenkumhamName);
+            $peserta_profil->update([
+                'url_sk_kemenkumham' => '/dokumen/kemenkumham/'.$id.'/'.$KemenkumhamName,
+            ]);
+            
+            return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
+        } 
+        
+        if ($request->hasFile('url_kewenangan_kebijakan')) {
+            $KewenanganKebijakan = time().'.'.$request->url_kewenangan_kebijakan->extension();  
+            $request->url_kewenangan_kebijakan->move(storage_path('app/public/dokumen/kewenangan/'.$id), $KewenanganKebijakan);
+            $peserta_profil->update([
+                'url_kewenangan_kebijakan' => '/dokumen/kewenangan/'.$id.'/'.$KewenanganKebijakan,
+            ]);
+            
+            return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
+        } 
+
+        if (!$request->hasFile('url_sppt_sni')&&
+            !$request->hasFile('url_legalitas_hukum_organisasi')&&
+            !$request->hasFile('url_sk_kemenkumham')&&
+            !$request->hasFile('url_kewenangan_kebijakan')) {
+            return back()->withErrors('Gagal mengunggah dokumen. Pastikan semua dokumen diunggahhh.');  
         }
+
+
+        
     }// protected function save ($pesertaprofil, $request)
 }
