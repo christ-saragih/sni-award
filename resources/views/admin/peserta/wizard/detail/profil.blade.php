@@ -11,7 +11,7 @@
             &ensp;Terverifikasi 
         </div>
     @else
-        <form action="/admin/peserta/{{ $peserta->id }}/verifikasi" method="POST">
+        <form action="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}/verifikasi" method="POST">
             @method('PUT')
             @csrf
             <button type="submit" class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #acacac;height: fit-content; color:white; width: fit-content; border:none;">

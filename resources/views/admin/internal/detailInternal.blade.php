@@ -49,7 +49,7 @@
     <div class="modal fade" id="ubahJabatan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
 
-            <form class="modal-content" id="form_ubah_jabatan" method="POST" action="/admin/internal/edit/{{ $internal->id }}">
+            <form class="modal-content" id="form_ubah_jabatan" method="POST" action="/admin/internal/edit/{{ Crypt::encryptString($internal->id) }}">
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
