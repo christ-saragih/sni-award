@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserProfil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class DataInternalController extends Controller
 {
@@ -23,6 +24,7 @@ class DataInternalController extends Controller
     }
     
     public function detail($id) {
+        $id = Crypt::decryptString($id);
         $internal = User::find($id);
         $role = Role::find($internal->role)->nama;
         $all_role = Role::get();
@@ -55,8 +57,9 @@ class DataInternalController extends Controller
             'verified_at' => $request->verified_at,
             'verified_by' => Auth::user()->id,
         ];
+        $id = Crypt::decryptString($id);
         $user = User::find($id);
         $user->update($data);
-        return redirect('/admin/internal/'.$id)->with('succcess','Data berhasil diubah');
+        return redirect('/admin/internal/'.Crypt::encryptString($id))->with('succcess','Data berhasil diubah');
     }
 }

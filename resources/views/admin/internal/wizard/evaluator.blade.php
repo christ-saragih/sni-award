@@ -48,7 +48,7 @@
                 {{-- <td>{{ $evaluator->user_profil->no_hp ? $evaluator->user_profil->no_hp : '-' }}</td> --}}
                 {{-- <td>{{ $evaluator->user_profil->npwp ? $evaluator->user_profil->npwp : '-' }}</td> --}}
                 <td class="text-center">
-                    <a href="/admin/internal/{{ $evaluator->id }}" class="btn" role="button">Detail</a>
+                    <a href="/admin/internal/{{ Crypt::encryptString($evaluator->id) }}" class="btn" role="button">Detail</a>
                 </td>
             </tr>
         @endforeach
