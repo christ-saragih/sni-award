@@ -126,7 +126,7 @@
                 <tr>
                     <th>Dokumen CV</th>
                     <td>
-                        <a href="">
+                        <a href="{{ Storage::url($internal->user_profil->url_cv) }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
                         </a>
                     </td>
@@ -134,7 +134,7 @@
                 <tr>
                     <th>Dokumen Anti Penyuapan</th>
                     <td>
-                        <a href="{{ $internal->user_profil->url_anti_penyuapan }}" target="_blank">
+                        <a href="{{ Storage::url($internal->user_profil->url_anti_penyuapan) }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                         </a>
                     </td>

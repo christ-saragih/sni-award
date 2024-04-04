@@ -43,4 +43,8 @@ class Registrasi extends Model
     {
         return $this->belongsTo(Stage::class);
     }
+
+    public function kategori_organisasi() : BelongsTo {
+        return $this->belongsTo(KategoriOrganisasi::class);
+    }
 }
