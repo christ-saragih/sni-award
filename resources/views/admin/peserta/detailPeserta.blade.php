@@ -30,16 +30,16 @@
 <main>
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
         <li class="nav-item" role="presentation">
-            <a href="/admin/peserta/{{ $peserta->id }}" class="nav-link {{ request()->query('tab')==''?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Profil</a>
+            <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}" class="nav-link {{ request()->query('tab')==''?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Profil</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="/admin/peserta/{{ $peserta->id }}?tab=dokumen" class="nav-link {{ request()->query('tab')=='dokumen'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Dokumen</a>
+            <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}?tab=dokumen" class="nav-link {{ request()->query('tab')=='dokumen'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Dokumen</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="/admin/peserta/{{ $peserta->id }}?tab=kontak" class="nav-link {{ request()->query('tab')=='kontak'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Kontak</a>
+            <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}?tab=kontak" class="nav-link {{ request()->query('tab')=='kontak'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Kontak</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a href="/admin/peserta/{{ $peserta->id }}?tab=riwayat" class="nav-link {{ request()->query('tab')=='riwayat'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Riwayat</a>
+            <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}?tab=riwayat" class="nav-link {{ request()->query('tab')=='riwayat'?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Riwayat</a>
         </li>
     </ul>
     <hr class="p-0">

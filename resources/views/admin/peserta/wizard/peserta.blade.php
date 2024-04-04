@@ -51,7 +51,7 @@
                 </td>
 
                 <td>
-                    <a href="/admin/peserta/{{ $peserta->id }}" class="btn" role="button" style="color: white !important;">Detail</a>
+                    <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}" class="btn" role="button" style="color: white !important;">Detail</a>
                 </td>
             </tr>
         @endforeach

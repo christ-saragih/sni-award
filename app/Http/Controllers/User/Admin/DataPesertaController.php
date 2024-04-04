@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class DataPesertaController extends Controller
 {
@@ -15,12 +16,14 @@ class DataPesertaController extends Controller
     }
 
     public function detail ($id) {
+        $id = Crypt::decryptString($id);
         $peserta = Peserta::find($id);
         // dd($peserta->peserta_kontak);
         return view('admin.peserta.detailPeserta', [ 'peserta' => $peserta ]);
     }
 
     public function verifikasiPeserta($id) {
+        $id = Crypt::decryptString($id);
         $peserta = Peserta::find( $id );
         if ( $peserta ) {
             $peserta->update([
