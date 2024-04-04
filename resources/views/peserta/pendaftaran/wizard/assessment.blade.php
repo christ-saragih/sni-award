@@ -3,7 +3,7 @@
       <div class="card-container mt-4 d-flex flex-wrap justify-content-between gap-5">
       @foreach ($assessment_kategori as $ak)
       @if($existingRegistration != NULL)
-      <a href="{{route('pendaftaran.detail',['id'=>$ak->id,'registrasi_id'=>$existingRegistration->id])}}" class="card" style="text-decoration: none">
+      <a href="{{!$ak->check ? route('pendaftaran.detail',['id'=>$ak->id,'registrasi_id'=>$existingRegistration->id]) : 'javascript:void(0)'}}" class="card @if($ak->check) active @endif" style="text-decoration: none">
           {{$ak->nama}}
           <div class="ceklis-container">
           <i class="fa fa-check-circle" aria-hidden="true"></i>
