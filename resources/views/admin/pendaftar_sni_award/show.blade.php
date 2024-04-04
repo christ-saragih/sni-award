@@ -34,26 +34,26 @@
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
         {{-- <a class="nav-link active" id="registrasi-tab" data-bs-toggle="tab" href="#registrasi-tabpanel" role="tab" aria-controls="registrasi-tabpanel" aria-selected="true" style="width: 100%;">Registrasi</a> --}}
-        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}" id="registrasi-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', $registrasi->id) }}" role="tab" >Registrasi</a>
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}" id="registrasi-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', Crypt::encryptString($registrasi->id)) }}" role="tab" >Registrasi</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == 'profil')?'active':'' }}" id="profil-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'profil']) }}" role="tab" >Profil</a>
+        <a class="nav-link {{ (request()->query('tab') == 'profil')?'active':'' }}" id="profil-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => Crypt::encryptString($registrasi->id), 'tab' => 'profil']) }}" role="tab" >Profil</a>
         {{-- <a class="nav-link" id="profil-tab" data-bs-toggle="tab" href="#profil-tabpanel" role="tab" aria-controls="profil-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Profil</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == 'dokumen')?'active':'' }}" id="dokumen-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'dokumen']) }}" role="tab" >Dokumen</a>
+        <a class="nav-link {{ (request()->query('tab') == 'dokumen')?'active':'' }}" id="dokumen-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => Crypt::encryptString($registrasi->id), 'tab' => 'dokumen']) }}" role="tab" >Dokumen</a>
         {{-- <a class="nav-link" id="dokumen-tab" data-bs-toggle="tab" href="#dokumen-tabpanel" role="tab" aria-controls="dokumen-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Dokumen</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == 'assessment')?'active':'' }}" id="assessment-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'assessment']) }}" role="tab" >Assessment</a>
+        <a class="nav-link {{ (request()->query('tab') == 'assessment')?'active':'' }}" id="assessment-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => Crypt::encryptString($registrasi->id), 'tab' => 'assessment']) }}" role="tab" >Assessment</a>
         {{-- <a class="nav-link" id="assessment-tab" data-bs-toggle="tab" href="#assessment-tabpanel" role="tab" aria-controls="assessment-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Assessment</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == 'penilaian')?'active':'' }}" id="penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'penilaian']) }}" role="tab" >Penilaian</a>
+        <a class="nav-link {{ (request()->query('tab') == 'penilaian')?'active':'' }}" id="penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => Crypt::encryptString($registrasi->id), 'tab' => 'penilaian']) }}" role="tab" >Penilaian</a>
         {{-- <a class="nav-link" id="penilaian-tab" data-bs-toggle="tab" href="#penilaian-tabpanel" role="tab" aria-controls="penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Penilaian</a> --}}
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == 'tim-penilaian')?'active':'' }}" id="tim-penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => $registrasi->id, 'tab' => 'tim-penilaian']) }}" role="tab" >Tim Penilaian</a>
+        <a class="nav-link {{ (request()->query('tab') == 'tim-penilaian')?'active':'' }}" id="tim-penilaian-tab" style="width: auto;" href="{{ route('pendaftar_sni_award.detail', [ 'id' => Crypt::encryptString($registrasi->id), 'tab' => 'tim-penilaian']) }}" role="tab" >Tim Penilaian</a>
         {{-- <a class="nav-link" id="tim-penilaian-tab" data-bs-toggle="tab" href="#tim-penilaian-tabpanel" role="tab" aria-controls="tim-penilaian-tabpanel" aria-selected="false" tabindex="-1" style="width: 100%;">Tim Penilaian</a> --}}
     </li>
 </ul>
@@ -86,7 +86,10 @@
                             {{ $registrasi->user ? $registrasi->user->name : '' }}
                         </div>
                         <div class="col-3">
-                            <button onclick="openModalUbahPendaftarAdmin('{{ $registrasi->id }}')" class="btn" data-bs-toggle="modal" role="button" style="background-color: #E1A600; border: none;"><i class="fa fa-edit"></i></button>
+                            <button 
+                                {{-- onclick="openModalUbahPendaftarAdmin('{{ Crypt::encryptString($registrasi->id) }}')" --}}
+                                onclick="openModalUbahPendaftarAdmin('{{ $registrasi->id }}')"
+                            class="btn" data-bs-toggle="modal" role="button" style="background-color: #E1A600; border: none;"><i class="fa fa-edit"></i></button>
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -165,7 +168,7 @@
                             <label class="fw-bold">Status Kepemilikan</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_profil->status_kepemilikan->nama }}
+                            {{ $peserta->peserta_profil->status_kepemilikan?$peserta->peserta_profil->status_kepemilikan->nama:'' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -181,7 +184,7 @@
                             <label class="fw-bold">Lembaga Sertifikasi</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_profil->lembaga_sertifikasi->nama }}
+                            {{ $peserta->peserta_profil->lembaga_sertifikasi?$peserta->peserta_profil->lembaga_sertifikasi->nama:'' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -197,7 +200,7 @@
                             <label class="fw-bold">Sektor Kategori Organisasi</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_profil->kategori_organisasi->nama }}
+                            {{ $peserta->peserta_profil->kategori_organisasi?$peserta->peserta_profil->kategori_organisasi->nama:'' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
