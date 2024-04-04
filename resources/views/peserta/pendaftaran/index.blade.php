@@ -8,6 +8,7 @@
 
   .nav-link.disabled {
     pointer-events: none;
+    color: #999999 !important;
   }
 </style>
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
