@@ -45,6 +45,10 @@ class Peserta extends Authenticatable
         return $this->hasMany(PesertaKontak::class);
     }
 
+    public function registrasi() : HasMany {
+        return $this->hasMany(Registrasi::class);
+    }
+
     public function  kategori_organisasi() : BelongsTo {
         return $this->belongsTo(KategoriOrganisasi::class);
     }

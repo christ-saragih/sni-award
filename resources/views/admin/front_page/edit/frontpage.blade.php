@@ -113,6 +113,7 @@
     }
   </style>
   
+  @include('admin.front_page.modal.deleteDokumentasiModal')
   <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     @if (request()->query('tab') == '')
       <li class="nav-item" role="presentation">

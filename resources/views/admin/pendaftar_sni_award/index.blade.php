@@ -72,7 +72,7 @@
                             <td>{{$cr->peserta->kategori_organisasi->nama}}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a class="btn" style="padding: 5px 10px;border:none;background-color:#E59B30;border-radius:10px;" href="{{ route('pendaftar_sni_award.detail', $cr->id) }}">detail</a>
+                                    <a class="btn" style="padding: 5px 10px;border:none;background-color:#E59B30;border-radius:10px;" href="{{ route('pendaftar_sni_award.detail', Crypt::encryptString($cr->id)) }}">detail</a>
                                     {{-- <button onclick="openModalHapusPendaftar('{{ $cr->id }}', ' {{ $cr->nama }} ')" class="btn btn-hapus">Hapus</button> --}}
                                 </div>
                             </td>
