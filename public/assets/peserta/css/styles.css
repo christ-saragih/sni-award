@@ -338,7 +338,8 @@ textarea {
     font-family: "Arimo", sans-serif !important;
 }
 
-.form-control {
+.form-control,
+.form-select {
     border: 1px solid #9fafbf;
     border-radius: 15px;
     font-family: "Arimo", sans-serif;
@@ -373,6 +374,7 @@ textarea {
 
 input[type="text"]:focus,
 input[type="password"]:focus,
+select:focus,
 textarea:focus {
     border: 1px solid #c17d2d !important;
     box-shadow: 0px 0px 1px 2px #e59b30 !important;

@@ -8,6 +8,7 @@
 
   .nav-link.disabled {
     pointer-events: none;
+    color: #999999 !important;
   }
 </style>
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
@@ -30,6 +31,9 @@
 
   <!-- Assessment Section -->
   <div class="tab-pane {{ request()->query('tab') == 'assessment' ? 'active' : 'hide'}}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+    {{-- @if ($assessment_jawaban != NULL)
+      <label> Sudah Terisi</label>
+    @endif --}}
     @include('peserta.pendaftaran.wizard.assessment')
   </div>
     
