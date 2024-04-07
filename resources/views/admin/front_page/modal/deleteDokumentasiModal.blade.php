@@ -11,8 +11,8 @@
                 <p>Apakah Anda yakin menghapus item ini?</p>
             </div>
             <div class="modal-footer gap-2" style="border: none;">
-                <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
-                <button type="submit" class="btn" data-bs-toggle="modal">Ya</button>
+                <div class="btn btn-warning nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</div>
+                <button type="submit" class="btn btn-danger" data-bs-toggle="modal">Ya</button>
             </div>
         </form>
     </div>
