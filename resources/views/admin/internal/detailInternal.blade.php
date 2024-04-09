@@ -91,8 +91,8 @@
                 <div class="mb-3" style="width: 160px; height: 160px;">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="" style="object-fit: cover; width: 160px; height: 160px;  border-radius: 50%;">
                 </div>
-                <h3>{{ $internal->jenis_role->nama }}</h3>
-                <p class="mb-2" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
+                <h3 style="text-transform: capitalize;">{{ $internal->jenis_role->nama }}</h3>
+                <p class="mb-2" style="font-size: 112.5%; margin-top: -5px; text-transform: capitalize;">{{ $internal->name }}</p>
                 
                 <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
@@ -105,7 +105,7 @@
             <table class="px-5">
                 <tr>
                     <th>Nama</th>
-                    <td>{{ $internal->name }}</td>
+                    <td style="text-transform: capitalize;">{{ $internal->name }}</td>
                 </tr>
                 <tr>
                     <th>No. Telepon</th>
