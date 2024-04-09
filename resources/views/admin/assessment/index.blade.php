@@ -456,7 +456,7 @@
             <a href="{{ route('assessment_pertanyaan.create') }}" class="btn">+ Tambah Pertanyaan</a>
             </div>
             <div class="container mt-4">
-                    @include('admin.assessment.assessment_pertanyaan.index')
+                @include('admin.assessment.assessment_pertanyaan.index')
             </div>
         </div>
     </div>
