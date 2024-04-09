@@ -20,7 +20,8 @@
             <th>Nama</th>
             <th>Email</th>
             <th>No. Telepon</th>
-            <th>Status</th>
+            <th>Jabatan</th>
+            <th>Status Verifikasi</th>
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
@@ -31,6 +32,7 @@
                 <td>{{ $lead->name }}</td>
                 <td>{{ $lead->email }}</td>
                 <td>{{ $lead->user_profil->no_hp }}</td>
+                <td>{{ $lead->jenis_role?$lead->jenis_role->nama:'' }}</td>
                 <td class="d-flex justify-content-center">
                     <div style="
                         width: fit-content;
@@ -46,7 +48,7 @@
                 {{-- <td>{{ $lead->user_profil->no_hp ? $lead->user_profil->no_hp : '-' }}</td> --}}
                 {{-- <td>{{ $lead->user_profil->npwp ? $lead->user_profil->npwp : '-' }}</td> --}}
                 <td class="text-center">
-                    <a href="/admin/internal/{{ $lead->id }}" class="btn" role="button">Detail</a>
+                    <a href="/admin/internal/{{ Crypt::encryptString($lead->id) }}" class="btn" role="button">Detail</a>
                 </td>
             </tr>
         @endforeach

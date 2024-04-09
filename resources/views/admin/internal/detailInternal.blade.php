@@ -49,7 +49,7 @@
     <div class="modal fade" id="ubahJabatan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
 
-            <form class="modal-content" id="form_ubah_jabatan" method="POST" action="/admin/internal/edit/{{ $internal->id }}">
+            <form class="modal-content" id="form_ubah_jabatan" method="POST" action="/admin/internal/edit/{{ Crypt::encryptString($internal->id) }}">
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
@@ -91,16 +91,16 @@
                 <div class="mb-3" style="width: 160px; height: 160px;">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="" style="object-fit: cover; width: 160px; height: 160px;  border-radius: 50%;">
                 </div>
+                <h3>{{ $internal->jenis_role->nama }}</h3>
+                <p class="mb-2" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
+                
+                <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
                     <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;">
                         <i class="fa fa-check-circle"></i>
                         &ensp;Terverifikasi 
                     </div>
                 @endif
-                <h3>{{ $internal->jenis_role->nama }}</h3>
-                <p class="mb-3" style="font-size: 112.5%; margin-top: -5px;">{{ $internal->name }}</p>
-
-                <a href="#ubahJabatan" class="btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
             </div>
             <table class="px-5">
                 <tr>
@@ -126,7 +126,7 @@
                 <tr>
                     <th>Dokumen CV</th>
                     <td>
-                        <a href="">
+                        <a href="{{ Storage::url($internal->user_profil->url_cv) }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
                         </a>
                     </td>
@@ -134,7 +134,7 @@
                 <tr>
                     <th>Dokumen Anti Penyuapan</th>
                     <td>
-                        <a href="{{ $internal->user_profil->url_anti_penyuapan }}" target="_blank">
+                        <a href="{{ Storage::url($internal->user_profil->url_anti_penyuapan) }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                         </a>
                     </td>

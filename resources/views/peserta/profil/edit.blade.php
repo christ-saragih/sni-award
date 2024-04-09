@@ -1,5 +1,11 @@
 @extends('peserta.layouts.master')
 
+<style>
+  .form-check-input {
+    border: 1px solid #9fafbf !important;
+  }
+</style>
+
 @section('content')
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
   <li class="nav-item" role="presentation">
@@ -18,7 +24,15 @@
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
   {{-- Profil --}}
-  
+  @if($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error )
+                  <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
   {{-- <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> --}}
   <form class="tab-pane active" method="POST" action="/peserta/profil/edit/" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
     @method('PUT')
@@ -46,7 +60,7 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Jabatan Tertinggi <span style="color: #FF0101;">*</span></h6>
+                      <h6 class="mb-0">Jabatan Tertinggi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" name="jabatan_tertinggi" class="form-control form-control-lg" value="{{$peserta->peserta_profil->jabatan_tertinggi}}"/>
@@ -55,7 +69,16 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Website <span style="color: #FF0101;">*</span></h6>
+                      <h6 class="mb-0">Nomor Telepon</h6>
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <input type="text" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}"/>
+                    </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                    <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Website</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                       <input type="text" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}"/>
@@ -64,7 +87,7 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Tanggal Beroperasi <span style="color: #FF0101;">*</span></h6>
+                      <h6 class="mb-0">Tanggal Beroperasi</h6>
                   </div>
 
                   <div class="col-md-4 pe-5">
@@ -79,7 +102,7 @@
                       <h6 class="mb-0">Status Kepemilikan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_status_kepemilikan" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_status_kepemilikan" name="status_kepemilikan_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($status_kepemilikan as $sk)
                         <option value="{{$sk->id}}">{{$sk->nama}}</option>    
                         @endforeach
@@ -111,7 +134,7 @@
                       <h6 class="mb-0">Lembaga Sertifikasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_lembaga_sertifikasi" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_lembaga_sertifikasi" name="lembaga_sertifikasi_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($lembaga_sertifikasi as $ls)
                         <option value="{{$ls->id}}">{{$ls->nama}}</option>    
                         @endforeach
@@ -122,17 +145,17 @@
                     <div class="col-md-4 ps-5">
                       <h6 class="mb-0">Produk Export</h6>
                     </div>
-                    <div class="col-md-8 pe-5">              
+                    <div class="col-md-8 pe-5 d-flex flex-row gap-4">              
                       <div class="form-check">
-                        <input value="0" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Tidak
+                        <input value="1" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2" style="font-size: 1.25rem;">
+                          Ya
                         </label>
                       </div>
                       <div class="form-check">
-                        <input value="1" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Ya
+                        <input value="0" class="form-check-input" type="radio" name="produk_export" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1" style="font-size: 1.25rem;">
+                          Tidak
                         </label>
                       </div>
                     </div>
@@ -150,7 +173,7 @@
                       <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <select id="input_kategori_organisasi" class="form-select form-select-lg" data-label="Select One">
+                      <select id="input_kategori_organisasi" name="sektor_kategori_organisasi_id" class="form-select form-select-lg" data-label="Select One">
                         @foreach ($kategori_organisasi as $ko)
                         <option value="{{$ko->id}}">{{$ko->nama}}</option>    
                         @endforeach
@@ -222,7 +245,7 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Legalitas Hukum Organisasi <span style="color: #FF0101;">*</span></h6>
+                    <h6 class="mb-0">Legalitas Hukum Organisasi</h6>
                   </div>
                   <div class="container col-md-8 pe-5">
                     <div class="input-group custom-file-button">
@@ -235,7 +258,7 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">SPPT SNI <span style="color: #FF0101;">*</span></h6>
+                    <h6 class="mb-0">SPPT SNI</h6>
                   </div>
                   
                   <div class="container col-md-8 pe-5">
@@ -249,7 +272,7 @@
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Surat Keterangan Kemenkeuham <span style="color: #FF0101;">*</span></h6>
+                    <h6 class="mb-0">Surat Keterangan Kemenkeuham</h6>
                   </div>
 
                   <div class="container col-md-8 pe-5">

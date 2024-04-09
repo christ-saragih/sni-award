@@ -95,12 +95,12 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
+    Route::post('/profil',[PesertaProfilController::class, 'tambahDokumenPeserta']);
     Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
-    Route::post('/profil',[PesertaProfilController::class, 'tambahDokumenPeserta']);
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
-    Route::get('/pendaftaran/{id}/detail', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
+    Route::get('/pendaftaran/{id}/detail/{registrasi_id}', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     Route::post('/pendaftaran/daftar', [RegistrasiAssessmentController::class, 'openRegistrasi']);
     Route::get('/pendaftaran/dokumen', [App\Http\Controllers\Peserta\RegistrasiDokumenController::class, 'getDokumenPeserta'])->name('pendaftaran.dokumen');
     // Route::get('/pendaftaran')
@@ -163,6 +163,7 @@ Route::prefix('/admin')->group(function () {
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
+        Route::put('/peserta/{id}/verifikasi', [DataPesertaController::class, 'verifikasiPeserta']);
         // Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);

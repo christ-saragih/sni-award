@@ -122,7 +122,7 @@ class FrontPageController extends Controller
             File::delete($prevDokumentasi);
         }
         $dokumentasi->delete();
-        return redirect('/admin/frontpage/edit?tab=dokumentasi')->with('success', 'dokumentasi berhasil dihapus');
+        return back()->with('success', 'dokumentasi berhasil dihapus');
     }
 
     public function tambahDokumentasi(Request $request)  {
@@ -143,7 +143,7 @@ class FrontPageController extends Controller
                 $dok[$i]->move(storage_path('app/public/images/dokumentasi'), $imageName);
                 Dokumentasi::create(['url_dokumentasi' => '/images/dokumentasi/'.$imageName]);
             }
-            return back();
+            return back()->with('success', 'Berhasil menambahkan foto dokumentasi');
         }
         return back()->withErrors('Gagal  menyimpan foto dokumentasi');
     }

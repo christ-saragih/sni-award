@@ -17,6 +17,7 @@ use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiPenilaian;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 use function Laravel\Prompts\select;
 
@@ -46,6 +47,7 @@ class PendaftarAdminController extends Controller
 
     public function getKategori($id, $kategori)
     {
+        // $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
@@ -98,6 +100,7 @@ class PendaftarAdminController extends Controller
      */
     public function show(string $id)
     {
+        $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
@@ -134,6 +137,7 @@ class PendaftarAdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
         $registrasi->update([
             'sekretariat_id' => $request->sekretariat_id,

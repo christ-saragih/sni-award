@@ -20,7 +20,8 @@
             <th>Nama</th>
             <th>Email</th>
             <th>No. Telepon</th>
-            <th>Status</th>
+            <th>Jabatan</th>
+            <th>Status Verifikasi</th>
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
@@ -31,6 +32,7 @@
                 <td>{{ $evaluator->name }}</td>
                 <td>{{ $evaluator->email }}</td>
                 <td>{{ $evaluator->user_profil->no_hp }}</td>
+                <td>{{ $evaluator->jenis_role?$evaluator->jenis_role->nama:'' }}</td>
                 <td class="d-flex justify-content-center">
                     <div style="
                         width: fit-content;
@@ -46,7 +48,7 @@
                 {{-- <td>{{ $evaluator->user_profil->no_hp ? $evaluator->user_profil->no_hp : '-' }}</td> --}}
                 {{-- <td>{{ $evaluator->user_profil->npwp ? $evaluator->user_profil->npwp : '-' }}</td> --}}
                 <td class="text-center">
-                    <a href="/admin/internal/{{ $evaluator->id }}" class="btn" role="button">Detail</a>
+                    <a href="/admin/internal/{{ Crypt::encryptString($evaluator->id) }}" class="btn" role="button">Detail</a>
                 </td>
             </tr>
         @endforeach

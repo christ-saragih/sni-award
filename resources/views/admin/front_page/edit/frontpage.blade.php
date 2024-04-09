@@ -55,6 +55,10 @@
     .image-container{
         position: relative;
     }
+    .image-container:hover img {
+      transform: scale(0.97, 0.95);
+      border-radius: 10px !important;
+    }
     .image-container button{
       position: absolute;
       top: 0;
@@ -63,13 +67,18 @@
       height: 100%;
       border: none;
       border-radius: 20px;
-      background-color: #D12B2B80;
+      background-color: #D12B2B00;
       opacity: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .image-container button:hover{
       opacity: 1;
       border: none;
       color: white;
+      border: 5px solid #D12B2B;
     }
     .pilihan-faq{
       position: absolute;
@@ -100,6 +109,31 @@
       border-radius: 5px;
       color: white;
     }
+    #hapusDokumentasi .btn {
+      border: none;
+      border-radius: 5px;
+    }
+    #hapusDokumentasi .btn-warning {
+      padding: 5px 20px;
+      background-color: #e1a900;
+      color: black;
+    }
+    #hapusDokumentasi .btn-warning:hover {
+      padding: 2px 20px;
+      background-color: #e1a90000;
+      color: #e1a900;
+      border: 3px solid #e1a900;
+    }
+    #hapusDokumentasi button {
+      padding: 5px 20px;
+      background-color: #D12B2B;
+    }
+    #hapusDokumentasi button:hover {
+      padding: 2px 20px;
+      color: #D12B2B;
+      background-color: white;
+      border: 3px solid  #D12B2B;
+    }
     @media screen and (max-width: 768px){
         .frontpage-input-text {
             flex-direction: column;
@@ -113,6 +147,7 @@
     }
   </style>
   
+  @include('admin.front_page.modal.deleteDokumentasiModal')
   <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     @if (request()->query('tab') == '')
       <li class="nav-item" role="presentation">

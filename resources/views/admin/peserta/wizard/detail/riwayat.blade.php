@@ -17,14 +17,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2024</td>
-                    <td>cvcvzc</td>
-                    <td>zcvzcv</td>
-                    <td>zcvzcv</td>
-                    <td><a href="#" class="btn" role="button" style="border: none; background-color: #E59B30;">detail</a></td>
-                </tr>
+                @if ($peserta->registrasi)
+                    @foreach ($peserta->registrasi as $reg)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $reg->tahun }}</td>
+                            <td>{{ $reg->status->nama }}</td>
+                            <td>{{ $reg->stage->nama }}</td>
+                            <td>{{ $reg->kategori_organisasi->nama }}</td>
+                            <td>
+                                <a href="#" class="btn" role="button" style="border: none; background-color: #E59B30;">
+                                    detail
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div>
