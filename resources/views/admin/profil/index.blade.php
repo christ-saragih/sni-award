@@ -37,7 +37,7 @@
                       
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
-                            <h6 class="mb-0">Peran</h6>
+                            <h6 class="mb-0">Jabatan</h6>
                           </div>
                           <div class="col-md-8 pe-5">
                             <div class="data">{{ $role }}</div>
