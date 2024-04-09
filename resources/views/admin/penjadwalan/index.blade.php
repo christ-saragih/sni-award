@@ -133,7 +133,7 @@
       </td>
     </tr>
     <!-- endforeach -->
-    
+
 
     <div id="hidden-data" style="display: none">
       <input type="hidden" id="id_faq">
@@ -170,7 +170,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
                     <h6 class="mb-0">Banner</h6>
@@ -182,7 +182,7 @@
                       <input type="file" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;">
                     </div>
                   </div>
-                </div> 
+                </div>
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">

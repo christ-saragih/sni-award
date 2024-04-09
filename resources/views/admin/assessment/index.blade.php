@@ -258,6 +258,18 @@
                 <a href="#tambahKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kategori</a>
             </div>
             <div class="container mt-4">
+                <form action="" method="GET">
+                    <div class="form-group">
+                        <label for="kategori">Kategori:</label>
+                        <select name="kategori" id="kategori" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($assessment_kategori_all as $kategori)
+                                <option value="{{ $kategori->nama }}" {{ request('kategori') == $kategori->nama ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>

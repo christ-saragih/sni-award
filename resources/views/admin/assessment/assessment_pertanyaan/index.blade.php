@@ -1,3 +1,16 @@
+<form action="" method="GET">
+    <div class="form-group">
+        <label for="kategori">Kategori:</label>
+        <select name="kategori" id="kategori" class="form-control">
+            <option value="">Pilih Kategori</option>
+            @foreach ($assessment_kategori_all as $kategori)
+                <option value="{{ $kategori->nama }}" {{ request('kategori') == $kategori->id ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+            @endforeach
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+{{request()->getUri()}}
 <table class="table">
     <thead>
     <tr>
@@ -18,7 +31,7 @@
         <td>
             <div class="d-flex justify-content-center gap-2">
                 <a class="btn btn-ubah" href="{{ route('assessment_pertanyaan.edit', $ap->id) }}">Ubah</a>
-                <button onclick="openModalHapusPertanyaan('{{ $ap->id }}', ' {{ $ap->pertanyaan }} ')" class="btn btn-hapus">Hapus</button>
+                <button onclick="openModalHapusPertanyaan('{{ $ap->id }}')" class="btn btn-hapus">Hapus</button>
             </div>
         </td>
     </tr>

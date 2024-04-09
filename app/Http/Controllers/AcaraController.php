@@ -15,7 +15,7 @@ class AcaraController extends Controller
     public function index()
     {
         // $acara = Acara::simplePaginate(3);
-        $acara = Acara::paginate(3);
+        $acara = Acara::paginate(10);
         return view('admin.acara.index', compact(['acara']));
     }
 

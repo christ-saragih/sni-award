@@ -96,21 +96,22 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="tag-berita-tab" data-bs-toggle="tab" href="#tag-berita-tabpanel" role="tab" aria-controls="tag-berita-tabpanel" aria-selected="true">Tag Berita</a>
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}" id="tag-berita-tab" href="/admin/berita" role="tab" aria-controls="tag-berita-tabpanel" aria-selected="true">Tag Berita</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="berita-tab" data-bs-toggle="tab" href="#berita-tabpanel" role="tab" aria-controls="berita-tabpanel" aria-selected="false" tabindex="-1">Konten Berita</a>
+        <a class="nav-link {{ (request()->query('tab') == 'berita')?'active':'' }}" id="berita-tab" href="/admin/berita?tab=berita" role="tab" aria-controls="berita-tabpanel" aria-selected="false" tabindex="-1">Konten Berita</a>
     </li>
 </ul>
 
 <hr class="p-0">
 <!-- Tag Berita Section -->
 <div class="tab-content" id="tab-content">
-    <div class="tab-pane active" id="tag-berita-tabpanel" role="tabpanel" aria-labelledby="tag-berita-tab">
+    <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="tag-berita-tabpanel" role="tabpanel" aria-labelledby="tag-berita-tab">
         <div class="content-profil py-5">
             <div class="d-flex justify-content-between align-items-center">
                 <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Tag Berita</h3>
-                <a href="#tambahTagBerita" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                {{-- <a href="#tambahTagBerita" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a> --}}
+                <button onclick="openModalTambahTB()" class="btn" data-bs-toggle="modal" role="button" style="width: 14%;">+ Tambah</button>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -140,12 +141,15 @@
                         </div>
                     </tbody>
                 </table>
+                <div class="pagination justify-content-center">
+                    {{ $tag_berita->links() }}
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Konten Berita Section -->
-    <div class="tab-pane" id="berita-tabpanel" role="tabpanel" aria-labelledby="berita-tab">
+    <div class="tab-pane {{ (request()->query('tab') == 'berita')?'active':'' }}" id="berita-tabpanel" role="tabpanel" aria-labelledby="berita-tab">
         <div class="content-profil py-5">
             <div class="d-flex justify-content-between align-items-center">
             <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
@@ -181,6 +185,9 @@
                     </div>
                 </tbody>
                 </table>
+                <div class="pagination justify-content-center">
+                    {{ $berita->withQueryString()->links() }}
+                </div>
             </div>
         </div>
     </div>

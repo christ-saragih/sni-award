@@ -510,6 +510,11 @@ function openModalHapusASK(id) {
 }
 
 // Tag Berita
+// Modal Tambah
+function openModalTambahTB() {
+    const modal = new bootstrap.Modal(document.getElementById("tambahTagBerita"));
+    modal.show();
+}
 // modal pop up Ubah
 function openModalUbahTB(id, name) {
     document.getElementById("id_tag_berita").value = id;
@@ -571,11 +576,7 @@ function openModalHapusAcara(id, name) {
 
 // Assessment Pertanyaan
 // modal pop up Hapus
-function openModalHapusPertanyaan(id, name) {
-    // console.log(id, name);
-    document.getElementById("id_pertanyaan").value = id;
-    document.getElementById("nama_pertanyaan").value = name;
-
+function openModalHapusPertanyaan(id) {
     document
         .getElementById("form_hapus_assessment_pertanyaan")
         .setAttribute("action", `/admin/assessment_pertanyaan/${id}`);
@@ -701,7 +702,7 @@ function openModalHapusTipeKategori(id) {
 // End Tipe Kategori
 
 // modal penjadwalan start
-// pop tambah dokumen 
+// pop tambah dokumen
 function openModalTambahDokumenPenjadwalan() {
     const modal = new bootstrap.Modal(document.getElementById("tambahDokumenPenjadwalan"));
     modal.show();

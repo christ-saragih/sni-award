@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('assessment_jawaban', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
-            $table->string('jawaban');
+            $table->text('jawaban');
             $table->enum('status_jawaban',['FALSE','TRUE'])->nullable(true);
             $table->integer('poin')->nullable(true);
             $table->timestamps();
