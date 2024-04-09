@@ -20,8 +20,8 @@ class BeritaController extends Controller
 
     public function index()
     {
-        $berita = Berita::all();
-        $tag_berita = TagBerita::all();
+        $berita = Berita::paginate(10);
+        $tag_berita = TagBerita::paginate(10);
         // dd($berita);
         return view('admin.berita.index',compact(['berita','tag_berita']));
     }

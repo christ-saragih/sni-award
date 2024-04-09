@@ -23,7 +23,7 @@
             </div>
             <img src="{{ asset('gambar/gambar_berita/' . $berita->file_gambar) }}" class="berita mb-4" alt="">
             {{-- <img src="{{ asset('assets') }}/images/dokumentasi/berita-terkini.png" class="berita mb-4" alt=""> --}}
-            <p class="description">{{ $berita->deskripsi }}</p>
+            <p class="description">{!! $berita->deskripsi !!}</p>
             {{-- <p class="description">BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 di Bandung. Acara akan dilaksanakan baik secara tatap muka dengan menerapkan protokol kesehatan maupun daring. PIC Kegiatan: Direktorat Penguatan Standar dan Penilaian Kesesuaian . BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 di Bandung. Acara akan dilaksanakan baik secara tatap muka dengan menerapkan protokol kesehatan maupun daring. PIC Kegiatan: Direktorat Penguatan Standar dan Penilaian Kesesuaian.</p> --}}
         </div>
         <div class="content-samping col-5">
