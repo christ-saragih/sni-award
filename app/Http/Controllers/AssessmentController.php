@@ -12,13 +12,24 @@ class AssessmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $assessment_kategori = AssessmentKategori::paginate(5);
-        $assessment_sub_kategori = AssessmentSubKategori::paginate(5);
+        // dd($request->query());
+        $assessment_kategori_all = AssessmentKategori::all();
+        $assessment_kategori = AssessmentKategori::when($request->kategori != null, function ($query) use ($request) {
+                return $query->where('nama', $request->kategori);
+            })->paginate(10);
+        $assessment_sub_kategori = AssessmentSubKategori::paginate(10);
         // dd($assessment_sub_kategori[0]->assessment_kategori->nama);
-        $assessment_pertanyaan = AssessmentPertanyaan::paginate(5);
-        return view('admin.assessment.index', compact(['assessment_kategori', 'assessment_sub_kategori', 'assessment_pertanyaan']));
+        // $assessment_pertanyaan = AssessmentPertanyaan::paginate(10);
+        $assessment_pertanyaan = AssessmentPertanyaan::when($request->kategori != null, function ($query) use ($request) {
+            return $query->whereHas('assessment_sub_kategori', function ($subQuery) use ($request) {
+                return $subQuery->whereHas('assessment_kategori', function ($subQuerys) use ($request) {
+                    $subQuerys->where('nama', $request->kategori);
+                });
+            });
+        })->paginate(10);
+        return view('admin.assessment.index', compact(['assessment_kategori_all', 'assessment_kategori', 'assessment_sub_kategori', 'assessment_pertanyaan']));
     }
 
     /**

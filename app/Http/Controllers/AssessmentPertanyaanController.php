@@ -45,10 +45,18 @@ class AssessmentPertanyaanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pertanyaan' => 'required|string',
+            'assessment_kategori_id' => 'required',
+            'assessment_sub_kategori_id' => 'required',
+            'pertanyaan' => 'required',
             'jumlah_jawaban' => 'required|integer|min:1',
             'jawaban' => 'required|array|min:' . $request->jumlah_jawaban,
-            'jawaban.*' => 'required|string',
+            'jawaban.*' => 'required',
+        ], [
+            'assessment_kategori_id.required' => 'Assessment Kategori Wajib Diisi!',
+            'assessment_sub_kategori_id.required' => 'Assessment Sub Kategori Wajib Diisi!',
+            'pertanyaan.required' => 'Pertanyaan Wajib Diisi!',
+            'jumlah_jawaban.min' => 'Berikan Setidaknya 2 jawaban',
+            'jawaban.required' => 'Jawaban Wajib Diisi!',
         ]);
 
         // Simpan pertanyaan

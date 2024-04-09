@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('assessment_pertanyaan', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->tinyInteger('assessment_sub_kategori_id')->unsigned();
-            $table->string('pertanyaan');
+            $table->text('pertanyaan');
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
