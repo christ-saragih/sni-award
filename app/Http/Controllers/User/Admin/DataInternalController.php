@@ -16,6 +16,9 @@ class DataInternalController extends Controller
         $internal = User::get();
         $evaluator = User::where('role', 2)->get();
         $lead = User::where('role', 3)->get();
+        // $internal = User::paginate(5);
+        // $evaluator = User::where('role', 2)->paginate(2);
+        // $lead = User::where('role', 3)->paginate(5);
         return view('admin.internal.index', [
             'internal' =>  $internal,
             'evaluator' => $evaluator,
@@ -26,13 +29,16 @@ class DataInternalController extends Controller
     public function detail($id) {
         $id = Crypt::decryptString($id);
         $internal = User::find($id);
-        $role = Role::find($internal->role)->nama;
-        $all_role = Role::get();
-        return view('admin.internal.detailInternal', [
-            'internal' => $internal,
-            'role' => $role,
-            'all_role' => $all_role,
-        ]);
+        if ($internal) {
+            $role = Role::find($internal->role)->nama;
+            $all_role = Role::get();
+            return view('admin.internal.detailInternal', [
+                'internal' => $internal,
+                'role' => $role,
+                'all_role' => $all_role,
+            ]);
+        }
+        return redirect('/admin/404');
     }
     
     // public function editView ($id) {
