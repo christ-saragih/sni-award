@@ -35,7 +35,10 @@ class RegistrasiAssessmentController extends Controller
         $dokumen = Dokumen::get();
         $konfigurasi = Konfigurasi::where('key','Tahun SNI Award')->first();
         $registrasi = Registrasi::where('peserta_id',Auth::guard('peserta')->user()->id)->where('tahun',$konfigurasi->value)->first();
-        $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
+        $regis_jawaban = [];
+            if ($registrasi){
+                $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
+            }
             foreach ($regis_jawaban as $jawaban) {
                 $kategori_assess = $jawaban->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori;
                 foreach($assessment_kategori as $kategori){
@@ -48,6 +51,7 @@ class RegistrasiAssessmentController extends Controller
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
+
         return view('peserta.pendaftaran.index', [
             'assessment_kategori' => $assessment_kategori,
             'dokumen' => $dokumen,
