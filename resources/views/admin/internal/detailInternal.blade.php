@@ -81,7 +81,7 @@
     <!-- Pop up ubah jabatan end -->
     <section class="card pb-5">
         <div class="d-flex py-5 align-items-center gap-3">
-            <a href="/admin/internal" class="btn" style="width: fit-content">&#8617;</a>
+            <a href="/admin/internal{{ $internal->role == 3 ? '?tab=lead_evaluator' : '' }}" class="btn" style="width: fit-content">&#8617;</a>
             <h3>Profile</h3>
             <hr class="flex-grow-1" style="height: 3px; background-color: #E1A600;">
         </div>
