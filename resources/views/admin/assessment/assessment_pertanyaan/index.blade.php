@@ -1,5 +1,7 @@
-<form action="" method="GET">
+<form action="/admin/assessment?tab=assessment_pertanyaan&kategori=Kepemimpinan" method="GET">
     <div class="form-group">
+        <input type="text" name="tab" style="display: none !important;" value="{{ request()->query('tab') }}">
+        
         <label for="kategori">Kategori:</label>
         <select name="kategori" id="kategori" class="form-control">
             <option value="">Pilih Kategori</option>
@@ -8,9 +10,9 @@
             @endforeach
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Filter</button>
+    <button type="submit" class="mt-2 btn btn-primary">Filter</button>
 </form>
-{{request()->getUri()}}
+
 <table class="table">
     <thead>
     <tr>

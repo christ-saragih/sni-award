@@ -20,6 +20,20 @@
                 <div class="col-9">
                   <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
                 </div>
+
+                {{-- <div class="container col-md-8 pe-5">
+                  @if ($registrasi->$registrasi_dokumen)
+                    @if ($registrasi->registrasi_dokumen->)
+                      <a href="{{Storage::url($registrasi->registrasi_dokumen->url_dokumen[])}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    @endif
+                  @endif
+                  <div class="input-group custom-file-button">
+                    <label class="input-group-text px-4" for="inputDokumen1">Unggah</label>
+                    <label class="label-unik px-4" id="file-input-label1" for="inputDokumen1">Maksimum upload file : 10 MB </label>
+                    <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control unik form-control-lg" id="inputDokumen1 inputFileDocument uploadDokumen">
+                  </div>
+                </div> --}}
+
               </div>
             @endforeach
         {{-- <div class="row g-3 align-items-center mt-2">
@@ -45,7 +59,7 @@
               <hr style="width: 110%; height: 5px">
             </div>
           </div>
-            @if ($peserta->peserta_profil)
+            @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
               @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                 <div class="row g-3 align-items-center mt-2">
                   <div class="col-3">
