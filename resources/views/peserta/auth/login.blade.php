@@ -43,72 +43,71 @@
           <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" />
         </div>
 
-        <div class="content-kanan py-5">
-          <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
-          <h1>SNI AWARD</h1>
+        <div class="content-kanan">
+            <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
+            <h1>SNI AWARD</h1>
+            
+            <form method="POST" action="/masuk">
+              @csrf
+              @if (session('error'))
+                  <div class="alert alert-danger w-100" role="alert">
+                    {{ session('error') }}
+                  </div>
+              @elseif (session('success'))
+                  <div class="alert alert-success w-100" role="alert">
+                    {{ session('success') }}
+                  </div>
+              @endif
+              <div class="mb-3">
+                  <label for="email" class="form-label">{{ __('Email') }}</label>
 
-{{-- ==================================================================== --}}
-          <form method="POST" action="/masuk">
-            @csrf
-            @if (session('error'))
-                <div class="alert alert-danger w-100" role="alert">
-                  {{ session('error') }}
-                </div>
-            @elseif (session('success'))
-                <div class="alert alert-success w-100" role="alert">
-                  {{ session('success') }}
-                </div>
-            @endif
-            <div class="mb-3">
-                <label for="email" class="form-label">{{ __('Email') }}</label>
+                  {{-- <div class="d-flex flex-column align-items-start"> --}}
+                      <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                {{-- <div class="d-flex flex-column align-items-start"> --}}
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="exampleInputEmail1" aria-describedby="emailHelp">
+                      @error('email')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  {{-- </div> --}}
+              </div>
+              <div class="mb-3">
+                  <label for="password" class="form-label">{{ __('Kata Sandi') }}</label>
 
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                {{-- </div> --}}
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">{{ __('Kata Sandi') }}</label>
+                  <div>
+                      <input id="exampleInputPassword1" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                <div>
-                    <input id="exampleInputPassword1" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="mb-3">
-                    @if (Route::has('password.request'))
-                    <a class="" style="color: #ccc; font-size: 14px;" href="{{ route('password.request') }}">
-                        {{ __('Lupa Password?') }}
-                    </a>
-                    @endif
-                </div>
-                <div class="form-check">
-            </div>
-            <div class="mb-0 d-flex flex-column align-items-center justify-content-center">
-                <div class="button mb-3">
-                    <button type="submit" class="btn">
-                        {{ __('Masuk') }}
-                    </button>
-                </div>
-                <div class="form-text text-center">
-                  <a href="/forgot-password">Lupa Kata Sandi</a>
-                </div>
-                <div class="form-text text-center">
-                    Belum memiliki akun? <a href="/registrasi">Daftar </a>
-                </div>
-            </div>
-        </form>
+                      @error('password')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  </div>
+              </div>
+              <div class="mb-4">
+                  <div class="mb-3">
+                      @if (Route::has('password.request'))
+                      <a class="" style="color: #ccc; font-size: 14px;" href="{{ route('password.request') }}">
+                          {{ __('Lupa Password?') }}
+                      </a>
+                      @endif
+                  </div>
+                  <div class="form-check">
+              </div>
+              <div class="mb-0 d-flex flex-column align-items-center justify-content-center">
+                  <div class="button mb-3">
+                      <button type="submit" class="btn">
+                          {{ __('Masuk') }}
+                      </button>
+                  </div>
+                  <div class="form-text text-center">
+                    <a href="/forgot-password">Lupa Kata Sandi</a>
+                  </div>
+                  <div class="form-text text-center">
+                      Belum memiliki akun? <a href="/registrasi">Daftar </a>
+                  </div>
+              </div>
+            </form>
 
         </div>
 

@@ -908,7 +908,6 @@ ul a {
 #login {
     width: 100dvw;
     height: 100dvh;
-    padding-block: 60px;
     padding-inline: 160px;
     background-image: url("../images/icon/Vector\ 7.svg");
 
@@ -917,6 +916,9 @@ ul a {
     background-position: center; /* Posisi gambar latar di tengah elemen */
     background-repeat: no-repeat; /* Mencegah gambar latar terulang */
     z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-container {
@@ -928,14 +930,15 @@ ul a {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: auto;
 }
 
 .login-container .content-kiri {
     width: 60%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--primary-color); */
 }
 
 .login-container .content-kiri img {
@@ -944,7 +947,7 @@ ul a {
 
 .login-container .content-kanan {
     width: 40%;
-    height: 100%;
+    height: 100% !important;
     border-radius: 37px;
     background-color: var(--primary-color);
     color: white;
@@ -952,10 +955,11 @@ ul a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
-.login-container .content-kanan img {
-    width: 35%;
+.login-container .content-kanan > img {
+    width: 185px; 
 }
 
 .login-container .content-kanan h1 {
