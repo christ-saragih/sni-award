@@ -866,6 +866,43 @@ ul a {
 #register label {
     color: white;
 }
+
+#register .select2-container .select2-selection--single {
+    border-radius: 100px !important;
+    
+}
+
+#register .select2-container .select2-selection--single {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #2B2B28 !important;
+}
+
+#register .select2-container .select2-selection--single .select2-selection__rendered {
+    padding-inline: .75rem;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: 38px !important;
+    height: 38px !important;
+    right: 8px !important;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #552525 transparent transparent transparent !important;
+    border-width: 7px 6px 2px 6px !important;
+}
+
+#register .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+        border-color: transparent transparent #552525 transparent !important;
+        border-width: 2px 6px 7px 6px !important;
+}
+
+
 #register .content-kiri{
     width: 60%;
     height: 100vh;
@@ -873,7 +910,7 @@ ul a {
     align-items: center;
     justify-content: center;
 }
-#register .content-kanan{
+#register .content-kanan {
     width: 40%;
     height: 100vh;
     background-color: #552525;
@@ -881,11 +918,22 @@ ul a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    overflow: hidden;
 }
-#register .content-kanan > h1{
+
+#register .content-kanan img {
+    width: 185px;
+}
+
+#register .content-kanan > h1 {
     color: #fff;
+    text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 }
+
+#register .content-kanan > p {
+    color: #E9ECFA;
+}
+
 #register .content-kanan > form{
     width: 100%;
     display: flex;
@@ -902,6 +950,20 @@ ul a {
 #register .content-kanan > form > div input {
     width: 100%;
 }
+
+#register .content-kanan form input {
+    color: #2B2B28 !important;
+}
+
+#register .content-kanan .form-text {
+    color: white;
+    font-size: 14px;
+}
+
+#register .content-kanan .form-text a {
+    color: white;
+}
+
 /* end register */
 
 /* Login Page */
