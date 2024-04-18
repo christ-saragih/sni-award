@@ -40,10 +40,10 @@
                 <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" />
             </div>
             
-            <div class="content-kanan">
+            <div class="content-kanan" style="padding-block: 2.8rem;">
                 <div class="text-center w-100">
                     <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
-                    <h1>{{ __('Lupa Sandi') }}</h1>
+                    <h1>{{ __('Lupa Kata Sandi') }}</h1>
 
                     <div class="mt-4 w-100">
                         @if (session('status'))
@@ -57,7 +57,7 @@
 
                             <div class="mb-5">
                                 <div class="w-100 d-flex flex-column align-items-start">
-                                    <label for="email" class="col-md-4 col-form-label" style="text-align: left; width:fit-content;">{{ __('Email Address') }}</label>
+                                    <label for="email" class="col-md-4 col-form-label ms-1" style="text-align: left; width:fit-content;">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="w-100 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
@@ -70,8 +70,8 @@
 
                             <div class="row mb-0">
                                 <div class="button mb-3">
-                                    <button type="submit" class="btn" style="white-space: none; width: fit-content;">
-                                        {{ __('Kirim Link Reset Password') }}
+                                    <button type="submit" class="btn" style="padding: 6px; width: 100%;">
+                                        {{ __('Kirim Link Reset Kata Sandi') }}
                                     </button>
                                 </div>
                             </div>
