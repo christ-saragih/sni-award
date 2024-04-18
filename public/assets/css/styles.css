@@ -1054,11 +1054,11 @@ ul a {
 }
 
 .login-container .content-kanan .button button {
-    background-color: #bf8211;
+    background-color: #DCA958;
     color: white;
     border-radius: 37px;
-    height: 40px;
-    width: 214px;
+    padding: 6px 80px;
+    font-weight: bold;
 }
 
 /* .thumbnail {
