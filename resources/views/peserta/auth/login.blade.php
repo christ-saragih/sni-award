@@ -59,7 +59,7 @@
                   </div>
               @endif
               <div class="mb-3">
-                  <label for="email" class="form-label">{{ __('Email') }}</label>
+                  <label for="email" class="form-label ms-1">{{ __('Email') }}</label>
 
                   {{-- <div class="d-flex flex-column align-items-start"> --}}
                       <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -72,7 +72,7 @@
                   {{-- </div> --}}
               </div>
               <div class="mb-3">
-                  <label for="password" class="form-label">{{ __('Kata Sandi') }}</label>
+                  <label for="password" class="form-label ms-1">{{ __('Kata Sandi') }}</label>
 
                   <div>
                       <input id="exampleInputPassword1" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -84,24 +84,24 @@
                       @enderror
                   </div>
               </div>
+              <div class="form-text mt-0 ms-1">
+                <a href="/forgot-password" class="text-decoration-none">Lupa Kata Sandi?</a>
+              </div>
               <div class="mb-4">
-                  <div class="mb-3">
+                  <div class="mb-4">
                       @if (Route::has('password.request'))
                       <a class="" style="color: #ccc; font-size: 14px;" href="{{ route('password.request') }}">
                           {{ __('Lupa Password?') }}
                       </a>
                       @endif
                   </div>
-                  <div class="form-check">
-              </div>
+                  <!-- <div class="form-check">
+                  </div> -->
               <div class="mb-0 d-flex flex-column align-items-center justify-content-center">
-                  <div class="button mb-3">
+                  <div class="button mb-2">
                       <button type="submit" class="btn">
                           {{ __('Masuk') }}
                       </button>
-                  </div>
-                  <div class="form-text text-center">
-                    <a href="/forgot-password">Lupa Kata Sandi</a>
                   </div>
                   <div class="form-text text-center">
                       Belum memiliki akun? <a href="/registrasi">Daftar </a>
