@@ -4,7 +4,9 @@
         <div class="col-3">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-9">
+        <div class="col-6">
+        </div>
+        <div class="col-3">
           <label class="fw-bold">Aksi</label>
         </div>
       </div>
@@ -17,14 +19,33 @@
                 <div class="col-3">
                   <label class="fw-bold">{{$dok->nama}}</label>
                 </div>
-                <div class="col-9">
+                <div class="col-6">
                   <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
                     {{-- buatan iqna --}}
-                  @foreach ($registrasi_dokumen as $rd)
-                      @if ($rd->dokumen_id == $dok->id)
-                          ada
-                      @endif
-                  @endforeach
+                </div>
+                <div class="col-3">
+                  @if ($dok->registrasi_dokumen && $dok->registrasi_dokumen->url_dokumen)
+                    @php
+                        $statusColor = '';
+                        switch ($dok->registrasi_dokumen->status) {
+                            case 'proses':
+                                $statusColor = 'bg-warning';
+                                break;
+                            case 'ditolak':
+                                $statusColor = 'bg-danger';
+                                break;
+                            case 'disetujui':
+                                $statusColor = 'bg-success';
+                                break;
+                            default:
+                                $statusColor = '';
+                                break;
+                        }
+                    @endphp
+                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                  @else
+                      <span class="text-muted">Tidak ada file</span>
+                  @endif
                 </div>
               </div>
             @endforeach
