@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Register</title>
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -52,13 +52,13 @@
         </div>
 
         <div class="content-kanan">
-          <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" style="user-select: none; pointer-events: none;"/>
-          <h1>SNI AWARD</h1>
+          <h1 class="mt-3">Selamat Datang</h1>
+          <p>Silakan buat akun dan lengkapi informasi di bawah ini.</p>
           <form method="POST" action="/registrasi" style="
-            padding: 20px;
+            padding: 20px 30px;  
           ">
             @csrf
-            <div class="">
+            <div class="mb-2">
                 <label for="name" class="col-form-label">{{ __('Nama Organisasi') }}</label>
 
                 <div class="">
@@ -71,7 +71,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="">
+            <div class="mb-2">
                 <label for="email" class="col-form-label">{{ __('Email') }}</label>
 
                 <div class="">
@@ -84,12 +84,12 @@
                     @enderror
                 </div>
             </div>
-            <div class="">
+            <div class="mb-2">
                 <label for="kategori" class="col-form-label">{{ __('Kategori') }}</label>
 
                 <div class="">
-                    <select name="kategori_organisasi_id" id="kategori" class="form-select" style="border-radius: 100px; color:black;">
-                        <option value="" selected disabled>--Pilih Kategori--</option>
+                    <select name="kategori_organisasi_id" id="kategori" class="form-select" style="width: 100%; padding: .375rem .75rem;">
+                        <option value="" selected disabled>Pilih Kategori..</option>
                         @foreach ($kategori_organisasi as $ko)
                             <option value="{{ $ko->id }}">{{ $ko->nama }}</option>                        
                         @endforeach
@@ -102,12 +102,11 @@
                     @enderror
                 </div>
             </div>
-            <div style="
+            <div class="mb-5" style="
                 display:flex;
                 align-items:center;
                 justify-content:center;
                 gap: 20px;
-                padding-bottom: 20px;
             ">
                 <div class="w-100">
                     <label for="password" class="col-form-label">{{ __('Kata Sandi') }}</label>
@@ -130,19 +129,25 @@
                 </div>
             </div>
             <div>
-                <div style="
+                <div class="mb-2" style="
                 display: flex;
                 align-item: center;
                 justify-content: center;
             ">
                     <button type="submit" style="
-                        width: 50%;
+                        border: none;
                         border-radius: 100px;
-                        padding: 5px 10%;    
+                        padding: 6px 80px;
+                        color: #fff;
+                        background-color: #DCA958;
+                        font-weight: bold;
                     ">
                         {{ __('Daftar') }}
                     </button>
                 </div>
+            </div>
+            <div class="form-text text-center">
+                Sudah memiliki akun? <a href="/masuk">Masuk </a>
             </div>
         </form>
 
