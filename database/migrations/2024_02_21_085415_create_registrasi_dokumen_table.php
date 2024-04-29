@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('registrasi_id')->unsigned();
             $table->tinyInteger('dokumen_id')->unsigned()->nullable();
             $table->string('url_dokumen');
-            $table->enum('status',['proses','ditolak','disetujui']);
+            $table->enum('status',['proses','ditolak','disetujui'])->nullable();
             $table->text('feedback');
             $table->timestamp('review_at')->nullable(true);
             // $table->integer('review_by');
