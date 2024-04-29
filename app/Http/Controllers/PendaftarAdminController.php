@@ -49,6 +49,7 @@ class PendaftarAdminController extends Controller
     {
         // $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
+        // dd($registrasi);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
         $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->first();
@@ -115,6 +116,7 @@ class PendaftarAdminController extends Controller
         // dd($dokumen_peserta);
 
         $assessment_kategori = AssessmentKategori::first();
+        // dd($assessment_kategori->assessment_sub_kategori);
 
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
         // dd($data_assessment_kategori);

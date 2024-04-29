@@ -86,7 +86,7 @@
                             {{ $registrasi->user ? $registrasi->user->name : '' }}
                         </div>
                         <div class="col-3">
-                            <button 
+                            <button
                                 {{-- onclick="openModalUbahPendaftarAdmin('{{ Crypt::encryptString($registrasi->id) }}')" --}}
                                 onclick="openModalUbahPendaftarAdmin('{{ $registrasi->id }}')"
                             class="btn" data-bs-toggle="modal" role="button" style="background-color: #E1A600; border: none;"><i class="fa fa-edit"></i></button>
@@ -256,6 +256,7 @@
                             </div>
                             <div class="col-4">
                                 @if ($dok->registrasi_dokumen && $dok->registrasi_dokumen->url_dokumen)
+                                    @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
                                     @php
                                         $statusColor = '';
                                         switch ($dok->registrasi_dokumen->status) {
@@ -272,9 +273,12 @@
                                                 $statusColor = '';
                                                 break;
                                         }
-                                    @endphp
-                                    <a href="{{ $dok->registrasi_dokumen->url_dokumen }}" class="btn" download><i class="fa fa-download"></i></a>
-                                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                                        @endphp
+                                        <a href="{{ $dok->registrasi_dokumen->url_dokumen }}" class="btn" download><i class="fa fa-download"></i></a>
+                                        <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                                    @else
+                                    <span class="text-muted">Tidak ada file</span>
+                                    @endif
                                 @else
                                     <span class="text-muted">Tidak ada file</span>
                                 @endif
@@ -352,27 +356,27 @@
                 </div>
                 <!-- fieldset pertanyaan -->
                 @foreach ($assessment_kategori->assessment_sub_kategori as $ask)
-                <fieldset class="fieldset" id="fieldsetPertanyaan">
+                {{-- <fieldset class="fieldset" id="fieldsetPertanyaan"> --}}
                     @foreach ($ask->assessment_pertanyaan as $ap)
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                         <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
-                            <h3 class="m-0">Pertanyaan {{ $loop->iteration }}</h3>
+                            <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
                             <p class="m-0">{{ $ask->nama }}</p>
                         </div>
                         <div class="pertanyaan d-flex flex-column text-center">
                             <p class="m-0">{{ $ap->pertanyaan }}</p>
                         </div>
-                        <div class="jawaban d-flex justify-content-between align-items-center w-100 mt-4 gap-3">
-                            <div class="d-flex flex-column gap-3">
+                        <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
+                            {{-- <div class="d-flex flex-column gap-3"> --}}
                                 @foreach ($ap->assessment_jawaban as $aj)
-                                    <label class="d-flex align-items-center py-1 px-3 @if($registrasi_assessment->contains('assessment_jawaban_id', $aj->id)) active @endif">{{ $aj->jawaban }}</label>
+                                    <label class="jawaban-label d-flex align-items-center py-1 px-3 @if($registrasi_assessment->contains('assessment_jawaban_id', $aj->id)) active @endif">{{ $aj->jawaban }}</label>
                                 @endforeach
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                     @endforeach
                     {{-- <input type="button" name="selanjutnyaAssesment" class="btn selanjutnyaAssesment action-button float-end mt-5" value="Selanjutnya"/> --}}
-                </fieldset>
+                {{-- </fieldset> --}}
                 @endforeach
             </div>
         </div>
