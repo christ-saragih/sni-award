@@ -31,7 +31,8 @@
                 </div>
 
                 <p class="description">
-                    {{ $berita_terbaru_deskripsi }}
+                    {{-- {{ $berita_terbaru_deskripsi }} --}}
+                    {!! $berita_terbaru_deskripsi !!}
                     {{-- {{ Illuminate\Support\Str::limit($berita_terbaru->deskripsi, 100) }} --}}
                     <a href="{{ route('informasi.berita.detail', $berita_terbaru->slug) }}">baca selengkapnya.</a>
                 </p>
@@ -74,7 +75,7 @@
                 {{ $ber->judul_berita }}
                 </h4>
                 <p>
-                {{ $ber->deskripsi }}
+                {!! $ber->deskripsi !!}
                 </p>
                 <a href="{{ route('informasi.berita.detail', $ber->slug) }}" class="btn">Baca Selengkapnya</a>
                 {{-- <button class="btn">Baca Selengkapnya</button> --}}

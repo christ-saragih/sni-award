@@ -1,15 +1,21 @@
 @extends('admin.layouts.master')
 
 @section('content')
-{{-- <style>
-    #image-preview {
-        margin-top: 8px;
+<style>
+    #container {
+        width: 1000px;
+        margin: 20px auto;
     }
-    #image-preview img {
-        max-width: 200px;
-        margin-right: 10px; /* Add a margin between images */
+    .ck-editor__editable[role="textbox"] {
+        /* Editing area */
+        min-height: 300px;
     }
-</style> --}}
+    .ck-content .image {
+        /* Block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }
+</style>
 <div class="row">
     <div class="card col-12 p-4">
         <div class="mb-4">
@@ -137,5 +143,15 @@
     }
 }
 
+</script>
+@endsection
+
+@section('script')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#deskripsi' ) )
+        .catch( error => {
+            console.error( error );
+        } );
 </script>
 @endsection

@@ -13,7 +13,7 @@
                     {{-- <h3 style="margin-bottom: 20px;">SNI Award 2023, untuk Kinerja Unggul dan efisien</h3> --}}
                     <hr class="mx-0" style="width: 420px;">
                 </div>
-            <p style="margin-top: 40px;">{{ $acara->deskripsi }}</p>
+            <p style="margin-top: 40px;">{!! $acara->deskripsi !!}</p>
             {{-- <button class="btn float-end">Baca Selengkapnya</button> --}}
             </div>
         </div>

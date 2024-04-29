@@ -20,6 +20,7 @@ use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\LembagaSertifikasiController;
+use App\Http\Controllers\NotFound\NotFoundController;
 use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
@@ -70,6 +71,7 @@ Route::get('/informasi', [InformationController::class, 'index']);
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
+Route::get('/guest/404', [NotFoundController::class, 'guest']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -111,7 +113,8 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
     // Route::get('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
     Route::put('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandi']);
-
+    
+    Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
 });
 
 //end peserta
@@ -310,7 +313,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/pendaftar_sni_award/{registrasi}/ubah', [PendaftarAdminController::class, 'edit'])->name('pendaftar_sni_award.edit');
         Route::put('/pendaftar_sni_award/{id}', [PendaftarAdminController::class, 'update'])->name('pendaftar_sni_award.update');
         Route::get('/get_data_dokumen/{id}', [PendaftarAdminController::class, 'getDokumenPeserta'])->name('pendaftar_sni_award.get_dokumen_peserta');
+        
+        Route::get('/admin/404', [NotFoundController::class, 'admin']);
     });
 });
 // end User
 Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
+

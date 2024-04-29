@@ -128,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/berita*') || request()->is('admin/acara') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
+            <a class="nav-link {{ request()->is('admin/berita*') || request()->is('admin/acara*') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
@@ -153,7 +153,17 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="navLinkDataMaster" href="/admin">
+            <a class="nav-link {{ 
+                request()->is('admin/konfigurasi*') ||
+                request()->is('admin/assessment*') ||
+                request()->is('admin/dokumen*') ||
+                request()->is('admin/status_kepemilikan*') ||
+                request()->is('admin/lembaga_sertifikasi*') ||
+                request()->is('admin/wilayah*') ? 'active' : ''
+              }}" 
+              id="navLinkDataMaster" 
+              href="/admin"
+            >
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-database"></i>
               </div>
@@ -505,6 +515,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('assets') }}/admin/js/script.js"></script>
     <script src="{{ asset('assets') }}/admin/js/app.js"></script>
+
+    {{-- CK EDITOR --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    @yield('script')
 
 </body>
 
