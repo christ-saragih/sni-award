@@ -89,20 +89,6 @@ class PesertaProfilController extends Controller
             'kewenangan_kebijakan.required' => 'Kewenangan Kebijakan Wajib diisi',
         ]);
 
-        // $pesertaprofil->nama = $request->input('nama');
-        // $pesertaprofil->jabatan_tertinggi = $request->input('jabatan_tertinggi');
-        // $pesertaprofil->no_hp = $request->input('no_hp');
-        // $pesertaprofil->website = $request->input('website');
-        // $pesertaprofil->tanggal_beroperasi = $request->input('tanggal_beroperasi');
-        // $pesertaprofil->jenis_produk = $request->input('jenis_produk');
-        // $pesertaprofil->deskripsi_produk = $request->input('deskripsi_produk');
-        // $pesertaprofil->produk_export = $request->input('produk_export');
-        // $pesertaprofil->negara_tujuan_ekspor = $request->input('negara_tujuan_ekspor');
-        // $pesertaprofil->kekayaan_bersih = $request->input('kekayaan_bersih');
-        // $pesertaprofil->hasil_penjualan_tahunan = $request->input('hasil_penjualan_tahunan');
-        // $pesertaprofil->jenis_organisasi = $request->input('jenis_organisasi');
-        // $pesertaprofil->kewenangan_kebijakan = $request->input('kewenangan_kebijakan');
-        // $pesertaprofil->save();
         $dataprofil = [
             'jabatan_tertinggi' => $request->jabatan_tertinggi,
             'no_hp' => $request->no_hp,
@@ -130,7 +116,6 @@ class PesertaProfilController extends Controller
         $pesertaprofil->update($dataprofil);
         
         return redirect('/peserta/profil')->with("success","Data Profil berhasil diupdate"); 
-        // return redirect()->route("peserta.profil.index", $pesertaprofil->id)->with("success","Data Profil berhasil diupdate"); 
     }
     
     public function tambahDokumenPeserta(Request $request)
@@ -171,9 +156,6 @@ class PesertaProfilController extends Controller
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
         } 
-        //     else {
-        //     return back()->with('error', 'Gagal mengunggah dokumen. Pastikan semua dokumen diunggah.');
-        // }
         
         if ($request->hasFile('url_sppt_sni')) {
             
@@ -229,8 +211,5 @@ class PesertaProfilController extends Controller
             !$request->hasFile('url_kewenangan_kebijakan')) {
             return back()->withErrors('Gagal mengunggah dokumen. Pastikan semua dokumen diunggahhh.');  
         }
-
-
-        
-    }// protected function save ($pesertaprofil, $request)
+    }
 }

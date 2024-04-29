@@ -26,6 +26,7 @@ use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
+use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
@@ -96,6 +97,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil',[PesertaProfilController::class, 'tambahDokumenPeserta']);
+    Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung']);
     Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
