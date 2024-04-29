@@ -4,7 +4,9 @@
         <div class="col-3">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-9">
+        <div class="col-6">
+        </div>
+        <div class="col-3">
           <label class="fw-bold">Aksi</label>
         </div>
       </div>
@@ -17,23 +19,82 @@
                 <div class="col-3">
                   <label class="fw-bold">{{$dok->nama}}</label>
                 </div>
-                <div class="col-9">
+                <div class="col-6">
                   <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                    {{-- buatan iqna --}}
                 </div>
-
-                {{-- <div class="container col-md-8 pe-5">
-                  @if ($registrasi->$registrasi_dokumen)
-                    @if ($registrasi->registrasi_dokumen->)
-                      <a href="{{Storage::url($registrasi->registrasi_dokumen->url_dokumen[])}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                <div class="col-3">
+                  @for ($i = 0; $i < count($dokumen); $i++)
+                    @if ($registrasi_dokumen[$i]->dokumen_id == $dok->id)
+                      @php
+                        $statusColor = '';
+                        switch ($registrasi_dokumen[$i]->status) {
+                          case 'proses':
+                          $statusColor = 'bg-warning';
+                          break;
+                          case 'ditolak':
+                          $statusColor = 'bg-danger';
+                          break;
+                          case 'disetujui':
+                          $statusColor = 'bg-success';
+                          break;
+                          default:
+                          $statusColor = '';
+                          break;
+                        }
+                      @endphp
+                      <a class="btn {{ $statusColor }}" >{{ $registrasi_dokumen[$i]->status }}</a>
                     @endif
-                  @endif
-                  <div class="input-group custom-file-button">
-                    <label class="input-group-text px-4" for="inputDokumen1">Unggah</label>
-                    <label class="label-unik px-4" id="file-input-label1" for="inputDokumen1">Maksimum upload file : 10 MB </label>
-                    <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control unik form-control-lg" id="inputDokumen1 inputFileDocument uploadDokumen">
-                  </div>
-                </div> --}}
+                  @endfor
 
+                  {{-- @foreach ($registrasi_dokumen as $rd)
+                    @if ($rd->dokumen_id == $dok->id)
+                      @php
+                        $statusColor = '';
+                        switch ($rd->status) {
+                          case 'proses':
+                          $statusColor = 'bg-warning';
+                          break;
+                          case 'ditolak':
+                          $statusColor = 'bg-danger';
+                          break;
+                          case 'disetujui':
+                          $statusColor = 'bg-success';
+                          break;
+                          default:
+                          $statusColor = '';
+                          break;
+                        }
+                      @endphp
+                      <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
+                    @endif
+                  @endforeach --}}
+
+                  {{-- @if ($dok->registrasi_dokumen)
+                    @if ($dok->registrasi_dokumen->url_dokumen)
+                      @php
+                          $statusColor = '';
+                          switch ($dok->registrasi_dokumen->status) {
+                              case 'proses':
+                                  $statusColor = 'bg-warning';
+                                  break;
+                              case 'ditolak':
+                                  $statusColor = 'bg-danger';
+                                  break;
+                              case 'disetujui':
+                                  $statusColor = 'bg-success';
+                                  break;
+                              default:
+                                  $statusColor = '';
+                                  break;
+                          }
+                      @endphp
+                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                    @endif
+                  @else
+                      <span class="text-muted">Tidak ada file</span>
+                  @endif --}}
+                </div>
               </div>
             @endforeach
         {{-- <div class="row g-3 align-items-center mt-2">

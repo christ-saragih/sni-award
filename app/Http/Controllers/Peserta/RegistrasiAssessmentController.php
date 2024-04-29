@@ -13,6 +13,7 @@ use App\Models\Dokumen;
 use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\PesertaProfil;
+use App\Models\RegistrasiDokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\TrueType;
@@ -35,7 +36,13 @@ class RegistrasiAssessmentController extends Controller
         $dokumen = Dokumen::get();
         $konfigurasi = Konfigurasi::where('key','Tahun SNI Award')->first();
         $registrasi = Registrasi::where('peserta_id',Auth::guard('peserta')->user()->id)->where('tahun',$konfigurasi->value)->first();
-        $regis_jawaban = [];
+        // dd($registrasi->registrasi_dokumen[]);
+        $registrasi_dokumen = [];
+        if ($registrasi) {
+            $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->get();
+        }
+        // dd($registrasi_dokumen);
+        $regis_jawaban = []; 
             if ($registrasi){
                 $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
             }
@@ -58,6 +65,7 @@ class RegistrasiAssessmentController extends Controller
             'peserta' => $peserta,
             'existingRegistration' => $existingRegistration,
             'registrasi' => $registrasi,
+            'registrasi_dokumen' => $registrasi_dokumen,
             // 'pesertaProfil' => $pesertaProfil
         ]);
     }

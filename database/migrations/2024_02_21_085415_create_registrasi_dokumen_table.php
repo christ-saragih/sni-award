@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registrasi_dokumen', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
-            $table->tinyInteger('dokumen_id')->unsigned()->nullable();
+            $table->tinyInteger('dokumen_id')->unsigned();
             $table->string('url_dokumen');
             $table->enum('status',['proses','ditolak','disetujui'])->nullable();
             $table->text('feedback');
@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
-            $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
+            $table->enum('role_by', ['User', 'Peserta']);
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable(true);
 

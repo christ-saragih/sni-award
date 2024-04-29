@@ -221,24 +221,24 @@ h1 {
     margin-block: 150px;
 }
 
-.artikel-container .content-container .content {
-    height: 500px;
+.artikel-container .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    gap: 50px;
+}   
+
+.artikel-container .content-container h2 {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #121221;
 }
 
-.artikel-container .content-container .content h2 {
-    margin-top: 55px;
-    margin-bottom: -25px;
-}
-
-.artikel-container .content-container .content img {
-    margin-left: 10px;
-    width: 598px;
+.artikel-container .content-container img {
+    width: 100%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
-}
-
-.artikel-container .content-container .content h3 {
-    margin-bottom: -50px;
 }
 
 h2 {
@@ -303,7 +303,7 @@ p.description {
 }
 
 .berita-container {
-    width: 360px;
+    /* width: 360px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -327,19 +327,17 @@ p.description {
     font-size: 12px;
 }
 
-.berita-container .content button {
+.berita-container .content a {
     color: #fff;
     background-color: #124c6b;
     margin-bottom: 20px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 75%;
 }
 
-.berita-container .content a.btn {
-    color: #fff;
-    background-color: #124c6b;
-    margin-bottom: 10px;
-    padding: 5px;
-    font-weight: 300;
+.berita-container .content a:hover {
+    background-color: #0e3c55;
 }
 
 /* acara container */
@@ -866,6 +864,43 @@ ul a {
 #register label {
     color: white;
 }
+
+#register .select2-container .select2-selection--single {
+    border-radius: 100px !important;
+    
+}
+
+#register .select2-container .select2-selection--single {
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #2B2B28 !important;
+}
+
+#register .select2-container .select2-selection--single .select2-selection__rendered {
+    padding-inline: .75rem;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: 38px !important;
+    height: 38px !important;
+    right: 8px !important;
+}
+
+#register .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: #552525 transparent transparent transparent !important;
+    border-width: 7px 6px 2px 6px !important;
+}
+
+#register .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+        border-color: transparent transparent #552525 transparent !important;
+        border-width: 2px 6px 7px 6px !important;
+}
+
+
 #register .content-kiri{
     width: 60%;
     height: 100vh;
@@ -873,7 +908,7 @@ ul a {
     align-items: center;
     justify-content: center;
 }
-#register .content-kanan{
+#register .content-kanan {
     width: 40%;
     height: 100vh;
     background-color: #552525;
@@ -881,11 +916,22 @@ ul a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    overflow: hidden;
 }
-#register .content-kanan > h1{
+
+#register .content-kanan img {
+    width: 185px;
+}
+
+#register .content-kanan > h1 {
     color: #fff;
+    text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 }
+
+#register .content-kanan > p {
+    color: #E9ECFA;
+}
+
 #register .content-kanan > form{
     width: 100%;
     display: flex;
@@ -902,13 +948,26 @@ ul a {
 #register .content-kanan > form > div input {
     width: 100%;
 }
+
+#register .content-kanan form input {
+    color: #2B2B28 !important;
+}
+
+#register .content-kanan .form-text {
+    color: white;
+    font-size: 14px;
+}
+
+#register .content-kanan .form-text a {
+    color: white;
+}
+
 /* end register */
 
 /* Login Page */
 #login {
     width: 100dvw;
     height: 100dvh;
-    padding-block: 60px;
     padding-inline: 160px;
     background-image: url("../images/icon/Vector\ 7.svg");
 
@@ -917,25 +976,28 @@ ul a {
     background-position: center; /* Posisi gambar latar di tengah elemen */
     background-repeat: no-repeat; /* Mencegah gambar latar terulang */
     z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-container {
     width: 100%;
-    height: 100%;
     border-radius: 37px;
     box-shadow: 6px 6px 15px 10px rgba(0, 0, 0, 0.25);
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: auto;
 }
 
 .login-container .content-kiri {
     width: 60%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--primary-color); */
 }
 
 .login-container .content-kiri img {
@@ -944,18 +1006,17 @@ ul a {
 
 .login-container .content-kanan {
     width: 40%;
-    height: 100%;
     border-radius: 37px;
     background-color: var(--primary-color);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
-.login-container .content-kanan img {
-    width: 35%;
+.login-container .content-kanan > img {
+    width: 185px; 
 }
 
 .login-container .content-kanan h1 {
@@ -988,11 +1049,11 @@ ul a {
 }
 
 .login-container .content-kanan .button button {
-    background-color: #bf8211;
+    background-color: #DCA958;
     color: white;
     border-radius: 37px;
-    height: 40px;
-    width: 214px;
+    padding: 6px 80px;
+    font-weight: bold;
 }
 
 /* .thumbnail {
@@ -1031,6 +1092,7 @@ ul a {
 
 /* Acara Section */
 .acara-container img {
+    width: 95%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
 }
@@ -1043,31 +1105,26 @@ ul a {
     margin-top: 30px;
 }
 
-.acara-container .content-atas {
-    margin-bottom: 90px;
-}
-
-.acara-container .content-atas h3,
-.acara-container .content-bawah h3 {
+.acara-container h3 {
     margin-bottom: 50px;
     margin-left: 10px;
 }
 
-.acara-container .content-atas p,
-.acara-container .content-bawah p {
+.acara-container p {
     margin-bottom: 70px;
 }
 
-.acara-container .content-atas button,
-.acara-container .content-bawah button {
+.acara-container a {
     color: white;
     font-weight: bold;
+    /* font-size: 75%; */
     background-color: #124c6b;
     border-radius: 10px;
 }
 
-.acara-container .content-bawah img {
-    margin-left: 20px;
+.acara-container a:hover {
+    background-color: #0e3c55;
+    color: white;
 }
 
 /* Menu Informasi */
