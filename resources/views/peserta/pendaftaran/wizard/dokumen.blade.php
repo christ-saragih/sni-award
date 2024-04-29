@@ -24,28 +24,52 @@
                     {{-- buatan iqna --}}
                 </div>
                 <div class="col-3">
-                  @foreach ($registrasi_dokumen as $rd)
-                      @if ($rd->dokumen_id == $dok->id)
+                  @for ($i = 0; $i < count($dokumen); $i++)
+                    @if ($registrasi_dokumen[$i]->dokumen_id == $dok->id)
                       @php
-                            $statusColor = '';
-                            switch ($rd->status) {
-                              case 'proses':
-                              $statusColor = 'bg-warning';
-                              break;
-                              case 'ditolak':
-                              $statusColor = 'bg-danger';
-                              break;
-                              case 'disetujui':
-                              $statusColor = 'bg-success';
-                              break;
-                              default:
-                              $statusColor = '';
-                              break;
-                            }
-                            @endphp
-                            <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
-                      @endif
-                  @endforeach
+                        $statusColor = '';
+                        switch ($registrasi_dokumen[$i]->status) {
+                          case 'proses':
+                          $statusColor = 'bg-warning';
+                          break;
+                          case 'ditolak':
+                          $statusColor = 'bg-danger';
+                          break;
+                          case 'disetujui':
+                          $statusColor = 'bg-success';
+                          break;
+                          default:
+                          $statusColor = '';
+                          break;
+                        }
+                      @endphp
+                      <a class="btn {{ $statusColor }}" >{{ $registrasi_dokumen[$i]->status }}</a>
+                    @endif
+                  @endfor
+
+                  {{-- @foreach ($registrasi_dokumen as $rd)
+                    @if ($rd->dokumen_id == $dok->id)
+                      @php
+                        $statusColor = '';
+                        switch ($rd->status) {
+                          case 'proses':
+                          $statusColor = 'bg-warning';
+                          break;
+                          case 'ditolak':
+                          $statusColor = 'bg-danger';
+                          break;
+                          case 'disetujui':
+                          $statusColor = 'bg-success';
+                          break;
+                          default:
+                          $statusColor = '';
+                          break;
+                        }
+                      @endphp
+                      <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
+                    @endif
+                  @endforeach --}}
+
                   {{-- @if ($dok->registrasi_dokumen)
                     @if ($dok->registrasi_dokumen->url_dokumen)
                       @php
