@@ -15,88 +15,49 @@
           <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @foreach ($dokumen as $dok)
+              @php
+                  $processed = false; // Inisialisasi variabel boolean
+              @endphp
               <div class="row g-3 align-items-center mt-2">
-                <div class="col-3">
-                  <label class="fw-bold">{{$dok->nama}}</label>
-                </div>
-                <div class="col-6">
-                  <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
-                    {{-- buatan iqna --}}
-                </div>
-                <div class="col-3">
-                  @for ($i = 0; $i < count($dokumen); $i++)
-                    @if ($registrasi_dokumen[$i]->dokumen_id == $dok->id)
-                      @php
-                        $statusColor = '';
-                        switch ($registrasi_dokumen[$i]->status) {
-                          case 'proses':
-                          $statusColor = 'bg-warning';
-                          break;
-                          case 'ditolak':
-                          $statusColor = 'bg-danger';
-                          break;
-                          case 'disetujui':
-                          $statusColor = 'bg-success';
-                          break;
-                          default:
+                  <div class="col-3">
+                      <label class="fw-bold">{{$dok->nama}}</label>
+                  </div>
+                  <div class="col-6">
+                      <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                  </div>
+                  <div class="col-3">
+                    @foreach ($registrasi_dokumen as $i=>$rd)
+                      @if ($rd->dokumen_id == $dok->id)
+                        @php
                           $statusColor = '';
-                          break;
-                        }
-                      @endphp
-                      <a class="btn {{ $statusColor }}" >{{ $registrasi_dokumen[$i]->status }}</a>
-                    @endif
-                  @endfor
-
-                  {{-- @foreach ($registrasi_dokumen as $rd)
-                    @if ($rd->dokumen_id == $dok->id)
-                      @php
-                        $statusColor = '';
-                        switch ($rd->status) {
-                          case 'proses':
-                          $statusColor = 'bg-warning';
-                          break;
-                          case 'ditolak':
-                          $statusColor = 'bg-danger';
-                          break;
-                          case 'disetujui':
-                          $statusColor = 'bg-success';
-                          break;
-                          default:
-                          $statusColor = '';
-                          break;
-                        }
-                      @endphp
-                      <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
-                    @endif
-                  @endforeach --}}
-
-                  {{-- @if ($dok->registrasi_dokumen)
-                    @if ($dok->registrasi_dokumen->url_dokumen)
-                      @php
-                          $statusColor = '';
-                          switch ($dok->registrasi_dokumen->status) {
-                              case 'proses':
-                                  $statusColor = 'bg-warning';
-                                  break;
-                              case 'ditolak':
-                                  $statusColor = 'bg-danger';
-                                  break;
-                              case 'disetujui':
-                                  $statusColor = 'bg-success';
-                                  break;
-                              default:
-                                  $statusColor = '';
-                                  break;
+                          switch ($rd->status) {
+                            case 'proses':
+                                $statusColor = 'bg-warning';
+                                $processed = true; // Set variabel boolean menjadi true jika status "diproses" ditemukan
+                                break;
+                            case 'ditolak':
+                                $statusColor = 'bg-danger';
+                                break;
+                            case 'disetujui':
+                                $statusColor = 'bg-success';
+                                break;
+                            default:
+                                $statusColor = '';
+                                break;
                           }
-                      @endphp
-                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
-                    @endif
-                  @else
-                      <span class="text-muted">Tidak ada file</span>
-                  @endif --}}
-                </div>
+                        @endphp
+                      @endif
+                    @endforeach
+                  {{-- Tampilkan kotak "diproses" hanya jika ada file yang diunggah dan statusnya "diproses" --}}
+                  @if ($processed && $dok->registrasi_dokumen)
+                      @if ($dok->registrasi_dokumen->url_dokumen)
+                          <a class="btn {{ $statusColor }}">{{ $dok->registrasi_dokumen->status}}</a>
+                      @endif
+                  @endif
               </div>
-            @endforeach
+          </div>
+          @endforeach
+
         {{-- <div class="row g-3 align-items-center mt-2">
             <div class="col-3">
                 <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
