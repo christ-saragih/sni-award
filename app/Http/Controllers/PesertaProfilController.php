@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KategoriOrganisasi;
 use App\Models\LembagaSertifikasi;
 use App\Models\Peserta;
+use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
 use App\Models\StatusKepemilikan;
 use App\Models\User;
@@ -23,12 +24,14 @@ class PesertaProfilController extends Controller
         $lembaga_sertifikasi = LembagaSertifikasi::all();
         $status_kepemilikan = StatusKepemilikan::all();
         $pesertaprofil = PesertaProfil::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
-        // dd($pesertaprofil); 
+        $peserta_kontak = $peserta->peserta_kontak;
+        // dd($peserta_kontak); 
         return view('peserta.profil.index',compact([
             'peserta', 
             'kategori_organisasi', 
             'lembaga_sertifikasi', 
-            'status_kepemilikan','pesertaprofil'
+            'status_kepemilikan','pesertaprofil',
+            'peserta_kontak',
         ])); 
     }
 
@@ -89,20 +92,6 @@ class PesertaProfilController extends Controller
             'kewenangan_kebijakan.required' => 'Kewenangan Kebijakan Wajib diisi',
         ]);
 
-        // $pesertaprofil->nama = $request->input('nama');
-        // $pesertaprofil->jabatan_tertinggi = $request->input('jabatan_tertinggi');
-        // $pesertaprofil->no_hp = $request->input('no_hp');
-        // $pesertaprofil->website = $request->input('website');
-        // $pesertaprofil->tanggal_beroperasi = $request->input('tanggal_beroperasi');
-        // $pesertaprofil->jenis_produk = $request->input('jenis_produk');
-        // $pesertaprofil->deskripsi_produk = $request->input('deskripsi_produk');
-        // $pesertaprofil->produk_export = $request->input('produk_export');
-        // $pesertaprofil->negara_tujuan_ekspor = $request->input('negara_tujuan_ekspor');
-        // $pesertaprofil->kekayaan_bersih = $request->input('kekayaan_bersih');
-        // $pesertaprofil->hasil_penjualan_tahunan = $request->input('hasil_penjualan_tahunan');
-        // $pesertaprofil->jenis_organisasi = $request->input('jenis_organisasi');
-        // $pesertaprofil->kewenangan_kebijakan = $request->input('kewenangan_kebijakan');
-        // $pesertaprofil->save();
         $dataprofil = [
             'jabatan_tertinggi' => $request->jabatan_tertinggi,
             'no_hp' => $request->no_hp,
@@ -130,7 +119,6 @@ class PesertaProfilController extends Controller
         $pesertaprofil->update($dataprofil);
         
         return redirect('/peserta/profil')->with("success","Data Profil berhasil diupdate"); 
-        // return redirect()->route("peserta.profil.index", $pesertaprofil->id)->with("success","Data Profil berhasil diupdate"); 
     }
     
     public function tambahDokumenPeserta(Request $request)
@@ -171,9 +159,6 @@ class PesertaProfilController extends Controller
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
         } 
-        //     else {
-        //     return back()->with('error', 'Gagal mengunggah dokumen. Pastikan semua dokumen diunggah.');
-        // }
         
         if ($request->hasFile('url_sppt_sni')) {
             
@@ -229,8 +214,29 @@ class PesertaProfilController extends Controller
             !$request->hasFile('url_kewenangan_kebijakan')) {
             return back()->withErrors('Gagal mengunggah dokumen. Pastikan semua dokumen diunggahhh.');  
         }
+    }
 
-
+    public function tambahKontakPenghubung(Request $request)
+    {
+        // dd(['nama_penghubung' => $request->nama_penghubung,
+        // 'nomor_telepon' => $request->nomor_telepon,
+        // 'jabatan' => $request->jabatan,]);
+        $request ->validate([
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'jabatan' => 'required',
+        ], [
+            'nama.required' =>  "Nama penghubung harus diisi",
+            'jabatan.required' =>  "Jabatan harus diisi",
+            'no_hp.required' =>  "nomor penghubung harus diisi",
+        ]);
         
-    }// protected function save ($pesertaprofil, $request)
+        PesertaKontak::create([
+            'peserta_id' => Auth::guard('peserta')->user()->id,
+            'nama' => $request->nama,
+            'no_hp' => $request->no_hp,
+            'jabatan' => $request->jabatan,
+        ]);
+        return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
+    }
 }

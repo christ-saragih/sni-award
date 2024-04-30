@@ -1,6 +1,17 @@
 <form  method="POST" action="/peserta/profil" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
     @method('PUT')
     @csrf
+
+    @if (session('error'))
+        <div class="alert alert-danger w-100" role="alert">
+         {{ session('error') }}
+        </div>
+    @elseif (session('success'))
+        <div class="alert alert-success w-100" role="alert">
+         {{ session('success') }}
+        </div>
+    @endif 
+    
     <div class="content-ubah-password pt-5 mb-5">
         <div class="d-flex align-items-center gap-2">
         <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Ubah Kata Sandi</h3>
