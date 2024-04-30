@@ -34,25 +34,24 @@
                       <li id="personal"><strong>Lead Evaluator</strong></li>
                       <li id="payment"><strong>Sekretariat</strong></li>
                     </ul>
-                    <div class="progress">
+                    <!-- <div class="progress">
                       <div
                         class="progress-bar penilaian progress-bar-striped progress-bar-animated"
                         role="progressbar"
                         aria-valuemin="0"
                         aria-valuemax="100"
                       ></div>
-                    </div>
-                    <br />
+                    </div> -->
                     
                     <!-- fieldsets -->
                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                      <div class="card-body pt-0 mt-0">
+                      <div class="card-body pt-0 mt-0 mb-5">
                         <div class="row align-items-center pt-4 pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Nama Evaluator</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0">Bennefit</p>
+                            <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
                           </div>
                         </div>
 
@@ -62,8 +61,9 @@
                           </div>
                           <div class="col-md-2">
                             <div class="d-flex align-items-center gap-3">
-                              <p class="form-control form-control-lg m-0">192</p>
-                              <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                              <p class="form-control form-control-lg m-0" style="border: none;">192</p>
+                              <!-- icon download -->
+                              <!-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> -->
                             </div>
                           </div>
                         </div>
@@ -73,7 +73,7 @@
                             <h6 class="mb-0 mt-2">Komentar</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                           </div>
                         </div>        
                       </div>
@@ -88,13 +88,13 @@
                     </fieldset>
                     
                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                      <div class="card-body pt-0 mt-0">
+                      <div class="card-body pt-0 mt-0 mb-5">
                         <div class="row align-items-center pt-4 pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Nama Evaluator</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0">Bennefit</p>
+                            <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
                           </div>
                         </div>
 
@@ -104,8 +104,7 @@
                           </div>
                           <div class="col-md-2">
                             <div class="d-flex align-items-center gap-3">
-                              <p class="form-control form-control-lg m-0">192</p>
-                              <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                              <p class="form-control form-control-lg m-0" style="border: none;">192</p>
                             </div>
                           </div>
                         </div>
@@ -115,7 +114,7 @@
                             <h6 class="mb-0 mt-2">Komentar</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                           </div>
                         </div>        
                       </div>
@@ -135,13 +134,13 @@
                     </fieldset>
 
                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                      <div class="card-body pt-0 mt-0">
+                      <div class="card-body pt-0 mt-0 mb-5">
                         <div class="row align-items-center pt-4 pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Nama Evaluator</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0">Bennefit</p>
+                            <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
                           </div>
                         </div>
 
@@ -151,8 +150,7 @@
                           </div>
                           <div class="col-md-2">
                             <div class="d-flex align-items-center gap-3">
-                              <p class="form-control form-control-lg m-0">192</p>
-                              <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                              <p class="form-control form-control-lg m-0" style="border: none;">192</p>
                             </div>
                           </div>
                         </div>
@@ -162,16 +160,22 @@
                             <h6 class="mb-0 mt-2">Komentar</h6>
                           </div>
                           <div class="col-md-8 pe-5">
-                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                           </div>
                         </div>        
                       </div>
+                      
+                      <div class="d-flex flex-column align-items-end">
+                        <a href="" class="btn btn-unduh-dokumen mb-5 me-3" style="background-color: #E59B30; border-radius: 15px; font-size: 18px; font-weight: bold; color: #FFFFFF;">Unduh Dokumen <i class="fa fa-download"></i></a>
+                      </div>
+
                       <input
-                        type="button"
-                        name="previous"
-                        class="btn previous action-button-previous float-end me-3"
-                        value="Sebelumnya"
-                      />
+                          type="button"
+                          name="previous"
+                          class="btn previous action-button-previous float-end me-3"
+                          value="Sebelumnya"
+                        />
+                    
                     </fieldset>
 
                   </form>
