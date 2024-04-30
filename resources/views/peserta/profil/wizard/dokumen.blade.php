@@ -1,4 +1,4 @@
-<form  method="POST" action="/peserta/profil" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1" enctype="multipart/form-data">
+<form  method="POST" action="{{ route('peserta.profil.dokumen') }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1" enctype="multipart/form-data">
   {{-- @method('PUT') --}}
   @csrf
 

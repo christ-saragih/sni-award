@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KategoriOrganisasi;
 use App\Models\LembagaSertifikasi;
 use App\Models\Peserta;
+use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
 use App\Models\StatusKepemilikan;
 use App\Models\User;
@@ -23,12 +24,14 @@ class PesertaProfilController extends Controller
         $lembaga_sertifikasi = LembagaSertifikasi::all();
         $status_kepemilikan = StatusKepemilikan::all();
         $pesertaprofil = PesertaProfil::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
-        // dd($pesertaprofil); 
+        $peserta_kontak = $peserta->peserta_kontak;
+        // dd($peserta_kontak); 
         return view('peserta.profil.index',compact([
             'peserta', 
             'kategori_organisasi', 
             'lembaga_sertifikasi', 
-            'status_kepemilikan','pesertaprofil'
+            'status_kepemilikan','pesertaprofil',
+            'peserta_kontak',
         ])); 
     }
 
@@ -211,5 +214,29 @@ class PesertaProfilController extends Controller
             !$request->hasFile('url_kewenangan_kebijakan')) {
             return back()->withErrors('Gagal mengunggah dokumen. Pastikan semua dokumen diunggahhh.');  
         }
+    }
+
+    public function tambahKontakPenghubung(Request $request)
+    {
+        // dd(['nama_penghubung' => $request->nama_penghubung,
+        // 'nomor_telepon' => $request->nomor_telepon,
+        // 'jabatan' => $request->jabatan,]);
+        $request ->validate([
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'jabatan' => 'required',
+        ], [
+            'nama.required' =>  "Nama penghubung harus diisi",
+            'jabatan.required' =>  "Jabatan harus diisi",
+            'no_hp.required' =>  "nomor penghubung harus diisi",
+        ]);
+        
+        PesertaKontak::create([
+            'peserta_id' => Auth::guard('peserta')->user()->id,
+            'nama' => $request->nama,
+            'no_hp' => $request->no_hp,
+            'jabatan' => $request->jabatan,
+        ]);
+        return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
     }
 }
