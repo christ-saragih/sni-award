@@ -14,7 +14,7 @@
         <hr style="width: 100%; height: 5px; color: grey">
           <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @foreach ($dokumen as $dok)
+            {{-- @foreach ($dokumen as $dok)
               @php
                   $processed = false; // Inisialisasi variabel boolean
               @endphp
@@ -47,16 +47,49 @@
                           }
                         @endphp
                       @endif
-                    @endforeach
+                    @endforeach --}}
                   {{-- Tampilkan kotak "diproses" hanya jika ada file yang diunggah dan statusnya "diproses" --}}
-                  @if ($processed && $dok->registrasi_dokumen)
+                  {{-- @if ($processed && $dok->registrasi_dokumen)
                       @if ($dok->registrasi_dokumen->url_dokumen)
                           <a class="btn {{ $statusColor }}">{{ $dok->registrasi_dokumen->status}}</a>
                       @endif
                   @endif
               </div>
           </div>
-          @endforeach
+          @endforeach --}}
+          @foreach ($dokumen as $dok)
+          <div class="row g-3 align-items-center mt-2">
+              <div class="col-3">
+                  <label class="fw-bold">{{$dok->nama}}</label>
+              </div>
+              <div class="col-6">
+                  <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+              </div>
+              <div class="col-3">
+                  @php
+                      $statusColor = '';
+                  @endphp
+                  @foreach ($registrasi_dokumen as $rd)
+                      @if ($rd->dokumen_id == $dok->id)
+                          @switch ($rd->status)
+                              @case ('proses')
+                                  @php $statusColor = 'bg-warning'; @endphp
+                                  @break
+                              @case ('ditolak')
+                                  @php $statusColor = 'bg-danger'; @endphp
+                                  @break
+                              @case ('disetujui')
+                                  @php $statusColor = 'bg-success'; @endphp
+                                  @break
+                          @endswitch
+                          <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
+                          @break
+                      @endif
+                  @endforeach
+              </div>
+          </div>
+      @endforeach
+
 
         {{-- <div class="row g-3 align-items-center mt-2">
             <div class="col-3">
