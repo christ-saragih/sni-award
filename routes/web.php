@@ -62,8 +62,6 @@ Route::get('/kontak', [App\Http\Controllers\Guest\KontakController::class, 'inde
 
 Route::get('/linimasa', [App\Http\Controllers\Guest\LinimasaController::class, 'index']);
 
-Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
-Route::get('/peserta/riwayat/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
@@ -111,7 +109,10 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     // Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'index']);
     // Route::get('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
     Route::put('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandi']);
-    
+
+    Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
+    Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
+
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
 });
 
@@ -311,7 +312,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/pendaftar_sni_award/{registrasi}/ubah', [PendaftarAdminController::class, 'edit'])->name('pendaftar_sni_award.edit');
         Route::put('/pendaftar_sni_award/{id}', [PendaftarAdminController::class, 'update'])->name('pendaftar_sni_award.update');
         Route::get('/get_data_dokumen/{id}', [PendaftarAdminController::class, 'getDokumenPeserta'])->name('pendaftar_sni_award.get_dokumen_peserta');
-        
+
         Route::get('/admin/404', [NotFoundController::class, 'admin']);
     });
 });
