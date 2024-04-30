@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PesertaKontak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PesertaKontakController extends Controller
 {
@@ -12,7 +13,7 @@ class PesertaKontakController extends Controller
      */
     public function index()
     {
-        $pesertaKontaks = PesertaKontak::all();
+        $pesertaKontak = PesertaKontak::all();
 
         return view('peserta.kontak.index', compact('pesertaKontak'));
     }
@@ -28,24 +29,25 @@ class PesertaKontakController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function tambahKontakPenghubung(Request $request)
     {
+        dd(['nama_penghubung' => $request->nama_penghubung,
+        'nomor_telepon' => $request->nomor_telepon,
+        'jabatan' => $request->jabatan,]);
         $request ->validate([
-            'nama_penghubung' => ['required'],
-            'nomor_telepon' => ['nullable', 'string'],
-            'jabatan' => ['required'],
+            'nama_penghubung' => 'required',
+            'nomor_telepon' => 'string',
+            'jabatan' => 'required',
         ], [
             'nama_penghubung.required' =>  "Nama penghubung harus diisi",
             'jabatan.required' =>  "Jabatan harus diisi",
         ]);
         
-        PesertaKontak::create([
+        PesertaKontak::tambahKontakPenghubung([
             'nama_penghubung' => $request->nama_penghubung,
             'nomor_telepon' => $request->nomor_telepon,
             'jabatan' => $request->jabatan,
         ]);
-
-        // return redirect()->back()-with('sukses','Data Berhasil Di Tambahkan');
         return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
     }
 
