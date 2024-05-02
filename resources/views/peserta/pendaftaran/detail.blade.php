@@ -24,6 +24,7 @@
         @endif
         <div class="content-ubah-password py-5">
             <h3 class="mb-5 pb-0" style="font-size: 200%; font-weight: bold; color: #2b2b2b;">Jawablah Pertanyaan di Bawah Ini</h3>
+            <h3 class="mb-5 pb-0" style="font-size: 130%; font-weight: bold; color: #2b2b2b;">Pilihlah jawaban yang paling benar menurut anda</h3>
             <div class="container mt-4 d-flex flex-column gap-4">
                 <div class="d-flex align-items-center">
                 <div class="progress flex-grow-1" style="height: 9px;">
@@ -43,61 +44,69 @@
 
                 <!-- detail pertanyaan -->
                 @if ($registrasi)
-                <form action="{{ route('simpanJawaban') }}" method="POST">
-                    @csrf
-                    @foreach ($assessment_sub_kategori as $ask)
-                        @foreach ($ask->assessment_pertanyaan as $ap)
-                        <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
-                            <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
-                                <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
-                                    <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
-                                    <p class="m-0">{{ $ask->nama }}</p>
+                    <form id="submitForm" action="{{ route('simpanJawaban') }}" method="POST">
+                        @csrf
+                        @foreach ($assessment_sub_kategori as $ask)
+                            @foreach ($ask->assessment_pertanyaan as $ap)
+                                <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
+                                <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
+                                    <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
+                                        <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
+                                        <p class="m-0">{{ $ask->nama }}</p>
+                                    </div>
+                                    <div class="pertanyaan d-flex flex-column text-center">
+                                        <input type="hidden" name="assessment_pertanyaan_id[]" value="{{ $ap->id }}">
+                                        <p class="m-0">{{ $ap->pertanyaan }}</p>
+                                    </div>
+                                    <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
+                                        @foreach ($ap->assessment_jawaban as $aj)
+                                            <label class="jawaban-label d-flex align-items-center py-1 px-3" onclick="pilihJawaban(this)">
+                                                <input type="radio" name="jawaban[{{ $ap->id }}]" value="{{ $aj->id }}"> {{ $aj->jawaban }}
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="pertanyaan d-flex flex-column text-center">
-                                    <input type="hidden" name="assessment_pertanyaan_id[]" value="{{ $ap->id }}">
-                                    <p class="m-0">{{ $ap->pertanyaan }}</p>
-                                </div>
-                                <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
-                                    @foreach ($ap->assessment_jawaban as $aj)
-                                        <label class="jawaban-label d-flex align-items-center py-1 px-3" onclick="pilihJawaban(this)">
-                                            <input type="radio" name="jawaban[{{ $ap->id }}]" value="{{ $aj->id }}"> {{ $aj->jawaban }}
-                                        </label>
-                                    @endforeach
-                                </div>
-                            </div>
+                            @endforeach
                         @endforeach
-                    @endforeach
-                    <button type="submit" class="btn btn-primary">Submit Jawaban</button>
-                </form>
-                    
+                        <button type="button" class="btn btn-primary" onclick="showConfirmation()">Submit Jawaban</button>
+                    </form>
                 @endif
-                    {{-- <input
-                        type="button"
-                        name="selanjutnyaAssesment"
-                        class="btn selanjutnyaAssesment action-button float-end mt-5"
-                        value="Selanjutnya"
-                    />
 
-                    <input
-                        type="button"
-                        name="sebelumnyaAssesment"
-                        class="btn sebelumnyaAssesment action-button-previous float-end mt-5 me-3"
-                        value="Sebelumnya"
-                    /> --}}
+                </div>
+                </div>
+                </div>
 
-                    {{-- <form action="{{ route('simpanJawaban') }}" method="POST">
-                        @csrf <!-- Tambahkan CSRF token untuk keamanan -->
-                        <!-- Tambahkan input hidden untuk menyimpan ID registrasi -->
-                        <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
-                        <!-- Tambahkan input hidden untuk menyimpan ID pertanyaan dan jawaban yang dipilih oleh pengguna -->
-                        <input type="hidden" name="assessment_pertanyaan_id" value="{{ $pertanyaan->id }}">
-                        <input type="hidden" name="assessment_jawaban_id" value="{{ $jawaban_yang_dipilih->id }}">
-                        <!-- Tambahkan tombol "Submit" -->
-                        <button type="submit" class="btn btn-primary">Submit Jawaban</button>
-                    </form> --}}
-            </div>
-        </div>
-    </div>
+                <!-- Modal -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pengumpulan Jawaban</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah Anda yakin ingin mengumpulkan jawaban?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                <button type="button" class="btn btn-primary" onclick="submitForm()">Ya</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<script>
+    function showConfirmation() {
+        $('#confirmationModal').modal('show');
+    }
+
+    function submitForm() {
+        $('#submitForm').submit();
+    }
+</script>
+
+
+
     <!-- Assessment detail end -->
 
     <!-- Dokumen Section -->

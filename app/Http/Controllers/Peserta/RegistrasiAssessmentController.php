@@ -54,7 +54,7 @@ class RegistrasiAssessmentController extends Controller
                     }
                 }
             }
-        
+
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
@@ -73,6 +73,7 @@ class RegistrasiAssessmentController extends Controller
     public function showPertanyaan($id,$registrasi_id){
         // $assessment_sub_kategori = AssessmentSubKategori::with('assessment_pertanyaan','assessment_jawaban')->get();
         $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->get();
+        dd($assessment_sub_kategori);
         // dd($assessment_sub_kategori[0]->assessment_pertanyaan);
         $registrasi = Registrasi::find($registrasi_id);
         $pertanyaan = AssessmentPertanyaan::find($id);
@@ -102,7 +103,7 @@ class RegistrasiAssessmentController extends Controller
         if (!$assessment_kategori || !$assessment_pertanyaan || !$assessment_jawaban){
             return response()->json(['error' => 'Data not found'], 404);
         }
-        
+
         return response()->json([
             'assessment_kategori' => $assessment_kategori,
             'assessment_pertanyaan' => $assessment_pertanyaan,
@@ -149,11 +150,11 @@ class RegistrasiAssessmentController extends Controller
     public function openRegistrasi() {
         // Periksa apakah peserta sudah memiliki entri registrasi sebelumnya
         $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
-        
+
         if ($existingRegistration) {
             return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
         }
-    
+
         if (Auth::guard('peserta')->check()) {
             Registrasi::create([
                 'tahun' => date('Y'),
@@ -162,12 +163,12 @@ class RegistrasiAssessmentController extends Controller
                 'stage_id' => 1, // dummy
                 'kategori_organisasi_id' => 1, // dummy
             ]);
-    
+
             return redirect()->back()->with('success', 'Pendaftaran telah dibuka');
         }
-        
+
         return redirect()->back()->withErrors('Gagal melakukan pendaftaran');
-    }    
+    }
 
 
 

@@ -14,65 +14,83 @@
         <hr style="width: 100%; height: 5px; color: grey">
           <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @foreach ($dokumen as $dok)
+            {{-- @foreach ($dokumen as $dok)
+              @php
+                  $processed = false; // Inisialisasi variabel boolean
+              @endphp
               <div class="row g-3 align-items-center mt-2">
-                <div class="col-3">
+                  <div class="col-3">
+                      <label class="fw-bold">{{$dok->nama}}</label>
+                  </div>
+                  <div class="col-6">
+                      <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                  </div>
+                  <div class="col-3">
+                    @foreach ($registrasi_dokumen as $i=>$rd)
+                      @if ($rd->dokumen_id == $dok->id)
+                        @php
+                          $statusColor = '';
+                          switch ($rd->status) {
+                            case 'proses':
+                                $statusColor = 'bg-warning';
+                                $processed = true; // Set variabel boolean menjadi true jika status "diproses" ditemukan
+                                break;
+                            case 'ditolak':
+                                $statusColor = 'bg-danger';
+                                break;
+                            case 'disetujui':
+                                $statusColor = 'bg-success';
+                                break;
+                            default:
+                                $statusColor = '';
+                                break;
+                          }
+                        @endphp
+                      @endif
+                    @endforeach --}}
+                  {{-- Tampilkan kotak "diproses" hanya jika ada file yang diunggah dan statusnya "diproses" --}}
+                  {{-- @if ($processed && $dok->registrasi_dokumen)
+                      @if ($dok->registrasi_dokumen->url_dokumen)
+                          <a class="btn {{ $statusColor }}">{{ $dok->registrasi_dokumen->status}}</a>
+                      @endif
+                  @endif
+              </div>
+          </div>
+          @endforeach --}}
+          @foreach ($dokumen as $dok)
+          <div class="row g-3 align-items-center mt-2">
+              <div class="col-3">
                   <label class="fw-bold">{{$dok->nama}}</label>
-                </div>
-                <div class="col-6">
+              </div>
+              <div class="col-6">
                   <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
-                    {{-- buatan iqna --}}
-                </div>
-                <div class="col-3">
+              </div>
+              <div class="col-3">
+                  @php
+                      $statusColor = '';
+                  @endphp
                   @foreach ($registrasi_dokumen as $rd)
                       @if ($rd->dokumen_id == $dok->id)
-                      @php
-                            $statusColor = '';
-                            switch ($rd->status) {
-                              case 'proses':
-                              $statusColor = 'bg-warning';
-                              break;
-                              case 'ditolak':
-                              $statusColor = 'bg-danger';
-                              break;
-                              case 'disetujui':
-                              $statusColor = 'bg-success';
-                              break;
-                              default:
-                              $statusColor = '';
-                              break;
-                            }
-                            @endphp
-                            <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
+                          @switch ($rd->status)
+                              @case ('proses')
+                                  @php $statusColor = 'bg-warning'; @endphp
+                                  @break
+                              @case ('ditolak')
+                                  @php $statusColor = 'bg-danger'; @endphp
+                                  @break
+                              @case ('disetujui')
+                                  @php $statusColor = 'bg-success'; @endphp
+                                  @break
+                          @endswitch
+                          <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
+                          @break
                       @endif
                   @endforeach
-                  {{-- @if ($dok->registrasi_dokumen)
-                    @if ($dok->registrasi_dokumen->url_dokumen)
-                      @php
-                          $statusColor = '';
-                          switch ($dok->registrasi_dokumen->status) {
-                              case 'proses':
-                                  $statusColor = 'bg-warning';
-                                  break;
-                              case 'ditolak':
-                                  $statusColor = 'bg-danger';
-                                  break;
-                              case 'disetujui':
-                                  $statusColor = 'bg-success';
-                                  break;
-                              default:
-                                  $statusColor = '';
-                                  break;
-                          }
-                      @endphp
-                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
-                    @endif
-                  @else
-                      <span class="text-muted">Tidak ada file</span>
-                  @endif --}}
-                </div>
               </div>
-            @endforeach
+          </div>
+      @endforeach
+
+
         {{-- <div class="row g-3 align-items-center mt-2">
             <div class="col-3">
                 <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
