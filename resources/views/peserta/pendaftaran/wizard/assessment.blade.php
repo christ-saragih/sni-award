@@ -12,4 +12,9 @@
       @endif
       @endforeach
       </div>
+      @if($existingRegistration != NULL && $existingRegistration->id)
+      <div class="keterangan mt-4">
+        <h3 style="font-size: 100%">*Jawaban dapat dilihat kembali di Riwayat</h3>
+      </div>
+    @endif
   </div>

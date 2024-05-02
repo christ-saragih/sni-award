@@ -25,6 +25,7 @@ use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
+use App\Http\Controllers\Peserta\PanduanController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
 use App\Http\Controllers\PesertaKontakController;
@@ -116,6 +117,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
 
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
+    Route::get('/panduan', [PanduanController::class, 'index']);
 });
 
 //end peserta

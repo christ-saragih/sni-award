@@ -87,6 +87,7 @@
           />
         </a>
       </div>
+
       <!-- <hr class="horizontal dark mt-0" /> -->
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
@@ -96,6 +97,16 @@
                 <i class="fa fa-home"></i>
               </div>
               <span class="nav-link-text" id="navLinkText">Beranda</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('peserta/panduan') ? 'active' : '' }}" id="navLink" href="/peserta/panduan">
+              <div
+                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+              >
+                <i class="fa fa-book" aria-hidden="true"></i>
+              </div>
+              <span class="nav-link-text" id="navLinkText">Panduan</span>
             </a>
           </li>
           <li class="nav-item">
