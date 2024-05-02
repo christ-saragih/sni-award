@@ -25,6 +25,7 @@ use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
+use App\Http\Controllers\Peserta\PanduanController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
 use App\Http\Controllers\PesertaProfilController;
@@ -113,6 +114,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::put('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandi']);
     
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
+    Route::get('/panduan', [PanduanController::class, 'index']);
 });
 
 //end peserta
