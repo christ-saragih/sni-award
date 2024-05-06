@@ -17,6 +17,7 @@ return new class extends Migration
             $table->tinyInteger('stage')->unsigned();
             $table->integer('evaluator_id')->unsigned();
             $table->integer('lead_evaluator_id')->unsigned();
+            $table->date('tanggal');
             $table->timestamps();
           
             $table->unsignedBigInteger('created_by')->nullable(true) ;

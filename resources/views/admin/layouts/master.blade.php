@@ -215,16 +215,19 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/peserta*') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-user"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Peserta</span>
-            </a>
-          </li>
+          @if (Auth::user()->role == 1)
+            <li class="nav-item">
+              <a class="nav-link {{ request()->is('admin/peserta*') ? 'active' : '' }}" id="navLink" href="/admin/peserta">
+                <div
+                  class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
+                >
+                  <i class="fa fa-user"></i>
+                </div>
+                <span class="nav-link-text" id="navLinkText">Peserta</span>
+              </a>
+            </li>
+          @endif
+
           <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/internal*') ? 'active' : '' }}" id="navLink" href="/admin/internal">
               <div
