@@ -10,6 +10,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -322,4 +323,8 @@ Route::prefix('/admin')->group(function () {
 });
 // end User
 Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
+
+// Sekretariat Start
+Route::get('/sekretariat/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+// Sekretariat End
 
