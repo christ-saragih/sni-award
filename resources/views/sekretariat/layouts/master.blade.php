@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peserta || SNI Award 2023</title>
+    <title>Sekretariat || SNI Award 2024</title>
 
     <!-- Bootstrap -->
     <link
@@ -92,7 +92,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/dashboard') ? 'active' : '' }}" id="navLink" href="/peserta">
+            <a class="nav-link {{ request()->is('sekretariat/dashboard') ? 'active' : '' }}" id="navLink" href="/sekretariat/dashboard">
               <div class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-home"></i>
               </div>
@@ -100,35 +100,25 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/panduan') ? 'active' : '' }}" id="navLink" href="/peserta/panduan">
+            <a class="nav-link {{ request()->is('sekretariat/peserta') ? 'active' : '' }}" id="navLink" href="/sekretariat/peserta">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-book" aria-hidden="true"></i>
+                <i class="fa fa-user-o" aria-hidden="true"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Panduan</span>
+              <span class="nav-link-text" id="navLinkText">Peserta</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/pendaftaran') ? 'active' : '' }}" id="navLink" href="/peserta/pendaftaran">
+            <a class="nav-link {{ request()->is('sekretariat/tim') ? 'active' : '' }}" id="navLink" href="/sekretariat/tim">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-calendar"></i>
+                <i class="fa fa-users"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Pendaftaran</span>
+              <span class="nav-link-text" id="navLinkText">Tim</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/riwayat*') ? 'active' : '' }}" id="navLink" href="/peserta/riwayat">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-file-text"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Riwayat</span>
-            </a>
-          </li> 
         </ul>
       </div>
     </aside>
@@ -319,7 +309,7 @@
                   aria-expanded="false"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
-                  <span class="d-sm-inline d-none me-sm-1 p-0"><b>{{ auth()->guard('peserta')->user()->nama }}</b></span>
+                  <span class="d-sm-inline d-none me-sm-1 p-0"><b>{{ auth()->user()->name }}</b></span>
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul

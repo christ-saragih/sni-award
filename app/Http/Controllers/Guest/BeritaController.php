@@ -17,11 +17,10 @@ class BeritaController extends Controller
         // dd($frontpage_data);
         $berita = Berita::all();
 
-        // get data berita terbaru
-        $berita_terbaru = Berita::latest('tanggal')->first();
-        $berita_terbaru_deskripsi = Str::limit($berita_terbaru->deskripsi, 200);
-
-        $tag_berita_terbaru = BeritaTag::where('berita_id', $berita_terbaru->id)->get();
+        $berita_terbaru = $berita ? Berita::latest('tanggal')->first() : null;
+        $berita_terbaru_deskripsi = $berita_terbaru ? Str::limit($berita_terbaru->deskripsi, 200) : null;
+        $tag_berita_terbaru = $berita_terbaru ? BeritaTag::where('berita_id', $berita_terbaru->id)->get() : null;
+        // $tag_berita_terbaru = BeritaTag::where('berita_id', $berita_terbaru->id)->get();
         // dd($tag_berita_terbaru[0]->tag_berita->nama);
         return view('guest.berita.index', compact(['frontpage_data', 'berita', 'berita_terbaru', 'berita_terbaru_deskripsi', 'tag_berita_terbaru']));
     }
