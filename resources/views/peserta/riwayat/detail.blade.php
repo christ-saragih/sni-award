@@ -481,7 +481,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             @foreach ($data_assessment_kategori as $kategori)
-                                <li><a class="dropdown-item" href="{{ route('riwayat.get_kategori', [$registrasi->id, $kategori ]) }}?tab={{ request()->query('tab') }}">{{ $kategori }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('riwayat.get_kategori', [Crypt::encryptString($registrasi->id), $kategori ]) }}?tab={{ request()->query('tab') }}">{{ $kategori }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -547,8 +547,10 @@
                                                 break;
                                         }
                                         @endphp
-                                        <a href="{{ $dok->registrasi_dokumen->url_dokumen }}" class="btn" download><i class="fa fa-download"></i></a>
-                                        <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
+                                        <a href="{{ $dok->registrasi_dokumen->url_dokumen }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" download data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dok->registrasi_dokumen->url_dokumen }}.pdf">
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                        <a class="btn {{ $statusColor }}" style="color: #fff">{{ $dok->registrasi_dokumen->status }}</a>
                                     @else
                                     <span class="text-muted">Tidak ada file</span>
                                     @endif
@@ -564,34 +566,34 @@
                     @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
                         <div class="row g-3 align-items-center mt-2 mt-2">
                             <div class="col-8">
-                                <label>url_legalitas_hukum_organisasi</label>
+                                <label>url_legalitas_hukum_organisasi <span style="color: red">*</span></label>
                             </div>
                             <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" download><i class="fa fa-download"></i></a>
+                                <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}.pdf" download><i class="fa fa-download"></i></a>
                             </div>
                         </div>
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-8">
-                                <label>url_sppt_sni</label>
+                                <label>url_sppt_sni <span style="color: red">*</span></label>
                             </div>
                             <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" download><i class="fa fa-download"></i></a>
+                                <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sppt_sni }}.pdf" download><i class="fa fa-download"></i></a>
                             </div>
                         </div>
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-8">
-                                <label>url_sk_kemenkumham</label>
+                                <label>url_sk_kemenkumham <span style="color: red">*</span></label>
                             </div>
                             <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" download><i class="fa fa-download"></i></a>
+                                <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sk_kemenkumham }}.pdf" download><i class="fa fa-download"></i></a>
                             </div>
                         </div>
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-8">
-                                <label>url_kewenangan_kebijakan</label>
+                                <label>url_kewenangan_kebijakan <span style="color: red">*</span></label>
                             </div>
                             <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_kewenangan_kebijakan }}" class="btn" download><i class="fa fa-download"></i></a>
+                                <a href="{{ $dokumen_peserta->url_kewenangan_kebijakan }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_kewenangan_kebijakan }}.pdf" download><i class="fa fa-download"></i></a>
                             </div>
                         </div>
                     @else
@@ -655,4 +657,9 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('[data-bs-toggle="tooltip"]').tooltip();
+    });
+</script>
 @endsection('content')

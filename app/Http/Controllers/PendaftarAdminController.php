@@ -47,7 +47,7 @@ class PendaftarAdminController extends Controller
 
     public function getKategori($id, $kategori)
     {
-        // $id = Crypt::decryptString($id);
+        $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
         // dd($registrasi);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();

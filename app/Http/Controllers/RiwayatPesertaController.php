@@ -47,7 +47,7 @@ class RiwayatPesertaController extends Controller
     }
 
     public function getKategori($id, $kategori){
-        // $id = Crypt::decryptString($id);
+        $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
