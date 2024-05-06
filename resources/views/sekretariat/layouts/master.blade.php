@@ -309,7 +309,7 @@
                   aria-expanded="false"
                 >
                   <i class="fa fa-user-o me-sm-1"></i>
-                  <span class="d-sm-inline d-none me-sm-1 p-0"><b>{{ auth()->guard('peserta')->user()->nama }}</b></span>
+                  <span class="d-sm-inline d-none me-sm-1 p-0"><b>{{ auth()->user()->name }}</b></span>
                   <i class="fa fa-caret-down"></i>
                 </a>
                 <ul
