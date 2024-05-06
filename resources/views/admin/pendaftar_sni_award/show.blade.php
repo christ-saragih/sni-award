@@ -348,7 +348,7 @@
                         <ul class="dropdown-menu">
                             @foreach ($data_assessment_kategori as $kategori)
                                 {{-- <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}">{{ $kategori }}</a></li> --}}
-                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [$registrasi->id, $kategori ]) }}?tab={{ request()->query('tab') }}">{{ $kategori }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_kategori', [Crypt::encryptString($registrasi->id), $kategori ]) }}?tab={{ request()->query('tab') }}">{{ $kategori }}</a></li>
                             @endforeach
                         </ul>
                     </div>

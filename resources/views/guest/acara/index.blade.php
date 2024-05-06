@@ -6,8 +6,8 @@
 
         <div class="col-12 d-flex align-items-center justify-content-start">
             <div class="title-container d-flex flex-column align-items-center justify-content-center">
-                <h1 style="text-align: left;">Kumpulan Acara</h1>
-                <hr class="mx-0" style="width: 310px;">
+                <h1 style="text-align: left;">Acara</h1>
+                <hr class="mx-0" style="width: 150px;">
             </div>
         </div>
 

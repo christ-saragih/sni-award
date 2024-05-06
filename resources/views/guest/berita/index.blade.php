@@ -6,9 +6,10 @@
         <div class="col-12 d-flex align-items-center justify-content-start">
             <div class="title-container d-flex flex-column align-items-center justify-content-center">
                 <h1 style="text-align: left;">Berita</h1>
-                <hr class="mx-0" style="width: 120px;">
+                <hr class="mx-0" style="width: 150px;">
             </div>
         </div>
+        @if ($berita_terbaru)
         <div class="content-container col-6">
             <div class="content row">
                 <h2>Berita Terkini</h2>
@@ -62,6 +63,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
 </article>

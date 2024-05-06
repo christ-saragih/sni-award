@@ -114,8 +114,10 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     // Route::get('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandiView'])->name('ubah.kata.sandi');
     Route::put('/profil', [App\Http\Controllers\Peserta\AuthPesertaController::class, 'ubahkatasandi']);
 
+    // Riwayat Peserta
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
+    Route::get('/riwayat/{id}/detail/{kategori}', [RiwayatPesertaController::class, 'getKategori'])->name('riwayat.get_kategori');
 
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
     Route::get('/panduan', [PanduanController::class, 'index']);
