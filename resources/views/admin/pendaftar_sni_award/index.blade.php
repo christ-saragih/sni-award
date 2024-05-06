@@ -51,14 +51,14 @@
         <div class="container mt-4">
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">No</th>
-                        <th scope="col">Nama Pendaftar</th>
+                        <th scope="col">Pendaftar</th>
                         <th scope="col">Sekretariat</th>
                         <th scope="col">Status</th>
                         <th scope="col">Stage</th>
                         <th scope="col">Kategori Organisasi</th>
-                        <th scope="col" class="text-center">Aksi</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,9 +66,16 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$cr->peserta->nama}}</td>
-                            <td>{{$cr->user ? $cr->user->name : ''}}</td>
-                            <td>{{$cr->status->nama}}</td>
-                            <td>{{$cr->stage->nama}}</td>
+                            <td style="display: flex; align-items: center; justify-content: center;">
+                                @if ($cr->user)
+                                    <div>{{ $cr->user->name }}</div>
+                                @else
+                                    <div class="bg-danger text-white text-center p-1 rounded">Belum ditentukan</div>
+                                @endif
+                                {{-- {{$cr->user ? $cr->user->name : 'Belum ditentukan'}} --}}
+                            </td>
+                            <td class="text-center">{{$cr->status->nama}}</td>
+                            <td class="text-center">{{$cr->stage->nama}}</td>
                             <td>{{$cr->peserta->kategori_organisasi->nama}}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
