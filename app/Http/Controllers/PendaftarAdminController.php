@@ -121,7 +121,18 @@ class PendaftarAdminController extends Controller
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
         // dd($data_assessment_kategori);
 
-        $user = User::all();
+        $assigned_sekretariat = Registrasi::select('sekretariat_id')
+            ->where('sekretariat_id', '!=', null)
+            ->distinct()
+            ->pluck('sekretariat_id');
+            
+        $user = User::where('role', '!=', 1)
+            ->where('verified_at', '!=', null)
+            ->whereNotIn('id', $assigned_sekretariat)
+            ->get();
+        // dd($user);
+
+        // dd($sekretariat_check);
 
         return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_penilaian', 'registrasi_dokumen', 'dokumen', 'dokumen_peserta', 'peserta', 'user', 'assessment_kategori', 'data_assessment_kategori']));
     }
