@@ -71,7 +71,7 @@ Route::get('/informasi', [InformationController::class, 'index']);
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
-Route::get('/guest/404', [NotFoundController::class, 'guest']);
+Route::get('/404', [NotFoundController::class, 'guest']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -146,7 +146,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
 
-    Route::middleware(['auth', 'verified'])->group(function() {
+    Route::middleware(['auth', 'verified', 'page.admin'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
         Route::get('/profil', [UserProfilController::class, 'index']);
         Route::get('/profil/edit', [UserProfilController::class, 'editView']);
@@ -327,6 +327,14 @@ Route::prefix('/admin')->group(function () {
 Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
 
 // Sekretariat Start
-Route::get('/sekretariat/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'page.evaluator'])->group(function () { 
+    //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
+    //dah itu buat prefix /evaluator kalau dah ada page evaluator
+    Route::get('/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+});
 // Sekretariat End
+
+Route::get('/{any}', function () {
+    return view('guest.404.404');
+})->where('any', '.*');
 
