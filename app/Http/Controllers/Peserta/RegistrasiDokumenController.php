@@ -45,7 +45,18 @@ class RegistrasiDokumenController extends Controller
             // dd($request->dokumen_id[$i]);
             $nama_file_dokumen = 'dokumen_' . now()->format('YmdHis') . '.' . $dokumen->getClientOriginalName();
             $dokumen->move(public_path('file/dokumen'), $nama_file_dokumen);
-            RegistrasiDokumen::create([
+            $existingDocument = RegistrasiDokumen::where('registrasi_id', $registrasi->id)
+                                                ->where('dokumen_id', $iteration + 1)
+                                                ->first();
+            if ($existingDocument && $existingDocument->status === 'ditolak') {
+                // Ubah status dokumen menjadi 'proses'
+                $existingDocument->update(['status' => 'proses']);
+            }
+            if ($existingDocument && $existingDocument->status === 'disetujui') {
+                return redirect()->back()->with('error', 'Anda tidak dapat mengunggah dokumen lagi karena dokumen telah disetujui.');
+            }
+           
+            RegistrasiDokumen::updateOrCreate([
                 'registrasi_id' => $registrasi->id,
                 'dokumen_id' => $iteration+1,
                 'url_dokumen' => $nama_file_dokumen,

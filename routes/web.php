@@ -10,6 +10,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
+use App\Http\Controllers\Peserta\PanduanController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
 use App\Http\Controllers\PesertaKontakController;
@@ -118,6 +120,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/riwayat/{id}/detail/{kategori}', [RiwayatPesertaController::class, 'getKategori'])->name('riwayat.get_kategori');
 
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
+    Route::get('/panduan', [PanduanController::class, 'index']);
 });
 
 //end peserta
@@ -322,4 +325,8 @@ Route::prefix('/admin')->group(function () {
 });
 // end User
 Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
+
+// Sekretariat Start
+Route::get('/sekretariat/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+// Sekretariat End
 
