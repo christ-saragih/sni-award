@@ -31,8 +31,8 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $evaluator->name }}</td>
                 <td>{{ $evaluator->email }}</td>
-                <td>{{ $evaluator->user_profil->no_hp }}</td>
-                <td>{{ $evaluator->jenis_role?$evaluator->jenis_role->nama:'' }}</td>
+                <td>{{ $evaluator->user_profil ? $evaluator->user_profil->no_hp : '-' }}</td>
+                <td>{{ $evaluator->jenis_role ? $evaluator->jenis_role->nama : '' }}</td>
                 <td class="d-flex justify-content-center">
                     <div style="
                         width: fit-content;
