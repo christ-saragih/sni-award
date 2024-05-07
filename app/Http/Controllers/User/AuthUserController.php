@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Mail\AuthUserMail;
 use App\Mail\ForgotPasswordUserMail;
+use App\Models\Registrasi;
 use App\Models\User;
 use App\Models\UserProfil;
 use Illuminate\Http\Request;
@@ -32,16 +33,23 @@ class AuthUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+        // $is_sekretariat = Registrasi::where('sekretariat_id', '!=', null)->distinct()->pluck('sekretariat_id');
         if (Auth::guard('web')->attempt($infoLogin)) {
-            if (Auth::guard('web')->user()->email_verified_at != null) {
+            if (Auth::user()->jenis_role->nama == 'admin') {
                 return redirect('/admin/dashboard')->with('success', 'Berhasil masuk');
-            }
+            } 
+            elseif (
+                (Auth::user()->jenis_role->nama == 'evaluator' 
+                || Auth::user()->jenis_role->nama == 'lead evaluator')
+            ) {}
             else {
-                return redirect('/admin/verifikasi');
+                return redirect('/sekretariat/dashboard')->with('success', 'Berhasil masuk');
             }
         }else {
-            // return redirect('/admin/masuk')->withErrors('Email atau Password salah')->withInput();
-            return redirect('/admin/masuk')->with('error', 'Email atau Password salah. Silahkan coba lagi')->withInput();
+            return redirect()
+                ->route('user.login.view')
+                ->with('error', 'Email atau Password salah. Silahkan coba lagi')
+                ->withInput();
         }
     }
 
@@ -75,22 +83,38 @@ class AuthUserController extends Controller
                 'name' => $dataRegistrasi['name'],
                 'datetime' => date('Y-m-d H:i:s'),
                 'website' => 'SNI Award',
-                'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$dataRegistrasi['verify_key'],
+                'url' => route('user.verify', $dataRegistrasi['verify_key']),
             ];
             Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));    
         }
 
         if (Auth::guard('web')->check()) {
-            return redirect('/admin/dashboard');
+            if (Auth::user()->jenis_role->nama == 'admin') {
+                return redirect('/admin/dashboard');
+            } 
+            else {
+                return redirect('/sekretariat/dashboard');
+            }
         }else {
-            return redirect('/admin/masuk')->with('success', 'Berhasil melakukan registrasi');
+            return redirect()
+                ->route('user.login.view')
+                ->with('success', 'Berhasil melakukan registrasi');
         }
     }
 
     public function verifikasiUserView() {
         $kodeVerifikasi = Auth::guard('web')->user()->verify_key;
-        if (Auth::guard('web')->user()->email_verified_at != null) {
-            return redirect('/admin/dashboard')->with('Akun telah terverifikasi');
+        $user = Auth::guard('web')->user();
+        $is_sekretariat = count(Registrasi::where('sekretariat_id', $user->id)->get()) != 0;
+        if ($user->email_verified_at != null) {
+            if ($user->jenis_role->nama == 'admin') {
+                return redirect('/admin/dashboard')->with('Akun telah terverifikasi');
+            }
+            // elseif ($is_sekretariat)
+            else {
+                return redirect('/sekretariat/dashboard')->with('Akun telah terverifikasi');
+                // nanti ganti /evaluator atau /lead
+            }
         }else {
             return  view('admin.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
         }
@@ -102,9 +126,12 @@ class AuthUserController extends Controller
         if ($checkKey) {
             User::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect('/admin/masuk')->with('success', 'Berhasil melakukan verifikasi');
+            return redirect()
+                ->route('user.login.view')
+                ->with('success', 'Berhasil melakukan verifikasi');
         }else {
-            return redirect('/admin/masuk')
+            return redirect()
+                ->route('user.login.view')
                 ->withErrors('verify key salah, silahkan coba kembali')
                 ->withInput();
         }
@@ -115,15 +142,17 @@ class AuthUserController extends Controller
             'name' => Auth::guard('web')->user()->name,
             'datetime' => date('Y-m-d H:i:s'),
             'website' => 'SNI Award',
-            'url' => 'http://'.request()->getHttpHost().'/admin/verifikasi'.'/'.$kode_verifikasi,
+            'url' => route('user.verify', $kode_verifikasi),
         ];
         Mail::to(Auth::guard('web')->user()->email)->send(new AuthUserMail($details));
-        return redirect('/admin/verifikasi')->with('Email verifikasi ulang telah dikirim');
+        return redirect()
+            ->route('user.verification.view')
+            ->with('success', 'Email verifikasi ulang telah dikirim');
     }
 
     public function logoutUser() {
         Auth::guard('web')->logout();
-        return redirect('/admin/masuk');
+        return redirect()->route('user.login.view');
     }
 
     public function forgotPasswordView() {
@@ -143,10 +172,12 @@ class AuthUserController extends Controller
                 'name' => $user->name,
                 'datetime' => date('Y-m-d H:i:s'),
                 'website' => 'SNI Award',
-                'url' => 'http://'.request()->getHttpHost().'/admin/reset-password'.'/'.$user->forgot_password_token.'?email='.$request->email,
+                'url' => 'http://'.request()->getHttpHost().'/user/reset-password'.'/'.$user->forgot_password_token.'?email='.$request->email,
             ];
             Mail::to($request->email)->send(new ForgotPasswordUserMail($details));
-            return redirect('/admin/masuk')->with('success', 'Email untuk atur ulang sandi akan segera dikirim');
+            return redirect()
+                ->route('user.login.view')
+                ->with('success', 'Email untuk atur ulang sandi akan segera dikirim');
         } else {
             return back()->withErrors('Email tidak terdaftar');
         }
@@ -183,7 +214,9 @@ class AuthUserController extends Controller
                 'password' => Hash::make($request->password),
                 'forgot_password_token' => Str::random(100),
             ]);
-            return  redirect('/admin/masuk')->with('success', 'Kata sandi berhasil direset! Silahkan login menggunakan kata sandi baru');
+            return  redirect()
+                ->route('user.login.view')
+                ->with('success', 'Kata sandi berhasil direset! Silahkan login menggunakan kata sandi baru');
         }
         return back()
             ->withInput()
