@@ -41,7 +41,6 @@
         font-size: 137.5% !important; 
         font-weight: bold !important;
     }
-
 </style>
 
 <main>
@@ -70,7 +69,7 @@
                             @endforeach
                         </select> 
                         <div style="color: gray; font-size: 14px;">atau:</div>
-                        <div class="mb-2">
+                        <div>
                             <input 
                                 type="checkbox" 
                                 name="role" 
@@ -80,7 +79,7 @@
                             >  
                             <label for="make_as_admin">Jadikan sebagai admin</label>
                         </div>
-                        <div>
+                        <div class="m-0 py-0 px-3 d-flex align-items-center justify-content-end gap-1">
                             <input 
                                 type="checkbox" 
                                 name="verified_at" 
