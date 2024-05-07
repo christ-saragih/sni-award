@@ -14,14 +14,14 @@ class UserDashboardController extends Controller
     // }
     public function index() {
         if (Auth::check() == false) {
-            return redirect('/admin/masuk');
+            return redirect()->route('user.login.view');
         } elseif (Auth::user()->email_verified_at != null) {
             if (Auth::guard('web')->user()->jenis_role->nama == 'evaluator') {
                 return redirect('/sekretariat/dashboard');
             }
             return view('admin.home.index');
         } else {
-            return redirect('/admin/verifikasi');
+            return redirect()->route('user.verification.view');
         }
     }
 }

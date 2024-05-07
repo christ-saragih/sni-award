@@ -52,7 +52,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="/admin/forgot-password" style="width: 100%">
+                        <form method="POST" action="{{ route('user.forgot_password') }}" style="width: 100%">
                             @csrf
 
                             <div class="mb-5">

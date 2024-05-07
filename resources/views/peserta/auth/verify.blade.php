@@ -37,15 +37,15 @@
   </head>
   <body>
 
-    <div class="w-100" style="
+      <div class="w-100" style="
         background-color: #ECE4E4;
         height: 100vh;
-    ">
+        ">
         <div class="p-5 d-flex flex-column align-items-center justify-content-center gap-n5 w-100 h-100">
             <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" style="width: 20%;"/>
+            <h2 class="m-0 p-5">{{ __('Verifikasi Alamat Email Anda') }}</h2>
             <div style="
                 width: 100%;
-                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -58,22 +58,22 @@
                     padding: 20px;
                     border-radius: 20px;
                 ">
-                    <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
                     <div class="card-body">
-                        @if (session('resent'))
+                        @if (session('success'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                {{-- {{ __('A fresh verification link has been sent to your email address.') }} --}}
+                                {{ session('success') }}
                             </div>
                         @endif
 
                         {{-- {{ session() }} --}}
 
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }},
+                        {{ __('Sebelum melanjutkan, silahkan cek email Anda untuk link verifikasi.') }}<br/>
+                        {{ __('Jika belum menerima email') }},
                         <form class="d-inline" method="POST" action="/resend/verifikasi/{{ $kode_verifikasi }}">
                             @csrf
-                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('klik disini untuk kirim ulang email verifikasi') }}</button>.
                         </form>
                     </div>
                 </div>
