@@ -152,10 +152,14 @@ class PendaftarAdminController extends Controller
     {
         // $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
-        $registrasi->update([
-            'sekretariat_id' => $request->sekretariat_id,
-        ]);
-        return redirect()->back()->with('success', 'Registrasi berhasil diubah');
+        if ($registrasi->status->nama == 'open') {
+            $registrasi->update([
+                'sekretariat_id' => $request->sekretariat_id,
+            ]);
+            return redirect()->back()->with('success', 'Registrasi berhasil diubah');           
+        } else {
+            return redirect()->back()->withErrors('Penilaian sedang berjalan. Tidak bisa mengubah sekretariat');
+        }
     }
 
     /**
