@@ -397,13 +397,15 @@ let kontakCount = 1;
 
 iconTambah.addEventListener('click', function() {
     if (kontakCount < 3) {
-        const newForm = createNewForm();
-        containerFormTambahKontak.appendChild(newForm);
+        // const newForm = createNewForm();
+        // containerFormTambahKontak.appendChild(newForm);
 
-        if (kontakCount === 3) {
-            iconTambah.disabled = true;
-            iconTambah.style.cursor = "default";
-        }
+        // if (kontakCount === 3) {
+        //     iconTambah.disabled = true;
+        //     iconTambah.style.cursor = "default";
+        // }
+        const form = document.getElementById('tambah-kontak-penghubung')
+        form.style.display = 'block';
     }
 });
 
