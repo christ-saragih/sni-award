@@ -86,10 +86,12 @@
                             {{ $registrasi->user ? $registrasi->user->name : '' }}
                         </div>
                         <div class="col-3">
-                            <button
-                                {{-- onclick="openModalUbahPendaftarAdmin('{{ Crypt::encryptString($registrasi->id) }}')" --}}
-                                onclick="openModalUbahPendaftarAdmin('{{ $registrasi->id }}')"
-                            class="btn" data-bs-toggle="modal" role="button" style="background-color: #E1A600; border: none;"><i class="fa fa-edit"></i></button>
+                            @if ($registrasi->status->nama == 'open')
+                                <button
+                                    {{-- onclick="openModalUbahPendaftarAdmin('{{ Crypt::encryptString($registrasi->id) }}')" --}}
+                                    onclick="openModalUbahPendaftarAdmin('{{ $registrasi->id }}')"
+                                class="btn" data-bs-toggle="modal" role="button" style="background-color: #E1A600; border: none;"><i class="fa fa-edit"></i></button>
+                            @endif
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">

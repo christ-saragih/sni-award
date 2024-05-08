@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin || SNI Award 2023</title>
+    <title>Admin || SNI Award 2024</title>
 
     <!-- Bootstrap -->
     <link
@@ -455,7 +455,7 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="/admin/profil"
+                          href="{{ route('user.profil.view') }}"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-user" style="width: 12%;"></i>
@@ -468,7 +468,7 @@
                       <li class="w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="/admin/keluar"
+                          href="{{ route('user.logout') }}"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-sign-out" style="width: 12%;"></i>

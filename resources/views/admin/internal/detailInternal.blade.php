@@ -41,7 +41,6 @@
         font-size: 137.5% !important; 
         font-weight: bold !important;
     }
-
 </style>
 
 <main>
@@ -58,14 +57,36 @@
             <div class="modal-body" style="border: none;">
                 <div action="" class="pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
-                        <h6 class="ms-1 mb-0">Jabatan</h6>
-                        <select id="nama_jabatan" name="role" class="form-select form-control-lg ps-4" aria-label="Default select example">
+                        <label for="nama_jabatan" class="ms-1 p-0 font-semibold">Jabatan:</label>
+                        <select 
+                            id="nama_jabatan" 
+                            name="role" 
+                            class="form-select form-control-lg ps-4"
+                        >
+                            <option value="" disabled selected>-- Pilih Jabatan --</option>
                             @foreach ($all_role as $ar)
                                 <option value="{{ $ar->id }}" {{ $internal->role==$ar->id ? 'selected' : '' }}>{{ $ar->nama }}</option>
                             @endforeach
-                        </select>   
+                        </select> 
+                        <div style="color: gray; font-size: 14px;">atau:</div>
                         <div>
-                            <input type="checkbox" name="verified_at" id="verifikasi" value="{{ date('Y-m-d H:i:s') }}">
+                            <input 
+                                type="checkbox" 
+                                name="role" 
+                                id="make_as_admin"
+                                value="1"
+                                onchange="disableRoleSelect(this, {{ $internal->role }})"
+                            >  
+                            <label for="make_as_admin">Jadikan sebagai admin</label>
+                        </div>
+                        <div class="m-0 py-0 px-3 d-flex align-items-center justify-content-end gap-1">
+                            <input 
+                                type="checkbox" 
+                                name="verified_at" 
+                                id="verifikasi" 
+                                value="{{ $internal->verified_at ? $internal->verified_at : date('Y-m-d H:i:s') }}"
+                                {{ $internal->verified_at ? 'checked' : '' }}
+                            >
                             <label for="verifikasi">Verifikasi</label>
                         </div>
                     </div>
@@ -143,4 +164,18 @@
         </div>
     </section>
 </main>
+<script>
+    const makeAsAdminCheck = document.getElementById('make_as_admin')
+    const roleSelect = document.getElementById('nama_jabatan')
+    const disableRoleSelect = (e, currenValue) => {
+        if (e.checked) {
+            roleSelect.value = ''
+            roleSelect.disabled = true
+        } else {
+            roleSelect.value = currenValue
+            roleSelect.disabled = false
+        }
+
+    }
+</script>
 @endsection

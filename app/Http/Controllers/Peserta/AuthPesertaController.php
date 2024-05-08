@@ -43,7 +43,7 @@ class AuthPesertaController extends Controller
                 return redirect('/verifikasi');
             }
         }else {
-            return redirect('/masuk')->withErrors('Email atau Password salah');
+            return redirect('/masuk')->withErrors('Email atau Password salah')->withInput();
         }
     }
 

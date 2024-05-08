@@ -13,11 +13,6 @@
       crossorigin="anonymous"
     />
 
-    <!-- Bootstrap Datepicker CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
-
-
-
     <!-- Arimo Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,22 +41,25 @@
     />
     <script src="https://unpkg.com/feather-icons"></script>
 
-    
-    <link rel="stylesheet" href="{{ asset('assets') }}/peserta/css/rome.css" />
-
-    <!-- CSS Peserta -->
-    <link rel="stylesheet" href="{{ asset('assets') }}/peserta/css/styles.css" />
     <!-- Select2 -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- Or for RTL support -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" /> --}}
+    <!-- CSS Admin -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/admin/css/styles.css" />
+
+    {{-- fa --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- end fa --}}
 </head>
 
 <body style="background-color: #ECE4E4;">
   {{-- jquery CDN --}}
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <!-- Select2 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 <aside
       class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start"
@@ -100,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('sekretariat/peserta') ? 'active' : '' }}" id="navLink" href="/sekretariat/peserta">
+            <a class="nav-link {{ request()->is('sekretariat/peserta') ? 'active' : '' }}" id="navLink" href="{{ route('sekretariat.peserta.view') }}">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -321,7 +319,7 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="/sekretariat/profil"
+                          href="{{ route('user.profil.view') }}"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-user" style="width: 12%;"></i>
@@ -334,7 +332,7 @@
                       <li class="w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="/keluar"
+                          href="{{ route('user.logout') }}"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-sign-out" style="width: 12%;"></i>

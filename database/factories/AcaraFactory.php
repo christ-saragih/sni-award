@@ -20,7 +20,7 @@ class AcaraFactory extends Factory
     {
         return [
             'judul_acara'=> $judul_acara = fake()->sentence(5),
-            'gambar_thumbnail' => fake()->image('public/gambar/thumbnail_acara', 395, 230, null, false, false, null, true, 'png'),
+            'gambar_thumbnail' => fake()->image(storage_path('app/public/gambar/thumbnail_acara'), 395, 230, null, false, false, null, true, 'png'),
             'slug' => Str::slug($judul_acara, '-'),
             'tanggal' => fake()->date(),
             'deskripsi' => fake()->sentence(50),

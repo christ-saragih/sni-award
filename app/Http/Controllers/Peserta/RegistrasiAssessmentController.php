@@ -71,7 +71,6 @@ class RegistrasiAssessmentController extends Controller
     public function showPertanyaan($id,$registrasi_id){
         // $assessment_sub_kategori = AssessmentSubKategori::with('assessment_pertanyaan','assessment_jawaban')->get();
         $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->get();
-        dd($assessment_sub_kategori);
         // dd($assessment_sub_kategori[0]->assessment_pertanyaan);
         $registrasi = Registrasi::find($registrasi_id);
         $pertanyaan = AssessmentPertanyaan::find($id);

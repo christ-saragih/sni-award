@@ -36,7 +36,7 @@ class RedirectIfAuthenticated
                 }
             }
             // elseif (Auth::guard('web')->check() == false) {
-            //     return redirect()->route('masukAdmin');
+            //     return redirect()->route('user.login.view');
             // }
         // }
 

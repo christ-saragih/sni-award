@@ -472,11 +472,11 @@
             </div>
             <div class="container mt-4 d-flex flex-column gap-4">
                 <div class="d-flex align-items-center">
-                    <div class="progress flex-grow-1" style="height: 9px;">
-                        <div class="progress-bar pertanyaan" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: #E59B30;"></div>
+                    <div class="progress flex-grow-1" style="height: 9px; background-color: #E59B30;" >
+                        <div class="progress-bar pertanyaan" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: fit-content">
                             Kategori
                         </button>
                         <ul class="dropdown-menu">
@@ -564,38 +564,82 @@
 
                     </div> --}}
                     @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
-                        <div class="row g-3 align-items-center mt-2 mt-2">
-                            <div class="col-8">
-                                <label>url_legalitas_hukum_organisasi <span style="color: red">*</span></label>
+                        @if ($dokumen_peserta->url_legalitas_hukum_organisasi)
+                            <div class="row g-3 align-items-center mt-2 mt-2">
+                                <div class="col-8">
+                                    <label>url_legalitas_hukum_organisasi <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}.pdf" download><i class="fa fa-download"></i></a>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}.pdf" download><i class="fa fa-download"></i></a>
+                        @else
+                            <div class="row g-3 align-items-center mt-2 mt-2">
+                                <div class="col-8">
+                                    <label>url_legalitas_hukum_organisasi <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <span class="text-muted">Tidak ada file</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row g-3 align-items-center mt-2">
-                            <div class="col-8">
-                                <label>url_sppt_sni <span style="color: red">*</span></label>
+                        @endif
+                        @if ($dokumen_peserta->url_sppt_sni)
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-8">
+                                    <label>url_sppt_sni <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sppt_sni }}.pdf" download><i class="fa fa-download"></i></a>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sppt_sni }}.pdf" download><i class="fa fa-download"></i></a>
+                        @else
+                            <div class="row g-3 align-items-center mt-2 mt-2">
+                                <div class="col-8">
+                                    <label>url_sppt_sni <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <span class="text-muted">Tidak ada file</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row g-3 align-items-center mt-2">
-                            <div class="col-8">
-                                <label>url_sk_kemenkumham <span style="color: red">*</span></label>
+                        @endif
+                        @if ($dokumen_peserta->url_sk_kemenkumham)
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-8">
+                                    <label>url_sk_kemenkumham <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sk_kemenkumham }}.pdf" download><i class="fa fa-download"></i></a>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sk_kemenkumham }}.pdf" download><i class="fa fa-download"></i></a>
+                        @else
+                            <div class="row g-3 align-items-center mt-2 mt-2">
+                                <div class="col-8">
+                                    <label>url_sk_kemenkumham <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <span class="text-muted">Tidak ada file</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row g-3 align-items-center mt-2">
-                            <div class="col-8">
-                                <label>url_kewenangan_kebijakan <span style="color: red">*</span></label>
+                        @endif
+                        @if ($dokumen_peserta->url_kewenangan_kebijakan)
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-8">
+                                    <label>url_kewenangan_kebijakan <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ $dokumen_peserta->url_kewenangan_kebijakan }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_kewenangan_kebijakan }}.pdf" download><i class="fa fa-download"></i></a>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <a href="{{ $dokumen_peserta->url_kewenangan_kebijakan }}" class="btn" style="border-style: solid; border-color: #552525; border-width: 3px; color:#552525;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_kewenangan_kebijakan }}.pdf" download><i class="fa fa-download"></i></a>
+                        @else
+                            <div class="row g-3 align-items-center mt-2 mt-2">
+                                <div class="col-8">
+                                    <label>url_kewenangan_kebijakan <span style="color: red">*</span></label>
+                                </div>
+                                <div class="col-4">
+                                    <span class="text-muted">Tidak ada file</span>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @else
                         {{-- <span class="text-muted">Tidak ada file</span> --}}
                     @endif

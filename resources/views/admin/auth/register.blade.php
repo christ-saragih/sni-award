@@ -46,7 +46,7 @@
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
 
-          <form method="POST" action="/admin/registrasi" style="
+          <form method="POST" action="{{ route('user.registrasi') }}" style="
             padding: 20px;
           ">
             @csrf
