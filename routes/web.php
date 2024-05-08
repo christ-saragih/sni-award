@@ -100,6 +100,8 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
     Route::post('/profil',[PesertaProfilController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
+    Route::put('/profil/{id}',[PesertaProfilController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
+    Route::delete('/profil/{id}',[PesertaProfilController::class, 'destroy'])->name('peserta.profil.kontak.hapus');
     Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
