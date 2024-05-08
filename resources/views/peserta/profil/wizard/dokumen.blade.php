@@ -30,12 +30,14 @@
                   </div>
                   <div class="container col-md-8 pe-5">
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
-                    <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" target="_blank"> 
+                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                    </a>
                     @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label1" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                      <input type="file" name="url_legalitas_hukum_organisasi" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1 inputFileDocument">
+                      <input type="file" name="url_legalitas_hukum_organisasi" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1">
                     </div>
                   </div>
                 </div>
@@ -46,12 +48,14 @@
                   </div>                  
                   <div class="container col-md-8 pe-5">
                     @if  ($peserta->peserta_profil->url_sppt_sni)
-                    <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}"  target="_blank">
+                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                    </a>
                     @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile2">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label2" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
-                      <input type="file" name="url_sppt_sni" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile2 inputFileDocument">
+                      <input type="file" name="url_sppt_sni" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile2">
                     </div>
                   </div>
                 </div>
@@ -62,12 +66,14 @@
                   </div>
                   <div class="container col-md-8 pe-5">
                     @if ($peserta->peserta_profil->url_sk_kemenkumham)
-                    <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" target="_blank">
+                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                    </a>
                     @endif
                     <div class="input-group custom-file-button">
                       <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label3" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                      <input type="file" name="url_sk_kemenkumham" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile3 inputFileDocument">
+                      <input type="file" name="url_sk_kemenkumham" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile3">
                     </div>
                   </div>
                 </div>
@@ -78,12 +84,14 @@
                   </div>
                   <div class="container col-md-8 pe-5">
                     @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
-                    <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a>
+                    <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" target="_blank">
+                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                    </a>
                     @endif
                     <div class="input-group custom-file-button">
-                      <label class="input-group-text px-4" for="inputGroupFile3">Unggah</label>
+                      <label class="input-group-text px-4" for="inputGroupFile4">Unggah</label>
                       <label class="label-unik px-4" id="file-input-label4" for="inputGroupFile4">Maksimum upload file : 10 MB </label>
-                      <input type="file" name="url_kewenangan_kebijakan" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile4 inputFileDocument">
+                      <input type="file" name="url_kewenangan_kebijakan" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile4">
                     </div>
                   </div>
                 </div>
