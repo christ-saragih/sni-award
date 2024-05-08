@@ -26,7 +26,7 @@ class BeritaFactory extends Factory
             'slug' => Str::slug($judul_berita, '-'),
             'deskripsi' => fake()->sentence(50),
             'tanggal' => fake()->date(),
-            'file_gambar' => fake()->image('public/gambar/gambar_berita', 395, 230, null, false, false, null, true, 'png'),
+            'file_gambar' => fake()->image(storage_path('app/public/gambar/gambar_berita'), 395, 230, null, false, false, null, true, 'png'),
         ];
     }
 }
