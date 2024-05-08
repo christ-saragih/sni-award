@@ -1,4 +1,3 @@
-
 <div class="d-flex justify-content-between align-items-center">
     <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">FAQ</h3>
 </div>
@@ -37,33 +36,15 @@
 @if (count($popular_faq) != 3)
 <div class="frontpage-input-text">
     <label for="judul_faq">Tambah FAQ</label>
-    <div class="pilih-faq" style="position: relative;">
-        <button style="width: 100%;border:none;background-color:white;color:black;text-align:left;font-weight:normal;display:flex; align-items-center; justify-content:space-between;">
-            <div>Pilih</div>
-            <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-            </svg></div>
-        </button>
-        <div class="pilihan-faq" style="">
-            <div style="
-                display:flex;
-                flex-direction:column;
-                width:100%;
-            ">
-                @foreach ($faq as $faq)
-                    <form action="/admin/frontpage/faq_populer/tambah/{{ $faq->id }}" method="post">
-                        @method('PUT')
-                        @csrf
-                        <button type="submit">
-                            {{ $faq->pertanyaan }}
-                        </button>
-                    </form>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <select name="" id="" onchange="handleAddPopularFaq(this)" class="px-3 py-2 w-100 rounded">
+        <option value="" disabled selected>-- pilih --</option>
+        @foreach ($faq as $faq)
+            <option value="{{ $faq->id }}">{{ $faq->pertanyaan }}</option>
+        @endforeach
+    </select>
 </div>  
 @endif
+
 
 <script>
     $(document).ready(function(){
@@ -71,4 +52,11 @@
             $('.pilihan-faq').toggle()
         })
     })
+    const handleAddPopularFaq = (e) => {
+        $.ajax({
+            url: `/admin/frontpage/faq_populer/tambah/${e.value}`,
+            type: 'PUT'
+        })
+        location.reload()
+    }
 </script>
