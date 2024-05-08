@@ -145,7 +145,8 @@ nav .fa {
 /* File input */
 #inputGroupFile1,
 #inputGroupFile2,
-#inputGroupFile3 {
+#inputGroupFile3,
+#inputGroupFile4 {
     width: 90px;
     color: transparent;
 }
