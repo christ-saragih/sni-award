@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registrasi', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->year('tahun');
-            $table->integer('peserta_id')->unsigned()->nullable();
+            $table->integer('peserta_id')->unsigned();
             $table->integer('sekretariat_id')->unsigned()->nullable();
             $table->tinyInteger('status_id')->unsigned();
             $table->tinyInteger('stage_id')->unsigned();

@@ -30,8 +30,8 @@ class DataInternalController extends Controller
         $id = Crypt::decryptString($id);
         $internal = User::find($id);
         if ($internal) {
-            $role = Role::find($internal->role)->nama;
-            $all_role = Role::get();
+            $role = $internal->jenis_role->nama;
+            $all_role = Role::where('nama', '!=', 'admin')->get();
             return view('admin.internal.detailInternal', [
                 'internal' => $internal,
                 'role' => $role,

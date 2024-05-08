@@ -71,7 +71,7 @@ Route::get('/informasi', [InformationController::class, 'index']);
 Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
-Route::get('/guest/404', [NotFoundController::class, 'guest']);
+Route::get('/404', [NotFoundController::class, 'guest']);
 
 Route::middleware(['guest:peserta'])->group(function () {
 
@@ -95,11 +95,13 @@ Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middlewa
 
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 
-Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->group(function(){
+Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'email.verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
     Route::post('/profil',[PesertaProfilController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
+    Route::put('/profil/{id}',[PesertaProfilController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
+    Route::delete('/profil/{id}',[PesertaProfilController::class, 'destroy'])->name('peserta.profil.kontak.hapus');
     Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
@@ -126,31 +128,38 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta'])->gro
 //end peserta
 
 //User
-Route::prefix('/admin')->group(function () {
+
+Route::prefix('/user')->group(function () {
     Route::middleware(['guest'])->group(function () {
-        Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('masukAdmin');
-        Route::post('/masuk', [AuthUserController::class, 'loginUser']);
-        Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView']);
-        Route::post('/registrasi', [AuthUserController::class, 'registrasiUser']);
-        Route::get('/forgot-password', [AuthUserController::class, 'forgotPasswordView']);
-        Route::post('/forgot-password', [AuthUserController::class, 'forgotPassword']);
-        Route::get('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPasswordView']);
-        Route::put('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPassword']);
+        Route::get('/masuk', [AuthUserController::class, 'loginUserView'])->name('user.login.view');
+        Route::post('/masuk', [AuthUserController::class, 'loginUser'])->name('user.login');
+        Route::get('/registrasi', [AuthUserController::class, 'registrasiUserView'])->name('user.registrasi.view');
+        Route::post('/registrasi', [AuthUserController::class, 'registrasiUser'])->name('user.registrasi');
+        Route::get('/forgot-password', [AuthUserController::class, 'forgotPasswordView'])->name('user.forgot_password.view');
+        Route::post('/forgot-password', [AuthUserController::class, 'forgotPassword'])->name('user.forgot_password');
+        Route::get('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPasswordView'])->name('user.reset_password.view');
+        Route::put('/reset-password/{forgot_password_token}', [AuthUserController::class, 'resetPassword'])->name('user.reset_password');
     });
 
     Route::middleware(['auth:web'])->group(function () {
-        Route::get('/keluar', [AuthUserController::class, 'logoutUser']);
-        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('verification.notice');
-        Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser']);
+        Route::get('/keluar', [AuthUserController::class, 'logoutUser'])->name('user.logout');
+        Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('user.verification.view');
+        Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser'])->name('user.verification.resend');
+    });
+    
+    Route::middleware(['auth', 'verified', 'email.verified'])->group(function () {
+        Route::get('/profil', [UserProfilController::class, 'index'])->name('user.profil.view');
+        Route::get('/profil/edit', [UserProfilController::class, 'editView'])->name('user.profil.edit.view');
+        Route::put('/profil/edit', [UserProfilController::class, 'edit'])->name('user.profil.edit');
     });
 
-    Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser']);
+    Route::get('/verifikasi/{verify_key}', [AuthUserController::class, 'verifikasiUser'])->name('user.verify');
+});
 
-    Route::middleware(['auth', 'verified'])->group(function() {
+//admin
+Route::prefix('/admin')->group(function () {
+    Route::middleware(['auth', 'verified', 'email.verified', 'page.admin'])->group(function() {
         Route::get('/dashboard', [UserDashboardController::class, 'index']);
-        Route::get('/profil', [UserProfilController::class, 'index']);
-        Route::get('/profil/edit', [UserProfilController::class, 'editView']);
-        Route::put('/profil/edit', [UserProfilController::class, 'edit']);
 
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
@@ -323,10 +332,34 @@ Route::prefix('/admin')->group(function () {
         Route::get('/admin/404', [NotFoundController::class, 'admin']);
     });
 });
+//end admin
+
+// evaluator
+Route::prefix('/evaluator')->group(function () {
+
+});
+// end evaluator
+
+// lead evaluator
+Route::prefix('/lead-evaluator')->group(function () {
+
+});
+// end lead evaluator
+
 // end User
-Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
 
 // Sekretariat Start
-Route::get('/sekretariat/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () { 
+    //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
+    //dah itu buat prefix /evaluator kalau dah ada page evaluator
+    Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
+});
 // Sekretariat End
 
+Route::get('/get-sub-kategori-by-kategori', [AssessmentPertanyaanController::class, 'getSubKategoriByKategori'])->name('get-sub-kategori-by-kategori');
+
+// not found route
+Route::get('/{any}', function () {
+    return view('guest.404.404');
+})->where('any', '.*');
+// end not found route

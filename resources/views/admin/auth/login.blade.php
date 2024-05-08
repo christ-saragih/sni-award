@@ -47,7 +47,7 @@
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
           <h1>SNI AWARD</h1>
             {{-- ==================================================================== --}}
-          <form method="POST" action="/admin/masuk">
+          <form method="POST" action="{{ route('user.login') }}">
             @csrf
             @if (session('error'))
                 <div class="alert alert-danger w-100" role="alert">
@@ -108,10 +108,10 @@
                 </div>
 
                 <div class="form-text text-center">
-                    <a href="/admin/forgot-password">Lupa Kata Sandi</a>
+                    <a href="{{ route('user.forgot_password.view') }}">Lupa Kata Sandi</a>
                 </div>
                 <div class="form-text text-center">
-                    Belum memiliki akun? <a href="/admin/registrasi">Daftar </a>
+                    Belum memiliki akun? <a href="{{ route('user.registrasi.view') }}">Daftar </a>
                 </div>
             </div>
         </form>
