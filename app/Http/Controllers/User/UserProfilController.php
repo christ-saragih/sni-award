@@ -42,6 +42,8 @@ class UserProfilController extends Controller
             'url_cv' => $request->url_cv,
             'url_anti_penyuapan' => $request->url_anti_penyuapan,
         ]);
-        return redirect('/admin/profil')->with('success', 'Profil berhasil diperbarui');
+        return redirect()
+            ->route('user.profil.view')
+            ->with('success', 'Profil berhasil diperbarui');
     }
 }

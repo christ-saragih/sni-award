@@ -45,7 +45,7 @@
                 <h1>{{ __('Ganti Sandi') }}</h1>
 
                 <div class="w-100">
-                    <form method="POST" action="/admin/reset-password/{{ $token }}?email={{ $email }}" class="w-100 d-flex flex-column align-items-center justify-content-center">
+                    <form method="POST" action="{{ route('user.reset_password', ['forgot_password_token' => $token,'email' => $email]) }}" class="w-100 d-flex flex-column align-items-center justify-content-center">
                         @method('PUT')
                         @csrf
                         <div class="w-100 d-flex flex-column">

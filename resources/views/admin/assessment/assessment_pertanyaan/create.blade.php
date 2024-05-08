@@ -2,10 +2,10 @@
 
 @section('content')
 <form action="{{ route('assessment_pertanyaan.store') }}" method="POST">
-<div class="card mb-3">
-    <div class="card-body">
-        <h5 class="card-title">Assessment Pertanyaan</h5>
-        <br><hr style="color: orange; height: 0.5px;"><br>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Assessment Pertanyaan</h5>
+            <br><hr style="color: orange; height: 0.5px;"><br>
             @csrf
             <div class="form-group mb-4">
                 <label>Kategori</label>
@@ -26,7 +26,7 @@
                         <input type="number" class="form-control" id="jumlah_jawaban" name="jumlah_jawaban" min="1" max="5" placeholder="Jumlah" required oninvalid="this.setCustomValidity('Field ini tidak boleh kosong. Silakan isi.')" oninput="setCustomValidity('')">
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-primary" id="tambah-jawaban">Tambah</button>
+                        <button type="button" style="width: 100px; padding: 5px 10px; background-color: #C17D2D; color: #fff; border-radius: 10px; border: none" id="tambah-jawaban">Tambah</button>
                     </div>
                 </div>
             </div>
@@ -56,9 +56,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    // document.getElementById('jawaban').addEventListener('click', function {
-    //     document.quer
-    // })
     document.getElementById('tambah-jawaban').addEventListener('click', function() {
         var jawabanCard = document.getElementById('jawaban');
         jawabanCard.removeAttribute('hidden');

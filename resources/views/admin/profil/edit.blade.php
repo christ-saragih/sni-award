@@ -15,7 +15,7 @@
               <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-xl-12">
                   <div class="card" style="border-radius: 15px;">
-                    <form class="card-body" method="POST" action="/admin/profil/edit">
+                    <form class="card-body" method="POST" action="{{ route('user.profil.edit') }}">
                         @method('PUT')
                         @csrf
                       <div class="row align-items-center pt-4 pb-3">
@@ -65,7 +65,7 @@
                       </div>
       
                       <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                        <a href="/admin/profil" class="btn nonactive" style="width: 13%;">Batal</a>
+                        <a href="{{ route('user.profil.view') }}" class="btn nonactive" style="width: 13%;">Batal</a>
                         <button type="submit" class="btn" style="width: 13%;">Simpan</button>
                       </div>
 

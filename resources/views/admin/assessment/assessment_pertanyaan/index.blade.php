@@ -1,7 +1,7 @@
 <form action="/admin/assessment?tab=assessment_pertanyaan&kategori=Kepemimpinan" method="GET">
     <div class="form-group">
         <input type="text" name="tab" style="display: none !important;" value="{{ request()->query('tab') }}">
-        
+
         <label for="kategori">Kategori:</label>
         <select name="kategori" id="kategori" class="form-control">
             <option value="">Pilih Kategori</option>

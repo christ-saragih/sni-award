@@ -1,6 +1,11 @@
 <div class="content-profil py-5 mb-5">
     <div class="container mt-4">
       <div class="row g-3 align-items-center mt-2">
+        @if(session('error'))
+          <div class="alert alert-danger">
+              {{ session('error') }}
+          </div>
+        @endif
         <div class="col-3">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
@@ -14,99 +19,39 @@
         <hr style="width: 100%; height: 5px; color: grey">
           <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @foreach ($dokumen as $dok)
-              <div class="row g-3 align-items-center mt-2">
-                <div class="col-3">
+          @foreach ($dokumen as $dok)
+          <div class="row g-3 align-items-center mt-2">
+              <div class="col-3">
                   <label class="fw-bold">{{$dok->nama}}</label>
-                </div>
-                <div class="col-6">
-                  <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
-                    {{-- buatan iqna --}}
-                </div>
-                <div class="col-3">
-                  @for ($i = 0; $i < count($dokumen); $i++)
-                    @if ($registrasi_dokumen[$i]->dokumen_id == $dok->id)
-                      @php
-                        $statusColor = '';
-                        switch ($registrasi_dokumen[$i]->status) {
-                          case 'proses':
-                          $statusColor = 'bg-warning';
-                          break;
-                          case 'ditolak':
-                          $statusColor = 'bg-danger';
-                          break;
-                          case 'disetujui':
-                          $statusColor = 'bg-success';
-                          break;
-                          default:
-                          $statusColor = '';
-                          break;
-                        }
-                      @endphp
-                      <a class="btn {{ $statusColor }}" >{{ $registrasi_dokumen[$i]->status }}</a>
-                    @endif
-                  @endfor
-
-                  {{-- @foreach ($registrasi_dokumen as $rd)
-                    @if ($rd->dokumen_id == $dok->id)
-                      @php
-                        $statusColor = '';
-                        switch ($rd->status) {
-                          case 'proses':
-                          $statusColor = 'bg-warning';
-                          break;
-                          case 'ditolak':
-                          $statusColor = 'bg-danger';
-                          break;
-                          case 'disetujui':
-                          $statusColor = 'bg-success';
-                          break;
-                          default:
-                          $statusColor = '';
-                          break;
-                        }
-                      @endphp
-                      <a class="btn {{ $statusColor }}" >{{ $rd->status }}</a>
-                    @endif
-                  @endforeach --}}
-
-                  {{-- @if ($dok->registrasi_dokumen)
-                    @if ($dok->registrasi_dokumen->url_dokumen)
-                      @php
-                          $statusColor = '';
-                          switch ($dok->registrasi_dokumen->status) {
-                              case 'proses':
-                                  $statusColor = 'bg-warning';
-                                  break;
-                              case 'ditolak':
-                                  $statusColor = 'bg-danger';
-                                  break;
-                              case 'disetujui':
-                                  $statusColor = 'bg-success';
-                                  break;
-                              default:
-                                  $statusColor = '';
-                                  break;
-                          }
-                      @endphp
-                    <a class="btn {{ $statusColor }}" >{{ $dok->registrasi_dokumen->status }}</a>
-                    @endif
-                  @else
-                      <span class="text-muted">Tidak ada file</span>
-                  @endif --}}
-                </div>
               </div>
-            @endforeach
-        {{-- <div class="row g-3 align-items-center mt-2">
-            <div class="col-3">
-                <label class="fw-bold">Lembar Pernyataan Tidak Terlibat Kasus Hukum</label>
-            </div>
-            <div class="col-9">
-                <input type="file" name="url_dokumen" class="form-control">
-            </div>
-        </div> --}}
+              <div class="col-6">
+                  <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+              </div>
+              <div class="col-3">
+                  @php
+                      $statusColor = '';
+                  @endphp
+                  @foreach ($registrasi_dokumen as $rd)
+                      @if ($rd->dokumen_id == $dok->id)
+                          @switch ($rd->status)
+                              @case ('proses')
+                                  @php $statusColor = 'bg-warning'; @endphp
+                                  @break
+                              @case ('ditolak')
+                                  @php $statusColor = 'bg-danger'; @endphp
+                                  @break
+                              @case ('disetujui')
+                                  @php $statusColor = 'bg-success'; @endphp
+                                  @break
+                          @endswitch
+                          <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
+                          @break
+                      @endif
+                  @endforeach
+              </div>
+          </div>
+      @endforeach
             <div class="row g-3 justify-content-end mt-2">
-                {{-- <a href="/admin/berita" role="button" class="btn col-auto me-4" style="width: 100px; padding: 5px 10px; background-color: #fff; color: #C17D2D; ">Batal</a> --}}
                 <button type="submit" style="width: 100px; padding: 5px 10px; background-color: #552525; color: #fff; border-radius: 10px; border-color: #C17D2D">Simpan</button>
             </div>
           </form>

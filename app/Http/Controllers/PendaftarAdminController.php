@@ -47,8 +47,9 @@ class PendaftarAdminController extends Controller
 
     public function getKategori($id, $kategori)
     {
-        // $id = Crypt::decryptString($id);
+        $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
+        // dd($registrasi);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
         $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->first();
@@ -115,11 +116,23 @@ class PendaftarAdminController extends Controller
         // dd($dokumen_peserta);
 
         $assessment_kategori = AssessmentKategori::first();
+        // dd($assessment_kategori->assessment_sub_kategori);
 
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
         // dd($data_assessment_kategori);
 
-        $user = User::all();
+        $assigned_sekretariat = Registrasi::select('sekretariat_id')
+            ->where('sekretariat_id', '!=', null)
+            ->distinct()
+            ->pluck('sekretariat_id');
+            
+        $user = User::where('role', '!=', 1)
+            ->where('verified_at', '!=', null)
+            ->whereNotIn('id', $assigned_sekretariat)
+            ->get();
+        // dd($user);
+
+        // dd($sekretariat_check);
 
         return view('admin.pendaftar_sni_award.show', compact(['registrasi', 'registrasi_assessment', 'registrasi_penilaian', 'registrasi_dokumen', 'dokumen', 'dokumen_peserta', 'peserta', 'user', 'assessment_kategori', 'data_assessment_kategori']));
     }
@@ -139,10 +152,14 @@ class PendaftarAdminController extends Controller
     {
         // $id = Crypt::decryptString($id);
         $registrasi = Registrasi::find($id);
-        $registrasi->update([
-            'sekretariat_id' => $request->sekretariat_id,
-        ]);
-        return redirect()->back()->with('success', 'Registrasi berhasil diubah');
+        if ($registrasi->status->nama == 'open') {
+            $registrasi->update([
+                'sekretariat_id' => $request->sekretariat_id,
+            ]);
+            return redirect()->back()->with('success', 'Registrasi berhasil diubah');           
+        } else {
+            return redirect()->back()->withErrors('Penilaian sedang berjalan. Tidak bisa mengubah sekretariat');
+        }
     }
 
     /**

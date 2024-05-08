@@ -82,68 +82,67 @@
     <div class="artikel-container row">
       <div class="col-12 d-flex align-items-center justify-content-start">
         <div class="title-container d-flex flex-column align-items-center justify-content-center">
-          <h1 style="text-align: left;">Artikel</h1>
+          <h1 style="text-align: left;">Berita</h1>
           <hr class="mx-0" style="width: 120px;"/>
         </div>
       </div>
-      <div class="content-container col-6">
-        <div class="content row">
-          <h2>Berita Terkini</h2>
-          <img
-            src="{{ asset('assets') }}/images/dokumentasi/berita-terkini.png"
-            class="p-0"
-            alt=""
-          />
+      <div class="grid-container">
+        <div class="content-container ">
+            <h2>Berita Terkini</h2>
+            <img
+              src="{{ asset('assets') }}/images/dokumentasi/berita-terkini.png"
+              class="p-0"
+              alt=""
+            />
+        </div>
+        <div class="content-container">
+            <h3>SEMINAR NASIONAL PERINGATAN HARI STANDAR DUNIA</h3>
+            <div class="author-container d-flex">
+              <div class="flex-grow-1"></div>
+              <div
+                class="author-content justify-content-end align-items-center"
+              >
+                <p class="hour">1 Hour Ago</p>
+                <p class="author" style="margin-button: 35px;">
+                  Ditinjau oleh <a href="">Shinta Arafah</a>
+                </p>
+              </div>
+            </div>
+  
+            <p class="description" style="margin-bottom: 35px;">
+              BSN akan mengadakan Seminar Nasional dalam rangka Peringatan
+              Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar
+              akan dilaksanakan pada bulan November 2021 di Bandung. Acara
+              akan dilaksanakan baik secara tatap muka dengan menerapkan
+              protokol kesehatan maupun daring. PIC Kegiatan: Direktorat
+              Penguatan Standar dan Penilaian Kesesuaian
+              <a href="">baca selengkapnya.</a>
+            </p>
+            <div class="program-bsn-container row justify-content-end">
+              <div
+                class="program-bsn col-1 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
+              >
+                <p>SNIBSN</p>
+              </div>
+              <div
+                class="program-bsn col-2 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
+              >
+                <p>SNIAWards2023</p>
+              </div>
+              <div
+                class="program-bsn col-2 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
+              >
+                <p>#BerkasSNI</p>
+              </div>
+            </div>  
         </div>
       </div>
-      <div class="content-container col-6">
-        <div class="content row">
-          <h3>SEMINAR NASIONAL PERINGATAN HARI STANDAR DUNIA</h3>
-          <div class="author-container d-flex">
-            <div class="flex-grow-1"></div>
-            <div
-              class="author-content justify-content-end align-items-center"
-            >
-              <p class="hour">1 Hour Ago</p>
-              <p class="author">
-                Ditinjau oleh <a href="">Shinta Arafah</a>
-              </p>
-            </div>
-          </div>
 
-          <p class="description">
-            BSN akan mengadakan Seminar Nasional dalam rangka Peringatan
-            Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar
-            akan dilaksanakan pada bulan November 2021 di Bandung. Acara
-            akan dilaksanakan baik secara tatap muka dengan menerapkan
-            protokol kesehatan maupun daring. PIC Kegiatan: Direktorat
-            Penguatan Standar dan Penilaian Kesesuaian
-            <a href="">baca selengkapnya.</a>
-          </p>
-          <div class="program-bsn-container row justify-content-end">
-            <div
-              class="program-bsn col-1 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
-            >
-              <p>SNIBSN</p>
-            </div>
-            <div
-              class="program-bsn col-2 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
-            >
-              <p>SNIAWards2023</p>
-            </div>
-            <div
-              class="program-bsn col-2 rounded-1 text-center d-flex justify-content-center align-items-center ms-2"
-            >
-              <p>#BerkasSNI</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="news-container">
-      <div class="row justify-content-center">
-        <div class="berita-container col-4 rounded-3 p-0 mx-4">
+      <div class="row justify-content-around" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 60px;">
+        <div class="berita-container rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
@@ -158,10 +157,10 @@
               Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
               Standar Nasional Indonesia (SNI).
             </p>
-            <button class="btn">Baca Selengkapnya</button>
+            <a href="" class="btn">Baca Selengkapnya</a>
           </div>
         </div>
-        <div class="berita-container col-4 rounded-3 p-0 mx-4">
+        <div class="berita-container rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
@@ -176,10 +175,10 @@
               Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
               Standar Nasional Indonesia (SNI).
             </p>
-            <button class="btn">Baca Selengkapnya</button>
+            <a href="" class="btn">Baca Selengkapnya</a>
           </div>
         </div>
-        <div class="berita-container col-4 rounded-3 p-0 mx-4">
+        <div class="berita-container rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
@@ -194,7 +193,7 @@
               Pemerintah Repubik Indonesia bagi organisasi yang menerapkan
               Standar Nasional Indonesia (SNI).
             </p>
-            <button class="btn">Baca Selengkapnya</button>
+            <a href="" class="btn">Baca Selengkapnya</a>
           </div>
         </div>
       </div>
@@ -204,29 +203,28 @@
   <article id="acara">
     <div class="acara-container">
       <div class="title col-12">
-        <h1>{{ $frontpage_data->judul_berita }}</h1>
+        <h2>{{ $frontpage_data->judul_berita }}</h2>
         <hr class="mx-0">
         <p>{{ $frontpage_data->keterangan_berita }}</p>
       </div>
-      <div class="content-atas row">
-        <div class="col-6">
+
+      <div class="grid-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 90px 50px;">
+        <div class="content">
           <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
         </div>
-        <div class="col-6">
+        <div class="content">
           <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
           <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <button class="btn float-end">Baca Selengkapnya</button>
+          <a href="" class="btn float-end">Baca Selengkapnya</a>
         </div>
-      </div>
-
-      <div class="content-bawah row">
-        <div class="col-6">
-          <h3>Pendaftaran SNI 2024 menjadi sorotan para pekerja</h3>
+        
+        <div class="content">
+          <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
           <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <button class="btn float-end">Baca Selengkapnya</button>
+          <a href="" class="btn float-end">Baca Selengkapnya</a>
         </div>
-        <div class="col-6">
-          <img src="{{ asset('assets') }}/images/acara/acara2.png" alt="">
+        <div class="content">
+          <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
         </div>
       </div>
     </div>

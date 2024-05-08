@@ -27,10 +27,16 @@ class RedirectIfAuthenticated
                 return redirect('/peserta/dashboard');
             }
             elseif (Auth::guard('web')->check()) {
-                return redirect('/admin/dashboard');
+                if (Auth::guard('web')->user()->jenis_role->nama == 'admin') {
+                    return redirect('/admin/dashboard');
+                } 
+                // elseif (Auth::guard('web')->user()->jenis_role == 'evaluator') {
+                else {
+                    return redirect('/sekretariat/dashboard');
+                }
             }
             // elseif (Auth::guard('web')->check() == false) {
-            //     return redirect()->route('masukAdmin');
+            //     return redirect()->route('user.login.view');
             // }
         // }
 

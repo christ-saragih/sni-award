@@ -16,7 +16,7 @@
           <div class="content-profil pt-5">
             <div class="d-flex flex-column text-center justify-content-center gap-3">
               <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">
-              <a href="/admin/profil/edit" class="btn mx-auto mb-1">Edit Profil</a>
+              <a href="{{ route('user.profil.edit.view') }}" class="btn mx-auto mb-1">Edit Profil</a>
               <span>Kelola informasi profil anda untuk mengontrol, melindungi dan mengamankan akun</span>
             </div>
       

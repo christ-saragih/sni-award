@@ -221,24 +221,24 @@ h1 {
     margin-block: 150px;
 }
 
-.artikel-container .content-container .content {
-    height: 500px;
+.artikel-container .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    gap: 50px;
+}   
+
+.artikel-container .content-container h2 {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #121221;
 }
 
-.artikel-container .content-container .content h2 {
-    margin-top: 55px;
-    margin-bottom: -25px;
-}
-
-.artikel-container .content-container .content img {
-    margin-left: 10px;
-    width: 598px;
+.artikel-container .content-container img {
+    width: 100%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
-}
-
-.artikel-container .content-container .content h3 {
-    margin-bottom: -50px;
 }
 
 h2 {
@@ -303,7 +303,7 @@ p.description {
 }
 
 .berita-container {
-    width: 360px;
+    /* width: 360px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -327,19 +327,17 @@ p.description {
     font-size: 12px;
 }
 
-.berita-container .content button {
+.berita-container .content a {
     color: #fff;
     background-color: #124c6b;
     margin-bottom: 20px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 75%;
 }
 
-.berita-container .content a.btn {
-    color: #fff;
-    background-color: #124c6b;
-    margin-bottom: 10px;
-    padding: 5px;
-    font-weight: 300;
+.berita-container .content a:hover {
+    background-color: #0e3c55;
 }
 
 /* acara container */
@@ -679,7 +677,7 @@ h2.accordion-header {
 /* Unduh start */
 #unduh {
     background-color: #ECE4E4;
-    margin-top: 140px;
+    margin-block: 140px;
     padding-block: 30px;
     margin-left: 260px;
     border-radius: 100px 0 0 0;
@@ -1094,6 +1092,7 @@ ul a {
 
 /* Acara Section */
 .acara-container img {
+    width: 95%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
 }
@@ -1106,31 +1105,26 @@ ul a {
     margin-top: 30px;
 }
 
-.acara-container .content-atas {
-    margin-bottom: 90px;
-}
-
-.acara-container .content-atas h3,
-.acara-container .content-bawah h3 {
+.acara-container h3 {
     margin-bottom: 50px;
     margin-left: 10px;
 }
 
-.acara-container .content-atas p,
-.acara-container .content-bawah p {
+.acara-container p {
     margin-bottom: 70px;
 }
 
-.acara-container .content-atas button,
-.acara-container .content-bawah button {
+.acara-container a {
     color: white;
     font-weight: bold;
+    /* font-size: 75%; */
     background-color: #124c6b;
     border-radius: 10px;
 }
 
-.acara-container .content-bawah img {
-    margin-left: 20px;
+.acara-container a:hover {
+    background-color: #0e3c55;
+    color: white;
 }
 
 /* Menu Informasi */
