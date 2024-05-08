@@ -331,6 +331,8 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'page.evaluator']
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
     Route::get('/dashboard', [App\Http\Controllers\Sekretariat\SekretariatDashboardController::class, 'index']);
+    Route::get('/profil', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'index']);
+    Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
 });
 // Sekretariat End
 

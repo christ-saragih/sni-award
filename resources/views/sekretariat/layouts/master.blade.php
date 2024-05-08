@@ -321,7 +321,7 @@
                       <li class="mb-2 w-50">
                         <a
                           class="dropdown-item border-radius-md"
-                          href="/peserta/profil"
+                          href="/sekretariat/profil"
                         >
                             <div class="d-flex gap-4 align-items-center">
                               <i class="fa fa-user" style="width: 12%;"></i>
