@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Registrasi extends Model
 {
@@ -32,6 +33,11 @@ class Registrasi extends Model
     public function registrasi_dokumen(): HasMany
     {
         return $this->hasMany(RegistrasiDokumen::class);
+    }
+
+    public function registrasi_penilaian(): HasMany
+    {
+        return $this->hasMany(RegistrasiPenilaian::class);
     }
 
     public function status(): BelongsTo

@@ -31,6 +31,7 @@ use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
 use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\PesertaProfilController;
+use App\Http\Controllers\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\DataInternalController;
@@ -353,6 +354,8 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
     Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
+
+    Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
 });
 // Sekretariat End
 
