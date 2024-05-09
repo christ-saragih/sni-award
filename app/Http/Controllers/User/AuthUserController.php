@@ -38,10 +38,10 @@ class AuthUserController extends Controller
             if (Auth::user()->jenis_role->nama == 'admin') {
                 return redirect('/admin/dashboard')->with('success', 'Berhasil masuk');
             } 
-            elseif (
-                (Auth::user()->jenis_role->nama == 'evaluator' 
-                || Auth::user()->jenis_role->nama == 'lead evaluator')
-            ) {}
+            // elseif (
+            //     (Auth::user()->jenis_role->nama == 'evaluator' 
+            //     || Auth::user()->jenis_role->nama == 'lead evaluator')
+            // ) {}
             else {
                 return redirect('/sekretariat/dashboard')->with('success', 'Berhasil masuk');
             }
