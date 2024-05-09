@@ -10,7 +10,6 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
-use App\Http\Controllers\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\Sekretariat\Tim\SekretariatTimController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
