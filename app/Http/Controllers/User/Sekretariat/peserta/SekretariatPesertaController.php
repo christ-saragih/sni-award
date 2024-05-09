@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sekretariat\peserta;
+namespace App\Http\Controllers\User\Sekretariat\peserta;
 
 use App\Http\Controllers\Controller;
 use App\Models\Registrasi;
