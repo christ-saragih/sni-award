@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sekretariat;
+namespace App\Http\Controllers\User\Sekretariat;
 
 use App\Http\Controllers\Controller;
 use App\Models\Registrasi;
