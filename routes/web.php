@@ -353,6 +353,9 @@ Route::prefix('/lead-evaluator')->group(function () {
 Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () { 
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
+
+    Route::get('/profil', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'index']);
+    Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
     Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
 
     Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
