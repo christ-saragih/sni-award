@@ -512,13 +512,13 @@
                 <div
                   class="copyright text-center text-sm text-muted text-lg-start"
                 >
-                  ©
+                  Copyright &copy;
                   <script>
                     document.write(new Date().getFullYear());
                   </script>
-                  , made with <i class="fa fa-heart"></i> by
+                  By
                   <a
-                    href="https://www.creative-tim.com"
+                    href="https://www.bsn.go.id/"
                     class="font-weight-bold"
                     target="_blank"
                     >Badan Standardisasi Nasional</a

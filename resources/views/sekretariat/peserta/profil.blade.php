@@ -64,22 +64,21 @@
     <hr class="p-0">
     <div class="tab-content" id="tab-content">
 
-        <div class="tab-pane {{ request()->query('tab') == '' ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="sekre-desk" aria-labelledby="sekre-desk">
+        <div class="tab-pane {{ request()->query('tab') == '' ? 'active' : 'hide'}} rounded" role="tabpanel" id="sekre-desk" aria-labelledby="sekre-desk">
             @include('sekretariat.peserta.wizard.profilProfil')
         </div>
         <!-- Assessment Section -->
-        <div class="tab-pane {{ request()->query('tab') == 'dokumen'  ? 'active' : 'hide'}} bg-light container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
+        <div class="tab-pane {{ request()->query('tab') == 'dokumen'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
             @include('sekretariat.peserta.wizard.profilDokumen')
         </div>
-        <div class="tab-pane {{ request()->query('tab') == 'kontak'  ? 'active' : 'hide'}} bg-light container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
-            kontak
-            {{-- @include('sekretariat.peserta.wizard.siteEvaluation') --}}
+        <div class="tab-pane {{ request()->query('tab') == 'kontak'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
+            @include('sekretariat.peserta.wizard.profilKontak')
         </div>
-        <div class="tab-pane {{ request()->query('tab') == 'assessment'  ? 'active' : 'hide'}} bg-light container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
+        <div class="tab-pane {{ request()->query('tab') == 'assessment'  ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
             assessment
             {{-- @include('sekretariat.peserta.wizard.siteEvaluation') --}}
         </div>
-        <div class="tab-pane {{ request()->query('tab') == 'penilaian'  ? 'active' : 'hide'}} bg-light container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
+        <div class="tab-pane {{ request()->query('tab') == 'penilaian'  ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
             penilaian
             {{-- @include('sekretariat.peserta.wizard.siteEvaluation') --}}
         </div>

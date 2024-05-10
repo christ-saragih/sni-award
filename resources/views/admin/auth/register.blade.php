@@ -60,47 +60,14 @@
                 <form method="POST" action="{{ route('user.registrasi') }}" style="
                     padding: 20px;
                 ">
-                @csrf
-                <div class="w-100">
-                    <label for="name" class="col-form-label">{{ __('Nama Lengkap') }}</label>
-
-                    <div class="">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus style="border-radius: 100px;">
-
-                        @error('nama')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="w-100">
-                    <label for="email" class="col-form-label">{{ __('Email') }}</label>
-
-                    <div class="">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" style="border-radius: 100px;">
-
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <div style="
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    gap: 20px;
-                    padding-bottom: 20px;
-                ">
+                    @csrf
                     <div class="w-100">
-                        <label for="password" class="col-form-label">{{ __('Kata Sandi') }}</label>
-        
+                        <label for="name" class="col-form-label">{{ __('Nama Lengkap') }}</label>
+
                         <div class="">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" style="border-radius: 100px;" oninput="handleInputPassword(this)" onfocus="focusPassword()" onfocusout="focusOutPassword()">
-        
-                            @error('password')
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus style="border-radius: 100px;">
+
+                            @error('nama')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -108,39 +75,76 @@
                         </div>
                     </div>
                     <div class="w-100">
-                        <label for="password-confirm" class="col-form-label">{{ __('Konfirmasi Kata Sandi') }}</label>
+                        <label for="email" class="col-form-label">{{ __('Email') }}</label>
+
                         <div class="">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" style="border-radius: 100px;">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" style="border-radius: 100px;">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
-                </div>
-
-                <div class="pb-2" id="password-rules" style="display: none;font-size: 14px;color:#eaeaea;">
-                    <div><span id="ps-8c">&#x2716;</span>&emsp;Minimal 8 karakter</div>
-                    <div><span id="ps-lc">&#x2716;</span>&emsp;Huruf kecil</div>
-                    <div><span id="ps-uc">&#x2716;</span>&emsp;Huruf kapital</div>
-                    <div><span id="ps-nc">&#x2716;</span>&emsp;Angka</div>
-                    <div><span id="ps-sc">&#x2716;</span>&emsp;Karakter spesial (!, @, #, $, %, ...)</div>
-                </div>
-
-                <div class="">
-                    <div class="" style="
-                        display: flex;
-                        align-item: center;
-                        justify-content: center;
+                    <div style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        gap: 20px;
+                        padding-bottom: 20px;
                     ">
-                        <button type="submit" style="
-                            width: 50%;
-                            border-radius: 100px;
-                            padding: 5px 10%;    
-                            border: none;
-                        ">
-                            {{ __('Daftar') }}
-                        </button>
+                        <div class="w-100">
+                            <label for="password" class="col-form-label">{{ __('Kata Sandi') }}</label>
+            
+                            <div class="">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" style="border-radius: 100px;" oninput="handleInputPassword(this)" onfocus="focusPassword()" onfocusout="focusOutPassword()">
+            
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="w-100">
+                            <label for="password-confirm" class="col-form-label">{{ __('Konfirmasi Kata Sandi') }}</label>
+                            <div class="">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" style="border-radius: 100px;">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
 
+                    <div class="pb-2" id="password-rules" style="display: none;font-size: 14px;color:#eaeaea;">
+                        <div><span id="ps-8c">&#x2716;</span>&emsp;Minimal 8 karakter</div>
+                        <div><span id="ps-lc">&#x2716;</span>&emsp;Huruf kecil</div>
+                        <div><span id="ps-uc">&#x2716;</span>&emsp;Huruf kapital</div>
+                        <div><span id="ps-nc">&#x2716;</span>&emsp;Angka</div>
+                        <div><span id="ps-sc">&#x2716;</span>&emsp;Karakter spesial (!, @, #, $, %, ...)</div>
+                    </div>
+
+                    <div class="">
+                        <div class="" style="
+                            display: flex;
+                            align-item: center;
+                            justify-content: center;
+                        ">
+                            <button type="submit" style="
+                                width: 50%;
+                                border-radius: 100px;
+                                padding: 5px 10%;    
+                                border: none;
+                            ">
+                                {{ __('Daftar') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            
+                <div class="form-text text-center">
+                    Sudah memiliki akun? <a href="{{ route('user.login.view') }}">Masuk </a>
+                </div>
+                
             </div>
 
         </section>

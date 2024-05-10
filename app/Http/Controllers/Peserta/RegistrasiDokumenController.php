@@ -9,59 +9,55 @@ use App\Models\PesertaProfil;
 use App\Models\Registrasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class RegistrasiDokumenController extends Controller
 {
-   
+
     public function store(Request $request){
         // $request->validate([
         //     'url_dokumen*' => 'required|file|mimes:pdf',
         //     // 'registrasi_id.*' => 'required',
         //     // 'dokumen_id.*' => 'required',
         // ]);
-
-        // $file_dokumen = $request->file('url_dokumen');
-        // // dd($file_dokumen->getClientOriginalExtension());
-        // $dokumen_ekstensi = $file_dokumen->extension();
-        // $nama_file = date('ymdhis') . '.' . $dokumen_ekstensi;
-        // $file_dokumen->move(public_path('gambar/gambar_berita'), $nama_file);
-
+        $user = Auth::guard('peserta')->user();
         $file_dokumen = $request->file('url_dokumen');
-        // for ($i = 0; $i < count($request->file('url_dokumen')); $i++){
-        $registrasi = Registrasi::whereAny([
-            'peserta_id',
-            'tahun',
-        ], [
-            Auth::guard('peserta')->user()->id,
-            date('Y'),
-        ])->first();
-        // dd($request->file());
+        $registrasi = Registrasi::where('peserta_id', $user->id)
+            ->where('tahun', date('Y'))->first();
         // dd($registrasi);
-        // dd($request->all());
-        // dd($request->file('url_dokumen'));
         foreach ($request->file('url_dokumen') as $iteration=>$dokumen) {
-            // $dokumen = $request->file('url_dokumen');
-            // dd([$iteration, $dokumen]);
-            // dd($request->dokumen_id[$i]);
-            $nama_file_dokumen = 'dokumen_' . now()->format('YmdHis') . '.' . $dokumen->getClientOriginalName();
-            $dokumen->move(public_path('file/dokumen'), $nama_file_dokumen);
             $existingDocument = RegistrasiDokumen::where('registrasi_id', $registrasi->id)
-                                                ->where('dokumen_id', $iteration + 1)
-                                                ->first();
+                ->where('dokumen_id', $iteration + 1)
+                ->first();
+            if ($existingDocument) {
+                $existing_document_path = str_replace('/storage', '', $existingDocument->url_dokumen);
+                if (File::exists(storage_path("app/public/$existing_document_path"))) {
+                    File::delete(storage_path("app/public/$existing_document_path"));
+                }
+            }
+            $nama_file_dokumen = 'dokumen_' . now()->format('YmdHis') . '.' . $dokumen->hashName();
+            $directory_path = storage_path("app/public/Peserta/registrasi/dokumen/$user->id");
+            $dokumen->move($directory_path, $nama_file_dokumen);
             if ($existingDocument && $existingDocument->status === 'ditolak') {
                 // Ubah status dokumen menjadi 'proses'
-                $existingDocument->update(['status' => 'proses']);
-            }
-            if ($existingDocument && $existingDocument->status === 'disetujui') {
-                return redirect()->back()->with('error', 'Anda tidak dapat mengunggah dokumen lagi karena dokumen telah disetujui.');
-            }
-           
-            RegistrasiDokumen::updateOrCreate([
-                'registrasi_id' => $registrasi->id,
-                'dokumen_id' => $iteration+1,
-                'url_dokumen' => $nama_file_dokumen,
-                'feedback' => 'assdasda',
+                $existingDocument->update([
+                    'dokumen_id' => $iteration+1,
+                    'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
+                    'feedback' => 'assdasda',
+                    'status' => 'proses',
             ]);
+            } elseif ($existingDocument && $existingDocument->status === 'disetujui') {
+                return redirect()->back()->with('error', 'Anda tidak dapat mengunggah dokumen lagi karena dokumen telah disetujui.');
+            } else {
+                RegistrasiDokumen::create([
+                    'registrasi_id' => $registrasi->id,
+                    'dokumen_id' => $iteration+1,
+                    'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
+                    'feedback' => 'assdasda',
+                    'status' => 'proses',
+                ]);
+            }
+
         }
 
         return redirect()->back()->with('success','Registrasi Dokumen berhasil');
