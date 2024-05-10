@@ -10,6 +10,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\Sekretariat\Tim\SekretariatTimController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -354,12 +355,15 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
 
+    Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
+
     Route::get('/profil', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'index']);
     Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
-    Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
 
     Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
     Route::get('/peserta/profil/{id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
+    Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
+    Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
 });
 // Sekretariat End
 
