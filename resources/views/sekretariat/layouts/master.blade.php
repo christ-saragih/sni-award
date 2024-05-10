@@ -98,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('sekretariat/peserta') ? 'active' : '' }}" id="navLink" href="{{ route('sekretariat.peserta.view') }}">
+            <a class="nav-link {{ request()->is('sekretariat/peserta*') ? 'active' : '' }}" id="navLink" href="{{ route('sekretariat.peserta.view') }}">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
@@ -108,7 +108,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('sekretariat/tim') ? 'active' : '' }}" id="navLink" href="/sekretariat/tim">
+            <a class="nav-link {{ request()->is('sekretariat/tim*') ? 'active' : '' }}" id="navLink" href="/sekretariat/tim">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >

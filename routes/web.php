@@ -359,6 +359,7 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
 
     Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
+    Route::get('/peserta/profil/{id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
 });
 // Sekretariat End
 

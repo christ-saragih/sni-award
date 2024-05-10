@@ -60,13 +60,14 @@ class AuthUserController extends Controller
     public function registrasiUser(Request $request) {
         $request->validate([
             'email' => 'required|unique:users|email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|confirmed|strong_password',
         ], [
             'email.required' => 'Email Wajib Diisi',
             'email.unique' => 'Email telah terdaftar',
             'password.required' => 'Password Wajib Diisi',
             'password.min' => 'Panjang Password minimal 8 karakter',
             'password.confirmed' => 'Harap konfirmasi password anda',
+            'password.strong_password' => 'Password harus mengandung huruf besar, huruf kecil, angka, John karakter spesial',
         ]);
         $dataRegistrasi = [
             'name' => $request->name,

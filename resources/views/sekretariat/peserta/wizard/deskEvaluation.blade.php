@@ -44,12 +44,26 @@
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
                     @endif
                 </td>
-                <td class="text-center position-relative">
-                    <button type="button" class="btn dropdown-toggle" id="deskEvaluationDetail{{ $key }}" style="text-decoration: none;padding: 5px 10px;border:none;background-color:#E59B30;border-radius:10px;" data-bs-toggle="dropdown" aria-expanded="false">Detail</button>
-                    <ul class="dropdown-menu position-absolute bottom-0 translate-end-y" aria-labelledby="deskEvaluationDetail{{ $key }}">
-                        <li><a class="dropdown-item" href="#">Profil</a></li>
-                        <li><a class="dropdown-item" href="#">Riwayat</a></li>
-                    </ul>
+                <td class="text-center">
+                    <div class="dropdown">
+                        <button 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false"
+                            class="btn dropdown-toggle" 
+                            style="
+                                text-decoration: none;
+                                padding: 5px 10px;
+                                border:none;
+                                background-color:#E59B30;
+                                border-radius:10px;
+                            " 
+                        >Detail</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('sekretariat.peserta.profil.view', Crypt::encryptString($reg->id)) }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="#">Riwayat</a></li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         @endforeach
