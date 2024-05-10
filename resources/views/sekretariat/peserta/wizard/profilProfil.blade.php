@@ -25,7 +25,7 @@
     }
 </style>
 
-{{-- <div class="content-profil pt-5"> --}}
+<div class="content-profil py-5">
     <div class="d-flex align-items-center justify-content-center gap-3">
         <div class="profil-image-container">
             <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image">
@@ -166,4 +166,4 @@
         </div>
         </div>
     </div>
-{{-- </div> --}}
+</div>
