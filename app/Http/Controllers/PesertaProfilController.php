@@ -154,7 +154,7 @@ class PesertaProfilController extends Controller
             $legalitasName = time().'.'.$request->url_legalitas_hukum_organisasi->extension();  
             $request->url_legalitas_hukum_organisasi->move(storage_path('app/public/dokumen/legalitas/'.$id), $legalitasName);
             $peserta_profil->update([
-                'url_legalitas_hukum_organisasi' => 'dokumen/legalitas/'.$id.'/'.$legalitasName,
+                'url_legalitas_hukum_organisasi' => '/storage/dokumen/legalitas/'.$id.'/'.$legalitasName,
             ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
@@ -170,7 +170,7 @@ class PesertaProfilController extends Controller
             $SpptsniName = time().'.'.$request->url_sppt_sni->extension();  
             $request->url_sppt_sni->move(storage_path('app/public/dokumen/Spptsni/'.$id), $SpptsniName);
             $peserta_profil->update([
-                'url_sppt_sni' => '/dokumen/Spptsni/'.$id.'/'.$SpptsniName,
+                'url_sppt_sni' => '/storage/dokumen/Spptsni/'.$id.'/'.$SpptsniName,
             ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
@@ -186,7 +186,7 @@ class PesertaProfilController extends Controller
             $KemenkumhamName = time().'.'.$request->url_sk_kemenkumham->extension();  
             $request->url_sk_kemenkumham->move(storage_path('app/public/dokumen/kemenkumham/'.$id), $KemenkumhamName);
             $peserta_profil->update([
-                'url_sk_kemenkumham' => '/dokumen/kemenkumham/'.$id.'/'.$KemenkumhamName,
+                'url_sk_kemenkumham' => '/storage/dokumen/kemenkumham/'.$id.'/'.$KemenkumhamName,
             ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');
@@ -202,7 +202,7 @@ class PesertaProfilController extends Controller
             $KewenanganKebijakan = time().'.'.$request->url_kewenangan_kebijakan->extension();  
             $request->url_kewenangan_kebijakan->move(storage_path('app/public/dokumen/kewenangan/'.$id), $KewenanganKebijakan);
             $peserta_profil->update([
-                'url_kewenangan_kebijakan' => '/dokumen/kewenangan/'.$id.'/'.$KewenanganKebijakan,
+                'url_kewenangan_kebijakan' => '/storage/dokumen/kewenangan/'.$id.'/'.$KewenanganKebijakan,
             ]);
             
             return back()->with('success', 'Dokumen berhasil diunggah dan disimpan.');

@@ -6,47 +6,59 @@
               {{ session('error') }}
           </div>
         @endif
-        <div class="col-3">
+        <div class="col-2">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-6">
+        <div class="col-8">
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <label class="fw-bold">Aksi</label>
         </div>
       </div>
         <br>
         <hr style="width: 100%; height: 5px; color: grey">
-          <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
             @csrf
           @foreach ($dokumen as $dok)
           <div class="row g-3 align-items-center mt-2">
               <div class="col-3">
                   <label class="fw-bold">{{$dok->nama}}</label>
               </div>
-              <div class="col-6">
-                  <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
-              </div>
-              <div class="col-3">
+              <div class="row col-9">
                   @php
                       $statusColor = '';
+                      $dokumen_assessment = $registrasi_dokumen->where('dokumen_id', $dok->id)->last();
+                      $dokumen_disetujui = false;
+                      if ($dokumen_assessment) {
+                        $status_dokumen = $dokumen_assessment->status;
+                        $dokumen_disetujui = $status_dokumen == 'disetujui';
+                      }
+                      // dd($registrasi_dokumen->where('dokumen_id', $dok->id)->last()->status);
                   @endphp
+                  
+                  <div class="col-9">
+                    <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                  </div>
                   @foreach ($registrasi_dokumen as $rd)
-                      @if ($rd->dokumen_id == $dok->id)
-                          @switch ($rd->status)
-                              @case ('proses')
-                                  @php $statusColor = 'bg-warning'; @endphp
-                                  @break
-                              @case ('ditolak')
-                                  @php $statusColor = 'bg-danger'; @endphp
-                                  @break
-                              @case ('disetujui')
-                                  @php $statusColor = 'bg-success'; @endphp
-                                  @break
-                          @endswitch
-                          <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
-                          @break
-                      @endif
+                    @if ($rd->dokumen_id == $dok->id)
+                      @switch ($rd->status)
+                          @case ('proses')
+                              @php $statusColor = 'bg-warning'; @endphp
+                              @break
+                          @case ('ditolak')
+                              @php $statusColor = 'bg-danger text-white'; @endphp
+                              @break
+                          @case ('disetujui')
+                              @php $statusColor = 'bg-success text-white'; @endphp
+                              @break
+                      @endswitch
+                      <div class="col-3">
+                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-right: 10px;">
+                          <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                        <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
+                      </div>
+                      @break
+                    @endif
                   @endforeach
               </div>
           </div>
@@ -72,7 +84,7 @@
                     <label class="fw-bold">Legalitas Hukum Organisasi</label>
                   </div>
                   <div class="col-9">
-                      <a href="/storage{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                      <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
@@ -83,7 +95,7 @@
                     <label class="fw-bold">SPPT SNI</label>
                   </div>
                   <div class="col-9">
-                      <a href="/storage{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
+                      <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
@@ -95,7 +107,7 @@
                     <label class="fw-bold">SK Kemenkeuham</label>
                   </div>
                   <div class="col-9">
-                      <a href="/storage{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                      <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
@@ -107,7 +119,7 @@
                     <label class="fw-bold">Kewenangan Kebijakan</label>
                   </div>
                   <div class="col-9">
-                      <a href="/storage{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                      <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>

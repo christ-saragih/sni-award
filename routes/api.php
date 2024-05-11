@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\WilayahAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,7 @@ Route::prefix('/admin')->group(function () {
     Route::get("/wilayah/provinsi/{id_provinsi}/kota-kab", [WilayahAdminController::class, "get_kabupaten"]);
     }
 );
+
+Route::prefix('/sekretariat')->group(function () {
+    Route::get('/peserta/assessment/{registrasi_id}', [SekretariatPesertaController::class, 'showAssessmentByKategori']);
+});
