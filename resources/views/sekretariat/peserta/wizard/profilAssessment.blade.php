@@ -8,16 +8,10 @@
         color: #fff;
         font-weight: bold;
     }
-    .kategori-select:focus {
-        outline: none !important;
-        border: none !important;
-    }
     .kategori-option {
         background-color: #fff;
         color: #000;
-    }
-    .kategori-option:hover {
-        background-color: #CC9305 !important;
+        font-weight: 500;
     }
 </style>
 <div class="content-profil py-5">
