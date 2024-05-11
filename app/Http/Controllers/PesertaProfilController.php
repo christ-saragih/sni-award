@@ -242,29 +242,29 @@ class PesertaProfilController extends Controller
 
     
 
-   public function ubahKontakPenghubung(Request $request, $id)
-    {
-        // dd(['nama' => $request->nama,
-        // 'no_hp' => $request->no_hp,
-        // 'jabatan' => $request->jabatan,]);
+    //    public function ubahKontakPenghubung(Request $request, $id)
+    //     {
+    //         // dd(['nama' => $request->nama,
+    //         // 'no_hp' => $request->no_hp,
+    //         // 'jabatan' => $request->jabatan,]);
 
-        // $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
-        // $peserta_kontak = PesertaKontak::where('peserta_id', $peserta->id)[$index];
-        $peserta_kontak = PesertaKontak::find($id);
-        $peserta_kontak->update([
-            'nama' =>  $request->nama,
-            'no_hp' => $request->no_hp,
-            'jabatan' => $request->jabatan,
-        ]);
+    //         // $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
+    //         // $peserta_kontak = PesertaKontak::where('peserta_id', $peserta->id)[$index];
+    //         $peserta_kontak = PesertaKontak::find($id);
+    //         $peserta_kontak->update([
+    //             'nama' =>  $request->nama,
+    //             'no_hp' => $request->no_hp,
+    //             'jabatan' => $request->jabatan,
+    //         ]);
 
-        return redirect('/peserta/profil?tab=kontak')->with('sukses','Data Berhasil Di Tambahkan');
-    }
+    //         return redirect('/peserta/profil?tab=kontak')->with('sukses','Data Berhasil Di Tambahkan');
+    //     }
 
-    public function destroy($id)
-    {
-        $peserta_kontak = PesertaKontak::find($id);
-        $peserta_kontak->delete();
+    //     public function destroy($id)
+    //     {
+    //         $peserta_kontak = PesertaKontak::find($id);
+    //         $peserta_kontak->delete();
 
-        return redirect()->back()->with('success', 'Data peserta kontak berhasil dihapus.');
-    }
+    //         return redirect()->back()->with('success', 'Data peserta kontak berhasil dihapus.');
+    //     }
 }

@@ -99,11 +99,11 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
-    Route::post('/profil',[PesertaProfilController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
-    Route::put('/profil/{id}',[PesertaProfilController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
-    Route::delete('/profil/{id}',[PesertaProfilController::class, 'destroy'])->name('peserta.profil.kontak.hapus');
-    Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
-    Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
+    Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
+    Route::put('/profil/kontak/{id}',[PesertaKontakController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
+    Route::delete('/profil/kontak/{id}',[PesertaKontakController::class, 'hapuskontak'])->name('peserta.profil.kontak.hapus');
+    Route::get('/profil/edit',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
+    Route::put('/profil/edit',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail/{registrasi_id}', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
