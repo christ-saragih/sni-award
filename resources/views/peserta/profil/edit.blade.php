@@ -11,7 +11,7 @@
   <li class="nav-item" role="presentation">
     <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Profil</a>
   </li>
-  <li class="nav-item" role="presentation">
+  {{-- <li class="nav-item" role="presentation">
     <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
   </li>
   <li class="nav-item" role="presentation">
@@ -19,7 +19,7 @@
   </li>
   <li class="nav-item" role="presentation">
     <a class="nav-link" id="simple-tab-3" data-bs-toggle="tab" href="#simple-tabpanel-3" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Ubah Kata Sandi</a>
-  </li>
+  </li> --}}
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
@@ -230,7 +230,7 @@
     </div>
   </form>
   <!-- Dokumen start -->
-  <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+  {{-- <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
     <div class="content-profil pt-5 mb-5">
       <div class="d-flex align-items-center gap-2">
         <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen</h3>
@@ -416,7 +416,7 @@
       </div>
     </div>
   </div>
-  <!-- Ubah password end -->
+  <!-- Ubah password end --> --}}
 
 </div>
 <script>
