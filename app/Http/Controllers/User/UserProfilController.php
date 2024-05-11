@@ -62,7 +62,7 @@ class UserProfilController extends Controller
             $new_cv_path = storage_path("app/public/User/profil/cv/$userId");
             $file_cv->move($new_cv_path, $filename_cv);
         }
-        if ($request->hasFile('url_anti_penyapan')) {
+        if ($request->hasFile('url_anti_penyuapan')) {
             if ($userProfil->url_anti_penyuapan) {
                 $prev_anti_suap_path = storage_path("app/public$userProfil->url_anti_penyuapan");
                 if (File::exists($prev_anti_suap_path)) {

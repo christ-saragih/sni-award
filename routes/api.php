@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\WilayahAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,5 @@ Route::prefix('/admin')->group(function () {
 );
 
 Route::prefix('/sekretariat')->group(function () {
-    Route::get('/peserta/assessment/{registrasi_id}');
+    Route::get('/peserta/assessment/{registrasi_id}', [SekretariatPesertaController::class, 'showAssessmentByKategori']);
 });
