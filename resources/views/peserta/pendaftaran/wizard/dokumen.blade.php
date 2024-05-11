@@ -6,12 +6,12 @@
               {{ session('error') }}
           </div>
         @endif
-        <div class="col-3">
+        <div class="col-2">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-6">
+        <div class="col-8">
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <label class="fw-bold">Aksi</label>
         </div>
       </div>
