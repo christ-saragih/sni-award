@@ -28,13 +28,18 @@
                   @php
                       $statusColor = '';
                   @endphp
+                  <div class="col-9">
+                    @if (count($registrasi_dokumen) == 0)
+                      <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                    @endif
+                  </div>
                   @foreach ($registrasi_dokumen as $rd)
-                      <div class="col-9">
-                        @if ($rd->status != 'disetujui')
-                          <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
-                        @endif
-                      </div>
-                      @if ($rd->dokumen_id == $dok->id)
+                  @if ($rd->dokumen_id == $dok->id)
+                        <div class="col-9">
+                          @if ($rd->status != 'disetujui')
+                            <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
+                          @endif
+                        </div>
                           @switch ($rd->status)
                               @case ('proses')
                                   @php $statusColor = 'bg-warning'; @endphp
