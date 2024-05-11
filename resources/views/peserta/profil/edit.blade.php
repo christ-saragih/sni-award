@@ -25,18 +25,17 @@
 <div class="tab-content" id="tab-content">
   {{-- Profil --}}
   @if($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error )
-                  <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif
-  {{-- <form class="tab-pane active" method="POST" action="/peserta/profil/{{ Auth::guard('peserta')->user()->id}}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0"> --}}
-  <form class="tab-pane active" method="POST" action="/peserta/profil/edit/" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
-    @method('PUT')
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error )
+            <li>{{$error}}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+  <form class="tab-pane active" method="POST" action="{{ route('peserta.profil.update') }}" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
     @csrf
+    @method('PUT')
     <div class="content-profil pt-5">
       <div class="d-flex flex-column text-center justify-content-center gap-3">
         <img src="{{ asset('assets') }}/peserta/images/foto-profil.png" class="profil mx-auto" alt="">

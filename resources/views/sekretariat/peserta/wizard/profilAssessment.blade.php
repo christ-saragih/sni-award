@@ -19,18 +19,26 @@
     <div class="d-flex align-items-center">
         {{-- <hr style="height: 5px;"> --}}
         <div style="width: 100%;height: 5px; border-radius: 10px; background-color: #CC9305;"></div>
-        <form action="">
-            <select name="assessment_kategori" id="" class="kategori-select">
-                @foreach ($assessment_kategori as $key=>$ak)
-                    <option value="{{ $ak->id }}" {{ $key==0 ? 'selected' : '' }} class="kategori-option">{{ $ak->nama }}</option>
-                @endforeach
-            </select>
-        </form>
+        <select name="assessment_kategori" id="" class="kategori-select" oninput="handleChangeKategori(this, {{ $registrasi->id }})">
+            @foreach ($assessment_kategori as $key=>$ak)
+                <option value="{{ $ak->id }}" {{ $key==0 ? 'selected' : '' }} class="kategori-option">{{ $ak->nama }}</option>
+            @endforeach
+        </select>
     </div>
     {{-- end head --}}
 </div>
 <script>
-    $(document).ready(() => {
-
-    })
+    const handleChangeKategori = (e, registrasiId) => {
+        // console.log({[e.name]: e.value});
+        $.ajax({
+            url: `/api/sekretariat/peserta/assessment/${registrasiId}`,
+            data: {[e.name]: e.value},
+            success: (res) => {
+                console.log(res);
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
 </script>

@@ -80,11 +80,12 @@ class SekretariatPesertaController extends Controller
 
     public function showAssessmentByKategori(Request $request, $registrasi_id) {
         $registrasi = Registrasi::find($registrasi_id);
-        $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban;
-        dd($assessment_jawaban);
-
-        $assessment_kategori = AssessmentKategori::get();
-        $assessment_sub_kategori = AssessmentSubKategori::get();
-        $assessment_pertanyaan = AssessmentPertanyaan::get();
+        $registrasi_penilaian = $registrasi->registrasi_penilaian;
+        // $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban;
+        // if ($assessment_jawaban) {
+            return response()->json([
+                'req' => $request->assessment_kategori,
+            ]);
+        // }
     }
 }
