@@ -74,9 +74,8 @@
         <div class="tab-pane {{ request()->query('tab') == 'kontak'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
             @include('sekretariat.peserta.wizard.profilKontak')
         </div>
-        <div class="tab-pane {{ request()->query('tab') == 'assessment'  ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
-            assessment
-            {{-- @include('sekretariat.peserta.wizard.siteEvaluation') --}}
+        <div class="tab-pane {{ request()->query('tab') == 'assessment'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
+            @include('sekretariat.peserta.wizard.profilAssessment')
         </div>
         <div class="tab-pane {{ request()->query('tab') == 'penilaian'  ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="sekre-site" aria-labelledby="sekre-site">
             penilaian

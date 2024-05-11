@@ -40,12 +40,12 @@
         display: flex;
         align-items: center;
         height: fit-content;
-        border-left: 4px solid #CC9305;
+        border-right: 4px solid #CC9305;
     }
     .chat-text {
         width: fit-content;
         border: 1px solid #9FAFBF;
-        border-radius: 20px;
+        border-radius: 15px;
         padding: 10px 20px;
     }
     .chat-input {
@@ -292,7 +292,7 @@
         border-radius: 15px;
     ">
         <div>
-            <div class="chat">
+            <div class="chat d-flex align-items-center justify-content-end">
                 {{-- <div style="background-color: #CC9305;width:3px;border-radius:10px;height:max-content;"></div> --}}
                 <div class="chat-text" id="chat-text">
                     Dokumen Keterangan Kemenkumham tidak sesuai

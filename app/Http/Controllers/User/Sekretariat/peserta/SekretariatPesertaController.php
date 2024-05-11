@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\User\Sekretariat\peserta;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssessmentKategori;
+use App\Models\AssessmentPertanyaan;
+use App\Models\AssessmentSubKategori;
 use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\Registrasi;
+use App\Models\RegistrasiAssessment;
 use App\Models\RegistrasiDokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +40,13 @@ class SekretariatPesertaController extends Controller
         $registrasi_dokumen = $registrasi->registrasi_dokumen;
         $peserta = Peserta::find($registrasi->peserta_id);
         $dokumen = Dokumen::get();
+        $assessment_kategori = AssessmentKategori::get();
         return view('sekretariat.peserta.profil', [
             'peserta' => $peserta,
             'registrasi' => $registrasi,
             'registrasi_dokumen' => $registrasi_dokumen,
             'dokumen' => $dokumen,
+            'assessment_kategori' => $assessment_kategori,
         ]);
     }
 
@@ -70,5 +76,15 @@ class SekretariatPesertaController extends Controller
         $feedback = str_replace("\n", "<br/>", $request->feedback);
         $feedback = trim($feedback, ' ');
         dd($feedback);
+    }
+
+    public function showAssessmentByKategori(Request $request, $registrasi_id) {
+        $registrasi = Registrasi::find($registrasi_id);
+        $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban;
+        dd($assessment_jawaban);
+
+        $assessment_kategori = AssessmentKategori::get();
+        $assessment_sub_kategori = AssessmentSubKategori::get();
+        $assessment_pertanyaan = AssessmentPertanyaan::get();
     }
 }
