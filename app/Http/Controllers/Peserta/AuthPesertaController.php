@@ -90,7 +90,7 @@ class AuthPesertaController extends Controller
         }
 
         if (Auth::guard('peserta')->check()) {
-            return redirect('/dashboard');
+            return redirect('/peserta/dashboard');
         }else {
             return redirect('/masuk')->with('success', 'Berhasil melakukan registrasi');
         }
