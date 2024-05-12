@@ -134,7 +134,7 @@ class RegistrasiAssessmentController extends Controller
             $jawaban_id = $request->input('jawaban.' . $pertanyaan_id);
             RegistrasiAssessment::create([
                 'registrasi_id' => $request->registrasi_id,
-                // 'assessment_pertanyaan_id' => $pertanyaan_id,
+                'assessment_pertanyaan_id' => $pertanyaan_id,
                 'assessment_jawaban_id' => $jawaban_id,
             ]);
         }

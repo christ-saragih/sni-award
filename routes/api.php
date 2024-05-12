@@ -25,7 +25,3 @@ Route::prefix('/admin')->group(function () {
     Route::get("/wilayah/provinsi/{id_provinsi}/kota-kab", [WilayahAdminController::class, "get_kabupaten"]);
     }
 );
-
-Route::prefix('/sekretariat')->group(function () {
-    Route::get('/peserta/assessment/{registrasi_id}', [SekretariatPesertaController::class, 'showAssessmentByKategori']);
-});

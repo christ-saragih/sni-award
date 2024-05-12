@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registrasi_assessment', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
-            // $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
+            $table->mediumInteger('assessment_pertanyaan_id')->unsigned();
             $table->mediumInteger('assessment_jawaban_id')->unsigned();
             $table->integer('score')->nullable();
             $table->timestamps();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable(true);
 
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
-            // $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
+            $table->foreign('assessment_pertanyaan_id')->references('id')->on('assessment_pertanyaan');
             $table->foreign('assessment_jawaban_id')->references('id')->on('assessment_jawaban');
         });
     }

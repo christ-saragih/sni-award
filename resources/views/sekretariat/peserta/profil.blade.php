@@ -46,19 +46,19 @@
     {{-- {{ dd(request()->id) }} --}}
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == '' ? 'active' : ''}}" id="simple-tab-0" href="{{ route('sekretariat.peserta.profil.view', request()->id) }}" role="tab">Profil</a>
+            <a class="nav-link {{ request()->query('tab') == '' ? 'active' : ''}}" id="simple-tab-0" href="{{ route('sekretariat.peserta.profil.view', request()->registrasi_id) }}" role="tab">Profil</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == 'dokumen' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['id' => request()->id, 'tab' => 'dokumen']) }}" role="tab">Dokumen</a>
+            <a class="nav-link {{ request()->query('tab') == 'dokumen' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'dokumen']) }}" role="tab">Dokumen</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == 'kontak' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['id' => request()->id, 'tab' => 'kontak']) }}" role="tab">Kontak</a>
+            <a class="nav-link {{ request()->query('tab') == 'kontak' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'kontak']) }}" role="tab">Kontak</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == 'assessment' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['id' => request()->id, 'tab' => 'assessment']) }}" role="tab">Assessment</a>
+            <a class="nav-link {{ request()->query('tab') == 'assessment' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'assessment']) }}" role="tab">Assessment</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == 'penilaian' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['id' => request()->id, 'tab' => 'penilaian']) }}" role="tab">Penilaian</a>
+            <a class="nav-link {{ request()->query('tab') == 'penilaian' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('sekretariat.peserta.profil.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'penilaian']) }}" role="tab">Penilaian</a>
         </li>
     </ul>
     <hr class="p-0">

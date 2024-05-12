@@ -27,6 +27,11 @@ class AssessmentPertanyaan extends Model
         return $this->hasMany(AssessmentJawaban::class);
     }
 
+    public function registrasi_assessment() : HasMany
+    {
+        return $this->hasMany(RegistrasiAssessment::class);
+    }
+
     public static function boot()
     {
         parent::boot();

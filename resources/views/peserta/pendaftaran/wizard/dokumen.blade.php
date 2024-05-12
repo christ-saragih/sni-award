@@ -1,3 +1,18 @@
+<style>
+  .chat {
+        display: flex;
+        align-items: center;
+        height: fit-content;
+        border-left: 4px solid #CC9305;
+    }
+    .chat-text {
+        width: fit-content;
+        background-color: #D9D9D9;
+        border-radius: 0 15px 15px 0;
+        padding: 10px 20px;
+    }
+</style>
+
 <div class="content-profil py-5 mb-5">
     <div class="container mt-4">
       <div class="row g-3 align-items-center mt-2">
@@ -6,12 +21,10 @@
               {{ session('error') }}
           </div>
         @endif
-        <div class="col-2">
+        <div class="col-3">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-8">
-        </div>
-        <div class="col-2">
+        <div class="col-9">
           <label class="fw-bold">Aksi</label>
         </div>
       </div>
@@ -27,7 +40,7 @@
               <div class="row col-9">
                   @php
                       $statusColor = '';
-                      $dokumen_assessment = $registrasi_dokumen->where('dokumen_id', $dok->id)->last();
+                      $dokumen_assessment = $registrasi_dokumen ? $registrasi_dokumen->where('dokumen_id', $dok->id)->last() : null;
                       $dokumen_disetujui = false;
                       if ($dokumen_assessment) {
                         $status_dokumen = $dokumen_assessment->status;
@@ -129,3 +142,37 @@
             
     </div>
   </div>
+</div>
+
+{{-- feedback --}}
+@if (request()->query('tab') == 'dokumen')
+  <hr>
+  <div class="content-profil p-5 bg-white" style="border-radius: 15px;">
+      <div class="row mb-5">
+          <div class="col-2">
+              <label class="fs-4 fw-bold">Feedback</label>
+          </div>
+          <div class="col-10">
+              <br>
+              <hr style="width: 100%; height: 1px; background-color: #CC9305;">
+          </div>
+      </div>
+      
+      <div style="
+          padding: 30px;
+          border: 2px solid #9FAFBF;
+          border-radius: 15px;
+      ">
+          <div>
+              <div class="chat d-flex flex-column align-items-start gap-2">
+                  @if (count($registrasi_dokumen) != 0)
+                      <div class="chat-text" id="chat-text">
+                          {!! $registrasi_dokumen[0]->feedback !!}
+                      </div>
+                  @endif
+              </div>
+          </div>
+      </div>
+  </div>
+@endif
+{{-- end feedback --}}
