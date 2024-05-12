@@ -361,8 +361,9 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
 
     Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
-    Route::get('/peserta/profil/{id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
+    Route::get('/peserta/profil/{registrasi_id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
     Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
+    Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
     
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');

@@ -46,7 +46,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -78,7 +78,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}"  target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}"  target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -110,7 +110,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -142,7 +142,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
                                                     <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>

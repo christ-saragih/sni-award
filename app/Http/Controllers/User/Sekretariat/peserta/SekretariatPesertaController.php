@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Sekretariat\peserta;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssessmentJawaban;
 use App\Models\AssessmentKategori;
 use App\Models\AssessmentPertanyaan;
 use App\Models\AssessmentSubKategori;
@@ -34,19 +35,27 @@ class SekretariatPesertaController extends Controller
         ]);
     }
 
-    public function detailProfil($id) {
-        $id = Crypt::decryptString($id);
-        $registrasi = Registrasi::find($id);
+    public function detailProfil(Request $request, $registrasi_id) {
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $registrasi = Registrasi::find($registrasi_id);
+
         $registrasi_dokumen = $registrasi->registrasi_dokumen;
         $peserta = Peserta::find($registrasi->peserta_id);
         $dokumen = Dokumen::get();
+
         $assessment_kategori = AssessmentKategori::get();
+        $selected_assessment_kategori = AssessmentKategori::where('nama', 'Kepemimpinan')->get();
+        if ($request->assessment_kategori) {
+            $selected_assessment_kategori = AssessmentKategori::where('nama', $request->assessment_kategori)->get();
+            // dd($assessment_kategori);
+        }
         return view('sekretariat.peserta.profil', [
             'peserta' => $peserta,
             'registrasi' => $registrasi,
             'registrasi_dokumen' => $registrasi_dokumen,
             'dokumen' => $dokumen,
             'assessment_kategori' => $assessment_kategori,
+            'selected_assessment_kategori' => $selected_assessment_kategori,
         ]);
     }
 
@@ -62,7 +71,7 @@ class SekretariatPesertaController extends Controller
             'review_at' => date('Y-m-d H:i:s'),
         ]);
         return redirect()->route('sekretariat.peserta.profil.view', [
-            'id' => Crypt::encryptString($registrasi_dokumen->registrasi_id),
+            'registrasi_id' => Crypt::encryptString($registrasi_dokumen->registrasi_id),
             'tab' => 'dokumen',
         ])->with('success', 'Status dokumen berhasil dirubah');
     }
@@ -73,19 +82,16 @@ class SekretariatPesertaController extends Controller
         ], [
             'feedback.required' => 'Tidak ada feedback',
         ]);
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
         $feedback = str_replace("\n", "<br/>", $request->feedback);
         $feedback = trim($feedback, ' ');
-        dd($feedback);
-    }
-
-    public function showAssessmentByKategori(Request $request, $registrasi_id) {
-        $registrasi = Registrasi::find($registrasi_id);
-        $registrasi_penilaian = $registrasi->registrasi_penilaian;
-        // $assessment_jawaban = $registrasi->registrasi_assessment->assessment_jawaban;
-        // if ($assessment_jawaban) {
-            return response()->json([
-                'req' => $request->assessment_kategori,
+        foreach ($registrasi_dokumen as $key=>$rd) {
+            $rd->update([
+                'feedback' => $feedback,
             ]);
-        // }
+        }
+        return back()->with('success', 'Berhasil mengirim feedback');
     }
+    
 }
