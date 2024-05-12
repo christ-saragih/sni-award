@@ -122,12 +122,13 @@
                         </div>
                     </div>
                     </div>
-                    <div class="px-5 py-4 d-flex justify-content-end gap-3">            
+                    <div class="px-5 py-4 d-flex justify-content-end gap-3">  
+                  
                         <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Hapus</button>    
-                        </form>            
+                        </form>
                         <button type="submit" class="btn" style="width: 13%;">Edit</button>
                     </div>
                 </div>
