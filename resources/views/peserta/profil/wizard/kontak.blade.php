@@ -92,7 +92,6 @@
                                         <h6 class="mb-0">Kontak Penghubung {{$loop->iteration}}</h6>
                                         <hr class="p-0 flex-fill" style="height: 1px; background-color: #9FAFBF;">
                                     </div>
-                                    
                                 </div>
                                 <div class="row align-items-center pt-4 pb-3">
                                     <div class="col-md-4 ps-5">
@@ -123,7 +122,6 @@
                     </div>
                     </div>
                     <div class="px-5 py-4 d-flex justify-content-end gap-3">  
-                  
                         <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}">
                             @csrf
                             @method('DELETE')
@@ -152,22 +150,4 @@
         });
         form.style.display = 'none'
     }
-    
-    // let formCounter = 1;
-    
-    // function addNewForm() {
-    //     let newForm = $('#formTambahKontakTemplate').clone(); 
-    //     newForm.attr('id', 'formTambahKontak + formCounter); 
-    //     newForm.appendTo('.form-container'); newForm.show();
-    //     formCounter++;
-    // }
-        
-    // $('#iconTambah').on('click', function() {    
-    //     addNewForm();    
-    // });
-    
-    // $(document).on('click', '.remove-form', function() {
-    //     $(this).closest('.content-kontak-form').remove();
-    // });
-    
 </script>
