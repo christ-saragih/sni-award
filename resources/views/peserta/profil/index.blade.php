@@ -54,7 +54,7 @@
 
         <!-- Ubah password start -->
         <div class="tab-pane {{request()->query('tab')=='ubah_kata_sandi'? 'active' : 'hide'}}" id="simple-tabpanel-3" role="tabpanel" aria-labelledby="simple-tab-3">
-           @include('Peserta.profil.wizard.ubahsandi')
+          @include('Peserta.profil.wizard.ubahsandi')
         </div>
         <!-- Ubah password end -->
 

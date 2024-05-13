@@ -43,7 +43,7 @@
                                 <h6 class="mb-0">Nama Penghubung</h6>
                                 </div>
                                 <div class="col-md-8 pe-5">
-                                <input type="text" name="nama" class="form-control form-control-lg" />
+                                <input type="text" name="nama" class="form-control form-control-lg" id="addPenghubung" />
                                 </div>
                             </div>
                             <div class="row align-items-center pb-3">
@@ -51,7 +51,7 @@
                                 <h6 class="mb-0">Nomor Telepon</h6>
                                 </div>
                                 <div class="col-md-8 pe-5">
-                                <input type="text" name="no_hp" class="form-control form-control-lg" />
+                                <input type="text" name="no_hp" class="form-control form-control-lg" id="addPenghubung" />
                                 </div>
                             </div>
                             <div class="row align-items-center pb-3">
@@ -59,7 +59,7 @@
                                 <h6 class="mb-0">Jabatan</h6>
                                 </div>
                                 <div class="col-md-8 pe-5">
-                                <input type="text" name="jabatan" class="form-control form-control-lg" />
+                                <input type="text" name="jabatan" class="form-control form-control-lg" id="addPenghubung" />
                                 </div>
                             </div>
                         </div>
@@ -122,12 +122,13 @@
                         </div>
                     </div>
                     </div>
-                    <div class="px-5 py-4 d-flex justify-content-end gap-3">            
+                    <div class="px-5 py-4 d-flex justify-content-end gap-3">  
+                  
                         <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Hapus</button>    
-                        </form>            
+                        </form>
                         <button type="submit" class="btn" style="width: 13%;">Edit</button>
                     </div>
                 </div>
@@ -145,6 +146,10 @@
         }
     }
     const handleCloseForm = () => {
+        const addPenghubungInput = document.querySelectorAll('#addPenghubung')
+        addPenghubungInput.forEach(item => {
+            item.value = ''
+        });
         form.style.display = 'none'
     }
     

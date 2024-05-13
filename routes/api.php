@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\WilayahAdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

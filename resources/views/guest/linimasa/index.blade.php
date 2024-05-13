@@ -54,17 +54,20 @@
               ],
             ]
         @endphp
-        <div class="w-100 d-flex align-items-center justify-content-center bg-white" style="margin-top: 150px;">
+        <div class="d-flex align-items-center justify-content-center" style="margin-top: 150px;">
           @foreach ($linimasa as $key=>$lm)
             @php
-                $percent_index = round((($key+1)/count($linimasa))*100);
+                $percent_index = round((($key+2)/count($linimasa))*100);
             @endphp
             <div class="d-flex align-items-center">
               <div class="">
                 <div class="position-relative">
-                  <div class="position-absolute {{ ($key % 2 == 0) ? 'bottom-100 start-100' : 'top-100 end-100' }}">
-                    <div class="text-center fs-5 fw-bold">{{ $lm['tanggal'] }}</div>
-                    <div class="text-center max-w-100">{{ $lm['deskripsi'] }}</div>
+                  <div 
+                    class="p-0 m-0 text-center position-absolute"
+                    style="{{ ($key % 2 == 0) ? 'bottom: 200%;' : 'top: 200%;' }} transform: translateX(-20%);"
+                  >
+                    <div class="fs-5 fw-bold">{{ $lm['tanggal'] }}</div>
+                    <div class="max-w-100">{{ $lm['deskripsi'] }}</div>
                   </div>
                   <div style="opacity: {{ $percent_index }}%;">
                     <div class="circle-step">{{ $loop->iteration }}</div>

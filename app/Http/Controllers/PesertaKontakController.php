@@ -29,27 +29,27 @@ class PesertaKontakController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function tambahKontakPenghubung(Request $request)
-    {
-        dd(['nama_penghubung' => $request->nama_penghubung,
-        'nomor_telepon' => $request->nomor_telepon,
-        'jabatan' => $request->jabatan,]);
-        $request ->validate([
-            'nama_penghubung' => 'required',
-            'nomor_telepon' => 'string',
-            'jabatan' => 'required',
-        ], [
-            'nama_penghubung.required' =>  "Nama penghubung harus diisi",
-            'jabatan.required' =>  "Jabatan harus diisi",
-        ]);
+    // public function tambahKontakPenghubung(Request $request)
+    // {
+    //     // dd(['nama_penghubung' => $request->nama_penghubung,
+    //     // 'nomor_telepon' => $request->nomor_telepon,
+    //     // 'jabatan' => $request->jabatan,]);
+    //     $request ->validate([
+    //         'nama_penghubung' => 'required',
+    //         'nomor_telepon' => 'string',
+    //         'jabatan' => 'required',
+    //     ], [
+    //         'nama_penghubung.required' =>  "Nama penghubung harus diisi",
+    //         'jabatan.required' =>  "Jabatan harus diisi",
+    //     ]);
         
-        PesertaKontak::tambahKontakPenghubung([
-            'nama_penghubung' => $request->nama_penghubung,
-            'nomor_telepon' => $request->nomor_telepon,
-            'jabatan' => $request->jabatan,
-        ]);
-        return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
-    }
+    //     PesertaKontak::tambahKontakPenghubung([
+    //         'nama_penghubung' => $request->nama_penghubung,
+    //         'nomor_telepon' => $request->nomor_telepon,
+    //         'jabatan' => $request->jabatan,
+    //     ]);
+    //     return redirect('/peserta/profil')->with('sukses','Data Berhasil Di Tambahkan');
+    // }
 
     /**
      * Display the specified resource.
@@ -80,10 +80,59 @@ class PesertaKontakController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PesertaKontak $pesertaKontak)
-    {
-        $pesertaKontak->delete();
 
-        return redirect('/peserta/profil')->with('success', 'Peserta kontak berhasil dihapus');
+    public function tambahKontakPenghubung(Request $request)
+    {
+        // dd(['nama_penghubung' => $request->nama_penghubung,
+        // 'nomor_telepon' => $request->nomor_telepon,
+        // 'jabatan' => $request->jabatan,]);
+        $request ->validate([
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'jabatan' => 'required',
+        ], [
+            'nama.required' =>  "Nama penghubung harus diisi",
+            'jabatan.required' =>  "Jabatan harus diisi",
+            'no_hp.required' =>  "nomor penghubung harus diisi",
+        ]);
+        
+        PesertaKontak::create([
+            'peserta_id' => Auth::guard('peserta')->user()->id,
+            'nama' => $request->nama,
+            'no_hp' => $request->no_hp,
+            'jabatan' => $request->jabatan,
+        ]);
+        return redirect('/peserta/profil?tab=kontak')->with('sukses','Data Berhasil Di Tambahkan');
+    }
+    
+    // dd(['nama' => $request->nama,
+    // 'no_hp' => $request->no_hp,
+    // 'jabatan' => $request->jabatan,]);
+
+    // $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
+    // $peserta_kontak = PesertaKontak::where('peserta_id', $peserta->id)[$index];
+    public function ubahKontakPenghubung(Request $request, $id)
+    {
+        $peserta_kontak = PesertaKontak::find($id);
+
+        if ($peserta_kontak) {
+            $peserta_kontak->update([
+                'nama' =>  $request->nama,
+                'no_hp' => $request->no_hp,
+                'jabatan' => $request->jabatan,
+            ]);
+
+            return redirect('/peserta/profil?tab=kontak')->with('sukses','Data Berhasil Di Tambahkan');
+        } else {
+            return redirect('/peserta/profil?tab=kontak')->with('error','Data Tidak Ditemukan');
+        }
+    }
+
+    public function hapuskontak($id)
+    {
+        $peserta_kontak = PesertaKontak::find($id);
+        $peserta_kontak->delete();
+
+        return redirect()->back()->with('success', 'Data peserta kontak berhasil dihapus.');
     }
 }

@@ -30,7 +30,7 @@
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_legalitas_hukum_organisasi)
-                                            <div class="col-md-12">
+                                            <div class="col-md-11">
                                                 <div class="input-group custom-file-button">
                                                     <label class="input-group-text" for="inputGroupFile1">Unggah</label>
                                                     <label class="label-unik" id="file-input-label1" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
@@ -46,8 +46,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" target="_blank">
-                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
                                         @endif
@@ -62,7 +62,7 @@
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_sppt_sni)
-                                            <div class="col-md-12">
+                                            <div class="col-md-11">
                                                 <div class="input-group custom-file-button">
                                                     <label class="input-group-text" for="inputGroupFile2">Unggah</label>
                                                     <label class="label-unik" id="file-input-label2" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
@@ -78,8 +78,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}"  target="_blank">
-                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}"  target="_blank">
+                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
                                         @endif
@@ -94,7 +94,7 @@
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_sk_kemenkumham)
-                                            <div class="col-md-12">
+                                            <div class="col-md-11">
                                                 <div class="input-group custom-file-button">
                                                     <label class="input-group-text" for="inputGroupFile3">Unggah</label>
                                                     <label class="label-unik" id="file-input-label3" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
@@ -110,8 +110,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" target="_blank">
-                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
                                         @endif
@@ -126,7 +126,7 @@
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_kewenangan_kebijakan)
-                                        <div class="col-md-12">
+                                        <div class="col-md-11">
                                             <div class="input-group custom-file-button">
                                                 <label class="input-group-text" for="inputGroupFile4">Unggah</label>
                                                 <label class="label-unik" id="file-input-label4" for="inputGroupFile4">Maksimum upload file : 10 MB </label>
@@ -142,8 +142,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" target="_blank">
-                                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
                                         @endif

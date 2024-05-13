@@ -10,7 +10,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
-use App\Http\Controllers\Sekretariat\SekretariatDashboardController;
+use App\Http\Controllers\Sekretariat\Tim\SekretariatTimController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -36,6 +36,8 @@ use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
+use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
 use App\Models\RegistrasiAssessment;
@@ -99,11 +101,11 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
-    Route::post('/profil',[PesertaProfilController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
-    Route::put('/profil/{id}',[PesertaProfilController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
-    Route::delete('/profil/{id}',[PesertaProfilController::class, 'destroy'])->name('peserta.profil.kontak.hapus');
-    Route::get('/profil/edit/',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
-    Route::put('/profil/edit/',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
+    Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
+    Route::put('/profil/kontak/{id}',[PesertaKontakController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
+    Route::delete('/profil/kontak/{id}',[PesertaKontakController::class, 'hapuskontak'])->name('peserta.profil.kontak.hapus');
+    Route::get('/profil/edit',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
+    Route::put('/profil/edit',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
     Route::get('/pendaftaran/{id}/detail/{registrasi_id}', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
@@ -352,7 +354,19 @@ Route::prefix('/lead-evaluator')->group(function () {
 Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () { 
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
+
     Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
+
+    Route::get('/profil', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'index']);
+    Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
+
+    Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
+    Route::get('/peserta/profil/{registrasi_id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
+    Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
+    Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
+    
+    Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
+    Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
 });
 // Sekretariat End
 

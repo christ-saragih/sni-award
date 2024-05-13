@@ -58,7 +58,7 @@ class AuthPesertaController extends Controller
     public function registrasiPeserta(Request $request) {
         $request->validate([
             'email' => 'required|unique:peserta|email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|confirmed|strong_password',
             'kategori_organisasi_id' => 'required',
         ], [
             'email.required' => 'Email Wajib Diisi',
@@ -66,6 +66,7 @@ class AuthPesertaController extends Controller
             'password.required' => 'Password Wajib Diisi',
             'password.min' => 'Panjang Password minimal 8 karakter',
             'password.confirmed' => 'Harap konfirmasi password anda',
+            'password.strong_password' => 'Password harus mengandung huruf besar, huruf kecil, angka, John karakter spesial',
             'kategori_organisasi_id.required' => 'Kategori Organisasi wajib dipilih',
         ]);
         $dataRegistrasi = [
@@ -89,7 +90,7 @@ class AuthPesertaController extends Controller
         }
 
         if (Auth::guard('peserta')->check()) {
-            return redirect('/dashboard');
+            return redirect('/peserta/dashboard');
         }else {
             return redirect('/masuk')->with('success', 'Berhasil melakukan registrasi');
         }
