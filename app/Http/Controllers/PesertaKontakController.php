@@ -131,8 +131,11 @@ class PesertaKontakController extends Controller
     public function hapuskontak($id)
     {
         $peserta_kontak = PesertaKontak::find($id);
-        $peserta_kontak->delete();
-
-        return redirect()->back()->with('success', 'Data peserta kontak berhasil dihapus.');
+        $is_peserta_kontak_greater_than_one = count(PesertaKontak::where('peserta_id', Auth::guard('peserta')->user()->id)->get()) > 1;
+        if ($is_peserta_kontak_greater_than_one) {
+            $peserta_kontak->delete();
+            return redirect()->back()->with('success', 'Data peserta kontak berhasil dihapus.');
+        }
+        return redirect()->back()->withErrors('Data peserta kontak tidak bisa dihapus.');
     }
 }

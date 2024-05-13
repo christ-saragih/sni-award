@@ -121,16 +121,19 @@
                         </div>
                     </div>
                     </div>
-                    <div class="px-5 py-4 d-flex justify-content-end gap-3">  
-                        <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Hapus</button>    
-                        </form>
+                    <div class="px-5 py-4 d-flex justify-content-end gap-3"> 
+                        @if ($loop->count>1)
+                            <button type="button" class="btn nonactive" style="cursor: pointer;" onclick="handleSubmitDeleteForm({{$loop->iteration}})">Hapus</button> 
+                        @endif
                         <button type="submit" class="btn" style="width: 13%;">Edit</button>
                     </div>
                 </div>
             </div>
+        </form>
+        <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}" id="deleteForm{{$loop->iteration}}">
+            @csrf
+            @method('DELETE')
+            {{-- <button type="submit">Hapus</button>     --}}
         </form>
     @endforeach
     {{-- nanti ganti ke route update --}}
@@ -149,5 +152,9 @@
             item.value = ''
         });
         form.style.display = 'none'
+    }
+    const handleSubmitDeleteForm = (iteration) => {
+        const form = document.getElementById(`deleteForm${iteration}`)
+        form.submit()
     }
 </script>
