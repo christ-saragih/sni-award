@@ -140,12 +140,25 @@
 </section>
 
 <script>
+    // Get the form element with the id 'tambah-kontak-penghubung'
     const form = document.getElementById('tambah-kontak-penghubung')
+
+    /**
+     * This function handles the display of the add contact form.
+     * It takes a single parameter 'jumlahKontak' (number of contacts) and checks if it is less than 2.
+     * If true, it sets the display style of the form to 'block', making it visible.
+     * @param {number} jumlahKontak - The number of contacts.
+     */
     const handleAddForm = (jumlahKontak) =>  {
         if (jumlahKontak < 2) {
             form.style.display = 'block'
         }
     }
+
+    /**
+     * This function handles the closing of the add contact form.
+     * It clears the values of all input elements with the id 'addPenghubung' and sets the display style of the form to 'none', effectively hiding the form.
+     */
     const handleCloseForm = () => {
         const addPenghubungInput = document.querySelectorAll('#addPenghubung')
         addPenghubungInput.forEach(item => {
@@ -153,6 +166,13 @@
         });
         form.style.display = 'none'
     }
+
+    /**
+     * This function handles the submission of the delete form.
+     * It takes a single parameter 'iteration' and retrieves an HTML form element with the id 'deleteForm' followed by the value of 'iteration'.
+     * It then submits the form.
+     * @param {number} iteration - The iteration number.
+     */
     const handleSubmitDeleteForm = (iteration) => {
         const form = document.getElementById(`deleteForm${iteration}`)
         form.submit()
