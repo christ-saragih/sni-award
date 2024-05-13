@@ -42,15 +42,16 @@
                         </div> -->
 
                         <!-- fieldsets -->
-                        @foreach ($desk_evaluation as $index => $penilaian)
-                            <fieldset class="fieldset" id="fieldsetPenilaian">
+                        <fieldset class="fieldset" id="fieldsetPenilaian">
+                            @foreach ($desk_evaluation as $penilaian)
+                                @if ($penilaian->jabatan == 'evaluator')
                                     <div class="card-body pt-0 mt-0">
                                         <div class="row align-items-center pt-4 pb-3">
                                             <div class="col-md-4 ps-5">
                                                 <h6 class="mb-0">Nama</h6>
                                             </div>
                                             <div class="col-md-8 pe-5">
-                                                <p class="form-control form-control-lg m-0">{{ $penilaian->user->name }}</p>
+                                                <p>{{ $penilaian->user->name }}</p>
                                             </div>
                                         </div>
                                         <div class="row align-items-center pb-3">
@@ -59,7 +60,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="d-flex align-items-center gap-3">
-                                                    <p class="form-control form-control-lg m-0">{{ $penilaian->skor }}</p>
+                                                    <p>{{ $penilaian->skor }}</p>
                                                     {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
                                                 </div>
                                             </div>
@@ -69,16 +70,192 @@
                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                             </div>
                                             <div class="col-md-8 pe-5">
-                                                <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
+                                                <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
-                                    @if ($index > 0)
-                                        <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                    @endif
-                            </fieldset>
-                        @endforeach
+                                @else
+                                    <div class="card-body pt-0 mt-0">
+                                        <div class="row align-items-center pt-4 pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nama</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p>-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p>-</p>
+                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                                @endif
+                                {{-- @if ($index > 0)
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @endif --}}
+                            @endforeach
+                        </fieldset>
+
+                        <fieldset class="fieldset" id="fieldsetPenilaian">
+                            @foreach ($desk_evaluation as $penilaian)
+                                @if ($penilaian->jabatan == 'lead_evaluator')
+                                    <div class="card-body pt-0 mt-0">
+                                        <div class="row align-items-center pt-4 pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nama</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p>{{ $penilaian->user->name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p>{{ $penilaian->skor }}</p>
+                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @else
+                                    <div class="card-body pt-0 mt-0">
+                                        <div class="row align-items-center pt-4 pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nama</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p>-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p>-</p>
+                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @endif
+                                {{-- @if ($index > 0)
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @endif --}}
+                            @endforeach
+                        </fieldset>
+
+                        <fieldset class="fieldset" id="fieldsetPenilaian">
+                            @foreach ($desk_evaluation as $penilaian)
+                                @if ($penilaian->jabatan == 'sekretariat')
+                                    <div class="card-body pt-0 mt-0">
+                                        <div class="row align-items-center pt-4 pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nama</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p>{{ $penilaian->user->name }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p>{{ $penilaian->skor }}</p>
+                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @else
+                                    <div class="card-body pt-0 mt-0">
+                                        <div class="row align-items-center pt-4 pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nama</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p>-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <p>-</p>
+                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-8 pe-5">
+                                                <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @endif
+                                {{-- @if ($index > 0)
+                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                                @endif --}}
+                            @endforeach
+                        </fieldset>
 
                         {{-- <fieldset class="fieldset" id="fieldsetPenilaian">
                             <div class="card-body pt-0 mt-0 mb-5">
