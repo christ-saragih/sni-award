@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registrasi_penilaian', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
-            $table->integer('evaluator_id')->unsigned();
+            $table->integer('internal_id')->unsigned();
             $table->enum('jabatan',['evaluator','lead_evaluator']);
             $table->tinyInteger('stage_id')->unsigned();
             $table->string('url_dokumen_penilaian');

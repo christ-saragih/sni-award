@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class SekretariatTimController extends Controller
 {
     public function index() {
+        // $tim = 
         return view('sekretariat.tim.index');
     }
 
