@@ -58,4 +58,27 @@ class EvaluatorPesertaController extends Controller
             'site_evaluation' => $site_evaluation,
         ]);
     }
+
+    public function penilaian(Request $request, $registrasi_id) {
+        // dd([
+        //     'skor' => $request->skor,
+        //     'catatan' => $request->catatan,
+        // ]);
+        $request->validate([
+            'skor' => 'required',
+            'catatan' => 'required',
+        ], [
+            'skor.required' => 'Tidak ada skor',
+            'catatan.required' => 'Tidak ada catatan',
+        ]);
+        // $registrasi_id = Crypt::decryptString($registrasi_id);
+        // dd($registrasi_id);
+        $registrasi_penilaian = RegistrasiPenilaian::find($registrasi_id);
+        $registrasi_penilaian->update([
+            'skor' => $request->skor,
+            'catatan' => $request->catatan,
+        ]);
+
+        return back()->with('success', 'Berhasil mengirim penilaian');
+    }
 }
