@@ -35,6 +35,11 @@ class Registrasi extends Model
         return $this->hasMany(RegistrasiDokumen::class);
     }
 
+    public function registrasi_evaluator(): HasOne
+    {
+        return $this->hasOne(RegistrasiEvaluator::class);
+    }
+
     public function registrasi_penilaian(): HasMany
     {
         return $this->hasMany(RegistrasiPenilaian::class);
