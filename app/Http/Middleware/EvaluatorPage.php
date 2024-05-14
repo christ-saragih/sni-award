@@ -17,9 +17,10 @@ class EvaluatorPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->jenis_role->nama == 'evaluator' || Auth::user()->jenis_role->nama == 'lead evaluator') {
+            if (Auth::user()->jenis_role->nama == 'evaluator') {
                 return $next($request);
             }
+            return redirect('/404');
         }
         return redirect('/404');
     }

@@ -17,17 +17,17 @@ class UserProfilController extends Controller
     public function index() {
         
         $user = Auth::user();
-        $role = $user->jenis_role->nama;
+        $role = strtolower($user->jenis_role->nama);
         $is_sekretariat = Registrasi::where('sekretariat_id', $user->id)->get();
         if (count($is_sekretariat) != 0) {
             $role = "sekretariat";
         }
-        return view('admin.profil.index', ['user' => $user, 'role' => $role]);
+        return view('user.profil.index', ['user' => $user, 'role' => $role]);
     } 
 
     public function editView() {
         $user = Auth::user();
-        return view('admin.profil.edit', ['user' => $user]);
+        return view('user.profil.edit', ['user' => $user]);
     }
 
     public function edit(Request $request) {

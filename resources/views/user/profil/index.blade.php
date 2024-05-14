@@ -1,11 +1,10 @@
-@extends('sekretariat.layouts.master')
+@extends('user.profil_layout.master')
 
 @section('content')
 <style>
     .data {
         font-size: 18px;
-        border: 1px solid #9FAFBF;
-        border-radius: 15px;
+        padding: 10px 15px;
     }
 
     .img-container {
@@ -34,8 +33,8 @@
                 <div class="img-container position-absolute mb-5">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat">
                 </div>
-              <h4 style="color: #000000; font-size: 22px; font-weight: bold;">Sekretariat</h4>
-              <button class="btn action-button mx-auto mb-1" disabled>Edit Profil</button>
+              <h4 style="color: #000000; font-size: 22px; font-weight: bold; text-transform: capitalize;">{{ $role }}</h4>
+              <a href="{{ route('user.profil.edit.view') }}" class="btn action-button mx-auto mb-1">Edit Profil</a>
             </div>
       
             <div class="container mt-4">
@@ -49,7 +48,7 @@
                             <h6 class="mb-0">Nama</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <input type="text" name="nama" class="form-control form-control-lg" value="BENNEFIT CHRISTY SARAGIH">
+                            <div class="data">{{ $user->name }}</div>
                           </div>
                         </div>
 
@@ -58,7 +57,7 @@
                             <h6 class="mb-0">No. Telepon</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <input type="tel" name="no_telepon" class="form-control form-control-lg" value="0812124321">
+                            <div class="data">{{ $user->user_profil ? $user->user_profil->no_hp : '' }}</div>
                           </div>
                       </div>
                       
@@ -67,7 +66,7 @@
                             <h6 class="mb-0">Email</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <input type="email" name="email" class="form-control form-control-lg" value="bennefit.19@gmail.com">
+                            <div class="data">{{ $user->email }}</div>
                           </div>
                       </div>
       
@@ -76,7 +75,7 @@
                             <h6 class="mb-0">NPWP</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <input type="number" name="npwp" class="form-control form-control-lg" value="123456789">
+                            <div class="data">{{ $user->user_profil ? $user->user_profil->npwp : '' }}</div>
                           </div>
                       </div>
       
@@ -85,7 +84,7 @@
                             <h6 class="mb-0">No. Rekening</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <input type="number" name="no_rekening" class="form-control form-control-lg" value="321456789">
+                            <div class="data">{{ $user->user_profil ? $user->user_profil->no_rekening : '' }}</div>
                           </div>
                       </div>
       
@@ -93,33 +92,32 @@
                         <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Dokumen CV</h6>
                         </div>
-      
                         <div class="col-md-8 ps-5 pe-5">
-                          <div class="input-group custom-file-button">
-                            <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                            <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                            <input type="file" name="dokumen_cv" class="form-control unik form-control-lg" id="inputGroupFile1">
-                          </div>
+                            @if ($user->user_profil && $user->user_profil->url_cv)
+                              <div class="data">
+                                  <a href="{{ $user->user_profil->url_cv }}" target="_blank">
+                                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
+                                  </a>
+                              </div>
+                            @endif
                         </div>
                       </div>
 
-                      <div class="row align-items-center pb-3">
+                      <div class="row align-items-center pb-3 mb-5">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Dokumen Anti Penyuapan</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="input-group custom-file-button">
-                              <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                              <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                              <input type="file" name="dokumen_anti_penyuapan" class="form-control unik form-control-lg" id="inputGroupFile1">
-                            </div>
+                            @if ($user->user_profil && $user->user_profil->url_anti_penyuapan)
+                              <div class="data">
+                                  <a href="{{ $user->user_profil->url_anti_penyuapan }}" target="_blank">
+                                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
+                                  </a>
+                              </div>
+                            @endif
                           </div>
                       </div>
-                      
-                      <div class="px-5 py-4 d-flex justify-content-end gap-3">
-                        <a href="/peserta/profil" role="button" class="btn nonactive" style="width: 13%;">Batal</a>
-                        <button type="submit" class="btn" style="width: 13%;">Simpan</button>
-                      </div>
+
                     </div>
                   </div>
                 </div>
