@@ -19,6 +19,7 @@
                                 <br />
                                 <!-- fieldsets -->
                                 <fieldset class="fieldset" id="fieldsetPenilaian">
+                                    {{-- {{dd($registrasi_penilaian)}} --}}
                                     @foreach ($registrasi_penilaian as $penilaian)
                                         <div class="card-body pt-0 mt-0">
                                             <div class="row align-items-center pt-4 pb-3">
@@ -36,6 +37,9 @@
                                                 <div class="col-md-2">
                                                     <div class="d-flex align-items-center gap-3">
                                                         <p class="form-control form-control-lg m-0">{{ $penilaian->skor }}</p>
+                                                        <button type="button" onclick="handleDownloadAssessment()">
+                                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,4 +68,14 @@
         <span>Sedang Tahap penilaian Desk Evaluation. Harap Ditunggu!</span>
     </div>
     <hr class="p-0">
+    
+    <form action="{{ route('sekretariat.peserta.profil.assessment.download', $registrasi->id) }}" method="POST" id="formDownloadAssessment" class="d-none">
+        @csrf
+    </form>
 </div>
+<script>
+    const handleDownloadAssessment = () => {
+        const form = document.getElementById('formDownloadAssessment')
+        form.submit()
+    }
+</script>
