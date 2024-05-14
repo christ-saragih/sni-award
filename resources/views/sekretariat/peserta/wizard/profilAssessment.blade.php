@@ -41,8 +41,14 @@
 
     </div>
     {{-- end head --}}
+    <form action="{{ route('sekretariat.peserta.profil.assessment.download', $registrasi->id) }}" method="POST">
+        @csrf
+        <button type="submit">
+            Unduh sebagai PDF
+        </button>
+    </form>
     {{-- content --}}
-    <div>
+    <div id="all_assessment">
         @foreach ($selected_assessment_kategori as $ak)
             @foreach ($ak->assessment_sub_kategori as $ask)
                 @foreach ($ask->assessment_pertanyaan as $key=>$ap)
