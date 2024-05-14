@@ -43,7 +43,9 @@
     {{-- end head --}}
     <form action="{{ route('sekretariat.peserta.profil.assessment.download', $registrasi->id) }}" method="POST">
         @csrf
-        <button type="submit">unduh sebagai pdf</button>
+        <button type="submit">
+            Unduh sebagai PDF
+        </button>
     </form>
     {{-- content --}}
     <div id="all_assessment">
