@@ -43,7 +43,7 @@
     {{-- end head --}}
     <form action="{{ route('sekretariat.peserta.profil.assessment.download', $registrasi->id) }}" method="POST">
         @csrf
-        <button type="submit">
+        <button class="btn" type="submit" style="width: 25%; padding: 10px 20px; border: 3.5px solid #c17d2d;">
             Unduh sebagai PDF
         </button>
     </form>
