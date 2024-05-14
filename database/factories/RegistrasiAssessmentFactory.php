@@ -20,6 +20,7 @@ class RegistrasiAssessmentFactory extends Factory
         return [
             'registrasi_id' => Registrasi::factory(),
             // 'assessment_pertanyaan_id' => 1,
+            'assessment_pertanyaan_id' => 1,
             'assessment_jawaban_id' => 1,
             'score' => null
         ];

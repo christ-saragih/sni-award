@@ -36,7 +36,11 @@ use App\Http\Controllers\TipeKategoriController;
 use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\Evaluator\EvaluatorDashboardController;
+use App\Http\Controllers\User\Evaluator\Peserta\EvaluatorPesertaController;
+use App\Http\Controllers\User\Evaluator\ProfilEvaluatorController;
 use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
+use App\Http\Controllers\User\Sekretariat\ProfilSekretariatController;
 use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
@@ -148,8 +152,9 @@ Route::prefix('/user')->group(function () {
         Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('user.verification.view');
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser'])->name('user.verification.resend');
     });
-    
+
     Route::middleware(['auth', 'verified', 'email.verified'])->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'redirectDashboard'])->name('user.dashboard.redirect');
         Route::get('/profil', [UserProfilController::class, 'index'])->name('user.profil.view');
         Route::get('/profil/edit', [UserProfilController::class, 'editView'])->name('user.profil.edit.view');
         Route::put('/profil/edit', [UserProfilController::class, 'edit'])->name('user.profil.edit');
@@ -338,7 +343,17 @@ Route::prefix('/admin')->group(function () {
 
 // evaluator
 Route::prefix('/evaluator')->group(function () {
+    Route::middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function() {
+        Route::get('/dashboard', [EvaluatorDashboardController::class, 'index']);
 
+        Route::get('/profil', [ProfilEvaluatorController::class, 'index']);
+        Route::get('/profil/edit', [ProfilEvaluatorController::class, 'edit']);
+
+        Route::get('/peserta', [EvaluatorPesertaController::class, 'index'])->name('evaluator.peserta.view');
+        Route::get('/peserta/profil/{registrasi_id}', [EvaluatorPesertaController::class, 'detailProfil'])->name('evaluator.peserta.profil.view');
+        // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
+        // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
+    });
 });
 // end evaluator
 
@@ -351,7 +366,7 @@ Route::prefix('/lead-evaluator')->group(function () {
 // end User
 
 // Sekretariat Start
-Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () { 
+Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () {
     //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
     //dah itu buat prefix /evaluator kalau dah ada page evaluator
 
@@ -364,7 +379,7 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     Route::get('/peserta/profil/{registrasi_id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
     Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
     Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
-    
+
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
 });
