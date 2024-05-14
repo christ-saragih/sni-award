@@ -347,9 +347,10 @@ Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', '
 
     Route::get('/profil', [ProfilEvaluatorController::class, 'index']);
     Route::get('/profil/edit', [ProfilEvaluatorController::class, 'edit']);
-
+        
     Route::get('/peserta', [EvaluatorPesertaController::class, 'index'])->name('evaluator.peserta.view');
     Route::get('/peserta/profil/{registrasi_id}', [EvaluatorPesertaController::class, 'detailProfil'])->name('evaluator.peserta.profil.view');
+    Route::put('/peserta/profil/{registrasi_id}/penilaian', [EvaluatorPesertaController::class, 'penilaian'])->name('evaluator.peserta.profil.penilaian');
     // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
     // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
 });
