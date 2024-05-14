@@ -20,7 +20,7 @@ class ForgotPasswordUserMail extends Mailable
     }
 
     public function build() {
-        return $this->subject('Lupa Sandi')->view('admin.mail.emailLupaPassword');
+        return $this->subject('Lupa Sandi')->view('user.mail.emailLupaPassword');
     }
 
     /**

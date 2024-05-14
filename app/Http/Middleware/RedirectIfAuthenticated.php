@@ -18,27 +18,22 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
         $guards = empty($guards) ? [null] : $guards;
-        // foreach ($guards as $guard) {
-            // if (Auth::guard($guard)->check()) {
-            //     return redirect(RouteServiceProvider::DASHBOARD);
-            // }
-            if (Auth::guard('peserta')->check()) {
-                // return redirect(RouteServiceProvider::DASHBOARD);
-                return redirect('/peserta/dashboard');
+
+        if (Auth::guard('peserta')->check()) {
+            // return redirect(RouteServiceProvider::DASHBOARD);
+            return redirect()->route('user.dashboard.view');
+        }
+        elseif (Auth::guard('web')->check()) {
+            if (Auth::guard('web')->user()->jenis_role->nama == 'admin') {
+                return redirect()->route('admin.dahboard.view');
+            } 
+            elseif (Auth::guard('web')->user()->jenis_role == 'evaluator') {
+                return redirect()->route('evaluator.dashboard.view');
             }
-            elseif (Auth::guard('web')->check()) {
-                if (Auth::guard('web')->user()->jenis_role->nama == 'admin') {
-                    return redirect('/admin/dashboard');
-                } 
-                // elseif (Auth::guard('web')->user()->jenis_role == 'evaluator') {
-                else {
-                    return redirect('/sekretariat/dashboard');
-                }
+            else {
+                return redirect()->route('sekretariat.dashboard.view');
             }
-            // elseif (Auth::guard('web')->check() == false) {
-            //     return redirect()->route('user.login.view');
-            // }
-        // }
+        }
 
         return $next($request);
     }

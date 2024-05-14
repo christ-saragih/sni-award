@@ -16,8 +16,11 @@ class AdminPage
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->jenis_role->nama == 'admin') {
-            return $next($request);
+        if (Auth::check()) {
+            if (Auth::user()->jenis_role->nama == 'admin') {
+                return $next($request);
+            }
+            return redirect('/404');
         }
         return redirect('/404');
     }

@@ -17,10 +17,16 @@ class UserDashboardController extends Controller
         if (Auth::check() == false) {
             return redirect()->route('user.login.view');
         } elseif (Auth::user()->email_verified_at != null) {
-            if (Auth::guard('web')->user()->jenis_role->nama == 'evaluator') {
-                return redirect('/sekretariat/dashboard');
-            }  else {
-                return view('admin.home.index');
+            $role = strtolower(Auth::user()->jenis_role->nama);
+            $role = count(Registrasi::where('sekretariat_id', Auth::user()->id)->get()) != 0 ? 'sekretariat' : $role;
+            if ($role == 'admin') {
+                return redirect()->route('admin.dashboard.view');
+            } elseif ($role == 'sekretariat') {
+                return redirect()->route('sekretariat.dashboard.view');
+            } elseif ($role == 'evaluator') {
+                return redirect()->route('evaluator.dashboard.view');
+            } elseif ($role == 'lead evaluator') {
+                return redirect()->route('lead_evaluator.dashboard.view');
             }
         } else {
             return redirect()->route('user.verification.view');

@@ -18,7 +18,7 @@ class AuthUserController extends Controller
 {
     public function loginUserView() {
         // dd(Auth::check());
-        return view('admin.auth.login');
+        return view('user.auth.login');
     }
 
     public function loginUser(Request $request) {
@@ -54,7 +54,7 @@ class AuthUserController extends Controller
     }
 
     public function registrasiUserView() {
-        return view('admin.auth.register');
+        return view('user.auth.register');
     }
 
     public function registrasiUser(Request $request) {
@@ -117,7 +117,7 @@ class AuthUserController extends Controller
                 // nanti ganti /evaluator atau /lead
             }
         }else {
-            return  view('admin.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
+            return  view('user.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
         }
     }
 
@@ -157,7 +157,7 @@ class AuthUserController extends Controller
     }
 
     public function forgotPasswordView() {
-        return view('admin.auth.passwords.forgot');
+        return view('user.auth.passwords.forgot');
     }
 
     public function forgotPassword(Request $request){
@@ -193,7 +193,7 @@ class AuthUserController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if ($user && $user->forgot_password_token == $forgot_password_token) {
-            return view('admin.auth.passwords.reset', [
+            return view('user.auth.passwords.reset', [
                 'email' => $request->email, 
                 'token' => $forgot_password_token,
             ]);
