@@ -77,8 +77,8 @@
         <div class="tab-pane {{ request()->query('tab') == 'assessment'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="eva-site" aria-labelledby="eva-site">
             @include('evaluator.peserta.wizard.profilAssessment')
         </div>
-        <div class="tab-pane {{ request()->query('tab') == 'penilaian'  ? 'active' : 'hide'}} bg-white container-fluid p-5 rounded" role="tabpanel" id="eva-site" aria-labelledby="eva-site">
-            {{-- @include('evaluator.peserta.wizard.profilPenilaian') --}}
+        <div class="tab-pane {{ request()->query('tab') == 'penilaian'  ? 'active' : 'hide'}} rounded" role="tabpanel" id="eva-site" aria-labelledby="eva-site">
+            @include('evaluator.peserta.wizard.profilPenilaian')
         </div>
 
     </div>
