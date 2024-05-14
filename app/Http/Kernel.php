@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'page.admin' => \App\Http\Middleware\AdminPage::class,
         'page.sekretariat' => \App\Http\Middleware\SekretariatPage::class,
         'page.evaluator' => \App\Http\Middleware\EvaluatorPage::class,
+        'page.lead_evaluator' => \App\Http\Middleware\LeadEvaluatorPage::class,
     ];
 }

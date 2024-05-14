@@ -23,7 +23,7 @@ class AuthUserMail extends Mailable
     }
 
     public function build() {
-        return $this->subject('Verifikasi Akun')->view('admin.mail.emailVerifikasiUser');
+        return $this->subject('Verifikasi Akun')->view('user.mail.emailVerifikasiUser');
     }
 
     /**
