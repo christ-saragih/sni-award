@@ -10,7 +10,6 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
-use App\Http\Controllers\Sekretariat\Tim\SekretariatTimController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -34,11 +33,19 @@ use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
 use App\Http\Controllers\TipeKategoriController;
+use App\Http\Controllers\User\Admin\AdminDashboardController;
 use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\Evaluator\EvaluatorDashboardController;
+use App\Http\Controllers\User\Evaluator\Peserta\EvaluatorPesertaController;
+use App\Http\Controllers\User\Evaluator\ProfilEvaluatorController;
+use App\Http\Controllers\User\LeadEvaluator\LeadEvaluatorDashboardController;
+use App\Http\Controllers\User\LeadEvaluator\Peserta\LeadEvaluatorPesertaController;
+use App\Http\Controllers\User\LeadEvaluator\ProfilLeadEvaluatorController;
 use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
+use App\Http\Controllers\User\Sekretariat\tim\SekretariatTimController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
 use App\Models\RegistrasiAssessment;
@@ -99,7 +106,7 @@ Route::middleware(['auth:peserta'])->group(function () {//middleware(['{middlewa
 Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikasiPeserta']);
 
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'email.verified:peserta'])->group(function(){
-    Route::get('/dashboard', [PesertaDashboardController::class, 'index']);
+    Route::get('/dashboard', [PesertaDashboardController::class, 'index'])->name('peserta.dashboard.view');
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
     Route::post('/profil/dokumen',[PesertaDokumenController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
     Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
@@ -123,7 +130,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
     Route::get('/riwayat/{id}/detail/{kategori}', [RiwayatPesertaController::class, 'getKategori'])->name('riwayat.get_kategori');
-
+    Route::post('/riwayat/{registrasi_id}/assessment/download', [RiwayatPesertaController::class, 'downloadAssessmentPDF'])->name('peserta.riwayat.assessment.download');
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
     Route::get('/panduan', [PanduanController::class, 'index']);
 });
@@ -149,8 +156,9 @@ Route::prefix('/user')->group(function () {
         Route::get('/verifikasi', [AuthUserController::class, 'verifikasiUserView'])->name('user.verification.view');
         Route::post('/resend/verifikasi/{kode_verifikasi}', [AuthUserController::class, 'verifikasiUlangUser'])->name('user.verification.resend');
     });
-    
+
     Route::middleware(['auth', 'verified', 'email.verified'])->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'redirectDashboard'])->name('user.dashboard.view');
         Route::get('/profil', [UserProfilController::class, 'index'])->name('user.profil.view');
         Route::get('/profil/edit', [UserProfilController::class, 'editView'])->name('user.profil.edit.view');
         Route::put('/profil/edit', [UserProfilController::class, 'edit'])->name('user.profil.edit');
@@ -162,7 +170,7 @@ Route::prefix('/user')->group(function () {
 //admin
 Route::prefix('/admin')->group(function () {
     Route::middleware(['auth', 'verified', 'email.verified', 'page.admin'])->group(function() {
-        Route::get('/dashboard', [UserDashboardController::class, 'index']);
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.view');
 
         //CRUD Frontpage
         Route::get('/frontpage', [FrontPageController::class, 'index']);
@@ -338,13 +346,30 @@ Route::prefix('/admin')->group(function () {
 //end admin
 
 // evaluator
-Route::prefix('/evaluator')->group(function () {
+Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function() {
+    Route::get('/dashboard', [EvaluatorDashboardController::class, 'index'])->name('evaluator.dashboard.view');
 
+    Route::get('/profil', [ProfilEvaluatorController::class, 'index']);
+    Route::get('/profil/edit', [ProfilEvaluatorController::class, 'edit']);
+
+    Route::get('/peserta', [EvaluatorPesertaController::class, 'index'])->name('evaluator.peserta.view');
+    Route::get('/peserta/profil/{registrasi_id}', [EvaluatorPesertaController::class, 'detailProfil'])->name('evaluator.peserta.profil.view');
+    Route::put('/peserta/profil/{registrasi_id}/penilaian', [EvaluatorPesertaController::class, 'penilaian'])->name('evaluator.peserta.profil.penilaian');
+    // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
+    // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
 });
 // end evaluator
 
 // lead evaluator
-Route::prefix('/lead-evaluator')->group(function () {
+Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verified', 'page.lead_evaluator'])->group(function() {
+    Route::get('/dashboard', [LeadEvaluatorDashboardController::class, 'index'])->name('lead_evaluator.dashboard.view');
+
+    Route::get('/profil', [ProfilLeadEvaluatorController::class, 'index']);
+    Route::get('/profil/edit', [ProfilLeadEvaluatorController::class, 'edit']);
+
+    Route::get('/peserta', [LeadEvaluatorPesertaController::class, 'index'])->name('lead_evaluator.peserta.view');
+    Route::get('/peserta/profil/{registrasi_id}', [LeadEvaluatorPesertaController::class, 'detailProfil'])->name('lead_evaluator.peserta.profil.view');
+    Route::put('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
 
 });
 // end lead evaluator
@@ -352,21 +377,19 @@ Route::prefix('/lead-evaluator')->group(function () {
 // end User
 
 // Sekretariat Start
-Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.evaluator'])->group(function () { 
-    //nanti middleware 'page.evaluator' ganti 'page.sekretariat'
-    //dah itu buat prefix /evaluator kalau dah ada page evaluator
+Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified', 'page.sekretariat'])->group(function () {
 
-    Route::get('/dashboard', [SekretariatDashboardController::class, 'index']);
-
-    Route::get('/profil', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'index']);
-    Route::get('/profil/edit', [App\Http\Controllers\User\Sekretariat\ProfilSekretariatController::class, 'edit']);
+    Route::get('/dashboard', [SekretariatDashboardController::class, 'index'])->name('sekretariat.dashboard.view');
 
     Route::get('/peserta', [SekretariatPesertaController::class, 'index'])->name('sekretariat.peserta.view');
-    Route::get('/peserta/profil/{id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
+    Route::get('/peserta/profil/{registrasi_id}', [SekretariatPesertaController::class, 'detailProfil'])->name('sekretariat.peserta.profil.view');
     Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
-    
+    Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
+    Route::post('/peserta/profil/{registrasi_id}/assessment/download', [SekretariatPesertaController::class, 'downloadAssessmentPDF'])->name('sekretariat.peserta.profil.assessment.download');
+
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
+    Route::post('/tim/store', [SekretariatTimController::class, 'store'])->name('sekretariat.tim.store');
 });
 // Sekretariat End
 

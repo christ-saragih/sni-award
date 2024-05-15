@@ -2,25 +2,25 @@
 
 @section('content')
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
-  </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Assessment</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Dokumen</a>
+    </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
     <!-- Assessment detail -->
     <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
         @if($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error )
-                  <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          </div>
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error )
+                    <li>{{$error}}</li>
+                @endforeach
+                </ul>
+            </div>
         @endif
         <div class="content-ubah-password py-5">
             <h3 class="mb-5 pb-0" style="font-size: 200%; font-weight: bold; color: #2b2b2b;">Jawablah Pertanyaan di Bawah Ini</h3>

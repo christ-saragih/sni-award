@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('lead_evaluator.layouts.master')
 
 @section('content')
 <style>
@@ -21,7 +21,7 @@
 
     .img-container img {
         width: 100%;
-        height: 100%; 
+        height: 100%;
         object-fit: cover !important;
     }
 </style>
@@ -33,10 +33,10 @@
                 <div class="img-container position-absolute mb-5">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat">
                 </div>
-              <h4 style="color: #000000; font-size: 22px; font-weight: bold; text-transform: capitalize;">{{ $role }}</h4>
-              <a href="{{ route('user.profil.edit.view') }}" class="btn action-button mx-auto mb-1">Edit Profil</a>
+              <h4 style="color: #000000; font-size: 22px; font-weight: bold;">Sekretariat</h4>
+              <a href="/evaluator/profil/edit" class="btn action-button mx-auto mb-1">Edit Profil</a>
             </div>
-      
+
             <div class="container mt-4">
               <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-xl-12">
@@ -48,7 +48,7 @@
                             <h6 class="mb-0">Nama</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="data">{{ $user->name }}</div>
+                            <div class="data">Bennefit Christy Saragih</div>
                           </div>
                         </div>
 
@@ -57,49 +57,48 @@
                             <h6 class="mb-0">No. Telepon</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="data">{{ $user->user_profil ? $user->user_profil->no_hp : '' }}</div>
+                            <div class="data">0812121321</div>
                           </div>
                       </div>
-                      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Email</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="data">{{ $user->email }}</div>
+                            <div class="data">bennefit@gmail.com</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">NPWP</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="data">{{ $user->user_profil ? $user->user_profil->npwp : '' }}</div>
+                            <div class="data">12345689</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">No. Rekening</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            <div class="data">{{ $user->user_profil ? $user->user_profil->no_rekening : '' }}</div>
+                            <div class="data">BSN</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                         <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Dokumen CV</h6>
                         </div>
+
                         <div class="col-md-8 ps-5 pe-5">
-                            @if ($user->user_profil && $user->user_profil->url_cv)
-                              <div class="data">
-                                  <a href="{{ $user->user_profil->url_cv }}" target="_blank">
-                                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
-                                  </a>
-                              </div>
-                            @endif
+                            <div class="data">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
+                                </a>
+                            </div>
                         </div>
                       </div>
 
@@ -108,13 +107,11 @@
                             <h6 class="mb-0">Dokumen Anti Penyuapan</h6>
                           </div>
                           <div class="col-md-8 ps-5 pe-5">
-                            @if ($user->user_profil && $user->user_profil->url_anti_penyuapan)
-                              <div class="data">
-                                  <a href="{{ $user->user_profil->url_anti_penyuapan }}" target="_blank">
-                                      <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
-                                  </a>
-                              </div>
-                            @endif
+                            <div class="data">
+                                <a href="#" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
+                                </a>
+                            </div>
                           </div>
                       </div>
 

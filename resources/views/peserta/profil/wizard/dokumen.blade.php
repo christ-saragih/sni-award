@@ -1,3 +1,47 @@
+<style>
+    .file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #9fafbf;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .file-input input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+
+  .file-input-label {
+    display: inline-block;
+    font-size: 112.5%;
+    color: #595959;
+    background-color: #d7dae3;
+    padding: 6px 12px;
+    border-right: 1px solid #9fafbf;
+    cursor: pointer;
+  }
+
+  #fileInputLabel1,
+  #fileInputLabel2,
+  #fileInputLabel3, 
+  #fileInputLabel4 {
+    width: 80%; 
+    color: #9fafbf; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+</style>
+
 <form  method="POST" action="{{ route('peserta.profil.dokumen') }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1" enctype="multipart/form-data">
     {{-- @method('PUT') --}}
     @csrf
@@ -31,22 +75,25 @@
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_legalitas_hukum_organisasi)
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile1">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label1" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_legalitas_hukum_organisasi" accept=".pdf" class="form-control unik" id="inputGroupFile1">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile1" name="url_legalitas_hukum_organisasi" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
+                                                    <label for="inputGroupFile1" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName1"></div>
                                                 </div>
-                                            </div>
+                                            </div>  
                                         @else
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile1">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label1" for="inputGroupFile1">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_legalitas_hukum_organisasi" accept=".pdf" class="form-control unik" id="inputGroupFile1">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile1" name="url_legalitas_hukum_organisasi" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
+                                                    <label for="inputGroupFile1" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName1"></div>
                                                 </div>
-                                            </div>
+                                            </div>  
+
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -62,23 +109,25 @@
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_sppt_sni)
-                                            <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile2">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label2" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_sppt_sni" accept=".pdf" class="form-control unik" id="inputGroupFile2">
-                                                </div>
+                                        <div class="col-md-11">
+                                            <div class="file-input">
+                                                <input type="file" id="inputGroupFile2" name="url_sppt_sni" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
+                                                <label for="inputGroupFile2" class="file-input-label">Unggah</label>
+                                                <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                <div id="fileName2"></div>
                                             </div>
+                                        </div>
                                         @else
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile2">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label2" for="inputGroupFile2">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_sppt_sni" accept=".pdf" class="form-control unik" id="inputGroupFile2">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile2" name="url_sppt_sni" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
+                                                    <label for="inputGroupFile2" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName2"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sppt_sni)}}"  target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}"  target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -95,22 +144,25 @@
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_sk_kemenkumham)
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile3">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label3" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_sk_kemenkumham" accept=".pdf" class="form-control unik" id="inputGroupFile3">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile3" name="url_sk_kemenkumham" accept=".pdf" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
+                                                    <label for="inputGroupFile3" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName3"></div>
                                                 </div>
                                             </div>
                                         @else
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile3">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label3" for="inputGroupFile3">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_sk_kemenkumham" accept=".pdf" class="form-control unik" id="inputGroupFile3">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile3" name="url_sk_kemenkumham" accept=".pdf" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
+                                                    <label for="inputGroupFile3" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName3"></div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_sk_kemenkumham)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -127,22 +179,24 @@
                                     <div class="row align-items-center">
                                         @if (!$peserta->peserta_profil->url_kewenangan_kebijakan)
                                         <div class="col-md-11">
-                                            <div class="input-group custom-file-button">
-                                                <label class="input-group-text" for="inputGroupFile4">Unggah</label>
-                                                <label class="label-unik" id="file-input-label4" for="inputGroupFile4">Maksimum upload file : 10 MB </label>
-                                                <input type="file" name="url_kewenangan_kebijakan" accept=".pdf" class="form-control unik" id="inputGroupFile4">
+                                            <div class="file-input">
+                                                <input type="file" id="inputGroupFile4" name="url_kewenangan_kebijakan" accept=".pdf" onchange="handleFileSelect('inputGroupFile4', 'fileInputLabel4', 'fileName4')">
+                                                <label for="inputGroupFile4" class="file-input-label">Unggah</label>
+                                                <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                <div id="fileName4"></div>
                                             </div>
                                         </div>
                                         @else
                                             <div class="col-md-11">
-                                                <div class="input-group custom-file-button">
-                                                    <label class="input-group-text" for="inputGroupFile4">Unggah</label>
-                                                    <label class="label-unik" id="file-input-label4" for="inputGroupFile4">Maksimum upload file : 10 MB </label>
-                                                    <input type="file" name="url_kewenangan_kebijakan" accept=".pdf" class="form-control unik" id="inputGroupFile4">
+                                                <div class="file-input">
+                                                    <input type="file" id="inputGroupFile4" name="url_kewenangan_kebijakan" accept=".pdf" onchange="handleFileSelect('inputGroupFile4', 'fileInputLabel4', 'fileName4')">
+                                                    <label for="inputGroupFile4" class="file-input-label">Unggah</label>
+                                                    <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <div id="fileName4"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan)}}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
                                                     <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -162,3 +216,21 @@
         </div>
     </div>
 </form>
+
+<script>
+    
+function handleFileSelect(inputId, labelId, fileNameId) {
+    const fileInput = document.getElementById(inputId);
+    const fileInputLabel = document.getElementById(labelId);
+    const fileNameDisplay = document.getElementById(fileNameId);
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : null;
+    if (fileName) {
+      fileInputLabel.textContent = fileName;
+    //   fileNameDisplay.textContent = fileName;
+    } else {
+      fileInputLabel.textContent = "Maksimal upload file : 10 MB";
+      fileNameDisplay.textContent = "";
+    }
+  }
+
+</script>

@@ -1,4 +1,4 @@
-@extends('sekretariat.layouts.master')
+@extends('evaluator.layouts.master')
 
 @section('content')
 <style>
@@ -21,7 +21,7 @@
 
     .img-container img {
         width: 100%;
-        height: 100%; 
+        height: 100%;
         object-fit: cover !important;
     }
 </style>
@@ -34,9 +34,9 @@
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat">
                 </div>
               <h4 style="color: #000000; font-size: 22px; font-weight: bold;">Sekretariat</h4>
-              <a href="/sekretariat/profil/edit" class="btn action-button mx-auto mb-1">Edit Profil</a>
+              <a href="/evaluator/profil/edit" class="btn action-button mx-auto mb-1">Edit Profil</a>
             </div>
-      
+
             <div class="container mt-4">
               <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-xl-12">
@@ -60,7 +60,7 @@
                             <div class="data">0812121321</div>
                           </div>
                       </div>
-                      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Email</h6>
@@ -69,7 +69,7 @@
                             <div class="data">bennefit@gmail.com</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">NPWP</h6>
@@ -78,7 +78,7 @@
                             <div class="data">12345689</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                           <div class="col-md-4 ps-5">
                             <h6 class="mb-0">No. Rekening</h6>
@@ -87,12 +87,12 @@
                             <div class="data">BSN</div>
                           </div>
                       </div>
-      
+
                       <div class="row align-items-center pb-3">
                         <div class="col-md-4 ps-5">
                             <h6 class="mb-0">Dokumen CV</h6>
                         </div>
-      
+
                         <div class="col-md-8 ps-5 pe-5">
                             <div class="data">
                                 <a href="#" target="_blank">
