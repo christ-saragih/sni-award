@@ -133,7 +133,6 @@
         <form method="POST" action="{{ route('peserta.profil.kontak.hapus', $peserta_kontak->id) }}" id="deleteForm{{$loop->iteration}}">
             @csrf
             @method('DELETE')
-            {{-- <button type="submit">Hapus</button>     --}}
         </form>
     @endforeach
     {{-- nanti ganti ke route update --}}
@@ -173,8 +172,12 @@
      * It then submits the form.
      * @param {number} iteration - The iteration number.
      */
-    const handleSubmitDeleteForm = (iteration) => {
-        const form = document.getElementById(`deleteForm${iteration}`)
-        form.submit()
+    // const handleSubmitDeleteForm = (iteration) => {
+    //     const form = document.getElementById(`deleteForm${iteration}`)
+    //     form.submit()
+    // }
+    function handleSubmitDeleteForm(formId) {
+        // Submit form penghapusan
+        $('#deleteForm'+formId).submit();
     }
 </script>
