@@ -86,7 +86,7 @@
                     <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-xl-12">
                         <div class="card" style="border-radius: 15px;">
-                            <div class="card-body" style="display:;">
+                            <div class="card-body">
                                 <div class="row pt-4 pb-4">
                                     <div class="ps-5 d-flex flex-column gap-3">
                                         <h6 class="mb-0">Kontak Penghubung {{$loop->iteration}}</h6>
@@ -97,24 +97,27 @@
                                     <div class="col-md-4 ps-5">
                                     <h6 class="mb-0">Nama Penghubung</h6>
                                     </div>
-                                    <div class="col-md-8 pe-5">
-                                    <input value="{{$peserta_kontak->nama}}" type="text" name="nama" class="form-control form-control-lg" />
+                                    <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
+                                        <span>{{$peserta_kontak->nama}}</span>
+                                        <input value="{{$peserta_kontak->nama}}" type="text" name="nama" class="form-control form-control-lg" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
                                     <div class="col-md-4 ps-5">
                                     <h6 class="mb-0">Nomor Telepon</h6>
                                     </div>
-                                    <div class="col-md-8 pe-5">
-                                    <input value="{{$peserta_kontak->no_hp}}" type="text" name="no_hp" class="form-control form-control-lg" />
+                                    <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
+                                    <span>{{$peserta_kontak->no_hp}}</span>
+                                    <input value="{{$peserta_kontak->no_hp}}" type="text" name="no_hp" class="form-control form-control-lg" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
                                     <div class="col-md-4 ps-5">
                                     <h6 class="mb-0">Jabatan</h6>
                                     </div>
-                                    <div class="col-md-8 pe-5">
-                                    <input value="{{$peserta_kontak->jabatan}}" type="text" name="jabatan" class="form-control form-control-lg" />
+                                    <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
+                                    <span>{{$peserta_kontak->jabatan}}</span>
+                                    <input value="{{$peserta_kontak->jabatan}}" type="text" name="jabatan" class="form-control form-control-lg" style="display: none;" />
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +128,8 @@
                         @if ($loop->count>1)
                             <button type="button" class="btn nonactive" style="cursor: pointer;" onclick="handleSubmitDeleteForm({{$loop->iteration}})">Hapus</button> 
                         @endif
-                        <button type="submit" class="btn" style="width: 13%;">Edit</button>
+                        <button type="button" class="btn" style="width: 13%;" onclick="toggleEdit(this)">Edit</button>
+                        <button type="submit" class="btn" style="width: 13%; display: none;">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -176,6 +180,22 @@
     //     const form = document.getElementById(`deleteForm${iteration}`)
     //     form.submit()
     // }
+    function toggleEdit(button) {
+        const form = button.closest('form');
+        const spans = form.querySelectorAll('span');
+        const inputs = form.querySelectorAll('input');
+
+        spans.forEach(span => {
+            span.style.display = 'none';
+        });
+
+        inputs.forEach(input => {
+            input.style.display= 'block';
+        });
+
+        button.style.display = 'none';
+        button.nextElementSibling.style.display = 'block';
+    }
     function handleSubmitDeleteForm(formId) {
         // Submit form penghapusan
         $('#deleteForm'+formId).submit();
