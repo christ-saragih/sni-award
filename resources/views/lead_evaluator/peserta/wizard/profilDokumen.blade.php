@@ -86,59 +86,6 @@
     }
 </style>
 
-{{-- Modal --}}
-@foreach ($registrasi_dokumen as $key=>$rd)
-    <div class="modal fade" id="setujuDokumen{{ $key }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
-                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-            </div>
-            <div class="modal-body">
-                Dengan menekan tombol <b>"Ya"</b>, Anda <b>menyetujui</b> dokumen terkait. <br>
-                Dokumen yang telah <b>disetujui</b> tidak bisa <b>ditolak</b> atau <b>diubah</b> kembali. <br><br>
-                Apakah Anda yakin ingin <b>menyetujui</b> dokumen ini?
-            </div>
-            <div class="modal-footer">
-                <form action="{{ route('sekretariat.peserta.profil.dokumen.persetujuan', $rd->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="persetujuan_dokumen" value="disetujui" class="d-none">
-                    <button type="submit" class="btn-yes">Ya</button>
-                </form>
-                <button type="button" class="btn-no" data-bs-dismiss="modal">Tidak</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="tolakDokumen{{ $key }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Dengan menekan tombol <b>"Ya"</b>, Anda <b>menolak</b> dokumen terkait. <br>
-                Dokumen yang telah <b>ditolak</b> tidak bisa <b>disetujui</b> atau <b>diubah</b> kembali. <br><br>
-                Apakah Anda yakin ingin <b>menolak</b> dokumen ini?
-            </div>
-            <div class="modal-footer">
-                <form action="{{ route('sekretariat.peserta.profil.dokumen.persetujuan', $rd->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="persetujuan_dokumen" value="ditolak" class="d-none">
-                    <button type="submit" class="btn-yes">Ya</button>
-                </form>
-                <button type="button" class="btn-no" data-bs-dismiss="modal">Tidak</button>
-            </div>
-            </div>
-        </div>
-    </div>
-@endforeach
-{{-- end Modal --}}
-
 {{-- dokumen --}}
 <div class="content-profil py-5 mb-5">
     <div class="container">
@@ -147,9 +94,14 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div class="d-flex align-items-center gap-3 mb-5">
-            <label class="fs-4 fw-bold">Dokumen</label>
-            <hr style="width: 100%; height: 1px; background-color: #CC9305;">    
+        <div class="row mb-5">
+            <div class="col-2">
+                <label class="fs-4 fw-bold">Dokumen</label>
+            </div>
+            <div class="col-10">
+                <br>
+                <hr style="width: 100%; height: 1px; background-color: #CC9305;">
+            </div>
         </div>
         <div class="d-flex justify-content-end pe-5">
             <div>
@@ -157,24 +109,35 @@
             </div>
         </div>
         <div>
-            <div class="d-flex align-items-center justify-content-between">
-                <label class="fw-bold">Dokumen Assessment</label>
-                <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
+            <div class="row">
+                <div class="col-3">
+                    <label class="fw-bold">Dokumen Assessment</label>
+                </div>
+                <div class="col-9">
+                    <br>
+                    <hr style="width: 100%; height: 1px; background-color: gray;">
+                </div>
             </div>
             <div class="mt-2">
-                @method('PUT')
-                @csrf
                 @foreach ($dokumen as $dok)
-                    <div class="d-flex align-items-center justify-content-between ps-4">
-                        <div>
-                            <label style="color: #000000;">{{$dok->nama}}</label>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-3">
+                            <label>{{$dok->nama}}</label>
                         </div>
-                        <div class="p-2">
+                        <div class="row col-9">
                             @php
                                 $statusColor = '';
+                                $dokumen_assessment = $registrasi_dokumen ? $registrasi_dokumen->where('dokumen_id', $dok->id)->last() : null;
+                                $dokumen_disetujui = false;
+                                if ($dokumen_assessment) {
+                                    $status_dokumen = $dokumen_assessment->status;
+                                    $dokumen_disetujui = $status_dokumen == 'disetujui';
+                                }
                             @endphp
-                            @foreach ($registrasi_dokumen as $key=>$rd)
-
+                            <div class="col-9">
+                                {{-- <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen"> --}}
+                            </div>
+                            @foreach ($registrasi_dokumen as $rd)
                                 @if ($rd->dokumen_id == $dok->id)
                                     @switch ($rd->status)
                                         @case ('proses')
@@ -187,39 +150,33 @@
                                             @php $statusColor = 'bg-success text-white'; @endphp
                                             @break
                                     @endswitch
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        @if ($rd->status != 'proses')
-                                            <div class="px-3 py-1 border-0 rounded {{ $statusColor }}" style="width: fit-content;">{{ $rd->status }}</div>
-                                        @else
-                                            <div class="d-flex align-items-center justify-content-center gap-2">
-                                                <button type="button" class="btn-disetujui" data-bs-toggle="modal" data-bs-target="#setujuDokumen{{ $key }}">&#x2714;</button>
-                                                <button type="button" class="btn-ditolak" data-bs-toggle="modal" data-bs-target="#tolakDokumen{{ $key }}">&#x2716;</button>
-                                            </div>
-                                        @endif
-    
-                                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-left: 10px;">
-                                            <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                                        </a>
+                                    <div class="col-3">
+                                        <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
+                                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-right: 10px;">
+                                        <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i></a>
                                     </div>
-                                    
                                     @break
                                 @endif
                             @endforeach
                         </div>
                     </div>
                 @endforeach
-                
             </div>
             <br>
-            <div class="d-flex align-items-center justify-content-between">
-                <label class="fw-bold">Dokumen Profil</label>
-                <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
+            <div class="row">
+                <div class="col-3">
+                    <label class="fw-bold">Dokumen Profil</label>
+                </div>
+                <div class="col-9">
+                    <br>
+                    <hr style="width: 100%; height: 1.5px; background-color: gray;">
+                </div>
             </div>
-            <div class="ps-4 mt-2">
+            <div>
                 @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                         <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">Legalitas Hukum Organisasi</label>
+                            <label>Legalitas Hukum Organisasi</label>
                             <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                             </a>
@@ -227,7 +184,7 @@
                     @endif
                     @if ($peserta->peserta_profil->url_sppt_sni)
                         <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">SPPT SNI</label>
+                            <label>SPPT SNI</label>
                             <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                             </a>
@@ -235,7 +192,7 @@
                     @endif
                     @if ($peserta->peserta_profil->url_sk_kemenkumham)
                         <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">SK Kemenkeuham</label>
+                            <label>SK Kemenkeuham</label>
                             <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                             </a>
@@ -243,7 +200,7 @@
                     @endif
                     @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
                         <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">Kewenangan Kebijakan</label>
+                            <label>Kewenangan Kebijakan</label>
                             <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                             </a>
@@ -260,9 +217,14 @@
 <hr>
 <div class="content-profil py-5">
     {{-- head --}}
-    <div class="d-flex align-items-center gap-3 mb-5">
-        <label class="fs-4 fw-bold">Feedback</label>
-        <hr style="width: 100%; height: 1px; background-color: #CC9305;">
+    <div class="row mb-5">
+        <div class="col-2">
+            <label class="fs-4 fw-bold">Feedback</label>
+        </div>
+        <div class="col-10">
+            <br>
+            <hr style="width: 100%; height: 1px; background-color: #CC9305;">
+        </div>
     </div>
     {{-- end head --}}
     {{-- chatbox --}}
@@ -280,7 +242,7 @@
                 @endif
             </div>
             @if (!$registrasi_dokumen[0]->feedback)
-                <form action="{{ route('sekretariat.peserta.profil.dokumen.send_feedback', request()->registrasi_id) }}" method="POST" class="chat-input mt-4">
+                <form action="{{ route('lead_evaluator.peserta.profil.dokumen.send_feedback', request()->registrasi_id) }}" method="POST" class="chat-input mt-4">
                     @csrf
                     @method('PUT')
                     <textarea name="feedback" id="documentFeedback" placeholder="Tuliskan Pesan" rows="1" oninput="autoResizeTextarea(this)"></textarea>

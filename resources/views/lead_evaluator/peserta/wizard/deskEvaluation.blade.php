@@ -33,7 +33,7 @@
                 <td>{{ $reg->peserta->email }}</td>
                 <td>{{ $reg->peserta->peserta_profil ? $reg->peserta->peserta_profil->no_hp : '' }}</td>
                 <td class="d-flex align-items-center justify-content-center">
-                    <a href="{{ route('sekretariat.tim.view') }}" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
+                    <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                         <i class="fa fa-users"></i>
                     </a>
                 </td>
@@ -46,21 +46,21 @@
                 </td>
                 <td class="text-center">
                     <div class="dropdown">
-                        <button 
-                            type="button" 
-                            data-bs-toggle="dropdown" 
+                        <button
+                            type="button"
+                            data-bs-toggle="dropdown"
                             aria-expanded="false"
-                            class="btn dropdown-toggle" 
+                            class="btn dropdown-toggle"
                             style="
                                 text-decoration: none;
                                 padding: 5px 10px;
                                 border:none;
                                 background-color:#E59B30;
                                 border-radius:10px;
-                            " 
+                            "
                         >Detail</button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('sekretariat.peserta.profil.view', Crypt::encryptString($reg->id)) }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('lead_evaluator.peserta.profil.view', Crypt::encryptString($reg->id)) }}">Profil</a></li>
                             <li><a class="dropdown-item" href="#">Riwayat</a></li>
                         </ul>
                     </div>

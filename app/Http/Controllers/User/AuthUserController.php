@@ -35,16 +35,22 @@ class AuthUserController extends Controller
         ];
         // $is_sekretariat = Registrasi::where('sekretariat_id', '!=', null)->distinct()->pluck('sekretariat_id');
         if (Auth::guard('web')->attempt($infoLogin)) {
-            if (Auth::user()->jenis_role->nama == 'admin') {
-                return redirect('/admin/dashboard')->with('success', 'Berhasil masuk');
-            } 
-            // elseif (
-            //     (Auth::user()->jenis_role->nama == 'evaluator' 
-            //     || Auth::user()->jenis_role->nama == 'lead evaluator')
-            // ) {}
-            else {
-                return redirect('/sekretariat/dashboard')->with('success', 'Berhasil masuk');
+            $role = strtolower(Auth::user()->jenis_role->nama);
+            $is_sekretariat = count(Registrasi::where('sekretariat_id', Auth::user()->id)->get()) != 0;
+            if ($is_sekretariat) {
+                $role = 'sekretariat';
             }
+
+            if ($role == 'admin') {
+                return redirect()->route('admin.dashboard.view')->with('success', 'Berhasil masuk');
+            } elseif ($role == 'sekretariat') {
+                return redirect()->route('sekretariat.dashboard.view')->with('success', 'Berhasil masuk');
+            } elseif ($role == 'evaluator') {
+                return redirect()->route('evaluator.dashboard.view')->with('success', 'Berhasil masuk');
+            } elseif ($role == 'lead evaluator') {
+                return redirect()->route('lead_evaluator.dashboard.view')->with('success', 'Berhasil masuk');
+            }
+
         }else {
             return redirect()
                 ->route('user.login.view')
