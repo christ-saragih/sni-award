@@ -11,6 +11,7 @@ use App\Models\RegistrasiAssessment;
 use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiPenilaian;
 use App\Models\User;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -68,5 +69,60 @@ class RiwayatPesertaController extends Controller
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
 
         return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'user']));
+    }
+
+    public function downloadAssessmentPDF(Request $request, $registrasi_id) {
+        // $request->validate([
+        //     'assessment_kategori' => 'required',
+        // ], [
+        //     'assessment_kateg'
+        // ]);
+        $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi_id)->get();
+        // dd($registrasi_assessment[0]->assessment_pertanyaan->assessment_sub_kategori->nama);
+        $assessment_kategori = AssessmentKategori::get();
+
+        $html_assessment = "
+<div style='width: 100%;padding: 30px 20px;''>
+    <table style='width: 100%;'>
+        <thead style='width: 100%;background-color: #552525; font-weight: bold; color: white;'>
+            <tr>
+                <th>No</th>
+                <th>Kategori</th>
+                <th>Sub Kategori</th>
+                <th>Pertanyaan</th>
+                <th>Jawaban</th>
+            </tr>
+        </thead>
+        <tbody style='width: 100%;'>
+        ";
+        foreach ($registrasi_assessment as $key=>$ra) {
+            $nomor = $key + 1;
+            $pertanyaan = $ra->assessment_pertanyaan;
+            $subkategori = $pertanyaan->assessment_sub_kategori;
+            $kategori = $subkategori->assessment_kategori;
+            $jawaban = $ra->assessment_jawaban->jawaban;
+
+            $html_assessment = $html_assessment."
+                <tr>
+                    <td>$nomor</td>
+                    <td>$kategori->nama</td>
+                    <td>$subkategori->nama</td>
+                    <td>$pertanyaan->pertanyaan</td>
+                    <td>$jawaban</td>
+                </tr>
+            ";
+        }
+            $html_assessment = $html_assessment."
+        </tbody>
+    </table>
+</div>
+        ";
+
+        $dompdf = new Dompdf();
+        $dompdf->load_html($html_assessment);
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('assessment_pertanyaan.pdf');
+
     }
 }
