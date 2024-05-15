@@ -388,6 +388,7 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
 
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
+    Route::post('/tim/store', [SekretariatTimController::class, 'store'])->name('sekretariat.tim.store');
 });
 // Sekretariat End
 
