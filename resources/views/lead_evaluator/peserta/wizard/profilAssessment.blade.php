@@ -42,7 +42,7 @@
     </div>
     {{-- end head --}}
     {{-- content --}}
-    <div id="all_assessment">
+    <div>
         @foreach ($selected_assessment_kategori as $ak)
             @foreach ($ak->assessment_sub_kategori as $ask)
                 @foreach ($ask->assessment_pertanyaan as $key=>$ap)
@@ -72,3 +72,8 @@
     </div>
     {{-- end content --}}
 </div>
+<script>
+    const handleChangeKategori = (e) => {
+        location.href = `${location.href}&assessment_kategori=${e.value}`
+    }
+</script>
