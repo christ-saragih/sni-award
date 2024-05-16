@@ -31,7 +31,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $lead->name }}</td>
                 <td>{{ $lead->email }}</td>
-                <td>{{ $lead->user_profil->no_hp }}</td>
+                <td>{{ $lead->user_profil ? $lead->user_profil->no_hp : '-' }}</td>
                 <td>{{ $lead->jenis_role?$lead->jenis_role->nama:'' }}</td>
                 <td class="d-flex justify-content-center">
                     <div style="
