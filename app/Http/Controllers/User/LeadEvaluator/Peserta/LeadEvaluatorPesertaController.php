@@ -105,7 +105,7 @@ class LeadEvaluatorPesertaController extends Controller
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
             'evaluator_id' => $user->id,
-            'jabatan' => 'lead_evaluator',
+            'jabatan' => $user->jenis_role->nama,
             'url_dokumen_penilaian' => '',
             'stage_id' => $registrasi->stage_id,
             'skor' => $request->skor,
