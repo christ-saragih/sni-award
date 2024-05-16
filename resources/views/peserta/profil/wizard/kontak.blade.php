@@ -77,7 +77,7 @@
 
     {{-- nanti ganti ke route update --}}
     @foreach ($peserta_kontak as $peserta_kontak)
-        <form  method="POST" action="{{ route('peserta.profil.kontak.ubah', $peserta_kontak->id) }}"> 
+        <form method="POST" action="{{ route('peserta.profil.kontak.ubah', $peserta_kontak->id) }}"> 
             @method('PUT')
             @csrf 
     
@@ -98,8 +98,8 @@
                                     <h6 class="mb-0">Nama Penghubung</h6>
                                     </div>
                                     <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
-                                        <span>{{$peserta_kontak->nama}}</span>
-                                        <input value="{{$peserta_kontak->nama}}" type="text" name="nama" class="form-control form-control-lg" style="display: none;" />
+                                        <span class="view-mode">{{$peserta_kontak->nama}}</span>
+                                        <input value="{{$peserta_kontak->nama}}" type="text" name="nama" class="form-control form-control-lg edit-mode" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
@@ -107,8 +107,8 @@
                                     <h6 class="mb-0">Nomor Telepon</h6>
                                     </div>
                                     <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
-                                    <span>{{$peserta_kontak->no_hp}}</span>
-                                    <input value="{{$peserta_kontak->no_hp}}" type="text" name="no_hp" class="form-control form-control-lg" style="display: none;" />
+                                    <span class="view-mode">{{$peserta_kontak->no_hp}}</span>
+                                    <input value="{{$peserta_kontak->no_hp}}" type="text" name="no_hp" class="form-control form-control-lg edit-mode" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
@@ -116,8 +116,8 @@
                                     <h6 class="mb-0">Jabatan</h6>
                                     </div>
                                     <div class="col-md-8 pe-5" style="font-size: 18px; padding: 10px 15px;">
-                                    <span>{{$peserta_kontak->jabatan}}</span>
-                                    <input value="{{$peserta_kontak->jabatan}}" type="text" name="jabatan" class="form-control form-control-lg" style="display: none;" />
+                                    <span class="view-mode">{{$peserta_kontak->jabatan}}</span>
+                                    <input value="{{$peserta_kontak->jabatan}}" type="text" name="jabatan" class="form-control form-control-lg edit-mode" style="display: none;" />
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +128,9 @@
                         @if ($loop->count>1)
                             <button type="button" class="btn nonactive" style="cursor: pointer;" onclick="handleSubmitDeleteForm({{$loop->iteration}})">Hapus</button> 
                         @endif
-                        <button type="button" class="btn" style="width: 13%;" onclick="toggleEdit(this)">Edit</button>
-                        <button type="submit" class="btn" style="width: 13%; display: none;">Simpan</button>
+                        <button type="button" class="btn edit-button" style="width: 13%;" onclick="toggleEdit(this)">Edit</button>
+                        <button type="button" class="btn cancel-button" style="width: 13%; display: none;" onclick="toggleEdit(this, true)" >Batal</button>
+                        <button type="submit" class="btn save-button" style="width: 13%; display: none;">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -180,21 +181,38 @@
     //     const form = document.getElementById(`deleteForm${iteration}`)
     //     form.submit()
     // }
-    function toggleEdit(button) {
+    function toggleEdit(button, cancel = false) {
         const form = button.closest('form');
-        const spans = form.querySelectorAll('span');
-        const inputs = form.querySelectorAll('input');
+        const spans = form.querySelectorAll('.view-mode');
+        const inputs = form.querySelectorAll('.edit-mode');
+        const editButton = form.querySelector('.edit-button');
+        const saveButton = form.querySelector('.save-button');
+        const cancelButton = form.querySelector('.cancel-button');
 
+    if (cancel) {
+        spans.forEach(span => {
+            span.style.display = 'block';
+        });
+        inputs.forEach(input => {
+            input.style.display = 'none';
+        });
+        editButton.style.display = 'block';
+        saveButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+    } else { 
         spans.forEach(span => {
             span.style.display = 'none';
         });
-
         inputs.forEach(input => {
             input.style.display= 'block';
         });
+        editButton.style.display = 'none';
+        saveButton.style.display = 'block';
+        cancelButton.style.display = 'block';
 
-        button.style.display = 'none';
-        button.nextElementSibling.style.display = 'block';
+        // button.style.display = 'none';
+        // button.nextElementSibling.style.display = 'block';
+        }
     }
     function handleSubmitDeleteForm(formId) {
         // Submit form penghapusan

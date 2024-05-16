@@ -71,7 +71,7 @@
                       <h6 class="mb-0">Nomor Telepon</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}"/>
+                      <input type="tel" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}"/>
                     </div>
                 </div>
 
