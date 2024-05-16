@@ -19,7 +19,7 @@ class EvaluatorPesertaController extends Controller
         $user = Auth::user();
         // dd($user->jenis_role->nama);
         $registrasi = Registrasi::get();
-        $desk_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
+        $desk_evaluation = RegistrasiEvaluator::where('internal_id', $user->id)
         ->where('stage', '3')
         ->get();
         // dd($desk_evaluation);
@@ -36,7 +36,7 @@ class EvaluatorPesertaController extends Controller
             }
         }
         // dd($penilaian_evaluator);
-        $site_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
+        $site_evaluation = RegistrasiEvaluator::where('internal_id', $user->id)
             ->where('stage', '4')
             ->get();
         return view('evaluator.peserta.index', [
@@ -57,9 +57,9 @@ class EvaluatorPesertaController extends Controller
 
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
         // dd($desk_evaluation->registrasi->sekretariat_id);
-        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'evaluator_id' => $desk_evaluation->evaluator_id])->first();
-        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'evaluator_id' => $desk_evaluation->lead_evaluator_id])->first();
-        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'evaluator_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->internal_id])->first();
+        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
         // dd($penilaian_lead_evaluator);
         $site_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 4])->get();
 
@@ -105,7 +105,7 @@ class EvaluatorPesertaController extends Controller
         // $registrasi_penilaian = RegistrasiPenilaian::find($registrasi_id);
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
-            'evaluator_id' => $user->id,
+            'internal_id' => $user->id,
             'jabatan' => $user->jenis_role->nama,
             'url_dokumen_penilaian' => '',
             'stage_id' => $registrasi->stage_id,
