@@ -11,7 +11,7 @@ class RegistrasiPenilaian extends Model
     use HasFactory;
 
     protected $table = 'registrasi_penilaian';
-    protected $guarded = [''];
+    protected $guarded = [];
 
     public function registrasi(): BelongsTo
     {
@@ -20,6 +20,6 @@ class RegistrasiPenilaian extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'evaluator_id', 'id');
+        return $this->belongsTo(User::class, 'internal_id', 'id');
     }
 }
