@@ -16,7 +16,7 @@
         <div class="d-flex align-items-center gap-2">
         <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Tambahkan Kontak Penghubung</h3>
         <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
-        <div onclick="handleAddForm({{$jumlah_kontak}})" style="cursor: pointer">
+        <div onclick="handleAddForm({{$jumlah_kontak}})" style="cursor: pointer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah kontak">
             <i id="iconTambah" class="fa fa-plus-square fa-2x" style="color: #552525; cursor: pointer;"></i>
         </div>
         </div>

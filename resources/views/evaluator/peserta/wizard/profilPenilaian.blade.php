@@ -43,8 +43,8 @@
                                 </div>
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
-                                {{-- {{dd($penilaian_evaluator ? $penilaian_evaluator->evaluator_id : null)}} --}}
-                                @if ($penilaian_evaluator ? $penilaian_evaluator->evaluator_id : null)
+                                {{-- {{dd($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)}} --}}
+                                @if ($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)
                                     <div class="row align-items-center pb-3">
                                         <div class="col-md-4 ps-5">
                                             <h6 class="mb-0">Nilai</h6>
@@ -136,7 +136,7 @@
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
                                 {{-- {{dd($penilai)}} --}}
-                                @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->evaluator_id : null)
+                                @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)
                                     <div class="row align-items-center pb-3">
                                         <div class="col-md-4 ps-5">
                                             <h6 class="mb-0">Nilai</h6>
@@ -228,8 +228,8 @@
                                 </div>
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
-                                {{-- {{dd($penilaian_lead_evaluator ? $penilaian_lead_evaluator->evaluator_id : null)}} --}}
-                                @if ($penilaian_sekretariat ? $penilaian_sekretariat->evaluator_id : null)
+                                {{-- {{dd($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)}} --}}
+                                @if ($penilaian_sekretariat ? $penilaian_sekretariat->internal_id : null)
                                     <div class="row align-items-center pb-3">
                                         <div class="col-md-4 ps-5">
                                             <h6 class="mb-0">Nilai</h6>

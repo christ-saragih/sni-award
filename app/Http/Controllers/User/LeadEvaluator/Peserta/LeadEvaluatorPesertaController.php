@@ -27,7 +27,7 @@ class LeadEvaluatorPesertaController extends Controller
             // dd($penilaian->registrasi->registrasi_penilaian);
             foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
                 // dd($status->jabatan == 'lead_evaluator');
-                if($status->jabatan == 'lead_evaluator') {
+                if($status->internal_id == $penilaian->lead_evaluator_id) {
                     $penilaian_evaluator[] = [
                         'jabatan' => $status->jabatan
                     ];
@@ -106,6 +106,7 @@ class LeadEvaluatorPesertaController extends Controller
             'registrasi_id' => $registrasi_id,
             'internal_id' => $user->id,
             'jabatan' => $user->jenis_role->nama,
+            // 'jabatan' => 'lead_evaluator',
             'url_dokumen_penilaian' => '',
             'stage_id' => $registrasi->stage_id,
             'skor' => $request->skor,
