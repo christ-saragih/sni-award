@@ -48,10 +48,10 @@
 
                             <div class="row align-items-center pt-4 pb-3">
                                 <div class="col-md-4">
-                                    <h6 class="mb-0">Nama</h6>
+                                    <h6 class="mb-0">Sekretariat</h6>
                                 </div>
                                 <div class="col-md-8 ps-5 pe-5">
-                                    {{ Auth::user()->name }}
+                                    &ensp;{{ Auth::user()->name }}
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-md-8 ps-5 pe-5">
                                     <select class="form-select form-select-lg" aria-label="Default select example" id="lead_evaluator" name="lead_evaluator_id" value="Test">
-                                        <option value="" selected disabled>-- pilih lead evaluator --</option>
+                                        <option value="" selected disabled>Pilih anggota sebagai Lead Evaluator</option>
                                         @foreach ($lead_evaluator as $lead)
                                             <option value="{{ $lead->id }}">{{ $lead->name }}</option>
                                         @endforeach
@@ -87,10 +87,10 @@
                                 </div>
                                 <div class="col-md-8 ps-5 pe-5">
                                     <select class="form-select form-select-lg" aria-label="Default select example" id="evaluator" name="evaluator_id">
-                                        <option value="" selected disabled>-- pilih evaluator --</option>
-                                        @foreach ($evaluator as $ev)
+                                        <option value="" selected disabled>Pilih anggota sebagai Evaluator</option>
+                                        <!-- @foreach ($evaluator as $ev)
                                             <option value="{{ $ev->id }}">{{ $ev->name }}</option>
-                                        @endforeach
+                                        @endforeach -->
                                     </select>
                                 </div>
                             </div>
