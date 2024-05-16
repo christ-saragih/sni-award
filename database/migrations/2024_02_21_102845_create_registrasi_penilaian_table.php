@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable(true);
 
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
-            $table->foreign('evaluator_id')->references('id')->on('users');
+            $table->foreign('internal_id')->references('id')->on('users');
             $table->foreign('stage_id')->references('id')->on('stage');
         });
     }
