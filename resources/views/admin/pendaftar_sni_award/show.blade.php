@@ -17,7 +17,7 @@
                         <h6 class="ms-1 mb-0">Nama</h6>
                         <select class="form-select form-control-lg ps-4" name="sekretariat_id" aria-label="Default select example">
                             @foreach ($user as $u)
-                            <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                <option value="{{ $u->id }}">{{ $u->name }}</option>
                             @endforeach
                         </select>
                     </div>

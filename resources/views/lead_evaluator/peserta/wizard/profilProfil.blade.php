@@ -6,12 +6,13 @@
     .profil-image-container {
         width: 150px;
         height: 150px;
+        border-radius: 50%;
         overflow: hidden;
     }
     .profil-image {
-        border-radius: 100%;
         width: 100%;
         height: 100%;
+        object-fit: cover !important;
     }
     span.info {
         color: red;
@@ -28,7 +29,7 @@
 <div class="content-profil py-5">
     <div class="d-flex align-items-center justify-content-center gap-3">
         <div class="profil-image-container">
-            <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image">
+            <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image img-fluid">
         </div>
     </div>
     <div class="container mt-4">
@@ -48,7 +49,7 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Jabatan Tertinggi <span class="info">*</span></h6>
+                    <h6 class="mb-0">Jabatan Tertinggi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                     <div class="data">{{ $peserta->peserta_profil->jabatan_tertinggi }}</div>
@@ -66,7 +67,7 @@
 
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Website <span class="info">*</span></h6>
+                    <h6 class="mb-0">Website</h6>
                     </div>
                     <div class="col-md-8 pe-5">
                     <a href="{{ $peserta->peserta_profil->website }}" target="_blank" class="data">
@@ -81,7 +82,7 @@
 
                 <div class="row align-items-center pb-3">
                 <div class="col-md-4 ps-5">
-                    <h6 class="mb-0">Tanggal Beroperasi <span class="info">*</span></h6>
+                    <h6 class="mb-0">Tanggal Beroperasi</h6>
                 </div>
 
                 <div class="col-md-8 pe-5">

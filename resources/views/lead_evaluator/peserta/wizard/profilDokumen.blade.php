@@ -84,6 +84,19 @@
     #documentFeedback::-webkit-scrollbar {
         display: none;
     }
+
+    a.btn {
+        color: white;
+        padding-block: 0.1rem !important;
+        padding-inline: 0 !important;
+        border-radius: 10px;
+        min-width: 95px !important;
+        pointer-events: none;
+    }
+
+    a.btn:hover {
+        color: white;
+    }
 </style>
 
 {{-- dokumen --}}
@@ -94,37 +107,32 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div class="row mb-5">
-            <div class="col-2">
-                <label class="fs-4 fw-bold">Dokumen</label>
-            </div>
-            <div class="col-10">
-                <br>
-                <hr style="width: 100%; height: 1px; background-color: #CC9305;">
-            </div>
+        <div class="d-flex align-items-center gap-3 mb-5">
+            <label class="fs-4 fw-bold">Dokumen</label>
+            <hr style="width: 100%; height: 1px; background-color: #CC9305;">
         </div>
-        <div class="d-flex justify-content-end pe-5">
-            <div>
-                <label class="fw-bold">Aksi</label>
-            </div>
-        </div>
+        
         <div>
-            <div class="row">
-                <div class="col-3">
-                    <label class="fw-bold">Dokumen Assessment</label>
+            <div class="row g-3 ">
+                <div class="col-9"></div>
+                <div class="col-2 d-flex justify-content-center">
+                    <label class="fw-bold">Status</label>
                 </div>
-                <div class="col-9">
-                    <br>
-                    <hr style="width: 100%; height: 1px; background-color: gray;">
+                <div class="col-1 d-flex justify-content-center">
+                    <label class="fw-bold">Aksi</label>
                 </div>
             </div>
-            <div class="mt-2">
+            <div class="d-flex align-items-center justify-content-between">
+                <label class="fw-bold">Dokumen Assessment</label>
+                <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
+            </div>
+            <div cs="mt-2">
                 @foreach ($dokumen as $dok)
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-3">
                             <label>{{$dok->nama}}</label>
                         </div>
-                        <div class="row col-9">
+                        <div class="col-6">
                             @php
                                 $statusColor = '';
                                 $dokumen_assessment = $registrasi_dokumen ? $registrasi_dokumen->where('dokumen_id', $dok->id)->last() : null;
@@ -134,76 +142,98 @@
                                     $dokumen_disetujui = $status_dokumen == 'disetujui';
                                 }
                             @endphp
-                            <div class="col-9">
+                        </div>
+                            <!-- <div class="col-9"> -->
                                 {{-- <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen"> --}}
-                            </div>
+                            <!-- </div> -->
                             @foreach ($registrasi_dokumen as $rd)
                                 @if ($rd->dokumen_id == $dok->id)
                                     @switch ($rd->status)
                                         @case ('proses')
-                                            @php $statusColor = 'bg-warning'; @endphp
+                                            @php $statusColor = '#E59B30'; @endphp
                                             @break
                                         @case ('ditolak')
-                                            @php $statusColor = 'bg-danger text-white'; @endphp
+                                            @php $statusColor = '#D12B2B'; @endphp
                                             @break
                                         @case ('disetujui')
-                                            @php $statusColor = 'bg-success text-white'; @endphp
+                                            @php $statusColor = '#47A15E'; @endphp
                                             @break
                                     @endswitch
-                                    <div class="col-3">
-                                        <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
-                                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-right: 10px;">
+                                    <div class="col-2 d-flex justify-content-center">
+                                        <a class="btn" style="background-color: {{ $statusColor }};">{{ $rd->status }}</a>
+                                    </div>
+                                    <div class="col-1 d-flex justify-content-center">
+                                    <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none;">
                                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i></a>
                                     </div>
                                     @break
                                 @endif
                             @endforeach
-                        </div>
+                        
                     </div>
                 @endforeach
             </div>
             <br>
-            <div class="row">
-                <div class="col-3">
-                    <label class="fw-bold">Dokumen Profil</label>
-                </div>
-                <div class="col-9">
-                    <br>
-                    <hr style="width: 100%; height: 1.5px; background-color: gray;">
-                </div>
+            <div class="d-flex align-items-center justify-content-between">
+                <label class="fw-bold">Dokumen Profil</label>
+                <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
             </div>
             <div>
                 @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label>Legalitas Hukum Organisasi</label>
-                            <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>Legalitas Hukum Organisasi</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                     @if ($peserta->peserta_profil->url_sppt_sni)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label>SPPT SNI</label>
-                            <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>SPPT SNI</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                     @if ($peserta->peserta_profil->url_sk_kemenkumham)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label>SK Kemenkeuham</label>
-                            <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>SK Kemenkeuham</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                     @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label>Kewenangan Kebijakan</label>
-                            <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>Kewenangan Kebijakan</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                 @endif
@@ -217,14 +247,9 @@
 <hr>
 <div class="content-profil py-5">
     {{-- head --}}
-    <div class="row mb-5">
-        <div class="col-2">
-            <label class="fs-4 fw-bold">Feedback</label>
-        </div>
-        <div class="col-10">
-            <br>
-            <hr style="width: 100%; height: 1px; background-color: #CC9305;">
-        </div>
+    <div class="d-flex align-items-center gap-3 mb-5">
+        <label class="fs-4 fw-bold">Feedback</label>
+        <hr style="width: 100%; height: 1px; background-color: #CC9305;">
     </div>
     {{-- end head --}}
     {{-- chatbox --}}

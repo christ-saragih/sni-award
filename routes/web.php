@@ -28,6 +28,7 @@ use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PanduanController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
+use App\Http\Controllers\PesertaDokumenController;
 use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
@@ -107,7 +108,7 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'email.verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index'])->name('peserta.dashboard.view');
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
-    Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
+    Route::post('/profil/dokumen',[PesertaDokumenController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
     Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
     Route::put('/profil/kontak/{id}',[PesertaKontakController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
     Route::delete('/profil/kontak/{id}',[PesertaKontakController::class, 'hapuskontak'])->name('peserta.profil.kontak.hapus');
@@ -129,7 +130,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
     Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
     Route::get('/riwayat/{id}/detail/{kategori}', [RiwayatPesertaController::class, 'getKategori'])->name('riwayat.get_kategori');
-
+    Route::post('/riwayat/{registrasi_id}/assessment/download', [RiwayatPesertaController::class, 'downloadAssessmentPDF'])->name('peserta.riwayat.assessment.download');
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
     Route::get('/panduan', [PanduanController::class, 'index']);
 });
@@ -388,6 +389,7 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
 
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
+    Route::post('/tim/store', [SekretariatTimController::class, 'store'])->name('sekretariat.tim.store');
 });
 // Sekretariat End
 

@@ -17,7 +17,8 @@
         gap: 10px;
     }
     .kontak-record div::before {
-        content: ': ';
+        margin-right: 15px;
+        content: ':';
         font-weight: bold;
     }
 </style>
@@ -27,14 +28,9 @@
     @endif
     <div class="content-profil py-5 mb-5">
         {{-- head --}}
-        <div class="row mb-5">
-            <div class="col-4">
-                <label class="fs-4 fw-bold">Kontak Penghubung {{ $loop->iteration }}</label>
-            </div>
-            <div class="col-8">
-                <br>
-                <hr style="width: 100%; height: 1px; background-color: #CC9305;">
-            </div>
+        <div class="d-flex align-items-center gap-3 mb-5">
+            <label class="fs-4 fw-bold">Kontak Penghubung {{ $loop->iteration }}</label>
+            <hr class="flex-grow-1" style="height: 1px; background-color: #CC9305;">
         </div>
         {{-- end head --}}
         {{-- content --}}
