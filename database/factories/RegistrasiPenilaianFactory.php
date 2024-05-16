@@ -22,7 +22,7 @@ class RegistrasiPenilaianFactory extends Factory
     {
         return [
             'registrasi_id' => Registrasi::factory(),
-            'evaluator_id' => User::factory(),
+            'internal_id' => User::factory(),
             'jabatan' => 'evaluator',
             'stage_id' => 1,
             'url_dokumen_penilaian' => Str::random(10),
