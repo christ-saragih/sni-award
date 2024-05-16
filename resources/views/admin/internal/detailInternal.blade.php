@@ -23,7 +23,7 @@
     }
 
     /* tbody td {
-       padding-left: 25px !important; 
+       padding-left: 25px !important;
     } */
 
     a.btn-edit {
@@ -38,7 +38,7 @@
 
     h3 {
         margin-bottom: 0 !important;
-        font-size: 137.5% !important; 
+        font-size: 137.5% !important;
         font-weight: bold !important;
     }
 </style>
@@ -58,32 +58,32 @@
                 <div action="" class="pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
                         <label for="nama_jabatan" class="ms-1 p-0 font-semibold">Jabatan:</label>
-                        <select 
-                            id="nama_jabatan" 
-                            name="role" 
+                        <select
+                            id="nama_jabatan"
+                            name="role"
                             class="form-select form-control-lg ps-4"
                         >
                             <option value="" disabled selected>-- Pilih Jabatan --</option>
                             @foreach ($all_role as $ar)
                                 <option value="{{ $ar->id }}" {{ $internal->role==$ar->id ? 'selected' : '' }}>{{ $ar->nama }}</option>
                             @endforeach
-                        </select> 
+                        </select>
                         <div style="color: gray; font-size: 14px;">atau:</div>
                         <div>
-                            <input 
-                                type="checkbox" 
-                                name="role" 
+                            <input
+                                type="checkbox"
+                                name="role"
                                 id="make_as_admin"
                                 value="1"
                                 onchange="disableRoleSelect(this, {{ $internal->role }})"
-                            >  
+                            >
                             <label for="make_as_admin">Jadikan sebagai admin</label>
                         </div>
                         <div class="m-0 py-0 px-3 d-flex align-items-center justify-content-end gap-1">
-                            <input 
-                                type="checkbox" 
-                                name="verified_at" 
-                                id="verifikasi" 
+                            <input
+                                type="checkbox"
+                                name="verified_at"
+                                id="verifikasi"
                                 value="{{ $internal->verified_at ? $internal->verified_at : date('Y-m-d H:i:s') }}"
                                 {{ $internal->verified_at ? 'checked' : '' }}
                             >
@@ -114,12 +114,12 @@
                 </div>
                 <h3 style="text-transform: capitalize;">{{ $internal->jenis_role->nama }}</h3>
                 <p class="mb-2" style="font-size: 112.5%; margin-top: -5px; text-transform: capitalize;">{{ $internal->name }}</p>
-                
+
                 <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
                     <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;">
                         <i class="fa fa-check-circle"></i>
-                        &ensp;Terverifikasi 
+                        &ensp;Terverifikasi
                     </div>
                 @endif
             </div>
@@ -130,7 +130,7 @@
                 </tr>
                 <tr>
                     <th>No. Telepon</th>
-                    <td>{{ $internal->user_profil->no_hp }}</td>
+                    <td>{{ $internal->user_profil ? $internal->user_profil->no_hp : '-' }}</td>
                 </tr>
                 <tr>
                     <th>Email</th>
@@ -138,16 +138,16 @@
                 </tr>
                 <tr>
                     <th>NPWP</th>
-                    <td>{{ $internal->user_profil->npwp }}</td>
+                    <td>{{ $internal->user_profil ? $internal->user_profil->npwp : '-' }}</td>
                 </tr>
                 <tr>
                     <th>No. Rekening</th>
-                    <td>{{ $internal->user_profil->no_rekening }}</td>
+                    <td>{{ $internal->user_profil ? $internal->user_profil->no_rekening : '-'}}</td>
                 </tr>
                 <tr>
                     <th>Dokumen CV</th>
                     <td>
-                        <a href="{{ Storage::url($internal->user_profil->url_cv) }}" target="_blank">
+                        <a href="{{ Storage::url($internal->user_profil ? $internal->user_profil->url_cv : '-') }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem;"></i>
                         </a>
                     </td>
@@ -155,7 +155,7 @@
                 <tr>
                     <th>Dokumen Anti Penyuapan</th>
                     <td>
-                        <a href="{{ Storage::url($internal->user_profil->url_anti_penyuapan) }}" target="_blank">
+                        <a href="{{ Storage::url($internal->user_profil ? $internal->user_profil->url_anti_penyuapan : '-') }}" target="_blank">
                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                         </a>
                     </td>
