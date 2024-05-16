@@ -20,6 +20,6 @@ class RegistrasiPenilaian extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'evaluator_id', 'id');
+        return $this->belongsTo(User::class, 'internal_id', 'id');
     }
 }
