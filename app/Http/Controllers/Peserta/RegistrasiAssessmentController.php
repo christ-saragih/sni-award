@@ -19,28 +19,25 @@ use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\TrueType;
 
 class RegistrasiAssessmentController extends Controller
-{
-    // public function index(){
-    //     $registrasi_assessment = RegistrasiAssessment::get();
-    //     return view('peserta.pendaftaran.index',[
-    //         'registrasi_assessment' => $registrasi_assessment,
-    //     ]);
-    // }
+{ 
     public function showKategori() {
         $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
         $assessment_kategori = AssessmentKategori::get();
-        // $pesertaProfil = PesertaProfil::select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->get();
-        // $pesertaProfil = PesertaProfil::find(Auth::guard('peserta')->user()->id)->select('url_legalitas_hukum_organisasi, url_sppt_sni, url_sk_kemenkumham, url_kewenangan_kebijakan')->get();
+        
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
-        // dd($peserta->peserta_profil->get('url_legalitas_hukum_organisasi', 'url_sppt_sni'));
+        
         $dokumen = Dokumen::get();
+        
         $konfigurasi = Konfigurasi::where('key','Tahun SNI Award')->first();
         $registrasi = Registrasi::where('peserta_id',Auth::guard('peserta')->user()->id)->where('tahun',$konfigurasi->value)->first();
         $registrasi_dokumen = [];
         if ($registrasi) {
             $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->get();
         }
-        // dd($registrasi_dokumen);
+        $test = [];
+        if($registrasi){
+            $test = Dokumen::leftJoin('registrasi_dokumen','dokumen.id','registrasi_dokumen.dokumen_id')->where('registrasi_id',$registrasi->id)->orWhereNull('registrasi_id')->get();
+        }
         $regis_jawaban = []; 
             if ($registrasi){
                 $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
@@ -53,7 +50,7 @@ class RegistrasiAssessmentController extends Controller
                     }
                 }
             }
-
+        
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
@@ -64,6 +61,7 @@ class RegistrasiAssessmentController extends Controller
             'existingRegistration' => $existingRegistration,
             'registrasi' => $registrasi,
             'registrasi_dokumen' => $registrasi_dokumen,
+            'test' =>$test
             // 'pesertaProfil' => $pesertaProfil
         ]);
     }
