@@ -38,7 +38,8 @@
                     </a>
                 </td>
                 <td>
-                    @if (count($desk->registrasi->registrasi_penilaian) > 0)
+                    {{-- {{ dd($penilaian_evaluator) }} --}}
+                    @if ($penilaian_evaluator)
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                     @else
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
