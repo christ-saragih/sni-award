@@ -15,7 +15,7 @@ return new class extends Migration
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
             $table->integer('internal_id')->unsigned();
-            $table->enum('jabatan',['evaluator','lead evaluator']);
+            $table->enum('jabatan',['evaluator','lead_evaluator']);
             $table->tinyInteger('stage_id')->unsigned();
             $table->string('url_dokumen_penilaian');
             $table->integer('skor');
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable(true);
 
             $table->foreign('registrasi_id')->references('id')->on('registrasi');
-            $table->foreign('evaluator_id')->references('id')->on('users');
+            $table->foreign('internal_id')->references('id')->on('users');
             $table->foreign('stage_id')->references('id')->on('stage');
         });
     }

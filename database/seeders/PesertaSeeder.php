@@ -46,7 +46,7 @@ class PesertaSeeder extends Seeder
 
         RegistrasiPenilaian::factory()->create([
             'registrasi_id' => $registrasi->id,
-            'evaluator_id' => $user->id
+            'internal_id' => $user->id
         ]);
     }
 }
