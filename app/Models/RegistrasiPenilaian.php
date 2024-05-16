@@ -11,7 +11,7 @@ class RegistrasiPenilaian extends Model
     use HasFactory;
 
     protected $table = 'registrasi_penilaian';
-    protected $guarded = [''];
+    protected $guarded = [];
 
     public function registrasi(): BelongsTo
     {
