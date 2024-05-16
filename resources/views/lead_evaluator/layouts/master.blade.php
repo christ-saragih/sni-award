@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluator || SNI Award 2024</title>
+    <title>Lead Evaluator || SNI Award 2024</title>
 
     <!-- Bootstrap -->
     <link
@@ -109,7 +109,7 @@
               >
                 <i class="fa fa-user-o" aria-hidden="true"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Peserta</span>
+              <span class="nav-link-text" id="navLinkText">Lead Evaluator</span>
             </a>
           </li>
         </ul>

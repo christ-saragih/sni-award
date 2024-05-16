@@ -368,7 +368,7 @@ Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verifie
 
     Route::get('/peserta', [LeadEvaluatorPesertaController::class, 'index'])->name('lead_evaluator.peserta.view');
     Route::get('/peserta/profil/{registrasi_id}', [LeadEvaluatorPesertaController::class, 'detailProfil'])->name('lead_evaluator.peserta.profil.view');
-    Route::put('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
+    Route::post('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
 
 });
 // end lead evaluator
