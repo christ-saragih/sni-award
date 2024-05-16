@@ -26,19 +26,19 @@
     </thead>
     <tbody>
         {{-- {{ dd($registrasi[1]->registrasi_penilaian) }} --}}
-        @foreach ($registrasi as $key=>$reg)
+        @foreach ($desk_evaluation as $key=>$desk)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $reg->peserta->nama }}</td>
-                <td>{{ $reg->peserta->email }}</td>
-                <td>{{ $reg->peserta->peserta_profil ? $reg->peserta->peserta_profil->no_hp : '' }}</td>
+                <td>{{ $desk->registrasi->peserta->nama }}</td>
+                <td>{{ $desk->registrasi->peserta->email }}</td>
+                <td>{{ $desk->registrasi->peserta->peserta_profil ? $desk->registrasi->peserta->peserta_profil->no_hp : '' }}</td>
                 <td class="d-flex align-items-center justify-content-center">
                     <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                         <i class="fa fa-users"></i>
                     </a>
                 </td>
                 <td>
-                    @if (count($reg->registrasi_penilaian) > 0)
+                    @if ($penilaian_evaluator)
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                     @else
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
@@ -60,7 +60,7 @@
                             "
                         >Detail</button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('lead_evaluator.peserta.profil.view', Crypt::encryptString($reg->id)) }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('lead_evaluator.peserta.profil.view', Crypt::encryptString($desk->registrasi->id)) }}">Profil</a></li>
                             <li><a class="dropdown-item" href="#">Riwayat</a></li>
                         </ul>
                     </div>
