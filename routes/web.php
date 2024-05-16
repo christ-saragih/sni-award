@@ -28,6 +28,7 @@ use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PanduanController;
 use App\Http\Controllers\Peserta\PesertaDashboardController;
 use App\Http\Controllers\Peserta\RegistrasiAssessmentController;
+use App\Http\Controllers\PesertaDokumenController;
 use App\Http\Controllers\PesertaKontakController;
 use App\Http\Controllers\PesertaProfilController;
 use App\Http\Controllers\User\Admin\DataPesertaController;
@@ -107,7 +108,7 @@ Route::get('/verifikasi/{verify_key}', [AuthPesertaController::class, 'verifikas
 Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'email.verified:peserta'])->group(function(){
     Route::get('/dashboard', [PesertaDashboardController::class, 'index'])->name('peserta.dashboard.view');
     Route::get('/profil',[PesertaProfilController::class, 'index'])->name('peserta.profil.index');
-    Route::post('/profil/dokumen',[PesertaProfilController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
+    Route::post('/profil/dokumen',[PesertaDokumenController::class, 'tambahDokumenPeserta'])->name('peserta.profil.dokumen');
     Route::post('/profil',[PesertaKontakController::class, 'tambahKontakPenghubung'])->name('peserta.profil.kontak');
     Route::put('/profil/kontak/{id}',[PesertaKontakController::class, 'ubahKontakPenghubung'])->name('peserta.profil.kontak.ubah');
     Route::delete('/profil/kontak/{id}',[PesertaKontakController::class, 'hapuskontak'])->name('peserta.profil.kontak.hapus');
@@ -353,7 +354,7 @@ Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', '
 
     Route::get('/peserta', [EvaluatorPesertaController::class, 'index'])->name('evaluator.peserta.view');
     Route::get('/peserta/profil/{registrasi_id}', [EvaluatorPesertaController::class, 'detailProfil'])->name('evaluator.peserta.profil.view');
-    Route::put('/peserta/profil/{registrasi_id}/penilaian', [EvaluatorPesertaController::class, 'penilaian'])->name('evaluator.peserta.profil.penilaian');
+    Route::post('/peserta/profil/{registrasi_id}/penilaian', [EvaluatorPesertaController::class, 'penilaian'])->name('evaluator.peserta.profil.penilaian');
     // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
     // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
 });
@@ -368,7 +369,7 @@ Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verifie
 
     Route::get('/peserta', [LeadEvaluatorPesertaController::class, 'index'])->name('lead_evaluator.peserta.view');
     Route::get('/peserta/profil/{registrasi_id}', [LeadEvaluatorPesertaController::class, 'detailProfil'])->name('lead_evaluator.peserta.profil.view');
-    Route::put('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
+    Route::post('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
 
 });
 // end lead evaluator
