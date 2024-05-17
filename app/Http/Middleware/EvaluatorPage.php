@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Registrasi;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,10 +18,16 @@ class EvaluatorPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->jenis_role->nama == 'evaluator') {
+            $is_sekretariat = count(Registrasi::where('sekretariat_id', Auth::user()->id)
+                ->where('tahun', date('Y'))
+                ->get()
+            ) != 0;
+            $role = strtolower(Auth::user()->jenis_role->nama);
+            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
+            if ($role == 'evaluator') {
                 return $next($request);
             }
-            return redirect('/404');
+            return redirect()->route("$role.dashboard.view");
         }
         return redirect('/404');
     }
