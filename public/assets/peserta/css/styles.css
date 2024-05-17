@@ -661,7 +661,8 @@ h3 {
 }
 
 .jawaban-label.selected {
-    background-color: grey; /* Change to your desired background color */
+    background-color: #CDD6FF;
+    color: black;
 }
 
 .jawaban-banyak label {

@@ -68,7 +68,7 @@
                                 </div>
                             @endforeach
                         @endforeach
-                        <button type="button" class="btn btn-primary" onclick="showConfirmation()">Submit Jawaban</button>
+                        <button type="button" class="btn float-end mt-5" onclick="showConfirmation()" style="width: 20%;">Submit Jawaban</button>
                     </form>
                 @endif
 
