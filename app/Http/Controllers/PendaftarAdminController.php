@@ -105,6 +105,7 @@ class PendaftarAdminController extends Controller
         $registrasi = Registrasi::find($id);
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
         $registrasi_penilaian = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->get();
+        // dd($registrasi_penilaian);
         $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi->id)->first();
         $dokumen = Dokumen::get();
         // dd($dokumen[0]->registrasi_dokumen->status->nama);
@@ -125,7 +126,7 @@ class PendaftarAdminController extends Controller
             ->where('sekretariat_id', '!=', null)
             ->distinct()
             ->pluck('sekretariat_id');
-            
+
         $user = User::where('role', '!=', 1)
             ->where('verified_at', '!=', null)
             ->whereNotIn('id', $assigned_sekretariat)
@@ -156,7 +157,7 @@ class PendaftarAdminController extends Controller
             $registrasi->update([
                 'sekretariat_id' => $request->sekretariat_id,
             ]);
-            return redirect()->back()->with('success', 'Registrasi berhasil diubah');           
+            return redirect()->back()->with('success', 'Registrasi berhasil diubah');
         } else {
             return redirect()->back()->withErrors('Penilaian sedang berjalan. Tidak bisa mengubah sekretariat');
         }

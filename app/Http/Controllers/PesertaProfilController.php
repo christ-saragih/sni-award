@@ -55,7 +55,7 @@ class PesertaProfilController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'jabatan_tertinggi' => 'required|string',
-            'no_hp' => 'required|string',
+            'no_hp' => 'required|numeric',
             'website' => 'required|string',
             'tanggal_beroperasi' => 'required|string',
             'status_kepemilikan_id' => 'required',
@@ -73,6 +73,7 @@ class PesertaProfilController extends Controller
             'nama.required'=>'Nama tidak boleh kosong',
             'jabatan_tertinggi.required' => 'Jabatan Tertinggi Wajib diisi',
             'no_hp.required' => 'Nomor Telepon Wajib diisi',
+            'no_hp.numeric' => 'Nomor Telepon Wajib angka',
             'website.required' => 'Website Wajib diisi',
             'tanggal_beroperasi.required' => 'Tanggal Beroperasi Wajib diisi',
             'status_kepemilikan_id.required' => 'Status Kepemilikan Wajib dipilih',

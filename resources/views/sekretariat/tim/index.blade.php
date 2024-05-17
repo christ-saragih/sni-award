@@ -8,6 +8,18 @@
         padding: 10px 15px;
     }
 
+    .profil-image-container {
+        width: 83px;
+        height: 83px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .profil-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover !important;
+    }
+
     a.nonactive {
         font-weight: 600;
         background-color: white;
@@ -52,60 +64,47 @@
                     <h3 class="mb-0 pb-0" style="font-size: 150%; font-size: 24px; font-weight: bold; color: #000000;">Tim {{ $registrasi->stage->nama }}</h3>
                     <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
                 </div>
-                <p style="font-size: 18px; color: #9FAFBF;">Buat tim untuk penilaian {{ strtolower($registrasi->stage->nama) }} pada peserta</p>
+
+                <!-- <p style="font-size: 18px; color: #9FAFBF;">Buat tim untuk penilaian {{ strtolower($registrasi->stage->nama) }} pada peserta</p> -->
             </div>
 
-            <div class="container mt-4">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-xl-12" style="padding-inline: 0px;">
-                        <div class="card" style="border-radius: 15px;">
-                            <form action="" method="" class="card-body" style="padding-inline: 0px;">
+            <div class="d-flex justify-content-end mt-4">
+                @if (!$tim)
+                    <a href="{{ route('sekretariat.tim.tambah') }}" class="btn px-3" style="background-color: #E59B30; color: white; font-weight: bold; border-radius: 15px;">Buat Tim</a>
+                @endif
+            </div>
 
-                                <div class="row align-items-center pt-4 pb-3">
-                                    <div class="col-md-4">
-                                        <h6 class="mb-0">Nama</h6>
-                                    </div>
-                                    <div class="col-md-8 ps-5 pe-5">
-                                        <div class="data">:&emsp;{{ Auth::user()->name }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="row align-items-center pb-3">
-                                    <div class="col-md-4">
-                                        <h6 class="mb-0">Tanggal Penilaian</h6>
-                                    </div>
-                                    <div class="col-md-8 ps-5 pe-5">
-                                        <div class="data">:&emsp;{{ $tim ? $tim->tanggal : '-' }}</div>
-                                    </div>
-                                </div>
-                            
-                                <div class="row align-items-center pb-3">
-                                    <div class="col-md-4">
-                                        <h6 class="mb-0">Lead Evaluator</h6>
-                                    </div>
-                                    <div class="col-md-8 ps-5 pe-5">
-                                        <div class="data">:&emsp;{{ $tim ? $tim->lead_evaluator->name : '-' }}</div>
-                                    </div>
-                                </div>
-            
-                                <div class="row align-items-center pb-3">
-                                    <div class="col-md-4">
-                                        <h6 class="mb-0">Evaluator</h6>
-                                    </div>
-                                    <div class="col-md-8 ps-5 pe-5">
-                                        <div class="data">:&emsp;{{ $tim ? $tim->evaluator->name : '-' }}</div>
-                                    </div>
-                                </div>
-
-                                @if (!$tim)
-                                    <a href="{{ route('sekretariat.tim.tambah') }}" class="btn-buat-tim">Buat Tim</a>
-                                @endif
-
-                            </form>
+            <div class="container my-5">
+                <div class="d-flex justify-content-between">
+                    <a href="" class="d-flex flex-column align-items-center justify-content-center py-3" style="width: 30%; border: 1px solid #F7C35F; border-radius: 20px; box-shadow: 0px 4px 4px 0px rgba(159,175,191,0.9); color: black; text-decoration: none;">
+                        <div class="profil-image-container mb-2">
+                            <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image">
                         </div>
-                    </div>
+                        <h4 class="mb-1" style="font-size: 18px; font-weight: bold; margin: 0px;">Sekretariat</h4>
+                        <p style="font-size: 18px; margin: 0px;">{{ Auth::user()->name }}</p>
+                    </a>
+
+                    <a href="" class="d-flex flex-column align-items-center justify-content-center py-3" style="width: 30%; border: 1px solid #F7C35F; border-radius: 20px; box-shadow: 0px 4px 4px 0px rgba(159,175,191,0.9); color: black; text-decoration: none;">
+                        <div class="profil-image-container mb-2">
+                            <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image">
+                        </div>
+                        <h4 class="mb-1" style="font-size: 18px; font-weight: bold; margin: 0px;">Lead Evaluator</h4>
+                        <p style="font-size: 18px; margin: 0px;">{{ $tim ? $tim->lead_evaluator->name : '-' }}</p>
+                    </a>
+
+                    <a href="" class="d-flex flex-column align-items-center justify-content-center py-3" style="width: 30%; border: 1px solid #F7C35F; border-radius: 20px; box-shadow: 0px 4px 4px 0px rgba(159,175,191,0.9); color: black; text-decoration: none;">
+                        <div class="profil-image-container mb-2">
+                            <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat" class="profil-image">
+                        </div>
+                        <h4 class="mb-1" style="font-size: 18px; font-weight: bold; margin: 0px;">Evaluator</h4>
+                        <p style="font-size: 18px; margin: 0px;">{{ $tim ? $tim->evaluator->name : '-' }}</p>
+                    </a>
                 </div>
             </div>
+
+            <!-- GET TANGGAL PENILAIAN -->
+            <!-- <div class="data">:&emsp;{{ $tim ? $tim->tanggal : '-' }}</div> -->
+
         </div>
     </div>
 </main>
