@@ -613,7 +613,7 @@ table button.btn-hapus {
     background-color: #d12b2b !important;
 }
 
-.table tbody tr th,
+.table thead tr th,
 .table tbody tr td {
     vertical-align: middle;
 }

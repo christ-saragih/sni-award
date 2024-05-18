@@ -21,7 +21,7 @@
             <th>Email</th>
             <th>No. Telepon</th>
             <th>Jabatan</th>
-            <th>Status Verifikasi</th>
+            <th>Verifikasi</th>
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
@@ -33,16 +33,16 @@
                 <td>{{ $evaluator->email }}</td>
                 <td>{{ $evaluator->user_profil ? $evaluator->user_profil->no_hp : '-' }}</td>
                 <td>{{ $evaluator->jenis_role ? $evaluator->jenis_role->nama : '' }}</td>
-                <td class="d-flex justify-content-center">
+                <td class="text-center">
                     <div style="
-                        width: fit-content;
-                        padding: 1px 10px;
+                        width: 100%;
+                        padding: 6px;
                         font-weight: bold;
                         color: white;
-                        background-color: {{ $evaluator->verified_at ? '#009900' : '#dd0000' }};
-                        border-radius: 5px;
+                        background-color: {{ $evaluator->verified_at ? '#78A55A' : '#FF0101' }};
+                        border-radius: 15px;
                     ">
-                        {{ $evaluator->verified_at ? 'Terverifikasi' : 'Belum diverifikasi' }}
+                        {{ $evaluator->verified_at ? 'Diverifikasi' : 'Belum diverifikasi' }}
                         </div>
                 </td>
                 {{-- <td>{{ $evaluator->user_profil->no_hp ? $evaluator->user_profil->no_hp : '-' }}</td> --}}
