@@ -23,6 +23,8 @@ use App\Http\Controllers\LembagaSertifikasiController;
 use App\Http\Controllers\NotFound\NotFoundController;
 use App\Http\Controllers\PendaftarAdminController;
 use App\Http\Controllers\PenjadwalanAdminController;
+use App\Http\Controllers\PenjadwalanDokumenController;
+use App\Http\Controllers\PenjadwalanLinimasaController;
 use App\Http\Controllers\TagBeritaController;
 use App\Http\Controllers\Peserta\AuthPesertaController;
 use App\Http\Controllers\Peserta\PanduanController;
@@ -48,6 +50,8 @@ use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\User\Sekretariat\tim\SekretariatTimController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
+use App\Models\PenjadwalanDokumen;
+use App\Models\PenjadwalanLinimasa;
 use App\Models\RegistrasiAssessment;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +72,7 @@ Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::clas
 Route::get('/informasi/acara/{acara}/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail'])->name("informasi.acara.detail");
 
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
+Route::get('/dokumen/{id}', [App\Http\Controllers\Guest\DokumenController::class, 'download'])->name('penjadwalan_dokumen.download');
 
 Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
 
@@ -191,6 +196,13 @@ Route::prefix('/admin')->group(function () {
 
         //Penjadwalan
         Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
+        Route::post('/penjadwalan_dokumen', [PenjadwalanDokumenController::class, 'store'])->name('penjadwalan_dokumen.store');
+        Route::get('/penjadwalan_dokumen/{penjadwalan_dokumen}/edit', [PenjadwalanDokumenController::class, 'edit'])->name('penjadwalan_dokumen.edit');
+        Route::put('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'update'])->name('penjadwalan_dokumen.update');
+        Route::delete('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'destroy'])->name('penjadwalan_dokumen.destroy');
+
+        Route::post('/penjadwalan_linimasa', [PenjadwalanLinimasaController::class, 'store'])->name('penjadwalan_linimasa.store');
+        Route::put('/penjadwalan_linimasa{penjadwalan_linimasa}', [PenjadwalanLinimasaController::class, 'update'])->name('penjadwalan_linimasa.update');
 
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
