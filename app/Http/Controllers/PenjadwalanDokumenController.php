@@ -31,9 +31,12 @@ class PenjadwalanDokumenController extends Controller
     {
         $request->validate([
             'nama_dokumen' => 'required',
-            'file_dokumen' => 'required',
+            'file_dokumen' => 'required|file|mimes:pdf|max:2048',
         ], [
             'nama_dokumen.required' => 'Nama Dokumen Wajib Diisi!',
+            'file_dokumen.file' => 'File yang di upload harus berupa file!',
+            'file_dokumen.mimes' => 'File harus berupa bertipe: .pdf!',
+            'file_dokumen.max' => 'File tidak boleh lebih dari 2MB!',
             'file_dokumen.required' => 'File Dokumen Wajib Diisi!'
         ]);
 
@@ -73,9 +76,12 @@ class PenjadwalanDokumenController extends Controller
     {
         $request->validate([
             'nama_dokumen' => 'required',
-            'file_dokumen' => 'required',
+            'file_dokumen' => 'required|file|mimes:pdf|max:2048',
         ], [
             'nama_dokumen.required' => 'Nama Dokumen Wajib Diisi!',
+            'file_dokumen.file' => 'File yang di upload harus berupa file!',
+            'file_dokumen.mimes' => 'File harus berupa bertipe: .pdf!',
+            'file_dokumen.max' => 'File tidak boleh lebih dari 2MB!',
             'file_dokumen.required' => 'File Dokumen Wajib Diisi!'
         ]);
 
