@@ -34,6 +34,7 @@
 
         <!-- My CSS -->
         <link rel="stylesheet" href="{{ asset('assets') }}/css/styles.css" />
+
     </head>
     <style>
         #ps-8c,
@@ -47,15 +48,24 @@
         }
     </style>
     <body>
-        <section id="register">
+        <section id="register" style="background-color: #373F6B">
 
-            <div class="content-kiri">
-                <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" />
+            <div class="content-kiri p-5">
+                <div class="w-100 d-flex flex-column p-5" style="height: 530px; gap: 30%;background-color: white;border-radius: 30px;">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ asset('assets/images/icon/logo-bsn.svg') }}" alt="" style="height: 50px;">
+                        <img src="{{ asset('assets/images/icon/logo-sniaward.svg') }}" alt="" style="height: 50px;">
+                    </div>
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                        <h1 class="fw-bold">Selamat Datang <br><span style="color: #DCA958">di SNI AWARD</span></h1>
+                        <div style="color: #9F9F9F">The National Quality Award of Indonesia sejak tahun</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="content-kanan" style="background-color: #2E3A66;">
+            <div class="content-kanan" style="background-color: #DCA958;">
                 <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
-                <h1>SNI AWARD</h1>
+                <div class="text-white">Registrasi sebagai user</div>
 
                 <form method="POST" action="{{ route('user.registrasi') }}" style="
                     padding: 20px;
@@ -123,6 +133,10 @@
                         <div><span id="ps-sc">&#x2716;</span>&emsp;Karakter spesial (!, @, #, $, %, ...)</div>
                     </div>
 
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
+                    
+                    {{-- {{ dd(env('NOCAPTCHA_SITEKEY')) }} --}}
                     <div class="">
                         <div class="" style="
                             display: flex;
@@ -134,6 +148,7 @@
                                 border-radius: 100px;
                                 padding: 5px 10%;    
                                 border: none;
+                                font-weight: 600;
                             ">
                                 {{ __('Daftar') }}
                             </button>
@@ -149,6 +164,7 @@
 
         </section>
     </body>
+    
     <script>
         const handleInputPassword = (e) => {
             const uppercaseRegex = /[A-Z]/
@@ -183,4 +199,5 @@
             passwordRules.style.display = 'none'
         }
     </script>
+
 </html>

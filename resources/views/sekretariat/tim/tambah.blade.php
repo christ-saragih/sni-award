@@ -80,7 +80,6 @@
                                     </select>
                                 </div>
                             </div>
-        
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-4">
                                     <h6 class="mb-0">Evaluator</h6>
@@ -88,9 +87,9 @@
                                 <div class="col-md-8 ps-5 pe-5">
                                     <select class="form-select form-select-lg" aria-label="Default select example" id="evaluator" name="evaluator_id">
                                         <option value="" selected disabled>Pilih anggota sebagai Evaluator</option>
-                                        <!-- @foreach ($evaluator as $ev)
+                                        @foreach ($evaluator as $ev)
                                             <option value="{{ $ev->id }}">{{ $ev->name }}</option>
-                                        @endforeach -->
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -19,7 +19,7 @@ class EvaluatorPesertaController extends Controller
         $user = Auth::user();
         // dd($user->jenis_role->nama);
         $registrasi = Registrasi::get();
-        $desk_evaluation = RegistrasiEvaluator::where('internal_id', $user->id)
+        $desk_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
         ->where('stage', '3')
         ->get();
         // dd($desk_evaluation);
@@ -36,7 +36,7 @@ class EvaluatorPesertaController extends Controller
             }
         }
         // dd($penilaian_evaluator);
-        $site_evaluation = RegistrasiEvaluator::where('internal_id', $user->id)
+        $site_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
             ->where('stage', '4')
             ->get();
         return view('evaluator.peserta.index', [

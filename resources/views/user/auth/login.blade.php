@@ -36,16 +36,25 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/styles.css" />
   </head>
   <body>
-    <section id="login">
+    <section id="login" style="background-color: #373F6B">
       <div class="login-container">
 
-        <div class="content-kiri">
-          <img src="{{ asset('assets') }}/images/icon/Frame.svg" alt="" />
+        <div class="content-kiri p-5">
+          <div class="w-100 d-flex flex-column" style="height: 530px; gap: 30%;">
+            <div class="d-flex align-items-center">
+              <img src="{{ asset('assets/images/icon/logo-bsn.svg') }}" alt="" style="height: 50px;">
+              <img src="{{ asset('assets/images/icon/logo-sniaward.svg') }}" alt="" style="height: 50px;">
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center">
+              <h1 class="fw-bold">Selamat Datang <br><span style="color: #DCA958">di SNI AWARD</span></h1>
+              <div style="color: #9F9F9F">The National Quality Award of Indonesia sejak tahun</div>
+            </div>
+          </div>
         </div>
 
-        <div class="content-kanan py-5" style="background-color: #2E3A66;">
+        <div class="content-kanan py-5" style="background-color: #DCA958;">
           <img src="{{ asset('assets') }}/images/icon/User_circle.svg" alt="" />
-          <h1>SNI AWARD</h1>
+          <div>Masuk sebagai user</div>
             {{-- ==================================================================== --}}
           <form method="POST" action="{{ route('user.login') }}">
             @csrf
@@ -84,7 +93,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-5">
+            <div class="">
                 <div class="mb-3">
                     @if (Route::has('password.request'))
                     <a class="" style="color: #ccc; font-size: 14px;" href="{{ route('password.request') }}">
@@ -100,15 +109,14 @@
                     </label>
                 </div> -->
             </div>
+            <div class="form-text mb-5">
+                <a href="{{ route('user.forgot_password.view') }}">Lupa Kata Sandi?</a>
+            </div>
             <div class="mb-0 d-flex flex-column align-items-center justify-content-center">
                 <div class="button mb-3">
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn bg-white text-black">
                         {{ __('Masuk') }}
                     </button>
-                </div>
-
-                <div class="form-text text-center">
-                    <a href="{{ route('user.forgot_password.view') }}">Lupa Kata Sandi</a>
                 </div>
                 <div class="form-text text-center">
                     Belum memiliki akun? <a href="{{ route('user.registrasi.view') }}">Daftar </a>
