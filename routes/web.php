@@ -72,6 +72,7 @@ Route::get('/informasi/acara', [App\Http\Controllers\Guest\AcaraController::clas
 Route::get('/informasi/acara/{acara}/detail', [App\Http\Controllers\Guest\AcaraController::class, 'detail'])->name("informasi.acara.detail");
 
 Route::get('/dokumen', [App\Http\Controllers\Guest\DokumenController::class, 'index']);
+Route::get('/dokumen/{id}', [App\Http\Controllers\Guest\DokumenController::class, 'download'])->name('penjadwalan_dokumen.download');
 
 Route::get('/faq', [App\Http\Controllers\Guest\FaqController::class, 'index']);
 
