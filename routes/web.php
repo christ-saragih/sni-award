@@ -135,6 +135,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/riwayat/{id}/detail', [RiwayatPesertaController::class, 'detail'])->name("riwayat.detail");
     Route::get('/riwayat/{id}/detail/{kategori}', [RiwayatPesertaController::class, 'getKategori'])->name('riwayat.get_kategori');
     Route::post('/riwayat/{registrasi_id}/assessment/download', [RiwayatPesertaController::class, 'downloadAssessmentPDF'])->name('peserta.riwayat.assessment.download');
+    Route::post('/riwayat/{registrasi_id}/penilaian/download', [RiwayatPesertaController::class, 'downloadPenilaianPDF'])->name('peserta.riwayat.penilaian.download');
     Route::get('/peserta/404', [NotFoundController::class, 'peserta']);
     Route::get('/panduan', [PanduanController::class, 'index']);
 });

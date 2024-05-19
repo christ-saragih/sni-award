@@ -18,11 +18,16 @@ class SekretariatPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            $is_sekretariat = count(Registrasi::where('sekretariat_id', Auth::user()->id)->get()) != 0;
+            $is_sekretariat = count(
+                Registrasi::where('sekretariat_id', Auth::user()->id)
+                    ->where('tahun', date('Y'))
+                    ->get()
+            ) != 0;
+            $role = str_replace(' ', '_', Auth::user()->jenis_role->nama);
             if ($is_sekretariat) {
                 return $next($request);
             }
-            return redirect('/404');
+            return redirect()->route("$role.dashboard.view");
         }
         return redirect('/404');
     }

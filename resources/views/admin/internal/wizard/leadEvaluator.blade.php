@@ -21,7 +21,7 @@
             <th>Email</th>
             <th>No. Telepon</th>
             <th>Jabatan</th>
-            <th>Status Verifikasi</th>
+            <th>Verifikasi</th>
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
@@ -33,16 +33,16 @@
                 <td>{{ $lead->email }}</td>
                 <td>{{ $lead->user_profil ? $lead->user_profil->no_hp : '-' }}</td>
                 <td>{{ $lead->jenis_role?$lead->jenis_role->nama:'' }}</td>
-                <td class="d-flex justify-content-center">
+                <td class="text-center">
                     <div style="
-                        width: fit-content;
-                        padding: 1px 10px;
+                        width: 100%;
+                        padding: 6px;
                         font-weight: bold;
                         color: white;
-                        background-color: {{ $lead->verified_at ? '#009900' : '#dd0000' }};
-                        border-radius: 5px;
+                        background-color: {{ $lead->verified_at ? '#78A55A' : '#FF0101' }};
+                        border-radius: 15px;
                     ">
-                        {{ $lead->verified_at ? 'Terverifikasi' : 'Belum diverifikasi' }}
+                        {{ $lead->verified_at ? 'Diverifikasi' : 'Belum diverifikasi' }}
                         </div>
                 </td>
                 {{-- <td>{{ $lead->user_profil->no_hp ? $lead->user_profil->no_hp : '-' }}</td> --}}

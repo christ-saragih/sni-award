@@ -33,23 +33,17 @@ class AuthUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        // $is_sekretariat = Registrasi::where('sekretariat_id', '!=', null)->distinct()->pluck('sekretariat_id');
+        
         if (Auth::guard('web')->attempt($infoLogin)) {
+            $is_sekretariat = count(
+                Registrasi::where('sekretariat_id', Auth::user()->id)
+                    ->where('tahun', date('Y'))
+                    ->get()
+            ) != 0;
             $role = strtolower(Auth::user()->jenis_role->nama);
-            $is_sekretariat = count(Registrasi::where('sekretariat_id', Auth::user()->id)->get()) != 0;
-            if ($is_sekretariat) {
-                $role = 'sekretariat';
-            }
+            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
 
-            if ($role == 'admin') {
-                return redirect()->route('admin.dashboard.view')->with('success', 'Berhasil masuk');
-            } elseif ($role == 'sekretariat') {
-                return redirect()->route('sekretariat.dashboard.view')->with('success', 'Berhasil masuk');
-            } elseif ($role == 'evaluator') {
-                return redirect()->route('evaluator.dashboard.view')->with('success', 'Berhasil masuk');
-            } elseif ($role == 'lead evaluator') {
-                return redirect()->route('lead_evaluator.dashboard.view')->with('success', 'Berhasil masuk');
-            }
+            return redirect()->route("$role.dashboard.view")->with('success', 'Berhasil masuk');
 
         }else {
             return redirect()
@@ -94,14 +88,18 @@ class AuthUserController extends Controller
             ];
             Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));    
         }
-
+        
         if (Auth::guard('web')->check()) {
-            if (Auth::user()->jenis_role->nama == 'admin') {
-                return redirect('/admin/dashboard');
-            } 
-            else {
-                return redirect('/sekretariat/dashboard');
-            }
+            $is_sekretariat = count(
+                Registrasi::where('sekretariat_id', Auth::user()->id)
+                    ->where('tahun', date('Y'))
+                    ->get()
+            ) != 0;
+            $role = strtolower(Auth::user()->jenis_role->nama);
+            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
+
+            return redirect()->route("$role.dashboard.view")->with('success', 'Berhasil masuk');
+
         }else {
             return redirect()
                 ->route('user.login.view')
@@ -112,16 +110,15 @@ class AuthUserController extends Controller
     public function verifikasiUserView() {
         $kodeVerifikasi = Auth::guard('web')->user()->verify_key;
         $user = Auth::guard('web')->user();
-        $is_sekretariat = count(Registrasi::where('sekretariat_id', $user->id)->get()) != 0;
+        $is_sekretariat = count(
+            Registrasi::where('sekretariat_id', $user->id)
+                ->where('tahun', date('Y'))
+                ->get()
+            ) != 0;
+        $role = strtolower($user->jenis_role->nama);
+        $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
         if ($user->email_verified_at != null) {
-            if ($user->jenis_role->nama == 'admin') {
-                return redirect('/admin/dashboard')->with('Akun telah terverifikasi');
-            }
-            // elseif ($is_sekretariat)
-            else {
-                return redirect('/sekretariat/dashboard')->with('Akun telah terverifikasi');
-                // nanti ganti /evaluator atau /lead
-            }
+            return redirect()->route("$role.dashboard.view")->with('success', 'Akun telah terverifikasi');
         }else {
             return  view('user.auth.verify', ['kode_verifikasi' => $kodeVerifikasi]);
         }

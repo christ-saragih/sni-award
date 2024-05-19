@@ -69,7 +69,7 @@
                         <div class="card-body">
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">Legalitas Hukum Organisasi <span style="color: #FF0101;">*</span></h6>
+                                    <h6 class="mb-0">Legalitas Hukum Organisasi</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -78,7 +78,7 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile1" name="url_legalitas_hukum_organisasi" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
                                                     <label for="inputGroupFile1" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName1"></div>
                                                 </div>
                                             </div>  
@@ -87,13 +87,13 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile1" name="url_legalitas_hukum_organisasi" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
                                                     <label for="inputGroupFile1" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName1"></div>
                                                 </div>
                                             </div>  
 
                                             <div class="col-md-1">
-                                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -104,7 +104,7 @@
 
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">SPPT SNI <span style="color: #FF0101;">*</span></h6>
+                                    <h6 class="mb-0">SPPT SNI</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -113,7 +113,7 @@
                                             <div class="file-input">
                                                 <input type="file" id="inputGroupFile2" name="url_sppt_sni" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
                                                 <label for="inputGroupFile2" class="file-input-label">Unggah</label>
-                                                <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                 <div id="fileName2"></div>
                                             </div>
                                         </div>
@@ -122,12 +122,12 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile2" name="url_sppt_sni" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
                                                     <label for="inputGroupFile2" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName2"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}"  target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -138,7 +138,7 @@
 
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">SK Kemenkumham <span style="color: #FF0101;">*</span></h6>
+                                    <h6 class="mb-0">SK Kemenkumham</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -147,7 +147,7 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile3" name="url_sk_kemenkumham" accept=".pdf" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
                                                     <label for="inputGroupFile3" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName3"></div>
                                                 </div>
                                             </div>
@@ -156,13 +156,13 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile3" name="url_sk_kemenkumham" accept=".pdf" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
                                                     <label for="inputGroupFile3" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName3"></div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-1">
-                                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                                                 <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -173,7 +173,7 @@
 
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">Kewenangan dan Kebijakan<span style="color: #FF0101;">*</span></h6>
+                                    <h6 class="mb-0">Kewenangan dan Kebijaka</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -182,7 +182,7 @@
                                             <div class="file-input">
                                                 <input type="file" id="inputGroupFile4" name="url_kewenangan_kebijakan" accept=".pdf" onchange="handleFileSelect('inputGroupFile4', 'fileInputLabel4', 'fileName4')">
                                                 <label for="inputGroupFile4" class="file-input-label">Unggah</label>
-                                                <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                 <div id="fileName4"></div>
                                             </div>
                                         </div>
@@ -191,12 +191,12 @@
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile4" name="url_kewenangan_kebijakan" accept=".pdf" onchange="handleFileSelect('inputGroupFile4', 'fileInputLabel4', 'fileName4')">
                                                     <label for="inputGroupFile4" class="file-input-label">Unggah</label>
-                                                    <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal upload file : 10 MB</label>
+                                                    <label for="inputGroupFile4" id="fileInputLabel4" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
                                                     <div id="fileName4"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                                                     <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
@@ -228,7 +228,7 @@ function handleFileSelect(inputId, labelId, fileNameId) {
       fileInputLabel.textContent = fileName;
     //   fileNameDisplay.textContent = fileName;
     } else {
-      fileInputLabel.textContent = "Maksimal upload file : 10 MB";
+      fileInputLabel.textContent = "Maksimal mengunggah dokumen : 10 MB";
       fileNameDisplay.textContent = "";
     }
   }
