@@ -195,7 +195,7 @@ Route::prefix('/admin')->group(function () {
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
-        Route::put('/peserta/{id}/verifikasi', [DataPesertaController::class, 'verifikasiPeserta']);
+        Route::put('/peserta/{id}/verifikasi', [DataPesertaController::class, 'verifikasiPeserta'])->name('admin.peserta.verifikasi');
         // Route::get('/peserta/edit/{id}', [DataPesertaController::class, 'editView']);
         Route::get('/internal', [DataInternalController::class, 'index']);
         Route::get('/internal/{id}', [DataInternalController::class, 'detail']);
