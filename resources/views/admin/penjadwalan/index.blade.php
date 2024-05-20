@@ -54,10 +54,11 @@
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Dokumen</h6>
                         <div class="input-group custom-file-button">
-                            <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                            <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label>
-                            <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;">
+                            {{-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
+                            <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label> --}}
+                            <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control">
                         </div>
+                        <div id="current-file" class="mt-2"></div>
                     </div>
                 </div>
             </div>
@@ -90,6 +91,7 @@
 </div>
 
 {{-- Pop Up Ubah Linimasa --}}
+@if ($penjadwalan_linimasa)
 <div class="modal fade" id="ubahlinimasajadwalan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content" action="{{ route('penjadwalan_linimasa.update', $penjadwalan_linimasa->id) }}" method="POST" enctype="multipart/form-data">
@@ -107,8 +109,6 @@
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Benner</h6>
                         <div class="input-group custom-file-button">
-                            {{-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
-                            <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label> --}}
                             <input type="file" name="gambar" accept="image/*" class="form-control">
                         </div>
                     </div>
@@ -125,6 +125,7 @@
         </form>
     </div>
 </div>
+@endif
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">

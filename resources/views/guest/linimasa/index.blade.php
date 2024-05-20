@@ -16,7 +16,7 @@
 <article class="shape-linimasa pb-5">
     <div class="contact-container">
         <div class="title pb-5 mb-4 text-center text-uppercase">
-            <h1>{{ $penjadwalan_linimasa->judul }}</h1>
+            <h1>{{ $penjadwalan_linimasa ? $penjadwalan_linimasa->judul : 'TIMELINE KEGIATAN SNI AWARD 2024' }}</h1>
             {{-- <h1>TIMELINE KEGIATAN SNI AWARD 2024</h1> --}}
         </div>
 
@@ -28,9 +28,10 @@
             <img src="{{ asset('assets') }}/images/linimasa.jpg" class="img-fluid" alt="" style="box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25) !important;">
         </div>
 
+        @if ($penjadwalan_linimasa)
         <div class="mt-5 ms-5">
             <iframe
-                src="{{ $penjadwalan_linimasa->lokasi_map }}"
+                src="{{ $penjadwalan_linimasa ? $penjadwalan_linimasa->lokasi_map : null }}"
                 {{-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid" --}}
                 width="960"
                 height="580"
@@ -40,6 +41,7 @@
                 referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
         </div>
+        @endif
         {{-- @php
             $linimasa = [
               0 => [
