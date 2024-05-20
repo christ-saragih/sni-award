@@ -762,9 +762,9 @@ function openModalUbahDokumenPenjadwalan(id) {
                 response.nama_dokumen
             );
 
-            $('#form_ubah_dokumen input[name="file_dokumen"]').val(
-                response.file_dokumen
-            );
+            // $('#form_ubah_dokumen input[name="file_dokumen"]').val(
+            //     response.file_dokumen
+            // );
 
             // Menampilkan nama file saat ini di bawah input file
             if (response.file_dokumen) {

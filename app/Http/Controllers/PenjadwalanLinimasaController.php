@@ -87,7 +87,7 @@ class PenjadwalanLinimasaController extends Controller
         // ]);
         $request->validate([
             'judul' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Optional but must be an image if present
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'lokasi_map' => 'required',
         ], [
             'judul.required' => 'Nama Dokumen Wajib Diisi!',
