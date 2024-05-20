@@ -10,48 +10,14 @@
         <div class="owl-carousel owl-theme">
             @foreach ($penjadwalan_dokumen as $item)
             <div class="item">
-                <a href="{{ route('penjadwalan_dokumen.download', $item->id) }}" class="card-body" style="text-decoration: none" download>
+                {{-- <a href="{{ route('penjadwalan_dokumen.download', $item->id) }}" class="card-body" style="text-decoration: none" download> --}}
+                <a href="{{ $item->file_dokumen }}" target="_blank" class="card-body" style="text-decoration: none">
                     <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok2.svg" alt="">
                     <h4>{{ $item->nama_dokumen }}</h4>
                 </a>
             </div>
             @endforeach
-            {{-- <div class="item">
-                <div class="card-body">
-                    <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok1.svg" alt="">
-                    <h4>Surat Pernyataan</h4>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card-body">
-                    <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok2.svg" alt="">
-                    <h4>Kategori SNI Award</h4>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card-body">
-                    <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok3.svg" alt="">
-                    <h4>Syarat dan Ketentuan SNI Award</h4>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card-body">
-                    <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok1.svg" alt="">
-                    <h4>Surat Pernyataan</h4>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card-body">
-                    <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok2.svg" alt="">
-                    <h4>Kategori SNI Award</h4>
-                </div>
-            </div>
-            <div class="item">
-                <div class="card-body">
-                <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok3.svg" alt="">
-                <h4>Syarat dan Ketentuan SNI Award</h4>
-                </div>
-            </div> --}}
+
         </div>
     </div>
 </article>
