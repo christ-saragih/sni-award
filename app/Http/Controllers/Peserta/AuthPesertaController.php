@@ -89,7 +89,12 @@ class AuthPesertaController extends Controller
             Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
         }
 
-        if (Auth::guard('peserta')->check()) {
+        $login_credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (Auth::guard('peserta')->attempt($login_credentials)) {
             return redirect('/peserta/dashboard');
         }else {
             return redirect('/masuk')->with('success', 'Berhasil melakukan registrasi');

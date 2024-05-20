@@ -148,6 +148,9 @@
                     <div><span id="ps-nc">&#x2716;</span>&emsp;Angka</div>
                     <div><span id="ps-sc">&#x2716;</span>&emsp;Karakter spesial (!, @, #, $, %, ...)</div>
                 </div>
+                
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
 
                 <div>
                     <div class="mb-2" style="
