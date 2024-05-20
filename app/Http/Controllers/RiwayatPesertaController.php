@@ -9,6 +9,7 @@ use App\Models\PesertaProfil;
 use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
 use App\Models\RegistrasiDokumen;
+use App\Models\RegistrasiEvaluator;
 use App\Models\RegistrasiPenilaian;
 use App\Models\User;
 use Dompdf\Dompdf;
@@ -37,14 +38,20 @@ class RiwayatPesertaController extends Controller
         // dd($peserta);
         $dokumen_peserta = PesertaProfil::where('peserta_id', $peserta->id)->select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->first();
 
-        $desk_evaluation = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3])->get();
+        $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
+
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
+        // dd($desk_evaluation[0]->registrasi->registrasi_penilaian);
+        // dd($desk_evaluation);
         $site_evaluation = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 4])->get();
 
         $assessment_kategori = AssessmentKategori::first();
 
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
 
-        return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta']));
+        return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'penilaian_evaluator', 'penilaian_lead_evaluator', 'penilaian_sekretariat']));
     }
 
     public function getKategori($id, $kategori){
