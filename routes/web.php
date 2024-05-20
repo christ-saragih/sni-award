@@ -10,6 +10,9 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\User\Sekretariat\evaluator\SekretariatEvaluatorController;
+use App\Http\Controllers\User\Sekretariat\lead_evaluator\SekretariatLeadEvaluatorController;
+use App\Http\Controllers\User\Sekretariat\sekretariat\SekretariatSekretariatController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -403,6 +406,10 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
     Route::post('/tim/store', [SekretariatTimController::class, 'store'])->name('sekretariat.tim.store');
+
+    Route::get('/sekretariat', [SekretariatSekretariatController::class, 'index'])->name('sekretariat.sekretariat.view');
+    Route::get('/lead_evaluator', [SekretariatLeadEvaluatorController::class, 'index'])->name('sekretariat.lead_evaluator.view');
+    Route::get('/evaluator', [SekretariatEvaluatorController::class, 'index'])->name('sekretariat.evaluator.view');
 });
 // Sekretariat End
 
