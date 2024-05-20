@@ -91,8 +91,13 @@ class AuthUserController extends Controller
             ];
             Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));    
         }
+
+        $login_credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
         
-        if (Auth::guard('web')->check()) {
+        if (Auth::guard('web')->attempt($login_credentials)) {
             $is_sekretariat = count(
                 Registrasi::where('sekretariat_id', Auth::user()->id)
                     ->where('tahun', date('Y'))
