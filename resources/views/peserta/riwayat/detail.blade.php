@@ -44,14 +44,70 @@
                         <!-- fieldsets -->
                         {{-- evaluator --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @foreach ($desk_evaluation as $penilaian)
+                            @if ($desk_evaluation->evaluator)
                                 <div class="card-body pt-0 mt-0">
                                     <div class="row align-items-center pt-4 pb-3">
                                         <div class="col-md-4 ps-5">
                                             <h6 class="mb-0">Nama</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
-                                            <p>{{ $penilaian->jabatan == 'evaluator' ? $penilaian->user->name : '-' }}</p>
+                                            <p>{{ $desk_evaluation->evaluator->name }}</p>
+                                        </div>
+                                    </div>
+                                    {{-- @foreach ($registrasi_penilaian as $penilai) --}}
+                                        {{-- {{dd($penilai)}} --}}
+                                        @if ($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>{{ $penilaian_evaluator->skor }}</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian_evaluator->catatan }}</p>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>-</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    {{-- @endforeach --}}
+                                </div>
+                                <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                            @else
+                                <div class="card-body pt-0 mt-0">
+                                    <div class="row align-items-center pt-4 pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nama</h6>
+                                        </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p>-</p>
                                         </div>
                                     </div>
                                     <div class="row align-items-center pb-3">
@@ -60,7 +116,8 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="d-flex align-items-center gap-3">
-                                                <p>{{ $penilaian->jabatan == 'evaluator' ? $penilaian->skor : '-' }}</p>
+                                                <p>-</p>
+                                                {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -69,301 +126,199 @@
                                             <h6 class="mb-0 mt-2">Komentar</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
-                                            <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->jabatan == 'evaluator' ? $penilaian->catatan : '-' }}</p>
+                                            <p style="max-height: 120px; overflow-y: auto;">-</p>
                                         </div>
                                     </div>
                                 </div>
                                 <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
-                            @endforeach
-                            <form action="{{ route('peserta.riwayat.penilaian.download', $registrasi->id) }}" method="POST">
-                                @csrf
-                                <button type="submit">
-                                    Unduh Dokumen
-                                    <i class="fa fa-download"></i>
-                                </button>
-                            </form>
+                            @endif
                         </fieldset>
-                        
-                        
-                        {{-- lead evaluator --}}
+
+                        {{-- Lead Evaluator --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @foreach ($desk_evaluation as $penilaian)
-                                @if ($penilaian->jabatan == 'lead_evaluator')
-                                    <div class="card-body pt-0 mt-0">
-                                        <div class="row align-items-center pt-4 pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nama</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p>{{ $penilaian->user->name }}</p>
-                                            </div>
+                            @if ($desk_evaluation->lead_evaluator)
+                                <div class="card-body pt-0 mt-0">
+                                    <div class="row align-items-center pt-4 pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nama</h6>
                                         </div>
-                                        <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nilai</h6>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <p>{{ $penilaian->skor }}</p>
-                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
-                                            </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p>{{ $desk_evaluation->lead_evaluator->name }}</p>
                                         </div>
                                     </div>
-                                    <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @else
-                                    <div class="card-body pt-0 mt-0">
-                                        <div class="row align-items-center pt-4 pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nama</h6>
+                                    {{-- @foreach ($registrasi_penilaian as $penilai) --}}
+                                        {{-- {{dd($penilai)}} --}}
+                                        @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>{{ $penilaian_lead_evaluator->skor }}</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-8 pe-5">
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian_lead_evaluator->catatan }}</p>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>-</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    {{-- @endforeach --}}
+                                </div>
+                                <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                                <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                            @else
+                                <div class="card-body pt-0 mt-0">
+                                    <div class="row align-items-center pt-4 pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nama</h6>
+                                        </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p>-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nilai</h6>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="d-flex align-items-center gap-3">
                                                 <p>-</p>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nilai</h6>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <p>-</p>
-                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                                {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @endif
-                                {{-- @if ($index > 0)
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @endif --}}
-                            @endforeach
+                                    <div class="row pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0 mt-2">Komentar</h6>
+                                        </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
+                                <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                            @endif
                         </fieldset>
 
+                        {{-- Sekretariat --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @foreach ($desk_evaluation as $penilaian)
-                                @if ($penilaian->jabatan == 'sekretariat')
-                                    <div class="card-body pt-0 mt-0">
-                                        <div class="row align-items-center pt-4 pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nama</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p>{{ $penilaian->user->name }}</p>
-                                            </div>
+                            @if ($desk_evaluation->registrasi->sekretariat_id)
+                                <div class="card-body pt-0 mt-0">
+                                    <div class="row align-items-center pt-4 pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nama</h6>
                                         </div>
-                                        <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nilai</h6>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <p>{{ $penilaian->skor }}</p>
-                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian->catatan }}</p>
-                                            </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p>{{ $desk_evaluation->registrasi->user->name }}</p>
                                         </div>
                                     </div>
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @else
-                                    <div class="card-body pt-0 mt-0">
-                                        <div class="row align-items-center pt-4 pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nama</h6>
+                                    {{-- @foreach ($registrasi_penilaian as $penilai) --}}
+                                        {{-- {{dd($penilai)}} --}}
+                                        @if ($penilaian_sekretariat ? $penilaian_sekretariat->internal_id : null)
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>{{ $penilaian_sekretariat->skor }}</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-8 pe-5">
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">{{ $penilaian_sekretariat->catatan }}</p>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row align-items-center pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0">Nilai</h6>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="d-flex align-items-center gap-3">
+                                                        <p>-</p>
+                                                        {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-3">
+                                                <div class="col-md-4 ps-5">
+                                                    <h6 class="mb-0 mt-2">Komentar</h6>
+                                                </div>
+                                                <div class="col-md-8 pe-5">
+                                                    <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    {{-- @endforeach --}}
+                                </div>
+                                <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                            @else
+                                <div class="card-body pt-0 mt-0">
+                                    <div class="row align-items-center pt-4 pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nama</h6>
+                                        </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p>-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nilai</h6>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="d-flex align-items-center gap-3">
                                                 <p>-</p>
-                                            </div>
-                                        </div>
-                                        <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nilai</h6>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <p>-</p>
-                                                    {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                            </div>
-                                            <div class="col-md-8 pe-5">
-                                                <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                                {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @endif
-                                {{-- @if ($index > 0)
-                                    <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
-                                @endif --}}
-                            @endforeach
+                                    <div class="row pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0 mt-2">Komentar</h6>
+                                        </div>
+                                        <div class="col-md-8 pe-5">
+                                            <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
+                            @endif
                         </fieldset>
-
-                        {{-- <fieldset class="fieldset" id="fieldsetPenilaian">
-                            <div class="card-body pt-0 mt-0 mb-5">
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nama Evaluator</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nilai</h6>
-                                </div>
-                                <div class="col-md-2">
-                                <div class="d-flex align-items-center gap-3">
-                                    <p class="form-control form-control-lg m-0" style="border: none;">192</p>
-                                    <!-- icon download -->
-                                    <!-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> -->
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="row pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                            </div>
-
-                            <input
-                                type="button"
-                                name="next"
-                                class="btn next action-button float-end"
-                                value="Selanjutnya"
-                            />
-
-                        </fieldset>
-
-                        <fieldset class="fieldset" id="fieldsetPenilaian">
-                            <div class="card-body pt-0 mt-0 mb-5">
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nama Evaluator</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nilai</h6>
-                                </div>
-                                <div class="col-md-2">
-                                <div class="d-flex align-items-center gap-3">
-                                    <p class="form-control form-control-lg m-0" style="border: none;">192</p>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="row pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                            </div>
-
-                            <input
-                            type="button"
-                            name="next"
-                            class="btn next action-button float-end"
-                            value="Selanjutnya"
-                            />
-                            <input
-                            type="button"
-                            name="previous"
-                            class="btn previous action-button-previous float-end me-3"
-                            value="Sebelumnya"
-                            />
-                        </fieldset>
-
-                        <fieldset class="fieldset" id="fieldsetPenilaian">
-                            <div class="card-body pt-0 mt-0 mb-5">
-                            <div class="row align-items-center pt-4 pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nama Evaluator</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="border: none;">Bennefit</p>
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0">Nilai</h6>
-                                </div>
-                                <div class="col-md-2">
-                                <div class="d-flex align-items-center gap-3">
-                                    <p class="form-control form-control-lg m-0" style="border: none;">192</p>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="row pb-3">
-                                <div class="col-md-4 ps-5">
-                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                </div>
-                                <div class="col-md-8 pe-5">
-                                <p class="form-control form-control-lg m-0" style="max-height: 120px; overflow-y: auto; border: none;">Bagus, tapi ada beberapa yang tidak sesuai Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-column align-items-end">
-                            <a href="" class="btn btn-unduh-dokumen mb-5 me-3" style="background-color: #E59B30; border-radius: 15px; font-size: 18px; font-weight: bold; color: #FFFFFF;">Unduh Dokumen <i class="fa fa-download"></i></a>
-                            </div>
-
-                            <input
-                                type="button"
-                                name="previous"
-                                class="btn previous action-button-previous float-end me-3"
-                                value="Sebelumnya"
-                            />
-
-                        </fieldset> --}}
-
                         </div>
                     </div>
                     </div>
@@ -387,11 +342,13 @@
                 <div class="card" style="border-radius: 15px;">
                 <div class="fieldset">
                     <div class="card-body">
-                        @foreach ($desk_evaluation as $penilaian)
+                        {{-- @foreach ($desk_evaluation as $penilaian) --}}
+                        {{-- {{dd($desk_evaluation->evaluator)}} --}}
+                        @if ($desk_evaluation->evaluator)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 mb-5">
                                     <div class="col-md-12 ps-5 d-flex flex-column gap-3">
-                                        <h5 class="mb-0">{{ $penilaian->jabatan }}</h5>
+                                        <h5 class="mb-0">Evaluator</h5>
                                         <hr class="" style="height: 1px;" >
                                     </div>
                                 </div>
@@ -400,7 +357,7 @@
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $penilaian->user->name}}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->evaluator->name }}</p>
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
@@ -408,11 +365,141 @@
                                         <h6 class="mb-0">Jabatan</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $penilaian->jabatan }}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->evaluator->jenis_role->nama }}</p>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @else
+                            <div class="card-body pt-0 mt-0">
+                                <div class="row align-items-center pt-4 mb-5">
+                                    <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                                        <h5 class="mb-0">Evaluator</h5>
+                                        <hr class="" style="height: 1px;" >
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($desk_evaluation->lead_evaluator)
+                            <div class="card-body pt-0 mt-0">
+                                <div class="row align-items-center pt-4 mb-5">
+                                    <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                                        <h5 class="mb-0">Lead Evaluator</h5>
+                                        <hr class="" style="height: 1px;" >
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->lead_evaluator->name }}</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->lead_evaluator->jenis_role->nama }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="card-body pt-0 mt-0">
+                                <div class="row align-items-center pt-4 mb-5">
+                                    <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                                        <h5 class="mb-0">Lead_Evaluator</h5>
+                                        <hr class="" style="height: 1px;" >
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- {{ dd($desk_evaluation->registrasi->sekretariat_id) }} --}}
+                        @if ($desk_evaluation->registrasi->sekretariat_id)
+                            <div class="card-body pt-0 mt-0">
+                                <div class="row align-items-center pt-4 mb-5">
+                                    <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                                        <h5 class="mb-0">Sekretariat</h5>
+                                        <hr class="" style="height: 1px;" >
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->name }}</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->jenis_role->nama }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="card-body pt-0 mt-0">
+                                <div class="row align-items-center pt-4 mb-5">
+                                    <div class="col-md-12 ps-5 d-flex flex-column gap-3">
+                                        <h5 class="mb-0">Sekretariat</h5>
+                                        <hr class="" style="height: 1px;" >
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Nama</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
+                                    </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- @endforeach --}}
                         {{-- <div class="card-body pt-0 mt-0">
                             <div class="row align-items-center pt-4 mb-5">
                                 <div class="col-md-12 ps-5 d-flex flex-column gap-3">
@@ -649,9 +736,9 @@
                     <button type="submit">
                         Unduh sebagai PDF
                     </button>
-                </form>   
+                </form>
                 @foreach ($assessment_kategori->assessment_sub_kategori as $ask)
-                    @foreach ($ask->assessment_pertanyaan as $ap)             
+                    @foreach ($ask->assessment_pertanyaan as $ap)
                     <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                         <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
                             <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
