@@ -10,6 +10,9 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
+use App\Http\Controllers\User\Sekretariat\evaluator\SekretariatEvaluatorController;
+use App\Http\Controllers\User\Sekretariat\lead_evaluator\SekretariatLeadEvaluatorController;
+use App\Http\Controllers\User\Sekretariat\sekretariat\SekretariatSekretariatController;
 use App\Http\Controllers\WilayahAdminController;
 use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
@@ -399,10 +402,15 @@ Route::prefix('/sekretariat')->middleware(['auth', 'verified', 'email.verified',
     Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
     Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
     Route::post('/peserta/profil/{registrasi_id}/assessment/download', [SekretariatPesertaController::class, 'downloadAssessmentPDF'])->name('sekretariat.peserta.profil.assessment.download');
+    Route::post('/peserta/profil/{registrasi_id}/penilaian', [SekretariatPesertaController::class, 'penilaian'])->name('sekretariat.peserta.profil.penilaian');
 
     Route::get('/tim', [SekretariatTimController::class, 'index'])->name('sekretariat.tim.view');
     Route::get('/tim/tambah', [SekretariatTimController::class, 'tambah'])->name('sekretariat.tim.tambah');
     Route::post('/tim/store', [SekretariatTimController::class, 'store'])->name('sekretariat.tim.store');
+
+    Route::get('/sekretariat', [SekretariatSekretariatController::class, 'index'])->name('sekretariat.sekretariat.view');
+    Route::get('/lead_evaluator', [SekretariatLeadEvaluatorController::class, 'index'])->name('sekretariat.lead_evaluator.view');
+    Route::get('/evaluator', [SekretariatEvaluatorController::class, 'index'])->name('sekretariat.evaluator.view');
 });
 // Sekretariat End
 
