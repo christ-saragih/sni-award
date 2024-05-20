@@ -44,7 +44,7 @@ class RiwayatPesertaController extends Controller
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
         // dd($desk_evaluation[0]->registrasi->registrasi_penilaian);
-        // dd($desk_evaluation);
+        // dd($penilaian_evaluator);
         $site_evaluation = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 4])->get();
 
         $assessment_kategori = AssessmentKategori::first();
