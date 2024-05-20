@@ -33,7 +33,7 @@ class SekretariatPesertaController extends Controller
         foreach ($desk_evaluation as $penilaian) {
             // dd($penilaian->registrasi->registrasi_penilaian);
             if ($penilaian) {
-                foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
+                foreach ($penilaian->registrasi_penilaian as $status) {
                     // dd($status->jabatan == 'lead_evaluator');
                     if($status->internal_id == $penilaian->lead_evaluator_id) {
                         $penilaian_evaluator[] = [
