@@ -226,7 +226,7 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     padding: 0;
     gap: 50px;
-}   
+}
 
 .artikel-container .content-container h2 {
     margin-top: 45px;
@@ -780,6 +780,19 @@ h2.accordion-header {
     color: #AD7979;
     transition: all 0.3s ease;
 }
+
+.dokumen_container{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.dokumen_kegiatan{
+    background-color: white;
+    padding: 20px;
+    border: 3px solid #AD7979;
+    border-radius: 4px;
+}
 /* Unduh end */
 
 /* Footer */
@@ -867,7 +880,7 @@ ul a {
 
 #register .select2-container .select2-selection--single {
     border-radius: 100px !important;
-    
+
 }
 
 #register .select2-container .select2-selection--single {
@@ -1012,11 +1025,11 @@ ul a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .login-container .content-kanan > img {
-    width: 185px; 
+    width: 185px;
 }
 
 .login-container .content-kanan h1 {
