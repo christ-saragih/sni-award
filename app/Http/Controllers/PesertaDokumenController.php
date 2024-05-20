@@ -54,7 +54,7 @@ class PesertaDokumenController extends Controller
 
                 $fileName = time() . '.' . $request->$field->extension();
                 $request->$field->move(storage_path('app/public/dokumen/' . $folder . '/' . $id), $fileName);
-                $updateData[$field] = 'dokumen/' . $folder . '/' . $id . '/' . $fileName;
+                $updateData[$field] = '/storage/dokumen/' . $folder . '/' . $id . '/' . $fileName;
             }
         }
 

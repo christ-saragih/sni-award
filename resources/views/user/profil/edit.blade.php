@@ -137,7 +137,7 @@
                           <div class="input-file-group" style="border: 1px solid #9FAFBF;">
                             <label class="input-group-text px-4" for="inputCV" style="border: none;">Unggah</label>
                             <label class="label-text px-4" id="labelInputCV" for="inputCV" style="border: none; width:">Maksimum upload file : 10 MB </label>
-                            <input type="file" oninput="handleFileInputCV(this)" name="url_cv" class="d-none form-control unik" id="inputCV">
+                            <input type="file" oninput="handleFileInputCV(this)" accept=".pdf" name="url_cv" class="d-none form-control unik" id="inputCV">
                           </div>
                         </div>
                       </div>
@@ -151,7 +151,7 @@
                             <div class="input-file-group" style="border: 1px solid #9FAFBF;">
                               <label class="input-group-text px-4" for="inputAntiSuap" style="border: none;">Unggah</label>
                               <label class="label-text px-4" style="border: none;" id="labelInputAntiSuap" for="inputAntiSuap">Maksimum upload file : 10 MB </label>
-                              <input type="file" oninput="handleFileInputAntiSuap(this)" name="url_anti_penyuapan" class="d-none form-control unik" id="inputAntiSuap">
+                              <input type="file" oninput="handleFileInputAntiSuap(this)" accept=".pdf" name="url_anti_penyuapan" class="d-none form-control unik" id="inputAntiSuap">
                             </div>
                           </div>
                       </div>

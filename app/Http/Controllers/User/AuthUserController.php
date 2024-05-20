@@ -61,6 +61,7 @@ class AuthUserController extends Controller
         $request->validate([
             'email' => 'required|unique:users|email',
             'password' => 'required|min:8|confirmed|strong_password',
+            'g-recaptcha-response' => 'required|captcha',
         ], [
             'email.required' => 'Email Wajib Diisi',
             'email.unique' => 'Email telah terdaftar',
@@ -68,6 +69,8 @@ class AuthUserController extends Controller
             'password.min' => 'Panjang Password minimal 8 karakter',
             'password.confirmed' => 'Harap konfirmasi password anda',
             'password.strong_password' => 'Password harus mengandung huruf besar, huruf kecil, angka, John karakter spesial',
+            'g-recaptcha-response.required' => 'Harap verfikasi bahwa Anda bukan robot',
+            'g-recaptcha-response.captcha' => 'Captcha error! silahkan coba kembali',
         ]);
         $dataRegistrasi = [
             'name' => $request->name,
