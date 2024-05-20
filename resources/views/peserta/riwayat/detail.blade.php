@@ -343,6 +343,7 @@
                 <div class="fieldset">
                     <div class="card-body">
                         {{-- @foreach ($desk_evaluation as $penilaian) --}}
+                        {{-- {{dd($desk_evaluation->evaluator)}} --}}
                         @if ($desk_evaluation->evaluator)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 mb-5">
@@ -359,25 +360,14 @@
                                         <p class="form-control form-control-lg m-0">{{ $desk_evaluation->evaluator->name }}</p>
                                     </div>
                                 </div>
-                                @if ($penilaian_evaluator)
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">{{ $penilaian_evaluator->jabatan }}</p>
-                                        </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
                                     </div>
-                                @else
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">-</p>
-                                        </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->evaluator->jenis_role->nama }}</p>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         @else
                             <div class="card-body pt-0 mt-0">
@@ -422,25 +412,14 @@
                                         <p class="form-control form-control-lg m-0">{{ $desk_evaluation->lead_evaluator->name }}</p>
                                     </div>
                                 </div>
-                                @if ($penilaian_lead_evaluator)
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">{{ $penilaian_lead_evaluator->jabatan }}</p>
-                                        </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
                                     </div>
-                                @else
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">-</p>
-                                        </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->lead_evaluator->jenis_role->nama }}</p>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         @else
                             <div class="card-body pt-0 mt-0">
@@ -485,25 +464,14 @@
                                         <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->name }}</p>
                                     </div>
                                 </div>
-                                @if ($penilaian_sekretariat)
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">{{ $penilaian_sekretariat->jabatan }}</p>
-                                        </div>
+                                <div class="row align-items-center pb-3">
+                                    <div class="col-md-4 ps-5">
+                                        <h6 class="mb-0">Jabatan</h6>
                                     </div>
-                                @else
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Jabatan</h6>
-                                        </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p class="form-control form-control-lg m-0">-</p>
-                                        </div>
+                                    <div class="col-md-8 pe-5">
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->jenis_role->nama }}</p>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         @else
                             <div class="card-body pt-0 mt-0">
