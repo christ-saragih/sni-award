@@ -11,7 +11,9 @@ use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
+use App\Models\RegistrasiEvaluator;
 use App\Models\RegistrasiDokumen;
+use App\Models\RegistrasiPenilaian;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,12 +29,27 @@ class SekretariatPesertaController extends Controller
         $desk_evaluation = Registrasi::where('sekretariat_id', $user->id)
             ->where('stage_id', '3')
             ->get();
+        $penilaian_evaluator = [];
+        foreach ($desk_evaluation as $penilaian) {
+            // dd($penilaian->registrasi->registrasi_penilaian);
+            if ($penilaian) {
+                foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
+                    // dd($status->jabatan == 'lead_evaluator');
+                    if($status->internal_id == $penilaian->lead_evaluator_id) {
+                        $penilaian_evaluator[] = [
+                            'jabatan' => $status->jabatan
+                        ];
+                    }
+                }
+            }
+        }
         $site_evaluation = Registrasi::where('sekretariat_id', $user->id)
             ->where('stage_id', '4')
             ->get();
         return view('sekretariat.peserta.index', [
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
+            'penilaian_evaluator' => $penilaian_evaluator,
             'site_evaluation' => $site_evaluation,
         ]);
     }
@@ -41,6 +58,12 @@ class SekretariatPesertaController extends Controller
         $registrasi_id = Crypt::decryptString($registrasi_id);
         $registrasi = Registrasi::find($registrasi_id);
         $registrasi_penilaian = $registrasi->registrasi_penilaian;
+
+        $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
+        // dd($penilaian_sekretariat);
 
         $registrasi_dokumen = $registrasi->registrasi_dokumen;
         $peserta = Peserta::find($registrasi->peserta_id);
@@ -60,7 +83,11 @@ class SekretariatPesertaController extends Controller
             'dokumen' => $dokumen,
             'assessment_kategori' => $assessment_kategori,
             'selected_assessment_kategori' => $selected_assessment_kategori,
-            'registrasi_penilaian' => $registrasi_penilaian
+            'registrasi_penilaian' => $registrasi_penilaian,
+            'desk_evaluation' => $desk_evaluation,
+            'penilaian_evaluator' => $penilaian_evaluator,
+            'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
+            'penilaian_sekretariat' => $penilaian_sekretariat
         ]);
     }
 
@@ -152,6 +179,40 @@ class SekretariatPesertaController extends Controller
         $dompdf->render();
         $dompdf->stream('assessment_pertanyaan.pdf');
 
+    }
+
+    public function penilaian(Request $request, $registrasi_id) {
+        // dd([
+        //     'skor' => $request->skor,
+        //     'catatan' => $request->catatan,
+        // ]);
+
+        $user = Auth::user();
+        $registrasi = Registrasi::find($registrasi_id);
+        $request->validate([
+            'skor' => 'required|max:100',
+            'catatan' => 'required',
+        ], [
+            'skor.required' => 'Skor Tidak Boleh Kosong',
+            'skor.max' => 'Skor Masimal 100',
+            'catatan.required' => 'Catatan Tidak Boleh Kosong',
+        ]);
+        // $registrasi_id = Crypt::decryptString($registrasi_id);
+        // dd($registrasi_id);
+        // $registrasi_penilaian = RegistrasiPenilaian::find($registrasi_id);
+        RegistrasiPenilaian::create([
+            'registrasi_id' => $registrasi_id,
+            'internal_id' => $user->id,
+            'jabatan' => $user->jenis_role->nama,
+            // 'jabatan' => 'lead_evaluator',
+            'url_dokumen_penilaian' => '',
+            'stage_id' => $registrasi->stage_id,
+            'skor' => $request->skor,
+            'catatan' => $request->catatan,
+            'final' => $request->skor,
+        ]);
+
+        return back()->with('success', 'Berhasil mengirim penilaian');
     }
     
 }

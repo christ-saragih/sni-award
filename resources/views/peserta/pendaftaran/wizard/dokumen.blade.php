@@ -11,6 +11,15 @@
         border-radius: 0 15px 15px 0;
         padding: 10px 20px;
     }
+
+    a.btn {
+        color: white;
+        padding-block: 0.1rem !important;
+        padding-inline: 0 !important;
+        border-radius: 10px;
+        min-width: 95px !important;
+        pointer-events: none;
+    }
 </style>
 
 <div class="content-profil py-5 mb-5">
@@ -24,22 +33,29 @@
         <div class="col-3">
           <label class="fw-bold">Nama Lampiran</label>
         </div>
-        <div class="col-9">
-          <label class="fw-bold">Aksi</label>
+        <div class="col-6">
+          <label class="fw-bold">Lampiran</label>
         </div>
+        <div class="col-1 d-flex justify-content-center">
+          <label class="fw-bold" style="margin-left: 25px;">Aksi</label>
+        </div>
+        <div class="col-2 d-flex justify-content-center">
+          <label class="fw-bold">Status</label>
+        </div>
+        
       </div>
         <br>
-        <hr style="width: 100%; height: 5px; color: grey">
+        <hr class="mb-2" style="width: 100%; height: 1px; background-color: #9FAFBF">
           <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
             @csrf
             @if(count($test) == 0)
 
               @foreach ($dokumen as $dok)
-              <div class="row g-3 align-items-center mt-2">
+              <div class="row align-items-center mt-3">
                   <div class="col-3">
                       <label class="fw-bold">{{$dok->nama}}</label>
                   </div>
-                  <div class="row col-9">
+                  
                       @php
                           $statusColor = '';
                           $dokumen_assessment = $registrasi_dokumen ? $registrasi_dokumen->where('dokumen_id', $dok->id)->last() : null;
@@ -51,9 +67,12 @@
                           // dd($registrasi_dokumen->where('dokumen_id', $dok->id)->last()->status);
                       @endphp
                       
-                      <div class="col-9">
+                      <div class="col-6">
                         <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
                       </div>
+
+                      <div class="col-1"></div>
+                      <div class="col-2"></div>
                       {{-- @foreach ($registrasi_dokumen as $rd)
                         @if ($rd->dokumen_id == $dok->id)
                           @switch ($rd->status)
@@ -75,16 +94,14 @@
                           @break
                         @endif
                       @endforeach --}}
-                  </div>
               </div>
               @endforeach
             @else
               @foreach($test as $td)
-              <div class="row g-3 align-items-center mt-2">
+              <div class="row align-items-center mt-3">
                 <div class="col-3">
                     <label class="fw-bold">{{$td->nama}}</label>
                 </div>
-                <div class="row col-9">
                     @php
                         $statusColor = '';
                         $dokumen_assessment = $registrasi_dokumen ? $registrasi_dokumen->where('dokumen_id', $td->id)->last() : null;
@@ -96,28 +113,32 @@
                         // dd($registrasi_dokumen->where('dokumen_id', $dok->id)->last()->status);
                     @endphp
                     @if($td->status != 'disetujui')
-                      <div class="col-9">
+                      <div class="col-6">
                         <input type="file" name="url_dokumen[]" accept=".pdf" class="form-control" id="uploadDokumen">
                       </div>
                     @endif
                     @switch ($td->status)
-                        @case ('proses')
-                            @php $statusColor = 'bg-warning'; @endphp
-                            @break
-                        @case ('ditolak')
-                            @php $statusColor = 'bg-danger text-white'; @endphp
-                            @break
-                        @case ('disetujui')
-                            @php $statusColor = 'bg-success text-white'; @endphp
-                            @break
+                      @case ('proses')
+                          @php $statusColor = '#E59B30'; @endphp
+                          @break
+                      @case ('ditolak')
+                          @php $statusColor = '#D12B2B'; @endphp
+                          @break
+                      @case ('disetujui')
+                          @php $statusColor = '#47A15E'; @endphp
+                          @break
                     @endswitch
-                        <div class="col-3">
-                          @if($td->url_dokumen != NULL)
-                            <a href="{{ $td->url_dokumen }}" target="_blank" style="text-decoration: none; margin-right: 10px;">
+                        @if($td->url_dokumen != NULL)
+                          <div class="col-1 d-flex justify-content-center">
+                            <a href="{{ $td->url_dokumen }}" target="_blank" style="text-decoration: none; margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                               <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                              <a class="btn {{ $statusColor }}">{{ $td->status }}</a>
-                          @endif
-                        </div>
+                            </a>
+                          </div>
+                          <div class="col-2 d-flex justify-content-center">
+                            <a class="btn" style="background-color: {{ $statusColor }};">{{ $td->status }}</a>
+                          </div>
+                        @endif
+                        
                     {{-- @foreach ($registrasi_dokumen as $rd)
                       @if ($rd->dokumen_id == $dok->id)
                         
@@ -125,7 +146,6 @@
                       @endif
                     @endforeach --}}
                 </div>
-            </div>
               @endforeach
             @endif
             <div class="row g-3 justify-content-end mt-2">
@@ -133,61 +153,60 @@
             </div>
           </form>
           <br>
-          <div class="row">
-            <div class="col-2">
+          <div class="d-flex align-items-center gap-5">
               <label class="fw-bold">Dokumen Profil</label>
-            </div>
-            <div class="col-9">
-              <br>
-              <hr style="width: 110%; height: 5px">
-            </div>
+              <hr class="flex-grow-1" style="height: 1px; background-color: #9FAFBF;">
           </div>
             @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
               @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                 <div class="row g-3 align-items-center mt-2">
-                  <div class="col-3">
+                  <div class="col-9">
                     <label class="fw-bold">Legalitas Hukum Organisasi</label>
                   </div>
-                  <div class="col-9">
-                      <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                  <div class="col-1 d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
+                  <div class="col-2"></div>
               @endif
               @if ($peserta->peserta_profil->url_sppt_sni)
                 <div class="row g-3 align-items-center mt-2">
-                  <div class="col-3">
+                  <div class="col-9">
                     <label class="fw-bold">SPPT SNI</label>
                   </div>
-                  <div class="col-9">
-                      <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
+                  <div class="col-1 d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
+                  <div class="col-2"></div>
                 </div>
               @endif
               @if ($peserta->peserta_profil->url_sk_kemenkumham)
                 <div class="row g-3 align-items-center mt-2">
-                  <div class="col-3">
+                  <div class="col-9">
                     <label class="fw-bold">SK Kemenkeuham</label>
                   </div>
-                  <div class="col-9">
-                      <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                  <div class="col-1 d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
+                  <div class="col-2"></div>
                 </div>
               @endif
               @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
                 <div class="row g-3 align-items-center mt-2">
-                  <div class="col-3">
+                  <div class="col-9">
                     <label class="fw-bold">Kewenangan Kebijakan</label>
                   </div>
-                  <div class="col-9">
-                      <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                  <div class="col-1 d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
+                  <div class="col-2"></div>
                 </div>
               @endif
             @endif
@@ -200,14 +219,9 @@
 @if (request()->query('tab') == 'dokumen')
   <hr>
   <div class="content-profil p-5 bg-white" style="border-radius: 15px;">
-      <div class="row mb-5">
-          <div class="col-2">
-              <label class="fs-4 fw-bold">Feedback</label>
-          </div>
-          <div class="col-10">
-              <br>
-              <hr style="width: 100%; height: 1px; background-color: #CC9305;">
-          </div>
+      <div class="d-flex align-items-center gap-3 mb-5">
+          <label class="fs-4 fw-bold">Feedback</label>
+          <hr class="flex-grow-1" style="height: 1px; background-color: #CC9305;">
       </div>
       
       <div style="

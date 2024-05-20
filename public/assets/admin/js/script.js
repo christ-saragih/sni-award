@@ -10,10 +10,12 @@
 // });
 
 // dynamic dropdown kota
-$(function() {
-  $.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-  });
+$(function () {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
 });
 
 $(function () {
@@ -26,9 +28,8 @@ $(function () {
             url: `/api/admin/wilayah/provinsi/${propinsi_id}/kota-kab`,
             cache: false,
 
-            success: function(msg) {
-                $("#kota").html(
-                    kotaKabresponseToHtml(msg));
+            success: function (msg) {
+                $("#kota").html(kotaKabresponseToHtml(msg));
             },
             error: function (data) {
                 console.log("error:", data);
@@ -38,15 +39,14 @@ $(function () {
 });
 
 const kotaKabresponseToHtml = (data) => {
-    let html = ""
+    let html = "";
     for (let kota of data.data) {
-        html += `<option value='${kota.id}'>${kota.kota}</option>`
-        console.log(kota)
+        html += `<option value='${kota.id}'>${kota.kota}</option>`;
+        console.log(kota);
     }
 
-    return html
-}
-
+    return html;
+};
 
 // Navbar Dropdown Button Informasi
 const navLinkInformasi = document.getElementById("navLinkInformasi");
@@ -78,7 +78,9 @@ function toggleDropdownMenuInformasi() {
         dropdownMenuInformasi.classList.add("dropdownMenuInformasi-hidden");
         setTimeout(() => {
             dropdownMenuInformasi.style.display = "none";
-            dropdownMenuInformasi.classList.remove("dropdownMenuInformasi-hidden");
+            dropdownMenuInformasi.classList.remove(
+                "dropdownMenuInformasi-hidden"
+            );
         }, 300);
     } else {
         dropdownMenuInformasi.style.display = "block";
@@ -90,7 +92,6 @@ navLinkInformasi.addEventListener("click", function (event) {
     toggleDropdownMenuInformasi();
     event.preventDefault();
 });
-
 
 // Navbar Dropdown Button Data Master
 const navLinkDataMaster = document.getElementById("navLinkDataMaster");
@@ -113,7 +114,9 @@ navLinkDataMaster.addEventListener("click", function (event) {
     event.preventDefault();
 });
 
-const dropdownMenuDataMaster = document.getElementById("dropdownMenuDataMaster");
+const dropdownMenuDataMaster = document.getElementById(
+    "dropdownMenuDataMaster"
+);
 
 let isDropdownVisible = false;
 
@@ -122,7 +125,9 @@ function toggleDropdownMenuDataMaster() {
         dropdownMenuDataMaster.classList.add("dropdownMenuDataMaster-hidden");
         setTimeout(() => {
             dropdownMenuDataMaster.style.display = "none";
-            dropdownMenuDataMaster.classList.remove("dropdownMenuDataMaster-hidden");
+            dropdownMenuDataMaster.classList.remove(
+                "dropdownMenuDataMaster-hidden"
+            );
         }, 300);
     } else {
         dropdownMenuDataMaster.style.display = "block";
@@ -151,7 +156,6 @@ navLinkAcara.addEventListener("click", function (event) {
     window.location.href = "/admin/acara";
     event.preventDefault();
 });
-
 
 // Href untuk data master
 // konfigurasi
@@ -303,35 +307,39 @@ function openModalUbahKabupaten(id) {
     // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
     $.ajax({
         url: `/admin/wilayah/kabupaten/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             console.log(response);
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_kabupaten select[name="propinsi_id"]').val(response.propinsi_id);
+            $('#form_ubah_kabupaten select[name="propinsi_id"]').val(
+                response.propinsi_id
+            );
             $('#form_ubah_kabupaten input[name="kota"]').val(response.kota);
 
             // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-            $('#form_ubah_kabupaten').attr('action', `/admin/wilayah/kabupaten/${id}`);
+            $("#form_ubah_kabupaten").attr(
+                "action",
+                `/admin/wilayah/kabupaten/${id}`
+            );
 
             // Tampilkan modal edit
-            $('#ubahKabupatenKota').modal('show');
+            $("#ubahKabupatenKota").modal("show");
 
             // Inisialisasi Select2 setelah memuat modal
             $('#form_ubah_kabupaten select[name="propinsi_id"]').select2({
-                theme: 'bootstrap-5',
-                width: '100%',
-                dropdownParent: $('#ubahKabupatenKota')
+                theme: "bootstrap-5",
+                width: "100%",
+                dropdownParent: $("#ubahKabupatenKota"),
             });
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 }
 
 // modal pop up hapus kabupaten
 function openModalHapusKabupaten(id) {
-
     document
         .getElementById("form_hapus_kabupaten")
         .setAttribute("action", `/admin/wilayah/kabupaten/${id}`);
@@ -346,33 +354,42 @@ function openModalUbahKecamatan(id) {
     // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
     $.ajax({
         url: `/admin/wilayah/kecamatan/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             console.log(response);
             // Akses propinsi melalui kota
             var propinsi_id = response.kota.propinsi_id;
 
             // Isi formulir modal dengan data yang diterima dari server
-            $('#form_ubah_kecamatan select[name="propinsi_id"]').val(propinsi_id);
-            $('#form_ubah_kecamatan select[name="kota_id"]').val(response.kota_id);
-            $('#form_ubah_kecamatan input[name="kecamatan"]').val(response.kecamatan);
+            $('#form_ubah_kecamatan select[name="propinsi_id"]').val(
+                propinsi_id
+            );
+            $('#form_ubah_kecamatan select[name="kota_id"]').val(
+                response.kota_id
+            );
+            $('#form_ubah_kecamatan input[name="kecamatan"]').val(
+                response.kecamatan
+            );
 
             // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-            $('#form_ubah_kecamatan').attr('action', `/admin/wilayah/kecamatan/${id}`);
+            $("#form_ubah_kecamatan").attr(
+                "action",
+                `/admin/wilayah/kecamatan/${id}`
+            );
 
             // Tampilkan modal edit
-            $('#ubahKecamatan').modal('show');
+            $("#ubahKecamatan").modal("show");
 
             // Inisialisasi Select2 setelah memuat modal
             $('#form_ubah_kecamatan select[name="propinsi_id"]').select2({
-                theme: 'bootstrap-5',
-                width: '100%',
-                dropdownParent: $('#ubahKecamatan')
+                theme: "bootstrap-5",
+                width: "100%",
+                dropdownParent: $("#ubahKecamatan"),
             });
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 }
 
@@ -470,29 +487,36 @@ function openModalUbahASK(id) {
     // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
     $.ajax({
         url: `/admin/assessment_sub_kategori/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             console.log(response);
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_sub_kategori select[name="assessment_kategori_id"]').val(response.assessment_kategori_id);
+            $(
+                '#form_ubah_sub_kategori select[name="assessment_kategori_id"]'
+            ).val(response.assessment_kategori_id);
             $('#form_ubah_sub_kategori input[name="nama"]').val(response.nama);
 
             // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-            $('#form_ubah_sub_kategori').attr('action', `/admin/assessment_sub_kategori/${id}`);
+            $("#form_ubah_sub_kategori").attr(
+                "action",
+                `/admin/assessment_sub_kategori/${id}`
+            );
 
             // Tampilkan modal edit
-            $('#ubahAssessmentSubKategori').modal('show');
+            $("#ubahAssessmentSubKategori").modal("show");
 
             // Inisialisasi Select2 setelah memuat modal
-            $('#form_ubah_sub_kategori select[name="assessment_kategori_id"]').select2({
-                theme: 'bootstrap-5',
-                width: '100%',
-                dropdownParent: $('#ubahAssessmentSubKategori')
+            $(
+                '#form_ubah_sub_kategori select[name="assessment_kategori_id"]'
+            ).select2({
+                theme: "bootstrap-5",
+                width: "100%",
+                dropdownParent: $("#ubahAssessmentSubKategori"),
             });
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 }
 
@@ -512,7 +536,9 @@ function openModalHapusASK(id) {
 // Tag Berita
 // Modal Tambah
 function openModalTambahTB() {
-    const modal = new bootstrap.Modal(document.getElementById("tambahTagBerita"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("tambahTagBerita")
+    );
     modal.show();
 }
 // modal pop up Ubah
@@ -558,7 +584,6 @@ function openModalHapusBerita(id, name) {
     modal.show();
 }
 
-
 // Acara
 // modal pop up Hapus
 function openModalHapusAcara(id, name) {
@@ -581,7 +606,9 @@ function openModalHapusPertanyaan(id) {
         .getElementById("form_hapus_assessment_pertanyaan")
         .setAttribute("action", `/admin/assessment_pertanyaan/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusAssessmentPertanyaan"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusAssessmentPertanyaan")
+    );
 
     modal.show();
 }
@@ -592,22 +619,22 @@ function openModalUbahDokumen(id) {
     // Kirim permintaan AJAX untuk mendapatkan data dokumen berdasarkan ID
     $.ajax({
         url: `/admin/dokumen/${id}/edit`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
             $('#form_ubah_dokumen input[name="nama"]').val(response.nama);
             $('#form_ubah_dokumen select[name="status"]').val(response.status);
 
             // Tampilkan modal edit
-            $('#ubahDokumen').modal('show');
+            $("#ubahDokumen").modal("show");
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $('#form_ubah_dokumen').attr('action', `/admin/dokumen/${id}`);
+    $("#form_ubah_dokumen").attr("action", `/admin/dokumen/${id}`);
 }
 
 // modal pop up Hapus
@@ -628,29 +655,38 @@ function openModalUbahKategoriOrganisasi(id) {
     // Kirim permintaan AJAX untuk mendapatkan data kategori_organisasi berdasarkan ID
     $.ajax({
         url: `/admin/kategori_organisasi/${id}/edit`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             console.log(response);
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_kategori_organisasi input[name="nama"]').val(response.nama);
-            $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').val(response.tipe_kategori_id);
+            $('#form_ubah_kategori_organisasi input[name="nama"]').val(
+                response.nama
+            );
+            $(
+                '#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]'
+            ).val(response.tipe_kategori_id);
 
             // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-            $('#form_ubah_kategori_organisasi').attr('action', `/admin/kategori_organisasi/${id}`);
+            $("#form_ubah_kategori_organisasi").attr(
+                "action",
+                `/admin/kategori_organisasi/${id}`
+            );
 
             // Tampilkan modal edit
-            $('#ubahKategoriOrganisasi').modal('show');
+            $("#ubahKategoriOrganisasi").modal("show");
 
             // Inisialisasi Select2 setelah memuat modal
-            $('#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]').select2({
-                theme: 'bootstrap-5',
-                width: '100%',
-                dropdownParent: $('#ubahKategoriOrganisasi')
+            $(
+                '#form_ubah_kategori_organisasi select[name="tipe_kategori_id"]'
+            ).select2({
+                theme: "bootstrap-5",
+                width: "100%",
+                dropdownParent: $("#ubahKategoriOrganisasi"),
             });
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 }
 
@@ -660,7 +696,9 @@ function openModalHapusKategoriOrganisasi(id) {
         .getElementById("form_hapus_kategori_organisasi")
         .setAttribute("action", `/admin/kategori_organisasi/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusKategoriOrganisasi"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusKategoriOrganisasi")
+    );
 
     modal.show();
 }
@@ -672,21 +710,21 @@ function openModalUbahTipeKategori(id) {
     // Kirim permintaan AJAX untuk mendapatkan data tipe_kategori berdasarkan ID
     $.ajax({
         url: `/admin/tipe_kategori/${id}/edit`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
             $('#form_ubah_tipe_kategori input[name="nama"]').val(response.nama);
 
             // Tampilkan modal edit
-            $('#ubahTipeKategori').modal('show');
+            $("#ubahTipeKategori").modal("show");
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $('#form_ubah_tipe_kategori').attr('action', `/admin/tipe_kategori/${id}`);
+    $("#form_ubah_tipe_kategori").attr("action", `/admin/tipe_kategori/${id}`);
 }
 
 // modal pop up Hapus
@@ -695,7 +733,9 @@ function openModalHapusTipeKategori(id) {
         .getElementById("form_hapus_tipe_kategori")
         .setAttribute("action", `/admin/tipe_kategori/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusTipeKategori"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusTipeKategori")
+    );
 
     modal.show();
 }
@@ -704,17 +744,57 @@ function openModalHapusTipeKategori(id) {
 // modal penjadwalan start
 // pop tambah dokumen
 function openModalTambahDokumenPenjadwalan() {
-    const modal = new bootstrap.Modal(document.getElementById("tambahDokumenPenjadwalan"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("tambahDokumenPenjadwalan")
+    );
     modal.show();
 }
 
-function openModalUbahDokumenPenjadwalan() {
-    const modal = new bootstrap.Modal(document.getElementById("ubahDokumenPenjadwalan"));
-    modal.show();
+// ubah penjadwalan Dokumen
+function openModalUbahDokumenPenjadwalan(id) {
+    // Kirim permintaan AJAX untuk mendapatkan data dokumen berdasarkan ID
+    $.ajax({
+        url: `/admin/penjadwalan_dokumen/${id}/edit`,
+        type: "GET",
+        success: function (response) {
+            // Isi nilai input pada modal edit dengan nilai dari respons JSON
+            $('#form_ubah_dokumen input[name="nama_dokumen"]').val(
+                response.nama_dokumen
+            );
+
+            // $('#form_ubah_dokumen input[name="file_dokumen"]').val(
+            //     response.file_dokumen
+            // );
+
+            // Menampilkan nama file saat ini di bawah input file
+            if (response.file_dokumen) {
+                $("#current-file").text(
+                    `File saat ini: ${response.file_dokumen}`
+                );
+            } else {
+                $("#current-file").text("");
+            }
+
+            // Tampilkan modal edit
+            $("#ubahDokumenPenjadwalan").modal("show");
+        },
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
+    });
+
+    // Atur aksi formulir untuk mengirimkan data dengan metode PUT
+    $("#form_ubah_dokumen").attr("action", `/admin/penjadwalan_dokumen/${id}`);
 }
 
-function openModalHapusDokumenPenjadwalan() {
-    const modal = new bootstrap.Modal(document.getElementById("hapusDokumenPenjadwalan"));
+function openModalHapusDokumenPenjadwalan(id) {
+    document
+        .getElementById("form_hapus_dokumen")
+        .setAttribute("action", `/admin/penjadwalan_dokumen/${id}`);
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusDokumenPenjadwalan")
+    );
     modal.show();
 }
 // modal penjadwalan end
@@ -783,22 +863,22 @@ function openModalUbahKonfigurasi(id) {
     // Kirim permintaan AJAX untuk mendapatkan data konfigurasi berdasarkan ID
     $.ajax({
         url: `/admin/konfigurasi/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
             $('#form_ubah_konfigurasi input[name="key"]').val(response.key);
             $('#form_ubah_konfigurasi input[name="value"]').val(response.value);
 
             // Tampilkan modal edit
-            $('#ubahKonfigurasi').modal('show');
+            $("#ubahKonfigurasi").modal("show");
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $('#form_ubah_konfigurasi').attr('action', `/admin/konfigurasi/${id}`);
+    $("#form_ubah_konfigurasi").attr("action", `/admin/konfigurasi/${id}`);
 }
 
 // modal pop up Hapus
@@ -807,7 +887,9 @@ function openModalHapusKonfigurasi(id) {
         .getElementById("form_hapus_konfigurasi")
         .setAttribute("action", `/admin/konfigurasi/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusKonfigurasi"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusKonfigurasi")
+    );
 
     modal.show();
 }
@@ -819,21 +901,26 @@ function openModalUbahLembagaSertifikasi(id) {
     // Kirim permintaan AJAX untuk mendapatkan data lembaga_sertifikasi berdasarkan ID
     $.ajax({
         url: `/admin/lembaga_sertifikasi/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_lembaga_sertifikasi input[name="nama"]').val(response.nama);
+            $('#form_ubah_lembaga_sertifikasi input[name="nama"]').val(
+                response.nama
+            );
 
             // Tampilkan modal edit
-            $('#ubahLembagaSertifikasi').modal('show');
+            $("#ubahLembagaSertifikasi").modal("show");
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $('#form_ubah_lembaga_sertifikasi').attr('action', `/admin/lembaga_sertifikasi/${id}`);
+    $("#form_ubah_lembaga_sertifikasi").attr(
+        "action",
+        `/admin/lembaga_sertifikasi/${id}`
+    );
 }
 
 // modal pop up Hapus
@@ -842,7 +929,9 @@ function openModalHapusLembagaSertifikasi(id) {
         .getElementById("form_hapus_lembaga_sertifikasi")
         .setAttribute("action", `/admin/lembaga_sertifikasi/${id}`);
 
-    const modal = new bootstrap.Modal(document.getElementById("hapusLembagaSertifikasi"));
+    const modal = new bootstrap.Modal(
+        document.getElementById("hapusLembagaSertifikasi")
+    );
 
     modal.show();
 }
@@ -853,28 +942,34 @@ function openModalUbahPendaftarAdmin(id) {
     // Kirim permintaan AJAX untuk mendapatkan data pendaftar_sni_award berdasarkan ID
     $.ajax({
         url: `/admin/pendaftar_sni_award/${id}/ubah`,
-        type: 'GET',
-        success: function(response) {
+        type: "GET",
+        success: function (response) {
             console.log(response);
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]').val(response.sekretariat_id);
+            $(
+                '#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]'
+            ).val(response.sekretariat_id);
 
             // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-            $('#form_ubah_pendaftar_sni_award').attr('action', `/admin/pendaftar_sni_award/${id}`);
+            $("#form_ubah_pendaftar_sni_award").attr(
+                "action",
+                `/admin/pendaftar_sni_award/${id}`
+            );
 
             // Tampilkan modal edit
-            $('#ubahPendaftarAdmin').modal('show');
+            $("#ubahPendaftarAdmin").modal("show");
 
             // Inisialisasi Select2 setelah memuat modal
-            $('#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]').select2({
-                theme: 'bootstrap-5',
-                width: '100%',
-                dropdownParent: $('#ubahPendaftarAdmin')
+            $(
+                '#form_ubah_pendaftar_sni_award select[name="sekretariat_id"]'
+            ).select2({
+                theme: "bootstrap-5",
+                width: "100%",
+                dropdownParent: $("#ubahPendaftarAdmin"),
             });
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        error: function (xhr, status, error) {
+            console.error("Error:", error);
+        },
     });
-
 }

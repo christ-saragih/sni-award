@@ -4,6 +4,12 @@
   .form-check-input {
     border: 1px solid #9fafbf !important;
   }
+
+  .validation-message {
+    color: #D12B2B;
+    margin-left: 0.25rem;
+    margin-bottom: 0;
+  }
 </style>
 
 @section('content')
@@ -53,7 +59,12 @@
                       <h6 class="mb-0">Nama Organisasi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="nama" class="form-control form-control-lg" value="{{$peserta->nama}}"/>
+                      <input type="text" name="nama" class="form-control form-control-lg" value="{{$peserta->nama}}" required pattern="^(?![_. ])(?!.*[_. ]{2})[a-zA-Z._ ]+(?<![_. ])$" autocomplete="off" aria-describedby="namaValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5">
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <p id="namaValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
 
@@ -62,7 +73,12 @@
                       <h6 class="mb-0">Jabatan Tertinggi</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="jabatan_tertinggi" class="form-control form-control-lg" value="{{$peserta->peserta_profil->jabatan_tertinggi}}"/>
+                      <input type="text" name="jabatan_tertinggi" id="jabatan_tertinggi" class="form-control form-control-lg" value="{{$peserta->peserta_profil->jabatan_tertinggi}}" required pattern="^(?![_. ])(?!.*[_. ]{2})[a-zA-Z._ ]+(?<![_. ])$" autocomplete="off" aria-describedby="jabatanTertinggiValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5">
+                    </div>
+                    <div class="col-md-8 pe-5">
+                      <p id="jabatanTertinggiValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
 
@@ -71,7 +87,15 @@
                       <h6 class="mb-0">Nomor Telepon</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="tel" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}"/>
+                      <input type="tel" name="no_hp" class="form-control form-control-lg" value="{{$peserta->peserta_profil->no_hp}}" required pattern="[0-9]{10,15}" autocomplete="off" aria-describedby="nomorTeleponValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p class="ms-1 mb-0">Contoh: <i>081234567890</i></p>  
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="nomorTeleponValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
 
@@ -80,7 +104,15 @@
                       <h6 class="mb-0">Website</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}"/>
+                      <input type="url" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}" required pattern="https://.*" autocomplete="off" aria-describedby="websiteValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p class="ms-1 mb-0">Contoh: <i>https://example.com</i></p>  
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="websiteValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
 
@@ -91,9 +123,14 @@
 
                   <div class="col-md-4 pe-5">
                     <div class="form-group input-group">
-                      <input type="text" name="tanggal_beroperasi" class="form-control form-control-lg" id="inputCalendar" value="{{$peserta->peserta_profil->tanggal_beroperasi}}"/>
+                      <input type="text" name="tanggal_beroperasi" class="form-control form-control-lg" id="inputCalendar" value="{{$peserta->peserta_profil->tanggal_beroperasi}}" required autocomplete="off" aria-describedby="tanggalBeroperasiValidation"/>
                       <label class="input-group-text" style="background-color: #D7DAE3; border-radius: 0 15px 15px 0; border-right: 1px solid #9fafbf; border-top: 1px solid #9fafbf; border-bottom: 1px solid #9fafbf; color: #595959;"><i class="fa fa-calendar"></i></label>
                     </div>
+                  </div>
+                  <div class="col-md-4 ps-5"></div>
+                  <div class="col-md-4 ps-5"></div>
+                  <div class="col-md-8 pe-5">
+                    <p id="tanggalBeroperasiValidation" class="validation-message" aria-live="polite"></p>
                   </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -125,7 +162,11 @@
                       <h6 class="mb-0">Deskripsi Produk</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="deskripsi_produk" class="form-control form-control-lg" value="{{$peserta->peserta_profil->deskripsi_produk}}"/>
+                      <input type="text" name="deskripsi_produk" class="form-control form-control-lg" value="{{$peserta->peserta_profil->deskripsi_produk}}" required autocomplete="off" aria-describedby="deskripsiProdukValidation" />
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="deskripsiProdukValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -142,7 +183,7 @@
                 </div>
                 <div class="row align-items-center pb-3">
                     <div class="col-md-4 ps-5">
-                      <h6 class="mb-0">Produk Export</h6>
+                      <h6 class="mb-0">Produk Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5 d-flex flex-row gap-4">              
                       <div class="form-check">
@@ -164,7 +205,15 @@
                       <h6 class="mb-0">Negara Tujuan Ekspor</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                     <input type="text" name="negara_tujuan_ekspor" class="form-control form-control-lg" value="{{$peserta->peserta_profil->negara_tujuan_ekspor}}"/>
+                      <input type="text" name="negara_tujuan_ekspor" class="form-control form-control-lg" value="{{$peserta->peserta_profil->negara_tujuan_ekspor}}" required pattern="^(?![_. -])(?!.*[_. -]{2})[a-zA-Z._ -]+(?<![_. -])$" autocomplete="off" aria-describedby="negaraTujuanValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p class="ms-1 mb-0">Catatan: <i>Jika menjawab tidak pada pertanyaan sebelumnya, isi '-'.</i></p>  
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="negaraTujuanValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -184,7 +233,11 @@
                       <h6 class="mb-0">Kekayaan Bersih</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="kekayaan_bersih" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kekayaan_bersih}}"/>
+                      <input type="text" name="kekayaan_bersih" class="number form-control form-control-lg" value="{{$peserta->peserta_profil->kekayaan_bersih}}" required autocomplete="off" aria-describedby="kekayaanBersihValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="kekayaanBersihValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -192,7 +245,11 @@
                       <h6 class="mb-0">Hasil Penjualan Tahunan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="hasil_penjualan_tahunan" class="form-control form-control-lg" value="{{$peserta->peserta_profil->hasil_penjualan_tahunan}}"/>
+                      <input type="text" name="hasil_penjualan_tahunan" class="number form-control form-control-lg" value="{{$peserta->peserta_profil->hasil_penjualan_tahunan}}" required autocomplete="off" aria-describedby="hasilPenjualanValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="hasilPenjualanValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
                 <div class="row align-items-center pb-3">
@@ -213,7 +270,11 @@
                       <h6 class="mb-0">Kewenangan Kebijakan</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="text" name="kewenangan_kebijakan" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kewenangan_kebijakan}}"/>
+                      <input type="text" name="kewenangan_kebijakan" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kewenangan_kebijakan}}" required pattern="^(?![_. ])(?!.*[_. ]{2})[a-zA-Z._ ]+(?<![_. ])$" autocomplete="off" aria-describedby="kewenanganKebijakanValidation"/>
+                    </div>
+                    <div class="col-md-4 ps-5"></div>
+                    <div class="col-md-8 pe-5">
+                      <p id="kewenanganKebijakanValidation" class="validation-message" aria-live="polite"></p>
                     </div>
                 </div>
 
@@ -426,6 +487,78 @@
       });
 
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+
+    // Function to handle custom validation
+    const customValidationHandler = (event) => {
+        event.target.setCustomValidity('');
+        
+        if(event.target.validity.valueMissing) {
+            event.target.setCustomValidity('Wajib diisi!');
+            return;
+        }
+
+        if(event.target.type === 'text' && event.target.validity.patternMismatch) {
+            event.target.setCustomValidity('Tidak boleh diawali dengan spasi, mengandung angka, dan mengandung karakter spesial seperti dolar ($).');
+            return;
+        }
+
+        if(event.target.type === 'tel' && event.target.validity.patternMismatch) {
+            event.target.setCustomValidity('Tidak boleh diawali dengan spasi, harus berupa angka, dan panjang karakter minimal 10 dan maksimal 15.');
+            return;
+        }
+
+        if(event.target.type === 'url' && event.target.validity.patternMismatch) {
+            event.target.setCustomValidity("Tidak boleh diawali dengan spasi, dan harus menyertakan 'https://(nama_website)'.");
+            return;
+        }
+    };
+
+    // Function to display validation message
+    const displayValidationMessage = (event) => {
+        const isValid = event.target.validity.valid;
+        const errorMessage = event.target.validationMessage;
+
+        const connectedValidationId = event.target.getAttribute('aria-describedby');
+        const connectedValidationEl = connectedValidationId ? document.getElementById(connectedValidationId) : null;
+
+        if(connectedValidationEl && errorMessage && !isValid) {
+            connectedValidationEl.innerText = errorMessage;
+        } else {
+            connectedValidationEl.innerText = '';
+        }
+    };
+
+    // Select all inputs within the form that need validation
+    const inputs = form.querySelectorAll('input[required]');
+
+    inputs.forEach(input => {
+        input.addEventListener('change', customValidationHandler);
+        input.addEventListener('invalid', customValidationHandler);
+        input.addEventListener('blur', displayValidationMessage);
+    });
+
+    // form.addEventListener('submit', (event) => event.preventDefault());
+});
+
+// VALIDASI UNTUK INPUT BERCLASS NUMBER
+const numberInputs = document.querySelectorAll('input.number');
+
+// Menambahkan event listener untuk setiap elemen input yang ditemukan
+numberInputs.forEach(input => {
+  input.addEventListener('input', function() {
+    const removeChar = this.value.replace(/[^0-9\.]/g, ''); // Menghapus huruf dan karakter spesial
+    const removeDot = removeChar.replace(/\./g, ''); // Menghapus titik
+    this.value = removeDot;
+
+    const formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Menambahkan titik sebagai pemisah ribuan
+    this.value = formattedNumber;
+  });
+});
+
+
 </script>
 
 @endsection('content')

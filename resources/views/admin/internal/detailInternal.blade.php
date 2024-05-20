@@ -117,9 +117,14 @@
 
                 <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
-                    <div class="px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white;">
-                        <i class="fa fa-check-circle"></i>
-                        &ensp;Terverifikasi
+                    <div class="px-3 mt-1 d-flex align-items-center justify-content-center gap-2" style="background-color: #78A55A; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold;">
+                        <i class="fa fa-check"></i>
+                        <p class="m-0">Diverifikasi</p>
+                    </div>
+                @else
+                <div class="px-3 mt-1 d-flex align-items-center justify-content-center gap-2" style="background-color: #FF0101; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold;">
+                        <i class="fa fa-close" style="margin-top: -2px;"></i>
+                        <p class="m-0">Belum Diverifikasi</p>
                     </div>
                 @endif
             </div>

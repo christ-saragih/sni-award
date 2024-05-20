@@ -30,6 +30,9 @@ class RedirectIfAuthenticated
             elseif (Auth::guard('web')->user()->jenis_role == 'evaluator') {
                 return redirect()->route('evaluator.dashboard.view');
             }
+            elseif (Auth::guard('web')->user()->jenis_role == 'lead evaluator') {
+                return redirect()->route('lead_evaluator.dashboard.view');
+            }
             else {
                 return redirect()->route('sekretariat.dashboard.view');
             }

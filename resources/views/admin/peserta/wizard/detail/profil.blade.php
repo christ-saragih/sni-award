@@ -1,25 +1,75 @@
+<style>
+    .btn-ya {
+        width: fit-content !important;
+        text-align: center !important;
+        padding: 5px 15px !important;
+        border: none !important;
+        border-radius: 5px !important;
+        color: white !important;
+        background-color: #47A15E !important;
+    }
+    .btn-no {
+        width: fit-content !important;
+        text-align: center !important;
+        padding: 5px 15px !important;
+        border: none !important;
+        border-radius: 5px !important;
+        color: white !important;
+        background-color: #D12B2B !important;
+    }
+</style>
+
+{{-- modal verifikasi peserta --}}
+<div class="modal fade" id="verifikasi_peserta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+        </div>
+        <div class="modal-body">
+            Pastikan Anda telah membaca seluruh data peserta! <br>
+            Konfirmasi dan verifikasi peserta <b>{{ $peserta->nama }}</b> 
+        </div>
+        <div class="modal-footer d-flex align-items-center justify-content-end gap-3">
+            <button type="submit" class="btn-ya" onclick="handleVerifPeserta()">Ya</button>
+            <button type="button" class="btn-no" data-bs-dismiss="modal">Tidak</button>
+        </div>
+        </div>
+    </div>
+</div>
+{{-- end modal verifikasi peserta --}}
+{{-- form verifikasi --}}
+<form action="{{ route('admin.peserta.verifikasi', Crypt::encryptString($peserta->id)) }}" method="POST" id="admin_verifikasi_peserta">
+    @csrf
+    @method('PUT')
+</form>
+{{-- end form verifikasi --}}
+
 <div>
     <a href="/admin/peserta" class="btn mb-5" style="width: fit-content">&#8617;</a>
     <div class="d-flex align-items-center gap-3">
         <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="" style="object-fit: cover; width: 160px; height: 160px;  border-radius: 50%;">
-        <h3 class="p-0 m-0">Profil Peserta</h3>
-        <hr class="flex-grow-1" style="height: 3px; background-color: #E1A600;">
-    </div>
-    @if ($peserta->verified_at)
-        <div class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white; width: fit-content;">
-            <i class="fa fa-check-circle"></i>
-            &ensp;Terverifikasi 
+        <div style="width: 85%">
+            <div class="d-flex align-items-center">
+                <h3 class="pe-3 m-0" style="white-space: nowrap;">Profil Peserta</h3>
+                <hr class="flex-grow-1" style="width: 100%;height: 3px; background-color: #E1A600;"/>
+            </div>
+            @if ($peserta->verified_at)
+                <div class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white; width: fit-content;">
+                    <i class="fa fa-check-circle"></i>
+                    &ensp;Terverifikasi 
+                </div>
+                <div class="mt-2" style="color: #9FAFBF; font-size:14px;">*Klik verifikasi disini</div>
+            @else
+                <button type="button" class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center text-center" style="background-color: #E1A600;height: fit-content; color:white; width: fit-content; border:none;" data-bs-toggle="modal" data-bs-target="#verifikasi_peserta">
+                    {{-- <i class="fa fa-check-circle"></i> --}}
+                    &ensp;Verifikasi 
+                </button>
+                <div class="mt-2" style="color: #9FAFBF; font-size:14px;">*Klik verifikasi disini</div>
+            @endif
         </div>
-    @else
-        <form action="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}/verifikasi" method="POST">
-            @method('PUT')
-            @csrf
-            <button type="submit" class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #acacac;height: fit-content; color:white; width: fit-content; border:none;">
-                {{-- <i class="fa fa-check-circle"></i> --}}
-                &ensp;Verifikasi 
-            </button>
-        </form>
-    @endif
+    </div>
 
     <div class="d-flex justify-content-around mb-5">
         <div class="w-100 mt-3">
@@ -76,3 +126,9 @@
     </div>
     
 </div>
+<script>
+    const handleVerifPeserta = () => {
+        const form = document.getElementById('admin_verifikasi_peserta')
+        form.submit()
+    }
+</script>

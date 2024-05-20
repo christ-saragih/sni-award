@@ -41,7 +41,7 @@ class SekretariatTimController extends Controller
             ->where('verified_at', '!=', null)
             ->whereNotIn('id', $all_sekretariat)
             ->get();
-            
+            // dd($evaluator);
         return view('sekretariat.tim.tambah', [
             'registrasi' => $registrasi,
             'evaluator' => $evaluator,
