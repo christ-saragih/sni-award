@@ -129,15 +129,15 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="dokumen-tab-0" data-bs-toggle="tab" href="#dokumen-tabpanel-0" role="tab" aria-controls="dokumen-tabpanel-0" aria-selected="true">Dokumen</a>
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}"  id="dokumen-tab-0" href="/admin/penjadwalan" role="tab" aria-controls="dokumen-tabpanel-0" aria-selected="true">Dokumen</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Linimasa</a>
+        <a class="nav-link {{ (request()->query('tab') == 'linimasa')?'active':'' }}"  id="simple-tab-1" href="/admin/penjadwalan?tab=linimasa" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Linimasa</a>
     </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
-    <div class="tab-pane active" id="dokumen-tabpanel-0" role="tabpanel" aria-labelledby="dokumen-tab-0">
+    <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="dokumen-tabpanel-0" role="tabpanel" aria-labelledby="dokumen-tab-0">
         <div class="content-profil py-5 mb-5">
             <div class="d-flex flex-column">
                 <h3 class="mb-2 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen</h3>
@@ -188,7 +188,7 @@
     </div>
 
     <!-- Dokumen start -->
-    <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+    <div class="tab-pane {{ (request()->query('tab') == 'linimasa')?'active':'' }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
         <div class="content-profil pt-5 mb-5">
             <div class="d-flex flex-column gap-3">
                 <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Linimasa</h3>
@@ -233,7 +233,7 @@
                                             </div>
                                             <div class="container col-md-8 pe-5">
                                                 <div class="input-group custom-file-button">
-                                                <input name="lokasi_map" type="text" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
+                                                <input name="lokasi_map" type="url" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
                                                 </div>
                                             </div>
                                         </div>

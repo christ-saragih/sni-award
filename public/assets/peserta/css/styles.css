@@ -59,6 +59,10 @@ main {
     background-color: #552525;
 }
 
+.navbar-vertical .navbar-nav > .nav-item .nav-link.active img {
+    filter: brightness(0) invert(1);
+}
+
 .navbar-vertical .navbar-nav .nav-link.active {
     font-weight: 600;
     border-top-left-radius: 1rem;
@@ -110,6 +114,10 @@ main {
     color: white !important;
     box-shadow: inset -5px 0px 0px 0px #e59b30;
     font-weight: 600;
+}
+
+.sidebar .navbar-nav .nav-item .nav-link:hover img {
+    filter: brightness(0) invert(1);
 }
 
 .nav-link-text,

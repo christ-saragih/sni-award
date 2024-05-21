@@ -12,7 +12,8 @@ class DokumenController extends Controller
 
     public function index() {
         $frontpage_data = Frontpage::get();
-        $penjadwalan_dokumen = PenjadwalanDokumen::all();
+        $penjadwalan_dokumen = PenjadwalanDokumen::get();
+        // dd($penjadwalan_dokumen);
         return view('guest.dokumen.index', [
             'frontpage_data' => $frontpage_data[0],
             'penjadwalan_dokumen' => $penjadwalan_dokumen,

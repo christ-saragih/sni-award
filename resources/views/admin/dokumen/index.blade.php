@@ -5,7 +5,7 @@
 <!-- Pop Up Tambah Dokumen -->
 <div class="modal fade" id="tambahDokumen" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" method="POST" action="/admin/dokumen">
+        <form class="modal-content" method="POST" action="/admin/dokumen" enctype="multipart/form-data">
         @csrf
         <div class="modal-header" style="border: none;">
             <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Dokumen</h1>
@@ -24,6 +24,10 @@
                         <option value="tidak aktif">Tidak Aktif</option>
                     </select>
                 </div>
+                <div class="d-flex flex-column gap-2">
+                    <h6 class="ms-1 mb-0">FIle Dokumen</h6>
+                    <input type="file" name="file_dokumen" accept=".pdf" class="form-control"/>
+                </div>
             </div>
         </div>
         <div class="modal-footer gap-2" style="border: none;">
@@ -37,7 +41,7 @@
 <!-- Pop Up Ubah Dokumen -->
 <div class="modal fade" id="ubahDokumen" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content" id="form_ubah_dokumen" method="POST">
+        <form class="modal-content" id="form_ubah_dokumen" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
@@ -56,6 +60,10 @@
                             <option value="aktif">Aktif</option>
                             <option value="tidak aktif">Tidak Aktif</option>
                         </select>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                        <h6 class="ms-1 mb-0">FIle Dokumen</h6>
+                        <input type="file" name="file_dokumen" accept=".pdf" class="form-control"/>
                     </div>
                 </div>
             </div>
@@ -109,6 +117,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Status</th>
+                <th scope="col">File Dokumen</th>
                 <th scope="col" class="text-center">Aksi</th>
             </tr>
             </thead>
@@ -118,6 +127,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$dok->nama}}</td>
                         <td>{{$dok->status}}</td>
+                        <td>{{$dok->file_dokumen}}</td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">
                                 <button onclick="openModalUbahDokumen('{{ $dok->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
