@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('sekretariat/sekretariat*') ? 'active' : '' }}" id="navLink" href="{{ route('sekretariat.sekretariat.view') }}">
+            <a class="nav-link {{ request()->is('sekretariat/sekretariat*') ? 'active' : '' }}" id="navLink" href="{{ route('sekretariat.peserta.view') }}">
               <div
                 class="icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               >
