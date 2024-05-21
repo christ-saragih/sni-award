@@ -63,8 +63,7 @@
                           if ($dokumen_assessment) {
                             $status_dokumen = $dokumen_assessment->status;
                             $dokumen_disetujui = $status_dokumen == 'disetujui';
-                          }
-                          // dd($registrasi_dokumen->where('dokumen_id', $dok->id)->last()->status);
+                          }                        
                       @endphp
                       
                       <div class="col-6">
@@ -72,28 +71,7 @@
                       </div>
 
                       <div class="col-1"></div>
-                      <div class="col-2"></div>
-                      {{-- @foreach ($registrasi_dokumen as $rd)
-                        @if ($rd->dokumen_id == $dok->id)
-                          @switch ($rd->status)
-                              @case ('proses')
-                                  @php $statusColor = 'bg-warning'; @endphp
-                                  @break
-                              @case ('ditolak')
-                                  @php $statusColor = 'bg-danger text-white'; @endphp
-                                  @break
-                              @case ('disetujui')
-                                  @php $statusColor = 'bg-success text-white'; @endphp
-                                  @break
-                          @endswitch
-                          <div class="col-3">
-                            <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-right: 10px;">
-                              <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            <a class="btn {{ $statusColor }}">{{ $rd->status }}</a>
-                          </div>
-                          @break
-                        @endif
-                      @endforeach --}}
+                      <div class="col-2"></div>                    
               </div>
               @endforeach
             @else
@@ -109,8 +87,7 @@
                         if ($dokumen_assessment) {
                           $status_dokumen = $dokumen_assessment->status;
                           $dokumen_disetujui = $status_dokumen == 'disetujui';
-                        }
-                        // dd($registrasi_dokumen->where('dokumen_id', $dok->id)->last()->status);
+                        }                      
                     @endphp
                     @if($td->status != 'disetujui')
                       <div class="col-6">
@@ -137,14 +114,7 @@
                           <div class="col-2 d-flex justify-content-center">
                             <a class="btn" style="background-color: {{ $statusColor }};">{{ $td->status }}</a>
                           </div>
-                        @endif
-                        
-                    {{-- @foreach ($registrasi_dokumen as $rd)
-                      @if ($rd->dokumen_id == $dok->id)
-                        
-                        @break
-                      @endif
-                    @endforeach --}}
+                        @endif                                      
                 </div>
               @endforeach
             @endif
