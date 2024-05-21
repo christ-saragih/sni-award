@@ -266,6 +266,13 @@
                 </div>
               </div>
             @endfor
+
+            @if (count($popular_faq) == 0)
+              <div class="d-flex flex-column align-items-center justify-content-center py-3 px-4 mt-2" style="background-color: #E59B30; color: white; font-weight: bold; font-size: 22px; border-radius: 10px;">
+                  FAQ terpopuler belum tersedia!
+              </div>
+            @endif
+
             
           </div>
         </div>

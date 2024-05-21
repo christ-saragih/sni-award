@@ -157,8 +157,7 @@ h1 {
 }
 
 .card-container {
-    margin-top: -50px;
-    margin-left: 60px;
+    margin-top: -30px;
 }
 
 .card-container .card {
@@ -781,18 +780,6 @@ h2.accordion-header {
     transition: all 0.3s ease;
 }
 
-.dokumen_container{
-    display: flex;
-    justify-content: center;
-    width: 50%;
-}
-
-.dokumen_kegiatan{
-    background-color: white;
-    padding: 20px;
-    border: 3px solid #AD7979;
-    border-radius: 4px;
-}
 /* Unduh end */
 
 /* Footer */
