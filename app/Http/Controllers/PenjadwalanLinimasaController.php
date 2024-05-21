@@ -37,13 +37,14 @@ class PenjadwalanLinimasaController extends Controller
         $request->validate([
             'judul' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'lokasi_map' => 'required',
+            'lokasi_map' => 'required|url',
         ], [
             'judul.required' => 'Nama Dokumen Wajib Diisi!',
             'gambar.image' => 'Gambar harus berupa file gambar!',
             'gambar.mimes' => 'Gambar harus berupa file dengan tipe: jpeg, png, jpg, gif, atau svg!',
             'gambar.max' => 'Gambar tidak boleh lebih dari 2MB!',
             'lokasi_map.required' => 'Lokasi Wajib Diisi!',
+            'lokasi_map.url' => 'Lokasi harus URL!',
         ]);
 
         $gambar = $request->file('gambar');
@@ -88,13 +89,14 @@ class PenjadwalanLinimasaController extends Controller
         $request->validate([
             'judul' => 'required',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'lokasi_map' => 'required',
+            'lokasi_map' => 'required|url',
         ], [
             'judul.required' => 'Nama Dokumen Wajib Diisi!',
             'gambar.image' => 'Gambar harus berupa file gambar!',
             'gambar.mimes' => 'Gambar harus berupa file dengan tipe: jpeg, png, jpg, gif, atau svg!',
             'gambar.max' => 'Gambar tidak boleh lebih dari 2MB!',
             'lokasi_map.required' => 'Lokasi Wajib Diisi!',
+            'lokasi_map.url' => 'Lokasi harus URL!',
         ]);
 
         $nama_file = $penjadwalan_linimasa->gambar;
