@@ -63,6 +63,10 @@
                 </div>
             </div>
         </div>
+        @else
+            <div class="d-flex flex-column align-items-center py-3 px-4 mb-4" style="background-color: #E59B30; color: white; font-weight: bold; font-size: 22px; border-radius: 10px; margin-top: 55px;">
+                Berita belum tersedia!
+            </div>
         @endif
     </div>
 
