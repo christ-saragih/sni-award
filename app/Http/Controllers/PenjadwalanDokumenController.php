@@ -41,13 +41,13 @@ class PenjadwalanDokumenController extends Controller
         ]);
 
         $file_dokumen = $request->file('file_dokumen');
-        $dokumen_ekstensi = $file_dokumen->extension();
-        $nama_file = date('ymdhis') . '.' . $dokumen_ekstensi;
-        $file_dokumen->move(storage_path('app/public/images/frontpage/dokumen_penjadwalan/'), $nama_file);
+        $nama_file = $file_dokumen->hashName();
+        // dd($nama_file);
+        $file_dokumen->move(storage_path('app/public/frontpage/dokumen_penjadwalan/'), $nama_file);
 
         PenjadwalanDokumen::create([
             'nama_dokumen' => $request->nama_dokumen,
-            'file_dokumen' => $nama_file,
+            'file_dokumen' => "/storage/frontpage/dokumen_penjadwalan/$nama_file",
         ]);
 
         return redirect()->back()->with('success', 'Dokumen Berhasil Dibuat');
@@ -94,14 +94,14 @@ class PenjadwalanDokumenController extends Controller
 
             // Upload new image
             $file_dokumen = $request->file('file_dokumen');
-            $dokumen_ekstensi = $file_dokumen->extension();
-            $nama_file = date('ymdhis') . '.' . $dokumen_ekstensi;
-            $file_dokumen->move(storage_path('app/public/images/frontpage/dokumen_penjadwalan/'), $nama_file);
+            $nama_file = $file_dokumen->hashName();
+            // dd($nama_file);
+            $file_dokumen->move(storage_path('app/public/frontpage/dokumen_penjadwalan/'), $nama_file);
         }
 
         $penjadwalan_dokumen->update([
             'nama_dokumen' => $request->nama_dokumen,
-            'file_dokumen' => $nama_file,
+            'file_dokumen' => "/storage/frontpage/dokumen_penjadwalan/$nama_file",
         ]);
 
         return redirect()->back()->with('success', 'Dokumen Berhasi Diubah');
@@ -112,6 +112,7 @@ class PenjadwalanDokumenController extends Controller
      */
     public function destroy(PenjadwalanDokumen $penjadwalan_dokumen)
     {
+        dd($penjadwalan_dokumen);
         $penjadwalan_dokumen->delete();
 
         return redirect()->back()->with('success', 'Data Berhasil Dihapus!');
