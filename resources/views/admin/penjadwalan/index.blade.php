@@ -2,6 +2,48 @@
 
 @section('content')
 
+<style>
+    .file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #9fafbf;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .file-input input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+
+  .file-input-label {
+    display: inline-block;
+    font-size: 112.5%;
+    color: #595959;
+    background-color: #d7dae3;
+    padding: 6px 12px;
+    border-right: 1px solid #9fafbf;
+    cursor: pointer;
+  }
+
+  #fileInputLabel1, 
+  #fileInputLabel2 {
+    width: 80%; 
+    color: #9fafbf; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+</style>
+
 <!-- Pop up dokumen -->
 <!-- popup tambah -->
 <div class="modal fade" id="tambahDokumenPenjadwalan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -19,10 +61,15 @@
                 </div>
                 <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Dokumen</h6>
-                    <div class="input-group custom-file-button">
-                        <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
+                    <div class="file-input">
+                        <!-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                         <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label>
-                        <input type="file" name="file_dokumen" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;">
+                        <input type="file" name="file_dokumen" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;"> -->
+
+                        <input type="file" id="inputGroupFile1" name="file_dokumen" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
+                        <label for="inputGroupFile1" class="file-input-label">Unggah</label>
+                        <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
+                        <div id="fileName1"></div>
                     </div>
                 </div>
             </div>
@@ -43,7 +90,7 @@
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Dokumen</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah  sfdsfdsfdfsdf</h1>
             </div>
             <div class="modal-body" style="border: none;">
                 <div action="" class="pb-0 mb-0">
@@ -53,12 +100,16 @@
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Dokumen</h6>
-                        <div class="input-group custom-file-button">
+                        <div class="file-input">
                             {{-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                             <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label> --}}
-                            <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control">
+                            <!-- <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control"> -->
+                            <input type="file" id="inputGroupFile2" name="file_dokumen" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
+                            <label for="inputGroupFile2" class="file-input-label">Unggah</label>
+                            <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
+                            <div id="fileName2"></div>
                         </div>
-                        <div id="current-file" class="mt-2"></div>
+                        <div id="current-file" class="mt-2" style="overflow-wrap: break-word; word-break: break-all; "></div>
                     </div>
                 </div>
             </div>
@@ -164,7 +215,13 @@
                         <tr>
                             <td class="ps-3" scope="row">{{ $loop->iteration }}</td>
                             <td class="ps-5">{{ $dokumen->nama_dokumen }}</td>
-                            <td class="ps-5">{{ $dokumen->file_dokumen }}</td>
+                            <td class="ps-5">
+                                @if(strlen($dokumen->file_dokumen) > 50)
+                                    {{ substr($dokumen->file_dokumen, 0, 50) . '...' }}
+                                @else
+                                    {{ $dokumen->file_dokumen }}
+                                @endif
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <button onclick="openModalUbahDokumenPenjadwalan('{{ $dokumen->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
@@ -297,4 +354,22 @@
     </div>
     <!-- Dokumen end -->
 </div>
+
+<script>
+    
+function handleFileSelect(inputId, labelId, fileNameId) {
+    const fileInput = document.getElementById(inputId);
+    const fileInputLabel = document.getElementById(labelId);
+    const fileNameDisplay = document.getElementById(fileNameId);
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : null;
+    if (fileName) {
+      fileInputLabel.textContent = fileName;
+    //   fileNameDisplay.textContent = fileName;
+    } else {
+      fileInputLabel.textContent = "Maksimal mengunggah dokumen : 10 MB";
+      fileNameDisplay.textContent = "";
+    }
+  }
+
+</script>
 @endsection('content')
