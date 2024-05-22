@@ -68,7 +68,7 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
             $selected_assessment_kategori = AssessmentKategori::where('nama', $request->assessment_kategori)->get();
             // dd($assessment_kategori);
         }
-        return view('lead_evaluator.lead_evaluator.detail', [
+        return view('lead_evaluator.lead_evaluator.profil', [
             'peserta' => $peserta,
             'registrasi' => $registrasi,
             'registrasi_dokumen' => $registrasi_dokumen,
