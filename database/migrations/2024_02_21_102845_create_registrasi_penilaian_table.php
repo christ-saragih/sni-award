@@ -15,7 +15,7 @@ return new class extends Migration
             $table->mediumIncrements('id');
             $table->integer('registrasi_id')->unsigned();
             $table->integer('internal_id')->unsigned();
-            $table->enum('jabatan',['evaluator','lead evaluator']);
+            $table->enum('jabatan',['evaluator','lead evaluator', 'sekretariat']);
             $table->tinyInteger('stage_id')->unsigned();
             $table->string('url_dokumen_penilaian');
             $table->integer('skor');

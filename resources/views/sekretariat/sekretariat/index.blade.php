@@ -76,27 +76,27 @@
 
             <div class="tab-pane {{ request()->query('tab') == '' ? 'active' : 'hide'}} bg-light container-fluid p-5 rounded" role="tabpanel" id="sekre-desk" aria-labelledby="sekre-desk">
                 <div class="d-flex align-items-center gap-2 justify-content-end">
-                        <div class="dropdown container-dropdown-internal">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Stage
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Desk Evaluation</a></li>
-                                <li><a class="dropdown-item" href="#">Site Evaluation</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown container-dropdown-internal">
-                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Tahun
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="width: auto;">
-                                <li><a class="dropdown-item" href="#">2024</a></li>
-                                <li><a class="dropdown-item" href="#">2023</a></li>
-                                <li><a class="dropdown-item" href="#">2022</a></li>
-                                <li><a class="dropdown-item" href="#">2021</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown container-dropdown-internal">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Stage
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Desk Evaluation</a></li>
+                            <li><a class="dropdown-item" href="#">Site Evaluation</a></li>
+                        </ul>
                     </div>
+                    <div class="dropdown container-dropdown-internal">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tahun
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="width: auto;">
+                            <li><a class="dropdown-item" href="#">2024</a></li>
+                            <li><a class="dropdown-item" href="#">2023</a></li>
+                            <li><a class="dropdown-item" href="#">2022</a></li>
+                            <li><a class="dropdown-item" href="#">2021</a></li>
+                        </ul>
+                    </div>
+                </div>
 
                 <table class="table align-items-center mt-4 mb-0">
                     <thead>

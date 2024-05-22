@@ -35,16 +35,9 @@ class AuthUserController extends Controller
         ];
         
         if (Auth::guard('web')->attempt($infoLogin)) {
-            $is_sekretariat = count(
-                Registrasi::where('sekretariat_id', Auth::user()->id)
-                    ->where('tahun', date('Y'))
-                    ->get()
-            ) != 0;
             $role = strtolower(Auth::user()->jenis_role->nama);
-            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
-
+            $role = str_replace(' ', '_', $role);
             return redirect()->route("$role.dashboard.view")->with('success', 'Berhasil masuk');
-
         }else {
             return redirect()
                 ->route('user.login.view')
@@ -98,16 +91,9 @@ class AuthUserController extends Controller
         ];
         
         if (Auth::guard('web')->attempt($login_credentials)) {
-            $is_sekretariat = count(
-                Registrasi::where('sekretariat_id', Auth::user()->id)
-                    ->where('tahun', date('Y'))
-                    ->get()
-            ) != 0;
             $role = strtolower(Auth::user()->jenis_role->nama);
-            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
-
+            $role = str_replace(' ', '_', $role);
             return redirect()->route("$role.dashboard.view")->with('success', 'Berhasil masuk');
-
         }else {
             return redirect()
                 ->route('user.login.view')

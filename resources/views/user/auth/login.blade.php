@@ -46,7 +46,7 @@
               <img src="{{ asset('assets/images/icon/logo-sniaward.svg') }}" alt="" style="height: 50px;">
             </div>
             <div class="d-flex flex-column align-items-center justify-content-center">
-              <h1 class="fw-bold">Selamat Datang <br><span style="color: #DCA958">di SNI AWARD</span></h1>
+              <h1 class="fw-bold text-center">Selamat Datang di<br><span style="color: #DCA958">Internal SNI AWARD</span></h1>
               <div style="color: #9F9F9F">The National Quality Award of Indonesia sejak tahun</div>
             </div>
           </div>
