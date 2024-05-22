@@ -157,8 +157,7 @@ h1 {
 }
 
 .card-container {
-    margin-top: -50px;
-    margin-left: 60px;
+    margin-top: -30px;
 }
 
 .card-container .card {
@@ -226,7 +225,7 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     padding: 0;
     gap: 50px;
-}   
+}
 
 .artikel-container .content-container h2 {
     margin-top: 45px;
@@ -780,6 +779,7 @@ h2.accordion-header {
     color: #AD7979;
     transition: all 0.3s ease;
 }
+
 /* Unduh end */
 
 /* Footer */
@@ -867,7 +867,7 @@ ul a {
 
 #register .select2-container .select2-selection--single {
     border-radius: 100px !important;
-    
+
 }
 
 #register .select2-container .select2-selection--single {
@@ -1012,11 +1012,11 @@ ul a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .login-container .content-kanan > img {
-    width: 185px; 
+    width: 185px;
 }
 
 .login-container .content-kanan h1 {

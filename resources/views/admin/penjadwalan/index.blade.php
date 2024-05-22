@@ -2,6 +2,48 @@
 
 @section('content')
 
+<style>
+    .file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #9fafbf;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .file-input input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+
+  .file-input-label {
+    display: inline-block;
+    font-size: 112.5%;
+    color: #595959;
+    background-color: #d7dae3;
+    padding: 6px 12px;
+    border-right: 1px solid #9fafbf;
+    cursor: pointer;
+  }
+
+  #fileInputLabel1, 
+  #fileInputLabel2 {
+    width: 80%; 
+    color: #9fafbf; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+</style>
+
 <!-- Pop up dokumen -->
 <!-- popup tambah -->
 <div class="modal fade" id="tambahDokumenPenjadwalan" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -19,10 +61,15 @@
                 </div>
                 <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Dokumen</h6>
-                    <div class="input-group custom-file-button">
-                        <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
+                    <div class="file-input">
+                        <!-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                         <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label>
-                        <input type="file" name="file_dokumen" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;">
+                        <input type="file" name="file_dokumen" accept=".pdf" class="form-control unik form-control-lg" id="inputGroupFile1" style="font-size: 100%;"> -->
+
+                        <input type="file" id="inputGroupFile1" name="file_dokumen" accept=".pdf" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
+                        <label for="inputGroupFile1" class="file-input-label">Unggah</label>
+                        <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
+                        <div id="fileName1"></div>
                     </div>
                 </div>
             </div>
@@ -43,7 +90,7 @@
             @method('PUT')
             @csrf
             <div class="modal-header" style="border: none;">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah Dokumen</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ubah  sfdsfdsfdfsdf</h1>
             </div>
             <div class="modal-body" style="border: none;">
                 <div action="" class="pb-0 mb-0">
@@ -53,12 +100,16 @@
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Dokumen</h6>
-                        <div class="input-group custom-file-button">
+                        <div class="file-input">
                             {{-- <label class="input-group-text px-4" for="inputGroupFile1">Unggah</label>
                             <label class="label-unik px-4" id="file-input-label" for="inputGroupFile1">Masukkan File.. </label> --}}
-                            <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control">
+                            <!-- <input type="file" name="file_dokumen" accept=".pdf,.doc,.docx" class="form-control"> -->
+                            <input type="file" id="inputGroupFile2" name="file_dokumen" accept=".pdf" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
+                            <label for="inputGroupFile2" class="file-input-label">Unggah</label>
+                            <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Maksimal mengunggah dokumen : 10 MB</label>
+                            <div id="fileName2"></div>
                         </div>
-                        <div id="current-file" class="mt-2"></div>
+                        <div id="current-file" class="mt-2" style="overflow-wrap: break-word; word-break: break-all; "></div>
                     </div>
                 </div>
             </div>
@@ -129,15 +180,15 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="dokumen-tab-0" data-bs-toggle="tab" href="#dokumen-tabpanel-0" role="tab" aria-controls="dokumen-tabpanel-0" aria-selected="true">Dokumen</a>
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }}"  id="dokumen-tab-0" href="/admin/penjadwalan" role="tab" aria-controls="dokumen-tabpanel-0" aria-selected="true">Dokumen</a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Linimasa</a>
+        <a class="nav-link {{ (request()->query('tab') == 'linimasa')?'active':'' }}"  id="simple-tab-1" href="/admin/penjadwalan?tab=linimasa" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Linimasa</a>
     </li>
 </ul>
 <hr class="p-0">
 <div class="tab-content" id="tab-content">
-    <div class="tab-pane active" id="dokumen-tabpanel-0" role="tabpanel" aria-labelledby="dokumen-tab-0">
+    <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="dokumen-tabpanel-0" role="tabpanel" aria-labelledby="dokumen-tab-0">
         <div class="content-profil py-5 mb-5">
             <div class="d-flex flex-column">
                 <h3 class="mb-2 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumen</h3>
@@ -164,7 +215,13 @@
                         <tr>
                             <td class="ps-3" scope="row">{{ $loop->iteration }}</td>
                             <td class="ps-5">{{ $dokumen->nama_dokumen }}</td>
-                            <td class="ps-5">{{ $dokumen->file_dokumen }}</td>
+                            <td class="ps-5">
+                                @if(strlen($dokumen->file_dokumen) > 50)
+                                    {{ substr($dokumen->file_dokumen, 0, 50) . '...' }}
+                                @else
+                                    {{ $dokumen->file_dokumen }}
+                                @endif
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <button onclick="openModalUbahDokumenPenjadwalan('{{ $dokumen->id }}')" class="btn btn-ubah" data-bs-toggle="modal" role="button">Ubah</button>
@@ -188,7 +245,7 @@
     </div>
 
     <!-- Dokumen start -->
-    <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+    <div class="tab-pane {{ (request()->query('tab') == 'linimasa')?'active':'' }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
         <div class="content-profil pt-5 mb-5">
             <div class="d-flex flex-column gap-3">
                 <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Linimasa</h3>
@@ -233,7 +290,7 @@
                                             </div>
                                             <div class="container col-md-8 pe-5">
                                                 <div class="input-group custom-file-button">
-                                                <input name="lokasi_map" type="text" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
+                                                <input name="lokasi_map" type="url" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,4 +354,22 @@
     </div>
     <!-- Dokumen end -->
 </div>
+
+<script>
+    
+function handleFileSelect(inputId, labelId, fileNameId) {
+    const fileInput = document.getElementById(inputId);
+    const fileInputLabel = document.getElementById(labelId);
+    const fileNameDisplay = document.getElementById(fileNameId);
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : null;
+    if (fileName) {
+      fileInputLabel.textContent = fileName;
+    //   fileNameDisplay.textContent = fileName;
+    } else {
+      fileInputLabel.textContent = "Maksimal mengunggah dokumen : 10 MB";
+      fileNameDisplay.textContent = "";
+    }
+  }
+
+</script>
 @endsection('content')

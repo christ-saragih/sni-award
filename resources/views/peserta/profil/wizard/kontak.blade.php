@@ -126,7 +126,7 @@
                     </div>
                     <div class="px-5 py-4 d-flex justify-content-end gap-3"> 
                         @if ($loop->count>1)
-                            <button type="button" class="btn nonactive" style="cursor: pointer;" onclick="handleSubmitDeleteForm({{$loop->iteration}})">Hapus</button> 
+                            <button type="button" class="btn nonactive delete-button" style="cursor: pointer;" onclick="handleSubmitDeleteForm({{$loop->iteration}})">Hapus</button> 
                         @endif
                         <button type="button" class="btn edit-button" style="width: 13%;" onclick="toggleEdit(this)">Edit</button>
                         <button type="button" class="btn cancel-button" style="width: 13%; display: none;" onclick="toggleEdit(this, true)" >Batal</button>
@@ -188,6 +188,7 @@
         const editButton = form.querySelector('.edit-button');
         const saveButton = form.querySelector('.save-button');
         const cancelButton = form.querySelector('.cancel-button');
+        const deleteButton = form.querySelector('.delete-button');
 
     if (cancel) {
         spans.forEach(span => {
@@ -199,6 +200,7 @@
         editButton.style.display = 'block';
         saveButton.style.display = 'none';
         cancelButton.style.display = 'none';
+        deleteButton.style.display = 'block';
     } else { 
         spans.forEach(span => {
             span.style.display = 'none';
@@ -209,6 +211,7 @@
         editButton.style.display = 'none';
         saveButton.style.display = 'block';
         cancelButton.style.display = 'block';
+        deleteButton.style.display = 'none';
 
         // button.style.display = 'none';
         // button.nextElementSibling.style.display = 'block';
