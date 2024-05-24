@@ -13,7 +13,7 @@
         <div class="content-container col-6">
             <div class="content row">
                 <h2>Berita Terkini</h2>
-                <img src="{{ asset('gambar/gambar_berita/' . $berita_terbaru->file_gambar) }}" class="p-0" alt="">
+                <img src="{{ asset('storage/images/gambar_berita/' . $berita_terbaru->file_gambar) }}" class="p-0" alt="">
                 {{-- <img src="http://127.0.0.1:8000/assets/images/dokumentasi/berita-terkini.png" class="p-0" alt=""> --}}
             </div>
         </div>
@@ -75,7 +75,7 @@
     <div class="row justify-content-center gap-4">
         @foreach ($berita as $ber)
         <div class="berita-container col-lg-4 col-md-6 col-sm-12 rounded-3 p-0">
-            <img src="{{ asset('gambar/gambar_berita/' . $ber->file_gambar) }}" class="w-100 rounded-3" alt="">
+            <img src="{{ asset('storage/images/gambar_berita/' . $ber->file_gambar) }}" class="w-100 rounded-3" alt="">
             <div class="content">
                 <h4>
                 {{ $ber->judul_berita }}
