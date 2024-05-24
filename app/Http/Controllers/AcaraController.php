@@ -54,14 +54,14 @@ class AcaraController extends Controller
         // Upload gambar thumbnail dengan nama yang unik
         $gambar_thumbnail = $request->file('gambar_thumbnail');
         $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
-        $gambar_thumbnail->move(storage_path('app/public/images/acara/thumbnail_acara'), $nama_gambar_thumbnail);
+        $gambar_thumbnail->move(storage_path('app/public/images/acara/thumbnail_acara/'), $nama_gambar_thumbnail);
         // $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
 
         // Upload gambar konten dengan nama yang unik
         $nama_gambar_konten = [];
         foreach ($request->file('gambar_konten') as $file) {
             $nama_gambar = 'konten_' . now()->format('YmdHis') . '_' . $file->getClientOriginalName();
-            $file->move(storage_path('app/public/images/acara/konten_acara'), $nama_gambar);
+            $file->move(storage_path('app/public/images/acara/konten_acara/'), $nama_gambar);
             // $file->move(public_path('gambar/konten_acara'), $nama_gambar);
             $nama_gambar_konten[] = $nama_gambar;
         }
@@ -129,28 +129,32 @@ class AcaraController extends Controller
             'deskripsi.min' => 'Deskripsi Acara Minimal 5 Karakter!',
         ]);
 
+        // Upload gambar thumbnail baru jika ada
+        if ($request->hasFile('gambar_thumbnail')) {
+            $gambar_thumbnail = $request->file('gambar_thumbnail');
+            $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
+            $gambar_thumbnail->move(storage_path('app/public/images/acara/thumbnail_acara/'), $nama_gambar_thumbnail);
+            // $acara->update(['gambar_thumbnail' => $nama_gambar_thumbnail]);
+            if ($acara->gambar_thumbnail) {
+                unlink(storage_path('app/public/images/acara/thumbnail_acara/' . $acara->gambar_thumbnail));
+            }
+        }
+
         // Update data acara
         $acara->update([
             'judul_acara' => $request->judul_acara,
             'slug' => Str::slug($request->judul_acara, '-'),
             'tanggal' => $request->tanggal,
             'deskripsi' => $request->deskripsi,
+            'gambar_thumbnail' => $nama_gambar_thumbnail,
         ]);
-
-        // Upload gambar thumbnail baru jika ada
-        if ($request->hasFile('gambar_thumbnail')) {
-            $gambar_thumbnail = $request->file('gambar_thumbnail');
-            $nama_gambar_thumbnail = 'thumbnail_' . now()->format('YmdHis') . '.' . $gambar_thumbnail->getClientOriginalExtension();
-            $gambar_thumbnail->move(public_path('gambar/thumbnail_acara'), $nama_gambar_thumbnail);
-            $acara->update(['gambar_thumbnail' => $nama_gambar_thumbnail]);
-        }
 
         // Upload gambar konten baru jika ada
         if ($request->hasFile('gambar_konten')) {
             $nama_gambar_konten = [];
             foreach ($request->file('gambar_konten') as $file) {
                 $nama_gambar = 'konten_' . now()->format('YmdHis') . '_' . $file->getClientOriginalName();
-                $file->move(public_path('gambar/konten_acara'), $nama_gambar);
+                $file->move(storage_path('app/public/images/acara/konten_acara/'), $nama_gambar);
                 $nama_gambar_konten[] = $nama_gambar;
             }
             // Hapus dokumen acara jika gambar konten dihapus di frontend

@@ -5,7 +5,8 @@
     <div class="acara-container">
         <div class="content-atas row">
             <div class="col-6">
-            <img src="{{ asset('gambar/thumbnail_acara/' . $acara->gambar_thumbnail) }}" style="margin-top: 55px;" alt="">
+                {{-- {{dd($acara->gambar_thumbnail)}} --}}
+            <img src="{{ asset('storage/images/acara/thumbnail_acara/' . $acara->gambar_thumbnail) }}" style="margin-top: 55px;" alt="">
             </div>
             <div class="col-6">
                 <div class="d-flex flex-column align-items-center">
@@ -28,7 +29,7 @@
                 @foreach ($dokumentasi_acara as $da)
                 <div class="slider-card">
                     <div class="d-flex justify-content-center align-items-center my-2">
-                        <img src="{{ asset('gambar/konten_acara/' . $da->gambar_konten) }}" class="w-75" alt="Gambar Konten Berita" />
+                        <img src="{{ asset('storage/images/acara/konten_acara/' . $da->gambar_konten) }}" class="w-75" alt="Gambar Konten Berita" />
                     </div>
                 </div>
                 @endforeach
