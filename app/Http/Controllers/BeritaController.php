@@ -58,7 +58,7 @@ class BeritaController extends Controller
         // dd($gambar_file->getClientOriginalExtension());
         $gambar_ekstensi = $gambar_file->extension();
         $nama_file = date('ymdhis') . '.' . $gambar_ekstensi;
-        $gambar_file->move(storage_path('app/public/images/berita/gambar_berita'), $nama_file);
+        $gambar_file->move(storage_path('app/public/images/gambar_berita/'), $nama_file);
         // $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
 
         $berita = Berita::create([
@@ -116,10 +116,10 @@ class BeritaController extends Controller
             $gambar_file = $request->file('file_gambar');
             $gambar_ekstensi = $gambar_file->extension();
             $nama_file = date('ymdhis') . '.' . $gambar_ekstensi;
-            $gambar_file->move(public_path('gambar/gambar_berita'), $nama_file);
+            $gambar_file->move(storage_path('app/public/images/gambar_berita/'), $nama_file);
 
             if ($berita->file_gambar) {
-                unlink(public_path('gambar/gambar_berita/' . $berita->file_gambar));
+                unlink(storage_path('app/public/images/gambar_berita/' . $berita->file_gambar));
             }
         }
 

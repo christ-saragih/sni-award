@@ -15,7 +15,7 @@
             <div class="row d-flex gap-3 justify-content-around">
                 @forelse ($acara as $acara)
                 <a href="{{ route('informasi.acara.detail', $acara->slug) }}" class="informasi-acara-container col-4 rounded-3 p-0" style="text-decoration: none">
-                    <img src="{{ asset('gambar/thumbnail_acara/' . $acara->gambar_thumbnail) }}" alt="">
+                    <img src="{{ asset('storage/images/acara/thumbnail_acara/' . $acara->gambar_thumbnail) }}" alt="">
                     <div class="content">
                         <h4>
                             {{ $acara->judul_acara }}
