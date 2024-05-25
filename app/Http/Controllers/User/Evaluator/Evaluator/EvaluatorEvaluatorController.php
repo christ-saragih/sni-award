@@ -35,11 +35,23 @@ class EvaluatorEvaluatorController extends Controller
             ->whereIn('registrasi_id', $all_registrasi_id)
             ->get();
 
+        $penilaian_evaluator = [];
+        foreach ($desk_evaluation as $penilaian) {
+            foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
+                if($status->internal_id == $penilaian->evaluator_id) {
+                    $penilaian_evaluator[] = [
+                        'jabatan' => $status->jabatan,
+                    ];
+                }
+            }
+        }
+
         return view('evaluator.evaluator.index', [
             'tahun_registrasi' => $tahun_registrasi,
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
             'site_evaluation' => $site_evaluation,
+            'penilaian_evaluator' => $penilaian_evaluator,
         ]);
     }
 
