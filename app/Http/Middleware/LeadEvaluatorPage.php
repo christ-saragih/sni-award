@@ -18,12 +18,8 @@ class LeadEvaluatorPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            $is_sekretariat = count(Registrasi::where('sekretariat_id', Auth::user()->id)
-                ->where('tahun', date('Y'))
-                ->get()
-            ) != 0;
             $role = strtolower(Auth::user()->jenis_role->nama);
-            $role = $is_sekretariat ? 'sekretariat' : str_replace(' ', '_', $role);
+            $role = str_replace(' ', '_', $role);
             if ($role == 'lead_evaluator') {
                 return $next($request);
             }

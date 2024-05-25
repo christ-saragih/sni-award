@@ -7,7 +7,6 @@ use App\Http\Controllers\FaqAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
-use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\KotaAdminController;
 use App\Http\Controllers\User\Sekretariat\evaluator\SekretariatEvaluatorController;
@@ -18,7 +17,6 @@ use App\Http\Controllers\PropinsiAdminController;
 use App\Http\Controllers\KecamatanAdminController;
 use App\Http\Controllers\RiwayatPesertaController;
 use App\Http\Controllers\AssessmentController;
-use App\Http\Controllers\AssessmentKategoriController;
 use App\Http\Controllers\AssessmentPertanyaanController;
 use App\Http\Controllers\AssessmentSubKategoriController;
 use App\Http\Controllers\KategoriOrganisasiController;
@@ -42,20 +40,23 @@ use App\Http\Controllers\User\Admin\AdminDashboardController;
 use App\Http\Controllers\User\Admin\DataInternalController;
 use App\Http\Controllers\User\Admin\FrontPageController;
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\Evaluator\Evaluator\EvaluatorEvaluatorController;
 use App\Http\Controllers\User\Evaluator\EvaluatorDashboardController;
-use App\Http\Controllers\User\Evaluator\Peserta\EvaluatorPesertaController;
+use App\Http\Controllers\User\Evaluator\LeadEvaluator\EvaluatorLeadEvaluatorController;
 use App\Http\Controllers\User\Evaluator\ProfilEvaluatorController;
+use App\Http\Controllers\User\Evaluator\Sekretariat\EvaluatorSekretariatController;
+use App\Http\Controllers\User\Evaluator\Sekretariat\EvaluatorTimController;
+use App\Http\Controllers\User\LeadEvaluator\Evaluator\LeadEvaluatorEvaluatorController;
+use App\Http\Controllers\User\LeadEvaluator\LeadEvaluator\LeadEvaluatorLeadEvaluatorController;
 use App\Http\Controllers\User\LeadEvaluator\LeadEvaluatorDashboardController;
-use App\Http\Controllers\User\LeadEvaluator\Peserta\LeadEvaluatorPesertaController;
 use App\Http\Controllers\User\LeadEvaluator\ProfilLeadEvaluatorController;
+use App\Http\Controllers\User\LeadEvaluator\Sekretariat\LeadEvaluatorSekretariatController;
+use App\Http\Controllers\User\LeadEvaluator\Sekretariat\LeadEvaluatorTimController;
 use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\User\Sekretariat\tim\SekretariatTimController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserProfilController;
-use App\Models\PenjadwalanDokumen;
-use App\Models\PenjadwalanLinimasa;
-use App\Models\RegistrasiAssessment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -368,11 +369,27 @@ Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', '
     Route::get('/profil', [ProfilEvaluatorController::class, 'index']);
     Route::get('/profil/edit', [ProfilEvaluatorController::class, 'edit']);
 
-    Route::get('/peserta', [EvaluatorPesertaController::class, 'index'])->name('evaluator.peserta.view');
-    Route::get('/peserta/profil/{registrasi_id}', [EvaluatorPesertaController::class, 'detailProfil'])->name('evaluator.peserta.profil.view');
-    Route::post('/peserta/profil/{registrasi_id}/penilaian', [EvaluatorPesertaController::class, 'penilaian'])->name('evaluator.peserta.profil.penilaian');
-    // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
-    // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
+    Route::prefix('/sekretariat')->group(function () {
+        Route::get('/', [EvaluatorSekretariatController::class, 'index'])->name('evaluator.sekretariat.view');
+        Route::get('/detail/{registrasi_id}', [EvaluatorSekretariatController::class, 'detail'])->name('evaluator.sekretariat.detail.view');
+    });
+    
+    Route::prefix('/lead-evaluator')->group(function () {
+        Route::get('/', [EvaluatorLeadEvaluatorController::class, 'index'])->name('evaluator.lead_evaluator.view'); 
+    });
+    
+    Route::prefix('/evaluator')->group(function () {
+        Route::get('/', [EvaluatorEvaluatorController::class, 'index'])->name('evaluator.evaluator.view');
+        Route::get('/profil/{registrasi_id}', [EvaluatorEvaluatorController::class, 'detailProfil'])->name('evaluator.evaluator.profil.view');
+        Route::put('/detail/{registrasi_id}/dokumen/feedback', [EvaluatorEvaluatorController::class, 'sendFeedback'])->name('evaluator.evaluator.detail.dokumen.send_feedback');
+        Route::post('/profil/{registrasi_id}/penilaian', [EvaluatorEvaluatorController::class, 'penilaian'])->name('evaluator.evaluator.profil.penilaian');
+    });
+    
+    Route::prefix('/tim')->group(function () {
+        Route::get('/{registrasi_id}', [EvaluatorTimController::class, 'index'])->name('evaluator.tim.view');
+        Route::get('/{registrasi_id}/tambah', [EvaluatorTimController::class, 'create'])->name('evaluator.tim.create');
+        Route::post('/{registrasi_id}/store', [EvaluatorTimController::class, 'store'])->name('evaluator.tim.store');
+    });
 });
 // end evaluator
 
@@ -383,10 +400,27 @@ Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verifie
     Route::get('/profil', [ProfilLeadEvaluatorController::class, 'index']);
     Route::get('/profil/edit', [ProfilLeadEvaluatorController::class, 'edit']);
 
-    Route::get('/peserta', [LeadEvaluatorPesertaController::class, 'index'])->name('lead_evaluator.peserta.view');
-    Route::get('/peserta/profil/{registrasi_id}', [LeadEvaluatorPesertaController::class, 'detailProfil'])->name('lead_evaluator.peserta.profil.view');
-    Route::post('/peserta/profil/{registrasi_id}/penilaian', [LeadEvaluatorPesertaController::class, 'penilaian'])->name('lead_evaluator.peserta.profil.penilaian');
+    Route::prefix('/sekretariat')->group(function () {
+        Route::get('/', [LeadEvaluatorSekretariatController::class, 'index'])->name('lead_evaluator.sekretariat.view');
+        Route::get('/detail/{registrasi_id}', [LeadEvaluatorSekretariatController::class, 'detail'])->name('lead_evaluator.sekretariat.detail.view');
+    });
 
+    Route::prefix('/lead-evaluator')->group(function () {
+        Route::get('/', [LeadEvaluatorLeadEvaluatorController::class, 'index'])->name('lead_evaluator.lead_evaluator.view');
+        Route::get('/detail/{registrasi_id}', [LeadEvaluatorLeadEvaluatorController::class, 'detailProfil'])->name('lead_evaluator.lead_evaluator.detail.view');
+        Route::put('/detail/{registrasi_id}/dokumen/feedback', [LeadEvaluatorLeadEvaluatorController::class, 'sendFeedback'])->name('lead_evaluator.lead_evaluator.detail.dokumen.send_feedback');
+        Route::post('/detail/{registrasi_id}/penilaian', [LeadEvaluatorLeadEvaluatorController::class, 'penilaian'])->name('lead_evaluator.lead_evaluator.detail.penilaian');
+    });
+
+    Route::prefix('/evaluator')->group(function () {
+        Route::get('/', [LeadEvaluatorEvaluatorController::class, 'index'])->name('lead_evaluator.evaluator.view');
+    });
+    
+    Route::prefix('/tim')->group(function () {
+        Route::get('/{registrasi_id}', [LeadEvaluatorTimController::class, 'index'])->name('lead_evaluator.tim.view');
+        Route::get('/{registrasi_id}/tambah', [LeadEvaluatorTimController::class, 'create'])->name('lead_evaluator.tim.create');
+        Route::post('/{registrasi_id}/store', [LeadEvaluatorTimController::class, 'store'])->name('lead_evaluator.tim.store');
+    });
 });
 // end lead evaluator
 

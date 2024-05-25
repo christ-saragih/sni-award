@@ -14,7 +14,7 @@
             >
             <i class="fa fa-user-o" aria-hidden="true"></i>
             </div>
-            <span class="nav-link-text" id="navLinkText">Peserta</span>
+            <span class="nav-link-text" id="navLinkText">Sekretariat</span>
         </a>
     </li>
     <li class="nav-item">

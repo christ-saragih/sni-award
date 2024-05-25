@@ -13,59 +13,55 @@ use Illuminate\Support\Facades\File;
 
 class RegistrasiDokumenController extends Controller
 {
-
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // Validate the request
         // $request->validate([
-        //     'url_dokumen*' => 'required|file|mimes:pdf',
-        //     // 'registrasi_id.*' => 'required',
-        //     // 'dokumen_id.*' => 'required',
+        //     'url_dokumen.*' => 'required|file|mimes:pdf',
         // ]);
+
         $user = Auth::guard('peserta')->user();
-        $file_dokumen = $request->file('url_dokumen');
         $registrasi = Registrasi::where('peserta_id', $user->id)
             ->where('tahun', date('Y'))->first();
-        // dd($registrasi);
-        foreach ($request->file('url_dokumen') as $iteration=>$dokumen) {
+
+        foreach ($request->file('url_dokumen') as $iteration => $dokumen) {
             $existingDocument = RegistrasiDokumen::where('registrasi_id', $registrasi->id)
                 ->where('dokumen_id', $iteration + 1)
                 ->first();
+
+            // Delete existing document if it exists
             if ($existingDocument) {
                 $existing_document_path = str_replace('/storage', '', $existingDocument->url_dokumen);
                 if (File::exists(storage_path("app/public/$existing_document_path"))) {
                     File::delete(storage_path("app/public/$existing_document_path"));
                 }
             }
-            $nama_file_dokumen = 'dokumen_' . now()->format('YmdHis') . '.' . $dokumen->hashName();
+
+            // Create a new file name and move the uploaded file
+            $nama_file_dokumen = 'dokumen_' . now()->format('YmdHis') . '.' . $dokumen->getClientOriginalExtension();
             $directory_path = storage_path("app/public/Peserta/registrasi/dokumen/$user->id");
             $dokumen->move($directory_path, $nama_file_dokumen);
-            if ($existingDocument && $existingDocument->status === 'ditolak') {
-                // Ubah status dokumen menjadi 'proses'
+            $url_dokumen = "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen";
+
+            // Update or create the RegistrasiDokumen entry
+            if ($existingDocument) {
                 $existingDocument->update([
-                    'dokumen_id' => $iteration+1,
-                    'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
-                    'feedback' => 'assdasda',
+                    'url_dokumen' => $url_dokumen,
+                    'feedback' => 'Updated document',
                     'status' => 'proses',
-            ]);
-            } elseif ($existingDocument && $existingDocument->status === 'disetujui') {
-                return redirect()->back()->with('error', 'Anda tidak dapat mengunggah dokumen lagi karena dokumen telah disetujui.');
+                ]);
             } else {
                 RegistrasiDokumen::create([
                     'registrasi_id' => $registrasi->id,
-                    'dokumen_id' => $iteration+1,
-                    'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
-                    'feedback' => 'assdasda',
+                    'dokumen_id' => $iteration + 1,
+                    'url_dokumen' => $url_dokumen,
+                    'feedback' => 'New document',
                     'status' => 'proses',
                 ]);
             }
-
         }
 
-        return redirect()->back()->with('success','Registrasi Dokumen berhasil');
+        return redirect()->back()->with('success', 'Registrasi Dokumen berhasil');
     }
-
-    // public function getDokumenPeserta()
-    // {
-    //     $pesertaProfil = PesertaProfil::select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->get();
-    //     return response()->json($pesertaProfil);
-    // }
 }
+
