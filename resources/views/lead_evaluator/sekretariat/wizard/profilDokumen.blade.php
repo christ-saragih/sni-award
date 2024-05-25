@@ -101,7 +101,7 @@
                 Apakah Anda yakin ingin <b>menyetujui</b> dokumen ini?
             </div>
             <div class="modal-footer">
-                <form action="{{ route('sekretariat.peserta.profil.dokumen.persetujuan', $rd->id) }}" method="POST">
+                <form action="{{ route('lead_evaluator.sekretariat.detail.dokumen.persetujuan', $rd->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="text" name="persetujuan_dokumen" value="disetujui" class="d-none">
@@ -125,7 +125,7 @@
                 Apakah Anda yakin ingin <b>menolak</b> dokumen ini?
             </div>
             <div class="modal-footer">
-                <form action="{{ route('sekretariat.peserta.profil.dokumen.persetujuan', $rd->id) }}" method="POST">
+                <form action="{{ route('lead_evaluator.sekretariat.detail.dokumen.persetujuan', $rd->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="text" name="persetujuan_dokumen" value="ditolak" class="d-none">
@@ -279,7 +279,7 @@
                     </div>
                 @endif
             </div>
-            <form action="{{ route('sekretariat.peserta.profil.dokumen.send_feedback', request()->registrasi_id) }}" method="POST" class="chat-input mt-4">
+            <form action="{{ route('lead_evaluator.sekretariat.detail.dokumen.send_feedback', request()->registrasi_id) }}" method="POST" class="chat-input mt-4">
                 @csrf
                 @method('PUT')
                 <textarea name="feedback" id="documentFeedback" placeholder="Tuliskan Pesan" rows="1" oninput="autoResizeTextarea(this)"></textarea>
