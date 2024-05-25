@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <form id="submissionForm" action="{{ route('evaluator.evaluator.profil.penilaian', $registrasi->id) }}" method="post">
+                                    <form id="submissionForm" action="{{ route('evaluator.evaluator.detail.penilaian', $registrasi->id) }}" method="post">
                                         @csrf
                                         <div class="row align-items-center pb-3">
                                             <div class="col-md-4 ps-5">
