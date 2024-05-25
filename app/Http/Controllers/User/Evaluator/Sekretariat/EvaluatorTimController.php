@@ -94,10 +94,12 @@ class EvaluatorTimController extends Controller
             ->get('lead_evaluator_id');
 
         $evaluator = User::where('role', 2)
+            ->where('verified_at', '!=', null)
             ->where('id', '!=', $user_id)
             ->whereNotIn('id', $evaluator_in_team)
             ->get();
         $lead_evaluator = User::where('role', 3)
+            ->where('verified_at', '!=', null)
             ->where('id', '!=', $user_id)
             ->whereNotIn('id', $lead_evaluator_in_team)
             ->get();
