@@ -7,11 +7,10 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 @foreach ($tahun_registrasi as $tahun)
-                    <li><a class="dropdown-item" href="{{ 
-                        count(request()->query()) == 0 ?
-                        request()->getRequestUri()."?tahun=$tahun" :
-                        request()->getRequestUri()."&tahun=$tahun"
-                    }}">{{ $tahun }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('evaluator.evaluator.view', [
+                        'tab' => 'site-evaluation',
+                        'tahun' => $tahun
+                    ]) }}">{{ $tahun }}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -38,7 +37,7 @@
                     <td>{{ $site->registrasi->peserta->email }}</td>
                     <td>{{ $site->registrasi->peserta->peserta_profil ? $site->registrasi->peserta->peserta_profil->no_hp : '' }}</td>
                     <td class="d-flex align-items-center justify-content-center">
-                        <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
+                        <a href="{{ route('evaluator.tim.view', Crypt::encryptString($desk->registrasi->id)) }}" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                             <i class="fa fa-users"></i>
                         </a>
                     </td>

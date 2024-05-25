@@ -30,7 +30,7 @@ class EvaluatorSekretariatController extends Controller
             $registrasi = $registrasi->where('tahun', $request->tahun);
         }
         $registrasi = $registrasi->get();
-        // dd($registrasi);
+
         return view('evaluator.sekretariat.index', [
             'stage' => $stage,
             'tahun_registrasi' => $tahun_registrasi,

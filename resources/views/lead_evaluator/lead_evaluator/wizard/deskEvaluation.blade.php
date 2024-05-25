@@ -4,10 +4,11 @@
             Tahun
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">2024</a></li>
-            <li><a class="dropdown-item" href="#">2023</a></li>
-            <li><a class="dropdown-item" href="#">2022</a></li>
-            <li><a class="dropdown-item" href="#">2021</a></li>
+            @foreach ($tahun_registrasi as $tahun)
+                <li><a class="dropdown-item" href="{{ route('lead_evaluator.lead_evaluator.view', [
+                    'tahun' => $tahun,
+                ]) }}">{{ $tahun }}</a></li>
+            @endforeach
         </ul>
     </div>
 </div>
@@ -33,7 +34,7 @@
                 <td>{{ $desk->registrasi->peserta->email }}</td>
                 <td>{{ $desk->registrasi->peserta->peserta_profil ? $desk->registrasi->peserta->peserta_profil->no_hp : '' }}</td>
                 <td class="d-flex align-items-center justify-content-center">
-                    <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
+                    <a href="{{ route('lead_evaluator.tim.view', Crypt::encryptString($desk->registrasi->id)) }}" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                         <i class="fa fa-users"></i>
                     </a>
                 </td>

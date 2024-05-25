@@ -8,6 +8,7 @@ use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\Registrasi;
+use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiEvaluator;
 use App\Models\RegistrasiPenilaian;
 use Illuminate\Support\Facades\Auth;
@@ -15,34 +16,40 @@ use Illuminate\Support\Facades\Crypt;
 
 class LeadEvaluatorLeadEvaluatorController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $user = Auth::user();
         $registrasi = Registrasi::get();
+        $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
+
+        $all_registrasi_id = Registrasi::distinct()->pluck('id');
+        if ($request->tahun) $all_registrasi_id = Registrasi::where('tahun', $request->tahun)->distinct()->pluck('id');
+
         $desk_evaluation = RegistrasiEvaluator::where('lead_evaluator_id', $user->id)
-        ->where('stage', '3')
-        ->get();
-        // dd($desk_evaluation);
+            ->where('stage', '3')
+            ->whereIn('registrasi_id', $all_registrasi_id)
+            ->get();
+        $site_evaluation = RegistrasiEvaluator::where('lead_evaluator_id', $user->id)
+            ->where('stage', '4')
+            ->whereIn('registrasi_id', $all_registrasi_id)
+            ->get();
+
         $penilaian_evaluator = [];
         foreach ($desk_evaluation as $penilaian) {
-            // dd($penilaian->registrasi->registrasi_penilaian);
             foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
-                // dd($status->jabatan == 'lead_evaluator');
                 if($status->internal_id == $penilaian->lead_evaluator_id) {
                     $penilaian_evaluator[] = [
-                        'jabatan' => $status->jabatan
+                        'jabatan' => $status->jabatan,
                     ];
                 }
             }
         }
-        // dd($penilaian_evaluator);
-        $site_evaluation = RegistrasiEvaluator::where('lead_evaluator_id', $user->id)
-            ->where('stage', '4')
-            ->get();
+        
         return view('lead_evaluator.lead_evaluator.index', [
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
             'penilaian_evaluator' => $penilaian_evaluator,
             'site_evaluation' => $site_evaluation,
+            'tahun_registrasi' => $tahun_registrasi,
         ]);
     }
 
@@ -82,6 +89,27 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'site_evaluation' => $site_evaluation,
         ]);
+    }
+
+    public function sendFeedback(Request $request, $registrasi_id) {
+        $request->validate([
+            'feedback' => 'required',
+        ], [
+            'feedback.required' => 'tidak ada feedback',
+        ]);
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
+        if (count($registrasi_dokumen) > 0) {
+            $feedback = str_replace("\n", "<br/>", $request->feedback);
+            $feedback = trim($feedback, ' ');
+            foreach ($registrasi_dokumen as $key=>$rd) {
+                $rd->update([
+                    'feedback' => $feedback,
+                ]);
+            }
+            return back()->with('success', 'Berhasil mengirim feedback');
+        }
+        return back()->withErrors('Tidak ada dokumen ditemukan');
     }
 
     public function penilaian(Request $request, $registrasi_id) {

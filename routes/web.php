@@ -45,11 +45,13 @@ use App\Http\Controllers\User\Evaluator\EvaluatorDashboardController;
 use App\Http\Controllers\User\Evaluator\LeadEvaluator\EvaluatorLeadEvaluatorController;
 use App\Http\Controllers\User\Evaluator\ProfilEvaluatorController;
 use App\Http\Controllers\User\Evaluator\Sekretariat\EvaluatorSekretariatController;
+use App\Http\Controllers\User\Evaluator\Sekretariat\EvaluatorTimController;
 use App\Http\Controllers\User\LeadEvaluator\Evaluator\LeadEvaluatorEvaluatorController;
 use App\Http\Controllers\User\LeadEvaluator\LeadEvaluator\LeadEvaluatorLeadEvaluatorController;
 use App\Http\Controllers\User\LeadEvaluator\LeadEvaluatorDashboardController;
 use App\Http\Controllers\User\LeadEvaluator\ProfilLeadEvaluatorController;
 use App\Http\Controllers\User\LeadEvaluator\Sekretariat\LeadEvaluatorSekretariatController;
+use App\Http\Controllers\User\LeadEvaluator\Sekretariat\LeadEvaluatorTimController;
 use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\User\Sekretariat\SekretariatDashboardController;
 use App\Http\Controllers\User\Sekretariat\tim\SekretariatTimController;
@@ -379,11 +381,15 @@ Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', '
     Route::prefix('/evaluator')->group(function () {
         Route::get('/', [EvaluatorEvaluatorController::class, 'index'])->name('evaluator.evaluator.view');
         Route::get('/profil/{registrasi_id}', [EvaluatorEvaluatorController::class, 'detailProfil'])->name('evaluator.evaluator.profil.view');
+        Route::put('/detail/{registrasi_id}/dokumen/feedback', [EvaluatorEvaluatorController::class, 'sendFeedback'])->name('evaluator.evaluator.detail.dokumen.send_feedback');
         Route::post('/profil/{registrasi_id}/penilaian', [EvaluatorEvaluatorController::class, 'penilaian'])->name('evaluator.evaluator.profil.penilaian');
     });
-
-    // Route::put('/peserta/profil/persetujuan-dokumen/{registrasi_dokumen_id}', [SekretariatPesertaController::class, 'persetujuanDokumen'])->name('sekretariat.peserta.profil.dokumen.persetujuan');
-    // Route::put('/peserta/profil/{registrasi_id}/dokumen/feedback', [SekretariatPesertaController::class, 'sendFeedback'])->name('sekretariat.peserta.profil.dokumen.send_feedback');
+    
+    Route::prefix('/tim')->group(function () {
+        Route::get('/{registrasi_id}', [EvaluatorTimController::class, 'index'])->name('evaluator.tim.view');
+        Route::get('/{registrasi_id}/tambah', [EvaluatorTimController::class, 'create'])->name('evaluator.tim.create');
+        Route::post('/{registrasi_id}/store', [EvaluatorTimController::class, 'store'])->name('evaluator.tim.store');
+    });
 });
 // end evaluator
 
@@ -402,13 +408,19 @@ Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verifie
     Route::prefix('/lead-evaluator')->group(function () {
         Route::get('/', [LeadEvaluatorLeadEvaluatorController::class, 'index'])->name('lead_evaluator.lead_evaluator.view');
         Route::get('/detail/{registrasi_id}', [LeadEvaluatorLeadEvaluatorController::class, 'detailProfil'])->name('lead_evaluator.lead_evaluator.detail.view');
+        Route::put('/detail/{registrasi_id}/dokumen/feedback', [LeadEvaluatorLeadEvaluatorController::class, 'sendFeedback'])->name('lead_evaluator.lead_evaluator.detail.dokumen.send_feedback');
         Route::post('/detail/{registrasi_id}/penilaian', [LeadEvaluatorLeadEvaluatorController::class, 'penilaian'])->name('lead_evaluator.lead_evaluator.detail.penilaian');
     });
 
     Route::prefix('/evaluator')->group(function () {
         Route::get('/', [LeadEvaluatorEvaluatorController::class, 'index'])->name('lead_evaluator.evaluator.view');
     });
-
+    
+    Route::prefix('/tim')->group(function () {
+        Route::get('/{registrasi_id}', [LeadEvaluatorTimController::class, 'index'])->name('lead_evaluator.tim.view');
+        Route::get('/{registrasi_id}/tambah', [LeadEvaluatorTimController::class, 'create'])->name('lead_evaluator.tim.create');
+        Route::post('/{registrasi_id}/store', [LeadEvaluatorTimController::class, 'store'])->name('lead_evaluator.tim.store');
+    });
 });
 // end lead evaluator
 

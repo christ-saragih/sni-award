@@ -45,6 +45,14 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('assets') }}/css/styles.css" />
 </head>
+<style>
+    .back {
+        color: #552525;
+    }
+    .back:hover {
+        color: #C17D2D;
+    }
+</style>
 <body>
     <main style="
         width: 100dvw;
@@ -60,6 +68,7 @@
         <img src="{{ asset('assets/images/icon/Frame.svg') }}" alt="" style="width: 25%;">
         <h1>404</h1>
         <h2 style="padding: 0; margin: 0;">Oops! Halaman Tidak Ditemukan</h2>
+        <a href="javascript:history.back()" class="fw-bold fs-5 back">&#129048; Kembali</a>
     </main>
 </body>
 </html>
