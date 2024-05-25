@@ -21,7 +21,7 @@
                     <p class="mb-0">470</p>
                 </div>
             </div>
-            <img src="{{ asset('gambar/gambar_berita/' . $berita->file_gambar) }}" class="berita mb-4" alt="">
+            <img src="{{ asset('storage/images/gambar_berita/' . $berita->file_gambar) }}" class="berita mb-4" alt="">
             {{-- <img src="{{ asset('assets') }}/images/dokumentasi/berita-terkini.png" class="berita mb-4" alt=""> --}}
             <p class="description">{!! $berita->deskripsi !!}</p>
             {{-- <p class="description">BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 di Bandung. Acara akan dilaksanakan baik secara tatap muka dengan menerapkan protokol kesehatan maupun daring. PIC Kegiatan: Direktorat Penguatan Standar dan Penilaian Kesesuaian . BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 di Bandung. Acara akan dilaksanakan baik secara tatap muka dengan menerapkan protokol kesehatan maupun daring. PIC Kegiatan: Direktorat Penguatan Standar dan Penilaian Kesesuaian.</p> --}}
@@ -68,7 +68,7 @@
                 @foreach ($get_all_berita as $ber)
                 <div class="row my-4">
                     <div class="col-4">
-                        <img src="{{ asset('gambar/gambar_berita/' . $ber->file_gambar) }}" alt="">
+                        <img src="{{ asset('storage/images/gambar_berita/' . $ber->file_gambar) }}" alt="">
                     </div>
                     <div class="col-8">
                         <p class="title">{{ $ber->judul_berita }}</p>
