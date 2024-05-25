@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Evaluator\Sekretariat\EvaluatorTimController;
 use App\Http\Controllers\User\Sekretariat\peserta\SekretariatPesertaController;
 use App\Http\Controllers\WilayahAdminController;
 use Illuminate\Http\Request;
@@ -25,3 +26,7 @@ Route::prefix('/admin')->group(function () {
     Route::get("/wilayah/provinsi/{id_provinsi}/kota-kab", [WilayahAdminController::class, "get_kabupaten"]);
     }
 );
+
+// Route::middleware(['auth', 'verified', 'email.verified'])->group(function () {
+    Route::get('/{user_id}/get-member/{tanggal}', [EvaluatorTimController::class, 'getEvaluatorAndLead']);
+// });

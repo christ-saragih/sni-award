@@ -7,6 +7,7 @@ use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\Registrasi;
+use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiEvaluator;
 use App\Models\RegistrasiPenilaian;
 use Illuminate\Http\Request;
@@ -21,26 +22,18 @@ class EvaluatorEvaluatorController extends Controller
         $registrasi = Registrasi::get();
 
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
+        $all_registrasi_id = Registrasi::distinct()->pluck('id');
+
+        if ($request->tahun) $all_registrasi_id = Registrasi::where('tahun', $request->tahun)->distinct()->pluck('id');
 
         $desk_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
-            ->where('stage', 3);
+            ->where('stage', 3)
+            ->whereIn('registrasi_id', $all_registrasi_id)
+            ->get();
         $site_evaluation = RegistrasiEvaluator::where('evaluator_id', $user->id)
-            ->where('stage', 4);
-
-        // $desk_evaluation = Registrasi::join();
-        
-        $desk_evaluation = $desk_evaluation->get();
-        $site_evaluation = $site_evaluation->get();
-        // // dd($desk_evaluation);
-        // if ($request->tahun) {
-        //     $desk = [];
-        //     $site = [];
-        //     // foreach ($desk_evaluation as $key=>$de) {
-        //     //     $desk[] = $
-        //     // }
-        //     // $desk_evaluation = $desk_evaluation->registrasi->where('tahun', $request->tahun);
-        //     // $site_evaluation = $site_evaluation->registrasi->where('tahun', $request->tahun);
-        // }
+            ->where('stage', 4)
+            ->whereIn('registrasi_id', $all_registrasi_id)
+            ->get();
 
         return view('evaluator.evaluator.index', [
             'tahun_registrasi' => $tahun_registrasi,
@@ -87,6 +80,27 @@ class EvaluatorEvaluatorController extends Controller
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'site_evaluation' => $site_evaluation,
         ]);
+    }
+
+    public function sendFeedback(Request $request, $registrasi_id) {
+        $request->validate([
+            'feedback' => 'required',
+        ], [
+            'feedback.required' => 'tidak ada feedback',
+        ]);
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
+        if (count($registrasi_dokumen) > 0) {
+            $feedback = str_replace("\n", "<br/>", $request->feedback);
+            $feedback = trim($feedback, ' ');
+            foreach ($registrasi_dokumen as $key=>$rd) {
+                $rd->update([
+                    'feedback' => $feedback,
+                ]);
+            }
+            return back()->with('success', 'Berhasil mengirim feedback');
+        }
+        return back()->withErrors('Tidak ada dokumen ditemukan');
     }
 
     public function penilaian(Request $request, $registrasi_id) {

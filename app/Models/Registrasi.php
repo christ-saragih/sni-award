@@ -20,7 +20,7 @@ class Registrasi extends Model
         return $this->belongsTo(Peserta::class);
     }
 
-    public function user(): BelongsTo
+    public function sekretariat(): BelongsTo
     {
         return $this->belongsTo(User::class, 'sekretariat_id', 'id');
     }

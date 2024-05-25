@@ -224,7 +224,7 @@
                                     <h6 class="mb-0">Nama</h6>
                                 </div>
                                 <div class="col-md-8 pe-5">
-                                    <p>{{ $desk_evaluation->registrasi->user->name }}</p>
+                                    <p>{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
                                 </div>
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
