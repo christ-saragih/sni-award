@@ -237,7 +237,7 @@
                                             <h6 class="mb-0">Nama</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
-                                            <p>{{ $desk_evaluation->registrasi->user->name }}</p>
+                                            <p>{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
                                         </div>
                                     </div>
                                     {{-- @foreach ($registrasi_penilaian as $penilai) --}}
@@ -461,7 +461,7 @@
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->name }}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
@@ -469,7 +469,7 @@
                                         <h6 class="mb-0">Jabatan</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->jenis_role->nama }}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->sekretariat->jenis_role->nama }}</p>
                                     </div>
                                 </div>
                             </div>
