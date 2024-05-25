@@ -26,12 +26,13 @@ class BeritaController extends Controller
     }
 
     public function detail($slug) {
+        $frontpage_data = Frontpage::get()[0];
         $berita = Berita::where('slug', $slug)->firstOrFail();
         $tanggal = Carbon::parse($berita->tanggal)->locale('id')->translatedFormat('l, j F Y');
         $get_all_berita = Berita::all();
         foreach ($get_all_berita as $item) {
             $item->tanggal = Carbon::parse($item->tanggal)->locale('id')->translatedFormat('l, j F Y');
         }
-        return view('guest.berita.detail', compact(['berita','tanggal','get_all_berita']));
+        return view('guest.berita.detail', compact(['frontpage_data','berita','tanggal','get_all_berita']));
     }
 }

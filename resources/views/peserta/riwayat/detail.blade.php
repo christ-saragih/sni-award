@@ -44,7 +44,8 @@
                         <!-- fieldsets -->
                         {{-- evaluator --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @if ($desk_evaluation->evaluator)
+                            {{-- {{ dd($desk_evaluation->evaluator != null) }} --}}
+                            @if ($desk_evaluation ? $desk_evaluation->evaluator : null)
                                 <div class="card-body pt-0 mt-0">
                                     <div class="row align-items-center pt-4 pb-3">
                                         <div class="col-md-4 ps-5">
@@ -136,7 +137,7 @@
 
                         {{-- Lead Evaluator --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @if ($desk_evaluation->lead_evaluator)
+                            @if ($desk_evaluation ? $desk_evaluation->lead_evaluator : null)
                                 <div class="card-body pt-0 mt-0">
                                     <div class="row align-items-center pt-4 pb-3">
                                         <div class="col-md-4 ps-5">
@@ -230,14 +231,14 @@
 
                         {{-- Sekretariat --}}
                         <fieldset class="fieldset" id="fieldsetPenilaian">
-                            @if ($desk_evaluation->registrasi->sekretariat_id)
+                            @if ($desk_evaluation ? $desk_evaluation->registrasi->sekretariat_id : null)
                                 <div class="card-body pt-0 mt-0">
                                     <div class="row align-items-center pt-4 pb-3">
                                         <div class="col-md-4 ps-5">
                                             <h6 class="mb-0">Nama</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
-                                            <p>{{ $desk_evaluation->registrasi->user->name }}</p>
+                                            <p>{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
                                         </div>
                                     </div>
                                     {{-- @foreach ($registrasi_penilaian as $penilai) --}}
@@ -293,7 +294,7 @@
                                             <h6 class="mb-0">Nama</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
-                                            <p>-</p>
+                                            <p>{{$penilaian_sekretariat->sekretariat->name}}</p>
                                         </div>
                                     </div>
                                     <div class="row align-items-center pb-3">
@@ -344,7 +345,7 @@
                     <div class="card-body">
                         {{-- @foreach ($desk_evaluation as $penilaian) --}}
                         {{-- {{dd($desk_evaluation->evaluator)}} --}}
-                        @if ($desk_evaluation->evaluator)
+                        @if ($desk_evaluation ? $desk_evaluation->evaluator : null)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 mb-5">
                                     <div class="col-md-12 ps-5 d-flex flex-column gap-3">
@@ -396,7 +397,7 @@
                             </div>
                         @endif
 
-                        @if ($desk_evaluation->lead_evaluator)
+                        @if ($desk_evaluation ? $desk_evaluation->lead_evaluator : null)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 mb-5">
                                     <div class="col-md-12 ps-5 d-flex flex-column gap-3">
@@ -448,7 +449,7 @@
                             </div>
                         @endif
                         {{-- {{ dd($desk_evaluation->registrasi->sekretariat_id) }} --}}
-                        @if ($desk_evaluation->registrasi->sekretariat_id)
+                        @if ($desk_evaluation ? $desk_evaluation->registrasi->sekretariat_id : null)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 mb-5">
                                     <div class="col-md-12 ps-5 d-flex flex-column gap-3">
@@ -461,7 +462,7 @@
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->name }}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">
@@ -469,7 +470,7 @@
                                         <h6 class="mb-0">Jabatan</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->user->jenis_role->nama }}</p>
+                                        <p class="form-control form-control-lg m-0">{{ $desk_evaluation->registrasi->sekretariat->jenis_role->nama }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -486,7 +487,7 @@
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p class="form-control form-control-lg m-0">-</p>
+                                        <p class="form-control form-control-lg m-0">{{$penilaian_sekretariat->sekretariat->name}}</p>
                                     </div>
                                 </div>
                                 <div class="row align-items-center pb-3">

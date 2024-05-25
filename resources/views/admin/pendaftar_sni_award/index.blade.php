@@ -67,12 +67,11 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$cr->peserta->nama}}</td>
                             <td style="display: flex; align-items: center; justify-content: center;">
-                                @if ($cr->user)
-                                    <div>{{ $cr->user->name }}</div>
+                                @if ($cr->sekretariat)
+                                    <div>{{ $cr->sekretariat->name }}</div>
                                 @else
                                     <div class="bg-danger text-white text-center p-1 rounded">Belum ditentukan</div>
                                 @endif
-                                {{-- {{$cr->user ? $cr->user->name : 'Belum ditentukan'}} --}}
                             </td>
                             <td class="text-center">{{$cr->status->nama}}</td>
                             <td class="text-center">{{$cr->stage->nama}}</td>
