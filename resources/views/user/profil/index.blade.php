@@ -33,7 +33,7 @@
                 <div class="img-container position-absolute mb-5">
                     <img src="{{ asset('assets') }}/images/foto-peserta.jpg" alt="Foto Profil Sekretariat">
                 </div>
-              <h4 style="color: #000000; font-size: 22px; font-weight: bold; text-transform: capitalize;">{{ $role }}</h4>
+              <h4 style="color: #000000; font-size: 22px; font-weight: bold; text-transform: capitalize;">{{ $user->jenis_role->nama }}</h4>
               <a href="{{ route('user.profil.edit.view') }}" class="btn action-button mx-auto mb-1">Edit Profil</a>
             </div>
       

@@ -7,6 +7,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content" method="POST" action="/admin/konfigurasi">
         @csrf
+        @method('PUT')
         <div class="modal-header" style="border: none;">
             <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Tambah Konfigurasi</h1>
         </div>

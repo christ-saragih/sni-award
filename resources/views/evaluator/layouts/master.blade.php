@@ -103,13 +103,33 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('evaluator/peserta*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.peserta.view') }}">
+            <a class="nav-link {{ request()->is('evaluator/sekretariat*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.sekretariat.view') }}">
+              <div
+                class="icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <img src="{{ asset('assets') }}/peserta/images/icon-sekretariat.svg" alt="Sekretariat">
+              </div>
+              <span class="nav-link-text" id="navLinkText">Sekretariat</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('evaluator/lead-evaluator*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.lead_evaluator.view') }}">
+              <div
+                class="icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <img src="{{ asset('assets') }}/peserta/images/icon-lead-evaluator.svg" alt="Lead Evaluator">
+              </div>
+              <span class="nav-link-text" id="navLinkText">Lead Evaluator</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('evaluator/evaluator*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.evaluator.view') }}">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-user-o" aria-hidden="true"></i>
+                <img src="{{ asset('assets') }}/peserta/images/icon-evaluator.svg" alt="Evaluator">
               </div>
-              <span class="nav-link-text" id="navLinkText">Peserta</span>
+              <span class="nav-link-text" id="navLinkText">Evaluator</span>
             </a>
           </li>
         </ul>

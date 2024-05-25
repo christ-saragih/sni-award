@@ -17,10 +17,12 @@ class AdminPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->jenis_role->nama == 'admin') {
+            $role = strtolower(Auth::user()->jenis_role->nama);
+            $role = str_replace(' ', '_', $role);
+            if ($role == 'admin') {
                 return $next($request);
             }
-            return redirect('/404');
+            return redirect()->route("$role.dashboard.view");
         }
         return redirect('/404');
     }

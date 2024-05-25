@@ -18,6 +18,9 @@ class KonfigurasiSeeder extends Seeder
         $konfigurasi = array(
             array('id' => '1', 'key' => 'Pendaftaran', 'value' => 'FALSE'),
             array('id' => '2', 'key' => 'Tahun SNI Award', 'value' => '2024'),
+            array('id' => '3', 'key' => 'Cek Dokumen', 'value' => 'FALSE'),
+            array('id' => '4', 'key' => 'Desk Evaluation', 'value' => 'FALSE'),
+            array('id' => '5', 'key' => 'Site Evaluation', 'value' => 'FALSE'),
         );
         
         DB::table('konfigurasi')->insert($konfigurasi);

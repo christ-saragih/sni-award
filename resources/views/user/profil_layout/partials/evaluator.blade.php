@@ -8,7 +8,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ request()->is('evaluator/peserta*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.peserta.view') }}">
+        <a class="nav-link {{ request()->is('evaluator/evaluator*') ? 'active' : '' }}" id="navLink" href="{{ route('evaluator.evaluator.view') }}">
             <div
             class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
             >
