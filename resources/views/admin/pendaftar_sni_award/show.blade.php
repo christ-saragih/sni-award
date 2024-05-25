@@ -83,7 +83,7 @@
                             <label class="fw-bold">Nama Sekretariat</label>
                         </div>
                         <div class="col-auto">
-                            {{ $registrasi->user ? $registrasi->user->name : '' }}
+                            {{ $registrasi->sekretariat ? $registrasi->sekretariat->name : '' }}
                         </div>
                         <div class="col-3">
                             @if ($registrasi->status->nama == 'open')

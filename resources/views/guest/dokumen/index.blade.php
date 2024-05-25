@@ -11,11 +11,12 @@
         @if ($penjadwalan_dokumen->count() <= 2)
             {{-- Jika data kurang dari atau sama dengan 2, gunakan div --}}
             <div class="d-flex justify-content-center">
+                {{-- {{dd($penjadwalan_dokumen)}} --}}
             @forelse ($penjadwalan_dokumen as $item)
                 <div class="item" style="width: 405px;">
-                    <a href="{{ $item->file_dokumen }}" target="_blank" class="card-body" style="text-decoration: none">
+                    <a href="{{ route('penjadwalan_dokumen.download', $item->id) }}" target="_blank" class="card-body" style="text-decoration: none">
                         <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok2.svg" alt="">
-                        <h4>{{ $item->nama_dokumen }}</h4>
+                        <h4>{{ $item->nama }}</h4>
                     </a>
                 </div>
             @empty
@@ -29,9 +30,9 @@
             <div class="owl-carousel owl-theme">
                 @foreach ($penjadwalan_dokumen as $item)
                     <div class="item">
-                        <a href="{{ $item->file_dokumen }}" target="_blank" class="card-body" style="text-decoration: none">
+                        <a href="{{ route('penjadwalan_dokumen.download', $item->id) }}" target="_blank" class="card-body" style="text-decoration: none">
                             <img src="http://127.0.0.1:8000/assets/images/icon/dokumen-kegiatan/dok2.svg" alt="">
-                            <h4>{{ $item->nama_dokumen }}</h4>
+                            <h4>{{ $item->nama }}</h4>
                         </a>
                     </div>
                 @endforeach
