@@ -1,16 +1,19 @@
-<form action="/admin/assessment?tab=assessment_pertanyaan&kategori=Kepemimpinan" method="GET">
-    <div class="form-group">
-        <input type="text" name="tab" style="display: none !important;" value="{{ request()->query('tab') }}">
-
-        <label for="kategori">Kategori:</label>
-        <select name="kategori" id="kategori" class="form-control">
-            <option value="">Pilih Kategori</option>
-            @foreach ($assessment_kategori_all as $kategori)
-                <option value="{{ $kategori->nama }}" {{ request('kategori') == $kategori->id ? 'selected' : '' }}>{{ $kategori->nama }}</option>
-            @endforeach
-        </select>
+<form action="" method="GET">
+    <div class="row align-items-center">
+        <div class="col-9">
+            <div class="form-group">
+                <select name="kategori" id="kategori" class="form-control">
+                    <option value="">Pilih Kategori</option>
+                    @foreach ($assessment_kategori_all as $kategori)
+                        <option value="{{ $kategori->nama }}" {{ request('kategori') == $kategori->nama ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
     </div>
-    <button type="submit" class="mt-2 btn btn-primary">Filter</button>
 </form>
 
 <table class="table">

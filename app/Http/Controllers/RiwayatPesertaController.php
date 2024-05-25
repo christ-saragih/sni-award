@@ -40,9 +40,7 @@ class RiwayatPesertaController extends Controller
 
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
 
-        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
-        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
-        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
+        // dd($desk_evaluation);
         // dd($desk_evaluation[0]->registrasi->registrasi_penilaian);
         // dd($penilaian_evaluator);
         $site_evaluation = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 4])->get();
@@ -50,8 +48,20 @@ class RiwayatPesertaController extends Controller
         $assessment_kategori = AssessmentKategori::first();
 
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
+        // dd($desk_evaluation->registrasi->sekretariat->name);
 
-        return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'penilaian_evaluator', 'penilaian_lead_evaluator', 'penilaian_sekretariat']));
+        $penilaian_sekretariat = Registrasi::where(['stage_id' => 3, 'sekretariat_id' => $registrasi->sekretariat_id])->first();
+        // dd($penilaian_sekretariat);
+
+        if($desk_evaluation != null){
+            $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+            $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+            $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->$registrasi->sekretariat_id])->first();
+
+            return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'penilaian_evaluator', 'penilaian_lead_evaluator', 'penilaian_sekretariat']));
+        }
+
+        return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'penilaian_sekretariat']));
     }
 
     public function getKategori($id, $kategori){
