@@ -18,7 +18,6 @@ class EvaluatorEvaluatorController extends Controller
 {
     public function index(Request $request) {
         $user = Auth::user();
-        // dd($user->jenis_role->nama);
         $registrasi = Registrasi::get();
 
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
@@ -35,11 +34,23 @@ class EvaluatorEvaluatorController extends Controller
             ->whereIn('registrasi_id', $all_registrasi_id)
             ->get();
 
+        $penilaian_evaluator = [];
+        foreach ($desk_evaluation as $penilaian) {
+            foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
+                if($status->internal_id == $penilaian->evaluator_id) {
+                    $penilaian_evaluator[] = [
+                        'jabatan' => $status->jabatan,
+                    ];
+                }
+            }
+        }
+
         return view('evaluator.evaluator.index', [
             'tahun_registrasi' => $tahun_registrasi,
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
             'site_evaluation' => $site_evaluation,
+            'penilaian_evaluator' => $penilaian_evaluator,
         ]);
     }
 
@@ -54,10 +65,11 @@ class EvaluatorEvaluatorController extends Controller
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
 
         // dd($desk_evaluation->registrasi->sekretariat_id);
-        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->internal_id])->first();
+        // dd(RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first());
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
-        // dd($penilaian_lead_evaluator);
+        // dd($penilaian_evaluator);
 
         $site_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 4])->get();
 
@@ -82,33 +94,7 @@ class EvaluatorEvaluatorController extends Controller
         ]);
     }
 
-    public function sendFeedback(Request $request, $registrasi_id) {
-        $request->validate([
-            'feedback' => 'required',
-        ], [
-            'feedback.required' => 'tidak ada feedback',
-        ]);
-        $registrasi_id = Crypt::decryptString($registrasi_id);
-        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
-        if (count($registrasi_dokumen) > 0) {
-            $feedback = str_replace("\n", "<br/>", $request->feedback);
-            $feedback = trim($feedback, ' ');
-            foreach ($registrasi_dokumen as $key=>$rd) {
-                $rd->update([
-                    'feedback' => $feedback,
-                ]);
-            }
-            return back()->with('success', 'Berhasil mengirim feedback');
-        }
-        return back()->withErrors('Tidak ada dokumen ditemukan');
-    }
-
     public function penilaian(Request $request, $registrasi_id) {
-        // dd([
-        //     'skor' => $request->skor,
-        //     'catatan' => $request->catatan,
-        // ]);
-
         $user = Auth::user();
         $registrasi = Registrasi::find($registrasi_id);
         $request->validate([
@@ -119,9 +105,7 @@ class EvaluatorEvaluatorController extends Controller
             'skor.required' => 'Skor Masimal 100',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
-        // $registrasi_id = Crypt::decryptString($registrasi_id);
-        // dd($registrasi_id);
-        // $registrasi_penilaian = RegistrasiPenilaian::find($registrasi_id);
+        
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
             'internal_id' => $user->id,

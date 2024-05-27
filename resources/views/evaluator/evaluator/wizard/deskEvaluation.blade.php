@@ -13,7 +13,7 @@
             </ul>
         </div>
     </div>
-    
+
     <table class="table align-items-center mt-4 mb-0">
         <thead>
             <tr>
@@ -42,11 +42,11 @@
                     <td>
                         {{-- {{ dd($desk->registrasi->registrasi_penilaian[count($desk->registrasi->registrasi_penilaian)-1]) }} --}}
                         {{-- {{ dd($penilaian_evaluator) }} --}}
-                        {{-- @if ($penilaian_evaluator)
+                        @if ($penilaian_evaluator)
                             <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                         @else
                             <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
-                        @endif --}}
+                        @endif
                     </td>
                     <td class="text-center">
                         <div class="dropdown">
@@ -64,7 +64,7 @@
                                 "
                             >Detail</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('evaluator.evaluator.profil.view', Crypt::encryptString($desk->registrasi->id)) }}">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('evaluator.evaluator.detail.view', Crypt::encryptString($desk->registrasi->id)) }}">Profil</a></li>
                                 <li><a class="dropdown-item" href="#">Riwayat</a></li>
                             </ul>
                         </div>

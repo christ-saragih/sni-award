@@ -38,7 +38,7 @@
                     <td>{{ $site->registrasi->peserta->email }}</td>
                     <td>{{ $site->registrasi->peserta->peserta_profil ? $site->registrasi->peserta->peserta_profil->no_hp : '' }}</td>
                     <td class="d-flex align-items-center justify-content-center">
-                        <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
+                        <a href="{{ route('lead_evaluator.tim.view', Crypt::encryptString($desk->registrasi->id)) }}" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                             <i class="fa fa-users"></i>
                         </a>
                     </td>

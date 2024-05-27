@@ -38,7 +38,7 @@
                     <td>{{ $desk->registrasi->peserta->email }}</td>
                     <td>{{ $desk->registrasi->peserta->peserta_profil ? $desk->registrasi->peserta->peserta_profil->no_hp : '' }}</td>
                     <td class="d-flex align-items-center justify-content-center">
-                        <a href="" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
+                        <a href="{{ route('lead_evaluator.tim.view', Crypt::encryptString($desk->registrasi->id)) }}" class="px-2 py-1 rounded" style="color: white; background-color: #6C64CC;">
                             <i class="fa fa-users"></i>
                         </a>
                     </td>
@@ -65,7 +65,7 @@
                                 "
                             >Detail</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('lead_evaluator.lead_evaluator.detail.view', Crypt::encryptString($desk->registrasi->id)) }}">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('lead_evaluator.evaluator.detail.view', Crypt::encryptString($desk->registrasi->id)) }}">Profil</a></li>
                                 <li><a class="dropdown-item" href="#">Riwayat</a></li>
                             </ul>
                         </div>

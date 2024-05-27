@@ -56,7 +56,7 @@ class RiwayatPesertaController extends Controller
         if($desk_evaluation != null){
             $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
             $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
-            $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->$registrasi->sekretariat_id])->first();
+            $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
 
             return view('peserta.riwayat.detail', compact(['registrasi','desk_evaluation', 'site_evaluation', 'assessment_kategori', 'data_assessment_kategori', 'registrasi_assessment', 'registrasi_dokumen', 'dokumen', 'registrasi_penilaian', 'dokumen_peserta', 'penilaian_evaluator', 'penilaian_lead_evaluator', 'penilaian_sekretariat']));
         }

@@ -43,7 +43,7 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
                 }
             }
         }
-        
+
         return view('lead_evaluator.lead_evaluator.index', [
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
@@ -63,7 +63,7 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
 
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
         // dd($desk_evaluation->registrasi->sekretariat_id);
-        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->internal_id])->first();
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
         // dd($penilaian_lead_evaluator);
@@ -75,7 +75,7 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
             $selected_assessment_kategori = AssessmentKategori::where('nama', $request->assessment_kategori)->get();
             // dd($assessment_kategori);
         }
-        
+
         return view('lead_evaluator.lead_evaluator.profil', [
             'peserta' => $peserta,
             'registrasi' => $registrasi,
@@ -89,27 +89,6 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'site_evaluation' => $site_evaluation,
         ]);
-    }
-
-    public function sendFeedback(Request $request, $registrasi_id) {
-        $request->validate([
-            'feedback' => 'required',
-        ], [
-            'feedback.required' => 'tidak ada feedback',
-        ]);
-        $registrasi_id = Crypt::decryptString($registrasi_id);
-        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
-        if (count($registrasi_dokumen) > 0) {
-            $feedback = str_replace("\n", "<br/>", $request->feedback);
-            $feedback = trim($feedback, ' ');
-            foreach ($registrasi_dokumen as $key=>$rd) {
-                $rd->update([
-                    'feedback' => $feedback,
-                ]);
-            }
-            return back()->with('success', 'Berhasil mengirim feedback');
-        }
-        return back()->withErrors('Tidak ada dokumen ditemukan');
     }
 
     public function penilaian(Request $request, $registrasi_id) {

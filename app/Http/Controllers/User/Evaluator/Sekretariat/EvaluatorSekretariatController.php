@@ -7,12 +7,15 @@ use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
 use App\Models\Peserta;
 use App\Models\Registrasi;
+use App\Models\RegistrasiAssessment;
+use App\Models\RegistrasiDokumen;
 use App\Models\RegistrasiEvaluator;
 use App\Models\RegistrasiPenilaian;
 use App\Models\Stage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Dompdf\Dompdf;
 
 class EvaluatorSekretariatController extends Controller
 {
@@ -73,5 +76,114 @@ class EvaluatorSekretariatController extends Controller
             'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
             'penilaian_sekretariat' => $penilaian_sekretariat
         ]);
+    }
+
+    public function persetujuanDokumen(Request $request, $registrasi_dokumen_id) {
+        $request->validate([
+            'persetujuan_dokumen' => 'required',
+        ], [
+            'persetujuan_dokumen.required' => 'Tidak ada persetujuan',
+        ]);
+        $registrasi_dokumen = RegistrasiDokumen::find($registrasi_dokumen_id);
+        $registrasi_dokumen->update([
+            'status' => $request->persetujuan_dokumen,
+            'review_at' => date('Y-m-d H:i:s'),
+        ]);
+        return redirect()->route('evaluator.sekretariat.detail.view', [
+            'registrasi_id' => Crypt::encryptString($registrasi_dokumen->registrasi_id),
+            'tab' => 'dokumen',
+        ])->with('success', 'Status dokumen berhasil dirubah');
+    }
+
+    public function sendFeedback(Request $request, $registrasi_id) {
+        $request->validate([
+            'feedback' => 'required',
+        ], [
+            'feedback.required' => 'Tidak ada feedback',
+        ]);
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
+        $feedback = str_replace("\n", "<br/>", $request->feedback);
+        $feedback = trim($feedback, ' ');
+        foreach ($registrasi_dokumen as $key=>$rd) {
+            $rd->update([
+                'feedback' => $feedback,
+            ]);
+        }
+        return back()->with('success', 'Berhasil mengirim feedback');
+    }
+
+    public function downloadAssessmentPDF(Request $request, $registrasi_id) {
+        $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi_id)->get();
+        $assessment_kategori = AssessmentKategori::get();
+
+        $html_assessment = "
+<div style='width: 100%;padding: 30px 20px;''>
+    <table style='width: 100%;'>
+        <thead style='width: 100%;background-color: #552525; font-weight: bold; color: white;'>
+            <tr>
+                <th>No</th>
+                <th>Kategori</th>
+                <th>Sub Kategori</th>
+                <th>Pertanyaan</th>
+                <th>Jawaban</th>
+            </tr>
+        </thead>
+        <tbody style='width: 100%;'>
+        ";
+        foreach ($registrasi_assessment as $key=>$ra) {
+            $nomor = $key + 1;
+            $pertanyaan = $ra->assessment_pertanyaan;
+            $subkategori = $pertanyaan->assessment_sub_kategori;
+            $kategori = $subkategori->assessment_kategori;
+            $jawaban = $ra->assessment_jawaban->jawaban;
+
+            $html_assessment = $html_assessment."
+                <tr>
+                    <td>$nomor</td>
+                    <td>$kategori->nama</td>
+                    <td>$subkategori->nama</td>
+                    <td>$pertanyaan->pertanyaan</td>
+                    <td>$jawaban</td>
+                </tr>
+            ";
+        }
+            $html_assessment = $html_assessment."
+        </tbody>
+    </table>
+</div>
+        ";
+
+        $dompdf = new Dompdf();
+        $dompdf->load_html($html_assessment);
+        $dompdf->setPaper('A4', 'potrait');
+        $dompdf->render();
+        $dompdf->stream('assessment_pertanyaan.pdf');
+
+    }
+
+    public function penilaian(Request $request, $registrasi_id) {
+        $user = Auth::user();
+        $registrasi = Registrasi::find($registrasi_id);
+        $request->validate([
+            'skor' => 'required|max:100',
+            'catatan' => 'required',
+        ], [
+            'skor.required' => 'Skor Tidak Boleh Kosong',
+            'skor.max' => 'Skor Masimal 100',
+            'catatan.required' => 'Catatan Tidak Boleh Kosong',
+        ]);
+        RegistrasiPenilaian::create([
+            'registrasi_id' => $registrasi_id,
+            'internal_id' => $user->id,
+            'jabatan' => $user->jenis_role->nama,
+            'url_dokumen_penilaian' => '',
+            'stage_id' => $registrasi->stage_id,
+            'skor' => $request->skor,
+            'catatan' => $request->catatan,
+            'final' => $request->skor,
+        ]);
+
+        return back()->with('success', 'Berhasil mengirim penilaian');
     }
 }
