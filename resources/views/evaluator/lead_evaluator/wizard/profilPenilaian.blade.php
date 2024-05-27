@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
-                                {{-- {{dd($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)}} --}}
+                                {{-- {{dd($penilai)}} --}}
                                 @if ($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)
                                     <div class="row align-items-center pb-3">
                                         <div class="col-md-4 ps-5">
@@ -65,26 +65,25 @@
                                         </div>
                                     </div>
                                 @else
-                                    <form id="submissionForm" action="{{ route('evaluator.evaluator.detail.penilaian', $registrasi->id) }}" method="post">
-                                        @csrf
-                                        <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0">Nilai</h6>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <input name="skor" type="text" class="form-control" placeholder="Masukkan Score" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="{{ old('skor') }}" required>
+                                    <div class="row align-items-center pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0">Nilai</h6>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <p>-</p>
+                                                {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
                                             </div>
                                         </div>
-                                        <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
-                                                <h6 class="mb-0 mt-2">Komentar</h6>
-                                            </div>
-                                            <div class="col-md-6 pe-5">
-                                                <textarea name="catatan" class="form-control" id="" cols="30" rows="5" placeholder="Tuliskan Komentar" required></textarea>
-                                            </div>
+                                    </div>
+                                    <div class="row pb-3">
+                                        <div class="col-md-4 ps-5">
+                                            <h6 class="mb-0 mt-2">Komentar</h6>
                                         </div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Submit</button>
-                                    </form>
+                                        <div class="col-md-8 pe-5">
+                                            <p style="max-height: 120px; overflow-y: auto;">-</p>
+                                        </div>
+                                    </div>
                                 @endif
                             {{-- @endforeach --}}
                         </div>
@@ -135,7 +134,7 @@
                                 </div>
                             </div>
                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}
-                                {{-- {{dd($penilai)}} --}}
+                                {{-- {{dd($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)}} --}}
                                 @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)
                                     <div class="row align-items-center pb-3">
                                         <div class="col-md-4 ps-5">
@@ -157,25 +156,26 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="row align-items-center pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0">Nilai</h6>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="d-flex align-items-center gap-3">
-                                                <p>-</p>
-                                                {{-- <a href="" style="border: 1px solid #552525; color: #552525; padding-block: 0.5rem; font-size: 1.25rem;" class="form-control form-control-lg text-center "><i class="fa fa-download"></i></a> --}}
+                                    <form id="submissionForm" action="{{ route('lead_evaluator.lead_evaluator.detail.penilaian', $registrasi->id) }}" method="post">
+                                        @csrf
+                                        <div class="row align-items-center pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0">Nilai</h6>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input name="skor" type="text" class="form-control" placeholder="Masukkan Score" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="{{ old('skor') }}" required>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row pb-3">
-                                        <div class="col-md-4 ps-5">
-                                            <h6 class="mb-0 mt-2">Komentar</h6>
+                                        <div class="row pb-3">
+                                            <div class="col-md-4 ps-5">
+                                                <h6 class="mb-0 mt-2">Komentar</h6>
+                                            </div>
+                                            <div class="col-md-6 pe-5">
+                                                <textarea name="catatan" class="form-control" id="" cols="30" rows="5" placeholder="Tuliskan Komentar" required></textarea>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8 pe-5">
-                                            <p style="max-height: 120px; overflow-y: auto;">-</p>
-                                        </div>
-                                    </div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Submit</button>
+                                    </form>
                                 @endif
                             {{-- @endforeach --}}
                         </div>
@@ -320,8 +320,8 @@
     <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Site Evaluation</h3>
     <span>Sedang Tahap penilaian Desk Evaluation. Harap Ditunggu!</span>
 </div>
-
 <script>
+
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode;
         if (charCode > 31 && (charCode < 48 || charCode > 57)) {

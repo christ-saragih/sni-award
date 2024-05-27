@@ -18,7 +18,6 @@ class EvaluatorEvaluatorController extends Controller
 {
     public function index(Request $request) {
         $user = Auth::user();
-        // dd($user->jenis_role->nama);
         $registrasi = Registrasi::get();
 
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
@@ -95,33 +94,7 @@ class EvaluatorEvaluatorController extends Controller
         ]);
     }
 
-    public function sendFeedback(Request $request, $registrasi_id) {
-        $request->validate([
-            'feedback' => 'required',
-        ], [
-            'feedback.required' => 'tidak ada feedback',
-        ]);
-        $registrasi_id = Crypt::decryptString($registrasi_id);
-        $registrasi_dokumen = RegistrasiDokumen::where('registrasi_id', $registrasi_id)->get();
-        if (count($registrasi_dokumen) > 0) {
-            $feedback = str_replace("\n", "<br/>", $request->feedback);
-            $feedback = trim($feedback, ' ');
-            foreach ($registrasi_dokumen as $key=>$rd) {
-                $rd->update([
-                    'feedback' => $feedback,
-                ]);
-            }
-            return back()->with('success', 'Berhasil mengirim feedback');
-        }
-        return back()->withErrors('Tidak ada dokumen ditemukan');
-    }
-
     public function penilaian(Request $request, $registrasi_id) {
-        // dd([
-        //     'skor' => $request->skor,
-        //     'catatan' => $request->catatan,
-        // ]);
-
         $user = Auth::user();
         $registrasi = Registrasi::find($registrasi_id);
         $request->validate([
@@ -132,9 +105,7 @@ class EvaluatorEvaluatorController extends Controller
             'skor.required' => 'Skor Masimal 100',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
-        // $registrasi_id = Crypt::decryptString($registrasi_id);
-        // dd($registrasi_id);
-        // $registrasi_penilaian = RegistrasiPenilaian::find($registrasi_id);
+        
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
             'internal_id' => $user->id,

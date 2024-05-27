@@ -65,7 +65,7 @@
                                 "
                             >Detail</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('evaluator.evaluator.profil.view', Crypt::encryptString($site->registrasi->id)) }}">Profil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('evaluator.evaluator.detail.view', Crypt::encryptString($site->registrasi->id)) }}">Profil</a></li>
                                 <li><a class="dropdown-item" href="#">Riwayat</a></li>
                             </ul>
                         </div>
