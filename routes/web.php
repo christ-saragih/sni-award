@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\KotaAdminController;
 use App\Http\Controllers\User\Sekretariat\evaluator\SekretariatEvaluatorController;
 use App\Http\Controllers\User\Sekretariat\lead_evaluator\SekretariatLeadEvaluatorController;
@@ -246,6 +247,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/penjadwalan_linimasa{penjadwalan_linimasa}', [PenjadwalanLinimasaController::class, 'update'])->name('penjadwalan_linimasa.update');
 
         // kontak
+        Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 
         //dokumen
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
