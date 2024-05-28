@@ -9,7 +9,8 @@ body {
     font-family: "Arimo", sans-serif;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: #9FAFBF !important;
 }
 

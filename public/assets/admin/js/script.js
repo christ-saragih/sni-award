@@ -140,12 +140,20 @@ navLinkDataMaster.addEventListener("click", function (event) {
     event.preventDefault();
 });
 
-// Href untuk informasi
-// berita
-const navLinkBerita = document.getElementById("navLinkBerita");
-navLinkBerita.style.cursor = "pointer";
-navLinkBerita.addEventListener("click", function (event) {
-    window.location.href = "/admin/berita";
+// Href untuk halaman depan
+// beranda
+const navLinkBeranda = document.getElementById("navLinkBeranda");
+navLinkBeranda.style.cursor = "pointer";
+navLinkBeranda.addEventListener("click", function (event) {
+    window.location.href = "/admin/frontpage";
+    event.preventDefault();
+});
+
+// faq
+const navLinkFaq = document.getElementById("navLinkFaq");
+navLinkFaq.style.cursor = "pointer";
+navLinkFaq.addEventListener("click", function (event) {
+    window.location.href = "/admin/faq";
     event.preventDefault();
 });
 
@@ -154,6 +162,38 @@ const navLinkAcara = document.getElementById("navLinkAcara");
 navLinkAcara.style.cursor = "pointer";
 navLinkAcara.addEventListener("click", function (event) {
     window.location.href = "/admin/acara";
+    event.preventDefault();
+});
+
+// berita
+const navLinkBerita = document.getElementById("navLinkBerita");
+navLinkBerita.style.cursor = "pointer";
+navLinkBerita.addEventListener("click", function (event) {
+    window.location.href = "/admin/berita";
+    event.preventDefault();
+});
+
+// dokumentasi
+const navLinkDokumentasi = document.getElementById("navLinkDokumentasi");
+navLinkDokumentasi.style.cursor = "pointer";
+navLinkDokumentasi.addEventListener("click", function (event) {
+    window.location.href = "/admin/dokumentasi";
+    event.preventDefault();
+});
+
+// linimasa
+const navLinkLinimasa = document.getElementById("navLinkLinimasa");
+navLinkLinimasa.style.cursor = "pointer";
+navLinkLinimasa.addEventListener("click", function (event) {
+    window.location.href = "/admin/linimasa";
+    event.preventDefault();
+});
+
+// kontak
+const navLinkKontak = document.getElementById("navLinkKontak");
+navLinkKontak.style.cursor = "pointer";
+navLinkKontak.addEventListener("click", function (event) {
+    window.location.href = "/admin/kontak";
     event.preventDefault();
 });
 
@@ -866,11 +906,12 @@ function openModalUbahKonfigurasi(id) {
         type: "GET",
         success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_konfigurasi input[name="key"]').val(response.key);
+            $('#form_ubah_konfigurasi div[id="key"]').html(response.key);
             $('#form_ubah_konfigurasi input[name="value"]').val(response.value);
 
             // Tampilkan modal edit
             $("#ubahKonfigurasi").modal("show");
+            // console.log($("#form_ubah_konfigurasi"));
         },
         error: function (xhr, status, error) {
             console.error("Error:", error);
@@ -878,14 +919,14 @@ function openModalUbahKonfigurasi(id) {
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $("#form_ubah_konfigurasi").attr("action", `/admin/konfigurasi/${id}`);
+    $("#form_ubah_konfigurasi").attr("action", `/admin/konfigurasi/${id}/update`);
 }
 
 // modal pop up Hapus
 function openModalHapusKonfigurasi(id) {
     document
         .getElementById("form_hapus_konfigurasi")
-        .setAttribute("action", `/admin/konfigurasi/${id}`);
+        .setAttribute("action", `/admin/konfigurasi/${id}/destroy`);
 
     const modal = new bootstrap.Modal(
         document.getElementById("hapusKonfigurasi")

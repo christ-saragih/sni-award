@@ -11,9 +11,9 @@ class PenjadwalanDokumenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $penjadwalan_dokumen = PenjadwalanDokumen::all();
+        return view('admin.dokumentasi.index', compact(['penjadwalan_dokumen']));
     }
 
     /**
@@ -112,7 +112,7 @@ class PenjadwalanDokumenController extends Controller
      */
     public function destroy(PenjadwalanDokumen $penjadwalan_dokumen)
     {
-        dd($penjadwalan_dokumen);
+        // dd($penjadwalan_dokumen);
         $penjadwalan_dokumen->delete();
 
         return redirect()->back()->with('success', 'Data Berhasil Dihapus!');

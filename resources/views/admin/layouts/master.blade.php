@@ -98,56 +98,71 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/frontpage*') ? 'active' : '' }}" id="navLink" href="/admin/frontpage">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-university"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Halaman Depan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/faq*') ? 'active' : '' }}" id="navLink" href="/admin/faq">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-              <i class="fa fa-commenting"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">FAQ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/penjadwalan*') ? 'active' : '' }}" id="navLink" href="/admin/penjadwalan">
-              <div
-                class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
-              >
-                <i class="fa fa-calendar"></i>
-              </div>
-              <span class="nav-link-text" id="navLinkText">Penjadwalan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/berita*') || request()->is('admin/acara*') ? 'active' : '' }}" id="navLinkInformasi" href="/admin">
+            <a class="nav-link 
+            {{ 
+                request()->is('admin/frontpage*') ||
+                request()->is('admin/faq*') ||
+                request()->is('admin/acara*') ||
+                request()->is('admin/berita*') ||
+                request()->is('admin/dokumentasi*') ||
+                request()->is('admin/linimasa*') ||
+                request()->is('admin/kontak*') ? 'active' : ''
+              }}" 
+              id="navLinkInformasi" href="/admin">
               <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-sticky-note"></i>
               </div>
-              <span class="nav-link-text" id="navLinkText">Informasi</span>
+              <span class="nav-link-text" id="navLinkText">Halaman Depan</span>
                 <i class="fa fa-caret-left ms-auto" id="faCaretLeftInformasi"></i>
             </a>
             <ul class="dropdown-menu" id="dropdownMenuInformasi">
               <li class="nav-item">
-                <a class="nav-link dropdown {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
+                <a class="nav-link dropdown {{ request()->is('admin/frontpage*') ? 'active' : '' }}" id="navLinkBeranda">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Berita</span>
+                  <span class="nav-link-text dropdown">Beranda</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown {{ request()->is('admin/faq*') ? 'active' : '' }}" id="navLinkFaq">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                  </div>
+                  <span class="nav-link-text dropdown">FAQ</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link dropdown {{ request()->is('admin/acara') ? 'active' : '' }}" id="navLinkAcara">
                   <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                   </div>
-                  <span class="nav-link-text dropdown">Acara</span>
+                  <span class="nav-link-text dropdown">Informasi Acara</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown {{ request()->is('admin/berita') ? 'active' : '' }}" id="navLinkBerita">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                  </div>
+                  <span class="nav-link-text dropdown">Informasi Berita</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown {{ request()->is('admin/dokumentasi') ? 'active' : '' }}" id="navLinkDokumentasi">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                  </div>
+                  <span class="nav-link-text dropdown">Dokumentasi</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown {{ request()->is('admin/linimasa') ? 'active' : '' }}" id="navLinkLinimasa">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                  </div>
+                  <span class="nav-link-text dropdown">Linimasa</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link dropdown {{ request()->is('admin/kontak') ? 'active' : '' }}" id="navLinkKontak">
+                  <div class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center">
+                  </div>
+                  <span class="nav-link-text dropdown">Kontak</span>
                 </a>
               </li>
             </ul>
@@ -156,7 +171,7 @@
             <a class="nav-link {{ 
                 request()->is('admin/konfigurasi*') ||
                 request()->is('admin/assessment*') ||
-                request()->is('admin/dokumen*') ||
+                request()->is('admin/dokumen') ||
                 request()->is('admin/status_kepemilikan*') ||
                 request()->is('admin/lembaga_sertifikasi*') ||
                 request()->is('admin/wilayah*') ? 'active' : ''
