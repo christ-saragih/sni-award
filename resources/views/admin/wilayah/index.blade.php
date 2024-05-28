@@ -88,7 +88,7 @@
             <div action="" class="pb-0 mb-0">
                 <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Nama Provinsi</h6>
-                    <select class="form-select" aria-label="Default select example" id="propinsi" name="propinsi_id">
+                    <select class="form-select form-select-lg" aria-label="Default select example" id="propinsi" name="propinsi_id">
                     </select>
                 </div>
                 <div class="d-flex flex-column gap-2 mb-3">
@@ -118,7 +118,7 @@
             <div action="" class="pb-0 mb-0">
             <div class="d-flex flex-column gap-2 mb-3">
                 <h6 class="ms-1 mb-0">Nama Provinsi</h6>
-                <select class="form-select form-control-lg ps-4" name="propinsi_id" aria-label="Default select example">
+                <select class="form-select form-select-lg" name="propinsi_id" aria-label="Default select example">
                     @foreach ($provinsi as $pro)
                     <option value="{{ $pro->id }}">{{ $pro->propinsi }}</option>
                     @endforeach
@@ -171,12 +171,12 @@
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
             <div class="d-flex flex-column gap-2 mb-3">
                 <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
-                <select class="form-select" aria-label="Default select example" id="wilayah_propinsi" name="propinsi_id">
+                <select class="form-select form-select-lg" aria-label="Default select example" id="wilayah_propinsi" name="propinsi_id">
                 </select>
             </div>
             <div class="d-flex flex-column gap-2 mb-3">
                 <h6 class="ms-1 mb-0">Nama Daerah</h6>
-                <select class="form-select" aria-label="Default select example" id="wilayah_kota" name="kota_id">
+                <select class="form-select form-select-lg" aria-label="Default select example" id="wilayah_kota" name="kota_id">
                 </select>
             </div>
             <div class="d-flex flex-column gap-2 mb-3">
@@ -206,7 +206,7 @@
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
             <div class="d-flex flex-column gap-2 mb-3">
                 <h6 class="ms-1 mb-0">Wilayah Provinsi</h6>
-                <select id="wilayah_propinsi_kecamatan" name="propinsi_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
+                <select id="wilayah_propinsi_kecamatan" name="propinsi_id" class="form-select form-select-lg" aria-label="Default select example">
                     @foreach($provinsi as $data)
                     <option value="{{ $data->id }}">{{ $data->propinsi }}</option>
                     @endforeach
@@ -214,7 +214,7 @@
             </div>
             <div class="d-flex flex-column gap-2 mb-3">
                 <h6 class="ms-1 mb-0">Nama Daerah</h6>
-                    <select id="wilayah_kota_kecamatan" name="kota_id" class="form-select form-control-lg ps-4" aria-label="Default select example">
+                    <select id="wilayah_kota_kecamatan" name="kota_id" class="form-select form-select-lg" aria-label="Default select example">
                     @foreach ($kota as $data)
                     <option value="{{ $data->id }}">{{ $data->kota }}</option>
                     @endforeach
@@ -274,9 +274,12 @@
     {{-- Propinsi Section --}}
     <div class="tab-pane active" id="province-tabpanel-0" role="tabpanel" aria-labelledby="province-tab-0">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Provinsi</h3>
-                <a href="#tambahProvinsi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Provinsi</a>
+            <div class="d-flex flex-column">
+                <h3>Provinsi</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahProvinsi" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -317,9 +320,12 @@
     <!-- Kabupaten/Kota Section -->
     <div class="tab-pane" id="kota-tabpanel-1" role="tabpanel" aria-labelledby="kota-tab-1">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Kabupaten/Kota</h3>
-            <a href="#tambahKabupatenKota" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kabupaten/Kota</a>
+            <div class="d-flex flex-column">
+                <h3>Kabupaten/Kota</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahKabupatenKota" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -356,9 +362,12 @@
     <!-- Kecamatan Section -->
     <div class="tab-pane" id="kecamatan-tabpanel-2" role="tabpanel" aria-labelledby="kecamatan-tab-2">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Kecamatan</h3>
-            <a href="#tambahKecamatan" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kecamatan</a>
+            <div class="d-flex flex-column">
+                <h3>Kecamatan</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahKecamatan" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -399,7 +408,7 @@
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
             dropdownParent: $('#tambahKabupatenKota'),
             // minimumResultsForSearch: Infinity,
-            placeholder:'Pilih Propinsi',
+            placeholder:'Pilih Provinsi',
             ajax: {
                 url: "{{route('propinsi.index')}}",
                 processResults: function(data) {
@@ -422,7 +431,7 @@
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
             dropdownParent: $('#ubahKecamatan'),
             // minimumResultsForSearch: Infinity,
-            placeholder:'Pilih Propinsi',
+            placeholder:'Pilih Provinsi',
             ajax: {
                 url: "{{route('propinsi.index')}}",
                 processResults: function(data) {
@@ -470,7 +479,7 @@
             width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
             dropdownParent: $('#tambahKecamatan'),
             // minimumResultsForSearch: Infinity,
-            placeholder:'Pilih Propinsi',
+            placeholder:'Pilih Provinsi',
             ajax: {
                 url: "{{route('propinsi.index')}}",
                 processResults: function(data) {
