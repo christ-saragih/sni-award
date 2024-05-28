@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePesertaController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\KotaAdminController;
 use App\Http\Controllers\User\Sekretariat\evaluator\SekretariatEvaluatorController;
 use App\Http\Controllers\User\Sekretariat\lead_evaluator\SekretariatLeadEvaluatorController;
@@ -23,7 +24,6 @@ use App\Http\Controllers\KategoriOrganisasiController;
 use App\Http\Controllers\LembagaSertifikasiController;
 use App\Http\Controllers\NotFound\NotFoundController;
 use App\Http\Controllers\PendaftarAdminController;
-use App\Http\Controllers\PenjadwalanAdminController;
 use App\Http\Controllers\PenjadwalanDokumenController;
 use App\Http\Controllers\PenjadwalanLinimasaController;
 use App\Http\Controllers\TagBeritaController;
@@ -198,16 +198,6 @@ Route::prefix('/admin')->group(function () {
         Route::put('/faq/{id}',[FaqAdminController::class,'update']);
         Route::delete('/faq/{id}',[FaqAdminController::class,'destroy']);
 
-        //Penjadwalan
-        Route::get('/penjadwalan', [PenjadwalanAdminController::class, 'index'])->name('penjadwalan.index');
-        Route::post('/penjadwalan_dokumen', [PenjadwalanDokumenController::class, 'store'])->name('penjadwalan_dokumen.store');
-        Route::get('/penjadwalan_dokumen/{penjadwalan_dokumen}/edit', [PenjadwalanDokumenController::class, 'edit'])->name('penjadwalan_dokumen.edit');
-        Route::put('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'update'])->name('penjadwalan_dokumen.update');
-        Route::delete('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'destroy'])->name('penjadwalan_dokumen.destroy');
-
-        Route::post('/penjadwalan_linimasa', [PenjadwalanLinimasaController::class, 'store'])->name('penjadwalan_linimasa.store');
-        Route::put('/penjadwalan_linimasa{penjadwalan_linimasa}', [PenjadwalanLinimasaController::class, 'update'])->name('penjadwalan_linimasa.update');
-
         //CRUD Peserta & Internal
         Route::get('/peserta', [DataPesertaController::class, 'index']);
         Route::get('/peserta/{id}', [DataPesertaController::class, 'detail']);
@@ -244,13 +234,20 @@ Route::prefix('/admin')->group(function () {
         Route::put('/acara/{acara}', [AcaraController::class, 'update'])->name('acara.update');
         Route::delete('/acara/{acara}', [AcaraController::class, 'destroy'])->name('acara.destroy');
 
-        //kategori berita
-        // Route::get('/kategori_berita',[KategoriBeritaController::class,'index'])->name('kategori_berita.index');
-        // Route::get('/kategori_berita/tambah',[KategoriBeritaController::class,'create'])->name('kategori_berita.create');
-        // Route::post('/kategori_berita',[KategoriBeritaController::class,'store'])->name('kategori_berita.store');
-        // Route::get('/kategori_berita/{kategori_berita}/edit',[KategoriBeritaController::class,'edit'])->name('kategori_berita.edit');
-        // Route::put('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'update'])->name('kategori_berita.update');
-        // Route::delete('/kategori_berita/{kategori_berita}',[KategoriBeritaController::class,'destroy'])->name('kategori_berita.destroy');
+        // dokumentasi
+        Route::get('/dokumentasi', [PenjadwalanDokumenController::class, 'index'])->name('penjadwalan_dokumen.index');
+        Route::post('/penjadwalan_dokumen', [PenjadwalanDokumenController::class, 'store'])->name('penjadwalan_dokumen.store');
+        Route::get('/penjadwalan_dokumen/{penjadwalan_dokumen}/edit', [PenjadwalanDokumenController::class, 'edit'])->name('penjadwalan_dokumen.edit');
+        Route::put('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'update'])->name('penjadwalan_dokumen.update');
+        Route::delete('/penjadwalan_dokumen/{penjadwalan_dokumen}', [PenjadwalanDokumenController::class, 'destroy'])->name('penjadwalan_dokumen.destroy');
+
+        // linimasa
+        Route::get('/linimasa', [PenjadwalanLinimasaController::class, 'index'])->name('penjadwalan_linimasa.index');
+        Route::post('/penjadwalan_linimasa', [PenjadwalanLinimasaController::class, 'store'])->name('penjadwalan_linimasa.store');
+        Route::put('/penjadwalan_linimasa{penjadwalan_linimasa}', [PenjadwalanLinimasaController::class, 'update'])->name('penjadwalan_linimasa.update');
+
+        // kontak
+        Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 
         //dokumen
         Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen.index');
