@@ -13,7 +13,7 @@
         </div>
         <div class="modal-body" style="border: none;">
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
-                <div class="d-flex flex-column gap-2">
+                <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Key</h6>
                     <input type="text" name="key" class="form-control" placeholder="Key"/>
                 </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="modal-body" style="border: none;">
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
-                    <div class="d-flex flex-column gap-2">
+                    <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Key</h6>
                         <div name="key" id="key" class="form-control"></div>
                     </div>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="modal-footer gap-2" style="border: none;">
-                <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+                <div class="btn nonactive" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
                 <button type="submit" class="btn" data-bs-toggle="modal">Ubah</button>
             </div>
         </form>
@@ -93,7 +93,7 @@
     <div class="content-profil py-5">
         <div class="d-flex justify-content-between align-items-center">
         <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Konfigurasi</h3>
-        <a href="#tambahKonfigurasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Konfigurasi</a>
+        <a href="#tambahKonfigurasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
         </div>
         <div class="container mt-4">
             <table class="table">

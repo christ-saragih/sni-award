@@ -34,9 +34,12 @@
 <!-- Konten Acara Section -->
 <div class="tab-pane" id="acara-tabpanel" role="tabpanel" aria-labelledby="acara-tab">
     <div class="content-profil py-5">
-        <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Acara</h3>
-        <a href="{{ route('acara.create') }}" class="btn">+ Tambah</a>
+        <div class="d-flex flex-column">
+            <h3>Acara</h3>
+            <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                <hr class="garis-tambah">
+                <a href="{{ route('acara.create') }}" class="btn">+ Tambah</a>
+            </div>
         </div>
         <div class="container mt-4">
             <table class="table">
