@@ -382,10 +382,25 @@ textarea {
 
 .form-control,
 .form-select,
-textarea {
-    border: 1px solid #9fafbf;
+textarea,
+span.select2-selection  {
+    border: 1px solid #9fafbf !important;
     border-radius: 15px !important;
     font-family: "Arimo", sans-serif;
+}
+
+span.select2-selection {
+    padding-left: 24px !important;
+    font-size: 100% !important;
+}
+
+select.form-select-lg {
+    font-size: 100% !important;
+}
+
+span.select2-selection__placeholder {
+    color: #9FAFBF !important;
+    font-size: 100% !important;
 }
 
 #inputFileDocument,
@@ -396,12 +411,6 @@ textarea {
     color: transparent !important;
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
-}
-
-.form-control {
-    border: 1px solid #9fafbf;
-    border-radius: 15px;
-    font-family: "Arimo", sans-serif;
 }
 
 .form-control.unik {
