@@ -272,24 +272,12 @@ hr {
 .modal-footer button,
 a.btn {
     font-size: 100%;
-    font-weight: 700;
+    font-weight: 600;
     background-color: var(--primary-color);
     color: white;
     border-radius: 15px;
     border: 3px solid #c17d2d;
-}
-
-.modal-footer button {
-    width: 20% !important;
-}
-
-.content-profil button.edit {
-    font-size: 100%;
-    font-weight: 700;
-    background-color: white;
-    color: #c17d2d;
-    border-radius: 15px;
-    border: 3px solid #c17d2d;
+    width: 15%;
 }
 
 .content-profil button:hover,
@@ -301,6 +289,41 @@ a.btn:hover {
     border-radius: 15px;
     border: 3px solid #c17d2d;
     transition: all 0.3s ease;
+}
+
+a.btn.nonactive {
+    font-size: 100%;
+    font-weight: 600;
+    background-color: white;
+    color: #c17d2d;
+    border-radius: 15px;
+    border: 3.5px solid #c17d2d;
+    width: 15%;
+}
+
+a.btn.nonactive:hover {
+    font-size: 100%;
+    font-weight: 700;
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.modal-footer button {
+    width: 20% !important;
+}
+
+.modal-footer div.nonactive {
+    width: 20% !important;
+}
+
+.content-profil button.edit {
+    font-size: 100%;
+    font-weight: 700;
+    background-color: white;
+    color: #c17d2d;
+    border-radius: 15px;
+    border: 3px solid #c17d2d;
 }
 
 .content-profil button.nonactive {
@@ -322,15 +345,12 @@ a.btn:hover {
 
 .content-profil div.nonactive,
 .modal-footer div.nonactive {
-    font-weight: 700;
+    font-weight: 600;
     background-color: white;
     color: #c17d2d;
     border-radius: 15px;
     border: 3px solid #c17d2d;
-}
-
-.modal-footer button.nonactive {
-    width: 20% !important;
+    width: 15%;
 }
 
 .content-profil div.nonactive:hover,
@@ -612,6 +632,7 @@ table button:hover {
 
 table button.btn-hapus {
     background-color: #d12b2b !important;
+    width: 70px !important;
 }
 
 .table thead tr th,
@@ -620,9 +641,17 @@ table button.btn-hapus {
 }
 
 table button.btn-ubah,
+    a.btn-ubah,
     button.btn-tambah {
     background-color: #e59b30 !important;
     border: none;
+    width: 70px !important;
+}
+
+table a.btn-ubah:hover {
+    background-color: #e59b30 !important;
+    border: none !important;
+    color: white;
 }
 
 button.btn-tambah:hover {
@@ -757,10 +786,19 @@ tbody tr:nth-child(odd) {
 }
 
 h3 {
-    font-family: "Josefin Sans", sans-serif;
-    color: #552525;
+    font-family: "Arimo", sans-serif;
+    color: black;
     font-weight: bold;
-    font-size: 150%;
+    font-size: 125%;
+    margin: 0;
+    padding: 0;
+}
+
+hr.garis-tambah {
+    height: 1px; 
+    background-color: #CC9305;
+    padding: 0;
+    flex: 1 1 auto;
 }
 
 .pertanyaan-container div.pertanyaan {

@@ -108,10 +108,12 @@
 <div class="tab-content" id="tab-content">
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="tag-berita-tabpanel" role="tabpanel" aria-labelledby="tag-berita-tab">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Tag Berita</h3>
-                {{-- <a href="#tambahTagBerita" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a> --}}
-                <button onclick="openModalTambahTB()" class="btn" data-bs-toggle="modal" role="button" style="width: 14%;">+ Tambah</button>
+            <div class="d-flex flex-column">
+                <h3>Tag Berita</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <button onclick="openModalTambahTB()" class="btn" data-bs-toggle="modal" role="button">+ Tambah</button>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -151,9 +153,12 @@
     <!-- Konten Berita Section -->
     <div class="tab-pane {{ (request()->query('tab') == 'berita')?'active':'' }}" id="berita-tabpanel" role="tabpanel" aria-labelledby="berita-tab">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
-            <a href="{{ route('berita.create') }}" class="btn">+ Tambah</a>
+            <div class="d-flex flex-column">
+                <h3>Berita</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="{{ route('berita.create') }}" class="btn">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">

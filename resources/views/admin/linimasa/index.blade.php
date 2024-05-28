@@ -190,8 +190,8 @@
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
         <div class="content-profil pt-5 mb-5">
             <div class="d-flex flex-column gap-3">
-                <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Linimasa</h3>
-                <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
+                <h3>Linimasa</h3>
+                <hr class="garis-tambah">
             </div>
             <div class="container mt-4">
                 <div class="row d-flex justify-content-center align-items-center">
