@@ -906,11 +906,12 @@ function openModalUbahKonfigurasi(id) {
         type: "GET",
         success: function (response) {
             // Isi nilai input pada modal edit dengan nilai dari respons JSON
-            $('#form_ubah_konfigurasi input[name="key"]').val(response.key);
+            $('#form_ubah_konfigurasi div[id="key"]').html(response.key);
             $('#form_ubah_konfigurasi input[name="value"]').val(response.value);
 
             // Tampilkan modal edit
             $("#ubahKonfigurasi").modal("show");
+            // console.log($("#form_ubah_konfigurasi"));
         },
         error: function (xhr, status, error) {
             console.error("Error:", error);
@@ -918,14 +919,14 @@ function openModalUbahKonfigurasi(id) {
     });
 
     // Atur aksi formulir untuk mengirimkan data dengan metode PUT
-    $("#form_ubah_konfigurasi").attr("action", `/admin/konfigurasi/${id}`);
+    $("#form_ubah_konfigurasi").attr("action", `/admin/konfigurasi/${id}/update`);
 }
 
 // modal pop up Hapus
 function openModalHapusKonfigurasi(id) {
     document
         .getElementById("form_hapus_konfigurasi")
-        .setAttribute("action", `/admin/konfigurasi/${id}`);
+        .setAttribute("action", `/admin/konfigurasi/${id}/destroy`);
 
     const modal = new bootstrap.Modal(
         document.getElementById("hapusKonfigurasi")
