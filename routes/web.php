@@ -262,8 +262,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/konfigurasi/tambah', [KonfigurasiController::class, 'create'])->name('konfigurasi.create');
         Route::post('/konfigurasi', [KonfigurasiController::class, 'store'])->name('konfigurasi.store');
         Route::get('/konfigurasi/{konfigurasi}/ubah', [KonfigurasiController::class, 'edit'])->name('konfigurasi.edit');
-        Route::put('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
-        Route::delete('/konfigurasi/{konfigurasi}', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
+        Route::put('/konfigurasi/{konfigurasi}/update', [KonfigurasiController::class, 'update'])->name('konfigurasi.update');
+        Route::delete('/konfigurasi/{konfigurasi}/destroy', [KonfigurasiController::class, 'destroy'])->name('konfigurasi.destroy');
 
         // assessment
         Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment.index');

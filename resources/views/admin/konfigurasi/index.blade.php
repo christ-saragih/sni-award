@@ -44,7 +44,7 @@
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
                     <div class="d-flex flex-column gap-2">
                         <h6 class="ms-1 mb-0">Key</h6>
-                        <input type="text" name="key" class="form-control" placeholder="Key">
+                        <div name="key" id="key" class="form-control"></div>
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Value</h6>
@@ -124,6 +124,10 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 
 
 @endsection()
