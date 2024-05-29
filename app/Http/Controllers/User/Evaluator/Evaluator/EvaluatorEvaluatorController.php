@@ -105,7 +105,7 @@ class EvaluatorEvaluatorController extends Controller
             'skor.required' => 'Skor Masimal 100',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
-        
+
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
             'internal_id' => $user->id,

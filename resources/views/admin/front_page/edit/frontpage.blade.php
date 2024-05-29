@@ -12,16 +12,13 @@
     .frontpage-input-text>textarea,
     .frontpage-input-text>div,
     .frontpage-input-text>select {
-        width: 80%;
-        border-radius: 10px;
-        border: 1px solid gray;
-        padding: 5px 10px;
-    }
-    .frontpage-input-text>label::after{
-      content: " :";
+        width: 70%;
+        border-radius: 15px;
+        border: 1px solid #9FAFBF;
+        padding: 6px 16px;
     }
     .frontpage-input-text>p{
-        width: 80%;
+        width: 70%;
     }
     .frontpage-input-text>img{
         width: 250px;
@@ -32,9 +29,51 @@
         user-select: none;
     }
     .frontpage-input-text>label{
-        width: 20%;
+        width: 30%;
         font-weight: bold;
+        padding-block: 6px;
+        margin-left: 30px;
     }
+
+    .file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #9fafbf;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .file-input input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+
+  .file-input-label {
+    display: inline-block;
+    color: #595959;
+    background-color: #d7dae3;
+    padding: 6px 16px;
+    border-right: 1px solid #9fafbf;
+    cursor: pointer;
+  }
+
+  #fileInputLabel1,
+  #fileInputLabel2,
+  #fileInputLabel3, {
+    width: 80%; 
+    color: #9fafbf; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
     span.label-span{
         padding: 8px 16px;
         height: 100%;
@@ -151,7 +190,7 @@
   <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     @if (request()->query('tab') == '')
       <li class="nav-item" role="presentation">
-        <div class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Halaman Depan</div>
+        <div class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" role="tab" >Beranda</div>
       </li>
     @elseif (request()->query('tab') == 'faq')
       <li class="nav-item" role="presentation">
@@ -194,3 +233,21 @@
   
 </main>
 @endsection
+
+<script>
+    
+function handleFileSelect(inputId, labelId, fileNameId) {
+    const fileInput = document.getElementById(inputId);
+    const fileInputLabel = document.getElementById(labelId);
+    const fileNameDisplay = document.getElementById(fileNameId);
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : null;
+    if (fileName) {
+      fileInputLabel.textContent = fileName;
+    //   fileNameDisplay.textContent = fileName;
+    } else {
+      fileInputLabel.textContent = "Maksimal mengunggah dokumen : 10 MB";
+      fileNameDisplay.textContent = "";
+    }
+}
+
+</script>

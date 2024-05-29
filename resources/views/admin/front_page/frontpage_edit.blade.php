@@ -1,6 +1,6 @@
 
 <div class="d-flex justify-content-between align-items-center">
-    <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Halaman Depan</h3>
+    <h3>Beranda</h3>
 </div>
 <br><hr style="color: orange; height: 0.5px;"><br>
 <div class="d-flex items-center justify-content-end">
@@ -36,7 +36,7 @@
     </div>
     <br>
     <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
+        <h3>Berita</h3>
     </div>
     <br><hr style="color: orange; height: 0.5px;"><br>
     <br>
@@ -52,19 +52,31 @@
     </div>
     <br>
     <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Footer</h3>
+        <h3>Footer</h3>
     </div>
     <br><hr style="color: orange; height: 0.5px;"><br>
     <br>
     <div>
         <div class="frontpage-input-text">
+            <label for="alamat">Logo SNI Award</label>
+            <img src="/storage" alt="">
+        </div>
+        <div class="frontpage-input-text">
+            <label for="alamat">Logo Instansi</label>
+            <img src="/storage" alt="">
+        </div>
+        <div class="frontpage-input-text">
             <label for="alamat">Alamat</label>
             <p>{{ $frontpage->alamat }}</p>
+        </div>
+        <div class="frontpage-input-text">
+            <label for="informasi_website">Informasi Website</label>
+            <p>Info Lebih Lanjut</p>
         </div>
     </div>
     <br>
     <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Media Sosial</h3>
+        <h3>Media Sosial</h3>
     </div>
     <br><hr style="color: orange; height: 0.5px;"><br>
     <br>

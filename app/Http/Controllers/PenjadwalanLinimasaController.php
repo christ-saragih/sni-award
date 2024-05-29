@@ -11,10 +11,11 @@ class PenjadwalanLinimasaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $penjadwalan_linimasa = PenjadwalanLinimasa::first();
+        return view('admin.linimasa.index', compact(['penjadwalan_linimasa']));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -31,13 +31,9 @@
                                     <li id="personal"><strong>Lead Evaluator</strong></li>
                                     <li id="payment"><strong>Sekretariat</strong></li>
                                 </ul>
-                                <div class="progress">
-                                    <div class="progress-bar penilaian progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <br />
                                 <!-- fieldsets -->
                                 <fieldset class="fieldset" id="fieldsetPenilaian">
-                                    @if ($desk_evaluation->evaluator)
+                                    @if ($desk_evaluation ? $desk_evaluation->evaluator : null)
                                         <div class="card-body pt-0 mt-0">
                                             <div class="row align-items-center pt-4 pb-3">
                                                 <div class="col-md-4 ps-5">
@@ -126,9 +122,9 @@
                                         <input type="button" name="next" class="btn next action-button float-end" value="Selanjutnya"/>
                                     @endif
                                 </fieldset>
-                
+
                                 <fieldset class="fieldset" id="fieldsetPenilaian">
-                                    @if ($desk_evaluation->lead_evaluator)
+                                    @if ($desk_evaluation ? $desk_evaluation->lead_evaluator : null)
                                         <div class="card-body pt-0 mt-0">
                                             <div class="row align-items-center pt-4 pb-3">
                                                 <div class="col-md-4 ps-5">
@@ -219,16 +215,16 @@
                                         <input type="button" name="previous" class="btn previous action-button-previous float-end me-3" value="Sebelumnya"/>
                                     @endif
                                 </fieldset>
-                
+
                                 <fieldset class="fieldset" id="fieldsetPenilaian">
-                                    @if ($desk_evaluation->registrasi->sekretariat_id)
+                                    @if ($registrasi ? $registrasi->sekretariat_id : null)
                                         <div class="card-body pt-0 mt-0">
                                             <div class="row align-items-center pt-4 pb-3">
                                                 <div class="col-md-4 ps-5">
                                                     <h6 class="mb-0">Nama</h6>
                                                 </div>
                                                 <div class="col-md-8 pe-5">
-                                                    <p>{{ $desk_evaluation->registrasi->sekretariat->name }}</p>
+                                                    <p>{{ $registrasi->sekretariat->name }}</p>
                                                 </div>
                                             </div>
                                             {{-- @foreach ($registrasi_penilaian as $penilai) --}}

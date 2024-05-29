@@ -8,12 +8,12 @@
         .active {
             display: block;
         }
-        
+
         .nav-link.disabled {
             pointer-events: none;
             color: #999999 !important;
         }
-        button.btn {   
+        button.btn {
             font-size: 100%;
             font-weight: 700;
             background-color: #552525;
@@ -21,7 +21,7 @@
             border-radius: 15px;
             border: 3px solid #c17d2d;
         }
-        button.btn:hover { 
+        button.btn:hover {
             font-weight: 600;
             background-color: white;
             color: #c17d2d;
@@ -71,7 +71,7 @@
         <div class="tab-content" id="tab-content">
             <div class="tab-pane {{ request()->query('tab') == '' ? 'active' : 'hide'}}" role="tabpanel" id="sekre-desk" aria-labelledby="sekre-desk">
                 <div class="content-profil p-5">
-                    
+
                     <div class="d-flex align-items-center gap-2 justify-content-end">
                         <div class="dropdown container-dropdown-internal">
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -114,15 +114,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($registrasi as $reg)
+                                @foreach ($desk_evaluation as $desk)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $reg->peserta->nama }}</td>
-                                        <td>{{ $reg->peserta->email }}</td>
-                                        <td>{{ $reg->peserta->peserta_profil->no_hp }}</td>
+                                        <td>{{ $desk->peserta->nama }}</td>
+                                        <td>{{ $desk->peserta->email }}</td>
+                                        <td>{{ $desk->peserta->peserta_profil->no_hp }}</td>
                                         <td class="d-flex align-items-center justify-content-center">
-                                            <a href="{{ route('evaluator.tim.create', Crypt::encryptString($reg->id)) }}" class="px-2 py-1" style="color: white; border-radius: 10px; background-color: {{ $reg->registrasi_evaluator ? '#6C64CC' : '#E59B30' }};" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Buat tim">
-                                                @if ($reg->registrasi_evaluator)
+                                            <a href="{{ route('evaluator.tim.create', Crypt::encryptString($desk->id)) }}" class="px-2 py-1" style="color: white; border-radius: 10px; background-color: {{ $desk->registrasi_evaluator ? '#6C64CC' : '#E59B30' }};" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Buat tim">
+                                                @if ($desk->registrasi_evaluator)
                                                     <i class="fa fa-users"></i>
                                                 @else
                                                     <i class="fa fa-user-plus"></i>
@@ -130,34 +130,32 @@
                                             </a>
                                         </td>
                                         <td>
-                                            @if ($reg->registrasi_penilaian 
-                                                && $reg->registrasi_penilaian->last() 
-                                                && $reg->registrasi_penilaian->last()->stage_id == $reg->stage_id
-                                            )
-                                            {{-- nanti cek validasi 3 penilai sudah menilai --}}
-                                                <div class="px-1 py-1 text-center text-white" style="border-radius: 15px; font-weight: bold; background-color: #47A15E;">Sudah Dinilai</div>
+                                            {{-- {{ dd($desk->registrasi->registrasi_penilaian[count($desk->registrasi->registrasi_penilaian)-1]) }} --}}
+                                            {{-- {{ dd($penilaian_evaluator) }} --}}
+                                            @if ($penilaian_sekretariat)
+                                                <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                                             @else
-                                                <div class="px-1 py-1 text-center text-white" style="border-radius: 15px; font-weight: bold; background-color: #D12B2B;">Belum Dinilai</div>
+                                                <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
                                             @endif
                                         </td>
                                         <td class="text-center">
                                             <div class="dropdown">
-                                                <button 
-                                                    type="button" 
-                                                    data-bs-toggle="dropdown" 
+                                                <button
+                                                    type="button"
+                                                    data-bs-toggle="dropdown"
                                                     aria-expanded="false"
-                                                    class="btn dropdown-toggle" 
+                                                    class="btn dropdown-toggle"
                                                     style="
                                                         text-decoration: none;
                                                         padding: 5px 10px;
                                                         border:none;
                                                         background-color:#E59B30;
                                                         border-radius:10px;
-                                                    " 
+                                                    "
                                                 >Detail</button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="{{ route('evaluator.sekretariat.detail.view', Crypt::encryptstring($reg->id)) }}">Profil</a></li>
-                                                    
+                                                    <li><a class="dropdown-item" href="{{ route('evaluator.sekretariat.detail.view', Crypt::encryptstring($desk->id)) }}">Profil</a></li>
+
                                                     <li><a class="dropdown-item" href="">Riwayat</a></li>
                                                 </ul>
                                             </div>
