@@ -12,16 +12,14 @@
     .frontpage-input-text>textarea,
     .frontpage-input-text>div,
     .frontpage-input-text>select {
-        width: 80%;
+        width: 70%;
         border-radius: 10px;
         border: 1px solid gray;
-        padding: 5px 10px;
-    }
-    .frontpage-input-text>label::after{
-      content: " :";
+        padding: 6px 16px;
     }
     .frontpage-input-text>p{
-        width: 80%;
+        width: 70%;
+        padding: 6px 16px;
     }
     .frontpage-input-text>img{
         width: 250px;
@@ -32,8 +30,10 @@
         user-select: none;
     }
     .frontpage-input-text>label{
-        width: 20%;
+        padding-block: 6px;
+        width: 30%;
         font-weight: bold;
+        margin-left: 30px;
     }
     span.label-span{
         padding: 8px 16px;
@@ -109,7 +109,7 @@
   
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" href="/admin/frontpage" role="tab" >Halaman Depan</a>
+        <a class="nav-link {{ (request()->query('tab') == '')?'active':'' }} px-4" id="simple-tab-0" style="width: auto;" href="/admin/frontpage" role="tab" >Beranda</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link {{ (request()->query('tab') == 'faq')?'active':'' }} px-4" id="simple-tab-1" style="width: auto;" href="/admin/frontpage?tab=faq" role="tab" >FAQ</a>

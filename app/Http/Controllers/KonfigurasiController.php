@@ -69,18 +69,17 @@ class KonfigurasiController extends Controller
      */
     public function update(Request $request, Konfigurasi $konfigurasi)
     {
+        // dd($konfigurasi);
         $request->validate([
-            'key' => 'required|unique:konfigurasi',
             'value' => 'required',
         ],[
-
-            'key.required' => "Key tidak boleh kosong",
-            'key.unique' => "Key sudah ada",
             'value.required' => "Value tidak boleh kosong"
         ]);
-        $konfigurasi->update($request->all());
+        $konfigurasi->update($request->except(['_token', '_method']));
 
-        return redirect()->back()->with(['success'=>'konfigurasi berhasil dirubah']);
+        return redirect()->back()->with(['success'=>'konfigurasi berhasil diubah']);
+        // dd($konfigurasi);
+        // return redirect()->route('konfigurasi.index')->with('success', 'Data Berhasil Diubah!');
     }
 
     /**

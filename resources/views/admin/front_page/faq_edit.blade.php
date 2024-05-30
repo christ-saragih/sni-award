@@ -1,6 +1,6 @@
 
 <div class="d-flex justify-content-between align-items-center">
-    <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">FAQ</h3>
+    <h3>FAQ</h3>
 </div>
 <br><hr style="color: orange; height: 0.5px;"><br>
 <div class="d-flex items-center justify-content-end">

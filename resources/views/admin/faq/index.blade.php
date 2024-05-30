@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="modal-footer gap-2" style="border: none;">
-        <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+        <div class="btn nonactive" style="width: 150px;" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
         <button type="submit" class="btn" data-bs-toggle="modal" >Simpan</button>
       </div>
     </form>
@@ -92,9 +92,12 @@
 <div class="tab-content" id="tab-content">
   <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
   <div class="content-profil py-5 mb-5">
-    <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">FAQ</h3>
-        <a href="#tambahFaq" class="btn" data-bs-toggle="modal" role="button" style="width: 14%;">+ Tambah</a>
+    <div class="d-flex flex-column">
+        <h3>FAQ</h3>
+        <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+            <hr class="garis-tambah">
+            <a href="#tambahFaq" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+        </div>
       </div>
       <!-- TODO: Tampilan FAQ admin -->
     <div class="container mt-4">

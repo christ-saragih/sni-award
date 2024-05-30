@@ -13,7 +13,7 @@
         </div>
         <div class="modal-body" style="border: none;">
             <div class="d-flex flex-column gap-2 pb-0 mb-0">
-                <div class="d-flex flex-column gap-2">
+                <div class="d-flex flex-column gap-2 mb-3">
                     <h6 class="ms-1 mb-0">Key</h6>
                     <input type="text" name="key" class="form-control" placeholder="Key"/>
                 </div>
@@ -42,9 +42,9 @@
             </div>
             <div class="modal-body" style="border: none;">
                 <div class="d-flex flex-column gap-2 pb-0 mb-0">
-                    <div class="d-flex flex-column gap-2">
+                    <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Key</h6>
-                        <input type="text" name="key" class="form-control" placeholder="Key">
+                        <div name="key" id="key" class="form-control"></div>
                     </div>
                     <div class="d-flex flex-column gap-2 mb-3">
                         <h6 class="ms-1 mb-0">Value</h6>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="modal-footer gap-2" style="border: none;">
-                <div class="btn nonactive"  data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
+                <div class="btn nonactive" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Batal</div>
                 <button type="submit" class="btn" data-bs-toggle="modal">Ubah</button>
             </div>
         </form>
@@ -91,9 +91,12 @@
 <!-- Konten Konfigurasi Section -->
 <div class="tab-pane" id="konfigurasi-tabpanel" role="tabpanel" aria-labelledby="konfigurasi-tab">
     <div class="content-profil py-5">
-        <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Konfigurasi</h3>
-        <a href="#tambahKonfigurasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Konfigurasi</a>
+        <div class="d-flex flex-column">
+            <h3>Konfigurasi</h3>
+            <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                <hr class="garis-tambah">
+                <a href="#tambahKonfigurasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+            </div>
         </div>
         <div class="container mt-4">
             <table class="table">
@@ -124,6 +127,10 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 
 
 @endsection()

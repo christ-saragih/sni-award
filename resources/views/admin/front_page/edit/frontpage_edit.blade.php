@@ -12,7 +12,7 @@
 </script> --}}
 
 <div class="d-flex justify-content-between align-items-center">
-    <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Halaman Depan</h3>
+    <h3>Beranda</h3>
 </div>
 <br><hr style="color: orange; height: 0.5px;"><br>
 <br>
@@ -28,13 +28,15 @@
             </div>
             <div class="frontpage-input-text">
                 <label for="keterangan_judul">Keterangan Judul</label>
-                <input type="text" name="keterangan_judul" id="" value="{{ $frontpage->keterangan_judul }}" required>
+                <textarea name="keterangan_judul" id="" cols="30" rows="2" required>{{ $frontpage->keterangan_judul }}</textarea>
             </div>
             <div class="frontpage-input-text">
                 <label for="gambar_banner">Gambar Banner</label>
-                <div style="position:relative;">
-                    <label for="banner_image" class="btn h-100 fw-semibold" style="position: absolute; top:0; left:-1px; background-color: #999; border-radius: 10px 0 0 10px; border-right: 1px solid gray;width:112px;">Unggah</label>
-                    <input type="file" name="gambar_banner" id="banner_image" accept="image/*" style="padding: 0;">
+                <div class="file-input" style="padding: 0;">
+                    <input type="file" id="inputGroupFile1" name="gambar_banner" accept="image/*" onchange="handleFileSelect('inputGroupFile1', 'fileInputLabel1', 'fileName1')">
+                    <label for="inputGroupFile1" class="file-input-label">Unggah</label>
+                    <label for="inputGroupFile1" id="fileInputLabel1" class="mx-4" style="color: #9fafbf;">Pilih gambar banner..</label>
+                    <div id="fileName1"></div>
                 </div>
             </div>
             <div class="frontpage-input-text">
@@ -52,7 +54,7 @@
         </div>
         <br>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Berita</h3>
+            <h3>Berita</h3>
         </div>
         <br><hr style="color: orange; height: 0.5px;"><br>
         <br>
@@ -68,19 +70,41 @@
         </div>
         <br>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Footer</h3>
+            <h3>Footer</h3>
         </div>
         <br><hr style="color: orange; height: 0.5px;"><br>
         <br>
         <div>
             <div class="frontpage-input-text">
+                <label for="logo_sni_award">Logo SNI Award</label>
+                <div class="file-input" style="padding: 0;">
+                    <input type="file" id="inputGroupFile2" name="logo_sni_award" accept="image/*" onchange="handleFileSelect('inputGroupFile2', 'fileInputLabel2', 'fileName2')">
+                    <label for="inputGroupFile2" class="file-input-label">Unggah</label>
+                    <label for="inputGroupFile2" id="fileInputLabel2" class="mx-4" style="color: #9fafbf;">Pilih logo SNI Award..</label>
+                    <div id="fileName2"></div>
+                </div>
+            </div>
+            <div class="frontpage-input-text">
+                <label for="logo_instansi">Logo Instansi</label>
+                <div class="file-input" style="padding: 0;">
+                    <input type="file" id="inputGroupFile3" name="logo_instansi" accept="image/*" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
+                    <label for="inputGroupFile3" class="file-input-label">Unggah</label>
+                    <label for="inputGroupFile3" id="fileInputLabel3" class="mx-4" style="color: #9fafbf;">Pilih instansi..</label>
+                    <div id="fileName3"></div>
+                </div>
+            </div>
+            <div class="frontpage-input-text">
                 <label for="alamat">Alamat</label>
                 <input type="text" name="alamat" id="" value="{{ $frontpage->alamat }}" required>
+            </div>
+            <div class="frontpage-input-text">
+                <label for="alamat">Informasi Website</label>
+                <input type="text" name="informasi_website" id="" value="" required>
             </div>
         </div>
         <br>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Media Sosial</h3>
+            <h3>Media Sosial</h3>
         </div>
         <br><hr style="color: orange; height: 0.5px;"><br>
         <br>
@@ -103,17 +127,9 @@
             </div>
         </div>
 
-        <div class="d-flex align-items-center justify-content-end gap-2">
-            <a href="/admin/frontpage" role="button" class="btn" style="
-                width: 100px;
-                padding: 5px 10px;
-                background-color: #fff;
-                color: #C17D2D;
-            ">Batal</a>
-            <button type="submit" style="
-                width: 100px;
-                padding: 5px 10px;
-            " >Simpan</button>
+        <div class="d-flex align-items-center justify-content-end gap-3">
+            <a href="/admin/frontpage" role="button" class="btn nonactive">Batal</a>
+            <button type="submit" class="btn">Simpan</button>
         </div>
     </form>
 </div>
