@@ -2,7 +2,7 @@
     <div class="d-flex align-items-center gap-3">
         <a href="/admin/peserta" class="btn" style="width: fit-content">&#8617;</a>
         <h3 class="p-0 m-0">Riwayat SNI Award</h3>
-        <hr class="flex-grow-1" style="height: 3px; background-color: #E1A600;">
+        <hr class="garis-tambah">
     </div>
     <div class="p-5">
         <table class="w-100">
@@ -26,8 +26,8 @@
                             <td>{{ $reg->stage->nama }}</td>
                             <td>{{ $reg->kategori_organisasi->nama }}</td>
                             <td>
-                                <a href="#" class="btn" role="button" style="border: none; background-color: #E59B30;">
-                                    detail
+                                <a href="#" class="btn btn-detail" role="button">
+                                    Detail
                                 </a>
                             </td>
                         </tr>

@@ -32,65 +32,69 @@
 <hr class="p-0">
 
 <!-- Konten Pendaftar Section -->
-<div class="tab-pane" id="pendaftar-tabpanel" role="tabpanel" aria-labelledby="pendaftar-tab">
-    <div class="content-profil py-5">
-        <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Pendaftar</h3>
-            {{-- <a href="{{ route('pendaftar.create') }}" class="btn">+ Tambah</a> --}}
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tahun
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach ($data_tahun as $tahun)
-                        <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_tahun', $tahun) }}">{{ $tahun }}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="container mt-4">
-            <table class="table">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">No</th>
-                        <th scope="col">Pendaftar</th>
-                        <th scope="col">Sekretariat</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Stage</th>
-                        <th scope="col">Kategori Organisasi</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($registrasi as $cr)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$cr->peserta->nama}}</td>
-                            <td style="display: flex; align-items: center; justify-content: center;">
-                                @if ($cr->sekretariat)
-                                    <div>{{ $cr->sekretariat->name }}</div>
-                                @else
-                                    <div class="bg-danger text-white text-center p-1 rounded">Belum ditentukan</div>
-                                @endif
-                            </td>
-                            <td class="text-center">{{$cr->status->nama}}</td>
-                            <td class="text-center">{{$cr->stage->nama}}</td>
-                            <td>{{$cr->peserta->kategori_organisasi->nama}}</td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a class="btn" style="padding: 5px 10px;border:none;background-color:#E59B30;border-radius:10px;" href="{{ route('pendaftar_sni_award.detail', Crypt::encryptString($cr->id)) }}">detail</a>
-                                    {{-- <button onclick="openModalHapusPendaftar('{{ $cr->id }}', ' {{ $cr->nama }} ')" class="btn btn-hapus">Hapus</button> --}}
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{-- <div class="pagination justify-content-center">
-                {{ $pendaftar->links() }}
-            </div> --}}
+<section class="tab-pane py-5" id="pendaftar-tabpanel" role="tabpanel" aria-labelledby="pendaftar-tab">
+    <div class="d-flex justify-content-between align-items-center">
+        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Pendaftar</h3>
+        {{-- <a href="{{ route('pendaftar.create') }}" class="btn">+ Tambah</a> --}}
+        <div class="dropdown container-dropdown-peserta">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tahun
+            </button>
+            <ul class="dropdown-menu">
+                @foreach ($data_tahun as $tahun)
+                    <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_tahun', $tahun) }}">{{ $tahun }}</a></li>
+                @endforeach
+            </ul>
         </div>
     </div>
-</div>
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">No</th>
+                    <th scope="col">Pendaftar</th>
+                    <th scope="col">Sekretariat</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Stage</th>
+                    <th scope="col">Kategori Organisasi</th>
+                    <th scope="col">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($registrasi as $cr)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$cr->peserta->nama}}</td>
+                        <td>
+                            @if ($cr->sekretariat)
+                                <div>{{ $cr->sekretariat->name }}</div>
+                            @else
+                                <div class="text-center" style="padding: 6px;
+                                    font-weight: bold;
+                                    color: white;
+                                    background-color: #FF0101;
+                                    border-radius: 15px;">
+                                    Belum Ditentukan
+                                </div>
+                            @endif
+                        </td>
+                        <td class="text-center">{{$cr->status->nama}}</td>
+                        <td class="text-center">{{$cr->stage->nama}}</td>
+                        <td>{{$cr->peserta->kategori_organisasi->nama}}</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a class="btn btn-detail"  href="{{ route('pendaftar_sni_award.detail', Crypt::encryptString($cr->id)) }}">Detail</a>
+                                {{-- <button onclick="openModalHapusPendaftar('{{ $cr->id }}', ' {{ $cr->nama }} ')" class="btn btn-hapus">Hapus</button> --}}
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        {{-- <div class="pagination justify-content-center">
+            {{ $pendaftar->links() }}
+        </div> --}}
+    </div>
+</section>
 
 @endsection()

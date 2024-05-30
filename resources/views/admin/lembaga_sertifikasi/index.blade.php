@@ -73,7 +73,7 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="lembaga-sertifikasi-tab" data-bs-toggle="tab" href="#lembaga-sertifikasi-tabpanel" role="tab" aria-controls="lembaga-sertifikasi-tabpanel" aria-selected="true" style="white-space: nowrap; width: fit-content;">Lembaga Sertifikasi</a>
+        <a class="nav-link active" id="lembaga-sertifikasi-tab" data-bs-toggle="tab" href="#lembaga-sertifikasi-tabpanel" role="tab" aria-controls="lembaga-sertifikasi-tabpanel" aria-selected="true" style="pointer-events: none;">Lembaga Sertifikasi</a>
     </li>
 </ul>
 
