@@ -1,12 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
     <style>
-        td>a {
-            background-color: #E59B30 !important;
-            color: white !important;
-            border: none !important;
-        }
-
         section {
             border-radius: 20px !important;
             padding-inline: 70px !important;

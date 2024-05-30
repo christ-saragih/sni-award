@@ -26,11 +26,7 @@
        padding-left: 25px !important;
     } */
 
-    a.btn-edit {
-            background-color: #E59B30 !important;
-            color: white !important;
-            border: none !important;
-        }
+    
 
     tbody tr:nth-child(odd) {
         background-color: white !important;
@@ -114,8 +110,7 @@
                 </div>
                 <h3 style="text-transform: capitalize;">{{ $internal->jenis_role->nama }}</h3>
                 <p class="mb-2" style="font-size: 112.5%; margin-top: -5px; text-transform: capitalize;">{{ $internal->name }}</p>
-
-                <a href="#ubahJabatan" class="mb-2 btn btn-edit px-4" data-bs-toggle="modal" role="button">Ubah dan Verifikasi</a>
+                <a href="#ubahJabatan" class="btn btn-ubah mb-2" data-bs-toggle="modal" role="button" style="width: 100% !important;">Ubah dan Verifikasi</a>
                 @if ($internal->verified_at)
                     <div class="px-3 mt-1 d-flex align-items-center justify-content-center gap-2" style="background-color: #78A55A; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold;">
                         <i class="fa fa-check"></i>
