@@ -48,7 +48,7 @@
                 {{-- <td>{{ $lead->user_profil->no_hp ? $lead->user_profil->no_hp : '-' }}</td> --}}
                 {{-- <td>{{ $lead->user_profil->npwp ? $lead->user_profil->npwp : '-' }}</td> --}}
                 <td class="text-center">
-                    <a href="/admin/internal/{{ Crypt::encryptString($lead->id) }}" class="btn" role="button">Detail</a>
+                    <a href="/admin/internal/{{ Crypt::encryptString($lead->id) }}" class="btn btn-detail">Detail</a>
                 </td>
             </tr>
         @endforeach

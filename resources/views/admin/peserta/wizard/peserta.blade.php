@@ -1,5 +1,5 @@
-<div class="d-flex align-items-center justify-content-between">
-    <h3 class="mb-0" style="font-size: 150%; font-weight: bold;">Data Peserta Pendaftar</h3>
+<div class="d-flex justify-content-between">
+    <h3>Data Peserta Pendaftar</h3>
     <div class="dropdown container-dropdown-peserta">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Tahun
@@ -21,7 +21,7 @@
             <th>Email</th>
             <th>No. Telepon</th>
             <th>Status Verifikasi</th>
-            <th>Aksi</th>
+            <th class="text-center">Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -37,21 +37,21 @@
                     : '-'
                     : '-' 
                 }}</td>
-                <td class="d-flex justify-content-center">
+                <td class="text-center">
                     <div style="
-                        width: fit-content;
-                        padding: 1px 10px;
+                        width: 100%;
+                        padding: 6px;
                         font-weight: bold;
                         color: white;
-                        background-color: {{ $peserta->verified_at ? '#009900' : '#dd0000' }};
-                        border-radius: 5px;
+                        background-color: {{ $peserta->verified_at ? '#78A55A' : '#FF0101' }};
+                        border-radius: 15px;
                     ">
-                        {{ $peserta->verified_at ? 'Terverifikasi' : 'Belum diverifikasi' }}
+                        {{ $peserta->verified_at ? 'Diverifikasi' : 'Belum diverifikasi' }}
                         </div>
                 </td>
 
                 <td>
-                    <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}" class="btn" role="button" style="color: white !important;">Detail</a>
+                    <a href="/admin/peserta/{{ Crypt::encryptString($peserta->id) }}" class="btn btn-detail" role="button">Detail</a>
                 </td>
             </tr>
         @endforeach
