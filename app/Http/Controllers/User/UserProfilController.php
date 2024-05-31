@@ -17,12 +17,8 @@ class UserProfilController extends Controller
     public function index() {
         
         $user = Auth::user();
-        $role_access = strtolower($user->jenis_role->nama);
-        $is_sekretariat = Registrasi::where('sekretariat_id', $user->id)->get();
-        if (count($is_sekretariat) > 0) {
-            $role_access = "sekretariat";
-        }
-        return view('user.profil.index', ['user' => $user, 'role_access' => $role_access]);
+        $role = strtolower($user->jenis_role->nama);
+        return view('user.profil.index', ['user' => $user, 'role' => $role]);
     } 
 
     public function editView() {
