@@ -53,71 +53,69 @@
         <div style="width: 85%">
             <div class="d-flex align-items-center">
                 <h3 class="pe-3 m-0" style="white-space: nowrap;">Profil Peserta</h3>
-                <hr class="flex-grow-1" style="width: 100%;height: 3px; background-color: #E1A600;"/>
+                <hr class="garis-tambah"/>
             </div>
             @if ($peserta->verified_at)
-                <div class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center" style="background-color: #009900;height: fit-content; color:white; width: fit-content;">
-                    <i class="fa fa-check-circle"></i>
-                    &ensp;Terverifikasi 
+                <div class="px-3 mt-3 d-flex align-items-center justify-content-center gap-2" style="background-color: #78A55A; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold; height: fit-content; width: fit-content;">
+                    <i class="fa fa-check"></i>
+                    <p class="m-0">Diverifikasi</p>
                 </div>
-                <div class="mt-2" style="color: #9FAFBF; font-size:14px;">*Klik verifikasi disini</div>
             @else
-                <button type="button" class="mt-3 px-3 py-1 rounded d-flex align-items-center justify-content-center text-center" style="background-color: #E1A600;height: fit-content; color:white; width: fit-content; border:none;" data-bs-toggle="modal" data-bs-target="#verifikasi_peserta">
-                    {{-- <i class="fa fa-check-circle"></i> --}}
-                    &ensp;Verifikasi 
+                <button type="button" class="mt-3 px-3" style="background-color: #E59B30; height: fit-content; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold; width: fit-content; border:none;" data-bs-toggle="tooltip" data-bs-placement="right" title="Verifikasi peserta" data-bs-target="#verifikasi_peserta">
+                    Verifikasi 
                 </button>
-                <div class="mt-2" style="color: #9FAFBF; font-size:14px;">*Klik verifikasi disini</div>
+                <div class="mt-2" style="color: #9FAFBF; font-size:14px;">* Klik verifikasi di sini</div>
             @endif
         </div>
     </div>
 
     <div class="d-flex justify-content-around mb-5">
-        <div class="w-100 mt-3">
-            <div class="row-data">
+        <div class="w-100 mt-4">
+            <div class="row-data mb-3">
                 <div class="head-data">Nama Organisasi</div>
                 <div class="body-data">{{ $peserta->nama }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Jabatan Tertinggi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->jabatan_tertinggi }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Website</div>
                 <div class="body-data">{{ $peserta->peserta_profil->website }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Tanggal Beroperasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->tanggal_beroperasi }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Status Kepemilikan</div>
                 <div class="body-data">{{ $peserta->peserta_profil->status_kepemilikan?$peserta->peserta_profil->status_kepemilikan->nama:'' }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Jenis Produk</div>
                 <div class="body-data">{{ $peserta->peserta_profil->jenis_produk }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Lembaga Sertifikasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->lembaga_sertifikasi?$peserta->peserta_profil->lembaga_sertifikasi->nama:'' }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Negara Tujuan Ekspor</div>
                 <div class="body-data">{{ $peserta->peserta_profil->negara_tujuan_ekspor }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Sektor Kategori Organisasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->kategori_organisasi?$peserta->peserta_profil->kategori_organisasi->nama:'' }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Kekayaan Bersih</div>
                 <div class="body-data">{{ $peserta->peserta_profil->kekayaan_bersih }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Hasil Penjualan Tahunan</div>
                 <div class="body-data">{{ $peserta->peserta_profil->hasil_penjualan_tahunan }}</div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Jenis Organisasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->jenis_organisasi }}</div>
             </div>
