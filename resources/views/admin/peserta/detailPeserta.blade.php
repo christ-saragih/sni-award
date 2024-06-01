@@ -45,16 +45,16 @@
     <hr class="p-0">
 
     <div class="tab-content" id="tab-content">
-        <section class="tab-pane {{ request()->query('tab')==''?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+        <section class="tab-pane {{ request()->query('tab')==''?'active':'' }} py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
             @include('admin.peserta.wizard.detail.profil')
         </section>
-        <section class="tab-pane {{ request()->query('tab')=='dokumen'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+        <section class="tab-pane {{ request()->query('tab')=='dokumen'?'active':'' }} py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
             @include('admin.peserta.wizard.detail.dokumen')
         </section>
-        <section class="tab-pane {{ request()->query('tab')=='kontak'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+        <section class="tab-pane {{ request()->query('tab')=='kontak'?'active':'' }} py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
             @include('admin.peserta.wizard.detail.kontak')
         </section>
-        <section class="tab-pane {{ request()->query('tab')=='riwayat'?'active':'' }} bg-light rounded-5 container-fluid px-5 py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
+        <section class="tab-pane {{ request()->query('tab')=='riwayat'?'active':'' }} py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">
             @include('admin.peserta.wizard.detail.riwayat')
         </section>
     </div>

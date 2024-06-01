@@ -2,12 +2,12 @@
     <div class="d-flex align-items-center gap-3">
         <a href="/admin/peserta" class="btn" style="width: fit-content">&#8617;</a>
         <h3 class="p-0 m-0">Dokumen</h3>
-        <hr class="flex-grow-1" style="height: 3px; background-color: #E1A600;">
+        <hr class="garis-tambah">
     </div>
 
     <div class="px-5 d-flex justify-content-around mb-5">
         <div class="w-100 mt-5">
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Legalitas Hukum Organisasi</div>
                 <div class="body-data d-flex align-items-center justify-content-end">
                     <a href="{{ Storage::url($peserta->peserta_profil->url_legalitas_hukum_organisasi) }}" target="_blank">
@@ -15,7 +15,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">SPPT SNI</div>
                 <div class="body-data d-flex align-items-center justify-content-end">
                     <a href="{{ Storage::url($peserta->peserta_profil->url_sppt_sni) }}" target="_blank">
@@ -23,7 +23,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Surat Keterangan Kemenkeuham</div>
                 <div class="body-data d-flex align-items-center justify-content-end">
                     <a href="{{ Storage::url($peserta->peserta_profil->url_sk_kemenkumham) }}" target="_blank">
@@ -31,7 +31,7 @@
                     </a>
                 </div>
             </div>
-            <div class="row-data">
+            <div class="row-data mb-3">
                 <div class="head-data">Kewenangan dan Kebijakan</div>
                 <div class="body-data d-flex align-items-center justify-content-end">
                     <a href="{{ Storage::url($peserta->peserta_profil->url_kewenangan_kebijakan) }}" target="_blank">

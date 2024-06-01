@@ -197,6 +197,11 @@ nav .fa {
     z-index: 1; /* Set z-index lebih rendah */
 }
 
+#tabs-profil .nav-item {
+    min-width: 160px;
+    max-width: 100%;
+}
+
 #tabs-profil .nav-item .nav-link {
     background-color: #ddc6c6;
     color: #2b2b28;
@@ -207,7 +212,6 @@ nav .fa {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: none;
-    width: 160px;
 }
 
 #tabs-profil .nav-item .nav-link:hover {
@@ -226,7 +230,8 @@ nav .fa {
 .tab-pane .content-profil,
 .tab-pane .content-kontak,
 .tab-pane .content-ubah-password,
-.content-kontak-form {
+.content-kontak-form,
+section.tab-pane {
     border-radius: 20px;
     background-color: white;
     position: relative !important;
@@ -244,7 +249,8 @@ nav .fa {
 .tab-pane .content-kontak,
 .tab-pane .content-ubah-password,
 .tab-pane .content-site-evaluation,
-.content-kontak-form {
+.content-kontak-form,
+section.tab-pane {
     padding-inline: 70px;
 }
 
@@ -265,7 +271,6 @@ hr {
     border-radius: 50%;
     border: 1px solid #c17d2d;
 }
-
 
 
 .content-profil button,
@@ -651,13 +656,50 @@ table button.btn-hapus {
 
 table button.btn-ubah,
     a.btn-ubah,
+    a.btn-detail,
     button.btn-tambah {
-    background-color: #e59b30 !important;
-    border: none;
-    width: 70px !important;
+        background-color: #e59b30 !important;
+        border: none;
+        width: 70px !important;
 }
 
-table a.btn-ubah:hover {
+button.dropdown-toggle {
+    background-color: #552525 !important;
+    border-radius: 10px !important;
+    color: white;
+    font-weight: bold;
+    font-size: 112.5%;
+    padding-inline: 1rem;
+}
+
+
+
+/* dropdown tahun */
+.container-dropdown-peserta button.dropdown-toggle:hover {
+    color: white;
+}
+.container-dropdown-peserta ul.dropdown-menu {
+    border: 2px solid #3b1919;
+    border-radius: 10px;
+    margin-left: 9px !important;
+    min-width: 5.5rem !important;
+}
+.container-dropdown-peserta ul.dropdown-menu.show {
+    margin-top: 5px !important;
+}
+.container-dropdown-peserta .dropdown-item {
+    margin-inline: 0px !important;
+    color: #231F20;
+    font-family: "Arimo", sans-serif;
+    font-size: 112.5%;
+}
+.container-dropdown-peserta .dropdown-item:hover {
+    background-color: transparent;
+}
+/* dropdown tahun end */
+
+a.btn-ubah:hover,
+a.btn-detail:hover {
     background-color: #e59b30 !important;
     border: none !important;
     color: white;

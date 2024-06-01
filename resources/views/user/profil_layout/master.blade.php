@@ -86,13 +86,11 @@
         </div>
         <!-- <hr class="horizontal dark mt-0" /> -->
         <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
-            @if ($role_access == 'admin')
+            @if ($role == 'admin')
                 @include('user.profil_layout.partials.admin')
-            @elseif ($role_access == 'sekretariat')
-                @include('user.profil_layout.partials.sekretariat')
-            @elseif ($role_access == 'evaluator')
+            @elseif ($role == 'evaluator')
                 @include('user.profil_layout.partials.evaluator')
-            @elseif ($role_access == 'lead evaluator')
+            @elseif ($role == 'lead evaluator')
                 @include('user.profil_layout.partials.lead_evaluator')
             @endif
         </div>
