@@ -43,6 +43,15 @@
     }
 </style>
 <main>
+    @if (session('error'))
+        <div class="alert alert-danger w-100" role="alert">
+            {{ session('error') }}
+        </div>
+    @elseif (session('success'))
+        <div class="alert alert-success w-100" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
     {{-- {{ dd(request()->id) }} --}}
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
         <li class="nav-item" role="presentation">
