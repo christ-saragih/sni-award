@@ -152,13 +152,12 @@
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="dokumen-tabpanel-0" role="tabpanel" aria-labelledby="dokumen-tab-0">
         <div class="content-profil py-5 mb-5">
             <div class="d-flex flex-column">
-                <h3 class="mb-2 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Dokumentasi</h3>
-                <div class="d-flex align-items-center gap-3" style="margin-top: -25px">
-                <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;">
-                <button onclick="openModalTambahDokumenPenjadwalan()" class="btn" data-bs-toggle="modal" role="button" style="width: 14%;">+ Tambah</button>
+                <h3>Dokumentasi</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <button onclick="openModalTambahDokumenPenjadwalan()" class="btn" data-bs-toggle="modal" role="button" style="width: 14%;">+ Tambah</button>
                 </div>
             </div>
-            <!-- <hr class="p-0 flex-fill" style="height: 1px; background-color: #CC9305;"> -->
             <!-- TODO: Tampilan FAQ admin -->
             <div class="container mt-4">
             <table class="table">

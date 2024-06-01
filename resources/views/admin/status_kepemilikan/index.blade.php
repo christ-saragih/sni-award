@@ -91,9 +91,12 @@
 <div class="tab-content" id="tab-content">
     <div class="tab-pane active" id="status_kepemilikan_form" role="tabpanel" aria-labelledby="status_kepemilikan">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Status Kepemilikan</h3>
-                <a href="#tambahStatusKepemilikan" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+            <div class="d-flex flex-column">
+                <h3>Status Kepemilikan</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahStatusKepemilikan" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">

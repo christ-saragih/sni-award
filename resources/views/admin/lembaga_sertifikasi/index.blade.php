@@ -73,7 +73,7 @@
 
 <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="lembaga-sertifikasi-tab" data-bs-toggle="tab" href="#lembaga-sertifikasi-tabpanel" role="tab" aria-controls="lembaga-sertifikasi-tabpanel" aria-selected="true" style="white-space: nowrap; width: fit-content;">Lembaga Sertifikasi</a>
+        <a class="nav-link active" id="lembaga-sertifikasi-tab" data-bs-toggle="tab" href="#lembaga-sertifikasi-tabpanel" role="tab" aria-controls="lembaga-sertifikasi-tabpanel" aria-selected="true" style="pointer-events: none;">Lembaga Sertifikasi</a>
     </li>
 </ul>
 
@@ -82,9 +82,12 @@
 <!-- Konten Lembaga Sertifikasi Section -->
 <div class="tab-pane" id="lembaga-sertifikasi-tabpanel" role="tabpanel" aria-labelledby="lembaga-sertifikasi-tab">
     <div class="content-profil py-5">
-        <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Lembaga Sertifikasi</h3>
-        <a href="#tambahLembagaSertifikasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah Lembaga Sertifikasi</a>
+        <div class="d-flex flex-column">
+            <h3>Lembaga Sertifikasi</h3>
+            <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahLembagaSertifikasi" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
         </div>
         <div class="container mt-4">
             <table class="table">

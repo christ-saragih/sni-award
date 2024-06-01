@@ -253,9 +253,12 @@
     {{-- Kategori --}}
     <div class="tab-pane {{ (request()->query('tab') == '')?'active':'' }}" id="assessment_kategori_form" role="tabpanel" aria-labelledby="assessment_kategori">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Kategori</h3>
-                <a href="#tambahKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah Kategori</a>
+            <div class="d-flex flex-column">
+                <h3>Kategori</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <form action="" method="GET">
@@ -360,9 +363,12 @@
     <!-- Sub Kategori Section -->
     <div class="tab-pane {{ (request()->query('tab') == 'assessment_sub_kategori')?'active':'' }}" id="assessment_sub_kategori_form" role="tabpanel" aria-labelledby="assessment_sub_kategori_form">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Sub Kategori</h3>
-            <a href="#tambahSubKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah Sub Kategori</a>
+            <div class="d-flex flex-column">
+                <h3>Sub Kategori</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="#tambahSubKategori" class="btn" data-bs-toggle="modal" role="button">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 <table class="table">
@@ -451,9 +457,12 @@
     <!-- Pertanyaan Section -->
     <div class="tab-pane {{ (request()->query('tab') == 'assessment_pertanyaan')?'active':'' }}" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
         <div class="content-profil py-5">
-            <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Pertanyaan</h3>
-            <a href="{{ route('assessment_pertanyaan.create') }}" class="btn">+ Tambah Pertanyaan</a>
+            <div class="d-flex flex-column">
+                <h3>Pertanyaan</h3>
+                <div class="d-flex align-items-center gap-3" style="margin-top: -14px">
+                    <hr class="garis-tambah">
+                    <a href="{{ route('assessment_pertanyaan.create') }}" class="btn">+ Tambah</a>
+                </div>
             </div>
             <div class="container mt-4">
                 @include('admin.assessment.assessment_pertanyaan.index')

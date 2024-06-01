@@ -19,15 +19,15 @@ use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\TrueType;
 
 class RegistrasiAssessmentController extends Controller
-{ 
+{
     public function showKategori() {
         $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
         $assessment_kategori = AssessmentKategori::get();
-        
+
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
-        
+
         $dokumen = Dokumen::get();
-        
+
         $konfigurasi = Konfigurasi::where('key','Tahun SNI Award')->first();
         $registrasi = Registrasi::where('peserta_id',Auth::guard('peserta')->user()->id)->where('tahun',$konfigurasi->value)->first();
         $registrasi_dokumen = [];
@@ -38,7 +38,7 @@ class RegistrasiAssessmentController extends Controller
         if($registrasi){
             $test = Dokumen::leftJoin('registrasi_dokumen','dokumen.id','registrasi_dokumen.dokumen_id')->where('registrasi_id',$registrasi->id)->orWhereNull('registrasi_id')->get();
         }
-        $regis_jawaban = []; 
+        $regis_jawaban = [];
             if ($registrasi){
                 $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
             }
@@ -50,7 +50,7 @@ class RegistrasiAssessmentController extends Controller
                     }
                 }
             }
-        
+
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
@@ -146,23 +146,27 @@ class RegistrasiAssessmentController extends Controller
         // Periksa apakah peserta sudah memiliki entri registrasi sebelumnya
         $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
 
-        if ($existingRegistration) {
-            return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
+        $konfigurasi_pendaftaran = Konfigurasi::where('key','pendaftaran')->first();
+        if ($konfigurasi_pendaftaran->value == 'TRUE') {
+            if ($existingRegistration) {
+                return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
+            }
+
+            if (Auth::guard('peserta')->check()) {
+                Registrasi::create([
+                    'tahun' => date('Y'),
+                    'peserta_id' => Auth::guard('peserta')->user()->id,
+                    'status_id' => 1, // aktif
+                    'stage_id' => 1, // dummy
+                    'kategori_organisasi_id' => 1, // dummy
+                ]);
+
+                return redirect()->back()->with('success', 'Pendaftaran telah dibuka');
+            }
         }
 
-        if (Auth::guard('peserta')->check()) {
-            Registrasi::create([
-                'tahun' => date('Y'),
-                'peserta_id' => Auth::guard('peserta')->user()->id,
-                'status_id' => 1, // aktif
-                'stage_id' => 1, // dummy
-                'kategori_organisasi_id' => 1, // dummy
-            ]);
 
-            return redirect()->back()->with('success', 'Pendaftaran telah dibuka');
-        }
-
-        return redirect()->back()->withErrors('Gagal melakukan pendaftaran');
+        return redirect()->back()->withErrors('Pendaftaran Belum Dibuka!');
     }
 
 
