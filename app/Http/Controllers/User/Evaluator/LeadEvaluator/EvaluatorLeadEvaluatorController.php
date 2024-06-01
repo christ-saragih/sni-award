@@ -91,6 +91,7 @@ class EvaluatorLeadEvaluatorController extends Controller
     public function penilaian(Request $request, $registrasi_id) {
         $user = Auth::user();
         $registrasi = Registrasi::find($registrasi_id);
+
         $request->validate([
             'skor' => 'required|max:100',
             'catatan' => 'required',
@@ -99,17 +100,24 @@ class EvaluatorLeadEvaluatorController extends Controller
             'skor.required' => 'Skor Masimal 100',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
-        RegistrasiPenilaian::create([
-            'registrasi_id' => $registrasi_id,
-            'internal_id' => $user->id,
-            'jabatan' => $user->jenis_role->nama,
-            'url_dokumen_penilaian' => '',
-            'stage_id' => $registrasi->stage_id,
-            'skor' => $request->skor,
-            'catatan' => $request->catatan,
-            'final' => $request->skor,
-        ]);
 
-        return back()->with('success', 'Berhasil mengirim penilaian');
+        $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+
+        if ($penilaian_evaluator) {
+            RegistrasiPenilaian::create([
+                'registrasi_id' => $registrasi_id,
+                'internal_id' => $user->id,
+                'jabatan' => $user->jenis_role->nama,
+                'url_dokumen_penilaian' => '',
+                'stage_id' => $registrasi->stage_id,
+                'skor' => $request->skor,
+                'catatan' => $request->catatan,
+                'final' => $request->skor,
+            ]);
+            return back()->with('success', 'Berhasil mengirim penilaian');
+        }
+
+        return back()->with('error', 'Evaluator Belum Menilai');
     }
 }
