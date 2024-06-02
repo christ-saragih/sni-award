@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Evaluator\Sekretariat;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
+use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
@@ -84,6 +85,8 @@ class EvaluatorSekretariatController extends Controller
         $peserta = Peserta::find($registrasi->peserta_id);
         $dokumen = Dokumen::get();
 
+        $konfigurasi_desk_evaluation = Konfigurasi::where('key', 'desk evaluation')->first();
+
         $assessment_kategori = AssessmentKategori::get();
 
         $selected_assessment_kategori = AssessmentKategori::where('nama', 'Kepemimpinan')->get();
@@ -110,7 +113,8 @@ class EvaluatorSekretariatController extends Controller
                 'desk_evaluation' => $desk_evaluation,
                 'penilaian_evaluator' => $penilaian_evaluator,
                 'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
-                'penilaian_sekretariat' => $penilaian_sekretariat
+                'penilaian_sekretariat' => $penilaian_sekretariat,
+                'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
             ]);
         }
         return view('evaluator.sekretariat.profil', [
@@ -122,7 +126,8 @@ class EvaluatorSekretariatController extends Controller
             'selected_assessment_kategori' => $selected_assessment_kategori,
             'registrasi_penilaian' => $registrasi_penilaian,
             'desk_evaluation' => $desk_evaluation,
-            'penilaian_sekretariat' => $penilaian_sekretariat
+            'penilaian_sekretariat' => $penilaian_sekretariat,
+            'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
         ]);
     }
 
