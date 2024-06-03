@@ -46,7 +46,7 @@ class RegistrasiDokumenController extends Controller
                 $existingDocument->update([
                     'dokumen_id' => $iteration+1,
                     'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
-                    'feedback' => 'assdasda',
+                    // 'feedback' => 'assdasda',
                     'status' => 'proses',
             ]);
             } elseif ($existingDocument && $existingDocument->status === 'disetujui') {
@@ -56,7 +56,7 @@ class RegistrasiDokumenController extends Controller
                     'registrasi_id' => $registrasi->id,
                     'dokumen_id' => $iteration+1,
                     'url_dokumen' => "/storage/Peserta/registrasi/dokumen/$user->id/$nama_file_dokumen",
-                    'feedback' => 'assdasda',
+                    // 'feedback' => 'assdasda',
                     'status' => 'proses',
                 ]);
             }

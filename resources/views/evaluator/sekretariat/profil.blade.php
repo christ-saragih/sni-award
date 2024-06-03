@@ -8,12 +8,12 @@
     .active {
         display: block;
     }
-    
+
     .nav-link.disabled {
         pointer-events: none;
         color: #999999 !important;
     }
-    button.btn {   
+    button.btn {
         font-size: 100%;
         font-weight: 700;
         background-color: #552525;
@@ -21,7 +21,7 @@
         border-radius: 15px;
         border: 3px solid #c17d2d;
     }
-    button.btn:hover { 
+    button.btn:hover {
         font-weight: 600;
         background-color: white;
         color: #c17d2d;
@@ -43,6 +43,15 @@
     }
 </style>
 <main>
+    @if (session('error'))
+        <div class="alert alert-danger w-100" role="alert">
+            {{ session('error') }}
+        </div>
+    @elseif (session('success'))
+        <div class="alert alert-success w-100" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
     {{-- {{ dd(request()->id) }} --}}
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
         <li class="nav-item" role="presentation">
