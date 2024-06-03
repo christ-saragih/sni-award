@@ -1,4 +1,4 @@
-@extends('evaluator.layouts.master')
+@extends('lead_evaluator.layouts.master')
 @section('content')
 <style>
     .hide{
@@ -67,7 +67,7 @@
             <a class="nav-link {{ request()->query('tab') == 'assessment' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('lead_evaluator.sekretariat.detail.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'assessment']) }}" role="tab">Assessment</a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link {{ request()->query('tab') == 'penilaian' ? 'active' : ''}} " id="simple-tab-1" href="{{ route('lead_evaluator.sekretariat.detail.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'penilaian']) }}" role="tab">Penilaian</a>
+            <a class="nav-link {{ request()->query('tab') == 'penilaian' ? 'active' : ''}} {{ $desk_evaluation && count($desk_evaluation) > 0 ? 'disabled' : '' }}" id="simple-tab-1" href="{{ route('lead_evaluator.sekretariat.detail.view', ['registrasi_id' => request()->registrasi_id, 'tab' => 'penilaian']) }}" role="tab">Penilaian</a>
         </li>
     </ul>
     <hr class="p-0">

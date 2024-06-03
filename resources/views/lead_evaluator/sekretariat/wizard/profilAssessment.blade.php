@@ -72,3 +72,8 @@
     </div>
     {{-- end content --}}
 </div>
+<script>
+    const handleChangeKategori = (e) => {
+        location.href = `${location.href}&assessment_kategori=${e.value}`
+    }
+</script>

@@ -21,26 +21,21 @@ use Dompdf\Dompdf;
 class EvaluatorSekretariatController extends Controller
 {
     public function index(Request $request) {
+        $user = Auth::user();
         $stage = Stage::where('id',  3)
             ->orWhere('id', 4)
             ->get();
-        // $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
-
-        // $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id);
-        // if ($request->stage) {
-        //     $registrasi = $registrasi->where('stage_id', $request->stage);
-        // }
-        // if ($request->tahun) {
-        //     $registrasi = $registrasi->where('tahun', $request->tahun);
-        // }
-        // $registrasi = $registrasi->get();
-        $user = Auth::user();
-        $registrasi = Registrasi::get();
-
+            
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
-        $all_registrasi_id = Registrasi::distinct()->pluck('id');
 
-        if ($request->tahun) $all_registrasi_id = Registrasi::where('tahun', $request->tahun)->distinct()->pluck('id');
+        $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id);
+        if ($request->stage) {
+            $registrasi = $registrasi->where('stage_id', $request->stage);
+        }
+        if ($request->tahun) {
+            $registrasi = $registrasi->where('tahun', $request->tahun);
+        }
+        $registrasi = $registrasi->get();
 
         $desk_evaluation = Registrasi::where('sekretariat_id', $user->id)
             ->where('stage_id', 3)
