@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\LeadEvaluator\Sekretariat;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
+use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\Registrasi;
 use App\Models\RegistrasiAssessment;
@@ -24,7 +25,7 @@ class LeadEvaluatorSekretariatController extends Controller
             ->orWhere('id', 4)
             ->get();
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
-        
+
         $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id);
         if ($request->stage) {
             $registrasi = $registrasi->where('stage_id', $request->stage);
@@ -46,11 +47,12 @@ class LeadEvaluatorSekretariatController extends Controller
         $registrasi = Registrasi::find($registrasi_id);
         $registrasi_penilaian = $registrasi->registrasi_penilaian;
 
+        $konfigurasi_desk_evaluation = Konfigurasi::where('key', 'desk evaluation')->first();
+
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
         $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
-        // dd($penilaian_sekretariat);
 
         $registrasi_dokumen = $registrasi->registrasi_dokumen;
         $peserta = Peserta::find($registrasi->peserta_id);
@@ -61,7 +63,6 @@ class LeadEvaluatorSekretariatController extends Controller
         $selected_assessment_kategori = AssessmentKategori::where('nama', 'Kepemimpinan')->get();
         if ($request->assessment_kategori) {
             $selected_assessment_kategori = AssessmentKategori::where('nama', $request->assessment_kategori)->get();
-            // dd($assessment_kategori);
         }
         return view('lead_evaluator.sekretariat.profil', [
             'peserta' => $peserta,
@@ -74,7 +75,8 @@ class LeadEvaluatorSekretariatController extends Controller
             'desk_evaluation' => $desk_evaluation,
             'penilaian_evaluator' => $penilaian_evaluator,
             'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
-            'penilaian_sekretariat' => $penilaian_sekretariat
+            'penilaian_sekretariat' => $penilaian_sekretariat,
+            'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
         ]);
     }
 
@@ -165,25 +167,33 @@ class LeadEvaluatorSekretariatController extends Controller
     public function penilaian(Request $request, $registrasi_id) {
         $user = Auth::user();
         $registrasi = Registrasi::find($registrasi_id);
+
         $request->validate([
             'skor' => 'required|max:100',
             'catatan' => 'required',
         ], [
             'skor.required' => 'Skor Tidak Boleh Kosong',
-            'skor.max' => 'Skor Masimal 100',
+            'skor.required' => 'Skor Masimal 100',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
-        RegistrasiPenilaian::create([
-            'registrasi_id' => $registrasi_id,
-            'internal_id' => $user->id,
-            'jabatan' => $user->jenis_role->nama,
-            'url_dokumen_penilaian' => '',
-            'stage_id' => $registrasi->stage_id,
-            'skor' => $request->skor,
-            'catatan' => $request->catatan,
-            'final' => $request->skor,
-        ]);
 
-        return back()->with('success', 'Berhasil mengirim penilaian');
+        $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
+        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+        if ($penilaian_evaluator && $penilaian_lead_evaluator) {
+            RegistrasiPenilaian::create([
+                'registrasi_id' => $registrasi_id,
+                'internal_id' => $user->id,
+                'jabatan' => $user->jenis_role->nama,
+                'url_dokumen_penilaian' => '',
+                'stage_id' => $registrasi->stage_id,
+                'skor' => $request->skor,
+                'catatan' => $request->catatan,
+                'final' => $request->skor,
+            ]);
+            return back()->with('success', 'Berhasil mengirim penilaian');
+        }
+
+        return back()->with('error', 'Evaluator/Lead Evaluator Belum Menilai');
     }
 }

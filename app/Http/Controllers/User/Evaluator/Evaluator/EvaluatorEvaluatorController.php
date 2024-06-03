@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Evaluator\Evaluator;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
+use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\Registrasi;
 use App\Models\RegistrasiDokumen;
@@ -62,10 +63,17 @@ class EvaluatorEvaluatorController extends Controller
         $peserta = Peserta::find($registrasi->peserta_id);
         $dokumen = Dokumen::get();
 
+        $konfigurasi_desk_evaluation = Konfigurasi::where('key', 'desk evaluation')->first();
+
+        // if ($konfigurasi_desk_evaluation->value != 'TRUE') {
+        //     return redirect()->back()->withErrors('error', 'Penilaian Desk Evaluation Belum Dibuka!');
+        // }
+
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
 
         // dd($desk_evaluation->registrasi->sekretariat_id);
         // dd(RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first());
+
         $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
@@ -91,6 +99,7 @@ class EvaluatorEvaluatorController extends Controller
             'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'site_evaluation' => $site_evaluation,
+            'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
         ]);
     }
 
