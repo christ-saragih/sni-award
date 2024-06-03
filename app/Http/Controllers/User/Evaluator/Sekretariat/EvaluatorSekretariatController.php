@@ -242,6 +242,8 @@ class EvaluatorSekretariatController extends Controller
                 'catatan' => $request->catatan,
                 'final' => $request->skor,
             ]);
+
+            $registrasi->update(['stage_id' => 4]);
             return back()->with('success', 'Berhasil mengirim penilaian');
         }
 
