@@ -61,7 +61,7 @@
                     <p class="m-0">Diverifikasi</p>
                 </div>
             @else
-                <button type="button" class="mt-3 px-3" style="background-color: #E59B30; height: fit-content; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold; width: fit-content; border:none;" data-bs-toggle="tooltip" data-bs-placement="right" title="Verifikasi peserta" data-bs-target="#verifikasi_peserta">
+                <button type="button" class="mt-3 px-3" style="background-color: #E59B30; height: fit-content; border-radius: 15px; padding-block: 6px; color:white; font-weight: bold; width: fit-content; border:none;" data-bs-toggle="modal" data-bs-placement="right" title="Verifikasi peserta" data-bs-target="#verifikasi_peserta">
                     Verifikasi 
                 </button>
                 <div class="mt-2" style="color: #9FAFBF; font-size:14px;">* Klik verifikasi di sini</div>

@@ -122,13 +122,22 @@
                                         <td>{{ $reg->peserta->email }}</td>
                                         <td>{{ $reg->peserta->peserta_profil->no_hp }}</td>
                                         <td class="d-flex align-items-center justify-content-center">
-                                            <a href="" class="px-2 py-1" style="color: white; background-color: #6C64CC; border-radius: 10px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Buat tim">
-                                                <i class="fa fa-user-plus"></i>
+                                            <a href="{{ route('lead_evaluator.tim.create', Crypt::encryptString($reg->id)) }}" class="px-2 py-1" style="color: white; border-radius: 10px; background-color: {{ $reg->registrasi_evaluator ? '#6C64CC' : '#E59B30' }};" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Buat tim">
+                                                @if ($reg->registrasi_evaluator)
+                                                    <i class="fa fa-users"></i>
+                                                @else
+                                                    <i class="fa fa-user-plus"></i>
+                                                @endif
                                             </a>
                                         </td>
                                         <td>
-                                            <div class="px-1 py-1 text-center text-white" style="border-radius: 15px; font-weight: bold; background-color: #47A15E;">Sudah Dinilai</div>
+                                            {{-- <div class="px-1 py-1 text-center text-white" style="border-radius: 15px; font-weight: bold; background-color: #47A15E;">Sudah Dinilai</div> --}}
                                             <!-- <div class="px-1 py-1 text-center text-white" style="border-radius: 15px; font-weight: bold; background-color: #D12B2B;">Belum Dinilai</div> -->
+                                            @if ($penilaian_sekretariat)
+                                                <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
+                                            @else
+                                                <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
+                                            @endif
                                         </td>
                                         <td class="text-center">
                                             <div class="dropdown">
@@ -146,7 +155,7 @@
                                                     " 
                                                 >Detail</button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="">Profil</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('lead_evaluator.sekretariat.detail.view', Crypt::encryptString($reg->id)) }}">Profil</a></li>
                                                     
                                                     <li><a class="dropdown-item" href="">Riwayat</a></li>
                                                 </ul>

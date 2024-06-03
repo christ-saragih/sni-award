@@ -21,6 +21,7 @@ use Dompdf\Dompdf;
 class LeadEvaluatorSekretariatController extends Controller
 {
     public function index(Request $request) {
+        $user = Auth::user();
         $stage = Stage::where('id',  3)
             ->orWhere('id', 4)
             ->get();
@@ -34,11 +35,34 @@ class LeadEvaluatorSekretariatController extends Controller
             $registrasi = $registrasi->where('tahun', $request->tahun);
         }
         $registrasi = $registrasi->get();
-        // dd($registrasi);
+        
+        $desk_evaluation = Registrasi::where('sekretariat_id', $user->id)
+            ->where('stage_id', 3)
+            // ->whereIn('id', $all_registrasi_id)
+            ->get();
+        $site_evaluation = Registrasi::where('sekretariat_id', $user->id)
+            ->where('stage_id', 4)
+            // ->whereIn('id', $all_registrasi_id)
+            ->get();
+
+        $penilaian_sekretariat = [];
+        foreach ($desk_evaluation as $penilaian) {
+            foreach ($penilaian->registrasi_penilaian as $status) {
+                if($status->internal_id == $penilaian->sekretariat_id) {
+                    $penilaian_sekretariat[] = [
+                        'jabatan' => $status->jabatan,
+                    ];
+                }
+            }
+        }
+
         return view('lead_evaluator.sekretariat.index', [
             'stage' => $stage,
             'tahun_registrasi' => $tahun_registrasi,
             'registrasi' => $registrasi,
+            'desk_evaluation' => $desk_evaluation,
+            'site_evaluation' => $site_evaluation,
+            'penilaian_sekretariat' => $penilaian_sekretariat,  
         ]);
     }
 
@@ -46,23 +70,46 @@ class LeadEvaluatorSekretariatController extends Controller
         $registrasi_id = Crypt::decryptString($registrasi_id);
         $registrasi = Registrasi::find($registrasi_id);
         $registrasi_penilaian = $registrasi->registrasi_penilaian;
+        
+        $registrasi_dokumen = $registrasi->registrasi_dokumen;
+        $peserta = Peserta::find($registrasi->peserta_id);
+        $dokumen = Dokumen::get();
 
         $konfigurasi_desk_evaluation = Konfigurasi::where('key', 'desk evaluation')->first();
 
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
-        $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
-        $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
-        $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
 
-        $registrasi_dokumen = $registrasi->registrasi_dokumen;
-        $peserta = Peserta::find($registrasi->peserta_id);
-        $dokumen = Dokumen::get();
+        // $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+        // $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+        // $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
 
         $assessment_kategori = AssessmentKategori::get();
 
         $selected_assessment_kategori = AssessmentKategori::where('nama', 'Kepemimpinan')->get();
         if ($request->assessment_kategori) {
             $selected_assessment_kategori = AssessmentKategori::where('nama', $request->assessment_kategori)->get();
+        }
+        $penilaian_sekretariat = Registrasi::where(['stage_id' => 3, 'sekretariat_id' => $registrasi->sekretariat_id])->first();
+        
+        $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
+        if ($desk_evaluation != null) {
+            $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
+            $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
+            $penilaian_sekretariat = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->registrasi->sekretariat_id])->first();
+            return view('lead_evaluator.sekretariat.profil', [
+                'peserta' => $peserta,
+                'registrasi' => $registrasi,
+                'registrasi_dokumen' => $registrasi_dokumen,
+                'dokumen' => $dokumen,
+                'assessment_kategori' => $assessment_kategori,
+                'selected_assessment_kategori' => $selected_assessment_kategori,
+                'registrasi_penilaian' => $registrasi_penilaian,
+                'desk_evaluation' => $desk_evaluation,
+                'penilaian_evaluator' => $penilaian_evaluator,
+                'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
+                'penilaian_sekretariat' => $penilaian_sekretariat,
+                'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
+            ]);
         }
         return view('lead_evaluator.sekretariat.profil', [
             'peserta' => $peserta,
@@ -73,8 +120,6 @@ class LeadEvaluatorSekretariatController extends Controller
             'selected_assessment_kategori' => $selected_assessment_kategori,
             'registrasi_penilaian' => $registrasi_penilaian,
             'desk_evaluation' => $desk_evaluation,
-            'penilaian_evaluator' => $penilaian_evaluator,
-            'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
         ]);

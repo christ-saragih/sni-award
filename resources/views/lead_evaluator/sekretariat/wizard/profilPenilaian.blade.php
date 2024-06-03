@@ -34,7 +34,7 @@
                                     </ul>
                                     <!-- fieldsets -->
                                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                                        @if ($desk_evaluation->evaluator)
+                                        @if ($desk_evaluation && $desk_evaluation->evaluator)
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
                                                     <div class="col-md-4 ps-5">
@@ -125,7 +125,7 @@
                                     </fieldset>
 
                                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                                        @if ($desk_evaluation->lead_evaluator)
+                                        @if ($desk_evaluation && $desk_evaluation->lead_evaluator)
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
                                                     <div class="col-md-4 ps-5">
@@ -218,7 +218,7 @@
                                     </fieldset>
 
                                     <fieldset class="fieldset" id="fieldsetPenilaian">
-                                        @if ($desk_evaluation->registrasi->sekretariat_id)
+                                        @if ($desk_evaluation && $desk_evaluation->registrasi->sekretariat_id)
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
                                                     <div class="col-md-3 ps-5">
