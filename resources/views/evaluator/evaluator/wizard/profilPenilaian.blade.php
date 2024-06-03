@@ -35,19 +35,19 @@
                     <fieldset class="fieldset" id="fieldsetPenilaian">
                         @if ($desk_evaluation ? $desk_evaluation->evaluator : null)
                             <div class="card-body pt-0 mt-0">
-                                <div class="row align-items-center pt-4 pb-3">
-                                    <div class="col-md-4 ps-5">
+                                <div class="row align-items-center py-3">
+                                    <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
-                                        <p>{{ $desk_evaluation->evaluator->name }}</p>
+                                        <p style="margin: 0">{{ $desk_evaluation->evaluator->name }}</p>
                                     </div>
                                 </div>
                                 {{-- @foreach ($registrasi_penilaian as $penilai) --}}
                                     {{-- {{dd($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)}} --}}
                                     @if ($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)
                                         <div class="row align-items-center pb-3">
-                                            <div class="col-md-4 ps-5">
+                                            <div class="col-md-3 ps-5">
                                                 <h6 class="mb-0">Nilai</h6>
                                             </div>
                                             <div class="col-md-2">
@@ -58,7 +58,7 @@
                                             </div>
                                         </div>
                                         <div class="row pb-3">
-                                            <div class="col-md-4 ps-5">
+                                            <div class="col-md-3 ps-5">
                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                             </div>
                                             <div class="col-md-8 pe-5">
@@ -69,7 +69,7 @@
                                         <form id="submissionForm" action="{{ route('evaluator.evaluator.detail.penilaian', $registrasi->id) }}" method="post">
                                             @csrf
                                             <div class="row align-items-center pb-3">
-                                                <div class="col-md-4 ps-5">
+                                                <div class="col-md-3 ps-5">
                                                     <h6 class="mb-0">Nilai</h6>
                                                 </div>
                                                 <div class="col-md-3">
@@ -77,14 +77,16 @@
                                                 </div>
                                             </div>
                                             <div class="row pb-3">
-                                                <div class="col-md-4 ps-5">
+                                                <div class="col-md-3 ps-5">
                                                     <h6 class="mb-0 mt-2">Komentar</h6>
                                                 </div>
-                                                <div class="col-md-6 pe-5">
+                                                <div class="col-md-6 ">
                                                     <textarea name="catatan" class="form-control" id="" cols="30" rows="5" placeholder="Tuliskan Komentar" required></textarea>
                                                 </div>
+                                                <div class="col-md-3 d-flex align-items-end">
+                                                    <button type="button" class="btn btn-primary" style="width: auto" data-bs-toggle="modal" data-bs-target="#confirmationModal"><i class="fa fa-send"></i></button>
+                                                </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Submit</button>
                                         </form>
                                     @endif
                                 {{-- @endforeach --}}
@@ -93,7 +95,7 @@
                         @else
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 pb-3">
-                                    <div class="col-md-4 ps-5">
+                                    <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">

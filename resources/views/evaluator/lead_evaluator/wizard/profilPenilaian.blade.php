@@ -127,7 +127,7 @@
                             @if ($desk_evaluation->lead_evaluator)
                                 <div class="card-body pt-0 mt-0">
                                     <div class="row align-items-center pt-4 pb-3">
-                                        <div class="col-md-4 ps-5">
+                                        <div class="col-md-3 ps-5">
                                             <h6 class="mb-0">Nama</h6>
                                         </div>
                                         <div class="col-md-8 pe-5">
@@ -138,7 +138,7 @@
                                         {{-- {{dd($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)}} --}}
                                         @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)
                                             <div class="row align-items-center pb-3">
-                                                <div class="col-md-4 ps-5">
+                                                <div class="col-md-3 ps-5">
                                                     <h6 class="mb-0">Nilai</h6>
                                                 </div>
                                                 <div class="col-md-2">
@@ -149,7 +149,7 @@
                                                 </div>
                                             </div>
                                             <div class="row pb-3">
-                                                <div class="col-md-4 ps-5">
+                                                <div class="col-md-3 ps-5">
                                                     <h6 class="mb-0 mt-2">Komentar</h6>
                                                 </div>
                                                 <div class="col-md-8 pe-5">
@@ -160,7 +160,7 @@
                                             <form id="submissionForm" action="{{ route('lead_evaluator.lead_evaluator.detail.penilaian', $registrasi->id) }}" method="post">
                                                 @csrf
                                                 <div class="row align-items-center pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nilai</h6>
                                                     </div>
                                                     <div class="col-md-3">
@@ -168,14 +168,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="row pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0 mt-2">Komentar</h6>
                                                     </div>
                                                     <div class="col-md-6 pe-5">
                                                         <textarea name="catatan" class="form-control" id="" cols="30" rows="5" placeholder="Tuliskan Komentar" required></textarea>
                                                     </div>
+                                                    <div class="col-md-3 d-flex align-items-end">
+                                                        <button type="button" class="btn btn-primary" style="width: auto" data-bs-toggle="modal" data-bs-target="#confirmationModal"><i class="fa fa-send"></i></button>
+                                                    </div>
                                                 </div>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Submit</button>
                                             </form>
                                         @endif
                                     {{-- @endforeach --}}
