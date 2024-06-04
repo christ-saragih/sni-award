@@ -1,13 +1,37 @@
 <style>
+    .container-kategori-select {
+        position: relative;
+        display: inline-block;
+    }
+
+    .container-kategori-select::after {    
+        content: '\25BC'; /* Unicode character for down arrow */
+        position: absolute;
+        top: 50%;
+        right: 15px; /* Adjust this value to set the margin-right for the arrow */
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: white;
+    }
+
     .kategori-select {
-        padding: 10px 20px;
+        appearance: none; /* For modern browsers */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+        padding: 8px 40px 8px 20px;
         border: none;
         outline: none;
         background-color: #CC9305;
-        border-radius: 15px;
+        border-radius: 10px;
         color: #fff;
         font-weight: bold;
     }
+    .kategori-select:focus {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
     .kategori-option {
         background-color: #fff;
         color: #000;
