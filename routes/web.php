@@ -376,19 +376,20 @@ Route::prefix('/evaluator')->middleware(['auth', 'verified', 'email.verified', '
         Route::post('/detail/{registrasi_id}/assessment/download', [EvaluatorSekretariatController::class, 'downloadAssessmentPDF'])->name('evaluator.sekretariat.detail.assessment.download');
         Route::post('/detail/{registrasi_id}/penilaian', [EvaluatorSekretariatController::class, 'penilaian'])->name('evaluator.sekretariat.detail.penilaian');
     });
-    
+
     Route::prefix('/lead-evaluator')->group(function () {
         Route::get('/', [EvaluatorLeadEvaluatorController::class, 'index'])->name('evaluator.lead_evaluator.view');
         Route::get('/detail/{registrasi_id}', [EvaluatorLeadEvaluatorController::class, 'detailProfil'])->name('evaluator.lead_evaluator.detail.view');
         Route::post('/detail/{registrasi_id}/penilaian', [EvaluatorLeadEvaluatorController::class, 'penilaian'])->name('evaluator.lead_evaluator.detail.penilaian');
     });
-    
+
     Route::prefix('/evaluator')->group(function () {
         Route::get('/', [EvaluatorEvaluatorController::class, 'index'])->name('evaluator.evaluator.view');
         Route::get('/detail/{registrasi_id}', [EvaluatorEvaluatorController::class, 'detailProfil'])->name('evaluator.evaluator.detail.view');
         Route::post('/detail/{registrasi_id}/penilaian', [EvaluatorEvaluatorController::class, 'penilaian'])->name('evaluator.evaluator.detail.penilaian');
+        Route::get('/detail/{registrasi_id}/download/{penilaian_id}', [EvaluatorEvaluatorController::class, 'download'])->name('evaluator.evaluator.detail.download');
     });
-    
+
     Route::prefix('/tim')->group(function () {
         Route::get('/{registrasi_id}', [EvaluatorTimController::class, 'index'])->name('evaluator.tim.view');
         Route::get('/{registrasi_id}/tambah', [EvaluatorTimController::class, 'create'])->name('evaluator.tim.create');
@@ -426,7 +427,7 @@ Route::prefix('/lead-evaluator')->middleware(['auth', 'verified', 'email.verifie
         Route::get('/detail/{registrasi_id}', [LeadEvaluatorEvaluatorController::class, 'detailProfil'])->name('lead_evaluator.evaluator.detail.view');
         Route::post('/detail/{registrasi_id}/penilaian', [LeadEvaluatorEvaluatorController::class, 'penilaian'])->name('lead_evaluator.evaluator.detail.penilaian');
     });
-    
+
     Route::prefix('/tim')->group(function () {
         Route::get('/{registrasi_id}', [LeadEvaluatorTimController::class, 'index'])->name('lead_evaluator.tim.view');
         Route::get('/{registrasi_id}/tambah', [LeadEvaluatorTimController::class, 'create'])->name('lead_evaluator.tim.create');

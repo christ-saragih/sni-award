@@ -41,8 +41,9 @@
                     </td>
                     <td>
                         {{-- {{ dd($desk->registrasi->registrasi_penilaian[count($desk->registrasi->registrasi_penilaian)-1]) }} --}}
-                        {{-- {{ dd($penilaian_evaluator) }} --}}
-                        @if ($penilaian_evaluator)
+                        {{-- {{ dd($desk->is_dinilai) }} --}}
+                        {{-- {{dd($desk->registrasi->registrasi_penilaian->registrasi_id)}} --}}
+                        @if ($desk->is_dinilai)
                             <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                         @else
                             <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
