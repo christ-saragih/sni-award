@@ -39,7 +39,7 @@
                     </a>
                 </td>
                 <td>
-                    @if ($penilaian_evaluator)
+                    @if ($desk->is_dinilai)
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #47A15E;">Sudah Dinilai</div>
                     @else
                         <div class="px-1 py-1 text-center text-white rounded" style="background-color: #D12B2B;">Belum Dinilai</div>
