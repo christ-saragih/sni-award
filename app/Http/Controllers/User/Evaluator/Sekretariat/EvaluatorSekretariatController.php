@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Dompdf\Dompdf;
+use Svg\Tag\Rect;
 
 class EvaluatorSekretariatController extends Controller
 {
@@ -25,7 +26,7 @@ class EvaluatorSekretariatController extends Controller
         $stage = Stage::where('id',  3)
             ->orWhere('id', 4)
             ->get();
-            
+
         $tahun_registrasi = Registrasi::distinct()->pluck('tahun');
 
         $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id);
@@ -81,7 +82,9 @@ class EvaluatorSekretariatController extends Controller
         $dokumen = Dokumen::get();
 
         $konfigurasi_desk_evaluation = Konfigurasi::where('key', 'desk evaluation')->first();
+        $konfigurasi_site_evaluation = Konfigurasi::where('key', 'site evaluation')->first();
 
+        // dd($konfigurasi_site_evaluation);
         $assessment_kategori = AssessmentKategori::get();
 
         $selected_assessment_kategori = AssessmentKategori::where('nama', 'Kepemimpinan')->get();
@@ -110,6 +113,7 @@ class EvaluatorSekretariatController extends Controller
                 'penilaian_lead_evaluator' => $penilaian_lead_evaluator,
                 'penilaian_sekretariat' => $penilaian_sekretariat,
                 'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
+                'konfigurasi_site_evaluation' => $konfigurasi_site_evaluation,
             ]);
         }
         return view('evaluator.sekretariat.profil', [
@@ -123,6 +127,7 @@ class EvaluatorSekretariatController extends Controller
             'desk_evaluation' => $desk_evaluation,
             'penilaian_sekretariat' => $penilaian_sekretariat,
             'konfigurasi_desk_evaluation' => $konfigurasi_desk_evaluation,
+            'konfigurasi_site_evaluation' => $konfigurasi_site_evaluation,
         ]);
     }
 
@@ -211,27 +216,34 @@ class EvaluatorSekretariatController extends Controller
     }
 
     public function penilaian(Request $request, $registrasi_id) {
-        $user = Auth::user();
-        $registrasi = Registrasi::find($registrasi_id);
-
         $request->validate([
             'skor' => 'required|max:100',
+            'url_dokumen_penilaian' => 'required|mimes:pdf',
             'catatan' => 'required',
         ], [
             'skor.required' => 'Skor Tidak Boleh Kosong',
             'skor.required' => 'Skor Masimal 100',
+            'url_dokumen_penilaian.required' => 'Dokumen Penilaian Tidak Boleh Kosong',
+            'url_dokumen_penilaian.mimes' => 'Dokumen Penilaian Harus PDF',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
+
+        $user = Auth::user();
+        $registrasi = Registrasi::find($registrasi_id);
 
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
         $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         $penilaian_lead_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->lead_evaluator_id])->first();
         if ($penilaian_evaluator && $penilaian_lead_evaluator) {
+            $dokumen_penilaian = $request->file('url_dokumen_penilaian');
+            $nama_dokumen_penilaian = 'dokumen_penilaian_' . now()->format('YmdHis') . $dokumen_penilaian->getClientOriginalName();
+            $dokumen_penilaian->move(storage_path('app/public/file/dokumen_penilaian/desk_evaluation/sekretariat/'), $nama_dokumen_penilaian);
+
             RegistrasiPenilaian::create([
                 'registrasi_id' => $registrasi_id,
                 'internal_id' => $user->id,
                 'jabatan' => $user->jenis_role->nama,
-                'url_dokumen_penilaian' => '',
+                'url_dokumen_penilaian' => $nama_dokumen_penilaian,
                 'stage_id' => $registrasi->stage_id,
                 'skor' => $request->skor,
                 'catatan' => $request->catatan,
@@ -243,5 +255,33 @@ class EvaluatorSekretariatController extends Controller
         }
 
         return back()->with('error', 'Evaluator/Lead Evaluator Belum Menilai');
+    }
+
+    public function download($registrasi_id, $penilaian_id)
+    {
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $penilaian_id = Crypt::decryptString($penilaian_id);
+        $item = RegistrasiPenilaian::find($penilaian_id);
+        // dd($item);
+        $filePath = storage_path('app/public/file/dokumen_penilaian/desk_evaluation/sekretariat/' . $item->url_dokumen_penilaian);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan');
+        }
+    }
+
+    public function finalisasi($registrasi_id){
+        $registrasi = Registrasi::find($registrasi_id);
+        // dd($registrasi);
+        $registrasi->update(['status_id' => 5]);
+        return back()->with('success', 'Penilaian Desk Evaluation Selesai');
+    }
+
+    public function siteEvaluation($registrasi_id) {
+        $registrasi = Registrasi::find($registrasi_id);
+        $registrasi->update(['stage_id' => 4]);
+        return redirect()->back()->with('success', 'Penilaian Site Evaluation');
     }
 }

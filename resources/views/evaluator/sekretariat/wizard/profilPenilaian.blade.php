@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal penilain -->
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -12,6 +12,42 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" form="submissionForm" class="btn btn-primary">Kirim</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal finalisasi --}}
+<div class="modal fade" id="finalisasiModal" tabindex="-1" aria-labelledby="finalisasiModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="finalisasiModalLabel">Konfirmasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin memfinalisasi penilaian ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" form="finalisasiForm" class="btn btn-primary">Kirim</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal site evaluation --}}
+<div class="modal fade" id="siteEvaluationModal" tabindex="-1" aria-labelledby="siteEvaluationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="siteEvaluationModalLabel">Konfirmasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin lanjut ke penilaian site evaluation?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" form="siteEvaluationForm" class="btn btn-primary">Kirim</button>
             </div>
         </div>
     </div>
@@ -33,11 +69,12 @@
                                         <li id="payment"><strong>Sekretariat</strong></li>
                                     </ul>
                                     <!-- fieldsets -->
+
                                     <fieldset class="fieldset" id="fieldsetPenilaian">
                                         @if ($desk_evaluation ? $desk_evaluation->evaluator : null)
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nama</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -45,10 +82,10 @@
                                                     </div>
                                                 </div>
                                                 {{-- @foreach ($registrasi_penilaian as $penilai) --}}
-                                                    {{-- {{dd($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)}} --}}
+                                                    {{-- {{dd($penilai)}} --}}
                                                     @if ($penilaian_evaluator ? $penilaian_evaluator->internal_id : null)
                                                         <div class="row align-items-center pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0">Nilai</h6>
                                                             </div>
                                                             <div class="col-md-2">
@@ -58,8 +95,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row align-items-center pb-3">
+                                                            <div class="col-md-3 ps-5">
+                                                                <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                                    <a href="{{ route('lead_evaluator.evaluator.detail.download', [Crypt::encryptString($registrasi->id), Crypt::encryptString($penilaian_evaluator->id)]) }}" style="border: 1px solid #552525; color: #552525; padding: 0.5rem; width: 50%" class="form-control text-center"><i class="fa fa-download"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                                             </div>
                                                             <div class="col-md-8 pe-5">
@@ -68,7 +116,7 @@
                                                         </div>
                                                     @else
                                                         <div class="row align-items-center pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0">Nilai</h6>
                                                             </div>
                                                             <div class="col-md-2">
@@ -78,8 +126,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row align-items-center pb-3">
+                                                            <div class="col-md-3 ps-5">
+                                                                <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                                    <p>-</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                                             </div>
                                                             <div class="col-md-8 pe-5">
@@ -93,7 +152,7 @@
                                         @else
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nama</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -101,7 +160,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row align-items-center pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nilai</h6>
                                                     </div>
                                                     <div class="col-md-2">
@@ -111,8 +170,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row align-items-center pb-3">
+                                                    <div class="col-md-3 ps-5">
+                                                        <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                            <p>-</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0 mt-2">Komentar</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -128,7 +198,7 @@
                                         @if ($desk_evaluation ? $desk_evaluation->lead_evaluator : null)
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nama</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -139,7 +209,7 @@
                                                     {{-- {{dd($penilai)}} --}}
                                                     @if ($penilaian_lead_evaluator ? $penilaian_lead_evaluator->internal_id : null)
                                                         <div class="row align-items-center pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0">Nilai</h6>
                                                             </div>
                                                             <div class="col-md-2">
@@ -149,8 +219,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row align-items-center pb-3">
+                                                            <div class="col-md-3 ps-5">
+                                                                <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                                    <a href="{{ route('evaluator.lead_evaluator.detail.download', [Crypt::encryptString($registrasi->id), Crypt::encryptString($penilaian_lead_evaluator->id)]) }}" style="border: 1px solid #552525; color: #552525; padding: 0.5rem; width: 50%" class="form-control text-center"><i class="fa fa-download"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                                             </div>
                                                             <div class="col-md-8 pe-5">
@@ -159,7 +240,7 @@
                                                         </div>
                                                     @else
                                                         <div class="row align-items-center pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0">Nilai</h6>
                                                             </div>
                                                             <div class="col-md-2">
@@ -169,8 +250,19 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row align-items-center pb-3">
+                                                            <div class="col-md-3 ps-5">
+                                                                <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                                    <p>-</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row pb-3">
-                                                            <div class="col-md-4 ps-5">
+                                                            <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0 mt-2">Komentar</h6>
                                                             </div>
                                                             <div class="col-md-8 pe-5">
@@ -185,7 +277,7 @@
                                         @else
                                             <div class="card-body pt-0 mt-0">
                                                 <div class="row align-items-center pt-4 pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nama</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -193,7 +285,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row align-items-center pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0">Nilai</h6>
                                                     </div>
                                                     <div class="col-md-2">
@@ -203,8 +295,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row align-items-center pb-3">
+                                                    <div class="col-md-3 ps-5">
+                                                        <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                            <p>-</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row pb-3">
-                                                    <div class="col-md-4 ps-5">
+                                                    <div class="col-md-3 ps-5">
                                                         <h6 class="mb-0 mt-2">Komentar</h6>
                                                     </div>
                                                     <div class="col-md-8 pe-5">
@@ -242,6 +345,17 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row align-items-center pb-3">
+                                                            <div class="col-md-3 ps-5">
+                                                                <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                                    <a href="{{ route('evaluator.sekretariat.detail.download', [Crypt::encryptString($registrasi->id), Crypt::encryptString($penilaian_sekretariat->id)]) }}" style="border: 1px solid #552525; color: #552525; padding: 0.5rem; width: 50%" class="form-control text-center"><i class="fa fa-download"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="row pb-3">
                                                             <div class="col-md-3 ps-5">
                                                                 <h6 class="mb-0 mt-2">Komentar</h6>
@@ -251,7 +365,7 @@
                                                             </div>
                                                         </div>
                                                     @else
-                                                        <form id="submissionForm" action="{{ route('evaluator.sekretariat.detail.penilaian', $registrasi->id) }}" method="post">
+                                                        <form id="submissionForm" action="{{ route('evaluator.sekretariat.detail.penilaian', $registrasi->id) }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <div class="row align-items-center pb-3">
                                                                 <div class="col-md-3 ps-5">
@@ -259,6 +373,14 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <input name="skor" type="text" class="form-control" placeholder="Masukkan Score" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="{{ old('skor') }}" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row align-items-center pb-3">
+                                                                <div class="col-md-3 ps-5">
+                                                                    <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input name="url_dokumen_penilaian" type="file" accept=".pdf" class="form-control"required>
                                                                 </div>
                                                             </div>
                                                             <div class="row pb-3">
@@ -298,6 +420,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row align-items-center pb-3">
+                                                    <div class="col-md-3 ps-5">
+                                                        <h6 class="mb-0">Dokumen Penilaian</h6>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            {{-- {{ dd($penilaian_evaluator->id) }} --}}
+                                                            <p>-</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row pb-3">
                                                     <div class="col-md-4 ps-5">
                                                         <h6 class="mb-0 mt-2">Komentar</h6>
@@ -323,7 +456,31 @@
 
     <div class="content-site-evaluation mt-4 py-5 gap-2 d-flex justify-content-center flex-column text-center">
         <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Site Evaluation</h3>
-        <span>Sedang Tahap penilaian Desk Evaluation. Harap Ditunggu!</span>
+        {{-- {{dd($penilaian_sekretariat != null)}} --}}
+        @if ($penilaian_sekretariat != null && $registrasi->status_id == 5)
+            <span>Penilaian Selesai</span>
+        @elseif ($penilaian_sekretariat != null && $registrasi->stage_id == 4)
+            <span>Penilaian site</span>
+        @elseif ($penilaian_sekretariat != null)
+            <h1>Apakah Nilai Peserta Memenuhi Kriteria?</h1>
+            <span>Tekan dibawah untuk melanjutkan penilaian pada tahap Site Evaluation</span>
+            <div class="row justify-content-center mt-2">
+                <div class="col-3">
+                    <form id="finalisasiForm" action="{{ route('evaluator.evaluator.detail.finalisasi', $registrasi->id) }}" method="POST">
+                        @csrf
+                        <button type="button" class="btn btn-primary" style="width: auto" data-bs-toggle="modal" data-bs-target="#finalisasiModal">Finalisasi</i></button>
+                    </form>
+                </div>
+                <div class="col-3">
+                    <form id="siteEvaluationForm" action="{{ route('evaluator.evaluator.detail.site_evaluation', $registrasi->id) }}" method="POST">
+                        @csrf
+                        <button type="button" class="btn btn-primary" style="width: auto" data-bs-toggle="modal" data-bs-target="#siteEvaluationModal">Site Evaluation</i></button>
+                    </form>
+                </div>
+            </div>
+        @else
+            <span>Sedang Tahap penilaian Desk Evaluation. Harap Ditunggu!</span>
+        @endif
     </div>
     <hr class="p-0">
 </div>
