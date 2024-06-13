@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            {{-- {{ dd($registrasi[1]->registrasi_penilaian) }} --}}
+            {{-- {{ dd($desk_evaluation) }} --}}
             @foreach ($desk_evaluation as $key=>$desk)
                 <tr>
                     <td>{{ $loop->iteration }}</td>

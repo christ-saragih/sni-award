@@ -159,7 +159,7 @@
                         @if ($desk_evaluation ? $desk_evaluation->lead_evaluator : null)
                             <div class="card-body pt-0 mt-0">
                                 <div class="row align-items-center pt-4 pb-3">
-                                    <div class="col-md-4 ps-5">
+                                    <div class="col-md-3 ps-5">
                                         <h6 class="mb-0">Nama</h6>
                                     </div>
                                     <div class="col-md-8 pe-5">
@@ -187,7 +187,7 @@
                                             <div class="col-md-2">
                                                 <div class="d-flex align-items-center gap-3">
                                                     {{-- {{ dd($penilaian_evaluator->id) }} --}}
-                                                    <a href="{{ route('evaluator.lead_evaluator.detail.download', [Crypt::encryptString($registrasi->id), Crypt::encryptString($penilaian_evaluator->id)]) }}" style="border: 1px solid #552525; color: #552525; padding: 0.5rem; width: 50%" class="form-control text-center"><i class="fa fa-download"></i></a>
+                                                    <a href="{{ route('evaluator.lead_evaluator.detail.download', [Crypt::encryptString($registrasi->id), Crypt::encryptString($penilaian_lead_evaluator->id)]) }}" style="border: 1px solid #552525; color: #552525; padding: 0.5rem; width: 50%" class="form-control text-center"><i class="fa fa-download"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -343,7 +343,6 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="d-flex align-items-center gap-3">
-                                                    {{-- {{ dd($penilaian_evaluator->id) }} --}}
                                                     <p>-</p>
                                                 </div>
                                             </div>
@@ -387,7 +386,6 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="d-flex align-items-center gap-3">
-                                            {{-- {{ dd($penilaian_evaluator->id) }} --}}
                                             <p>-</p>
                                         </div>
                                     </div>

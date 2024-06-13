@@ -46,7 +46,7 @@ class EvaluatorEvaluatorController extends Controller
                 ->where('internal_id', $user->id)
                 ->get();
             // dd($reg);
-            // $reg_penialain = count($reg_penialain) > 0;
+            $reg_penialain = count($reg_penialain) > 0;
             // dd($reg_penialain);
             $penilaian->is_dinilai = $reg_penialain;
         }
@@ -127,8 +127,7 @@ class EvaluatorEvaluatorController extends Controller
 
         $dokumen_penilaian = $request->file('url_dokumen_penilaian');
         $nama_dokumen_penilaian = 'dokumen_penilaian_' . now()->format('YmdHis') . $dokumen_penilaian->getClientOriginalName();
-        // $gambar_file->move(storage_path('app/public/images/gambar_berita/'), $nama_file);
-        $dokumen_penilaian->move(storage_path('app/public/file/dokumen_penilaian/'), $nama_dokumen_penilaian);
+        $dokumen_penilaian->move(storage_path('app/public/file/dokumen_penilaian/desk_evaluation/evaluator/'), $nama_dokumen_penilaian);
 
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
@@ -150,7 +149,7 @@ class EvaluatorEvaluatorController extends Controller
         $penilaian_id = Crypt::decryptString($penilaian_id);
         $item = RegistrasiPenilaian::find($penilaian_id);
         // dd($item);
-        $filePath = storage_path('app/public/file/dokumen_penilaian/' . $item->url_dokumen_penilaian);
+        $filePath = storage_path('app/public/file/dokumen_penilaian/desk_evaluation/evaluator/' . $item->url_dokumen_penilaian);
 
         if (file_exists($filePath)) {
             return response()->download($filePath);
