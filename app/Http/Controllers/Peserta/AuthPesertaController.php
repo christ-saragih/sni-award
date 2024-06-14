@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 class AuthPesertaController extends Controller
 {
     public function loginPesertaView() {
-        return view('Peserta.auth.login');
+        return view('peserta.auth.login');
     }
 
     public function loginPeserta(Request $request) {
@@ -52,7 +52,7 @@ class AuthPesertaController extends Controller
             ->join('tipe_kategori', 'kategori_organisasi.tipe_kategori_id', '=', 'tipe_kategori.id')
             ->select('kategori_organisasi.*', 'tipe_kategori.nama as nama_tipe_kategori')
             ->get();
-        return view('Peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
+        return view('peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
     }
 
     public function registrasiPeserta(Request $request) {
@@ -106,7 +106,7 @@ class AuthPesertaController extends Controller
         if (Auth::guard('peserta')->user()->email_verified_at != null) {
             return redirect('/peserta/dashboard')->with('Akun telah terverifikasi');
         }else {
-            return view('Peserta.auth.verify', ['kode_verifikasi' => $kode_verifikasi]);
+            return view('peserta.auth.verify', ['kode_verifikasi' => $kode_verifikasi]);
         }
     }
 

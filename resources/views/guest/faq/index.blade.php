@@ -1,4 +1,4 @@
-@extends('Guest.layouts.master')
+@extends('guest.layouts.master')
 
 @section('content')
 <article class="shape-faq pb-5">
