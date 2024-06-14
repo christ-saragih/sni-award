@@ -33,7 +33,7 @@ class AuthUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        
+
         if (Auth::guard('web')->attempt($infoLogin)) {
             $role = strtolower(Auth::user()->jenis_role->nama);
             $role = str_replace(' ', '_', $role);
@@ -82,14 +82,14 @@ class AuthUserController extends Controller
                 'website' => 'SNI Award',
                 'url' => route('user.verify', $dataRegistrasi['verify_key']),
             ];
-            Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));    
+            Mail::to($dataRegistrasi['email'])->send(new AuthUserMail($details));
         }
 
         $login_credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
-        
+
         if (Auth::guard('web')->attempt($login_credentials)) {
             $role = strtolower(Auth::user()->jenis_role->nama);
             $role = str_replace(' ', '_', $role);
@@ -102,6 +102,7 @@ class AuthUserController extends Controller
     }
 
     public function verifikasiUserView() {
+        if (!Auth::check()) return redirect('/user/masuk');
         $kodeVerifikasi = Auth::guard('web')->user()->verify_key;
         $user = Auth::guard('web')->user();
         $is_sekretariat = count(
@@ -139,7 +140,7 @@ class AuthUserController extends Controller
         $details = [
             'name' => Auth::guard('web')->user()->name,
             'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'SNI Award',
+            // 'website' => 'SNI Award',
             'url' => route('user.verify', $kode_verifikasi),
         ];
         Mail::to(Auth::guard('web')->user()->email)->send(new AuthUserMail($details));
@@ -191,7 +192,7 @@ class AuthUserController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user && $user->forgot_password_token == $forgot_password_token) {
             return view('user.auth.passwords.reset', [
-                'email' => $request->email, 
+                'email' => $request->email,
                 'token' => $forgot_password_token,
             ]);
         }
