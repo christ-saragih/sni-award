@@ -15,7 +15,7 @@
             </ul>
         </div>
     </div>
-    
+
     <table class="table align-items-center mt-4 mb-0">
         <thead>
             <tr>

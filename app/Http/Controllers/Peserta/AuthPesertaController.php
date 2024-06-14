@@ -83,7 +83,7 @@ class AuthPesertaController extends Controller
             $details = [
                 'nama' => $dataRegistrasi['nama'],
                 'datetime' => date('Y-m-d H:i:s'),
-                'website' => 'SNI Award',
+                // 'website' => 'SNI Award',
                 'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
             ];
             Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
@@ -102,6 +102,7 @@ class AuthPesertaController extends Controller
     }
 
     public function verifikasiPesertaView() {
+        if (!Auth::guard('peserta')->check()) return redirect('/masuk');
         $kode_verifikasi = Auth::guard('peserta')->user()->verify_key;
         if (Auth::guard('peserta')->user()->email_verified_at != null) {
             return redirect('/peserta/dashboard')->with('Akun telah terverifikasi');
@@ -127,7 +128,7 @@ class AuthPesertaController extends Controller
         $details = [
             'nama' => Auth::guard('peserta')->user()->nama,
             'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'SNI Award',
+            // 'website' => 'SNI Award',
             'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$kode_verifikasi,
         ];
         Mail::to(Auth::guard('peserta')->user()->email)->send(new AuthPesertaMail($details));
@@ -175,7 +176,7 @@ class AuthPesertaController extends Controller
         $user = Peserta::where('email', $request->email)->first();
         if ($user && $user->forgot_password_token == $forgot_password_token) {
             return view('peserta.auth.passwords.reset', [
-                'email' => $request->email, 
+                'email' => $request->email,
                 'token' => $forgot_password_token,
             ]);
         }
@@ -202,7 +203,7 @@ class AuthPesertaController extends Controller
             ->withInput()
             ->withErrors('Token tidak valid atau sudah expired');
     }
-    
+
     public function ubahkatasandiView(){
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
         return view('peserta.profil.index', compact([
@@ -222,7 +223,7 @@ class AuthPesertaController extends Controller
             'password.min' => 'Minimal 8 karakter',
             'password.confirmed' => 'Ulangi kata sandi tidak sama dengan kata sandi',
         ]);
-        
+
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
         // dd($peserta);
         // dd(Hash::check($request->current_password, $peserta->password));
