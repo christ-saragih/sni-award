@@ -19,26 +19,6 @@
     }
 </style>
 
-{{-- modal verifikasi peserta --}}
-<div class="modal fade" id="verifikasi_peserta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
-            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-        </div>
-        <div class="modal-body">
-            Pastikan Anda telah membaca seluruh data peserta! <br>
-            Konfirmasi dan verifikasi peserta <b>{{ $peserta->nama }}</b> 
-        </div>
-        <div class="modal-footer d-flex align-items-center justify-content-end gap-3">
-            <button type="submit" class="btn-ya" onclick="handleVerifPeserta()">Ya</button>
-            <button type="button" class="btn-no" data-bs-dismiss="modal">Tidak</button>
-        </div>
-        </div>
-    </div>
-</div>
-{{-- end modal verifikasi peserta --}}
 {{-- form verifikasi --}}
 <form action="{{ route('admin.peserta.verifikasi', Crypt::encryptString($peserta->id)) }}" method="POST" id="admin_verifikasi_peserta">
     @csrf

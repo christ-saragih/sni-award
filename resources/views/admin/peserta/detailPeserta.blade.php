@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
+
 <style>
     .value{
         padding: 2px 5px;
@@ -27,6 +28,7 @@
         padding: 0 0 0 20px;
     }
 </style>
+
 <main>
     <ul class="nav nav-tabs d-flex gap-2 text-center" id="tabs-profil" role="tablist">
         <li class="nav-item" role="presentation">
@@ -43,6 +45,27 @@
         </li>
     </ul>
     <hr class="p-0">
+
+    {{-- modal verifikasi peserta --}}
+    <div class="modal fade" id="verifikasi_peserta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Konfirmasi</h1>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <div class="modal-body">
+                Pastikan Anda telah membaca seluruh data peserta! <br>
+                Konfirmasi dan verifikasi peserta <b>{{ $peserta->nama }}</b> 
+            </div>
+            <div class="modal-footer d-flex align-items-center justify-content-end gap-3">
+                <button type="submit" class="btn-ya" onclick="handleVerifPeserta()">Ya</button>
+                <button type="button" class="btn-no" data-bs-dismiss="modal">Tidak</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    {{-- end modal verifikasi peserta --}}
 
     <div class="tab-content" id="tab-content">
         <section class="tab-pane {{ request()->query('tab')==''?'active':'' }} py-5" id="peserta-tabpanel-0" role="tabpanel" aria-labelledby="peserta-tab-0">

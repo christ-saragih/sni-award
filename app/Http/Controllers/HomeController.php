@@ -30,7 +30,7 @@ class HomeController extends Controller
         $dokumentasi = Dokumentasi::get();
         $popular_faq = Faq::where('is_popular', true)->get();
         // dd($frontpage_data);
-        return view('Guest.home.index', [
+        return view('guest.home.index', [
             'frontpage_data' => $frontpage_data[0],
             'dokumentasi' => $dokumentasi,
             'popular_faq' => $popular_faq,

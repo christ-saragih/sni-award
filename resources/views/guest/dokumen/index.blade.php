@@ -1,4 +1,4 @@
-@extends('Guest.layouts.master')
+@extends('guest.layouts.master')
 
 @section('content')
 <article id="unduh">
