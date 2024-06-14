@@ -116,7 +116,7 @@ class AuthPesertaController extends Controller
         if ($checkKey) {
             $user = Peserta::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect('/masuk')->with('success', 'Berhasil melakukan verifikasi');
+            return redirect('/peserta/dashboard')->with('success', 'Berhasil melakukan verifikasi');
         }else {
             return redirect('/masuk')
                 ->withErrors('verify key salah, silahkan coba kembali')

@@ -126,7 +126,7 @@ class AuthUserController extends Controller
             User::where('verify_key', $verify_key)
                 ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
             return redirect()
-                ->route('user.login.view')
+                ->route('user.dashboard.view')
                 ->with('success', 'Berhasil melakukan verifikasi');
         }else {
             return redirect()
