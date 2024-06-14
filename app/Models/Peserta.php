@@ -16,18 +16,19 @@ class Peserta extends Authenticatable
 {
     use HasFactory, HasApiTokens, Notifiable;
     protected $table = 'Peserta';
-    protected $fillable = [
-        'nama',
-        'email',
-        'password',
-        'kategori_organisasi_id',
-        'verify_key',
-        'forgot_password_token',
-        'email_verified_at',
-        'verified_by',
-        'verified_at',
-        'role_by',
-    ];
+    // protected $fillable = [
+    //     'nama',
+    //     'email',
+    //     'password',
+    //     'kategori_organisasi_id',
+    //     'verify_key',
+    //     'forgot_password_token',
+    //     'email_verified_at',
+    //     'verified_by',
+    //     'verified_at',
+    //     'role_by',
+    // ];
+    protected $guarded = [];
     protected $hidden = [
         'password',
         'remember_token'
