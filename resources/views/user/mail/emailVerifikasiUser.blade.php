@@ -16,17 +16,17 @@
     </p>
     <table>
         <tr>
-            <td>Full Name</td>
+            <td>Nama</td>
             <td>:</td>
             <td>{{ $details['name'] }}</td>
         </tr>
-        <tr>
+        {{-- <tr>
             <td>Website</td>
             <td>:</td>
             <td>{{ $details['website'] }}</td>
-        </tr>
+        </tr> --}}
         <tr>
-            <td>Tanggal Register</td>
+            <td>Tanggal REgiatrasi</td>
             <td>:</td>
             <td>{{ $details['datetime'] }}</td>
         </tr>
@@ -36,7 +36,7 @@
             <a href="{{ $details['url'] }}" style="text-decoration: none; color: #fff; padding: 9px; background-color: #552525; font: bold; border-radius: 10px">Verifikasi</a>
             <br><br><br>
             <p>
-                Copy right @ 2024 | BSN SNI Award
+                Copy right @ {{ date('Y') }} | BSN SNI Award
             </p>
         </center>
     </table>

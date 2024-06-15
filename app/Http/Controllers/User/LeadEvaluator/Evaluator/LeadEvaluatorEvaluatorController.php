@@ -91,22 +91,30 @@ class LeadEvaluatorEvaluatorController extends Controller
     }
 
     public function penilaian(Request $request, $registrasi_id) {
-        $user = Auth::user();
-        $registrasi = Registrasi::find($registrasi_id);
         $request->validate([
             'skor' => 'required|max:100',
+            'url_dokumen_penilaian' => 'required|mimes:pdf',
             'catatan' => 'required',
         ], [
             'skor.required' => 'Skor Tidak Boleh Kosong',
             'skor.required' => 'Skor Masimal 100',
+            'url_dokumen_penilaian.required' => 'Dokumen Penilaian Tidak Boleh Kosong',
+            'url_dokumen_penilaian.mimes' => 'Dokumen Penilaian Harus PDF',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
+
+        $user = Auth::user();
+        $registrasi = Registrasi::find($registrasi_id);
+
+        $dokumen_penilaian = $request->file('url_dokumen_penilaian');
+        $nama_dokumen_penilaian = 'dokumen_penilaian_' . now()->format('YmdHis') . $dokumen_penilaian->getClientOriginalName();
+        $dokumen_penilaian->move(storage_path('app/public/file/dokumen_penilaian/desk_evaluation/evaluator/'), $nama_dokumen_penilaian);
 
         RegistrasiPenilaian::create([
             'registrasi_id' => $registrasi_id,
             'internal_id' => $user->id,
             'jabatan' => $user->jenis_role->nama,
-            'url_dokumen_penilaian' => '',
+            'url_dokumen_penilaian' => $nama_dokumen_penilaian,
             'stage_id' => $registrasi->stage_id,
             'skor' => $request->skor,
             'catatan' => $request->catatan,
@@ -114,5 +122,20 @@ class LeadEvaluatorEvaluatorController extends Controller
         ]);
 
         return back()->with('success', 'Berhasil mengirim penilaian');
+    }
+
+    public function download($registrasi_id, $penilaian_id)
+    {
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $penilaian_id = Crypt::decryptString($penilaian_id);
+        $item = RegistrasiPenilaian::find($penilaian_id);
+        // dd($item);
+        $filePath = storage_path('app/public/file/dokumen_penilaian/desk_evaluation/evaluator/' . $item->url_dokumen_penilaian);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan');
+        }
     }
 }
