@@ -132,7 +132,7 @@
         <footer>
           <div class="row m-0">
             <div class="col-12 col-lg-6">
-              <div class="row ms-5 align-items-center">
+              <div class="row logo-container align-items-center">
                 <div class="col-3 text-start">
                   <img class="logo_sniaward" src="{{ asset('assets') }}/images/icon/logo-sniaward.svg" alt="" />
                 </div>
@@ -163,11 +163,12 @@
             </div>
             <div class="col-6 col-lg-3">
               <div class="social-media row">
-                <h4 class="mb-3">Social Media</h4>
+                <h4 class="mb-3">Media Sosial</h4>
                 <div class="col mb-1">
-                  <a href="{{ $frontpage_data->website }}"  target="_blank"
-                    ><p><img src="{{ asset('assets') }}/images/icon/link.svg" alt="" />&ensp;{{ $frontpage_data->website }}</p></a
-                  >
+                  <a href="{{ $frontpage_data->website }}"  target="_blank" class="link-container d-flex align-items-center mb-2">
+                    <img src="{{ asset('assets') }}/images/icon/link.svg" alt="" />
+                    <p class="mb-0">{{ $frontpage_data->website }}</p>
+                  </a>
                 </div>
                 <div class="sosmed-container row">
                   <a href="{{ $frontpage_data->twitter }}" target="_blank"
