@@ -130,71 +130,71 @@
 
         <!-- footer dihapus dulu (ada dinotepad) -->
         <footer>
-        <div class="row m-0">
-          <div class="col-6">
-            <div class="row ms-5 align-items-center">
-              <div class="col-3 text-start">
-                <img src="{{ asset('assets') }}/images/icon/logo-sniaward.svg" alt="" />
-              </div>
-              <div class="col-9 text-start">
-                <img src="{{ asset('assets') }}/images/icon/logo-bsn.svg" alt="" />
-              </div>
-              <div class="col-12 mt-4">
-                <p>
-                  {{-- Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih,
-                  <br />
-                  Jakarta Pusat 10340 --}}
-                  {{ $frontpage_data->alamat }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="row">
-              <h4 class="mb-3">Info Lebih Lanjut</h4>
-              <ul>
-                <a href=""><li>FAQ</li></a>
-                <a href=""><li>Kontak</li></a>
-                <a href=""><li>Syarat dan Ketentuan</li></a>
-                <a href=""><li>Kebijakan Privacy</li></a>
-                <a href=""><li>Refund Policy</li></a>
-              </ul>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="social-media row">
-              <h4 class="mb-3">Social Media</h4>
-              <div class="col mb-1">
-                <a href="{{ $frontpage_data->website }}"  target="_blank"
-                  ><p><img src="{{ asset('assets') }}/images/icon/link.svg" alt="" />&ensp;{{ $frontpage_data->website }}</p></a
-                >
-              </div>
-              <div class="sosmed-container row">
-                <a href="{{ $frontpage_data->twitter }}" target="_blank"
-                  class="sosmed col-3 d-flex justify-content-center align-items-center"
-                >
-                  <i data-feather="twitter"></i>
-                </a>
-                <a href="{{ $frontpage_data->instagram }}" target="_blank"
-                  class="sosmed col-3 d-flex justify-content-center align-items-center"
-                >
-                  <i data-feather="instagram"></i>
-                </a>
-                <a href="{{ $frontpage_data->youtube }}" target="_blank"
-                  class="sosmed col-3 d-flex justify-content-center align-items-center"
-                >
-                  <i data-feather="youtube"></i>
-                </a>
+          <div class="row m-0">
+            <div class="col-12 col-lg-6">
+              <div class="row ms-5 align-items-center">
+                <div class="col-3 text-start">
+                  <img class="logo_sniaward" src="{{ asset('assets') }}/images/icon/logo-sniaward.svg" alt="" />
+                </div>
+                <div class="col-9 text-start">
+                  <img class="logo_bsn" src="{{ asset('assets') }}/images/icon/logo-bsn.svg" alt="" />
+                </div>
+                <div class="col-12 mt-4">
+                  <p>
+                    {{-- Gedung I BPPT Jl. M.H. Thamrin No.8 Kebon Sirih,
+                    <br />
+                    Jakarta Pusat 10340 --}}
+                    {{ $frontpage_data->alamat }}
+                  </p>
+                </div>
               </div>
             </div>
+            <div class="col-6 col-lg-3">
+              <div class="row">
+                <h4 class="mb-3">Info Lebih Lanjut</h4>
+                <ul>
+                  <a href=""><li>FAQ</li></a>
+                  <a href=""><li>Kontak</li></a>
+                  <a href=""><li>Syarat dan Ketentuan</li></a>
+                  <a href=""><li>Kebijakan Privacy</li></a>
+                  <a href=""><li>Refund Policy</li></a>
+                </ul>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="social-media row">
+                <h4 class="mb-3">Social Media</h4>
+                <div class="col mb-1">
+                  <a href="{{ $frontpage_data->website }}"  target="_blank"
+                    ><p><img src="{{ asset('assets') }}/images/icon/link.svg" alt="" />&ensp;{{ $frontpage_data->website }}</p></a
+                  >
+                </div>
+                <div class="sosmed-container row">
+                  <a href="{{ $frontpage_data->twitter }}" target="_blank"
+                    class="sosmed col-3 d-flex justify-content-center align-items-center"
+                  >
+                    <i data-feather="twitter"></i>
+                  </a>
+                  <a href="{{ $frontpage_data->instagram }}" target="_blank"
+                    class="sosmed col-3 d-flex justify-content-center align-items-center"
+                  >
+                    <i data-feather="instagram"></i>
+                  </a>
+                  <a href="{{ $frontpage_data->youtube }}" target="_blank"
+                    class="sosmed col-3 d-flex justify-content-center align-items-center"
+                  >
+                    <i data-feather="youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="copyright-container col-12 mt-3 text-center align-items-center">
+              <p class="m-0 fs-6">
+                Copyright © 2024. All Rights Reserved by
+                <a href="">Badan Standardisasi Nasional</a>
+              </p>
+            </div>
           </div>
-          <div class="copyright-container col-12 mt-3 text-center align-items-center">
-            <p class="m-0 fs-6">
-              Copyright © 2024. All Rights Reserved by
-              <a href="">Badan Standardisasi Nasional</a>
-            </p>
-          </div>
-        </div>
       </footer>
 
         <script>

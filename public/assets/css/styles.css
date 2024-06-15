@@ -9,17 +9,29 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .main-content{
     margin-top: 100px;
     max-width: 100dvw;
 }
 
 #about,
+#dokumentasi,
 #news,
 #acara,
 .contact-container {
     margin-inline: 85px;
     margin-top: 100px;
+}
+
+.news-container {
+    margin-top: 100px;
+}
+
+.news-container > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 60px;
 }
 
 #container-jumbotron {
@@ -202,8 +214,6 @@ h1 {
 
 /* About Article */
 .about-container {
-    margin-top: 150px;
-    margin-bottom: 150px;
     text-align: center;
     align-items: center;
     margin-inline: 222px;
@@ -211,15 +221,10 @@ h1 {
 
 .about-container p {
     font-size: 24px;
-    margin-top: 60px;
     line-height: 32px;
 }
 
 /* berita section */
-.artikel-container {
-    margin-block: 150px;
-}
-
 .artikel-container .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -238,6 +243,10 @@ h1 {
     width: 100%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
+}
+
+.artikel-container .content-container p.description {
+    margin-bottom: 35px;
 }
 
 h2 {
@@ -375,6 +384,7 @@ p.description {
 }
 
 .accordion {
+    width: 75%;
     margin-top: -100px;
     background: transparent;
 }
@@ -493,6 +503,150 @@ h2.accordion-header {
     font-size: 20px;
 }
 
+iframe.maps {
+    width: 100%;
+    height: 350px;
+}
+
+/* responsive design */
+@media (max-width: 480px) {
+    .main-content {
+        margin-top: 40px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    hr {
+        width: 170px;
+        height: 3px;
+    }
+    #about,
+    #news,
+    #acara {
+        margin-inline: 35px;
+        margin-block: 50px;
+    }
+    #dokumentasi {
+        margin-inline: 35px !important;
+        margin-top: 0px !important;
+    }
+
+    /* hero section start */
+    #container-jumbotron {
+        margin-inline: 35px !important;
+    }
+    .card-container {
+        gap: 16px !important;
+    }
+    #jumbotron h1 {
+        font-size: 48px !important;
+        line-height: 55px;
+    }
+    /* hero section end */
+
+    /* berita start */
+    .artikel-container .content-container h2 {
+        margin-top: 0px !important;
+    }
+
+    .news-container {
+        margin-top: 0px !important;
+    }
+
+    .news-container > div {
+        gap: 25px !important;
+    }
+
+    .berita-container .content h4 {
+        margin-block: 10px !important;
+    }
+    /* berita end */
+    .contact-container {
+        padding-inline: 35px !important;;
+        margin-inline: 0 !important;
+    }
+    .contact-container hr {
+        width: 170px;
+        height: 3px;
+    }
+
+    .acara-container img {
+        box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
+        margin-bottom: 8px !important;
+    }
+
+    .acara-container h3 {
+        margin-bottom: 10px !important;
+        margin-left: 0px !important;
+    }
+    .acara-container p {
+        margin-bottom: 12px !important;
+    }
+
+    .about-container {
+        margin-inline: 20px !important;
+        
+    }
+    .about-container p {
+        font-size: 20px !important;
+        margin: 0px !important;
+    }
+    .carousel-container p {
+        font-size: 24px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .artikel-container {
+        margin-block: 50px;
+    }
+
+    .artikel-container .grid-container {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 30px !important;
+    }
+
+    .artikel-container .content-container img {
+        width: 95% !important;
+        box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
+        margin-bottom: 8px !important;
+    }
+
+    .author-container .author-content p.hour {
+        margin-bottom: 2px !important;
+    }
+
+    .artikel-container .content-container p.description {
+        margin-bottom: 5px !important;
+    }
+
+    .contact-container .row {
+        margin-top: 0px !important;
+    }
+
+    footer img.logo_sniaward {
+        width: 100%;
+    }
+
+    footer img.logo_bsn {
+        width: 100%;
+    }
+    /* acara */
+    .acara-container .grid-container {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 30px !important;
+    }
+    .accordion {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+}
+
 /* Kontak start */
 .shape-kontak {
     background-image: url(../images/shape/shape-kontak-kanan.png),
@@ -567,6 +721,7 @@ h2.accordion-header {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
     font-size: 32px;
+    margin-bottom: 2rem;
 }
 
 .slider {
@@ -1099,6 +1254,11 @@ ul a {
 
 .acara-container .title {
     margin-bottom: 60px;
+}
+
+.acara-container .grid-container {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); gap: 90px 50px;
 }
 
 .acara-container .title p {
