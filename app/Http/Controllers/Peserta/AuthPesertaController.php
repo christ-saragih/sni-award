@@ -115,13 +115,21 @@ class AuthPesertaController extends Controller
         $checkKey = Peserta::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
             $user = Peserta::where('verify_key', $verify_key)
-                ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect('/masuk')->with('success', 'Berhasil melakukan verifikasi');
-        }else {
-            return redirect('/masuk')
-                ->withErrors('verify key salah, silahkan coba kembali')
-                ->withInput();
+                ->first();
+            $user->update(['email_verified_at' => date('Y-m-d H:i:s')]);
+            if (Auth::guard('peserta')->check() && Auth::guard('peserta')->user()->id == $user->id) {
+                return redirect()
+                    ->route('peserta.dashboard.view')
+                    ->with('success', 'Berhasil melakukan verifikasi');
+            }
+            return redirect()
+                ->route('masuk')
+                ->with('success', 'Berhasil melakukan verifikasi');
         }
+        return redirect()
+            ->route('masuk')
+            ->withErrors('verify key salah, silahkan coba kembali')
+            ->withInput();
     }
 
     public function verifikasiUlangPeserta($kode_verifikasi) {

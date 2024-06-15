@@ -123,17 +123,23 @@ class AuthUserController extends Controller
         // dd('zcvzcv');
         $checkKey = User::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
-            User::where('verify_key', $verify_key)
-                ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
+            $user = User::where('verify_key', $verify_key)
+                ->first();
+            $user->update(['email_verified_at' => date('Y-m-d H:i:s')]);
+            if (Auth::check() && Auth::user()->id == $user->id) {
+                $role = $user->jenis_role->nama;
+                return redirect()
+                    ->route("$role.dashboard.view")
+                    ->with('success', 'Berhasil melakukan verifikasi');
+            }
             return redirect()
                 ->route('user.login.view')
                 ->with('success', 'Berhasil melakukan verifikasi');
-        }else {
-            return redirect()
-                ->route('user.login.view')
-                ->withErrors('verify key salah, silahkan coba kembali')
-                ->withInput();
         }
+        return redirect()
+            ->route('user.login.view')
+            ->withErrors('verify key salah, silahkan coba kembali')
+            ->withInput();
     }
 
     public function verifikasiUlangUser($kode_verifikasi) {
