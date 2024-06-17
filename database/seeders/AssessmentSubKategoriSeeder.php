@@ -29,6 +29,7 @@ class AssessmentSubKategoriSeeder extends Seeder
             array('id' => '11', 'assessment_kategori_id' => '5', 'nama' => 'Pengembangan Pemasok'),
             array('id' => '12', 'assessment_kategori_id' => '6', 'nama' => 'Pengukuran dan Analisis'),
             array('id' => '13', 'assessment_kategori_id' => '6', 'nama' => 'Manajemen Pengetahuan'),
+            array('id' => '14', 'assessment_kategori_id' => '6', 'nama' => 'Pengelola Inovasi'),
         );
 
         DB::table('assessment_sub_kategori')->insert($assessment_sub_kategori);

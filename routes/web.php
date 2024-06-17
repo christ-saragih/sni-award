@@ -124,7 +124,7 @@ Route::prefix('/peserta')->middleware(['auth:peserta', 'verified:peserta', 'emai
     Route::get('/profil/edit',[PesertaProfilController::class, 'edit'])->name( "peserta.profil.edit" );
     Route::put('/profil/edit',[PesertaProfilController::class, 'update'])-> name('peserta.profil.update');
     Route::get('/riwayat', [RiwayatPesertaController::class, 'index']);
-    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori']);
+    Route::get('/pendaftaran', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showKategori'])->name('peserta.pendaftaran.view');
     Route::get('/pendaftaran/{id}/detail/{registrasi_id}', [App\Http\Controllers\Peserta\RegistrasiAssessmentController::class, 'showPertanyaan'])->name('pendaftaran.detail');
     Route::post('/pendaftaran/daftar', [RegistrasiAssessmentController::class, 'openRegistrasi']);
     Route::get('/pendaftaran/dokumen', [App\Http\Controllers\Peserta\RegistrasiDokumenController::class, 'getDokumenPeserta'])->name('pendaftaran.dokumen');

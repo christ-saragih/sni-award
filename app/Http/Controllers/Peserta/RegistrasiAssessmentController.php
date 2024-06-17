@@ -137,7 +137,7 @@ class RegistrasiAssessmentController extends Controller
             ]);
         }
 
-        return redirect('/peserta/pendaftaran')->with('success', 'Berhasil');
+        return redirect()->route('peserta.pendaftaran.view', ['tab' => 'assessment'])->with('success', 'Berhasil');
 
         // Redirect or give a response as needed
     }
