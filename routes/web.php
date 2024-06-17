@@ -87,7 +87,7 @@ Route::get('/linimasa', [App\Http\Controllers\Guest\LinimasaController::class, '
 // Route::get('/login', [LoginController::class, 'index']);
 Route::get('/informasi', [InformationController::class, 'index']);
 // Route::get('/admin', [HomeAdminController::class, 'index']);
-Route::get('/peserta',[HomePesertaController::class, 'index']);
+// Route::get('/peserta',[HomePesertaController::class, 'index']);
 // Route::get('/peserta/profil',[ProfilPesertaController::class, 'index']);
 // Route::get('/peserta/riwayat', [RiwayatPesertaController::class, 'index']);
 Route::get('/404', [NotFoundController::class, 'guest']);
