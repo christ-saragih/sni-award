@@ -714,6 +714,43 @@ iframe.maps {
         margin-top: 0;
         margin-bottom: 20px;
     }
+
+    /* login peserta start */
+    #login {
+        padding-inline: 10px !important;
+    }
+    #login .content-kiri {
+        display: none !important;
+    }
+    #login .content-kanan {
+        width: 100%;
+    }
+    /* login peserta end */
+
+    /* register peserta start */
+    #register {
+        height: 100vh !important;
+        padding-inline: 8px !important;
+    }
+    #register .content-kiri {
+        display: none !important;
+    }
+    #register .content-kanan {
+        height: fit-content !important;
+        width: 100% !important;
+        /* padding-inline: 2px !important; */
+        border-radius: 37px !important;
+    }
+    #register .content-kanan h1 {
+        padding-top: 10px !important;
+        margin-bottom: 5px !important;
+    }
+    #register .content-kanan p {
+        margin-bottom: 0px !important;
+        padding-inline: 50px !important;
+        text-align: center;
+    }
+    /* register peserta end */
 }
 
 /* Kontak start */
@@ -1204,6 +1241,11 @@ ul a {
 
 #register .content-kanan .form-text a {
     color: white;
+}
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px !important;
 }
 
 /* end register */
