@@ -50,6 +50,10 @@
 
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid ">
+              <div class="logo-container me-5">
+                <a href="/"><img src="{{ asset('assets') }}/images/icon/logo-bsn.svg" class="logo-bsn ms-2" alt="Logo BSN"/></a>
+                <a href="/"><img src="{{ asset('assets') }}/images/icon/logo-sniaward.svg" class="logo-sniaward ms-2" alt="Logo SNI Award"/></a>
+            </div>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -66,12 +70,9 @@
                 id="navbarNavAltMarkup"
             >
                 <div class="navbar-container py-2 px-4 d-flex align-items-center justify-content-between" style="margin-top: 0.1rem;">
-                    <div class="logo-container me-5">
-                        <a href="/"><img src="{{ asset('assets') }}/images/icon/logo-bsn.svg" class="logo-bsn ms-2" alt="Logo BSN"/></a>
-                        <a href="/"><img src="{{ asset('assets') }}/images/icon/logo-sniaward.svg" class="logo-sniaward ms-2" alt="Logo SNI Award"/></a>
-                    </div>
+                    
 
-                    <div class="navbar-nav" style="height: 30px;">
+                    <div class="navbar-nav">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/"
                         >Beranda</a
                         >
