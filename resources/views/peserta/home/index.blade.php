@@ -97,7 +97,7 @@
                         <span>Profil</span>
                         <div class="circular-progress-profil ms-auto">
                             <div class="value-container-profil">
-                                {{$precentage_profil}}
+                                {{$percentage_profil}}
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                         <span>Pendaftaran</span>
                         <div class="circular-progress-pendaftaran ms-auto">
                             <div class="value-container-pendaftaran">
-                                {{$precentage_pendaftaran}}
+                                {{$percentage_pendaftaran}}
                             </div>
                         </div>
                     </div>
