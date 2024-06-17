@@ -39,17 +39,19 @@ class RegistrasiAssessmentController extends Controller
             $test = Dokumen::leftJoin('registrasi_dokumen','dokumen.id','registrasi_dokumen.dokumen_id')->where('registrasi_id',$registrasi->id)->orWhereNull('registrasi_id')->get();
         }
         $regis_jawaban = [];
-            if ($registrasi){
-                $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
-            }
-            foreach ($regis_jawaban as $jawaban) {
-                $kategori_assess = $jawaban->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori;
-                foreach($assessment_kategori as $kategori){
-                    if($kategori->id == $kategori_assess->id){
-                        $kategori->check = TRUE;
-                    }
+
+        if ($registrasi){
+            $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
+        }
+        
+        foreach ($regis_jawaban as $jawaban) {
+            $kategori_assess = $jawaban->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori;
+            foreach($assessment_kategori as $kategori){
+                if($kategori->id == $kategori_assess->id){
+                    $kategori->check = TRUE;
                 }
             }
+        }
 
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
