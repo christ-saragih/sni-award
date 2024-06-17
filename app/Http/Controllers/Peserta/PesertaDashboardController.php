@@ -44,9 +44,10 @@ class PesertaDashboardController extends Controller
 
 
         $peserta_kontak = PesertaKontak::where('peserta_id', $user->id)->get() ?? true;
-        if ($peserta_kontak) $count_profil += 1;
-        $precentage_profil = ($count_profil/$count_all_profil)*100;
+        if (count($peserta_kontak)) $count_profil += 1;
+        $percentage_profil = ($count_profil/$count_all_profil)*100;
         // dd("$count_profil:$count_all_profil");
+        // dd($percentage_profil);
 
         // pendaftaran
         $count_pendaftaran = 0;
@@ -56,8 +57,6 @@ class PesertaDashboardController extends Controller
             ->first();
 
         $assessment_kategori = AssessmentKategori::get();
-
-        $a = [];
 
         $count_all_pendaftaran += count($assessment_kategori);
         $count_all_pendaftaran += count(Dokumen::get());
@@ -82,12 +81,12 @@ class PesertaDashboardController extends Controller
                 if ($ak->check) $count_pendaftaran++;
             }
         }
-        $precentage_pendaftaran = ($count_pendaftaran/$count_all_pendaftaran)*100;
-        // dd("$precentage_pendaftaran%");
+        $percentage_pendaftaran = ($count_pendaftaran/$count_all_pendaftaran)*100;
+        // dd("$percentage_pendaftaran%");
         // dd("$count_pendaftaran:$count_all_pendaftaran");
         return view('peserta.home.index', [
-            'precentage_pendaftaran' => $precentage_pendaftaran,
-            'precentage_profil' => $precentage_profil,
+            'percentage_pendaftaran' => $percentage_pendaftaran,
+            'percentage_profil' => $percentage_profil,
         ]);
     }
 }
