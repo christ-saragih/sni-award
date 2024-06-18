@@ -12,10 +12,12 @@ use App\Models\AssessmentSubKategori;
 use App\Models\Dokumen;
 use App\Models\Konfigurasi;
 use App\Models\Peserta;
+use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
 use App\Models\RegistrasiDokumen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use SebastianBergmann\Type\TrueType;
 
 class RegistrasiAssessmentController extends Controller
@@ -56,6 +58,30 @@ class RegistrasiAssessmentController extends Controller
         if (!$assessment_kategori){
             return response()->json(['error' => 'Data not found'], 404);
         }
+
+        // profil
+        $count_all_profil = 1; // 1 untuk kontak (karena minimal 1)
+        $count_profil = 0;
+
+        $tableName = 'peserta_profil';
+        $exclude_column = ['id', 'peserta_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'role_by', 'deleted_at', 'deleted_by'];
+        if (Schema::hasTable($tableName)) {
+            $count_field = Schema::getColumns($tableName);
+            foreach ($count_field as $c) {
+                if (!in_array($c['name'], $exclude_column)) $count_all_profil++;
+            }
+
+        }
+        $peserta_profil = PesertaProfil::where('peserta_id', $peserta->id)->first();
+        foreach ($peserta_profil->toArray() as $key=>$pp) {
+            if (!in_array($key, $exclude_column) && !is_null($pp)) $count_profil++;
+        }
+
+
+        $peserta_kontak = PesertaKontak::where('peserta_id', $peserta->id)->get() ?? true;
+        if (count($peserta_kontak) > 0) $count_profil += 1;
+        $percentage_profil = ($count_profil/$count_all_profil)*100;
+
         return view('peserta.pendaftaran.index', [
             'assessment_kategori' => $assessment_kategori,
             'dokumen' => $dokumen,
@@ -63,7 +89,8 @@ class RegistrasiAssessmentController extends Controller
             'existingRegistration' => $existingRegistration,
             'registrasi' => $registrasi,
             'registrasi_dokumen' => $registrasi_dokumen,
-            'test' =>$test
+            'test' =>$test,
+            'percentage_profil' => $percentage_profil,
             // 'pesertaProfil' => $pesertaProfil
         ]);
     }
@@ -146,21 +173,46 @@ class RegistrasiAssessmentController extends Controller
 
     public function openRegistrasi() {
         // Periksa apakah peserta sudah memiliki entri registrasi sebelumnya
-        $existingRegistration = Registrasi::where('peserta_id', Auth::guard('peserta')->user()->id)->first();
+        $user = Auth::guard('peserta')->user();
+        $existingRegistration = Registrasi::where('peserta_id', $user->id)->first();
+
+        // profil
+        $count_all_profil = 1; // 1 untuk kontak (karena minimal 1)
+        $count_profil = 0;
+
+        $tableName = 'peserta_profil';
+        $exclude_column = ['id', 'peserta_id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'role_by', 'deleted_at', 'deleted_by'];
+        if (Schema::hasTable($tableName)) {
+            $count_field = Schema::getColumns($tableName);
+            foreach ($count_field as $c) {
+                if (!in_array($c['name'], $exclude_column)) $count_all_profil++;
+            }
+
+        }
+        $peserta_profil = PesertaProfil::where('peserta_id', $user->id)->first();
+        foreach ($peserta_profil->toArray() as $key=>$pp) {
+            if (!in_array($key, $exclude_column) && !is_null($pp)) $count_profil++;
+        }
+
+
+        $peserta_kontak = PesertaKontak::where('peserta_id', $user->id)->get() ?? true;
+        if (count($peserta_kontak) > 0) $count_profil += 1;
+        $percentage_profil = ($count_profil/$count_all_profil)*100;
+
+        // dd($percentage_profil);
 
         $konfigurasi_pendaftaran = Konfigurasi::where('key','pendaftaran')->first();
         if ($konfigurasi_pendaftaran->value == 'TRUE') {
-            if ($existingRegistration) {
-                return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
-            }
+            if ($existingRegistration) return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
+            if ($percentage_profil != 100) return redirect()->back()->withErrors('Silahkan lengkapi prodil terlebih dahulu');
 
             $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
             if (Auth::guard('peserta')->check()) {
                 Registrasi::create([
                     'tahun' => $tahun_sni,
-                    'peserta_id' => Auth::guard('peserta')->user()->id,
+                    'peserta_id' => $user->id,
                     'status_id' => 1, // aktif
-                    'stage_id' => 1, // dummy
+                    'stage_id' => 1, // default
                     'kategori_organisasi_id' => 1, // dummy
                 ]);
 
