@@ -13,6 +13,6 @@ class BeritaSeeder extends Seeder
      */
     public function run(): void
     {
-        Berita::factory(3)->create();
+        Berita::factory(6)->create();
     }
 }
