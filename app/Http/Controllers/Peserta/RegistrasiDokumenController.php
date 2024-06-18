@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Peserta;
 use App\Models\RegistrasiDokumen;
 use App\Http\Controllers\Controller;
 use App\Models\Dokumen;
+use App\Models\Konfigurasi;
 use App\Models\PesertaProfil;
 use App\Models\Registrasi;
 use Illuminate\Http\Request;
@@ -21,8 +22,9 @@ class RegistrasiDokumenController extends Controller
         // ]);
 
         $user = Auth::guard('peserta')->user();
+        $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
         $registrasi = Registrasi::where('peserta_id', $user->id)
-            ->where('tahun', date('Y'))->first();
+            ->where('tahun', $tahun_sni)->first();
 
         foreach ($request->file('url_dokumen') as $iteration => $dokumen) {
             $existingDocument = RegistrasiDokumen::where('registrasi_id', $registrasi->id)

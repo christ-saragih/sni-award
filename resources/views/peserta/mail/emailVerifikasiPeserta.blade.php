@@ -36,7 +36,7 @@
             <a href="{{ $details['url'] }}" style="text-decoration: none; color: rgb(255, 255, 255); padding: 9px; background-color: #552525; font: bold; border-radius: 20%">Verifikasi</a>
             <br><br><br>
             <p>
-                Copy right @ {{ date('Y') }} | BSN SNI Award
+                Copy right @ {{ $details['tahun_sni'] }} | BSN SNI Award
             </p>
         </center>
     </table>
