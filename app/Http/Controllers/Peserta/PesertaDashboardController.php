@@ -47,8 +47,7 @@ class PesertaDashboardController extends Controller
         $peserta_kontak = PesertaKontak::where('peserta_id', $user->id)->get() ?? true;
         if (count($peserta_kontak) > 0) $count_profil += 1;
         $percentage_profil = ($count_profil/$count_all_profil)*100;
-        // dd("$count_profil:$count_all_profil");
-        // dd($percentage_profil);
+        
 
         // pendaftaran
         $count_pendaftaran = 0;
@@ -85,22 +84,12 @@ class PesertaDashboardController extends Controller
         }
         $percentage_pendaftaran = ($count_pendaftaran/$count_all_pendaftaran)*100;
 
-        if ($registrasi->stage_id == 1 && $percentage_profil == 100) {
+        if ($registrasi && $registrasi->stage_id == 1 && $percentage_profil == 100) {
             $registrasi->update([
                 'stage_id' => 2,
             ]);
         }
-        // if ($registrasi->stage_id == 2 && $percentage_pendaftaran == 100) {
-        //     $registrasi->update([
-        //         'stage_id' => 3,
-        //     ]);
-        // }
-        // dd(RegistrasiDokumen::where('registrasi_id', $registrasi->id)
-        // ->where('status', 'disetujui')
-        // ->get());
-        // dd($registrasi->stage_id);
-        // dd($percentage_profil);
-        // dd("$percentage_pendaftaran:$count_pendaftaran:$count_all_pendaftaran");
+
         return view('peserta.home.index', [
             'percentage_pendaftaran' => $percentage_pendaftaran,
             'percentage_profil' => $percentage_profil,
