@@ -675,6 +675,21 @@ iframe.maps {
     }
     /* berita end */
 
+    /* detail berita start */
+    #informasi .content {
+        padding-left: 0px !important;
+    }
+    #informasi .content-samping {
+        padding-right: 0px !important;
+    }
+    #informasi .content-samping img {
+        min-height: 100px !important;
+    }
+    #informasi .content-samping p.title {
+        font-size: 18px !important;
+    }
+    /* detail berita end */
+
     .acara-container img {
         box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
         margin-bottom: 8px !important;
@@ -1616,7 +1631,7 @@ ul a {
 }
 
 #informasi .content-samping p.title {
-    font-size: 22px !important;
+    font-size: 22px;
 }
 
 #informasi .content-samping p.date {

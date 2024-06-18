@@ -1,6 +1,23 @@
 @extends('guest.layouts.master')
 
 @section('content')
+<style>
+  .artikel-container .content-container {
+    width: 100%;
+  }
+  .news-container > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media only screen and (max-width: 1180px){
+    .news-container > div > div {
+      min-width: 45%;
+    }
+  } 
+</style>
 <main>
   <article id="jumbotron" class="bg-theme">
     <div id="container-jumbotron" style="margin-top: -60px;">
@@ -87,12 +104,13 @@
         </div>
       </div>
       <div class="grid-container">
-        <div class="content-container ">
+        <div class="content-container overflow-hidden">
             <h2>Berita Terkini</h2>
             <img
               src="{{ asset('assets') }}/images/dokumentasi/berita-terkini.png"
-              class="p-0"
+              class="p-0 w-100"
               alt=""
+              style="object-fit: cover"
             />
         </div>
         <div class="content-container">
@@ -142,7 +160,7 @@
 
     <div class="news-container">
       <div class="row justify-content-around">
-        <div class="berita-container rounded-3 p-0">
+        <div class="berita-container mw-100 rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
@@ -160,7 +178,7 @@
             <a href="" class="btn">Baca Selengkapnya</a>
           </div>
         </div>
-        <div class="berita-container rounded-3 p-0">
+        <div class="berita-container mw-100 rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
@@ -178,7 +196,7 @@
             <a href="" class="btn">Baca Selengkapnya</a>
           </div>
         </div>
-        <div class="berita-container rounded-3 p-0">
+        <div class="berita-container mw-100 rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
             <h4>
