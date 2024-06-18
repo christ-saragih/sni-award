@@ -92,7 +92,7 @@
       <div class="sidebar collapse navbar-collapse w-auto" id="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/dashboard') ? 'active' : '' }}" id="navLink" href="/peserta">
+            <a class="nav-link {{ request()->is('peserta/dashboard') ? 'active' : '' }}" id="navLink" href="/peserta/dashboard">
               <div class="icon-sm icon-sm text-center me-1 d-flex align-items-center justify-content-center">
                 <i class="fa fa-home"></i>
               </div>
@@ -110,7 +110,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('peserta/pendaftaran') ? 'active' : '' }}" id="navLink" href="/peserta/pendaftaran">
+            <a class="nav-link {{ request()->is('peserta/pendaftaran/*') ? 'active' : '' }}" id="navLink" href="/peserta/pendaftaran">
               <div
                 class="icon-shape icon-sm text-center me-1 d-flex align-items-center justify-content-center"
               >

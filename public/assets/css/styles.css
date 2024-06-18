@@ -9,17 +9,29 @@ body {
     margin: 0;
     padding: 0;
 }
-.main-content{
+
+.main-content {
     margin-top: 100px;
     max-width: 100dvw;
 }
 
 #about,
+#dokumentasi,
 #news,
 #acara,
 .contact-container {
     margin-inline: 85px;
     margin-top: 100px;
+}
+
+.news-container {
+    margin-top: 100px;
+}
+
+.news-container > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 60px;
 }
 
 #container-jumbotron {
@@ -42,7 +54,7 @@ h1 {
     margin-left: 60px;
 }
 
-.header{
+.header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,13 +67,17 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: white;
 }
 
 .navbar-container {
     margin-top: -8px;
-    border-radius: 10px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    background-color: white;
+}
+
+.navbar-nav {
+    height: 30px;
 }
 
 .navbar-nav a,
@@ -202,8 +218,6 @@ h1 {
 
 /* About Article */
 .about-container {
-    margin-top: 150px;
-    margin-bottom: 150px;
     text-align: center;
     align-items: center;
     margin-inline: 222px;
@@ -211,15 +225,10 @@ h1 {
 
 .about-container p {
     font-size: 24px;
-    margin-top: 60px;
     line-height: 32px;
 }
 
 /* berita section */
-.artikel-container {
-    margin-block: 150px;
-}
-
 .artikel-container .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -238,6 +247,10 @@ h1 {
     width: 100%;
     border-radius: 10px;
     box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
+}
+
+.artikel-container .content-container p.description {
+    margin-bottom: 35px;
 }
 
 h2 {
@@ -375,6 +388,7 @@ p.description {
 }
 
 .accordion {
+    width: 75%;
     margin-top: -100px;
     background: transparent;
 }
@@ -455,15 +469,15 @@ h2.accordion-header {
 
 .shape-faq {
     background-image: url(../images/shape/shape-faq-kanan.png),
-    url(../images//shape/shape-faq-kiri.png);
-    background-position: top right,  bottom left;;
+        url(../images//shape/shape-faq-kiri.png);
+    background-position: top right, bottom left;
     background-repeat: no-repeat; /* Mencegah gambar diulang */
 }
 
 .shape-linimasa {
     background-image: url(../images/shape/shape-linimasa-kiri.png),
-    url(../images//shape/shape-faq-kanan.png);
-    background-position: top left,  bottom right;;
+        url(../images//shape/shape-faq-kanan.png);
+    background-position: top left, bottom right;
     background-repeat: no-repeat; /* Mencegah gambar diulang */
 }
 
@@ -493,11 +507,257 @@ h2.accordion-header {
     font-size: 20px;
 }
 
+iframe.maps {
+    width: 100%;
+    height: 350px;
+}
+
+/* responsive design */
+@media (max-width: 480px) {
+    .main-content {
+        margin-top: 40px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    hr {
+        width: 170px;
+        height: 3px;
+    }
+    /* navbar start */
+    .header {
+        display: block !important;
+        position: relative;
+        /* justify-content: end !important; */
+    }
+
+    .navbar {
+        position: absolute;
+        right: 0;
+        top: 20px;
+        width: 100%;
+        margin-top: 0 !important;
+        border-top-left-radius: 0px !important;
+        border-top-right-radius: 0px !important;
+    }
+
+    .navbar-container {
+        width: fit-content !important;
+    }
+
+    .navbar-nav {
+        height: auto !important;
+    }
+
+    .navbar-toggler {
+        background-color: white !important;
+    }
+
+    .logo-container .logo-bsn {
+        height: 28px;
+    }
+
+    .logo-container .logo-sniaward {
+        height: 34px;
+    }
+
+    /* navbar end */
+    .title-container {
+        margin-top: 40px;
+    }
+    #about,
+    #news,
+    #acara {
+        margin-inline: 35px;
+        margin-block: 50px;
+    }
+    #dokumentasi {
+        margin-inline: 35px !important;
+        margin-top: 0px !important;
+    }
+
+    /* hero section start */
+    #container-jumbotron {
+        margin-inline: 35px !important;
+    }
+    .card-container {
+        gap: 16px !important;
+    }
+    #jumbotron h1 {
+        font-size: 48px !important;
+        line-height: 55px;
+    }
+    /* hero section end */
+
+    /* berita start */
+    .artikel-container .content-container h2 {
+        margin-top: 0px !important;
+    }
+
+    .news-container {
+        margin-top: 0px !important;
+    }
+
+    .news-container > div {
+        gap: 25px !important;
+    }
+
+    .berita-container .content h4 {
+        margin-block: 10px !important;
+    }
+    /* berita end */
+    .contact-container {
+        padding-inline: 35px !important;
+        margin-inline: 0 !important;
+    }
+    .contact-container hr {
+        width: 170px;
+        height: 3px;
+    }
+
+    .acara-container img {
+        box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
+        margin-bottom: 8px !important;
+    }
+
+    .acara-container h3 {
+        margin-bottom: 10px !important;
+        margin-left: 0px !important;
+    }
+    .acara-container p {
+        margin-bottom: 12px !important;
+    }
+
+    .about-container {
+        margin-inline: 20px !important;
+    }
+    .about-container p {
+        font-size: 20px !important;
+        margin: 0px !important;
+    }
+    .carousel-container p {
+        font-size: 24px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .artikel-container {
+        margin-block: 50px;
+    }
+
+    .artikel-container .grid-container {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 30px !important;
+    }
+
+    .artikel-container .content-container img {
+        width: 95% !important;
+        box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
+        margin-bottom: 8px !important;
+    }
+
+    .author-container .author-content p.hour {
+        margin-bottom: 2px !important;
+    }
+
+    .artikel-container .content-container p.description {
+        margin-bottom: 5px !important;
+    }
+
+    .contact-container {
+        margin-block: 0px !important;
+        margin-top: 0px !important;
+    }
+
+    .contact-container .row {
+        margin-top: 0px !important;
+    }
+
+    .shape-atas {
+        background-size: 100px;
+    }
+
+    footer .logo-container {
+        margin-left: 0px !important;
+    }
+
+    footer img.logo_sniaward {
+        width: 100%;
+    }
+
+    footer img.logo_bsn {
+        width: 80%;
+    }
+    footer h4 {
+        font-size: 24px !important;
+    }
+    footer ul a {
+        font-size: 18px;
+    }
+    footer .link-container img {
+        width: 20px;
+    }
+    footer .link-container p {
+        margin-left: 2px !important;
+    }
+    /* acara */
+    .acara-container .grid-container {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: 30px !important;
+    }
+    .accordion {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    /* login peserta start */
+    #login {
+        padding-inline: 10px !important;
+    }
+    #login .content-kiri {
+        display: none !important;
+    }
+    #login .content-kanan {
+        width: 100%;
+    }
+    /* login peserta end */
+
+    /* register peserta start */
+    #register {
+        height: 100vh !important;
+        padding-inline: 8px !important;
+    }
+    #register .content-kiri {
+        display: none !important;
+    }
+    #register .content-kanan {
+        height: fit-content !important;
+        width: 100% !important;
+        /* padding-inline: 2px !important; */
+        border-radius: 37px !important;
+    }
+    #register .content-kanan h1 {
+        padding-top: 10px !important;
+        margin-bottom: 5px !important;
+    }
+    #register .content-kanan p {
+        margin-bottom: 0px !important;
+        padding-inline: 50px !important;
+        text-align: center;
+    }
+    /* register peserta end */
+}
+
 /* Kontak start */
 .shape-kontak {
     background-image: url(../images/shape/shape-kontak-kanan.png),
-    url(../images//shape/shape-kontak-kiri.png);
-    background-position: top right,  bottom left;;
+        url(../images//shape/shape-kontak-kiri.png);
+    background-position: top right, bottom left;
     background-repeat: no-repeat; /* Mencegah gambar diulang */
 }
 
@@ -567,6 +827,7 @@ h2.accordion-header {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
     font-size: 32px;
+    margin-bottom: 2rem;
 }
 
 .slider {
@@ -644,7 +905,6 @@ h2.accordion-header {
     color: white;
 }
 
-
 #kumpulan-acara #slider .slider {
     margin-bottom: 30px;
     position: relative;
@@ -654,10 +914,10 @@ h2.accordion-header {
     transform: scale(1.15);
     opacity: 1;
     border: 3px solid var(--primary-color);
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25) !important;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
 }
 #kumpulan-acara #slider .slider-card {
-    box-shadow: 0px 2px 24px 0px rgba(42,42,42,0.54) !important;
+    box-shadow: 0px 2px 24px 0px rgba(42, 42, 42, 0.54) !important;
     background: #fff;
     padding: 0px;
     margin: 50px 30px 90px 30px;
@@ -675,7 +935,7 @@ h2.accordion-header {
 
 /* Unduh start */
 #unduh {
-    background-color: #ECE4E4;
+    background-color: #ece4e4;
     margin-block: 140px;
     padding-block: 30px;
     margin-left: 260px;
@@ -690,7 +950,7 @@ h2.accordion-header {
 
 #unduh .title h1 {
     font-size: 300%;
-    color: #2B2B28;
+    color: #2b2b28;
 }
 
 #unduh .row {
@@ -704,8 +964,8 @@ h2.accordion-header {
 
 #unduh .item .card-body {
     position: relative;
-    border: 5px solid #AD7979;
-    background-color: #FAFAFA;
+    border: 5px solid #ad7979;
+    background-color: #fafafa;
     border-radius: 10px;
     padding-block: 5rem !important;
     height: 170px;
@@ -725,7 +985,7 @@ h2.accordion-header {
 
 #unduh .item .card-body h4 {
     font-size: 20px;
-    color: #2B2B28;
+    color: #2b2b28;
     text-align: center;
     padding-inline: 2rem;
     margin: 0 auto;
@@ -760,10 +1020,10 @@ h2.accordion-header {
 }
 
 #unduh .owl-dots .owl-dot:hover span {
-    background-color: #AD7979;
+    background-color: #ad7979;
 }
 
-#unduh .owl-dots .owl-dot.active span{
+#unduh .owl-dots .owl-dot.active span {
     background-color: var(--primary-color);
 }
 
@@ -776,13 +1036,16 @@ h2.accordion-header {
 }
 
 #unduh .owl-nav i:hover {
-    color: #AD7979;
+    color: #ad7979;
     transition: all 0.3s ease;
 }
 
 /* Unduh end */
 
 /* Footer */
+footer .logo-container {
+    margin-left: 3rem;
+}
 footer p {
     color: #2b2b28;
     font-size: 16px;
@@ -794,6 +1057,9 @@ footer h4 {
     font-family: "Josefin Sans", sans-serif;
     font-size: 29px;
     font-weight: 600;
+}
+footer .link-container p {
+    margin-left: 0.5rem;
 }
 
 ul {
@@ -851,7 +1117,7 @@ ul a {
 }
 
 /* register */
-#register{
+#register {
     /* max-width: 100vw; */
     /* max-height: 100vh; */
     background-image: url("../images/icon/Vector\ 7.svg");
@@ -867,7 +1133,6 @@ ul a {
 
 #register .select2-container .select2-selection--single {
     border-radius: 100px !important;
-
 }
 
 #register .select2-container .select2-selection--single {
@@ -876,32 +1141,48 @@ ul a {
     align-items: center;
 }
 
-#register .select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: #2B2B28 !important;
+#register
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
+    color: #2b2b28 !important;
 }
 
-#register .select2-container .select2-selection--single .select2-selection__rendered {
-    padding-inline: .75rem;
+#register
+    .select2-container
+    .select2-selection--single
+    .select2-selection__rendered {
+    padding-inline: 0.75rem;
 }
 
-#register .select2-container--default .select2-selection--single .select2-selection__arrow {
+#register
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
     width: 38px !important;
     height: 38px !important;
     right: 8px !important;
 }
 
-#register .select2-container--default .select2-selection--single .select2-selection__arrow b {
+#register
+    .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
     border-color: #552525 transparent transparent transparent !important;
     border-width: 7px 6px 2px 6px !important;
 }
 
-#register .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
-        border-color: transparent transparent #552525 transparent !important;
-        border-width: 2px 6px 7px 6px !important;
+#register
+    .select2-container--default.select2-container--open
+    .select2-selection--single
+    .select2-selection__arrow
+    b {
+    border-color: transparent transparent #552525 transparent !important;
+    border-width: 2px 6px 7px 6px !important;
 }
 
-
-#register .content-kiri{
+#register .content-kiri {
     width: 60%;
     height: 100vh;
     display: flex;
@@ -925,14 +1206,14 @@ ul a {
 
 #register .content-kanan > h1 {
     color: #fff;
-    text-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #register .content-kanan > p {
-    color: #E9ECFA;
+    color: #e9ecfa;
 }
 
-#register .content-kanan > form{
+#register .content-kanan > form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -950,7 +1231,7 @@ ul a {
 }
 
 #register .content-kanan form input {
-    color: #2B2B28 !important;
+    color: #2b2b28 !important;
 }
 
 #register .content-kanan .form-text {
@@ -960,6 +1241,11 @@ ul a {
 
 #register .content-kanan .form-text a {
     color: white;
+}
+.g-recaptcha {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px !important;
 }
 
 /* end register */
@@ -1028,7 +1314,7 @@ ul a {
     font-size: 14px;
     font-weight: 600;
 }
-.login-container .content-kanan form{
+.login-container .content-kanan form {
     width: 100%;
     padding: 0 30px;
 }
@@ -1049,7 +1335,7 @@ ul a {
 }
 
 .login-container .content-kanan .button button {
-    background-color: #DCA958;
+    background-color: #dca958;
     color: white;
     border-radius: 37px;
     padding: 6px 80px;
@@ -1099,6 +1385,12 @@ ul a {
 
 .acara-container .title {
     margin-bottom: 60px;
+}
+
+.acara-container .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 90px 50px;
 }
 
 .acara-container .title p {
@@ -1197,7 +1489,7 @@ ul a {
 
 /* Back to Top Start */
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 @keyframes fadeInOut {
