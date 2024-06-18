@@ -212,7 +212,7 @@ class RegistrasiAssessmentController extends Controller
                     'tahun' => $tahun_sni,
                     'peserta_id' => $user->id,
                     'status_id' => 1, // aktif
-                    'stage_id' => 1, // default
+                    'stage_id' => 2, // default
                     'kategori_organisasi_id' => 1, // dummy
                 ]);
 
