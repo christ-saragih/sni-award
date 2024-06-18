@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Sekretariat\tim;
 
 use App\Http\Controllers\Controller;
+use App\Models\Konfigurasi;
 use App\Models\Registrasi;
 use App\Models\RegistrasiEvaluator;
 use App\Models\Stage;
@@ -13,8 +14,9 @@ use Illuminate\Support\Facades\Auth;
 class SekretariatTimController extends Controller
 {
     public function index() {
+        $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
         $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id)
-            ->where('tahun', date('Y'))
+            ->where('tahun', $tahun_sni)
             ->first();
         $tim = $registrasi->registrasi_evaluator;
         // dd($tim);
@@ -25,8 +27,9 @@ class SekretariatTimController extends Controller
     }
 
     public function tambah() {
+        $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
         $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id)
-            ->where('tahun', date('Y'))
+            ->where('tahun', $tahun_sni)
             ->first();
 
         $all_sekretariat = Registrasi::where('sekretariat_id', '!=', null)
@@ -62,8 +65,9 @@ class SekretariatTimController extends Controller
             'lead_evaluator_id' => 'Id lead evaluator tidak boleh kosong',
         ]);
         $stage_id = Stage::where('nama', $request->stage)->first()->id;
+        $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
         $registrasi = Registrasi::where('sekretariat_id', Auth::user()->id)
-            ->where('tahun', date('Y'))
+            ->where('tahun', $tahun_sni)
             ->first();
         if ($registrasi) {
             RegistrasiEvaluator::create([

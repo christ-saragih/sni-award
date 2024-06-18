@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\AuthPesertaMail;
 use App\Mail\ForgotPasswordPesertaMail;
 use App\Models\KategoriOrganisasi;
+use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
@@ -83,6 +84,7 @@ class AuthPesertaController extends Controller
             $details = [
                 'nama' => $dataRegistrasi['nama'],
                 'datetime' => date('Y-m-d H:i:s'),
+                'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
                 // 'website' => 'SNI Award',
                 'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
             ];
@@ -136,7 +138,7 @@ class AuthPesertaController extends Controller
         $details = [
             'nama' => Auth::guard('peserta')->user()->nama,
             'datetime' => date('Y-m-d H:i:s'),
-            // 'website' => 'SNI Award',
+            'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
             'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$kode_verifikasi,
         ];
         Mail::to(Auth::guard('peserta')->user()->email)->send(new AuthPesertaMail($details));
@@ -164,7 +166,7 @@ class AuthPesertaController extends Controller
             $details = [
                 'name' => $user->name,
                 'datetime' => date('Y-m-d H:i:s'),
-                'website' => 'SNI Award',
+                'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
                 'url' => 'http://'.request()->getHttpHost().'/reset-password'.'/'.$user->forgot_password_token.'?email='.$request->email,
             ];
             Mail::to($request->email)->send(new ForgotPasswordPesertaMail($details));
