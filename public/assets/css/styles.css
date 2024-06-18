@@ -24,6 +24,10 @@ body {
     margin-top: 100px;
 }
 
+#news {
+    margin-bottom: 100px;
+}
+
 .contact-container .title {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
@@ -249,9 +253,8 @@ h1 {
 }
 
 .artikel-container .content-container img {
-    width: 100%;
     border-radius: 10px;
-    box-shadow: 33px 37px 0px 0px rgba(85, 37, 37, 1);
+    object-fit: cover;
 }
 
 .artikel-container .content-container p.description {
@@ -530,6 +533,28 @@ iframe.maps {
     margin-top: 75px;
     margin-left: -200px;
 }
+.container-dokumen-kegiatan .item {
+    width: 405px;
+}
+#unduh hr {
+    margin-top: 0.3rem;
+    width: 350px;
+}
+.artikel-container {
+    margin-bottom: 50px;
+}
+.artikel-container .content-container {
+    width: 50%;
+}
+.berita-terkini-container {
+    gap: 3rem;
+}
+.berita-container {
+    width: 30%;
+}
+.semua-berita-container {
+    gap: 3rem;
+}
 
 /* responsive design */
 @media (max-width: 480px) {
@@ -614,10 +639,29 @@ iframe.maps {
     /* hero section end */
 
     /* berita start */
+    #news {
+        margin-top: -70px !important;
+    }
+    .berita-terkini-container {
+        flex-wrap: wrap;
+        gap: 2rem !important;
+    }
+    .artikel-container {
+        padding-top: 3.8rem !important;
+        margin-bottom: 2rem !important;
+    }
+    .artikel-container .content-container {
+        width: 100% !important;
+    }
     .artikel-container .content-container h2 {
         margin-top: 0px !important;
     }
-
+    .semua-berita-container {
+        gap: 1.5rem;
+    }
+    .berita-container {
+        width: 100% !important;
+    }
     .news-container {
         margin-top: 0px !important;
     }
@@ -630,6 +674,7 @@ iframe.maps {
         margin-block: 10px !important;
     }
     /* berita end */
+
     .acara-container img {
         box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
         margin-bottom: 8px !important;
@@ -750,11 +795,49 @@ iframe.maps {
     /* dokumen start */
     #unduh {
         margin-top: -60px !important;
+        padding-top: 5px !important;
+    }
+    #unduh hr {
+        width: 250px !important;
     }
     #unduh .title {
         margin-top: 100px !important;
     }
+    #unduh .title h1 {
+        font-size: 28px !important;
+    }
+    .container-dokumen-kegiatan {
+        gap: 2rem;
+    }
+    .container-dokumen-kegiatan .item {
+        width: 200px !important;
+        padding-inline: 0px !important;
+    }
+    #unduh .item .card-body img {
+        width: 58px !important;
+        left: -40px !important;
+    }
+    #unduh .row {
+        margin-left: -185px !important;
+    }
+    #unduh .item .card-body {
+        width: 160px !important;
+    }
+
+    #unduh .item .card-body h4 {
+        padding-inline: 1rem !important;
+    }
+    #unduh div.owl-dots {
+        margin-left: 20px !important;
+    }
     /* dokumen end */
+
+    /* linimasa start */
+    .shape-linimasa {
+        margin-top: -60px;
+        background-size: 100px;
+    }
+    /* linimasa end */
 
     /* faq start */
     .shape-faq {
@@ -1028,7 +1111,7 @@ iframe.maps {
 }
 
 #unduh .item {
-    padding-inline: 3rem !important;
+    padding-inline: 3rem;
 }
 
 #unduh .item .card-body {
