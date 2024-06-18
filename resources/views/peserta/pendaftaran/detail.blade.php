@@ -38,7 +38,8 @@
                 </div>
 
                 <div class="text-center kategori_pertanyaan_single ms-auto">
-                    Kepemimpinan
+                    {{$assessment_sub_kategori[0]->assessment_kategori->nama}}
+                    {{-- Kepemimpinan --}}
                     </div>
                 </div>
 

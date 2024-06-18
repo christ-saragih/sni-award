@@ -3,16 +3,6 @@
         border: none !important;
         background-color: transparent !important;
     }
-    .profil-image-container {
-        width: 150px;
-        height: 150px;
-        overflow: hidden;
-    }
-    .profil-image {
-        border-radius: 100%;
-        width: 100%;
-        height: 100%;
-    }
     span.info {
         color: red;
     }
