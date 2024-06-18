@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             StageSeeder::class,
             PesertaSeeder::class,
+            FaqSeeder::class,
             // PesertaProfilSeeder::class,
             // PesertaKontakSeeder::class,
             // RegistrasiSeeder::class,
