@@ -31,8 +31,8 @@
         @if ($penjadwalan_linimasa)
         <div class="mt-5 ms-5">
             <iframe
-                src="{{ $penjadwalan_linimasa ? $penjadwalan_linimasa->lokasi_map : null }}"
-                {{-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid" --}}
+                {{-- src="{{ $penjadwalan_linimasa ? $penjadwalan_linimasa->lokasi_map : null }}" --}}
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid"
                 width="960"
                 height="580"
                 style="border: 0"

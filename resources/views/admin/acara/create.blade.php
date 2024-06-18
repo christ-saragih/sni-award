@@ -28,10 +28,10 @@
                     @csrf
                     <div class="row g-3 align-items-center">
                         <div class="col-3">
-                            <label class="fw-bold">Judul Acara</label>
+                            <label class="fw-bold">Judul Acara <span style="color: red">*</span></label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="judul_acara" name="judul_acara" class="form-control" placeholder="Tambahkan Judul" value="{{ old('judul_acara') }}">
+                            <input type="text" id="judul_acara" name="judul_acara" class="form-control" placeholder="Tambahkan Judul" value="{{ old('judul_acara') }}" required>
                             {{-- @error('judul_acara')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror --}}
@@ -39,19 +39,19 @@
                     </div>
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-3">
-                            <label class="fw-bold">Gambar Thumbnail</label>
+                            <label class="fw-bold">Gambar Thumbnail <span style="color: red">*</span></label>
                         </div>
                         <div class="col-9">
-                            <input type="file" id="gambar_thumbnail" name="gambar_thumbnail" class="form-control" value="{{ old('gambar_thumbnail') }}">
+                            <input type="file" id="gambar_thumbnail" name="gambar_thumbnail" class="form-control" accept="image/*" value="{{ old('gambar_thumbnail') }}" required>
                         </div>
                     </div>
                     <div class="additional-images">
                         <div class="row g-3 mt-2 additional-image-upload">
                             <div class="col-3">
-                                <label class="fw-bold">Gambar Konten</label>
+                                <label class="fw-bold">Gambar Konten <span style="color: red">*</span></label>
                             </div>
                             <div class="col-9">
-                                <input type="file" name="gambar_konten[]" class="form-control" accept="image/*" multiple onchange="previewImages(event)">
+                                <input type="file" name="gambar_konten[]" class="form-control" accept="image/*" multiple onchange="previewImages(event)" value="{{ old('gambar_konten') }}" required>
                                 <div id="image-preview"></div>
                             </div>
                         </div>
@@ -66,15 +66,15 @@
                     </div> --}}
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-3">
-                            <label class="fw-bold">Tanggal Upload Acara</label>
+                            <label class="fw-bold">Tanggal Upload Acara <span style="color: red">*</span></label>
                         </div>
                         <div class="col-3">
-                            <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ old('tanggal') }}">
+                            <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ old('tanggal') }}" required>
                         </div>
                     </div>
                     <div class="row g-3 mt-2">
                         <div class="col-3">
-                            <label class="fw-bold">Isi Acara</label>
+                            <label class="fw-bold">Isi Acara <span style="color: red">*</span></label>
                         </div>
                         <div class="col-9">
                             <textarea name="deskripsi" id="deskripsi" cols="75" rows="10">{{ old('deskripsi') }}</textarea>
@@ -135,6 +135,7 @@
             var image = document.createElement('img');
             image.src = event.target.result;
             image.style.maxWidth = '200px';
+            image.style.marginTop = '5px';
             image.style.marginRight = '10px';
             preview.appendChild(image);
         };

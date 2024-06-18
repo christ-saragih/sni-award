@@ -131,7 +131,7 @@ class AuthUserController extends Controller
                     ->with('success', 'Berhasil melakukan verifikasi');
             }
             return redirect()
-                ->route('user.login.view')
+                ->route('user.dashboard.view')
                 ->with('success', 'Berhasil melakukan verifikasi');
         }
         return redirect()
