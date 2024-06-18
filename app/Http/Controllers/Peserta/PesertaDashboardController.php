@@ -44,7 +44,7 @@ class PesertaDashboardController extends Controller
 
 
         $peserta_kontak = PesertaKontak::where('peserta_id', $user->id)->get() ?? true;
-        if (count($peserta_kontak)) $count_profil += 1;
+        if (count($peserta_kontak) > 0) $count_profil += 1;
         $percentage_profil = ($count_profil/$count_all_profil)*100;
         // dd("$count_profil:$count_all_profil");
         // dd($percentage_profil);
