@@ -41,6 +41,7 @@
                         </div>
                         <div class="col-9">
                             <input type="file" id="file_gambar" name="file_gambar" class="form-control" value="{{ $berita->file_gambar }}">
+                            <img src="{{ asset('storage/images/gambar_berita/' . $berita->file_gambar) }}" alt="Gambar Konten" style="max-width: 200px;">
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">

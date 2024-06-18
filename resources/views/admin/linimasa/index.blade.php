@@ -33,12 +33,12 @@
     cursor: pointer;
   }
 
-  #fileInputLabel1, 
+  #fileInputLabel1,
   #fileInputLabel2 {
-    width: 80%; 
-    color: #9fafbf; 
+    width: 80%;
+    color: #9fafbf;
     white-space: nowrap;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
   }
@@ -232,7 +232,7 @@
                                             </div>
                                             <div class="container col-md-8 pe-5">
                                                 <div class="input-group custom-file-button">
-                                                <input name="lokasi_map" type="url" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
+                                                <input name="lokasi_map" type="text" class="form-control form-control-lg ps-4" placeholder="Masukkan Lokasi Event.." style="font-size: 100%;"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -298,7 +298,7 @@
 </div>
 
 <script>
-    
+
 function handleFileSelect(inputId, labelId, fileNameId) {
     const fileInput = document.getElementById(inputId);
     const fileInputLabel = document.getElementById(labelId);
