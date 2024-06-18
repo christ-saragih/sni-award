@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Peserta;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentKategori;
 use App\Models\Dokumen;
+use App\Models\Konfigurasi;
 use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
 use App\Models\Registrasi;
@@ -52,8 +53,9 @@ class PesertaDashboardController extends Controller
         // pendaftaran
         $count_pendaftaran = 0;
         $count_all_pendaftaran = 1;
+        $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
         $registrasi = Registrasi::where('peserta_id', $user->id)
-            ->where('tahun', date('Y'))
+            ->where('tahun', $tahun_sni)
             ->first();
 
         $assessment_kategori = AssessmentKategori::get();

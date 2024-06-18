@@ -154,9 +154,10 @@ class RegistrasiAssessmentController extends Controller
                 return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
             }
 
+            $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
             if (Auth::guard('peserta')->check()) {
                 Registrasi::create([
-                    'tahun' => date('Y'),
+                    'tahun' => $tahun_sni,
                     'peserta_id' => Auth::guard('peserta')->user()->id,
                     'status_id' => 1, // aktif
                     'stage_id' => 1, // dummy

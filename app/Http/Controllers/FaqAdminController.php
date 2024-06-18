@@ -9,10 +9,10 @@ class FaqAdminController extends Controller
 {
 
     public function index() {
-       $faq = Faq::get();
-       return view('admin.faq.index', [
-        'faq' => $faq
-       ]);
+        $faq = Faq::get();
+        return view('admin.faq.index', [
+            'faq' => $faq
+        ]);
     }
 
     public function store(Request $request) {

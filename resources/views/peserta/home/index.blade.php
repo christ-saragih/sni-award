@@ -160,15 +160,15 @@
     let speedProfil = progressEndValueProfil > 60 ? 25 : 50;
 
     let progressProfil = setInterval(() => {
-        progressValueProfil++;
         valueContainerProfil.textContent = `${progressValueProfil}%`;
         circularProgressProfil.style.background = `conic-gradient(
             #E59B30 ${progressValueProfil * 3.6}deg,
             #D9D9D9 ${progressValueProfil * 3.6}deg
         )`;
-        if(progressValueProfil == progressEndValueProfil) {
+        if(progressValueProfil == progressEndValueProfil || !progressEndValueProfil) {
             clearInterval(progressProfil);
         }
+        progressValueProfil++;
     }, speedProfil);
 
     // pendaftaran
@@ -180,15 +180,15 @@
     let speedPendaftaran = progressEndValuePendaftaran > 60 ? 25 : 50;
 
     let progressPendaftaran = setInterval(() => {
-        progressValuePendaftaran++;
         valueContainerPendaftaran.textContent = `${progressValuePendaftaran}%`;
         circularProgressPendaftaran.style.background = `conic-gradient(
             #78A55A ${progressValuePendaftaran * 3.6}deg,
             #D9D9D9 ${progressValuePendaftaran * 3.6}deg
         )`;
-        if(progressValuePendaftaran == progressEndValuePendaftaran) {
+        if(progressValuePendaftaran == progressEndValuePendaftaran || !progressEndValueProfil) {
             clearInterval(progressPendaftaran);
         }
+        progressValuePendaftaran++;
     }, speedPendaftaran);
 
 </script>
