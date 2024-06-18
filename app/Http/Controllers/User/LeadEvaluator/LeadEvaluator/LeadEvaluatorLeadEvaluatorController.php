@@ -34,21 +34,22 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
             ->whereIn('registrasi_id', $all_registrasi_id)
             ->get();
 
-        $penilaian_evaluator = [];
         foreach ($desk_evaluation as $penilaian) {
-            foreach ($penilaian->registrasi->registrasi_penilaian as $status) {
-                if($status->internal_id == $penilaian->lead_evaluator_id) {
-                    $penilaian_evaluator[] = [
-                        'jabatan' => $status->jabatan,
-                    ];
-                }
-            }
+            $reg = $penilaian->registrasi;
+            $reg_penialain = RegistrasiPenilaian::where('registrasi_id', $reg->id)
+                ->where('jabatan', 'evaluator')
+                ->where('internal_id', $user->id)
+                ->get();
+            // dd($reg);
+            $reg_penialain = count($reg_penialain) > 0;
+            // dd($reg_penialain);
+            $penilaian->is_dinilai = $reg_penialain;
         }
 
         return view('lead_evaluator.lead_evaluator.index', [
             'registrasi' => $registrasi,
             'desk_evaluation' => $desk_evaluation,
-            'penilaian_evaluator' => $penilaian_evaluator,
+            // 'penilaian_evaluator' => $penilaian_evaluator,
             'site_evaluation' => $site_evaluation,
             'tahun_registrasi' => $tahun_registrasi,
         ]);
@@ -93,27 +94,35 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
     }
 
     public function penilaian(Request $request, $registrasi_id) {
-        $user = Auth::user();
-        $registrasi = Registrasi::find($registrasi_id);
-
         $request->validate([
             'skor' => 'required|max:100',
+            'url_dokumen_penilaian' => 'required|mimes:pdf',
             'catatan' => 'required',
         ], [
             'skor.required' => 'Skor Tidak Boleh Kosong',
             'skor.required' => 'Skor Masimal 100',
+            'url_dokumen_penilaian.required' => 'Dokumen Penilaian Tidak Boleh Kosong',
+            'url_dokumen_penilaian.mimes' => 'Dokumen Penilaian Harus PDF',
             'catatan.required' => 'Catatan Tidak Boleh Kosong',
         ]);
 
+        $user = Auth::user();
+        $registrasi = Registrasi::find($registrasi_id);
+
         $desk_evaluation = RegistrasiEvaluator::where('registrasi_id', $registrasi->id)->where(['stage' => 3])->first();
         $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
-        // dd($penilaian_evaluator);
+
         if ($penilaian_evaluator) {
+            $dokumen_penilaian = $request->file('url_dokumen_penilaian');
+            $nama_dokumen_penilaian = 'dokumen_penilaian_' . now()->format('YmdHis') . $dokumen_penilaian->getClientOriginalName();
+            // $gambar_file->move(storage_path('app/public/images/gambar_berita/'), $nama_file);
+            $dokumen_penilaian->move(storage_path('app/public/file/dokumen_penilaian/desk_evaluation/lead_evaluator/'), $nama_dokumen_penilaian);
+
             RegistrasiPenilaian::create([
                 'registrasi_id' => $registrasi_id,
                 'internal_id' => $user->id,
                 'jabatan' => $user->jenis_role->nama,
-                'url_dokumen_penilaian' => '',
+                'url_dokumen_penilaian' => $nama_dokumen_penilaian,
                 'stage_id' => $registrasi->stage_id,
                 'skor' => $request->skor,
                 'catatan' => $request->catatan,
@@ -123,5 +132,20 @@ class LeadEvaluatorLeadEvaluatorController extends Controller
         }
 
         return back()->with('error', 'Evaluator Belum Menilai');
+    }
+
+    public function download($registrasi_id, $penilaian_id)
+    {
+        $registrasi_id = Crypt::decryptString($registrasi_id);
+        $penilaian_id = Crypt::decryptString($penilaian_id);
+        $item = RegistrasiPenilaian::find($penilaian_id);
+        // dd($item->url_dokumen_penilaian);
+        $filePath = storage_path('app/public/file/dokumen_penilaian/desk_evaluation/lead_evaluator/' . $item->url_dokumen_penilaian);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan');
+        }
     }
 }

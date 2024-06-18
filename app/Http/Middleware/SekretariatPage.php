@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Konfigurasi;
 use App\Models\Registrasi;
 use Closure;
 use Illuminate\Http\Request;
@@ -18,9 +19,10 @@ class SekretariatPage
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
+            $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
             $is_sekretariat = count(
                 Registrasi::where('sekretariat_id', Auth::user()->id)
-                    ->where('tahun', date('Y'))
+                    ->where('tahun', $tahun_sni)
                     ->get()
             ) != 0;
             $role = str_replace(' ', '_', Auth::user()->jenis_role->nama);

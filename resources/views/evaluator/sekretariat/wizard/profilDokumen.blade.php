@@ -1,17 +1,31 @@
 <style>
+    .btn-cek-dokumen {
+        padding: 8px 40px 8px 20px;
+        border: none !important;
+        background-color: #CC9305;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: bold !important;
+        width: 100% !important;
+    }
+    .btn-cek-dokumen:hover {
+        background-color: #E59B30 !important;
+        color: #fff !important;
+        font-weight: bold !important;
+    }
     .btn-disetujui {
         width: fit-content !important;
         border: none !important;
-        padding: 1px 7px !important;
-        border-radius: 3px !important;
+        padding: 3px 8px !important;
+        border-radius: 8px !important;
         color: white;
         background-color: #47A15E !important;
     }
     .btn-ditolak {
         width: fit-content !important;
         border: none !important;
-        padding: 1px 7px !important;
-        border-radius: 3px !important;
+        padding: 3px 7px !important;
+        border-radius: 8px !important;
         color: white;
         background-color: #D12B2B !important;
     }
@@ -35,6 +49,31 @@
     .btn-no:hover {
         color: white !important;
         transform: scale(110%, 110%);
+        transition: all 0.3s ease;
+    }
+    .btn-setuju {
+        min-width: 100px;
+        padding: 8px!important;
+        border: none !important;
+        border-radius: 15px !important;
+        color: white !important;
+        background-color: #47A15E !important;
+    }
+    .btn-tidak {
+        min-width: 100px;
+        padding: 8px !important;
+        border: none !important;
+        border-radius: 15px !important;
+        color: white !important;
+        background-color: #D12B2B !important;
+    }
+    .btn-setuju:hover,
+    .btn-tidak:hover {
+        font-weight: bold !important;
+    }
+    .fa-download:hover {
+        transform: scale(110%, 110%);
+        transition: all 0.3s ease;
     }
     .chat {
         display: flex;
@@ -86,6 +125,24 @@
     }
 </style>
 
+<!-- Modal Cek Dokumen -->
+<div class="modal fade" id="ubahKonfigurasi" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="width: 100%;">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body" style="padding-block: 100px;">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="mb-1" style="font-family: 'Josefin Sans', sans-serif; font-size: 36px; font-weight: bold; color: black;">Dokumen Peserta Telah Selesai</h1>
+                    <p style="color: #2B2B28;">Klik di bawah untuk melanjutkan ke tahap Desk Evaluation</p>
+                    <div class="d-flex gap-3 mt-2">
+                        <button class="btn btn-setuju">Setuju</button>
+                        <button class="btn btn-tidak" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">Tidak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Cek Dokumen End-->
 {{-- Modal --}}
 @foreach ($registrasi_dokumen as $key=>$rd)
     <div class="modal fade" id="setujuDokumen{{ $key }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,7 +153,7 @@
                 {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
             </div>
             <div class="modal-body">
-                Dengan menekan tombol <b>"Ya"</b>, Anda <b>menyetujui</b> dokumen terkait. <br>
+                Dengan menekan tombol <b>"Ya"</b>, Anda <b>menyetujui</b> dokumen terkait.
                 Dokumen yang telah <b>disetujui</b> tidak bisa <b>ditolak</b> atau <b>diubah</b> kembali. <br><br>
                 Apakah Anda yakin ingin <b>menyetujui</b> dokumen ini?
             </div>
@@ -147,10 +204,38 @@
                 {{ session('error') }}
             </div>
         @endif
-        <div class="d-flex align-items-center gap-3 mb-5">
+
+        <div class="d-flex align-items-center mb-5">
+
+            <div class="progress flex-grow-1" style="height: 10px; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #E59B30;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <!-- <div class="progress flex-grow-1" style="height: 10px; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #47A15E;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> -->
+            
+            <div class="container-kategori-select">
+                <!-- <select name="assessment_kategori" id="" class="kategori-select" style="background-color: #E59B30; font-family: 'Josefin Sans', sans-serif; font-size: 20px;">
+                </select> -->
+                <button data-bs-toggle="modal" data-bs-target="#ubahKonfigurasi" class="btn btn-cek-dokumen" style="background-color: #E59B30; font-family: 'Josefin Sans', sans-serif; font-size: 20px;">
+                    Cek Dokumen
+                </button>
+            </div>
+            <!-- <div class="container-kategori-select">
+                <select name="assessment_kategori" id="" class="kategori-select" style="background-color: #47A15E; font-family: 'Josefin Sans', sans-serif; font-size: 20px;">
+                    <option value="0" selected class="kategori-option">Desk Evaluation</option>
+                    <option value="1" class="kategori-option">One</option>
+                    <option value="2" class="kategori-option">Two</option>
+                    <option value="3" class="kategori-option">Three</option>
+                </select>
+            </div> -->
+        </div>
+
+        <!-- <div class="d-flex align-items-center gap-3 mb-5">
             <label class="fs-4 fw-bold">Dokumen</label>
             <hr style="width: 100%; height: 1px; background-color: #CC9305;">    
-        </div>
+        </div> -->
+        
         <div class="d-flex justify-content-end pe-5">
             <div>
                 <label class="fw-bold">Aksi</label>
@@ -178,26 +263,26 @@
                                 @if ($rd->dokumen_id == $dok->id)
                                     @switch ($rd->status)
                                         @case ('proses')
-                                            @php $statusColor = 'bg-warning'; @endphp
+                                            @php $statusColor = '#E59B30'; @endphp
                                             @break
                                         @case ('ditolak')
-                                            @php $statusColor = 'bg-danger text-white'; @endphp
+                                            @php $statusColor = '#D12B2B'; @endphp
                                             @break
                                         @case ('disetujui')
-                                            @php $statusColor = 'bg-success text-white'; @endphp
+                                            @php $statusColor = '#47A15E'; @endphp
                                             @break
                                     @endswitch
                                     <div class="d-flex align-items-center justify-content-center">
                                         @if ($rd->status != 'proses')
-                                            <div class="px-3 py-1 border-0 rounded {{ $statusColor }}" style="width: fit-content;">{{ $rd->status }}</div>
+                                            <div class="d-flex justify-content-center border-0  text-white" style="padding-block: 0.2rem; border-radius: 10px; min-width: 95px !important; background-color: {{ $statusColor }}">{{ $rd->status }}</div>
                                         @else
                                             <div class="d-flex align-items-center justify-content-center gap-2">
-                                                <button type="button" class="btn-disetujui" data-bs-toggle="modal" data-bs-target="#setujuDokumen{{ $key }}">&#x2714;</button>
-                                                <button type="button" class="btn-ditolak" data-bs-toggle="modal" data-bs-target="#tolakDokumen{{ $key }}">&#x2716;</button>
+                                                <button type="button" class="btn-disetujui" data-bs-toggle="modal" data-bs-target="#setujuDokumen{{ $key }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Setujui dokumen">&#x2714;</button>
+                                                <button type="button" class="btn-ditolak" data-bs-toggle="modal" data-bs-target="#tolakDokumen{{ $key }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tolak dokumen">&#x2716;</button>
                                             </div>
                                         @endif
     
-                                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-left: 10px;">
+                                        <a href="{{ $rd->url_dokumen }}" target="_blank" style="text-decoration: none; margin-left: 10px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                                             <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                                         </a>
                                     </div>

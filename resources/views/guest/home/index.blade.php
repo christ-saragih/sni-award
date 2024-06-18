@@ -1,11 +1,11 @@
-@extends('Guest.layouts.master')
+@extends('guest.layouts.master')
 
 @section('content')
 <main>
   <article id="jumbotron" class="bg-theme">
     <div id="container-jumbotron" style="margin-top: -60px;">
       <div class="row ">
-        <div class="title-container col-8 d-flex flex-column justify-content-center ">
+        <div class="title-container col-12 col-lg-8 d-flex flex-column justify-content-center ">
           <h1>
             {{-- Selamat Datang di Website
             <span>SNI Award 2024</span> --}}
@@ -17,14 +17,14 @@
             {{ $frontpage_data->keterangan_judul }}
           </p>
         </div>
-        <div class="image-container col-4 ">
+        <div class="image-container col-12 col-lg-4 ">
           <img src="/storage{{ $frontpage_data->gambar_banner }}" class="w-100" alt="" />
         </div>
       </div>
       <br>
       <br>
       <div class="d-flex align-items-center justify-content-center">
-        <div class="card-container d-flex align-items-center justify-content-center">
+        <div class="card-container d-flex align-items-center justify-content-center flex-wrap">
           <div class="card">
             <img src="{{ asset('assets') }}/images/icon/buku-biru.svg" alt="" />
             <p>Seputar SNI Award</p>
@@ -46,7 +46,7 @@
   <article id="about">
     <div class="about-container justify-content-center">
       <h1>Apa itu SNI Award?</h1>
-      <hr />
+      <hr class="mb-4"/>
       <p>
         {{ $frontpage_data->keterangan_sni }}
       </p>
@@ -54,11 +54,11 @@
   </article>
 
   <article id="dokumentasi">
-  <section id="slider" class="pt-5">
+  <section id="slider">
       <div class="carousel-container">
         <h1 class="text-center">{{ $frontpage_data->judul_dokumentasi }}</h1>
         <hr class="mb-4">
-        <p class="text-center pb-5">{{ $frontpage_data->keterangan_dokumentasi }}</p>
+        <p class="text-center">{{ $frontpage_data->keterangan_dokumentasi }}</p>
         <div class="slider py-5 px-5">
           <div class="owl-carousel">
 
@@ -83,7 +83,7 @@
       <div class="col-12 d-flex align-items-center justify-content-start">
         <div class="title-container d-flex flex-column align-items-center justify-content-center">
           <h1 style="text-align: left;">Berita</h1>
-          <hr class="mx-0" style="width: 120px;"/>
+          <hr class="mx-0 mb-4" style="width: 120px;"/>
         </div>
       </div>
       <div class="grid-container">
@@ -109,7 +109,7 @@
               </div>
             </div>
   
-            <p class="description" style="margin-bottom: 35px;">
+            <p class="description">
               BSN akan mengadakan Seminar Nasional dalam rangka Peringatan
               Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar
               akan dilaksanakan pada bulan November 2021 di Bandung. Acara
@@ -141,7 +141,7 @@
     </div>
 
     <div class="news-container">
-      <div class="row justify-content-around" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 60px;">
+      <div class="row justify-content-around">
         <div class="berita-container rounded-3 p-0">
           <img src="{{ asset('assets') }}/images/dokumentasi/berita.png" class="w-100 rounded-3" alt="" />
           <div class="content">
@@ -208,7 +208,7 @@
         <p>{{ $frontpage_data->keterangan_berita }}</p>
       </div>
 
-      <div class="grid-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 90px 50px;">
+      <div class="grid-container">
         <div class="content">
           <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
         </div>
@@ -237,9 +237,8 @@
         <hr class="mx-0" />
       </div>
       <div class="row">
-        <div class="faq-container col-6">
-          <div class="accordion w-75" id="accordionExample">
-
+        <div class="faq-container col-12 col-lg-6">
+          <div class="accordion" id="accordionExample">
             @for ($i = 0; $i < count($popular_faq); $i++)
               <div class="accordion-item">
                 <h2 class="accordion-header" id="heading{{ $i }}">
@@ -268,7 +267,7 @@
             @endfor
 
             @if (count($popular_faq) == 0)
-              <div class="d-flex flex-column align-items-center justify-content-center py-3 px-4 mt-2" style="background-color: #E59B30; color: white; font-weight: bold; font-size: 22px; border-radius: 10px;">
+              <div class="d-flex flex-column align-items-center justify-content-center py-3 px-4 mt-2 w-100" style="background-color: #E59B30; color: white; font-weight: bold; font-size: 22px; border-radius: 10px;">
                   FAQ terpopuler belum tersedia!
               </div>
             @endif
@@ -276,11 +275,10 @@
             
           </div>
         </div>
-        <div class="col-6 text-center">
+        <div class="col-12 col-lg-6 text-center">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid"
-            width="579"
-            height="351"
+            class="maps"
             style="border: 0"
             allowfullscreen=""
             loading="lazy"

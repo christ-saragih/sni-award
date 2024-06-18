@@ -29,18 +29,18 @@
                     @method('PUT')
                     <div class="row g-3 align-items-center">
                         <div class="col-3">
-                            <label class="fw-bold">Judul Acara</label>
+                            <label class="fw-bold">Judul Acara <span style="color: red">*</span></label>
                         </div>
                         <div class="col-9">
-                            <input type="text" id="judul_acara" name="judul_acara" class="form-control" placeholder="Tambahkan Judul" value="{{ $acara->judul_acara }}">
+                            <input type="text" id="judul_acara" name="judul_acara" class="form-control" placeholder="Tambahkan Judul" value="{{ $acara->judul_acara }}" required>
                         </div>
                     </div>
                     <div class="row g-3 mt-2">
                         <div class="col-3">
-                            <label class="fw-bold">Gambar Thumbnail</label>
+                            <label class="fw-bold">Gambar Thumbnail <span style="color: red">*</span></label>
                         </div>
                         <div class="col-9">
-                            <input type="file" id="gambar_thumbnail" name="gambar_thumbnail" class="form-control mb-3">
+                            <input type="file" id="gambar_thumbnail" name="gambar_thumbnail" class="form-control mb-3" accept="image/*" required>
                             <img src="{{ asset('storage/images/acara/thumbnail_acara/' . $acara->gambar_thumbnail) }}" alt="Gambar Konten" style="max-width: 200px;">
                         </div>
                     </div>
@@ -57,10 +57,10 @@
                         @endforeach --}}
                         <div class="row g-3 mt-2 additional-image-upload">
                             <div class="col-3">
-                                <label class="fw-bold">Gambar Konten</label>
+                                <label class="fw-bold">Gambar Konten <span style="color: red">*</span></label>
                             </div>
                             <div class="col-9">
-                                <input type="file" name="gambar_konten[]" class="form-control mb-3" accept="image/*" onchange="previewImages(event)" multiple>
+                                <input type="file" name="gambar_konten[]" class="form-control" accept="image/*" onchange="previewImages(event)" multiple required>
                             </div>
                             <div id="image-preview"></div>
                         </div>
@@ -82,10 +82,10 @@
                     </div> --}}
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-3">
-                            <label class="fw-bold">Tanggal Upload Acara</label>
+                            <label class="fw-bold">Tanggal Upload Acara <span style="color: red">*</span></label>
                         </div>
                         <div class="col-3">
-                            <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ $acara->tanggal }}">
+                            <input type="date" id="tanggal" name="tanggal" class="form-control" value="{{ $acara->tanggal }}" required>
                         </div>
                     </div>
                     <div class="row g-3 mt-2">
@@ -152,7 +152,7 @@
                 image.src = event.target.result;
                 image.style.maxWidth = '200px';
                 image.style.marginRight = '10px';
-                image.style.marginTop = '10px';
+                image.style.marginTop = '5px';
                 preview.appendChild(image);
             };
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\AuthPesertaMail;
 use App\Mail\ForgotPasswordPesertaMail;
 use App\Models\KategoriOrganisasi;
+use App\Models\Konfigurasi;
 use App\Models\Peserta;
 use App\Models\PesertaKontak;
 use App\Models\PesertaProfil;
@@ -20,7 +21,7 @@ use Illuminate\Support\Str;
 class AuthPesertaController extends Controller
 {
     public function loginPesertaView() {
-        return view('Peserta.auth.login');
+        return view('peserta.auth.login');
     }
 
     public function loginPeserta(Request $request) {
@@ -52,7 +53,7 @@ class AuthPesertaController extends Controller
             ->join('tipe_kategori', 'kategori_organisasi.tipe_kategori_id', '=', 'tipe_kategori.id')
             ->select('kategori_organisasi.*', 'tipe_kategori.nama as nama_tipe_kategori')
             ->get();
-        return view('Peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
+        return view('peserta.auth.register', ['kategori_organisasi' => $kategori_organisasi]);
     }
 
     public function registrasiPeserta(Request $request) {
@@ -83,7 +84,8 @@ class AuthPesertaController extends Controller
             $details = [
                 'nama' => $dataRegistrasi['nama'],
                 'datetime' => date('Y-m-d H:i:s'),
-                'website' => 'SNI Award',
+                'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
+                // 'website' => 'SNI Award',
                 'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$dataRegistrasi['verify_key'],
             ];
             Mail::to($dataRegistrasi['email'])->send(new AuthPesertaMail($details));
@@ -102,11 +104,12 @@ class AuthPesertaController extends Controller
     }
 
     public function verifikasiPesertaView() {
+        if (!Auth::guard('peserta')->check()) return redirect('/masuk');
         $kode_verifikasi = Auth::guard('peserta')->user()->verify_key;
         if (Auth::guard('peserta')->user()->email_verified_at != null) {
             return redirect('/peserta/dashboard')->with('Akun telah terverifikasi');
         }else {
-            return view('Peserta.auth.verify', ['kode_verifikasi' => $kode_verifikasi]);
+            return view('peserta.auth.verify', ['kode_verifikasi' => $kode_verifikasi]);
         }
     }
 
@@ -114,20 +117,28 @@ class AuthPesertaController extends Controller
         $checkKey = Peserta::select('verify_key')->where('verify_key', $verify_key)->exists();
         if ($checkKey) {
             $user = Peserta::where('verify_key', $verify_key)
-                ->update(['email_verified_at' => date('Y-m-d H:i:s')]);
-            return redirect('/masuk')->with('success', 'Berhasil melakukan verifikasi');
-        }else {
-            return redirect('/masuk')
-                ->withErrors('verify key salah, silahkan coba kembali')
-                ->withInput();
+                ->first();
+            $user->update(['email_verified_at' => date('Y-m-d H:i:s')]);
+            if (Auth::guard('peserta')->check() && Auth::guard('peserta')->user()->id == $user->id) {
+                return redirect()
+                    ->route('peserta.dashboard.view')
+                    ->with('success', 'Berhasil melakukan verifikasi');
+            }
+            return redirect()
+                ->route('masuk')
+                ->with('success', 'Berhasil melakukan verifikasi');
         }
+        return redirect()
+            ->route('masuk')
+            ->withErrors('verify key salah, silahkan coba kembali')
+            ->withInput();
     }
 
     public function verifikasiUlangPeserta($kode_verifikasi) {
         $details = [
             'nama' => Auth::guard('peserta')->user()->nama,
             'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'SNI Award',
+            'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
             'url' => 'http://'.request()->getHttpHost().'/verifikasi'.'/'.$kode_verifikasi,
         ];
         Mail::to(Auth::guard('peserta')->user()->email)->send(new AuthPesertaMail($details));
@@ -155,7 +166,7 @@ class AuthPesertaController extends Controller
             $details = [
                 'name' => $user->name,
                 'datetime' => date('Y-m-d H:i:s'),
-                'website' => 'SNI Award',
+                'tahun_sni' => Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first(),
                 'url' => 'http://'.request()->getHttpHost().'/reset-password'.'/'.$user->forgot_password_token.'?email='.$request->email,
             ];
             Mail::to($request->email)->send(new ForgotPasswordPesertaMail($details));
@@ -175,7 +186,7 @@ class AuthPesertaController extends Controller
         $user = Peserta::where('email', $request->email)->first();
         if ($user && $user->forgot_password_token == $forgot_password_token) {
             return view('peserta.auth.passwords.reset', [
-                'email' => $request->email, 
+                'email' => $request->email,
                 'token' => $forgot_password_token,
             ]);
         }
@@ -202,7 +213,7 @@ class AuthPesertaController extends Controller
             ->withInput()
             ->withErrors('Token tidak valid atau sudah expired');
     }
-    
+
     public function ubahkatasandiView(){
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
         return view('peserta.profil.index', compact([
@@ -222,7 +233,7 @@ class AuthPesertaController extends Controller
             'password.min' => 'Minimal 8 karakter',
             'password.confirmed' => 'Ulangi kata sandi tidak sama dengan kata sandi',
         ]);
-        
+
         $peserta = Peserta::find(Auth::guard('peserta')->user()->id);
         // dd($peserta);
         // dd(Hash::check($request->current_password, $peserta->password));

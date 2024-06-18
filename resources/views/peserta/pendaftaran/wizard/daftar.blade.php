@@ -80,11 +80,19 @@
                     <p class="mb-4" style="font-size: 100%; color: #2B2B28;">Yuk, saatnya melakukan pendaftaran sebelum tanggal 20 Februari 2024</p>
                 @endif
             </label>
-
+            {{-- {{ $percentage_profil }} --}}
             @if($existingRegistration)
                 <button type="submit" disabled class="px-4 py-2" style="border: initial; border-radius: 15px; width: initial; background-color: #47A15E; color: white;">Sudah Terdaftar</button>
             @else
-                <button type="button" onclick="showConfirmation()" class="btn-daftar-sekarang px-4 py-2" style="border: initial; border-radius: 15px; width: initial; background-color: #E1A600;">Daftar Sekarang</button>
+                <button 
+                    type="button" 
+                    onclick="showConfirmation()" 
+                    class="btn-daftar-sekarang px-4 py-2" 
+                    style="border: initial; border-radius: 15px; width: initial;
+                        {{ $percentage_profil == 100 ? 'background-color: #E1A600;' : 'background-color: #d2c9b0;' }}
+                    "
+                    {{ $percentage_profil == 100 ? '' : 'disabled' }}
+                >Daftar Sekarang</button>
             @endif
         </form>
     </div>

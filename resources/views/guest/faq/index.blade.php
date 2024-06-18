@@ -1,11 +1,11 @@
-@extends('Guest.layouts.master')
+@extends('guest.layouts.master')
 
 @section('content')
 <article class="shape-faq pb-5">
     <div class="contact-container">
       <div class="d-flex align-items-center title pb-5 mb-5">
         <h1>Frequently Asked Questions</h1>
-        <hr class="p-0" style="width: 100%; background-color: #CC9305; margin-top: 75px; margin-left: -200px;"/>
+        <hr class="p-0"/>
       </div>
       <!-- <div class="d-flex align-items-center gap-2">
         <h3 class="mb-0 pb-0" style="font-size: 150%; font-weight: bold; color: #000000;">Feedback</h3>
