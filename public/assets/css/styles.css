@@ -24,6 +24,11 @@ body {
     margin-top: 100px;
 }
 
+.contact-container .title {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+}
+
 .news-container {
     margin-top: 100px;
 }
@@ -511,6 +516,20 @@ iframe.maps {
     width: 100%;
     height: 350px;
 }
+.kontak-container .container-maps {
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+.kontak-container iframe {
+    width: 80% !important;
+    height: 580px !important;
+}
+.shape-faq hr {
+    width: 100%;
+    background-color: #cc9305;
+    margin-top: 75px;
+    margin-left: -200px;
+}
 
 /* responsive design */
 @media (max-width: 480px) {
@@ -611,15 +630,6 @@ iframe.maps {
         margin-block: 10px !important;
     }
     /* berita end */
-    .contact-container {
-        padding-inline: 35px !important;
-        margin-inline: 0 !important;
-    }
-    .contact-container hr {
-        width: 170px;
-        height: 3px;
-    }
-
     .acara-container img {
         box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
         margin-bottom: 8px !important;
@@ -644,39 +654,24 @@ iframe.maps {
         font-size: 24px !important;
         margin-bottom: 1rem !important;
     }
-
     .artikel-container {
         margin-block: 50px;
     }
-
     .artikel-container .grid-container {
         grid-template-columns: repeat(1, 1fr) !important;
         gap: 30px !important;
     }
-
     .artikel-container .content-container img {
         width: 95% !important;
         box-shadow: 20px 24px 0px 0px rgba(85, 37, 37, 1) !important;
         margin-bottom: 8px !important;
     }
-
     .author-container .author-content p.hour {
         margin-bottom: 2px !important;
     }
-
     .artikel-container .content-container p.description {
         margin-bottom: 5px !important;
     }
-
-    .contact-container {
-        margin-block: 0px !important;
-        margin-top: 0px !important;
-    }
-
-    .contact-container .row {
-        margin-top: 0px !important;
-    }
-
     .shape-atas {
         background-size: 100px;
     }
@@ -751,6 +746,80 @@ iframe.maps {
         text-align: center;
     }
     /* register peserta end */
+
+    /* dokumen start */
+    #unduh {
+        margin-top: -60px !important;
+    }
+    #unduh .title {
+        margin-top: 100px !important;
+    }
+    /* dokumen end */
+
+    /* faq start */
+    .shape-faq {
+        background-size: 100px;
+        margin-top: -60px !important;
+    }
+    .shape-faq .title {
+        flex-wrap: wrap;
+    }
+    .shape-faq hr {
+        width: 100% !important;
+        background-color: #cc9305;
+        margin-top: 6px !important;
+        margin-left: 0px !important;
+    }
+    .faq-container {
+        width: 100% !important;
+    }
+    .faq-container .accordion {
+        width: 100% !important;
+    }
+    .accordion-item:first-of-type {
+        margin-top: 0px !important;
+    }
+    /* faq end */
+
+    /* kontak start */
+    .shape-kontak {
+        background-size: 100px;
+        margin-top: -60px !important;
+    }
+    .contact-container {
+        padding-inline: 35px !important;
+        margin-inline: 0 !important;
+        margin-block: 0px !important;
+        margin-bottom: 40px !important;
+    }
+    .contact-container .title {
+        padding-block: 100px !important;
+        margin-bottom: 2rem !important;
+        padding-bottom: 0px !important;
+    }
+    .contact-container hr {
+        width: 170px;
+        height: 3px;
+    }
+    .contact-container .row {
+        margin-top: 0px !important;
+    }
+    .kontak-container {
+        padding-inline: 0px !important;
+    }
+    .kontak-container .container-maps {
+        margin-top: 0px !important;
+        margin-left: 0px !important;
+    }
+    .kontak-container iframe {
+        width: 100% !important;
+        height: 350px !important;
+    }
+
+    .kontak-container span {
+        font-size: 125% !important;
+    }
+    /* kontak end */
 }
 
 /* Kontak start */

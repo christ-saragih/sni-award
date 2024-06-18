@@ -3,7 +3,7 @@
 @section('content')
 <article class="pb-5 shape-kontak">
     <div class="contact-container">
-      <div class="d-flex flex-row-reverse align-items-center title gap-4 pb-5 mb-5">
+      <div class="d-flex flex-row-reverse align-items-center title gap-4">
           <h1>Kontak Kami</h1>
           <hr class="mb-0 p-0 w-75" style="background-color: #CC9305;"/>
       </div>
@@ -11,7 +11,7 @@
         <div class="kontak-container d-flex flex-column gap-2">
           <h1>Hubungi Kami</h1>
           <p>Untuk informasi lebih lanjut atau pertanyaan, Silahkan untuk menghubungi kami.</p>
-          <div class="d-flex gap-5 mb-5">
+          <div class="d-flex flex-wrap gap-5 mb-5">
 
               <div class="d-flex flex-column gap-4">
                 <div class="d-flex align-items-center gap-3">
@@ -60,11 +60,10 @@
 
           </div>
 
-          <div class="mt-5 ms-5">
+          <div class="container-maps">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.97659708331!2d106.82049436920713!3d-6.236432029161127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f36a70592c2d%3A0xb7e21ff0384fde0d!2sBadan%20Standardisasi%20Nasional%20(BSN)!5e0!3m2!1sid!2sid!4v1707458886395!5m2!1sid!2sid"
-                width="960"
-                height="580"
+                
                 style="border: 0"
                 allowfullscreen=""
                 loading="lazy"
