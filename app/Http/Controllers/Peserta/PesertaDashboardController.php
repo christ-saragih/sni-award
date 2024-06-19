@@ -84,12 +84,6 @@ class PesertaDashboardController extends Controller
         }
         $percentage_pendaftaran = ($count_pendaftaran/$count_all_pendaftaran)*100;
 
-        if ($registrasi && $registrasi->stage_id == 1 && $percentage_profil == 100) {
-            $registrasi->update([
-                'stage_id' => 2,
-            ]);
-        }
-
         return view('peserta.home.index', [
             'percentage_pendaftaran' => $percentage_pendaftaran,
             'percentage_profil' => $percentage_profil,

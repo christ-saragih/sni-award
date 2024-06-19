@@ -172,7 +172,7 @@
     }
 
     /**
-     * This function handles the submission of the delete form.
+     * This function handles the submission of the delete form
      * It takes a single parameter 'iteration' and retrieves an HTML form element with the id 'deleteForm' followed by the value of 'iteration'.
      * It then submits the form.
      * @param {number} iteration - The iteration number.
