@@ -22,4 +22,9 @@ class Propinsi extends Model
     {
         return $this->hasMany(Kota::class);
     }
+
+    public function peserta_alamat(): HasMany
+    {
+        return $this->hasMany(PesertaAlamat::class);
+    }
 }
