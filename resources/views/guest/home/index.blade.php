@@ -17,6 +17,21 @@
       min-width: 45%;
     }
   } 
+  .btn-daftar-sekarang:hover {
+    border: 4px solid #E59B30;
+    color: #E59B30
+  }
+  .btn-daftar-sekarang {
+    display: inline-block;
+    background-color: #552525;
+    color: white;
+    border: 4px solid #E59B30;
+    border-radius: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+  }
 </style>
 <main>
   <article id="jumbotron" class="bg-theme">
@@ -302,6 +317,9 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
+        </div>
+        <div class="mt-5" style="text-align: center;">
+          <a href="/peserta/pendaftaran" class="btn action-button mx-auto mb-1 btn-daftar-sekarang">Daftar Sekarang</a>
         </div>
       </div>
     </div>
