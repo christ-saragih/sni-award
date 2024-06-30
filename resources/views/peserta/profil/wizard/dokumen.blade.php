@@ -69,7 +69,7 @@
                         <div class="card-body">
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">Legalitas Hukum Organisasi</h6>
+                                    <h6 class="mb-0">Akte / NIB / TDP</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -104,7 +104,7 @@
 
                             <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">SPPT SNI</h6>
+                                    <h6 class="mb-0">SPPT SNI / Sertifikat SNI</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -151,7 +151,7 @@
                                                     <div id="fileName3"></div>
                                                 </div>
                                             </div>
-                                        @else
+                                            @else
                                             <div class="col-md-11">
                                                 <div class="file-input">
                                                     <input type="file" id="inputGroupFile3" name="url_sk_kemenkumham" accept=".pdf" onchange="handleFileSelect('inputGroupFile3', 'fileInputLabel3', 'fileName3')">
@@ -160,20 +160,23 @@
                                                     <div id="fileName3"></div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="col-md-1">
                                                 <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
-                                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
+                                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 12px; padding: 0.7rem"></i>
                                                 </a>
                                             </div>
-                                        @endif
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-md-3">
+                                        <p class="ms-0 mb-0"> <i>(khusus organisasi Pendidikan)</i></p>  
+                                    </div>
                             </div>
-
-                            <div class="row align-items-center pb-3">
+                            
+                            {{-- <div class="row align-items-center pb-3">
                                 <div class="col-md-3">
-                                    <h6 class="mb-0">Kewenangan dan Kebijaka</h6>
+                                    <h6 class="mb-0">Kewenangan dan Kebijakan</h6>
                                 </div>
                                 <div class="col-md-9">
                                     <div class="row align-items-center">
@@ -203,7 +206,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="px-5 py-4 d-flex justify-content-end gap-3">
                                 <a href="/peserta/profil" role="button" class="btn nonactive">Batal</a>
