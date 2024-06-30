@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peserta || SNI Award 2023</title>
+    <title>Peserta || SNI Award 2024</title>
 
     <!-- Bootstrap -->
     <link
