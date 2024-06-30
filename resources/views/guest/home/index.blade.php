@@ -226,23 +226,27 @@
         <p>{{ $frontpage_data->keterangan_berita }}</p>
       </div>
 
-      <div class="grid-container">
-        <div class="content">
-          <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
-        </div>
-        <div class="content">
-          <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
-          <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <a href="" class="btn float-end">Baca Selengkapnya</a>
+      <div class="berita-terkini-container">
+        <div class="content-container">
+          <div class="content">
+            <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+          </div>
+          <div class="content">
+            <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
+            <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
+            <a href="" class="btn float-end">Baca Selengkapnya</a>
+          </div>
         </div>
         
-        <div class="content">
-          <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
-          <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <a href="" class="btn float-end">Baca Selengkapnya</a>
-        </div>
-        <div class="content">
-          <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+        <div class="content-container">
+          <div class="content">
+            <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+          </div>
+          <div class="content">
+            <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
+            <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
+            <a href="" class="btn float-end">Baca Selengkapnya</a>
+          </div>
         </div>
       </div>
     </div>
