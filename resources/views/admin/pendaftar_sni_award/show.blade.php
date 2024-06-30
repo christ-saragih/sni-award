@@ -510,8 +510,8 @@
                         <div class="progress-bar pertanyaan" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: #E59B30;"></div>
                     </div>
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Kategori
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ $assessment_kategori->nama }}
                         </button>
                         <ul class="dropdown-menu">
                             @foreach ($data_assessment_kategori as $kategori)

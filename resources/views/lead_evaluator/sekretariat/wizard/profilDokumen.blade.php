@@ -216,7 +216,7 @@
                 <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
             </div>
             <div class="ps-4 mt-2">
-                @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
+                {{-- @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0) --}}
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                         <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
                             <label style="color: #000000;">Legalitas Hukum Organisasi</label>
@@ -249,7 +249,7 @@
                             </a>
                         </div>
                     @endif
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
     </div>
