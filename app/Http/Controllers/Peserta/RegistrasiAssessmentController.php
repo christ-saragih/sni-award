@@ -94,7 +94,7 @@ class RegistrasiAssessmentController extends Controller
             // 'pesertaProfil' => $pesertaProfil
         ]);
     }
-
+    // show pertanyaan yang dibuat jo
     public function showPertanyaan($id,$registrasi_id){
         // $assessment_sub_kategori = AssessmentSubKategori::with('assessment_pertanyaan','assessment_jawaban')->get();
         $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->get();
@@ -114,6 +114,29 @@ class RegistrasiAssessmentController extends Controller
             'jawaban_yang_dipilih' => $jawaban_yang_dipilih,
         ]);
     }
+
+    // show pertanyaan yang dibuat hapis
+    // public function showPertanyaan($id, $registrasi_id) {
+    //     $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->with(['assessment_pertanyaan.assessment_jawaban'])->get();
+    //     $registrasi = Registrasi::find($registrasi_id);
+        
+    //     // Mengambil jawaban yang telah dipilih oleh peserta
+    //     $jawaban_peserta = RegistrasiAssessment::with('assessment_jawaban')
+    //                         ->where('registrasi_id', $registrasi_id)
+    //                         ->get()
+    //                         ->keyBy('assessment_pertanyaan_id');
+    
+    //     if (!$assessment_sub_kategori) {
+    //         return response()->json(['error' => 'Data not found'], 404);
+    //     }
+    
+    //     return view('peserta.pendaftaran.detail', [
+    //         'assessment_sub_kategori' => $assessment_sub_kategori,
+    //         'registrasi' => $registrasi,
+    //         'jawaban_peserta' => $jawaban_peserta
+    //     ]);
+    // }
+    
 
     public function detail() {
         return view('peserta.pendaftaran.detail');
@@ -204,7 +227,7 @@ class RegistrasiAssessmentController extends Controller
         $konfigurasi_pendaftaran = Konfigurasi::where('key','pendaftaran')->first();
         if ($konfigurasi_pendaftaran->value == 'TRUE') {
             if ($existingRegistration) return redirect()->back()->withErrors('Anda sudah mendaftar sebelumnya');
-            if ($percentage_profil != 100) return redirect()->back()->withErrors('Silahkan lengkapi prodil terlebih dahulu');
+            // if ($percentage_profil != 100) return redirect()->back()->withErrors('Silahkan lengkapi profil terlebih dahulu');
 
             $tahun_sni = Konfigurasi::where('key', 'Tahun SNI Award')->distinct()->pluck('value')->first();
             if (Auth::guard('peserta')->check()) {
