@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('kecamatan', 40);
             $table->timestamps();
 
-            $table->foreign('kota_id')->references('id')->on('kota');
+            $table->foreign('kota_id')->references('id')->on('kota')
+                ->onDelete('cascade')  // Menambahkan cascade delete jika kota dihapus
+                ->onUpdate('cascade'); // Menjamin integritas data jika id kota diupdate
+                
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
 $table->enum('role_by', ['User', 'Peserta'])->nullable(true);
