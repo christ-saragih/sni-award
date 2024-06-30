@@ -60,8 +60,36 @@
                 <div class="body-data">{{ $peserta->peserta_profil->jabatan_tertinggi }}</div>
             </div>
             <div class="row-data mb-3">
+                <div class="head-data">Nomor Telepon</div>
+                <div class="body-data">{{ $peserta->peserta_profil->no_hp }}</div>
+            </div>
+            <div class="row-data mb-3">
                 <div class="head-data">Website</div>
                 <div class="body-data">{{ $peserta->peserta_profil->website }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Provinsi</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi_id : '-' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Kota</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota_id : '-' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Kecamatan</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan_id : '-' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Alamat</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->alamat : '-' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Kode Pos</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kode_pos : '-' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Tipe</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->tipe : '-' }}</div>
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Tanggal Beroperasi</div>
@@ -76,8 +104,16 @@
                 <div class="body-data">{{ $peserta->peserta_profil->jenis_produk }}</div>
             </div>
             <div class="row-data mb-3">
+                <div class="head-data">Deskripsi Produk</div>
+                <div class="body-data">{{ $peserta->peserta_profil->deskripsi_produk }}</div>
+            </div>
+            <div class="row-data mb-3">
                 <div class="head-data">Lembaga Sertifikasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->lembaga_sertifikasi?$peserta->peserta_profil->lembaga_sertifikasi->nama:'' }}</div>
+            </div>
+            <div class="row-data mb-3">
+                <div class="head-data">Produk Ekspor</div>
+                <div class="body-data">{{ $peserta->peserta_profil->produk_export }}</div>
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Negara Tujuan Ekspor</div>
@@ -99,7 +135,10 @@
                 <div class="head-data">Jenis Organisasi</div>
                 <div class="body-data">{{ $peserta->peserta_profil->jenis_organisasi }}</div>
             </div>
-
+            <div class="row-data mb-3">
+                <div class="head-data">Kewenangan Kebijakan</div>
+                <div class="body-data">{{ $peserta->peserta_profil->kewenangan_kebijakan }}</div>
+            </div>
         </div>
     </div>
     

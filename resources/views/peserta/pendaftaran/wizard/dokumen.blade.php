@@ -155,7 +155,7 @@
               @if ($peserta->peserta_profil->url_sk_kemenkumham)
                 <div class="d-flex justify-content-between align-items-center mt-2">
                   <div>
-                    <label class="fw-bold">SK Kemenkeuham</label>
+                    <label class="fw-bold">SK Kemenkumham</label>
                   </div>
                   <div class="d-flex justify-content-center">
                       <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">

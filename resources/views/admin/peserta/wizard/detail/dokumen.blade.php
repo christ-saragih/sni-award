@@ -24,12 +24,15 @@
                 </div>
             </div>
             <div class="row-data mb-3">
-                <div class="head-data">Surat Keterangan Kemenkeuham</div>
+                <div class="head-data">SK Kemenkumham</div>
                 <div class="body-data d-flex align-items-center justify-content-end">
                     <a href="{{ Storage::url($peserta->peserta_profil->url_sk_kemenkumham) }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <p class="ms-0 mb-1"> <i>*SK Kemenkumham khusus organisasi Pendidikan</i></p>  
             </div>
             {{-- <div class="row-data mb-3">
                 <div class="head-data">Kewenangan dan Kebijakan</div>
