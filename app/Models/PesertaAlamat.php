@@ -21,16 +21,16 @@ class PesertaAlamat extends Model
 
     public function propinsi(): BelongsTo
     {
-        return $this->belongsTo(Propinsi::class);
+        return $this->belongsTo(Propinsi::class, 'propinsi_id');
     }
 
     public function kota(): BelongsTo
     {
-        return $this->belongsTo(Kota::class);
+        return $this->belongsTo(Kota::class, 'kota_id');
     }
 
     public function kecamatan(): BelongsTo
     {
-        return $this->belongsTo(Kecamatan::class);
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id');
     }
 }
