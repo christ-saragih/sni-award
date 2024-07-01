@@ -170,7 +170,7 @@
                             <label class="fw-bold">Provinsi</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi_id : '-' }}
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi->propinsi : '-' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -178,7 +178,7 @@
                             <label class="fw-bold">Kota</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota_id : '-' }}
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota->kota : '-' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -186,7 +186,7 @@
                             <label class="fw-bold">Kecamatan</label>
                         </div>
                         <div class="col-8">
-                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan_id : '-' }}
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan->kecamatan : '-' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">

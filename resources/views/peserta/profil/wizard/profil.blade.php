@@ -58,7 +58,7 @@
                 <h6 class="mb-0">Provinsi</h6>
               </div>
               <div class="col-md-8 pe-5">
-                <div class="data">{{ $peserta_alamat ? $peserta_alamat->propinsi_id : '-' }}</div>
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->propinsi->propinsi : '-' }}</div>
               </div>
             </div>
             
@@ -67,7 +67,7 @@
                   <h6 class="mb-0">Kota</h6>
               </div>
               <div class="col-md-8 pe-5">
-                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kota_id : '-' }}</div>
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kota->kota : '-' }}</div>
               </div>
             </div>
 
@@ -76,7 +76,7 @@
                   <h6 class="mb-0">Kecamatan</h6>
               </div>
               <div class="col-md-8 pe-5">
-                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kecamatan_id : '-' }}</div>
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kecamatan->kecamatan : '-' }}</div>
               </div>
             </div>
             

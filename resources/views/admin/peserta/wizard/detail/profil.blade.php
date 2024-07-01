@@ -69,15 +69,15 @@
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Provinsi</div>
-                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi_id : '-' }}</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi->propinsi : '-' }}</div>
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Kota</div>
-                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota_id : '-' }}</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota->kota : '-' }}</div>
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Kecamatan</div>
-                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan_id : '-' }}</div>
+                <div class="body-data">{{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan->kecamatan : '-' }}</div>
             </div>
             <div class="row-data mb-3">
                 <div class="head-data">Alamat</div>
