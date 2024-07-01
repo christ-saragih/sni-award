@@ -58,7 +58,7 @@ class Peserta extends Authenticatable
         return $this->belongsTo(StatusKepemilikan::class);
     }
 
-    public function peserta_alamat() : HasMany {
-        return $this->hasMany(PesertaAlamat::class);
+    public function peserta_alamat() : HasOne {
+        return $this->hasOne(PesertaAlamat::class);
     }
 }

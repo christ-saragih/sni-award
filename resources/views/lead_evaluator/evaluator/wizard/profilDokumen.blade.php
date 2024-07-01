@@ -178,11 +178,11 @@
                 <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
             </div>
             <div>
-                @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
+                {{-- @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0) --}}
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-3">
-                                <label>Legalitas Hukum Organisasi</label>
+                                <label>Akte / NIB / TDP</label>
                             </div>
                             <div class="col-8"></div>
                     
@@ -196,7 +196,7 @@
                     @if ($peserta->peserta_profil->url_sppt_sni)
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-3">
-                                <label>SPPT SNI</label>
+                                <label>SPPT SNI / Sertifikat SNI</label>
                             </div>
                             <div class="col-8"></div>
                     
@@ -221,7 +221,7 @@
                             </div>                                        
                         </div>
                     @endif
-                    @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
+                    {{-- @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
                         <div class="row g-3 align-items-center mt-2">
                             <div class="col-3">
                                 <label>Kewenangan Kebijakan</label>
@@ -234,8 +234,8 @@
                                 </a>
                             </div>                                        
                         </div>
-                    @endif
-                @endif
+                    @endif --}}
+                {{-- @endif --}}
             </div>
         </div>
     </div>
