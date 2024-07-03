@@ -104,17 +104,94 @@
                       <h6 class="mb-0">Website</h6>
                     </div>
                     <div class="col-md-8 pe-5">
-                      <input type="url" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}" required pattern="https://.*" autocomplete="off" aria-describedby="websiteValidation"/>
+                      <input type="text" name="website" class="form-control form-control-lg" value="{{$peserta->peserta_profil->website}}" />
                     </div>
                     <div class="col-md-4 ps-5"></div>
                     <div class="col-md-8 pe-5">
                       <p class="ms-1 mb-0">Contoh: <i>https://example.com</i></p>  
                     </div>
                     <div class="col-md-4 ps-5"></div>
-                    <div class="col-md-8 pe-5">
+                    {{-- <div class="col-md-8 pe-5">
                       <p id="websiteValidation" class="validation-message" aria-live="polite"></p>
-                    </div>
+                    </div> --}}
                 </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Provinsi</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                      <select name="propinsi_id" class="form-select form-select-lg select2" data-label="Select One">
+                        @foreach ($provinsi as $prov)
+                          <option value="{{$prov->id}}">{{$prov->propinsi}}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                </div>
+                
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Kota</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                      <select name="kota_id" class="form-select form-select-lg select2" data-label="Select One">
+                        @foreach ($kota as $kot)
+                          <option value="{{$kot->id}}">{{$kot->kota}}</option>
+                        @endforeach
+                      </select>
+                  </div>   
+                </div>
+                
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Kecamatan</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                      <select name="kecamatan_id" class="form-select form-select-lg select2" data-label="Select One">
+                        @foreach ($kecamatan as $kec)
+                          <option value="{{$kec->id}}">{{$kec->kecamatan}}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Alamat</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                      <input type="text" name="alamat" class="form-control form-control-lg" value="{{$peserta->peserta_profil->alamat}}" required pattern="^(?![_. ])(?!.*[_. ]{2})[a-zA-Z._ ]+(?<![_. ])$" autocomplete="off" aria-describedby="alamatValidation"/>
+                  </div>
+                  <div class="col-md-4 ps-5"></div>
+                  <div class="col-md-8 pe-5">
+                    <p id="alamatValidation" class="validation-message" aria-live="polite"></p>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                      <h6 class="mb-0">Kode Pos</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                      <input type="text" name="kode_pos" class="form-control form-control-lg" value="{{$peserta->peserta_profil->kode_pos}}" required pattern="[0-9]{5}" autocomplete="off" aria-describedby="kodePosValidation"/>
+                  </div>
+                  <div class="col-md-4 ps-5"></div>
+                  <div class="col-md-8 pe-5">
+                    <p id="kodePosValidation" class="validation-message" aria-live="polite"></p>
+                  </div>
+                </div>
+
+                <div class="row align-items-center pb-3">
+                  <div class="col-md-4 ps-5">
+                    <h6 class="mb-0">Tipe</h6>
+                  </div>
+                  <div class="col-md-8 pe-5">
+                    <select name="tipe" class="form-select form-select-lg" data-label="Select One">
+                      <option value="pabrik">Pabrik</option>
+                      <option value="organisasi">Organisasi</option>
+                    </select>
+                  </div>
+               </div>
 
                 <div class="row align-items-center pb-3">
                   <div class="col-md-4 ps-5">
@@ -556,6 +633,13 @@ numberInputs.forEach(input => {
     const formattedNumber = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Menambahkan titik sebagai pemisah ribuan
     this.value = formattedNumber;
   });
+});
+
+$(document).ready(function() {
+    $('.select2').select2({
+        placeholder: "Select One",
+        allowClear: true
+    });
 });
 
 

@@ -73,6 +73,36 @@
                     </form>
                 @endif
 
+                <!-- detail pertanyaan 2 -->
+                {{-- @if ($registrasi)
+                    <form id="submitForm" action="{{ route('simpanJawaban') }}" method="POST">
+                        @csrf
+                        @foreach ($assessment_sub_kategori as $ask)
+                            @foreach ($ask->assessment_pertanyaan as $ap)
+                                <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
+                                <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
+                                    <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
+                                        <h3 class="m-0">Pertanyaan {{ $loop->parent->iteration }}.{{ $loop->iteration }}</h3>
+                                        <p class="m-0">{{ $ask->nama }}</p>
+                                    </div>
+                                    <div class="pertanyaan d-flex flex-column text-center">
+                                        <input type="hidden" name="assessment_pertanyaan_id[]" value="{{ $ap->id }}">
+                                        <p class="m-0">{{ $ap->pertanyaan }}</p>
+                                    </div>
+                                    <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
+                                        @foreach ($ap->assessment_jawaban as $aj)
+                                            <label class="jawaban-label d-flex align-items-center py-1 px-3">
+                                                <input type="radio" name="jawaban[{{ $ap->id }}]" value="{{ $aj->id }}" {{ (isset($jawaban_peserta[$ap->id]) && $jawaban_peserta[$ap->id]->assessment_jawaban_id == $aj->id) ? 'checked' : '' }}> {{ $aj->jawaban }}
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endforeach
+                        <button type="button" class="btn float-end mt-5" onclick="showConfirmation()" style="width: 20%;">Submit Jawaban</button>
+                    </form>
+                @endif --}}
+
                 </div>
                 </div>
                 </div>

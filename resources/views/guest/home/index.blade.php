@@ -17,6 +17,21 @@
       min-width: 45%;
     }
   } 
+  .btn-daftar-sekarang:hover {
+    border: 4px solid #E59B30;
+    color: #E59B30
+  }
+  .btn-daftar-sekarang {
+    display: inline-block;
+    background-color: #552525;
+    color: white;
+    border: 4px solid #E59B30;
+    border-radius: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 20px 40px;
+    text-align: center;
+  }
 </style>
 <main>
   <article id="jumbotron" class="bg-theme">
@@ -226,23 +241,27 @@
         <p>{{ $frontpage_data->keterangan_berita }}</p>
       </div>
 
-      <div class="grid-container">
-        <div class="content">
-          <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
-        </div>
-        <div class="content">
-          <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
-          <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <a href="" class="btn float-end">Baca Selengkapnya</a>
+      <div class="berita-terkini-container">
+        <div class="content-container">
+          <div class="content">
+            <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+          </div>
+          <div class="content">
+            <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
+            <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
+            <a href="" class="btn float-end">Baca Selengkapnya</a>
+          </div>
         </div>
         
-        <div class="content">
-          <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
-          <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
-          <a href="" class="btn float-end">Baca Selengkapnya</a>
-        </div>
-        <div class="content">
-          <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+        <div class="content-container">
+          <div class="content">
+            <img src="{{ asset('assets') }}/images/acara/acara1.png" alt="">
+          </div>
+          <div class="content">
+            <h3>SNI Award 2023, untuk Kinerja Unggul dan efisien</h3>
+            <p>BSN akan mengadakan Seminar Nasional dalam rangka Peringatan Hari Standar Dunia dan Bulan Mutu Nasional (BMN) 2021. Seminar akan dilaksanakan pada bulan November 2021 .</p>
+            <a href="" class="btn float-end">Baca Selengkapnya</a>
+          </div>
         </div>
       </div>
     </div>
@@ -302,6 +321,9 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
+        </div>
+        <div class="mt-5" style="text-align: center;">
+          <a href="/peserta/pendaftaran" class="btn action-button mx-auto mb-1 btn-daftar-sekarang">Daftar Sekarang</a>
         </div>
       </div>
     </div>

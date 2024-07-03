@@ -24,8 +24,12 @@ return new class extends Migration
         });
 
         Schema::table('kota', function (Blueprint $table) {
-            $table->foreign('propinsi_id')->references('id')->on('propinsi')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('propinsi_id')
+            ->references('id')->on('propinsi')
+            ->onDelete('restrict') // Atau bisa menggunakan 'cascade' tergantung kebutuhan bisnis
+            ->onUpdate('cascade');
         });
+
     }
 
     /**
