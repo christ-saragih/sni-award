@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kecamatan', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+            $table->integerIncrements('id');
             $table->unsignedInteger('kota_id');
             $table->string('kecamatan', 40);
             $table->timestamps();
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('kota_id')->references('id')->on('kota')
                 ->onDelete('cascade')  // Menambahkan cascade delete jika kota dihapus
                 ->onUpdate('cascade'); // Menjamin integritas data jika id kota diupdate
-                
+
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
 $table->enum('role_by', ['User', 'Peserta'])->nullable(true);

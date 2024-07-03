@@ -42,8 +42,8 @@ class DatabaseSeeder extends Seeder
             // RegistrasiDokumenSeeder::class,
             // RegistrasiAssessmentSeeder::class,
             // RegistrasiPenilaianSeeder::class,
-            BeritaSeeder::class,
-            AcaraSeeder::class,
+            // BeritaSeeder::class,
+            // AcaraSeeder::class,
             // DokumentasiAcaraSeeder::class,
         ]);
     }
