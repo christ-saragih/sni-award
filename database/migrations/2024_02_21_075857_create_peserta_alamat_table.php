@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('peserta_alamat', function (Blueprint $table) {
             $table->integerIncrements('id');
-            $table->integer('peserta_id');
-            $table->tinyInteger('propinsi_id');
+            $table->unsignedInteger('peserta_id');
+            $table->unsignedInteger('propinsi_id');
             $table->unsignedInteger('kota_id');
-            $table->smallInteger('kecamatan_id');
+            $table->unsignedInteger('kecamatan_id');
             $table->string('alamat');
             $table->integer('kode_pos');
             $table->enum('tipe', ['Pabrik', 'organisasi']);

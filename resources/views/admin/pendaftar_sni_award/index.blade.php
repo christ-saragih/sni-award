@@ -46,9 +46,10 @@
         <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Pendaftar</h3>
         {{-- <a href="{{ route('pendaftar.create') }}" class="btn">+ Tambah</a> --}}
         <div class="d-flex align-items-center gap-3">
-            <div class="">
-                <a href class="btn-success">Download Excel</a>
-            </div>
+            <form action="{{route('pendaftar_sni_award.export_excel')}}" method="post">
+                @csrf
+                <button type="submit" class="btn-success">Download Excel</button>
+            </form>
             <div class="dropdown container-dropdown-peserta">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Tahun

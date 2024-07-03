@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PesertaExport;
 use App\Http\Controllers\Controller;
 use App\Models\AssessmentJawaban;
 use App\Models\AssessmentKategori;
@@ -18,6 +19,7 @@ use App\Models\RegistrasiPenilaian;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Maatwebsite\Excel\Facades\Excel;
 
 use function Laravel\Prompts\select;
 
@@ -169,5 +171,10 @@ class PendaftarAdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function exportExcel(){
+        // dd("aaaaaa");
+        return Excel::download(new PesertaExport(), 'DataPesertaSniAward.xlsx');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('propinsi', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+            $table->integerIncrements('id');
             $table->string('propinsi', 30);
             $table->string('map_id', 5)->nullable()->default(NULL);
             $table->timestamps();

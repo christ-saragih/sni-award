@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kota', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->string('kota', 40);
-            $table->unsignedTinyInteger('propinsi_id')->index();
+            $table->unsignedInteger('propinsi_id')->index();
             $table->timestamps();
             $table->unsignedBigInteger('created_by')->nullable(true) ;
             $table->unsignedBigInteger('updated_by')->nullable(true);
