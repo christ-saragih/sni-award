@@ -52,10 +52,64 @@
                   <div class="data">{{ $peserta->peserta_profil->website }}</div>
                 </div>
             </div>
+              
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                <h6 class="mb-0">Provinsi</h6>
+              </div>
+              <div class="col-md-8 pe-5">
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->propinsi->propinsi : '-' }}</div>
+              </div>
+            </div>
+            
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                  <h6 class="mb-0">Kota</h6>
+              </div>
+              <div class="col-md-8 pe-5">
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kota->kota : '-' }}</div>
+              </div>
+            </div>
 
             <div class="row align-items-center pb-3">
               <div class="col-md-4 ps-5">
-                  <h6 class="mb-0">Tanggal Beroperasi</h6>
+                  <h6 class="mb-0">Kecamatan</h6>
+              </div>
+              <div class="col-md-8 pe-5">
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kecamatan->kecamatan : '-' }}</div>
+              </div>
+            </div>
+            
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                  <h6 class="mb-0">Alamat</h6>
+                </div>
+                <div class="col-md-8 pe-5">
+                  <div class="data">{{ $peserta_alamat ? $peserta_alamat->alamat : '-' }}</div>
+              </div>
+            </div>
+
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                <h6 class="mb-0">Kode Pos</h6>
+              </div>
+              <div class="col-md-8 pe-5">
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->kode_pos : '-' }}</div>
+              </div>
+            </div>
+
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                <h6 class="mb-0">Tipe</h6>
+              </div>
+              <div class="col-md-8 pe-5">
+                <div class="data">{{ $peserta_alamat ? $peserta_alamat->tipe : '-' }}</div>
+              </div>
+            </div>
+
+            <div class="row align-items-center pb-3">
+              <div class="col-md-4 ps-5">
+                <h6 class="mb-0">Tanggal Beroperasi</h6>
               </div>
 
               <div class="col-md-8 pe-5">
@@ -126,7 +180,8 @@
                   <h6 class="mb-0">Sektor Kategori Organisasi</h6>
                 </div>
                 <div class="col-md-8 pe-5">
-                  <div class="data">{{ $peserta->peserta_profil->kategori_organisasi ? $peserta->peserta_profil->kategori_organisasi->nama : '-' }}</div>
+                  {{-- {{dd($peserta->peserta_profil)}} --}}
+                  <div class="data">{{ $peserta->kategori_organisasi ? $peserta->kategori_organisasi->nama : '-' }}</div>
                 </div>
             </div>
 

@@ -1,7 +1,16 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
+<style>
+    .btn-success {
+        background-color: #00ab56;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+</style>
 {{-- Hapus --}}
 <!-- Pop up Pendaftar -->
 <div class="modal fade" id="hapusPendaftar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -36,15 +45,21 @@
     <div class="d-flex justify-content-between align-items-center">
         <h3 class="text-center mb-0 pb-0" style="font-size: 150%; font-weight: bold;">Pendaftar</h3>
         {{-- <a href="{{ route('pendaftar.create') }}" class="btn">+ Tambah</a> --}}
-        <div class="dropdown container-dropdown-peserta">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Tahun
-            </button>
-            <ul class="dropdown-menu">
-                @foreach ($data_tahun as $tahun)
-                    <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_tahun', $tahun) }}">{{ $tahun }}</a></li>
-                @endforeach
-            </ul>
+        <div class="d-flex align-items-center gap-3">
+            <form action="{{route('pendaftar_sni_award.export_excel')}}" method="post">
+                @csrf
+                <button type="submit" class="btn-success">Download Excel</button>
+            </form>
+            <div class="dropdown container-dropdown-peserta">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tahun
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach ($data_tahun as $tahun)
+                        <li><a class="dropdown-item" href="{{ route('pendaftar_sni_award.get_tahun', $tahun) }}">{{ $tahun }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
     <div class="container mt-4">
@@ -80,7 +95,7 @@
                         </td>
                         <td class="text-center">{{$cr->status->nama}}</td>
                         <td class="text-center">{{$cr->stage->nama}}</td>
-                        <td>{{$cr->peserta->kategori_organisasi->nama}}</td>
+                        <td>{{$cr->peserta->kategori_organisasi ? $cr->peserta->kategori_organisasi->nama : ''}}</td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">
                                 <a class="btn btn-detail"  href="{{ route('pendaftar_sni_award.detail', Crypt::encryptString($cr->id)) }}">Detail</a>

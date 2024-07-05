@@ -60,7 +60,7 @@ class AuthPesertaController extends Controller
         $request->validate([
             'email' => 'required|unique:peserta|email',
             'password' => 'required|min:8|confirmed|strong_password',
-            'kategori_organisasi_id' => 'required',
+            // 'kategori_organisasi_id' => 'required',
         ], [
             'email.required' => 'Email Wajib Diisi',
             'email.unique' => 'Email telah terdaftar sebagai peserta',
@@ -68,7 +68,7 @@ class AuthPesertaController extends Controller
             'password.min' => 'Panjang Password minimal 8 karakter',
             'password.confirmed' => 'Harap konfirmasi password anda',
             'password.strong_password' => 'Password harus mengandung huruf besar, huruf kecil, angka, John karakter spesial',
-            'kategori_organisasi_id.required' => 'Kategori Organisasi wajib dipilih',
+            // 'kategori_organisasi_id.required' => 'Kategori Organisasi wajib dipilih',
         ]);
         $dataRegistrasi = [
             'nama' => $request->nama,

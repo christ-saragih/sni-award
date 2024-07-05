@@ -42,7 +42,7 @@ class KecamatanAdminController extends Controller
             'kota_id' => $request->kota_id,
         ]);
 
-        return redirect('/admin/wilayah');
+        return redirect('/admin/wilayah')->with('success', 'Kecamatan berhasil dibuat!');
     }
 
     public function update(Request $request, $id)
@@ -68,7 +68,7 @@ class KecamatanAdminController extends Controller
             'kota_id' => $request->kota_id,
         ]);
 
-        return redirect('/admin/wilayah')->with('success', 'Kabupaten berhasil diubah');
+        return redirect('/admin/wilayah')->with('success', 'Kecamatan berhasil diubah');
     }
 
     public function destroy($id)

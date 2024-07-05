@@ -95,7 +95,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-2">
+                {{-- <div class="mb-2">
                     <label for="kategori" class="col-form-label">{{ __('Kategori') }}</label>
 
                     <div class="">
@@ -112,7 +112,7 @@
                             </span>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div style="
                     display:flex;
                     align-items:center;

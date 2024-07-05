@@ -20,15 +20,15 @@
                     <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Desk Evaluation</h3>
                     <div class="d-flex gap-2 align-items-center">
                         <img src="{{ asset('assets') }}/images/dashboard1.svg" style="width: 50px; height: 50px; border: none; border-radius: 0;" alt="">
-                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">27 Tim</span>
+                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">{{ $desk_evaluation }}</span>
                     </div>
                 </div>
                 <div class="d-flex position-relative flex-column justify-content-center py-3" style="padding-inline: 2.5rem; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA; height: 144px;">
                     <hr class="position-absolute start-0 h-100" style="background-color: #552525; border: none; width: 12px; border-radius: 20px;">
-                    <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Desk Evaluation</h3>
+                    <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Site Evaluation</h3>
                     <div class="d-flex gap-2 align-items-center">
                         <img src="{{ asset('assets') }}/images/dashboard1.svg" style="width: 50px; height: 50px; border: none; border-radius: 0;" alt="">
-                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">27 Tim</span>
+                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">{{ $site_evaluation }}</span>
                     </div>
                 </div>
                 <div class="d-flex position-relative flex-column justify-content-center py-3" style="padding-inline: 2.5rem; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA; height: 144px;">
@@ -36,7 +36,7 @@
                     <h3 style="font-weight: bold; font-size: 150%; color: #000000;">Peserta</h3>
                     <div class="d-flex gap-2 align-items-center">
                         <img src="{{ asset('assets') }}/images/dashboard1.svg" style="width: 50px; height: 50px; border: none; border-radius: 0;" alt="">
-                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">50 Tim</span>
+                        <span style="color: #E59B30; font-weight: bold; font-size: 137.5%">{{ $peserta }}</span>
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                             <canvas id="chartjs-bar" style="height: 250px;"></canvas>
                         </div>
                     </div>
-                </div>                                                                                      
-        
+                </div>
+
                 <div class="card" style="width: 35%; box-shadow: 0px 4px 4px 0px rgba(204,204,204,1); border-radius: 20px; background-color: #FAFAFA;">
                     <div class="card-header" style="background-color: #FAFAFA;">
                         <h5 class="card-title mb-0">Kalender</h5>

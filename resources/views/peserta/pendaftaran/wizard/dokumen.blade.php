@@ -127,59 +127,56 @@
               <label class="fw-bold">Dokumen Profil</label>
               <hr class="flex-grow-1" style="height: 1px; background-color: #9FAFBF;">
           </div>
-            @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
+            {{-- @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0) --}}
               @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
-                <div class="row g-3 align-items-center mt-2">
-                  <div class="col-9">
-                    <label class="fw-bold">Legalitas Hukum Organisasi</label>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <div>
+                    <label class="fw-bold">Akte / NIB / TDP</label>
                   </div>
-                  <div class="col-1 d-flex justify-content-center">
-                      <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
+                  <div class="d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
-                  <div class="col-2"></div>
+                </div>
               @endif
               @if ($peserta->peserta_profil->url_sppt_sni)
-                <div class="row g-3 align-items-center mt-2">
-                  <div class="col-9">
-                    <label class="fw-bold">SPPT SNI</label>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <div>
+                    <label class="fw-bold">SPPT SNI / Sertifikat SNI</label>
                   </div>
-                  <div class="col-1 d-flex justify-content-center">
-                      <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
+                  <div class="d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
-                  <div class="col-2"></div>
                 </div>
               @endif
               @if ($peserta->peserta_profil->url_sk_kemenkumham)
-                <div class="row g-3 align-items-center mt-2">
-                  <div class="col-9">
-                    <label class="fw-bold">SK Kemenkeuham</label>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <div>
+                    <label class="fw-bold">SK Kemenkumham</label>
                   </div>
-                  <div class="col-1 d-flex justify-content-center">
-                      <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
+                  <div class="d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
-                  <div class="col-2"></div>
                 </div>
               @endif
               @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
-                <div class="row g-3 align-items-center mt-2">
-                  <div class="col-9">
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <div>
                     <label class="fw-bold">Kewenangan Kebijakan</label>
                   </div>
-                  <div class="col-1 d-flex justify-content-center">
-                      <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank" style="margin-left: 25px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
+                  <div class="d-flex justify-content-center">
+                      <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unduh dokumen">
                         <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
                     </a>
                   </div>
-                  <div class="col-2"></div>
                 </div>
               @endif
-            @endif
+            {{-- @endif --}}
             
     </div>
   </div>

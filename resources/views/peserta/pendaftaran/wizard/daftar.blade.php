@@ -89,9 +89,12 @@
                     onclick="showConfirmation()" 
                     class="btn-daftar-sekarang px-4 py-2" 
                     style="border: initial; border-radius: 15px; width: initial;
-                        {{ $percentage_profil == 100 ? 'background-color: #E1A600;' : 'background-color: #d2c9b0;' }}
+                        background-color: #E1A600;
                     "
-                    {{ $percentage_profil == 100 ? '' : 'disabled' }}
+                    {{-- style="border: initial; border-radius: 15px; width: initial;
+                        {{ $percentage_profil == 100 ? 'background-color: #E1A600;' : 'background-color: #d2c9b0;' }}
+                    " --}}
+                    {{-- {{ $percentage_profil == 100 ? '' : 'disabled' }} --}}
                 >Daftar Sekarang</button>
             @endif
         </form>

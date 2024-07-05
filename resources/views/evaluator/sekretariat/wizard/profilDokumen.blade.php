@@ -301,40 +301,64 @@
                 <hr style="width: 72%; height: 1px; background-color: #9FAFBF;">
             </div>
             <div class="ps-4 mt-2">
-                @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0)
+                {{-- @if ($peserta->peserta_profil && $registrasi && count($registrasi->registrasi_dokumen)!== 0) --}}
                     @if ($peserta->peserta_profil->url_legalitas_hukum_organisasi)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">Legalitas Hukum Organisasi</label>
-                            <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>Akte / NIB / TDP</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_legalitas_hukum_organisasi }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                     @if ($peserta->peserta_profil->url_sppt_sni)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">SPPT SNI</label>
-                            <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>SPPT SNI / Sertifikat SNI</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_sppt_sni }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
                     @if ($peserta->peserta_profil->url_sk_kemenkumham)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">SK Kemenkeuham</label>
-                            <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>SK Kemenkeuham</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_sk_kemenkumham }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
                     @endif
-                    @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
-                        <div class="w-100 d-flex justify-content-between align-items-center mt-2 pe-2">
-                            <label style="color: #000000;">Kewenangan Kebijakan</label>
-                            <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
-                                <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
-                            </a>
+                    {{-- @if ($peserta->peserta_profil->url_kewenangan_kebijakan)
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-3">
+                                <label>Kewenangan Kebijakan</label>
+                            </div>
+                            <div class="col-8"></div>
+                    
+                            <div class="col-1 d-flex justify-content-center">
+                                <a href="{{ $peserta->peserta_profil->url_kewenangan_kebijakan }}" target="_blank">
+                                    <i class="fa fa-download" aria-hidden="true" style="color: #552525; border: 2px solid #552525; border-radius: 8px; padding: 0.3rem"></i>
+                                </a>
+                            </div>                                        
                         </div>
-                    @endif
-                @endif
+                    @endif --}}
+                {{-- @endif --}}
             </div>
         </div>
     </div>

@@ -352,6 +352,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/pendaftar_sni_award/{id}/detail/{kategori}', [PendaftarAdminController::class, 'getKategori'])->name('pendaftar_sni_award.get_kategori');
         Route::get('/pendaftar_sni_award/{registrasi}/ubah', [PendaftarAdminController::class, 'edit'])->name('pendaftar_sni_award.edit');
         Route::put('/pendaftar_sni_award/{id}', [PendaftarAdminController::class, 'update'])->name('pendaftar_sni_award.update');
+        Route::post('/pendaftar_sni_award/export_excel', [PendaftarAdminController::class, 'exportExcel'])->name('pendaftar_sni_award.export_excel');
         Route::get('/get_data_dokumen/{id}', [PendaftarAdminController::class, 'getDokumenPeserta'])->name('pendaftar_sni_award.get_dokumen_peserta');
 
         Route::get('/admin/404', [NotFoundController::class, 'admin']);

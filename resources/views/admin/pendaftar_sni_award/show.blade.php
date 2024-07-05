@@ -151,10 +151,66 @@
                     </div>
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-4">
+                            <label class="fw-bold">Nomor Telepon</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_profil->no_hp }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
                             <label class="fw-bold">Website</label>
                         </div>
                         <div class="col-8">
                             {{ $peserta->peserta_profil->website }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Provinsi</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->propinsi->propinsi : '-' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Kota</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kota->kota : '-' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Kecamatan</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kecamatan->kecamatan : '-' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Alamat</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->alamat : '-' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Kode Pos</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->kode_pos : '-' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Tipe</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_alamat ? $peserta->peserta_alamat->tipe : '-' }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -183,10 +239,26 @@
                     </div>
                     <div class="row g-3 align-items-center mt-2">
                         <div class="col-4">
+                            <label class="fw-bold">Deskripsi Produk</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_profil->deskripsi_produk }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
                             <label class="fw-bold">Lembaga Sertifikasi</label>
                         </div>
                         <div class="col-8">
                             {{ $peserta->peserta_profil->lembaga_sertifikasi?$peserta->peserta_profil->lembaga_sertifikasi->nama:'' }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Produk Ekspor</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_profil->produk_export }}
                         </div>
                     </div>
                     <div class="row g-3 align-items-center mt-2">
@@ -227,6 +299,14 @@
                         </div>
                         <div class="col-8">
                             {{ $peserta->peserta_profil->jenis_organisasi }}
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center mt-2">
+                        <div class="col-4">
+                            <label class="fw-bold">Kewenangan Kebijakan</label>
+                        </div>
+                        <div class="col-8">
+                            {{ $peserta->peserta_profil->kewenangan_kebijakan }}
                         </div>
                     </div>
                 </div>
@@ -291,11 +371,11 @@
 
                     </div> --}}
 
-                    @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
+                    {{-- @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen) --}}
                         @if ($dokumen_peserta->url_legalitas_hukum_organisasi)
                             <div class="row g-3 align-items-center mt-2 mt-2">
                                 <div class="col-8">
-                                    <label>url_legalitas_hukum_organisasi <span style="color: red">*</span></label>
+                                    <label>Akte / NIB / TDP <span style="color: red">*</span></label>
                                 </div>
                                 <div class="col-4">
                                     <a href="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}" class="btn" style="background-color: white; color:#552525; border: #552525 solid 3px; border-radius: 10px; padding: 4px 8px;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_legalitas_hukum_organisasi }}.pdf" download><i class="fa fa-download"></i></a>
@@ -314,7 +394,7 @@
                         @if ($dokumen_peserta->url_sppt_sni)
                             <div class="row g-3 align-items-center mt-2">
                                 <div class="col-8">
-                                    <label>url_sppt_sni <span style="color: red">*</span></label>
+                                    <label>SPPT SNI / Sertifikat SNI <span style="color: red">*</span></label>
                                 </div>
                                 <div class="col-4">
                                     <a href="{{ $dokumen_peserta->url_sppt_sni }}" class="btn" style="background-color: white; color:#552525; border: #552525 solid 3px; border-radius: 10px; padding: 4px 8px;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sppt_sni }}.pdf" download><i class="fa fa-download"></i></a>
@@ -333,7 +413,7 @@
                         @if ($dokumen_peserta->url_sk_kemenkumham)
                             <div class="row g-3 align-items-center mt-2">
                                 <div class="col-8">
-                                    <label>url_sk_kemenkumham <span style="color: red">*</span></label>
+                                    <label>SK Kemenkumham <span style="color: red">*</span></label>
                                 </div>
                                 <div class="col-4">
                                     <a href="{{ $dokumen_peserta->url_sk_kemenkumham }}" class="btn" style="background-color: white; color:#552525; border: #552525 solid 3px; border-radius: 10px; padding: 4px 8px;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $dokumen_peserta->url_sk_kemenkumham }}.pdf" download><i class="fa fa-download"></i></a>
@@ -349,7 +429,10 @@
                                 </div>
                             </div>
                         @endif
-                        @if ($dokumen_peserta->url_kewenangan_kebijakan)
+                        <div class="col-md-3">
+                            <p class="ms-0 mb-0"> <i>(khusus organisasi Pendidikan)</i></p>  
+                        </div>
+                        {{-- @if ($dokumen_peserta->url_kewenangan_kebijakan)
                             <div class="row g-3 align-items-center mt-2">
                                 <div class="col-8">
                                     <label>url_kewenangan_kebijakan <span style="color: red">*</span></label>
@@ -367,10 +450,10 @@
                                     <span class="text-muted">Tidak ada file</span>
                                 </div>
                             </div>
-                        @endif
-                    @else
+                        @endif --}}
+                    {{-- @else --}}
                         {{-- <span class="text-muted">Tidak ada file</span> --}}
-                    @endif
+                    {{-- @endif --}}
 
                     {{-- old --}}
                     {{-- @if ($registrasi_dokumen && $registrasi_dokumen->url_dokumen)
@@ -427,8 +510,8 @@
                         <div class="progress-bar pertanyaan" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background-color: #E59B30;"></div>
                     </div>
                     <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Kategori
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ $assessment_kategori->nama }}
                         </button>
                         <ul class="dropdown-menu">
                             @foreach ($data_assessment_kategori as $kategori)
