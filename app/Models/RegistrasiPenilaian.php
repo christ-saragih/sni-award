@@ -22,4 +22,9 @@ class RegistrasiPenilaian extends Model
     {
         return $this->belongsTo(User::class, 'internal_id', 'id');
     }
+
+    public function stage(): BelongsTo
+    {
+        return $this->belongsTo(Stage::class);
+    }
 }
