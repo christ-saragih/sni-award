@@ -180,7 +180,7 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
         $PenilaianProfile = Registrasi::with('registrasi_penilaian')->get();
 
         // Find the maximum number of contacts
-        $maxContacts = 0;
+        $maxContacts = 2;
         foreach ($PesertaProfile as $data) {
             $countContacts = $data->peserta->peserta_kontak ? $data->peserta->peserta_kontak->count() : 0;
             if ($countContacts > $maxContacts) {
