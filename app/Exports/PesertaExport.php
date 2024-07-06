@@ -59,35 +59,35 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
                 }
             }
 
-            if ($data->registrasi_assessment) {
-                $counter = 1; // Counter untuk nomor kontak
+            // if ($data->registrasi_assessment) {
+            //     $counter = 1; // Counter untuk nomor kontak
 
-                foreach ($data->registrasi_assessment as $assessment) {
-                    if ($counter > $data->registrasi_assessment->count()) break; // Hentikan setelah mencapai maksimum
-                    $assessmentArray["kategori_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori->nama ?? '';
-                    $assessmentArray["sub kategori_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->nama ?? '';
-                    $assessmentArray["pertanyaan_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->pertanyaan ?? '';
-                    $assessmentArray["jawaban_$counter"] = $assessment->assessment_jawaban->jawaban ?? '';
-                    $counter++;
-                }
+            //     foreach ($data->registrasi_assessment as $assessment) {
+            //         if ($counter > $data->registrasi_assessment->count()) break; // Hentikan setelah mencapai maksimum
+            //         $assessmentArray["kategori_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori->nama ?? '';
+            //         $assessmentArray["sub kategori_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->nama ?? '';
+            //         $assessmentArray["pertanyaan_$counter"] = $assessment->assessment_jawaban->assessment_pertanyaan->pertanyaan ?? '';
+            //         $assessmentArray["jawaban_$counter"] = $assessment->assessment_jawaban->jawaban ?? '';
+            //         $counter++;
+            //     }
 
-                // Isi kekurangan data kontak dengan string kosong
-                while ($counter <= $data->registrasi_assessment->count()) {
-                    $assessmentArray["kategori_$counter"] = '';
-                    $assessmentArray["sub kategori_$counter"] = '';
-                    $assessmentArray["pertanyaan_$counter"] = '';
-                    $assessmentArray["jawaban_$counter"] = '';
-                    $counter++;
-                }
-            } else {
-                // Isi semua data kontak dengan string kosong jika tidak ada kontak
-                for ($i = 1; $i <= $data->registrasi_assessment->count(); $i++) {
-                    $assessmentArray["kategori_$i"] = '';
-                    $assessmentArray["sub kategori_$i"] = '';
-                    $assessmentArray["pertanyaan_$i"] = '';
-                    $assessmentArray["jawaban_$i"] = '';
-                }
-            }
+            //     // Isi kekurangan data kontak dengan string kosong
+            //     while ($counter <= $data->registrasi_assessment->count()) {
+            //         $assessmentArray["kategori_$counter"] = '';
+            //         $assessmentArray["sub kategori_$counter"] = '';
+            //         $assessmentArray["pertanyaan_$counter"] = '';
+            //         $assessmentArray["jawaban_$counter"] = '';
+            //         $counter++;
+            //     }
+            // } else {
+            //     // Isi semua data kontak dengan string kosong jika tidak ada kontak
+            //     for ($i = 1; $i <= $data->registrasi_assessment->count(); $i++) {
+            //         $assessmentArray["kategori_$i"] = '';
+            //         $assessmentArray["sub kategori_$i"] = '';
+            //         $assessmentArray["pertanyaan_$i"] = '';
+            //         $assessmentArray["jawaban_$i"] = '';
+            //     }
+            // }
 
             if ($data->registrasi_penilaian) {
                 $counter = 1; // Counter untuk nomor kontak
@@ -158,13 +158,13 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
                 'Hasil Penjualan Tahunan' => $data->peserta->peserta_profil->hasil_penjualan_tahunan ?? '',
                 'Jenis Organisasi' => $data->peserta->peserta_profil->jenis_organisasi ?? '',
                 'Kewenangan Kebijakan' => $data->peserta->peserta_profil->kewenangan_kebijakan ?? '',
-                'Propinsi' => $data->peserta->alamat->propinsi->propinsi ?? '',
-                'Kota' => $data->peserta->alamat->kota->kota ?? '',
-                'Kecamatan' => $data->peserta->alamat->kecamatan->kecamatan ?? '',
-                'Alamat' => $data->peserta->alamat->alamat ?? '',
-                'Kode Pos' => $data->peserta->alamat->kode_pos ?? '',
-                'Tipe' => $data->peserta->alamat->tipe ?? '',
-            ], $kontakArray, $assessmentArray, $penilaianArray);
+                'Propinsi' => $data->peserta->peserta_alamat->propinsi->propinsi ?? '',
+                'Kota' => $data->peserta->peserta_alamat->kota->kota ?? '',
+                'Kecamatan' => $data->peserta->peserta_alamat->kecamatan->kecamatan ?? '',
+                'Alamat' => $data->peserta->peserta_alamat->alamat ?? '',
+                'Kode Pos' => $data->peserta->peserta_alamat->kode_pos ?? '',
+                'Tipe' => $data->peserta->peserta_alamat->tipe ?? '',
+            ], $kontakArray, $penilaianArray);
         }
 
         return new Collection($detailPesertaProfile);
@@ -176,8 +176,8 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
     public function headings(): array
     {
         $PesertaProfile = Registrasi::with('peserta.peserta_kontak')->get();
-        $AssessmenProfile = Registrasi::with('registrasi_assessment')->get();
-        $PenilaianProfile = Registrasi::with('registrasi_assessment')->get();
+        // $AssessmenProfile = Registrasi::with('registrasi_assessment')->get();
+        $PenilaianProfile = Registrasi::with('registrasi_penilaian')->get();
 
         // Find the maximum number of contacts
         $maxContacts = 0;
@@ -188,13 +188,13 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
             }
         }
 
-        $maxAssessment = 0;
-        foreach ($AssessmenProfile as $data) {
-            $countAssessments = $data->registrasi_assessment ? $data->registrasi_assessment->count() : 0;
-            if ($countAssessments > $maxAssessment) {
-                $maxAssessment = $countAssessments;
-            }
-        }
+        // $maxAssessment = 0;
+        // foreach ($AssessmenProfile as $data) {
+        //     $countAssessments = $data->registrasi_assessment ? $data->registrasi_assessment->count() : 0;
+        //     if ($countAssessments > $maxAssessment) {
+        //         $maxAssessment = $countAssessments;
+        //     }
+        // }
 
         $maxPenilian = 0;
         foreach ($PenilaianProfile as $data) {
@@ -238,12 +238,12 @@ class PesertaExport implements FromCollection, WithHeadings, ShouldAutoSize
             $headings[] = "Jabatan Kontak $i";
         }
 
-        for ($i = 1; $i <= $maxAssessment; $i++) {
-            $headings[] = "Kategori";
-            $headings[] = "SubKategori";
-            $headings[] = "Pertanyaan";
-            $headings[] = "Jawaban";
-        }
+        // for ($i = 1; $i <= $maxAssessment; $i++) {
+        //     $headings[] = "Kategori";
+        //     $headings[] = "SubKategori";
+        //     $headings[] = "Pertanyaan";
+        //     $headings[] = "Jawaban";
+        // }
 
         for ($i = 1; $i <= $maxPenilian; $i++) {
             $headings[] = "Nama";
