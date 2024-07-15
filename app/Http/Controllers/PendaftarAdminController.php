@@ -116,13 +116,10 @@ class PendaftarAdminController extends Controller
         $peserta = Peserta::find($registrasi->peserta_id);
         // dd($peserta);
         $dokumen_peserta = PesertaProfil::where('peserta_id', $peserta->id)->select('url_legalitas_hukum_organisasi', 'url_sppt_sni', 'url_sk_kemenkumham', 'url_kewenangan_kebijakan')->first();
-        // dd($dokumen_peserta);
 
+        // ----------------------
         $assessment_kategori = AssessmentKategori::first();
-        // dd($assessment_kategori->assessment_sub_kategori);
-
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
-        // dd($data_assessment_kategori);
 
         $assigned_sekretariat = Registrasi::select('sekretariat_id')
             ->where('sekretariat_id', '!=', null)
