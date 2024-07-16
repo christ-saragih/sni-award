@@ -34,7 +34,7 @@ class EvaluatorEvaluatorController extends Controller
             ->where('stage', 4)
             ->whereIn('registrasi_id', $all_registrasi_id)
             ->get();
-
+        // dd($desk_evaluation);
         // dd($desk_evaluation[1]->registrasi->registrasi_penilaian);
         // $penilaian_evaluator = RegistrasiPenilaian::where('registrasi_id', $registrasi->id)->where(['stage_id' => 3, 'internal_id' => $desk_evaluation->evaluator_id])->first();
         // dd($penilaian_evaluator);
