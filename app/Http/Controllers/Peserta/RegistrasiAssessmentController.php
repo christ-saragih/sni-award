@@ -45,7 +45,7 @@ class RegistrasiAssessmentController extends Controller
         if ($registrasi){
             $regis_jawaban = RegistrasiAssessment::where('registrasi_id',$registrasi->id)->get();
         }
-        
+
         foreach ($regis_jawaban as $jawaban) {
             $kategori_assess = $jawaban->assessment_jawaban->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori;
             foreach($assessment_kategori as $kategori){
@@ -106,12 +106,32 @@ class RegistrasiAssessmentController extends Controller
             return response()->json(['error' => 'Data not found'], 404);
         }
 
+        // $selected_jawaban = RegistrasiAssessment::where('registrasi_id', $registrasi_id)->get();
+        $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
+        $is_completed = $registrasi_assessment ? $registrasi_assessment[0]->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori_id == $id : false;
+
+        $assessment_kategori = AssessmentKategori::first();
+        $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
+        // dd($selected_jawaban);
 
         return view('peserta.pendaftaran.detail',[
             'assessment_sub_kategori' => $assessment_sub_kategori,
             'registrasi' => $registrasi,
             'pertanyaan' => $pertanyaan,
             'jawaban_yang_dipilih' => $jawaban_yang_dipilih,
+            'registrasi_assessment' => $registrasi_assessment,
+            'assessment_kategori' => $assessment_kategori,
+            'data_assessment_kategori' => $data_assessment_kategori,
+            'is_completed' => $is_completed,
+        ]);
+    }
+
+    public function reviewPertanyaan($id,$registrasi_id) {
+
+        $registrasi = Registrasi::find($registrasi_id);
+
+        return view('peserta.pendaftaran.wizard.reviewPertanyaan', [
+            'registrasi' => $registrasi,
         ]);
     }
 
@@ -119,24 +139,24 @@ class RegistrasiAssessmentController extends Controller
     // public function showPertanyaan($id, $registrasi_id) {
     //     $assessment_sub_kategori = AssessmentSubKategori::where('assessment_kategori_id', $id)->with(['assessment_pertanyaan.assessment_jawaban'])->get();
     //     $registrasi = Registrasi::find($registrasi_id);
-        
+
     //     // Mengambil jawaban yang telah dipilih oleh peserta
     //     $jawaban_peserta = RegistrasiAssessment::with('assessment_jawaban')
     //                         ->where('registrasi_id', $registrasi_id)
     //                         ->get()
     //                         ->keyBy('assessment_pertanyaan_id');
-    
+
     //     if (!$assessment_sub_kategori) {
     //         return response()->json(['error' => 'Data not found'], 404);
     //     }
-    
+
     //     return view('peserta.pendaftaran.detail', [
     //         'assessment_sub_kategori' => $assessment_sub_kategori,
     //         'registrasi' => $registrasi,
     //         'jawaban_peserta' => $jawaban_peserta
     //     ]);
     // }
-    
+
 
     public function detail() {
         return view('peserta.pendaftaran.detail');
