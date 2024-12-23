@@ -108,7 +108,7 @@ class RegistrasiAssessmentController extends Controller
 
         // $selected_jawaban = RegistrasiAssessment::where('registrasi_id', $registrasi_id)->get();
         $registrasi_assessment = RegistrasiAssessment::where('registrasi_id', $registrasi->id)->get();
-        $is_completed = $registrasi_assessment ? $registrasi_assessment[0]->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori_id == $id : false;
+        $is_completed = !$registrasi_assessment->isEmpty() && $registrasi_assessment[0]->assessment_pertanyaan->assessment_sub_kategori->assessment_kategori_id == $id;
 
         $assessment_kategori = AssessmentKategori::first();
         $data_assessment_kategori = AssessmentKategori::select('nama')->distinct()->pluck('nama');
