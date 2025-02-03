@@ -48,7 +48,7 @@
                     <form id="submitForm" action="{{ route('simpanJawaban') }}" method="POST">
                         @csrf
                         @foreach ($assessment_sub_kategori as $ask)
-                            @foreach ($ask->assessment_pertanyaan as $ap)
+                            @foreach ($ask->assessment_pertanyaan as $key=>$ap)
                                 <input type="hidden" name="registrasi_id" value="{{ $registrasi->id }}">
                                 <div class="pertanyaan-container d-flex flex-column align-items-center w-100 mt-4">
                                     <div class="kategori d-flex flex-column justify-content-center align-items-center py-3">
@@ -61,15 +61,20 @@
                                     </div>
                                     <div class="jawaban d-flex flex-wrap justify-content-between align-items-center w-100 mt-4 gap-3">
                                         @foreach ($ap->assessment_jawaban as $aj)
-                                            <label class="jawaban-label d-flex align-items-center py-1 px-3" onclick="pilihJawaban(this)">
-                                                <input type="radio" name="jawaban[{{ $ap->id }}]" value="{{ $aj->id }}"> {{ $aj->jawaban }}
+                                            <label class="jawaban-label d-flex align-items-center py-1 px-3 @if($registrasi_assessment->contains('assessment_jawaban_id', $aj->id)) active @endif" onclick="pilihJawaban(this)">
+                                                @if (!$is_completed)
+                                                    <input type="radio" name="jawaban[{{ $ap->id }}]" value="{{ $aj->id }}">
+                                                @endif
+                                                {{ $aj->jawaban }}
                                             </label>
                                         @endforeach
                                     </div>
                                 </div>
                             @endforeach
                         @endforeach
-                        <button type="button" class="btn float-end mt-5" onclick="showConfirmation()" style="width: 20%;">Submit Jawaban</button>
+                        @if (!$is_completed)
+                            <button type="button" class="btn float-end mt-5" onclick="showConfirmation()" style="width: 20%;">Submit Jawaban</button>
+                        @endif
                     </form>
                 @endif
 

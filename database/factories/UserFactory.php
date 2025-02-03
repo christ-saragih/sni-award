@@ -24,14 +24,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => 'User SNI',
+            'email' => 'user@gmail.com',
             'role' => 2,
             'status' => 'aktif',
             'email_verified_at' => now(),
-            'verify_key' => fake()->password(),
+            'verify_key' => Str::random(100),
             'forgot_password_token' => Str::random(100),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('1234567890'),
             'remember_token' => Str::random(10),
         ];
     }
@@ -44,5 +44,53 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function admin()
+    {
+        static $sequence = 0;
+        return $this->state(function (array $attributes) use (&$sequence) {
+            $sequence++;
+            $emailPrefix = $sequence === 1 ? 'admin' : "admin$sequence";
+            $namePrefix = $sequence === 1 ? 'Administrator SNI' : "Administrator SNI $sequence";
+
+            return [
+                'name' => $namePrefix,
+                'email' => "$emailPrefix@gmail.com",
+                'role' => 1,
+            ];
+        });
+    }
+
+    public function evaluator()
+    {
+        static $sequence = 0;
+        return $this->state(function (array $attributes) use (&$sequence) {
+            $sequence++;
+            $emailPrefix = $sequence === 1 ? 'evaluator' : "evaluator$sequence";
+            $namePrefix = $sequence === 1 ? 'Evaluator SNI' : "Evaluator SNI $sequence";
+
+            return [
+                'name' => $namePrefix,
+                'email' => "$emailPrefix@gmail.com",
+                'role' => 2,
+            ];
+        });
+    }
+
+    public function leadEvaluator()
+    {
+        static $sequence = 0;
+        return $this->state(function (array $attributes) use (&$sequence) {
+            $sequence++;
+            $emailPrefix = $sequence === 1 ? 'leadevaluator' : "leadevaluator$sequence";
+            $namePrefix = $sequence === 1 ? 'Lead Evaluator SNI' : "Lead Evaluator SNI $sequence";
+
+            return [
+                'name' => $namePrefix,
+                'email' => "$emailPrefix@gmail.com",
+                'role' => 3,
+            ];
+        });
     }
 }
